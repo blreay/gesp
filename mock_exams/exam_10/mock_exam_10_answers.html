@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (十) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（十）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">C</td>
+            <td class="ans">C</td><td class="ans">C</td><td class="ans">B</td>
+            <td class="ans">D</td><td class="ans">C</td><td class="ans">A</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>逐步跟踪循环：<br>
+        i=1: 不是3的倍数，不是5的倍数，a += 1，a=1<br>
+        i=2: 不是3的倍数，不是5的倍数，a += 2，a=3<br>
+        i=3: 是3的倍数，a++，a=4，continue<br>
+        i=4: 不是3的倍数，不是5的倍数，a += 4，a=8<br>
+        i=5: 不是3的倍数，是5的倍数，b++，b=1，break<br>
+        输出 <code>8 1</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong><code>%d</code> 按十进制整数输出 65，<code>%c</code> 按字符输出 ASCII 码 65 对应的字符 'A'，<code>%x</code> 按十六进制输出 65 = 0x41。输出 <code>65 A 41</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong><code>a / 2</code> 是整数除法，<code>5 / 2 = 2</code>（int），然后 <code>2 + 2.0 = 4.0</code>（int 自动转 double）。<code>cout &lt;&lt; 4.0</code> 输出 <code>4</code>（cout 默认不带小数点显示整数值的 double）。选 B。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>三目运算符 <code>? :</code>：<code>x &gt; y</code> 即 <code>5 &gt; 8</code> 为假，取 <code>y - x = 8 - 5 = 3</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>A 以数字开头，不合法；C 含空格，不合法；D 是关键字。<code>_MAX_SIZE</code> 以下划线开头，合法。选 B。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>逐步跟踪：<br>
+        i=1: 不是4的倍数，不是7的倍数，sum += 1，sum=1<br>
+        i=2: 不是4的倍数，不是7的倍数，sum += 2，sum=3<br>
+        i=3: 不是4的倍数，不是7的倍数，sum += 3，sum=6<br>
+        i=4: 是4的倍数，continue<br>
+        i=5: 不是4的倍数，不是7的倍数，sum += 5，sum=11<br>
+        i=6: 不是4的倍数，不是7的倍数，sum += 6，sum=17<br>
+        i=7: 不是4的倍数，是7的倍数，cnt++，cnt=1，break<br>
+        输出 <code>1 17</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong><code>%d</code> 输出整数 3，<code>%.1f</code> 输出 4.56 保留 1 位小数为 4.6（四舍五入）。输出 <code>a=3,b=4.6</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>嵌套三目运算符：<code>x=7</code>，<code>x &gt; 10</code> 为假，进入第二个三目运算：<code>x &gt; 5</code> 即 <code>7 &gt; 5</code> 为真，取 <code>x + 10 = 17</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>跳过偶数（continue），遇到 i &gt; 15 时 break。<br>
+        累加的奇数：1, 3, 5, 7, 9, 11, 13, 15（i=17 时 &gt; 15，break，不累加 17）。<br>
+        s = 1+3+5+7+9+11+13+15 = 64。选 C。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>C 错误。人工智能目前还远未超越人类的所有方面，无法解决所有问题。A、B、D 都是正确的说法。选 C。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong><code>a &gt; b</code> 即 <code>3 &gt; 5</code> 为假，进入第二个三目运算：<code>b &gt; c</code> 即 <code>5 &gt; 4</code> 为真，取 <code>b = 5</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong><code>10 / 3</code> 是整数除法，结果为 3（int）。赋值给 double 变量 d 后为 3.0。<code>cout &lt;&lt; d</code> 输出 <code>3</code>（cout 默认输出 double 时，如果值恰好是整数则不显示小数点）。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>"同时被 3 和 5 整除"等价于被 15 整除。<code>i % 3 == 0 &amp;&amp; i % 5 == 0</code> 和 <code>i % 15 == 0</code> 效果相同。选 D。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong><code>%05d</code> 表示输出宽度为 5，不足的位用 0 填充。42 只有 2 位，前面补 3 个零，输出 <code>00042</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>逐步跟踪：n=1。<br>
+        i=1: n = 1*1+1 = 2<br>
+        i=2: n = 2*2+1 = 5<br>
+        i=3: n = 5*3+1 = 16<br>
+        i=4: n = 16*4+1 = 65<br>
+        输出 65。选 A。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&radic;</td><td class="ans">&radic;</td><td class="ans">&times;</td>
+            <td class="ans">&radic;</td><td class="ans">&radic;</td><td class="ans">&times;</td>
+            <td class="ans">&times;</td><td class="ans">&times;</td><td class="ans">&times;</td>
+            <td class="ans">&radic;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 &radic;：</strong>DeepSeek 确实是由中国杭州深度求索（DeepSeek）公司研发的大语言模型，于 2024-2025 年期间引发了全球科技界的广泛讨论和关注。
+    </div>
+    <div class="explain">
+        <strong>第2题 &radic;：</strong>三目运算符 <code>条件 ? 表达式1 : 表达式2</code> 可以替代简单的 if-else 赋值语句。例如 <code>int m = (a &gt; b) ? a : b;</code> 等价于 if-else 写法。
+    </div>
+    <div class="explain">
+        <strong>第3题 &times;：</strong><code>5 / 2.0</code> 中，由于 2.0 是 double 类型，5 会自动转换为 double，结果是 2.5，不是 2。
+    </div>
+    <div class="explain">
+        <strong>第4题 &radic;：</strong>单独一个下划线 <code>_</code> 是合法的 C++ 变量名。标识符可以由字母、数字和下划线组成，且不以数字开头。
+    </div>
+    <div class="explain">
+        <strong>第5题 &radic;：</strong><code>%c</code> 格式按字符输出。ASCII 码 66 对应字符 'B'（'A'=65, 'B'=66），所以输出 <code>B</code>。
+    </div>
+    <div class="explain">
+        <strong>第6题 &times;：</strong>i 从 0 开始，每次加 2：i 依次为 0, 2, 4, 6, 8, 10。当 i=10 时不满足 i &lt; 10，循环结束。循环体执行了 5 次（i=0,2,4,6,8），不是 10 次。
+    </div>
+    <div class="explain">
+        <strong>第7题 &times;：</strong><code>4 * 2.0</code> 中 int 4 自动转为 double，结果 8.0 是 double 类型。<code>3 + 8.0</code> 中 int 3 也自动转为 double，最终结果 11.0 是 <code>double</code> 类型，不是 <code>int</code>。
+    </div>
+    <div class="explain">
+        <strong>第8题 &times;：</strong><code>continue</code> 是跳过本次循环的剩余部分，直接进入下一次循环；<code>break</code> 是终止整个循环。两者作用不同。
+    </div>
+    <div class="explain">
+        <strong>第9题 &times;：</strong><code>5 / 2</code> 是整数除法，结果为 2（int），<code>cout &lt;&lt; 2</code> 输出 <code>2</code>，不是 <code>2.5</code>。
+    </div>
+    <div class="explain">
+        <strong>第10题 &radic;：</strong><code>ALL_UPPER</code> 由大写字母和下划线组成，以字母开头，是合法的 C++ 变量名。全大写通常用于常量命名约定，但语法上完全合法。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：商店折扣</strong><br>
+        思路：先计算总价 total = p * n，然后按折扣规则分段判断实际应付金额。
+    </div>
+<pre>
+#include &lt;cstdio&gt;
+using namespace std;
+
+int main() {
+    double p;
+    int n;
+    scanf("%lf %d", &amp;p, &amp;n);
+    double total = p * n;
+    double pay;
+    if (total &lt;= 100)
+        pay = total;
+    else if (total &lt;= 300)
+        pay = total * 0.9;
+    else
+        pay = total * 0.8;
+    printf("%.2f\n", pay);
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：质数求和</strong><br>
+        思路：遍历 2 到 n 的每个数，判断是否为质数（只需检查 2 到 sqrt(i) 之间有无因数），是质数则累加。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int sum = 0;
+    for (int i = 2; i &lt;= n; i++) {
+        bool isPrime = true;
+        for (int j = 2; j * j &lt;= i; j++) {
+            if (i % j == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime)
+            sum += i;
+    }
+    cout &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（十）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (八) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（八）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">A</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">C</td><td class="ans">A</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">C</td>
+            <td class="ans">D</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>GESP（Grade Examination of Software Programming）是中国计算机学会（CCF）主办的编程能力等级认证。选 A。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>C++ 中取余运算对于负数，结果的符号与被除数相同。<code>-7 % 3</code>：-7 / 3 = -2（向零截断），余数 = -7 - (-2)*3 = -7 + 6 = -1。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong><code>a=5</code>，<code>b = ++a</code>：a 先加 1 变为 6，b=6。<code>c = a++</code>：c 先取 a 的当前值 6，然后 a 加 1 变为 7。最终 a=7, b=6, c=6。选 A。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>向上取整公式：<code>(n + m - 1) / m</code>。<br>
+        验证：n=10, m=3: (10+2)/3 = 4（正确，ceil(10/3)=4）；n=9, m=3: (9+2)/3 = 3（正确）。<br>
+        A (<code>n/m</code>) 是向下取整；B (<code>n/m+1</code>) 当 n 能整除 m 时会多 1（如 9/3+1=4，应为3）；D (<code>(n+1)/m</code>) 也不对（10+1=11, 11/3=3，应为4）。选 C。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>while 循环中 i 从 1 开始，条件 i&lt;=100，每次 i++，s 累加 i。等价于 <code>for(int i=1,s=0; i&lt;=100; i++) s+=i;</code>。<br>
+        B 中 i 从 0 开始且 i&lt;100，范围不对；C 中 i&lt;100 少了 100；D 中 i 从 0 开始多了个 0。选 A。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>经典的"悬挂 else"问题。外层 if 条件 <code>x=5 &gt; 10</code> 为假，因此整个 if 块（包括内嵌的 if-else）都不执行。什么也不输出。选 C。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>a 从 5 递减到 1，每次累加 a%b（b=3）：<br>
+        a=5: 5%3=2, s=2<br>
+        a=4: 4%3=1, s=3<br>
+        a=3: 3%3=0, s=3<br>
+        a=2: 2%3=2, s=5<br>
+        a=1: 1%3=1, s=6<br>
+        输出 6。选 B。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>这段代码计算正整数 n 的位数。n=100：100→10→1→0，循环 3 次。cnt=3。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>判断素数需要检查 2 到 sqrt(n) 的所有因子。<br>
+        A (<code>i &lt; n/2</code>)：对 n=4，n/2=2，循环不执行（i=2 不满足 i&lt;2），误判为素数，错误。<br>
+        B (<code>i &lt;= n</code>)：当 i=n 时 n%n==0 恒成立，所有大于 1 的数都被判为非素数，错误。<br>
+        C (<code>i*i &lt;= n</code>)：正确的素数判断条件，只需检查到 sqrt(n)。选 C。<br>
+        D (<code>i &lt; n &amp;&amp; i &lt; 100</code>)：对大于 100 的合数可能误判。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>a=1, b=2, c=3。<code>a&gt;b</code> 即 1&gt;2 为假，进入外层 else。<code>a&gt;c</code> 即 1&gt;3 为假，进入内层 else，输出 <code>W</code>。选 D。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>累加 1 到 100 中 10 的倍数：10+20+30+40+50+60+70+80+90+100 = 550。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>n=12345，逐位取出并累加：5+4+3+2+1 = 15。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>这是经典的异或交换法。a=3(011), b=4(100)。<br>
+        a = a^b = 011^100 = 111(7)<br>
+        b = a^b = 111^100 = 011(3)<br>
+        a = a^b = 111^011 = 100(4)<br>
+        最终 a=4, b=3。选 B。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>在 1~50 中，3 的倍数有：3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48（共16个）。<br>
+        其中同时是 5 的倍数的（即 15 的倍数）：15,30,45（共3个）。<br>
+        所以 3 的倍数但不是 5 的倍数：16-3 = 13 个。选 A。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>辗转相除法求 GCD：每次用 b 替换 a，用 a%b 替换 b，直到 b=0 时 a 即为 GCD。循环条件应为 <code>b != 0</code>。<br>
+        A (<code>a &gt; b</code>)：当 a&lt;b 时不进入循环，直接输出 a 而非 GCD，错误。<br>
+        C (<code>a != b</code>)：这是另一种 GCD 算法（更相减损术）的条件，不适用于取余法。<br>
+        D (<code>a % b != 0</code>)：最后一步 a%b=0 时退出，但此时 b 才是 GCD 而输出的是 a，错误。<br>
+        选 B。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">A</td><td class="ans">A</td><td class="ans">B</td>
+            <td class="ans">A</td><td class="ans">A</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 A（正确）：</strong>GESP 确实是 CCF 推出的编程能力等级认证，分为 1~8 共 8 个级别。
+    </div>
+    <div class="explain">
+        <strong>第2题 A（正确）：</strong><code>a++</code> 是后置自增，先使用再加 1。<code>b = a++</code> 中 b 获得 a 的原值 5，然后 a 变为 6。
+    </div>
+    <div class="explain">
+        <strong>第3题 B（错误）：</strong>C++ 中负数取余，结果符号与被除数相同。<code>-10 % 3</code> = -10 - (-10/3)*3 = -10 - (-3)*3 = -10 + 9 = -1，不是 2。
+    </div>
+    <div class="explain">
+        <strong>第4题 A（正确）：</strong>两段代码的逻辑完全等价：都是 i 从 0 开始，每次加 1，直到 i&lt;10 不满足时退出，每次累加 i。最终 s 都等于 0+1+2+...+9=45。（变量作用域略有不同，但计算结果完全相同。）
+    </div>
+    <div class="explain">
+        <strong>第5题 A（正确）：</strong>这就是 C++ 中"悬挂 else"的规则——else 与最近的未匹配的 if 配对。
+    </div>
+    <div class="explain">
+        <strong>第6题 A（正确）：</strong>当 n, m 为正整数时，<code>(n + m - 1) / m</code> 等价于 ceil(n/m)。例如 n=7, m=3: (7+2)/3 = 3，即 ceil(7/3) = 3。
+    </div>
+    <div class="explain">
+        <strong>第7题 B（错误）：</strong><code>if (a = b)</code> 是赋值而非比较！执行后 a 被赋值为 20，条件为 20（非零即真），因此会执行 printf，输出 <code>20</code> 而非 <code>10</code>。
+    </div>
+    <div class="explain">
+        <strong>第8题 B（错误）：</strong>虽然 <code>++a</code> 和 <code>a++</code> 最终都将 a 加 1，但它们的返回值不同：<code>++a</code> 返回加 1 后的值，<code>a++</code> 返回加 1 前的值。在表达式中使用时结果不同，如 <code>int b = ++a</code> 和 <code>int b = a++</code> 中 b 的值不同。
+    </div>
+    <div class="explain">
+        <strong>第9题 A（正确）：</strong><code>while(1)</code> 条件恒为真，<code>for(;;)</code> 省略了初始化、条件和递增，条件默认为真。两者都构成无限循环。
+    </div>
+    <div class="explain">
+        <strong>第10题 B（错误）：</strong><code>break</code> 既可以用在循环中跳出循环，也可以用在 <code>switch</code> 语句中跳出当前 case。题目说"只能用在循环中"是错误的。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：时间转换</strong><br>
+        思路：小时 = t / 3600，分钟 = (t % 3600) / 60，秒 = t % 60。
+    </div>
+<pre>
+#include &lt;cstdio&gt;
+using namespace std;
+
+int main() {
+    int t;
+    scanf("%d", &amp;t);
+    int h = t / 3600;
+    int m = (t % 3600) / 60;
+    int s = t % 60;
+    printf("%d:%d:%d\n", h, m, s);
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：求最小公倍数</strong><br>
+        思路：先用辗转相除法求最大公约数 GCD，然后 LCM = a * b / GCD。
+    </div>
+<pre>
+#include &lt;cstdio&gt;
+using namespace std;
+
+int main() {
+    int a, b;
+    scanf("%d %d", &amp;a, &amp;b);
+    int x = a, y = b;
+    while (y != 0) {
+        int t = x % y;
+        x = y;
+        y = t;
+    }
+    // x is GCD(a, b)
+    printf("%d\n", a / x * b);
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（八）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

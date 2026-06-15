@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (三) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（三）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">A</td><td class="ans">A</td><td class="ans">C</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>switch 中没有 break 会"贯穿"（fall-through）。x=2 匹配 case 2 后，依次执行 case 2、case 3、default 的代码，输出 <code>BCD</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong><code>%02d</code> 表示至少占2位，不足前补0。9 补为 09，5 补为 05，输出 <code>09:05</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong>在 printf 中，<code>%%</code> 表示输出一个字面百分号 <code>%</code>。<code>%d</code> 被 85 替换，<code>%%</code> 输出 <code>%</code>，结果为 <code>Rate: 85%</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>依次取末位累加：7+2+5+9 = 23。选 C。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>10050 的各位数字从低到高为 0, 5, 0, 0, 1。其中 0 出现 3 次。选 B。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>内层花括号中重新定义了 <code>int a = 20</code>，这是一个新的局部变量，与外层的 a 无关。内层修改的是内层的 a，外层 a 仍为 10。选 A。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong><code>&&</code> 优先级高于 <code>||</code>。等价于 <code>a || (b && c)</code> = <code>5 || (0 && 3)</code> = <code>5 || 0</code> = <code>1</code>（逻辑真）。选 B。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>跳过 3 的倍数和 5 的倍数。1~20 中既不是 3 的倍数也不是 5 的倍数的数为：1, 2, 4, 7, 8, 11, 13, 14, 16, 17, 19。<br>
+        累加：1+2+4+7+8+11+13+14+16+17+19 = 112。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>n=15，n%10=5。switch 匹配 case 5（与 case 0 共享代码），输出 <code>wu</code>，遇 break 跳出。选 A。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>N=1230，while 循环求逆序：rev 依次为 0, 3, 32, 321。因为最低位是 0，逆序结果自然去掉了前导零。输出 321。选 A。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>printf 中 <code>{</code> 和 <code>}</code> 是普通字符，<code>%d</code> 被参数替换。输出 <code>{5}+{8}={13}</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>循环中有双重自增：循环体内 <code>i++</code> 和 for 的 <code>i++</code>。<br>
+        i=0: s+=0, i->1, 然后 i++->2<br>
+        i=2: s+=2, i->3, 然后 i++->4<br>
+        i=4: s+=4(s=6), i->5, 然后 i++->6<br>
+        i=6: s+=6(s=12), i->7, 然后 i++->8<br>
+        i=8: s+=8(s=20), i->9, 然后 i++->10<br>
+        i=10: 10 &lt; 10 为假，退出。s=20。选 C。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>N=28461 各位数字为 1, 6, 4, 8, 2。其中偶数且非零的有 6, 4, 8, 2 共 4 个。选 C。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong><code>17/5=3</code>（整数除法），<code>17%5=2</code>，<code>3*5+2=17</code>。输出 <code>3 2 17</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>A 项 <code>s += N</code> 加的是整个 N 而非最低位；C 项 <code>N/10</code> 去掉了最低位，加的是去掉个位后的数；D 项 <code>s = N % 10</code> 没有累加，只保留最后一次的值。只有 B 项 <code>s += N % 10</code> 正确取末位并累加。选 B。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&#10003;</td><td class="ans">&times;</td><td class="ans">&times;</td>
+            <td class="ans">&#10003;</td><td class="ans">&#10003;</td><td class="ans">&times;</td>
+            <td class="ans">&#10003;</td><td class="ans">&#10003;</td><td class="ans">&#10003;</td>
+            <td class="ans">&times;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 &#10003;：</strong>这是 switch 的 fall-through 特性。没有 break 就会继续执行下一个 case 的代码，直到遇到 break 或 switch 结束。
+    </div>
+    <div class="explain">
+        <strong>第2题 &times;：</strong><code>!0</code> 的值是 1（逻辑非），所以 <code>!0 + !0 = 1 + 1 = 2</code>，不是 0。
+    </div>
+    <div class="explain">
+        <strong>第3题 &times;：</strong><code>%d</code> 用于输出整数，但 3.14 是 double 类型。将 double 传给 <code>%d</code> 是<strong>未定义行为</strong>，不能保证输出 3。正确做法应使用 <code>%f</code> 或先强制转换为 int。
+    </div>
+    <div class="explain">
+        <strong>第4题 &#10003;：</strong>这是经典的 1 到 100 求和：1+2+...+100 = 5050。
+    </div>
+    <div class="explain">
+        <strong>第5题 &#10003;：</strong>C++ 标准规定 case 标签后面必须是整型常量表达式（包括整数常量、字符常量、const 整型变量等），不能是普通变量。
+    </div>
+    <div class="explain">
+        <strong>第6题 &times;：</strong><code>%%d</code> 中，<code>%%</code> 输出一个字面百分号 <code>%</code>，后面的 <code>d</code> 是普通字符。所以输出是 <code>%d</code>（字面字符串），参数 10 被忽略（不被格式串消费）。不是输出 <code>10</code>。
+    </div>
+    <div class="explain">
+        <strong>第7题 &#10003;：</strong><code>while(1)</code> 和 <code>for(;;)</code> 都是合法的无限循环写法。
+    </div>
+    <div class="explain">
+        <strong>第8题 &#10003;：</strong>花括号创建块作用域，内层定义的变量在离开花括号后生命周期结束，外层无法访问。
+    </div>
+    <div class="explain">
+        <strong>第9题 &#10003;：</strong><code>1 < 2 < 3</code> 的计算过程是先算 <code>1 < 2 = 1</code>（true），再算 <code>1 < 3 = 1</code>（true），结果为 1。虽然结果碰巧为 true，但过程并不是数学上的"连续比较"。题目说法正确。
+    </div>
+    <div class="explain">
+        <strong>第10题 &times;：</strong><code>if (a = 20)</code> 是赋值而非比较！先将 a 赋值为 20，赋值表达式的值为 20（非零即真），所以条件为真，执行 <code>cout << a</code> 输出 <code>20</code>，不是 10。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：星期计算</strong><br>
+        思路：利用取模运算。将星期几映射为 0~6 的偏移量再取模后加回来：<code>(W - 1 + N) % 7 + 1</code>。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int W, N;
+    cin &gt;&gt; W &gt;&gt; N;
+    int ans = (W - 1 + N) % 7 + 1;
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：完全平方数统计</strong><br>
+        思路：枚举正整数 i，当 i*i 在 [L, R] 范围内时计数。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int L, R;
+    cin &gt;&gt; L &gt;&gt; R;
+    int count = 0;
+    for (int i = 1; i * i &lt;= R; i++) {
+        if (i * i &gt;= L)
+            count++;
+    }
+    cout &lt;&lt; count &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（三）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (七) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（七）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">B</td>
+            <td class="ans">A</td><td class="ans">A</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>冯·诺依曼体系结构的五大部件是：运算器、控制器、存储器、输入设备、输出设备。编译器是软件，不属于五大部件。选 C。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>C++ 是编译型语言（A错）；编译型语言确实需要先将源代码全部编译成机器码再执行（B对）；解释型语言通常比编译型慢（C错）；编译型语言需要编译器（D错）。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong><code>'A'</code> 的 ASCII 码为 65，<code>'A' + 3</code> = 65 + 3 = 68。注意这里是 <code>int</code> 类型的运算，结果是整数 68（而非字符 <code>'D'</code>）。虽然 68 对应字符 D，但表达式的值是整数 68。选 B。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>经典的三变量交换：temp=3, a=5, b=3。输出 <code>5 3</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong><code>%2d</code>：宽度2，右对齐，8 输出为 <code> 8</code>（前面补空格）；<code>%02d</code>：宽度2，补零，3 输出为 <code>03</code>；<code>%-5d</code>：宽度5，左对齐，42 输出为 <code>42   </code>（后面补空格）。完整输出为 <code> 8|03|42   |</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong><code>x=1, y=0</code>。<code>(x||y)</code> = <code>(1||0)</code> = 1；<code>(x&&y)</code> = <code>(1&&0)</code> = 0。<code>1 + 0 = 1</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>短路求值：<code>a++</code> 先使用 a 的值 0（假），然后 a 变为 1。因为左操作数为假，<code>||</code> 需要继续计算右操作数 <code>++b</code>，b 先变为 1 再使用，值为 1（真）。整个表达式 r = 1。最终 a=1, b=1, r=1。选 A。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>i 依次取 1, 3, 5, 7, 9（步长为2，到10结束）。s = 1+3+5+7+9 = 25。选 A。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>关键在于循环体内有 <code>i += 2</code>，加上 for 的 <code>i++</code>，每轮实际步长为 3。<br>
+        i 进入循环体时的值依次为：1, 4, 7, 10, 13, 16, 19（下一轮 i=22 &gt; 20 退出）。<br>
+        s = 1+4+7+10+13+16+19 = 70。选 A。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>一轮冒泡排序（升序）对数组 {5,2,8,1,9} 执行相邻比较交换：<br>
+        j=0: 5&gt;2 → 交换 → {2,5,8,1,9}<br>
+        j=1: 5&lt;8 → 不换 → {2,5,8,1,9}<br>
+        j=2: 8&gt;1 → 交换 → {2,5,1,8,9}<br>
+        j=3: 8&lt;9 → 不换 → {2,5,1,8,9}<br>
+        输出 <code>2 5 1 8 9 </code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>在 [100, 200) 中找同时能被 7 和 5 整除的数，即 35 的倍数：105, 140, 175。共 3 个。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>n 初始为 7。循环 3 次：n=7*10+7=77 → n=77*10+7=777 → n=777*10+7=7777。输出 7777。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong><code>'a'</code> 的 ASCII 码为 97。依次输出 ch+0='a', ch+2='c', ch+4='e', ch+6='g', ch+8='i'。输出 <code>acegi</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>要计算 1-2+3-4+...-100，奇数项为正、偶数项为负。因此条件是"i为奇数时加"，即 <code>i%2 != 0</code>。<br>
+        A (<code>i%2==0</code>) 是偶数时加，符号反了；C (<code>i&gt;0</code>) 恒为真，全加；D (<code>i/2==0</code>) 仅 i=0,1 时为真，不对。选 B。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>经典的"悬挂 else"问题。C++ 中 else 与最近的未匹配的 if 配对。<br>
+        <code>a=10 &gt; 5</code> 为真，进入内层 if；<code>b=20 &lt; 15</code> 为假，执行 else 分支，输出 <code>Y</code>。选 B。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">A</td><td class="ans">A</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">B</td>
+            <td class="ans">A</td><td class="ans">A</td><td class="ans">B</td>
+            <td class="ans">A</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 A（正确）：</strong>"存储程序"是冯·诺依曼体系的核心思想，程序指令和数据都存放在同一个存储器中。
+    </div>
+    <div class="explain">
+        <strong>第2题 A（正确）：</strong>char 类型在运算时自动提升为 int。<code>'A'</code>=65，<code>'A'+1</code>=66。结果为整数 66。
+    </div>
+    <div class="explain">
+        <strong>第3题 A（正确）：</strong><code>%05d</code> 表示宽度为 5，不足部分补零。42 输出为 <code>00042</code>。
+    </div>
+    <div class="explain">
+        <strong>第4题 B（错误）：</strong>逻辑与 <code>&&</code> 具有短路求值特性。左操作数 0 为假，右操作数 <code>(1/0)</code> 不会被求值，不会发生除零错误。整个表达式的值为 0。
+    </div>
+    <div class="explain">
+        <strong>第5题 A（正确）：</strong>i 依次取 2, 5, 8（下一个 11 &ge; 10 退出）。输出 <code>2 5 8 </code>（注意每个数后有一个空格，但题目说的是 <code>2 5 8</code>，语义一致）。正确。
+    </div>
+    <div class="explain">
+        <strong>第6题 B（错误）：</strong>三条语句的顺序不能调换。必须先保存 a 的值到 temp，再用 b 覆盖 a，最后用 temp 恢复 b。顺序错误会导致值丢失。
+    </div>
+    <div class="explain">
+        <strong>第7题 A（正确）：</strong>i 从 1 到 10 中，能被 4 整除的有 4 和 8，k = 2。题目说 k=2，正确。
+    </div>
+    <div class="explain">
+        <strong>第8题 A（正确）：</strong><code>'B'</code>=66，<code>'A'</code>=65，<code>'B'-'A'</code>=1。输出 1。
+    </div>
+    <div class="explain">
+        <strong>第9题 B（错误）：</strong>在 for 循环的递增部分，<code>i++</code> 和 <code>++i</code> 效果相同（都将 i 加 1，且返回值不被使用），循环执行次数完全相同，都是 10 次。题目说"不同"是错误的。
+    </div>
+    <div class="explain">
+        <strong>第10题 A（正确）：</strong>C++ 源代码需要经过编译（将 .cpp 编译为 .o 目标文件）和链接（将目标文件和库函数链接为可执行文件）两个步骤。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：小杨买书</strong><br>
+        思路：先各买 1 本，花费 a+b，剩余 n-a-b 元。然后用剩余的钱尽可能多买便宜的那种书。总数 = 2 + 剩余钱 / min(a,b)。如果 a+b &gt; n 则输出 0。
+    </div>
+<pre>
+#include &lt;cstdio&gt;
+using namespace std;
+
+int main() {
+    int a, b, n;
+    scanf("%d %d %d", &amp;a, &amp;b, &amp;n);
+    if (a + b &gt; n) {
+        printf("0\n");
+        return 0;
+    }
+    int remain = n - a - b;
+    int cheaper = a &lt; b ? a : b;
+    int total = 2 + remain / cheaper;
+    printf("%d\n", total);
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：数字三角形</strong><br>
+        思路：双重循环，外层 i 从 1 到 n 控制行，内层 j 从 1 到 i 输出数字 i。注意数字之间用空格分隔，行末无多余空格。
+    </div>
+<pre>
+#include &lt;cstdio&gt;
+using namespace std;
+
+int main() {
+    int n;
+    scanf("%d", &amp;n);
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            if (j &gt; 1) printf(" ");
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（七）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

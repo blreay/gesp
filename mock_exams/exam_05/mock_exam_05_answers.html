@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (五) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（五）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">C</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">B</td>
+            <td class="ans">C</td><td class="ans">A</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>外层循环 i=0,1,2（3次），内层循环 j=0,1,2,3（4次）。总共 3&times;4=12 次。选 C。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>do-while 先执行后判断。<br>
+        n=1: s=1, n=3; n=3: s=4, n=5; n=5: s=9, n=7; n=7: s=16, n=9; n=9: s=25, n=11; 此时 n=11&gt;9，退出循环。<br>
+        s=1+3+5+7+9=25, n=11。输出 <code>25 11</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong>n=528。<br>
+        A: <code>n%10=8</code>（个位）。<br>
+        B: <code>n/10=52</code>（不是十位数字）。<br>
+        C: <code>n/10%10=52%10=2</code>（十位数字）。正确。<br>
+        D: <code>n/100%10=5%10=5</code>（百位数字）。<br>
+        选 C。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>逐步计算：a=10 &rarr; a+=5 得 15 &rarr; a-=3 得 12 &rarr; a*=2 得 24 &rarr; a%=7 得 24%7=3。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>printf 中 <code>%%</code> 是转义序列，输出一个 <code>%</code> 字符。<code>%d</code> 被 80 替换。输出 <code>Pass rate: 80%</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>分步计算：<br>
+        i=1: j=1: s+=1&times;1=1, s=1<br>
+        i=2: j=1: s+=2, s=3; j=2: s+=4, s=7<br>
+        i=3: j=1: s+=3, s=10; j=2: s+=6, s=16; j=3: s+=9, s=25<br>
+        i=4: j=1: s+=4, s=29; j=2: s+=8, s=37; j=3: s+=12, s=49; j=4: s+=16, s=65<br>
+        输出 65。选 C。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>求 3456 各位数字之积。6&times;5&times;4&times;3=360。选 C。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>do-while 循环，i 从 0 开始，先 i++ 再判断。跳过 3 的倍数。<br>
+        i=1: s=1; i=2: s=3; i=3: skip; i=4: s=7; i=5: s=12; i=6: skip; i=7: s=19; i=8: s=27; i=9: skip; i=10: s=37（i=10&lt;10 为假，退出）。<br>
+        s = 1+2+4+5+7+8+10 = 37。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>i 取值 1,3,5,...,99（共50个奇数）。奇数求和公式：n&sup2; = 50&sup2; = 2500。选 C。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>双重循环，当 i+j&gt;6 时内层 break。<br>
+        i=1: j 可取 1~5（1+5=6&le;6），cnt+=5<br>
+        i=2: j 可取 1~4（2+5=7&gt;6），cnt+=4<br>
+        i=3: j 可取 1~3，cnt+=3<br>
+        i=4: j 可取 1~2，cnt+=2<br>
+        i=5: j 可取 1（5+2=7&gt;6），cnt+=1<br>
+        总计 5+4+3+2+1=15。选 B。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>n=987，从低位到高位提取偶数数字求和。<br>
+        d=7（奇数，不加），d=8（偶数，s=8），d=9（奇数，不加）。s=8。选 C。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>ENIAC 于 1946 年在美国宾夕法尼亚大学诞生，是世界上第一台通用电子计算机。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>"神威&middot;太湖之光"使用中国自主研发的"申威 SW26010"处理器。选 C。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>百位 = <code>N/100</code>，个位 = <code>N%10</code>，百位与个位之和 = <code>N/100 + N%10</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>每次需要判断当前最低位数字是否为偶数。当前最低位 = <code>N%10</code>，判断偶数 = <code>N%10%2==0</code>。<br>
+        选项 A 判断的是 N 本身是否为偶数（不是当前位的数字）。选 B。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&times;</td><td class="ans">&radic;</td><td class="ans">&radic;</td>
+            <td class="ans">&radic;</td><td class="ans">&times;</td><td class="ans">&times;</td>
+            <td class="ans">&times;</td><td class="ans">&times;</td><td class="ans">&times;</td>
+            <td class="ans">&radic;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 &times;：</strong>ENIAC 使用的是电子管（真空管）元件，不是晶体管。晶体管是第二代计算机的元件。
+    </div>
+    <div class="explain">
+        <strong>第2题 &radic;：</strong><code>17/5=3</code>（整数除法），<code>3*5=15</code>，<code>17%5=2</code>，<code>15+2=17</code>。这是整数除法的恒等式：<code>(a/b)*b + a%b == a</code>。
+    </div>
+    <div class="explain">
+        <strong>第3题 &radic;：</strong>do-while 循环先执行循环体再判断条件，所以至少执行一次，即使条件一开始就为假。
+    </div>
+    <div class="explain">
+        <strong>第4题 &radic;：</strong>在 printf 格式字符串中，<code>%%</code> 表示输出一个 <code>%</code> 字符。所以 <code>printf("100%%")</code> 输出 <code>100%</code>。
+    </div>
+    <div class="explain">
+        <strong>第5题 &times;：</strong>for 循环没有大括号，只有 <code>s += i;</code> 是循环体。<code>cout &lt;&lt; s &lt;&lt; " ";</code> 虽然看起来有缩进，但它不在循环体内，只在循环结束后执行一次。此时 s=1+2+3+4+5=15，输出 <code>15 </code>（只输出一个数），而不是 <code>1 3 6 10 15</code>（每轮都输出）。考点：没有花括号时 for 只控制紧跟的一条语句。
+    </div>
+    <div class="explain">
+        <strong>第6题 &times;：</strong>n=4050，<code>n/10=405</code>，<code>405%10=5</code>。结果是 5 而不是 0。<code>n/10%10</code> 提取的是十位数字，4050 的十位是 5。
+    </div>
+    <div class="explain">
+        <strong>第7题 &times;：</strong>赋值运算符（如 <code>+=</code>）的优先级非常低，远低于算术运算符 <code>+</code>。在 C++ 运算符优先级表中，赋值运算符优先级几乎是最低的（仅高于逗号运算符）。
+    </div>
+    <div class="explain">
+        <strong>第8题 &times;：</strong>输出是 <code>1 2 3 4 5 </code>（注意末尾有一个多余的空格），而不是 <code>1 2 3 4 5</code>（末尾无空格）。严格来说输出不完全相同，因为 5 后面还有一个空格。
+    </div>
+    <div class="explain">
+        <strong>第9题 &times;：</strong>double 类型 2.9 赋值给 int 变量时会截断（不是四舍五入），所以 x 的值是 2，不是 3。
+    </div>
+    <div class="explain">
+        <strong>第10题 &radic;：</strong>"天河二号"由中国国防科技大学研制，曾在2013年6月至2015年11月连续6次获得 TOP500 排行榜冠军。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：闰年统计</strong><br>
+        思路：遍历 Y1 到 Y2 的每个年份，判断是否满足闰年条件（能被4整除但不能被100整除，或能被400整除）。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int Y1, Y2;
+    cin &gt;&gt; Y1 &gt;&gt; Y2;
+    int count = 0;
+    for (int y = Y1; y &lt;= Y2; y++) {
+        if ((y % 4 == 0 &amp;&amp; y % 100 != 0) || y % 400 == 0)
+            count++;
+    }
+    cout &lt;&lt; count &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：数字排列</strong><br>
+        思路：提取三位数的百位 a、十位 b、个位 c，然后对 a、b、c 三个数字进行排序（从小到大），<br>
+        组成新数 = 最小值&times;100 + 中间值&times;10 + 最大值。由于用整数输出，前导零自动省略。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    int a = N / 100;
+    int b = N / 10 % 10;
+    int c = N % 10;
+    // 冒泡排序三个数
+    if (a &gt; b) { int t = a; a = b; b = t; }
+    if (b &gt; c) { int t = b; b = c; c = t; }
+    if (a &gt; b) { int t = a; a = b; b = t; }
+    cout &lt;&lt; a * 100 + b * 10 + c &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（五）— 参考答案 &middot; 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

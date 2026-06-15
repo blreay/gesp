@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (二) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>📋 模拟试卷（二）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">A</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">A</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">D</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">C</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>A含减号不合法，B以数字开头不合法，D是C++关键字。<code>_total_100</code>以下划线开头、包含数字和下划线均合法。选 C。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>运算符优先级：* % 高于 + -。<br>
+        <code>3*4=12</code>，<code>12%5=2</code>，<code>2+2-1=3</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong>优先级：算术运算符（<code>-</code>、<code>%</code>）高于比较运算符（<code>&gt;</code>），比较运算符高于逻辑运算符（<code>&amp;&amp;</code>）。<br>
+        等价于 <code>((7-2) > 3) && (4%2)</code> = <code>(5 > 3) && (0)</code> = <code>1 && 0</code> = <code>0</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong><code>a/2</code> 是整数除法，<code>5/2=2</code>（int），赋值给 float 变量 b 为 2.0，输出 <code>2.0</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>printf 中 <code>{</code> 和 <code>}</code> 是普通字符，不像 Python 的 f-string。<code>%d</code> 会被参数替换。输出 <code>{3}*{4}={12}</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong><code>10/3=3</code>，<code>10%3=1</code>，<code>3*3+1=10</code>。输出 <code>3 1 10</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>这是求 5 的阶乘：n = 1×1×2×3×4×5 = 120。选 C。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>跳过偶数（continue），对奇数累加。当遇到同时被3和5整除的奇数时 break。<br>
+        奇数序列：1, 3, 5, 7, 9, 11, 13, <strong>15</strong>（15%3==0 且 15%5==0 → break，不累加 15）<br>
+        cnt = 1+3+5+7+9+11+13 = 49。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>i 从 0 到 99，i%10 的值循环为 0,1,2,...,9 共重复 10 轮。每轮之和 = 0+1+2+...+9 = 45，共 10 轮 = 450。选 B。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>i 取值 5,10,15,...,95（步长5）。跳过偶数（能被2整除的）即跳过 10,20,30,40,50,60,70,80,90。<br>
+        奇数的5的倍数：5,15,25,35,45,55,65,75,85,95。<br>
+        cnt++ 然后检查 i>=50 则 break。<br>
+        i=5: cnt=1; i=15: cnt=2; i=25: cnt=3; i=35: cnt=4; i=45: cnt=5; i=55: cnt=6, i>=50 → break。<br>
+        输出 cnt=6, i=55。选 D。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>N=1234，从低位到高位：d=4(偶,不加)，d=3(奇,s=3)，d=2(偶,不加)，d=1(奇,s=4)。输出 4。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>逆序数的算法需要在 N 不为 0 时继续循环。<code>N > 1</code> 会让最后一位（N=某个位数时）丢失；<code>N >= 0</code> 会死循环（N=0时仍循环）。选 B (<code>N != 0</code>)。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>因数包括 N 本身，所以循环条件需要 i 能取到 N，即 <code>i < N + 1</code>（等价于 i <= N）。选 A 只到 N-1 会漏掉 N 本身。选 B。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>注意 <code>i</code> 在 for 循环内部声明，循环结束后 i 不可访问（作用域仅限循环内）。在循环外使用 i 会<strong>编译错误</strong>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong><br>
+        ⅰ) <code>i*(i+1)==N</code>：直接检查，正确 ✓<br>
+        ⅱ) <code>N/(i+1)==i && N%(i+1)==0</code>：即 N 能被 (i+1) 整除且商为 i，等价于 N=i*(i+1)，正确 ✓<br>
+        ⅲ) <code>N==i*i+i</code>：即 N = i² + i = i(i+1)，正确 ✓<br>
+        ⅳ) <code>N/i==i+1</code>：整除可能导致误判，如 N=7, i=2: 7/2=3==3，但 2*3=6≠7。不正确 ✗<br>
+        共 3 个正确。选 C。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">√</td><td class="ans">×</td><td class="ans">×</td>
+            <td class="ans">√</td><td class="ans">×</td><td class="ans">×</td>
+            <td class="ans">×</td><td class="ans">×</td><td class="ans">×</td>
+            <td class="ans">×</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 √：</strong>2024年诺贝尔物理学奖确实颁给了约翰·霍普菲尔德和杰弗里·辛顿，表彰他们在人工神经网络和机器学习方面的贡献。
+    </div>
+    <div class="explain">
+        <strong>第2题 ×：</strong>字符运算是按 ASCII 码计算。<code>'1'</code>=49, <code>'2'</code>=50, 49+50=99，而 <code>'3'</code>=51。两者不等。结果是整数 99（对应字符 'c'）。
+    </div>
+    <div class="explain">
+        <strong>第3题 ×：</strong>虽然 <code>10/4=2</code> 和 <code>10%4=2</code> 值恰好相同，但运算含义完全不同（一个是商一个是余），不能互换。例如 <code>7/4=1</code> 而 <code>7%4=3</code>。
+    </div>
+    <div class="explain">
+        <strong>第4题 √：</strong><code>continue</code> 跳过后面的 <code>N += 1</code>，N 始终为 0。
+    </div>
+    <div class="explain">
+        <strong>第5题 ×：</strong>C++ 逗号表达式取最后一个值。<code>(2, 3, "hello")</code> 的值是 <code>"hello"</code>，输出字符串的地址或 <code>hello</code>（取决于编译器），不是 <code>2,3,hello</code>。
+    </div>
+    <div class="explain">
+        <strong>第6题 ×：</strong><code>scanf</code> 是标准库函数，不是 C++ 关键字。理论上可以用作变量名（虽然不推荐，且可能与 <code>&lt;cstdio&gt;</code> 冲突）。
+    </div>
+    <div class="explain">
+        <strong>第7题 ×：</strong>C++ 中以 <code>0</code> 开头的整数字面量是八进制！<code>010</code>（八进制）= 8（十进制），<code>001</code>（八进制）= 1。所以 <code>010 + 100 + 001</code> = 8 + 100 + 1 = 109，不是 111。
+    </div>
+    <div class="explain">
+        <strong>第8题 ×：</strong><code>do...while</code> 同样可能导致死循环。如 <code>do {} while(1);</code> 就是死循环。
+    </div>
+    <div class="explain">
+        <strong>第9题 ×：</strong>原代码 i<10 时循环体执行 i=0..9，n=0+1+...+9=45。改为 i<=10 后循环体执行 i=0..10，n=0+1+...+10=55。输出不同。
+    </div>
+    <div class="explain">
+        <strong>第10题 ×：</strong><code>a > b > c</code> 是从左到右结合的：先算 <code>a > b</code> 即 <code>5 > 4 = 1</code>(true)，再算 <code>1 > c</code> 即 <code>1 > 3 = 0</code>(false)。值为 0，不是 1。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：回文数判断</strong><br>
+        思路：对 L 到 R 之间的每个数，求其逆序数，如果逆序数等于原数，则为回文数。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int L, R;
+    cin &gt;&gt; L &gt;&gt; R;
+    int count = 0;
+    for (int n = L; n &lt;= R; n++) {
+        int temp = n, rev = 0;
+        while (temp &gt; 0) {
+            rev = rev * 10 + temp % 10;
+            temp /= 10;
+        }
+        if (rev == n)
+            count++;
+    }
+    cout &lt;&lt; count &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：水仙花数</strong><br>
+        思路：遍历 A 到 B 之间的每个三位数，分解出百位 a、十位 b、个位 c，<br>
+        判断 a³+b³+c³ 是否等于该数。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int A, B;
+    cin &gt;&gt; A &gt;&gt; B;
+    int found = 0;
+    for (int i = A; i &lt;= B; i++) {
+        int a = i / 100;         // 百位
+        int b = (i / 10) % 10;   // 十位
+        int c = i % 10;          // 个位
+        if (a*a*a + b*b*b + c*c*c == i) {
+            cout &lt;&lt; i &lt;&lt; endl;
+            found = 1;
+        }
+    }
+    if (!found)
+        cout &lt;&lt; "None" &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（二）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

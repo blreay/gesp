@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (六) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（六）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">A</td><td class="ans">B</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>逗号表达式取最后一个值。<code>(1, 2, 3)</code> 的值为 3。选 C。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong><code>if (x = 3)</code> 是赋值而非比较。先将 x 赋值为 3，然后判断 3 是否为真（非零即真），所以进入 if 分支，输出 x=3。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong>for 循环的三个部分（初始化、条件、更新）都可以省略。这里初始化和更新都在外面完成。<br>
+        i 从 0 开始：s=0+0=0, i=1; s=0+1=1, i=2; s=1+2=3, i=3; s=3+3=6, i=4; s=6+4=10, i=5; i=5&ge;5 退出。<br>
+        输出 <code>10 5</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>字符 <code>'A'</code> 的 ASCII 码为 65。<code>c + 1 = 65 + 1 = 66</code>。n=66，<code>(char)66 = 'B'</code>。输出 <code>66 B</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>switch 没有 break 时会发生"贯穿"（fall-through）。x=2 匹配 case 2，执行 y=20，但没有 break，继续执行 case 3: y=30，继续 case 4: y=40。最终 y=40。选 C。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>C++ 中 <code>^</code> 是位异或运算符，不是幂运算。<br>
+        5 的二进制 = 101，3 的二进制 = 011。<br>
+        101 XOR 011 = 110 = 6（十进制）。选 C。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>for 循环中用逗号初始化两个变量 i=0, j=10，每次 i++, j--。<br>
+        i=0,j=10: a=1,b=10; i=1,j=9: a=2,b=10; i=2,j=8: a=3,b=10; i=3,j=7: a=4,b=10; i=4,j=6: a=5,b=10; i=5,j=5: 5&lt;5 为假退出。<br>
+        注意每次 i+j 始终等于 10。a=5, b=10。输出 <code>5 10</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>字符运算按 ASCII 码计算。<code>'9'</code>=57, <code>'0'</code>=48, <code>57-48=9</code>。这是将数字字符转换为对应整数的常用方法。选 C。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>x=1 匹配 case 1，执行 s+=1 得 s=1，遇到 break 退出 switch。输出 1。选 B。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong><code>(i, j)</code> 是逗号表达式，值为 j。所以 <code>s += (i, j)</code> 等价于 <code>s += j</code>。<br>
+        内层循环 j=1,2,3，每轮 s 增加 1+2+3=6。外层循环 3 次，总共 s=6&times;3=18。选 B。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>连续赋值从右到左：先 c=5，再 b=5，最后 a=5。三个变量都是 5。输出 <code>5 5 5</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>i 取值：10, 7, 4, 1（下一次 i=-2&lt;0 退出）。循环 4 次。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>首先 x==0 为真，进入外层 if。然后 <code>if (x = 1)</code> 将 x 赋值为 1（赋值表达式），1 为真，输出 "A"。<br>
+        注意 else 与最近的未匹配的 if 配对（即内层 if），不是外层 if。选 A。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>要计算 1+2+...+n，i 需要从 1 取到 n（含 n）。条件 <code>i &lt; n + 1</code> 等价于 <code>i &lt;= n</code>，可以取到 n。选 A 的 <code>i &lt; n</code> 只取到 n-1 会漏掉 n。选 B。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>x=3, x%3=0。进入 case 0: y+=1 (y=1)，没有 break 继续贯穿到 case 1: y+=2 (y=3)，遇到 break 退出。y=3。选 B。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&times;</td><td class="ans">&radic;</td><td class="ans">&radic;</td>
+            <td class="ans">&radic;</td><td class="ans">&radic;</td><td class="ans">&times;</td>
+            <td class="ans">&times;</td><td class="ans">&times;</td><td class="ans">&radic;</td>
+            <td class="ans">&radic;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 &times;：</strong><code>(3, 5, 7)</code> 是逗号表达式，取最后一个值 7，不是 15（三者之和）。
+    </div>
+    <div class="explain">
+        <strong>第2题 &radic;：</strong><code>x = 0</code> 是赋值表达式，将 x 赋值为 0，表达式的值为 0。0 为假，所以条件永远为假，不会输出 "yes"。
+    </div>
+    <div class="explain">
+        <strong>第3题 &radic;：</strong><code>for(;;)</code> 三个部分全部省略是合法的。条件部分省略时默认为真，等价于 <code>for(;true;)</code>，即无限循环。
+    </div>
+    <div class="explain">
+        <strong>第4题 &radic;：</strong>65 是字符 <code>'A'</code> 的 ASCII 码。<code>char c = 65;</code> 等价于 <code>char c = 'A';</code>。<code>cout &lt;&lt; c</code> 输出字符 <code>A</code>。
+    </div>
+    <div class="explain">
+        <strong>第5题 &radic;：</strong>这就是 switch 的 fall-through 特性。如果没有 break，程序会继续执行下一个 case 的代码，直到遇到 break 或 switch 结束。
+    </div>
+    <div class="explain">
+        <strong>第6题 &times;：</strong>C++ 中 <code>^</code> 是位异或运算符（XOR），不是求幂。<code>2^3</code> 的结果是 2 XOR 3 = 1（010 XOR 011 = 001），不是 8。C++ 中求幂应使用 <code>pow(2, 3)</code>。
+    </div>
+    <div class="explain">
+        <strong>第7题 &times;：</strong>char 类型参与算术运算时会隐式提升为 int。<code>c + 1</code> 的结果类型是 <code>int</code>，不是 <code>char</code>。
+    </div>
+    <div class="explain">
+        <strong>第8题 &times;：</strong>逗号表达式 <code>(a++, a * 3)</code>：先执行 <code>a++</code>（a 从 3 变为 4），再计算 <code>a * 3 = 4 * 3 = 12</code>。b=12，不是 10。
+    </div>
+    <div class="explain">
+        <strong>第9题 &radic;：</strong><code>'A'</code> 的 ASCII 码为 65，<code>'a'</code> 的 ASCII 码为 97。<code>65 + 32 = 97</code>，正好等于 <code>'a'</code> 的 ASCII 码值。
+    </div>
+    <div class="explain">
+        <strong>第10题 &radic;：</strong>switch 的 case 标签必须是整型常量表达式（包括整数常量和字符常量），不能是变量、浮点数或其他非常量表达式。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：小杨爬楼梯</strong><br>
+        思路：经典的斐波那契数列问题。设 f(n) 为爬到第 n 级台阶的方案数，则 f(1)=1, f(2)=2, f(n)=f(n-1)+f(n-2)。<br>
+        因为最后一步可以从 n-1 级爬 1 级，或从 n-2 级爬 2 级。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    if (n == 1) {
+        cout &lt;&lt; 1 &lt;&lt; endl;
+        return 0;
+    }
+    if (n == 2) {
+        cout &lt;&lt; 2 &lt;&lt; endl;
+        return 0;
+    }
+    int a = 1, b = 2;
+    for (int i = 3; i &lt;= n; i++) {
+        int c = a + b;
+        a = b;
+        b = c;
+    }
+    cout &lt;&lt; b &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：区间内满足条件的数</strong><br>
+        思路：遍历 L 到 R 的每个数，判断是否能被 3 整除且不能被 5 整除，统计个数和总和。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int L, R;
+    cin &gt;&gt; L &gt;&gt; R;
+    int count = 0, sum = 0;
+    for (int i = L; i &lt;= R; i++) {
+        if (i % 3 == 0 &amp;&amp; i % 5 != 0) {
+            count++;
+            sum += i;
+        }
+    }
+    cout &lt;&lt; count &lt;&lt; " " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（六）— 参考答案 &middot; 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

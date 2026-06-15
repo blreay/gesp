@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (四) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（四）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>循环内有双重自增：循环体内 <code>i++</code> 和 for 的 <code>i++</code>。<br>
+        i=1: cnt+=1(cnt=1), i->2, 然后i++->3<br>
+        i=3: cnt+=3(cnt=4), i->4, 然后i++->5<br>
+        i=5: cnt+=5(cnt=9), i->6, 然后i++->7<br>
+        i=7: cnt+=7(cnt=16), i->8, 然后i++->9<br>
+        i=9: cnt+=9(cnt=25), i->10, 然后i++->11<br>
+        i=11: 11&lt;=10 为假，退出。cnt=25。选 B。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>这是"悬挂 else"问题。else 与最近未匹配的 if 配对。代码等价于：<br>
+        <code>if(x>5) { if(x>8) printf("A"); else printf("B"); } else printf("C");</code><br>
+        x=3，第一个 if 为假，执行外层 else，输出 <code>C</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong><code>a/b</code> 是两个 int 相除，结果为 int 3（截断），再赋给 double c 为 3.0。输出 <code>3.0</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong><code>'A'</code> 的 ASCII 码是 65，加 3 得 68，对应字符 <code>'D'</code>。<code>%c</code> 输出字符 D，<code>%d</code> 输出整数 68。输出 <code>D 68</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>跳过 3 的倍数（3,6,9），其余累加：1+2+4+5+7+8+10 = 37。选 B。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>while 循环中 i 先自增再判断。i 依次为 1,2,...,10。跳过偶数，累加奇数：1+3+5+7+9 = 25。<br>
+        注意 continue 在 while 中跳转到条件判断处，不影响 i 的自增（因为 i++ 在 continue 之前）。选 B。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>a=1, b=2, a>b 为假，整个 if-else 结构（包括内层的 if-else）都不执行。但 <code>printf("Z")</code> 不在 if 结构内，总会执行。输出 <code>Z</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong><code>'5'</code> 的 ASCII 码是 53，<code>'0'</code> 的 ASCII 码是 48。53 - 48 = 5。这是将字符数字转为对应整数的常用技巧。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>跳过奇数（i%2==1），累加偶数：0+2+4+6+8 = 20。选 B。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong><code>(double)a/b</code> 先将 a 转为 double，再除以 b（b 也隐式转为 double），结果为 3.333...，<code>%.2f</code> 保留两位小数输出 <code>3.33</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong><code>'a'</code> 的 ASCII 码是 97，减 32 得 65，即 <code>'A'</code>。大写和小写字母的 ASCII 码差 32。输出 <code>A</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>n 依次为：100->50->25->12->6->3->1，共除了 6 次。cnt=6。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong><code>&&</code> 有短路求值特性。<code>a != 0</code> 为假（a=0），整个表达式直接返回 0，不会计算 <code>b/a</code>，因此不会发生除零错误。选 B。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>i 取值 0,1,2,3,4，对应 i*i 为 0,1,4,9,16。输出 <code>0 1 4 9 16 </code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>辗转相除法：当 b 不为 0 时，用 a%b 替换 b，b 变为 0 时 a 即为 GCD。<br>
+        A 项 <code>a > 0</code>：a 始终大于 0，不会在正确时机停止。<br>
+        C 项 <code>a != b</code>：辗转相除法不保证 a 和 b 相等时停止。<br>
+        D 项 <code>a % b != 0</code>：当 a 能被 b 整除时停止，但此时 GCD 应为 b 而非 a，逻辑不对。<br>
+        选 B (<code>b != 0</code>)。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&#10003;</td><td class="ans">&#10003;</td><td class="ans">&times;</td>
+            <td class="ans">&#10003;</td><td class="ans">&#10003;</td><td class="ans">&times;</td>
+            <td class="ans">&times;</td><td class="ans">&#10003;</td><td class="ans">&times;</td>
+            <td class="ans">&times;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 &#10003;：</strong>在 for 循环中，continue 跳过剩余循环体，然后执行自增表达式（i++），再判断条件。这是 for 循环中 continue 的特性。
+    </div>
+    <div class="explain">
+        <strong>第2题 &#10003;：</strong>在 while 循环中，continue 跳到循环条件判断处重新检查条件。注意这和 for 循环不同：for 循环的 continue 会先执行自增表达式。
+    </div>
+    <div class="explain">
+        <strong>第3题 &times;：</strong><code>(int)3.9</code> 是强制类型转换，将 double 截断为 int，结果是 3，不是 4。C++ 的强制转换是截断（向零取整），不是四舍五入。
+    </div>
+    <div class="explain">
+        <strong>第4题 &#10003;：</strong>char 类型本质上是整数类型（存储 ASCII 码），可以和整数进行加减运算。例如 <code>'A' + 1</code> 等于 66，即 <code>'B'</code>。
+    </div>
+    <div class="explain">
+        <strong>第5题 &#10003;：</strong><code>'A'</code> 的 ASCII 码是 65，加 1 得 66，而 <code>'B'</code> 的 ASCII 码正好是 66。因此 <code>'A'+1 == 'B'</code> 为 true（值为 1）。
+    </div>
+    <div class="explain">
+        <strong>第6题 &times;：</strong><code>x = 0</code>，在 if 条件中 0 被视为 false，所以不会执行 <code>cout << "hello"</code>，不会输出任何内容。
+    </div>
+    <div class="explain">
+        <strong>第7题 &times;：</strong><code>7/2</code> 是整数除法，结果为 3（int 类型）。<code>7.0/2</code> 是浮点除法，结果为 3.5（double 类型）。两者的值不同。
+    </div>
+    <div class="explain">
+        <strong>第8题 &#10003;：</strong>这是 C++ 的"最近匹配"规则（也叫"悬挂 else"规则），else 与距离最近的、尚未匹配的 if 配对。可以用花括号 {} 来改变匹配关系。
+    </div>
+    <div class="explain">
+        <strong>第9题 &times;：</strong><code>a/b</code> 即 <code>7/2</code> 是整数除法，结果为 3（不是 3.5）。cout 输出 3，不是 3.5。
+    </div>
+    <div class="explain">
+        <strong>第10题 &times;：</strong><code>'0'</code> 是字符零，其 ASCII 码值是 48，不是 0。整数 0 对应的 ASCII 字符是 NUL（空字符），即 <code>'\0'</code>。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：最大公约数</strong><br>
+        思路：使用辗转相除法（欧几里得算法）。不断用较大数除以较小数取余，直到余数为 0，此时除数即为最大公约数。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    while (b != 0) {
+        int t = b;
+        b = a % b;
+        a = t;
+    }
+    cout &lt;&lt; a &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：倒序输出数位</strong><br>
+        思路：不断取 N 的末位数字（N%10），拼接到结果 rev 中（rev = rev*10 + N%10），然后去掉 N 的末位（N/=10）。由于 rev 是整数，前导零自动消失。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    int rev = 0;
+    while (N &gt; 0) {
+        rev = rev * 10 + N % 10;
+        N /= 10;
+    }
+    cout &lt;&lt; rev &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（四）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

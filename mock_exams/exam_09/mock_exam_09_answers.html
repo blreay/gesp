@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (九) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 26px; color: #c0392b; margin-bottom: 5px; }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th { background: #fdeaea; color: #c0392b; font-weight: bold; }
+        .ans-table td.ans { color: #c0392b; font-weight: bold; font-size: 16px; }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>模拟试卷（九）— 参考答案与解析</h1>
+        <p style="color:#666; font-size:14px;">难度：中等偏上</p>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">D</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">C</td><td class="ans">D</td><td class="ans">C</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>C++ 中 <code>^</code> 是<strong>按位异或</strong>运算符，不是求幂运算。<code>5</code> 的二进制为 <code>101</code>，<code>3</code> 的二进制为 <code>011</code>，<code>101 XOR 011 = 110</code> = 6。选 C。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>复合赋值运算从右到左执行：先算 <code>a -= 3</code>，a 变为 7；然后 <code>a += a</code>（此时 a 已经是 7），即 <code>a = 7 + 7 = 14</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong><code>break</code> 只退出最内层循环。内层循环中 j=1 时累加 i*1，j=2 时 break。所以内层每次只执行 j=1 一次。<br>
+        i=1: s += 1*1 = 1; i=2: s += 2*1 = 3; i=3: s += 3*1 = 6。输出 6。选 B。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong>A 错误，int 有范围限制；C 错误，int 可以存储负数；D 错误，变量可以修改。B 正确：在大多数现代编译器中 int 占 4 字节（32位），最大值为 2<sup>31</sup>-1 = 2147483647，约为 21 亿。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong><code>cout</code> 的 <code>&lt;&lt;</code> 运算符从左到右依次输出。先输出 a 的值 10，再输出字符串 "+"，再输出 b 的值 20，再输出字符串 "="，最后输出 a+b 的值 30。结果为 <code>10+20=30</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong>C++ 是一种编程语言，不是操作系统。A、B、C 都是正确的说法。选 D。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>按运算符优先级，<code>%</code>、<code>*</code>、<code>/</code> 同级，从左到右计算：<code>9%4=1</code>，<code>1*2=2</code>，<code>7/3=2</code>（整数除法），<code>2+2=4</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>跳过 3 的倍数（3, 6, 9），累加其余：1+2+4+5+7+8+10 = 37。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>逐位取出 20250 的各位数字：0, 5, 2, 0, 2。非零的有 5, 2, 2，共 3 个。选 C。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>A 错误，C++ 是高级语言；C 错误，高级语言需要编译或解释；D 错误，汇编语言是低级语言。B 正确：机器语言由 0 和 1 组成，计算机可以直接执行。选 B。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>i 依次取 1, 4, 7, 10, 13, 16, 19（步长为 3），s = 1+4+7+10+13+16+19 = 70。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong>循环中 i 从 1 开始，当 i*i &gt; 100 时 break。i=10 时 10*10=100 不大于 100，n=10；i=11 时 11*11=121 &gt; 100，break。输出 10。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>从右到左执行：先算 <code>a += 2</code>，a 变为 10；然后 <code>a *= a</code>（此时 a 已经是 10），即 <code>a = 10 * 10 = 100</code>。选 C。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>要求累加偶数。<code>continue</code> 是跳过当前循环的后续语句，所以应该在 i 为奇数时 continue（跳过奇数），偶数才会执行 <code>s += i</code>。<code>i % 2 != 0</code> 和 <code>i % 2 == 1</code> 在 i 为正整数时效果相同，都能判断奇数。所以 B 和 C 都正确。选 D。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>外层循环 4 次，每次内层循环 j=0 和 j=1 时 total++，j=2 时 break。每轮内层执行 2 次，共 4&times;2 = 8。选 C。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&times;</td><td class="ans">&radic;</td><td class="ans">&times;</td>
+            <td class="ans">&radic;</td><td class="ans">&radic;</td><td class="ans">&times;</td>
+            <td class="ans">&times;</td><td class="ans">&radic;</td><td class="ans">&times;</td>
+            <td class="ans">&radic;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 &times;：</strong>C++ 中 <code>^</code> 是按位异或运算符，不是求幂。<code>2^3</code> 的结果是 <code>010 XOR 011 = 001</code> = 1，不是 8。求幂应使用 <code>pow(2,3)</code> 或手动循环计算。
+    </div>
+    <div class="explain">
+        <strong>第2题 &radic;：</strong><code>short</code> 占 2 字节（16位），有符号范围 -32768 ~ 32767。32767 加 1 发生溢出，结果为 -32768。
+    </div>
+    <div class="explain">
+        <strong>第3题 &times;：</strong><code>break</code> 只退出其所在的最内层循环，不会退出外层循环。要退出多层循环需要额外的逻辑控制（如标志变量或 goto）。
+    </div>
+    <div class="explain">
+        <strong>第4题 &radic;：</strong>C++ 是高级编程语言，源代码（.cpp 文件）需要经过编译器编译成机器码后才能运行。
+    </div>
+    <div class="explain">
+        <strong>第5题 &radic;：</strong><code>cout &lt;&lt; a + b</code> 先计算 <code>a + b = 30</code>，然后输出 30。正确。
+    </div>
+    <div class="explain">
+        <strong>第6题 &times;：</strong><code>printf("%d", 3.14)</code> 用 <code>%d</code> 格式输出一个 <code>double</code> 值，属于格式不匹配（未定义行为），输出结果不可预测，不会正确输出 3。正确做法是 <code>printf("%f", 3.14)</code> 或 <code>printf("%d", (int)3.14)</code>。
+    </div>
+    <div class="explain">
+        <strong>第7题 &times;：</strong>虽然最终结果碰巧为 1（真），但 C++ 中的计算过程与数学含义不同。<code>1 &lt; 2</code> 先算得 1（真），然后 <code>1 &lt; 3</code> 算得 1（真）。但如果是 <code>2 &lt; 1 &lt; 3</code>，数学中为假，而 C++ 中 <code>2 &lt; 1</code> 得 0，<code>0 &lt; 3</code> 得 1（真），所以 C++ 的链式比较不等价于数学意义上的连续比较。
+    </div>
+    <div class="explain">
+        <strong>第8题 &radic;：</strong>操作系统确实是一种系统软件，它管理硬件资源，为用户和应用程序提供接口，是用户与硬件之间的桥梁。
+    </div>
+    <div class="explain">
+        <strong>第9题 &times;：</strong>这段代码使用临时变量 t 交换了 a 和 b 的值。交换后 a=20, b=10，输出 <code>20 10</code>，不是 <code>10 20</code>。
+    </div>
+    <div class="explain">
+        <strong>第10题 &radic;：</strong>这段代码正确实现了 1 到 100 的累加。循环结束后 s = 1+2+3+...+100 = 5050。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：鸡兔同笼</strong><br>
+        思路：设鸡有 c 只、兔有 r 只，则 c + r = h，2c + 4r = f。解方程得 r = (f - 2h) / 2，c = h - r。需要检查 (f - 2h) 是否为非负偶数，且 c 和 r 均为非负整数。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int h, f;
+    cin &gt;&gt; h &gt;&gt; f;
+    int diff = f - 2 * h;
+    if (diff &lt; 0 || diff % 2 != 0) {
+        cout &lt;&lt; "No Solution" &lt;&lt; endl;
+        return 0;
+    }
+    int rabbit = diff / 2;
+    int chicken = h - rabbit;
+    if (chicken &lt; 0) {
+        cout &lt;&lt; "No Solution" &lt;&lt; endl;
+        return 0;
+    }
+    cout &lt;&lt; chicken &lt;&lt; " " &lt;&lt; rabbit &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：统计字符</strong><br>
+        思路：读入 n 个整数，逐个判断正数、负数、零并分别计数。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int pos = 0, neg = 0, zer = 0;
+    for (int i = 0; i &lt; n; i++) {
+        int x;
+        cin &gt;&gt; x;
+        if (x &gt; 0) pos++;
+        else if (x &lt; 0) neg++;
+        else zer++;
+    }
+    cout &lt;&lt; pos &lt;&lt; " " &lt;&lt; neg &lt;&lt; " " &lt;&lt; zer &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（九）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

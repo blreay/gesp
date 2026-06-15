@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级模拟试卷 (一) — 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 26px;
+            color: #c0392b;
+            margin-bottom: 5px;
+        }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        /* Answer table */
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th {
+            background: #fdeaea;
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .ans-table td.ans {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>📋 模拟试卷（一）— 参考答案与解析</h1>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">A</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">B</td><td class="ans">B</td>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题：</strong>ENIAC 诞生于 1946 年，是世界上第一台通用电子计算机。选 B。
+    </div>
+    <div class="explain">
+        <strong>第2题：</strong>C++ 标识符不能以数字开头，<code>3dPoint</code> 以数字 3 开头，不合法。选 C。
+    </div>
+    <div class="explain">
+        <strong>第3题：</strong><code>17 / 3 = 5</code>（整除），<code>17 % 3 = 2</code>（取余），<code>5 + 2 = 7</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第4题：</strong><code>main</code> 不是 C++ 的关键字，它是一个函数名。<code>int</code>、<code>if</code>、<code>return</code> 都是关键字。选 B。
+    </div>
+    <div class="explain">
+        <strong>第5题：</strong>双引号内的 <code>"a-b="</code> 原样输出，然后 <code>&lt;&lt; a - b</code> 计算 <code>5 - 3 = 2</code> 并输出，结果为 <code>a-b=2</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第6题：</strong><code>a %= 4</code> 等价于 <code>a = a % 4 = 15 % 4 = 3</code>。选 A。
+    </div>
+    <div class="explain">
+        <strong>第7题：</strong>这是经典的"不用临时变量交换两数"的代码。执行后 x=20, y=10。选 B。<br>
+        &emsp;x = 10+20 = 30; y = 30-20 = 10; x = 30-10 = 20。
+    </div>
+    <div class="explain">
+        <strong>第8题：</strong>N=21，21%2==1 不等于 0，不进入第一个分支；21%3==0，进入 else if 分支，输出"能被3整除"。选 B。
+    </div>
+    <div class="explain">
+        <strong>第9题：</strong>从 1 累加到 10：1+2+3+…+10 = 55。选 B。
+    </div>
+    <div class="explain">
+        <strong>第10题：</strong>i 的值依次为 1, 4, 7, 10, 13, 16, 19（当 i=19 时，i &lt; 20 仍成立，cnt+1 后 i 变为 22 退出循环），共循环 7 次，cnt = 7。选 B。
+    </div>
+    <div class="explain">
+        <strong>第11题：</strong>当 i 为偶数时 continue 跳过，只累加奇数：1+3+5+7+9 = 25。选 B。
+    </div>
+    <div class="explain">
+        <strong>第12题：</strong><code>%%</code> 在 printf 中输出一个 <code>%</code>，<code>5 % 2 = 1</code>，所以输出 <code>5%2=1</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第13题：</strong>要筛选偶数，条件应为 <code>i % 2 == 0</code>。选 B。
+    </div>
+    <div class="explain">
+        <strong>第14题：</strong>N=8 → 4(cnt=1) → 2(cnt=2) → 1(cnt=3) → 0(cnt=4)，退出循环。输出 4。选 C。
+    </div>
+    <div class="explain">
+        <strong>第15题：</strong>判断质数的思路：统计 1 到 N 中能整除 N 的数的个数，如果恰好为 2（即只有 1 和 N 本身），则为质数。条件应为 <code>N % i == 0</code>。选 B。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">√</td><td class="ans">×</td><td class="ans">×</td>
+            <td class="ans">√</td><td class="ans">×</td><td class="ans">×</td>
+            <td class="ans">√</td><td class="ans">×</td><td class="ans">×</td>
+            <td class="ans">√</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 √：</strong>冯·诺依曼体系结构五大组成部分：运算器、控制器、存储器、输入设备、输出设备。
+    </div>
+    <div class="explain">
+        <strong>第2题 ×：</strong><code>int</code> 只能存储整数，赋值小数时会截断小数部分。
+    </div>
+    <div class="explain">
+        <strong>第3题 ×：</strong><code>int(3.9)</code> 是向零截断（取整），结果为 3，不是 4。
+    </div>
+    <div class="explain">
+        <strong>第4题 √：</strong>for 和 while 都可能因为条件永远为真而导致死循环。
+    </div>
+    <div class="explain">
+        <strong>第5题 ×：</strong><code>break</code> 可以用于任何循环（for、while、do-while）以及 switch 语句。
+    </div>
+    <div class="explain">
+        <strong>第6题 ×：</strong>C++ 中 if 的条件可以是 int 等其他类型，非零值视为 true，零视为 false。
+    </div>
+    <div class="explain">
+        <strong>第7题 √：</strong>两个 int 相除，结果仍为 int。15 / 4 = 3（截断小数）。
+    </div>
+    <div class="explain">
+        <strong>第8题 ×：</strong><code>cout</code> 不是 C++ 的关键字，它是 <code>&lt;iostream&gt;</code> 库中定义的标准输出流对象。理论上可以用作变量名（虽然不推荐）。
+    </div>
+    <div class="explain">
+        <strong>第9题 ×：</strong>每次循环都执行 <code>continue</code>，直接跳到下一次循环，<code>cnt++</code> 永远不会执行，最终输出 0，不是 10。
+    </div>
+    <div class="explain">
+        <strong>第10题 √：</strong>任何 for 循环都可以用 while 改写。for(init; cond; update) 等价于 init; while(cond) { body; update; }。
+    </div>
+
+    <!-- 三、编程题答案 -->
+    <div class="section-title">三、编程题参考答案</div>
+
+    <div class="explain">
+        <strong>编程题 1：小杨的零花钱</strong><br>
+        思路：每月净存 <code>m - s</code> 元，需要 <code>⌈p / (m-s)⌉</code> 个月，即向上取整。<br>
+        可以用整数公式 <code>(p + (m-s) - 1) / (m-s)</code> 实现向上取整，也可以用循环累加。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int p, m, s;
+    cin &gt;&gt; p &gt;&gt; m &gt;&gt; s;
+    int save = m - s;   // 每月净存款
+    int months = 0;
+    int total = 0;
+    while (total &lt; p) {
+        total += save;
+        months++;
+    }
+    cout &lt;&lt; months &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="explain">
+        <strong>编程题 2：数字之和</strong><br>
+        思路：不断取 <code>n % 10</code> 得到个位数字并累加，然后 <code>n /= 10</code> 去掉个位，直到 <code>n</code> 变为 0。
+    </div>
+<pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int sum = 0;
+    while (n &gt; 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    cout &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}
+</pre>
+
+    <div class="footer">
+        GESP C++ 一级模拟试卷（一）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>
