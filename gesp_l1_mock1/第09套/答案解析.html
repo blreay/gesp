@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 09 套 · 答案解析</title>
+<style>
+  :root{--primary:#4c51bf;--primary-dark:#363b8f;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#ecedfb,#dfe1f6);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(76,81,191,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#eeeffb;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#f8f8fe;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 09 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">C</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">B</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">A</span></div><div class="exp">bool 只有 true/false 两个值（A 对）。可以用 cout 输出（默认显示 1/0，B、C 错）；bool 通常占 1 字节（D 错）。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div><div class="exp">从左到右：<code>18/4=4</code>，<code>4/2=2</code>。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">A</span></div><div class="exp"><code>a=1</code>（5&gt;3 真）、<code>b=0</code>（2&gt;4 假）、<code>a&&b=0</code>，输出 <code>100</code>。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div><div class="exp"><code>a%=7</code>：20%7=6；<code>a+=3</code>：6+3=9。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div><div class="exp">两条语句：<code>n++</code> 先输出 4 再自增为 5；<code>++n</code> 先自增为 6 再输出 6。结果 <code>4 6</code>。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">B</span></div><div class="exp"><code>x&gt;0</code> 真 → 进入内层 <code>x&gt;5?1:2</code>，3&gt;5 假 → 取 2。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">A</span></div><div class="exp">10~1 中偶数 2+4+6+8+10 = 30。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">A</span></div><div class="exp">每个 i 内层 j=2 被跳过，cnt 加 2 次，共 3×2 = 6。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">B</span></div><div class="exp">累加 1~N 需循环条件 <code>i &lt;= N</code>。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">B</span></div><div class="exp">每次减 7，100/7 向上取整 = 15 次（最后 x 变为负数停止）。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">C</span></div><div class="exp">60 不 ≥90、不 ≥80，但 ≥60 → 输出 C。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">A</span></div><div class="exp">经典无临时变量交换：a、b 互换，输出 <code>8 3</code>。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">A</span></div><div class="exp">n=8：ans=0×2+0=0，n=4；0×2+0=0，n=2；0×2+0=0，n=1；0×2+1=1，n=0。输出 1。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">B</span></div><div class="exp">阿兰·图灵被称为"计算机科学与人工智能之父"，图灵奖以他命名。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">B</span></div><div class="exp">编译就是把源代码翻译成机器代码（B 对）。源码不能直接执行（A 错）；注释不影响编译（C 错）；源文件与可执行文件不同（D 错）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">√</span></div><div class="exp"><code>10&gt;5</code> 为真，cout 输出 1。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">√</span></div><div class="exp"><code>17%5=2</code>（17=5×3+2）。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">i 从 10 每次 -2，取 10 8 6 4 2。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">√</span></div><div class="exp"><code>a += b</code> 是 <code>a = a + b</code> 的简写。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">1~9 中 3 的倍数 3、6、9，cnt=3。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div><div class="exp"><code>&amp;&amp;</code> 优先于 <code>||</code>：<code>3&amp;&amp;0=0</code>，<code>0||1=1</code>。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp">char 占 1 个字节。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">√</span></div><div class="exp">i 从 1 到 10，依次输出。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">√</span></div><div class="exp">冯·诺依曼结构中程序与数据都存放在存储器中。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div><div class="exp">解释型语言运行时逐行解释执行，无需预先编译成机器码。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：奇数求和</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    long long s = 0;
+    for (int i = 1; i &lt;= n; i += 2)   // 直接每次 +2 遍历奇数
+        s += i;
+    cout &lt;&lt; s &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：从 1 开始每次 +2 即可只遍历奇数；也可遍历全部数用 <code>if(i%2==1)</code> 筛选。和可能较大，用 long long 更稳妥。</div></div>
+  <div class="item"><div class="head">编程题 2：成绩等级</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int s;
+    cin &gt;&gt; s;
+    if (s &gt;= 90) cout &lt;&lt; "A";
+    else if (s &gt;= 80) cout &lt;&lt; "B";
+    else if (s &gt;= 70) cout &lt;&lt; "C";
+    else if (s &gt;= 60) cout &lt;&lt; "D";
+    else cout &lt;&lt; "E";
+    cout &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：用 if-else if 链从高到低判断。注意顺序：先判 ≥90，再 ≥80……这样每个区间只会命中一个分支。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 09 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

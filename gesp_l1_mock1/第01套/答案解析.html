@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 01 套 · 答案解析</title>
+<style>
+  :root{--primary:#2b6cb0;--primary-dark:#1a4971;--accent:#e53e3e;--ok:#2f855a;--bg:#f4f7fb;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#eef2f7,#e4ecf5);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(43,108,176,.12);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#f0f6ff;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#fafcff;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header">
+    <div class="badge">参考答案 & 详细解析</div>
+    <h1>C++ 一级 · 模拟卷 第 01 套</h1>
+  </div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">C</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">B</td><td class="key">A</td><td class="key">C</td><td class="key">A</td><td class="key">B</td><td class="key">C</td><td class="key">C</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">×</td><td class="key">×</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">×</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+
+  <div class="item"><div class="head">第 1 题 <span class="res">C</span></div>
+    <div class="exp">变量命名规则：由字母、数字、下划线组成，不能以数字开头（A 错），不能含连字符 <code>-</code>（B 错），区分大小写故 <code>Sum</code> 与 <code>sum</code> 是两个不同变量（D 错）。C 正确。</div></div>
+
+  <div class="item"><div class="head">第 2 题 <span class="res">B</span></div>
+    <div class="exp"><code>double</code> 是基本数据类型关键字。<code>main</code> 是函数名（标识符），<code>printf</code>、<code>cout</code> 是库提供的函数/对象，都不是关键字。</div></div>
+
+  <div class="item"><div class="head">第 3 题 <span class="res">A</span></div>
+    <div class="exp">单引号括起的是字符常量（char），双引号括起的才是字符串。<code>'A'</code> 是 char 类型。</div></div>
+
+  <div class="item"><div class="head">第 4 题 <span class="res">B</span></div>
+    <div class="exp">整除 <code>17 / 5 = 3</code>，取模 <code>17 % 5 = 2</code>，相加得 <code>3 + 2 = 5</code>。</div></div>
+
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div>
+    <div class="exp"><code>*</code> 和 <code>%</code> 优先级高于 <code>+</code>，从左到右先算 <code>3 * 4 = 12</code>，再 <code>12 % 5 = 2</code>，最后 <code>2 + 2 = 4</code>。</div></div>
+
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div>
+    <div class="exp">格式串中的 <code>%d</code> 依次被后面的参数 <code>n</code>（7）和 <code>n*2</code>（14）替换，其余原样输出，得 <code>n=7, n*2=14</code>。</div></div>
+
+  <div class="item"><div class="head">第 7 题 <span class="res">B</span></div>
+    <div class="exp">非零为真、零为假。A：<code>1&&0=0</code>；B：<code>1&&(!0)=1&&1=1</code>（真）；C：<code>!1=0</code>；D：<code>1-1=0</code>。只有 B 为真。</div></div>
+
+  <div class="item"><div class="head">第 8 题 <span class="res">B</span></div>
+    <div class="exp">累加 1+2+3+4+5 = 15。</div></div>
+
+  <div class="item"><div class="head">第 9 题 <span class="res">B</span></div>
+    <div class="exp"><code>i</code> 取值 3、7、11、15、19，下一次 23≥20 停止，共 5 次。</div></div>
+
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div>
+    <div class="exp">偶数被 <code>continue</code> 跳过，只输出奇数：<code>1#3#5#</code>。</div></div>
+
+  <div class="item"><div class="head">第 11 题 <span class="res">C</span></div>
+    <div class="exp">偶数即能被 2 整除，余数为 0，即 <code>N % 2 == 0</code>。D 判断的是奇数，A 同样判断奇数，B 错误。</div></div>
+
+  <div class="item"><div class="head">第 12 题 <span class="res">A</span></div>
+    <div class="exp">关系运算结果用 1/0 表示。<code>5&gt;2</code> 为 1，<code>5==2</code> 为 0，<code>5&lt;2</code> 为 0，连续输出得 <code>100</code>。</div></div>
+
+  <div class="item"><div class="head">第 13 题 <span class="res">B</span></div>
+    <div class="exp">1~100 中能被 10 整除的有 10,20,…,100，共 10 个。</div></div>
+
+  <div class="item"><div class="head">第 14 题 <span class="res">C</span></div>
+    <div class="exp">“存储程序”原理由冯·诺依曼提出，称为“冯·诺依曼结构”。图灵奖以图灵命名；摩尔提出摩尔定律；香农创立信息论。</div></div>
+
+  <div class="item"><div class="head">第 15 题 <span class="res">C</span></div>
+    <div class="exp">CPU 是“大脑”，由运算器+控制器+寄存器组成（C 对）。RAM 断电丢失（A 错）；鼠标是输入设备（B 错）；访问速度寄存器&gt;高速缓存&gt;内存&gt;外存（D 错）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+
+  <div class="item"><div class="head">第 1 题 <span class="res">×</span></div>
+    <div class="exp"><code>"A"</code> 用双引号括起，是字符串常量；字符常量应写作 <code>'A'</code>（单引号）。</div></div>
+
+  <div class="item"><div class="head">第 2 题 <span class="res">×</span></div>
+    <div class="exp"><code>printf</code> 不是关键字，而是标准库函数名。可以（但不推荐）用作变量名，故“因为是关键字所以不能用作变量名”的说法错误。</div></div>
+
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div>
+    <div class="exp">两个 <code>%d</code> 分别被 3 和 8 替换，中间的 <code>-</code> 原样输出，结果为 <code>3-8</code>。</div></div>
+
+  <div class="item"><div class="head">第 4 题 <span class="res">×</span></div>
+    <div class="exp"><code>scanf</code> 读入变量需要取地址符 <code>&amp;</code>，应写作 <code>scanf("%d", &amp;n)</code>。</div></div>
+
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div>
+    <div class="exp">循环第一次就执行 <code>break</code> 跳出，随后 <code>n = 10</code>，输出 10。</div></div>
+
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div>
+    <div class="exp"><code>do...while</code> 先执行后判断，至少执行一次；<code>while</code> 先判断，条件一开始为假则一次都不执行。</div></div>
+
+  <div class="item"><div class="head">第 7 题 <span class="res">×</span></div>
+    <div class="exp"><code>=</code> 是赋值，<code>==</code> 是判断相等，二者含义完全不同（经典易错点）。</div></div>
+
+  <div class="item"><div class="head">第 8 题 <span class="res">√</span></div>
+    <div class="exp">循环体内没有修改 <code>i</code>，条件 <code>i &lt;= 5</code> 永远成立，造成死循环。</div></div>
+
+  <div class="item"><div class="head">第 9 题 <span class="res">×</span></div>
+    <div class="exp">float 占 4 个字节，double 占 8 个字节，存储空间不同。</div></div>
+
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div>
+    <div class="exp">ENIAC 于 1946 年在美国诞生，是世界上第一台通用电子计算机。（ENIGMA 是密码机，易混淆。）</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+
+  <div class="item"><div class="head">编程题 1：班级平均分</div>
+    <pre><code>#include &lt;cstdio&gt;
+using namespace std;
+int main() {
+    int n;
+    scanf("%d", &amp;n);
+    int sum = 0, x;
+    for (int i = 0; i &lt; n; i++) {
+        scanf("%d", &amp;x);
+        sum += x;
+    }
+    printf("%.2lf\n", (double)sum / n);
+    return 0;
+}</code></pre>
+    <div class="exp">要点：累加求和后转成 <code>double</code> 再除，避免整数除法丢失小数；用 <code>%.2lf</code> 保留两位小数。</div></div>
+
+  <div class="item"><div class="head">编程题 2：数字位数和</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long N;
+    cin &gt;&gt; N;
+    int sum = 0;
+    while (N &gt; 0) {
+        sum += N % 10;   // 取出个位
+        N /= 10;         // 去掉个位
+    }
+    cout &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：用 <code>% 10</code> 取个位、<code>/ 10</code> 去个位，循环到 N 为 0。注意 N 可达 10 亿，用 <code>long long</code> 更稳妥（int 也够，但养成好习惯）。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 01 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

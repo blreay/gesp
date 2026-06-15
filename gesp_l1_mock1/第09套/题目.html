@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 09 套</title>
+<style>
+  :root{--primary:#4c51bf;--primary-dark:#363b8f;--accent:#e53e3e;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#ecedfb 0%,#dfe1f6 100%);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(76,81,191,.13);padding:48px 56px;overflow:hidden;}
+  .header{text-align:center;border-bottom:3px solid var(--primary);padding-bottom:20px;margin-bottom:8px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:12px;}
+  .header h1{font-size:30px;margin:6px 0;color:var(--primary-dark);letter-spacing:4px;}
+  .header .sub{color:var(--muted);font-size:15px;}
+  .diff{display:inline-block;background:#fef0f0;color:#c53030;border:1px solid #feb2b2;font-size:12px;border-radius:12px;padding:2px 12px;margin-top:6px;}
+  .meta{display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:14px 0 4px;}
+  .section-title{font-size:21px;color:var(--primary-dark);margin:38px 0 6px;padding-left:14px;border-left:6px solid var(--primary);font-weight:700;}
+  .section-title small{color:var(--muted);font-weight:400;font-size:14px;margin-left:8px;}
+  .q{margin:22px 0 10px;padding:6px 10px;border-radius:10px;}
+  .q-num{display:inline-block;background:var(--primary);color:#fff;font-size:13px;border-radius:6px;padding:1px 9px;margin-right:8px;font-weight:700;white-space:nowrap;}
+  .opts{list-style:none;padding:0;margin:10px 0 0 6px;}
+  .opts li{margin:5px 0;padding:6px 10px;border-radius:8px;transition:background .2s;}
+  .opts li:hover{background:#eeeffb;}
+  .opt-key{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;border:1.5px solid var(--primary);color:var(--primary);border-radius:50%;font-size:12px;margin-right:8px;font-weight:700;transition:background .15s,color .15s;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:10px;padding:14px 16px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:14px;line-height:1.55;margin:12px 0;color:#24292e;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .note{background:#fffbea;border:1px solid #fde68a;border-radius:10px;padding:12px 16px;font-size:14px;color:#92670c;margin:16px 0;}
+  .prog{background:#f6f7fd;border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:18px 0;}
+  .prog h3{margin:0 0 6px;color:var(--primary-dark);}
+  .prog .limits{color:var(--muted);font-size:13px;margin-bottom:10px;}
+  .prog h4{margin:16px 0 4px;color:var(--primary);font-size:15px;}
+  .io-box{background:#fff;border:1px dashed var(--primary);border-radius:8px;padding:10px 14px;font-family:"Consolas",monospace;white-space:pre;font-size:14px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+
+  .btn-grade{background:linear-gradient(135deg,var(--accent),#c53030);color:#fff;border:none;font-size:14px;font-weight:700;letter-spacing:1px;padding:7px 22px;border-radius:20px;cursor:pointer;box-shadow:0 3px 10px rgba(229,62,62,.3);transition:transform .12s,box-shadow .12s;}
+  .btn-grade:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(229,62,62,.42);}
+  .btn-grade:active{transform:translateY(0);}
+  .score-banner{display:none;text-align:center;margin:24px auto 8px;max-width:620px;background:#fff5f5;border:2px solid #feb2b2;border-radius:14px;padding:18px 24px;}
+  .score-banner .score-num{font-size:46px;font-weight:800;color:var(--accent);line-height:1.1;}
+  .score-banner .score-num small{font-size:20px;color:var(--accent);}
+  .score-banner .score-detail{color:var(--muted);font-size:14px;margin-top:6px;}
+  li.opt{cursor:pointer;border:1.5px solid transparent;user-select:none;}
+  li.opt.selected{background:#e6f0ff;border-color:var(--primary);box-shadow:0 1px 4px rgba(43,108,176,.18);}
+  li.opt.selected .opt-key{background:var(--primary);color:#fff;}
+  .opts.tf{display:flex;gap:14px;list-style:none;padding:0;margin:10px 0 0 6px;}
+  .opts.tf li.opt{flex:0 0 auto;min-width:110px;text-align:center;padding:6px 10px;border-radius:8px;}
+  .q.wrong{background:#fff0f0;border:2px solid var(--accent);box-shadow:0 0 0 3px rgba(229,62,62,.12);border-radius:10px;}
+  .q.correct{background:#f0fff4;border:1.5px solid #9ae6b4;border-radius:10px;}
+  .opt.ans-correct{background:#c6f6d5 !important;border-color:#38a169 !important;}
+  .opt.ans-correct .opt-key{background:#38a169 !important;color:#fff !important;border-color:#38a169 !important;}
+  .opt.ans-wrongpick{background:#fed7d7 !important;border-color:var(--accent) !important;}
+  .opt.ans-wrongpick .opt-key{background:var(--accent) !important;color:#fff !important;border-color:var(--accent) !important;}
+  .ans-line{margin-top:8px;}
+  .ans-tip{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);background:#fff5f5;border:1px solid #feb2b2;border-radius:6px;padding:1px 8px;}
+  .copy-btn{margin-left:8px;font-size:12px;color:var(--primary);background:#fff;border:1px solid var(--primary);border-radius:6px;padding:1px 9px;cursor:pointer;vertical-align:middle;transition:background .12s;}
+  .copy-btn:hover{background:#ebf4ff;}
+  .copy-btn.copied{background:#38a169;color:#fff;border-color:#38a169;}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header">
+    <div class="badge">CCF GESP 编程能力等级认证</div>
+    <h1>C++ 一级</h1>
+    <div class="sub">模拟冲刺卷 · 第 09 套</div>
+    <div class="diff">★★★ 进阶难度</div>
+    <div class="meta">
+      <span>⏱ 考试时长：90 分钟</span>
+      <span>📄 满分：100 分</span>
+      <span>✍ 单选 30 + 判断 20 + 编程 50</span>
+      <button class="btn-grade" id="gradeBtn">📝 判卷</button>
+    </div>
+  </div>
+
+  <div class="score-banner" id="scoreBanner">
+    <div class="score-num" id="scoreNum">0<small> 分</small></div>
+    <div class="score-detail" id="scoreDetail"></div>
+  </div>
+
+  <div class="section-title">一、单选题 <small>每题 2 分，共 15 题，30 分（点击选项作答）</small></div>
+
+  <div class="q" data-q="s1"><span class="q-num">第 1 题</span>下列关于布尔类型 <code>bool</code> 的说法，正确的是（ ）。
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>bool 类型的值只能是 <code>true</code> 或 <code>false</code></li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>bool 类型不能用 <code>cout</code> 输出</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span><code>cout &lt;&lt; true;</code> 会输出 <code>true</code> 这个单词</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>bool 类型占用 4 个字节</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s2"><span class="q-num">第 2 题</span>C++ 表达式 <code>18 / 4 / 2</code> 的值是（ ）。
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>2</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>4</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>2.25</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>9</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s3"><span class="q-num">第 3 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>bool a = 5 > 3;
+bool b = 2 > 4;
+cout << a << b << (a && b);</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>100</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>010</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>101</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>110</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s4"><span class="q-num">第 4 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int a = 20;
+a %= 7;
+a += 3;
+cout << a;</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>9</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>6</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>3</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>23</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s5"><span class="q-num">第 5 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int n = 4;
+cout << n++ << " ";
+cout << ++n;</code></pre>
+    <div class="note">提示：<code>n++</code> 先用原值再自增；<code>++n</code> 先自增再用新值。</div>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>4 6</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>4 5</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>5 6</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>5 5</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s6"><span class="q-num">第 6 题</span>设 int 变量 <code>x=3</code>，表达式 <code>x &gt; 0 ? (x &gt; 5 ? 1 : 2) : 3</code> 的值是（ ）。
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>1</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>2</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>3</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>0</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s7"><span class="q-num">第 7 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int s = 0;
+for (int i = 10; i >= 1; i--)
+    if (i % 2 == 0)
+        s += i;
+cout << s;</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>30</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>25</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>55</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>20</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s8"><span class="q-num">第 8 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int cnt = 0;
+for (int i = 1; i <= 3; i++)
+    for (int j = 1; j <= 3; j++) {
+        if (j == 2) continue;
+        cnt++;
+    }
+cout << cnt;</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>6</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>9</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>3</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>4</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s9"><span class="q-num">第 9 题</span>下面 C++ 代码用于求 1+2+3+…+N 的和。横线处应填入的代码是（ ）。
+    <pre><code>int N, s = 0;
+cin >> N;
+int i = 1;
+while (______________) {
+    s += i;
+    i++;
+}
+cout << s;</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>i &lt; N</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>i &lt;= N</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>i &gt; N</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>s &lt;= N</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s10"><span class="q-num">第 10 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int x = 100;
+int cnt = 0;
+while (x > 0) {
+    x -= 7;
+    cnt++;
+}
+cout << cnt;</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>14</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>15</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>13</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>100</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s11"><span class="q-num">第 11 题</span>下面 C++ 代码根据分数 s 输出等级（≥90:A，≥80:B，≥60:C，否则 D）。当输入 <code>60</code> 时输出是（ ）。
+    <pre><code>int s;
+cin >> s;
+if (s >= 90) cout << "A";
+else if (s >= 80) cout << "B";
+else if (s >= 60) cout << "C";
+else cout << "D";</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>A</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>B</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>C</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>D</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s12"><span class="q-num">第 12 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int a = 3, b = 8;
+a = a + b;
+b = a - b;
+a = a - b;
+cout << a << " " << b;</code></pre>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>8 3</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>3 8</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>11 3</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>8 8</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s13"><span class="q-num">第 13 题</span>下面 C++ 代码执行后的输出是（ ）。
+    <pre><code>int n = 8, ans = 0;
+while (n > 0) {
+    ans = ans * 2 + n % 2;
+    n /= 2;
+}
+cout << ans;</code></pre>
+    <div class="note">提示：本题把 8 转成二进制后又反向拼接，逐步模拟即可。</div>
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>1</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>8</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>1000</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>4</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s14"><span class="q-num">第 14 题</span>被称为"计算机科学与人工智能之父"，且计算机界最高奖以其命名的科学家是（ ）。
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>冯·诺依曼</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>阿兰·图灵</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>克劳德·香农</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>戈登·摩尔</li>
+    </ul>
+  </div>
+
+  <div class="q" data-q="s15"><span class="q-num">第 15 题</span>下列关于程序运行过程的说法，正确的是（ ）。
+    <ul class="opts">
+      <li class="opt" data-val="A"><span class="opt-key">A</span>C++ 源代码可以不经任何处理直接被 CPU 执行</li>
+      <li class="opt" data-val="B"><span class="opt-key">B</span>编译就是把 C++ 源代码翻译成可执行的机器代码的过程</li>
+      <li class="opt" data-val="C"><span class="opt-key">C</span>程序中只要有注释，就一定会编译失败</li>
+      <li class="opt" data-val="D"><span class="opt-key">D</span>源程序文件和可执行文件是同一个文件</li>
+    </ul>
+  </div>
+
+  <div class="section-title">二、判断题 <small>每题 2 分，共 10 题，20 分；正确填"√"，错误填"×"</small></div>
+
+  <div class="q" data-q="j1"><span class="q-num">第 1 题</span>在 C++ 中，<code>cout &lt;&lt; (10 &gt; 5);</code> 的输出是 <code>1</code>。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j2"><span class="q-num">第 2 题</span>表达式 <code>17 % 5</code> 的值是 <code>2</code>。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j3"><span class="q-num">第 3 题</span>下面 C++ 代码会输出 <code>10 8 6 4 2</code>。
+    <pre><code>for (int i = 10; i >= 2; i -= 2)
+    cout << i << " ";</code></pre>
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j4"><span class="q-num">第 4 题</span>在 C++ 中，<code>a += b;</code> 等价于 <code>a = a + b;</code>。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j5"><span class="q-num">第 5 题</span>下面 C++ 代码执行后 <code>cnt</code> 的值是 <code>3</code>。
+    <pre><code>int cnt = 0;
+for (int i = 1; i <= 9; i++)
+    if (i % 3 == 0)
+        cnt++;</code></pre>
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j6"><span class="q-num">第 6 题</span>表达式 <code>3 &amp;&amp; 0 || 1</code> 的值是 <code>1</code>。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j7"><span class="q-num">第 7 题</span>在 C++ 中，<code>char</code> 类型占用 1 个字节。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j8"><span class="q-num">第 8 题</span>下面 C++ 代码会输出 <code>1 2 3 4 5 6 7 8 9 10</code>。
+    <pre><code>for (int i = 1; i <= 10; i++)
+    cout << i << " ";</code></pre>
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j9"><span class="q-num">第 9 题</span>冯·诺依曼提出了"存储程序"原理，该结构中程序和数据都存放在存储器中。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+  <div class="q" data-q="j10"><span class="q-num">第 10 题</span>解释型语言（如 Python）一般不需要编译器，是因为它在运行时逐行解释执行。
+    <ul class="opts tf">
+      <li class="opt" data-val="T"><span class="opt-key">√</span>正确</li>
+      <li class="opt" data-val="F"><span class="opt-key">×</span>错误</li>
+    </ul>
+  </div>
+
+  <div class="section-title">三、编程题 <small>每题 25 分，共 2 题，50 分</small></div>
+
+  <div class="prog">
+    <h3>编程题 1：奇数求和</h3>
+    <div class="limits">时间限制：1.0 s　|　内存限制：256.0 MB</div>
+    <h4>题目描述</h4>
+    <p>给定一个正整数 <i>n</i>，请你计算 1 到 <i>n</i> 之间（含 1 和 <i>n</i>）所有<b>奇数</b>的和。</p>
+    <h4>输入格式</h4>
+    <p>一行，一个正整数 <i>n</i>。</p>
+    <h4>输出格式</h4>
+    <p>一行，一个整数，表示 1~n 中所有奇数之和。</p>
+    <h4>样例输入 1</h4>
+    <div class="io-box">5</div>
+    <h4>样例输出 1</h4>
+    <div class="io-box">9</div>
+    <h4>样例说明 1</h4>
+    <p>1 + 3 + 5 = 9。</p>
+    <h4>样例输入 2</h4>
+    <div class="io-box">10</div>
+    <h4>样例输出 2</h4>
+    <div class="io-box">25</div>
+    <h4>数据范围</h4>
+    <p>对于所有测试点，保证 1 ≤ <i>n</i> ≤ 100000。</p>
+  </div>
+
+  <div class="prog">
+    <h3>编程题 2：成绩等级</h3>
+    <div class="limits">时间限制：1.0 s　|　内存限制：256.0 MB</div>
+    <h4>题目描述</h4>
+    <p>给定一名同学的考试成绩 <i>s</i>（整数，0~100），请你按下面规则输出等级：</p>
+    <ul>
+      <li><i>s</i> ≥ 90：输出 <code>A</code></li>
+      <li>80 ≤ <i>s</i> &lt; 90：输出 <code>B</code></li>
+      <li>70 ≤ <i>s</i> &lt; 80：输出 <code>C</code></li>
+      <li>60 ≤ <i>s</i> &lt; 70：输出 <code>D</code></li>
+      <li><i>s</i> &lt; 60：输出 <code>E</code></li>
+    </ul>
+    <h4>输入格式</h4>
+    <p>一行，一个整数 <i>s</i>，表示成绩。</p>
+    <h4>输出格式</h4>
+    <p>一行，一个大写字母，表示等级。</p>
+    <h4>样例输入 1</h4>
+    <div class="io-box">85</div>
+    <h4>样例输出 1</h4>
+    <div class="io-box">B</div>
+    <h4>样例输入 2</h4>
+    <div class="io-box">59</div>
+    <h4>样例输出 2</h4>
+    <div class="io-box">E</div>
+    <h4>数据范围</h4>
+    <p>对于所有测试点，保证 0 ≤ <i>s</i> ≤ 100。</p>
+  </div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 09 套　|　仅供练习使用</div>
+</div>
+
+<script>
+document.querySelectorAll('.q').forEach(function(q){
+  q.querySelectorAll('li.opt').forEach(function(li){
+    li.addEventListener('click', function(){
+      q.querySelectorAll('li.opt').forEach(function(o){ o.classList.remove('selected'); });
+      li.classList.add('selected');
+    });
+  });
+});
+var ANSWER = {"s1":"A","s2":"A","s3":"A","s4":"A","s5":"A","s6":"B","s7":"A","s8":"A","s9":"B","s10":"B","s11":"C","s12":"A","s13":"A","s14":"B","s15":"B","j1":"T","j2":"T","j3":"T","j4":"T","j5":"T","j6":"T","j7":"T","j8":"T","j9":"T","j10":"T"};
+var PER = 2;
+function getSelected(qid){ var q=document.querySelector('.q[data-q="'+qid+'"]'); if(!q)return null; var s=q.querySelector('li.opt.selected'); return s?s.getAttribute('data-val'):null; }
+function qLabel(qid){ if(qid.charAt(0)==='s')return '单选第 '+qid.slice(1)+' 题'; if(qid.charAt(0)==='j')return '判断第 '+qid.slice(1)+' 题'; return qid; }
+function optText(li){ var c=li.cloneNode(true); var k=c.querySelector('.opt-key'); if(k)k.remove(); return c.textContent.replace(/\s+/g,' ').trim(); }
+function answerLabel(qid,val){ var q=document.querySelector('.q[data-q="'+qid+'"]'); var li=q.querySelector('li.opt[data-val="'+val+'"]'); var k=li?li.querySelector('.opt-key'):null; return k?k.textContent.trim():val; }
+document.getElementById('gradeBtn').addEventListener('click', function(){
+  var ids=Object.keys(ANSWER); var unfinished=[];
+  ids.forEach(function(qid){ if(getSelected(qid)===null)unfinished.push(qid); });
+  if(unfinished.length>0){
+    var names=unfinished.map(qLabel).join('\n');
+    var ok=confirm('还有 '+unfinished.length+' 道客观题尚未作答：\n\n'+names+'\n\n点击"确定"：仅对已作答的题目计分；\n点击"取消"：返回继续作答。');
+    if(!ok)return;
+  }
+  var correct=0,answered=0;
+  ids.forEach(function(qid){ var p=getSelected(qid); if(p!==null){answered++; if(p===ANSWER[qid])correct++;} });
+  markAndAnnotate(unfinished);
+  var score=correct*PER;
+  var banner=document.getElementById('scoreBanner');
+  document.getElementById('scoreNum').innerHTML=score+'<small> 分</small>';
+  var detail='客观题（单选+判断）：答对 '+correct+' / '+ids.length+' 题，已作答 '+answered+' 题';
+  if(unfinished.length>0)detail+='<br><span style="color:#c53030">⚠ 有 '+unfinished.length+' 题未作答，未计入得分</span>';
+  detail+='<br><span style="color:#a0aec0">（编程题 50 分需用对应测试程序自行评测，未计入此分数）</span>';
+  document.getElementById('scoreDetail').innerHTML=detail;
+  banner.style.display='block';
+  banner.scrollIntoView({behavior:'smooth',block:'center'});
+});
+function markAndAnnotate(unfinished){
+  var uset={}; unfinished.forEach(function(id){uset[id]=true;});
+  Object.keys(ANSWER).forEach(function(qid){
+    var q=document.querySelector('.q[data-q="'+qid+'"]'); if(!q)return;
+    q.classList.remove('wrong','correct');
+    q.querySelectorAll('.opt').forEach(function(o){o.classList.remove('ans-correct','ans-wrongpick');});
+    var ol=q.querySelector('.ans-line'); if(ol)ol.remove();
+    if(uset[qid])return;
+    var pick=getSelected(qid); var rv=ANSWER[qid]; var cl=q.querySelector('li.opt[data-val="'+rv+'"]');
+    if(pick===rv){ q.classList.add('correct'); if(cl)cl.classList.add('ans-correct'); }
+    else{
+      q.classList.add('wrong'); if(cl)cl.classList.add('ans-correct');
+      var wl=q.querySelector('li.opt[data-val="'+pick+'"]'); if(wl)wl.classList.add('ans-wrongpick');
+      var line=document.createElement('div'); line.className='ans-line';
+      var tip=document.createElement('span'); tip.className='ans-tip'; tip.textContent='正确答案：'+answerLabel(qid,rv);
+      var btn=document.createElement('button'); btn.className='copy-btn'; btn.textContent='📋 复制';
+      btn.addEventListener('click', function(e){ e.stopPropagation(); copyToClipboard(buildCopyText(qid,pick,rv),btn); });
+      line.appendChild(tip); line.appendChild(btn); q.appendChild(line);
+    }
+  });
+}
+function buildCopyText(qid,pick,rv){
+  var q=document.querySelector('.q[data-q="'+qid+'"]');
+  var num=q.querySelector('.q-num')?q.querySelector('.q-num').textContent.trim():'';
+  var c=q.cloneNode(true);
+  ['.q-num','.opts','pre','.ans-line'].forEach(function(sel){ c.querySelectorAll(sel).forEach(function(e){e.remove();}); });
+  var stem=c.textContent.replace(/（\s*）/g,'').replace(/\s+/g,' ').trim();
+  var tn=qid.charAt(0)==='s'?'【单选题】':'【判断题】';
+  var lines=[tn+num+' '+stem];
+  var pre=q.querySelector('pre'); if(pre)lines.push(pre.textContent.replace(/\s+$/,''));
+  q.querySelectorAll('li.opt').forEach(function(li){ var k=li.querySelector('.opt-key'); var lb=k?k.textContent.trim():li.getAttribute('data-val'); lines.push(lb+'. '+optText(li)); });
+  lines.push('我的答案：'+answerLabel(qid,pick));
+  lines.push('正确答案：'+answerLabel(qid,rv));
+  return lines.join('\n');
+}
+function copyToClipboard(text,btn){
+  function done(){ var o=btn.textContent; btn.textContent='✅ 已复制'; btn.classList.add('copied'); setTimeout(function(){btn.textContent=o;btn.classList.remove('copied');},1500); }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,function(){fallbackCopy(text,done);}); }
+  else fallbackCopy(text,done);
+}
+function fallbackCopy(text,done){ var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
+</script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 · 模拟冲刺 10 套</title>
+<style>
+  :root{--ink:#1a202c;--muted:#718096;--line:#e2e8f0;--accent:#e53e3e;}
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;
+    color:var(--ink);background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 45%,#3182ce 100%);
+    min-height:100vh;padding:40px 16px;line-height:1.7;
+  }
+  .wrap{max-width:1080px;margin:0 auto;}
+  .hero{
+    text-align:center;color:#fff;margin-bottom:8px;
+  }
+  .hero .logo{font-size:13px;letter-spacing:3px;opacity:.85;background:rgba(255,255,255,.15);display:inline-block;padding:5px 18px;border-radius:20px;}
+  .hero h1{font-size:38px;margin:16px 0 6px;letter-spacing:4px;text-shadow:0 2px 12px rgba(0,0,0,.25);}
+  .hero p{opacity:.9;font-size:15px;margin:4px 0;}
+  .stat-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:22px 0 8px;}
+  .stat{background:rgba(255,255,255,.16);backdrop-filter:blur(4px);color:#fff;border-radius:12px;padding:12px 22px;min-width:120px;text-align:center;}
+  .stat b{display:block;font-size:24px;}
+  .stat span{font-size:12px;opacity:.85;}
+  .panel{background:#fff;border-radius:20px;box-shadow:0 18px 50px rgba(0,0,0,.22);padding:36px 40px;margin-top:28px;}
+  .panel h2{font-size:20px;color:#2c5282;margin:0 0 4px;border-left:6px solid #3182ce;padding-left:12px;}
+  .panel .sub{color:var(--muted);font-size:13.5px;margin:0 0 20px;padding-left:18px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;}
+  .card{
+    border:1px solid var(--line);border-radius:14px;padding:18px 20px;transition:transform .15s,box-shadow .15s,border-color .15s;
+    background:#fcfdff;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(49,130,206,.18);border-color:#90cdf4;}
+  .card .ribbon{position:absolute;top:0;right:0;width:64px;height:64px;overflow:hidden;}
+  .card .num{
+    display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;
+    color:#fff;font-size:20px;font-weight:800;margin-bottom:10px;
+  }
+  .card h3{margin:2px 0 2px;font-size:18px;}
+  .card .diff{font-size:12px;color:var(--accent);font-weight:700;}
+  .card .topics{font-size:12.5px;color:var(--muted);margin:10px 0 14px;min-height:34px;}
+  .card .topics b{color:#4a5568;font-weight:600;}
+  .card .links{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{
+    flex:1;text-align:center;text-decoration:none;font-size:13px;font-weight:700;border-radius:9px;padding:8px 6px;transition:filter .12s;white-space:nowrap;
+  }
+  .btn:hover{filter:brightness(.95);}
+  .btn-q{background:#3182ce;color:#fff;}
+  .btn-a{background:#fff;color:#2f855a;border:1.5px solid #2f855a;}
+  .prog-links{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;}
+  .plink{font-size:11.5px;color:#718096;text-decoration:none;background:#edf2f7;border-radius:7px;padding:4px 9px;transition:background .12s;}
+  .plink:hover{background:#e2e8f0;color:#2d3748;}
+  .usage{background:#f7fafc;border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-top:24px;font-size:14px;}
+  .usage h3{margin:0 0 10px;color:#2c5282;}
+  .usage code{background:#edf2f7;border-radius:4px;padding:1px 6px;font-family:"Consolas",monospace;font-size:13px;}
+  .usage ol{margin:8px 0;padding-left:22px;}
+  .usage li{margin:5px 0;}
+  .tips{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .tip{flex:1;min-width:220px;background:#fff;border:1px solid var(--line);border-left:4px solid #3182ce;border-radius:10px;padding:12px 16px;font-size:13px;}
+  .tip b{color:#2c5282;}
+  .foot{text-align:center;color:rgba(255,255,255,.8);font-size:12.5px;margin-top:30px;}
+  .foot a{color:#fff;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="logo">CCF GESP 编程能力等级认证</div>
+    <h1>C++ 一级 · 模拟冲刺 10 套</h1>
+    <p>依据《GESP 一级直通车》知识点 + 12 套历年真题趋势编写　·　可在线作答 / 一键判卷 / 错题复制</p>
+    <div class="stat-row">
+      <div class="stat"><b>10</b><span>套完整试卷</span></div>
+      <div class="stat"><b>250</b><span>道单选+判断题</span></div>
+      <div class="stat"><b>20</b><span>道编程题</span></div>
+      <div class="stat"><b>20</b><span>个评测程序</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>📚 试卷列表</h2>
+    <p class="sub">点击「📝 在线答题」可直接作答并判卷；「📖 答案解析」查看逐题详解。</p>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="panel">
+    <div class="usage">
+      <h3>🧪 编程题测试程序怎么用？</h3>
+      <p>每套的两道编程题各配了一个 C++ 评测程序（在对应子目录里），用于<b>自动校验你写的代码是否正确</b>：</p>
+      <ol>
+        <li>把你自己的代码编译成可执行文件：<code>g++ my_answer.cpp -o my_answer</code></li>
+        <li>编译评测程序：<code>g++ 编程题1_xxx_测试程序.cpp -o judge</code></li>
+        <li>运行（参数为<b>你的可执行文件路径</b>）：<code>./judge ./my_answer</code>（Windows：<code>judge.exe my_answer.exe</code>）</li>
+        <li>全部通过显示 <code>ALL PASSED</code>；不通过会用<b>表格</b>列出该用例的「输入 / 实际输出 / 期望输出」。</li>
+      </ol>
+    </div>
+    <div class="tips">
+      <div class="tip"><b>在线判卷</b>：打开任意「题目」页，点选答案后点右上角红色【判卷】按钮，得分用大红字显示。</div>
+      <div class="tip"><b>未做提醒</b>：若有客观题未作答，判卷时会弹窗列出题号，只对已作答的题目计分。</div>
+      <div class="tip"><b>错题复制</b>：判错的题会高亮并显示正确答案，旁边【复制】按钮可把整题（题干+选项+你的答案+正确答案）复制到错题本。</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    GESP C++ 一级 模拟冲刺卷　·　仅供练习使用　·　难度逐套递进（第 10 套为综合冲刺）
+  </div>
+</div>
+
+<script>
+// 每套：编号、难度、两道编程题主题、目录名、编程题文件名
+var SETS = [
+  {n:1,  diff:"★★☆ 入门基础", color:"#2b6cb0", p1:["班级平均分","编程题1_班级平均分_测试程序.cpp"], p2:["数字位数和","编程题2_数字位数和_测试程序.cpp"]},
+  {n:2,  diff:"★★★ 进阶", color:"#7b3fa0", p1:["分糖果","编程题1_分糖果_测试程序.cpp"], p2:["数位统计","编程题2_数位统计_测试程序.cpp"]},
+  {n:3,  diff:"★★★ 进阶", color:"#1f8a70", p1:["阶梯电价","编程题1_阶梯电价_测试程序.cpp"], p2:["最小完全平方数","编程题2_最小完全平方数_测试程序.cpp"]},
+  {n:4,  diff:"★★★ 进阶", color:"#c05621", p1:["购票找零","编程题1_购票找零_测试程序.cpp"], p2:["统计奇偶","编程题2_统计奇偶_测试程序.cpp"]},
+  {n:5,  diff:"★★★ 进阶", color:"#3182ce", p1:["时间换算","编程题1_时间换算_测试程序.cpp"], p2:["最大公约数","编程题2_最大公约数_测试程序.cpp"]},
+  {n:6,  diff:"★★★ 进阶", color:"#2c7a7b", p1:["鸡兔同笼","编程题1_鸡兔同笼_测试程序.cpp"], p2:["数列求和","编程题2_数列求和_测试程序.cpp"]},
+  {n:7,  diff:"★★★ 进阶", color:"#6b46c1", p1:["最大值与最小值","编程题1_最大值最小值_测试程序.cpp"], p2:["判断回文数","编程题2_判断回文数_测试程序.cpp"]},
+  {n:8,  diff:"★★★ 进阶", color:"#b83280", p1:["长方形周长与面积","编程题1_长方形周长面积_测试程序.cpp"], p2:["数字三角形","编程题2_数字三角形_测试程序.cpp"]},
+  {n:9,  diff:"★★★ 进阶", color:"#4c51bf", p1:["奇数求和","编程题1_奇数求和_测试程序.cpp"], p2:["成绩等级","编程题2_成绩等级_测试程序.cpp"]},
+  {n:10, diff:"★★★★ 综合冲刺", color:"#2f855a", p1:["区间内7的倍数计数","编程题1_7的倍数计数_测试程序.cpp"], p2:["数字反转","编程题2_数字反转_测试程序.cpp"]}
+];
+
+function pad(n){ return (n<10?"0":"")+n; }
+var grid = document.getElementById('grid');
+SETS.forEach(function(s){
+  var dir = "第"+pad(s.n)+"套";
+  var card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML =
+    '<div class="num" style="background:'+s.color+'">'+s.n+'</div>' +
+    '<h3>第 '+pad(s.n)+' 套</h3>' +
+    '<div class="diff">'+s.diff+'</div>' +
+    '<div class="topics">编程题：<b>'+s.p1[0]+'</b>　|　<b>'+s.p2[0]+'</b></div>' +
+    '<div class="links">' +
+      '<a class="btn btn-q" href="'+dir+'/题目.html">📝 在线答题</a>' +
+      '<a class="btn btn-a" href="'+dir+'/答案解析.html">📖 答案解析</a>' +
+    '</div>' +
+    '<div class="prog-links">' +
+      '<a class="plink" href="'+dir+'/'+s.p1[1]+'">🧪 测评1</a>' +
+      '<a class="plink" href="'+dir+'/'+s.p2[1]+'">🧪 测评2</a>' +
+    '</div>';
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 10 套 · 答案解析</title>
+<style>
+  :root{--primary:#2f855a;--primary-dark:#22543d;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#e8f5ee,#d8eee2);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(47,133,90,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#e9f6ef;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#f6fcf9;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 10 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">B</span></div><div class="exp">第 2 行 <code>int a = 5</code> 末尾缺少分号，会导致编译错误。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div><div class="exp">先乘除：<code>2*2=4</code>、<code>2/2=1</code>，再 <code>2+4-1=5</code>。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">B</span></div><div class="exp">陷阱：<code>(9+4)/2</code> 两个 int 先做整除 <code>13/2=6</code>，再赋给 double 得 6.0，输出 <code>6.0</code>。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">B</span></div><div class="exp">两次左移相当于 ×2 再 ×2：<code>1→2→4</code>。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">B</span></div><div class="exp">a=12,b=5：<code>a/b=2</code> 为真（B 对）。<code>a%b=2≠0</code>（A 错）；<code>a-b=7≠5</code>（C 错）；<code>a+b=17≠16</code>（D 错）。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div><div class="exp">仅 i==j 时累加 i：1+2+3+4+5 = 15。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">B</span></div><div class="exp">n：1→3→9→27→81→243→729→2187，共乘 7 次（2187&gt;1000 停止），cnt=7。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">A</span></div><div class="exp">偶数 continue；i=1 加 1，i=3 加 3，i=5 时 <code>5%5==0</code> break。ans=1+3=4。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">A</span></div><div class="exp">各位数字之和需取个位 <code>N % 10</code> 累加。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div><div class="exp">16→8→4→2→1，每步计一次，共 4 步。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">A</span></div><div class="exp">3 的倍数即 <code>i % 3 == 0</code>。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">A</span></div><div class="exp"><code>a*=a</code> 即 a=a×a：2→4→16→256。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">A</span></div><div class="exp">逐个比较取最大，max(3,1,2)=3。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">A</span></div><div class="exp">摩尔定律由戈登·摩尔提出：集成电路上晶体管数目约每 18~24 个月翻一倍。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">A</span></div><div class="exp">访问速度由快到慢：寄存器 &gt; 高速缓存 &gt; 内存 &gt; 外存。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">√</span></div><div class="exp">C++ 语句通常以分号结尾。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">×</span></div><div class="exp"><code>2*3+4*5 = 6+20 = 26</code>，不是 50。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">1+2+3+4+5 = 15。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">√</span></div><div class="exp"><code>10==10.0</code> 比较时 10 提升为 10.0，相等为真。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">100→10→1→0，循环 3 次，cnt=3（即位数）。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div><div class="exp"><code>1&&0=0</code>，<code>1&&1=1</code>，<code>0||1=1</code>。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp"><code>break</code> 只跳出当前所在的这一层循环。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">√</span></div><div class="exp">i 从 9 每次 -2，取 9 7 5 3 1。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">√</span></div><div class="exp">1 GB = 1024 MB，1 MB = 1024 KB，存储单位大小关系正确。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div><div class="exp">C++、Java、Python 是面向对象语言，C 语言是面向过程语言。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：区间内 7 的倍数计数</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    long long cnt = 0, sum = 0;
+    for (long long i = a; i &lt;= b; i++)
+        if (i % 7 == 0) { cnt++; sum += i; }
+    cout &lt;&lt; cnt &lt;&lt; " " &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：遍历区间，用 <code>i%7==0</code> 判断 7 的倍数，同时计数与求和。区间最大 100 万，循环可在时限内完成；和较大，用 long long。</div></div>
+  <div class="item"><div class="head">编程题 2：数字反转</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long N, r = 0;
+    cin &gt;&gt; N;
+    while (N &gt; 0) {
+        r = r * 10 + N % 10;   // 取个位拼到 r 的末尾
+        N /= 10;
+    }
+    cout &lt;&lt; r &lt;&lt; endl;          // 整数 r 自动去掉前导零
+    return 0;
+}</code></pre>
+    <div class="exp">要点：用 <code>r = r*10 + N%10</code> 逐位反向拼接。由于 r 是整数，反转后的前导零会自动消失（如 1200 → 0021 → 21）。N 最大 20 亿，用 <code>long long</code>。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 10 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

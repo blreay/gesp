@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 07 套 · 答案解析</title>
+<style>
+  :root{--primary:#6b46c1;--primary-dark:#4c2889;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#f1ecfa,#e6dcf6);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(107,70,193,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#f3eefb;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#faf8fe;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 07 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">C</td><td class="key">B</td><td class="key">B</td><td class="key">D</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">A</span></div><div class="exp">交换三步：<code>t=a</code>（暂存 a）→ <code>a=b</code>（把 b 给 a）→ <code>b=t</code>（把原 a 给 b）。横线填 <code>a=b</code>。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">B</span></div><div class="exp">从左到右：<code>100/7=14</code>，<code>14%5=4</code>。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">A</span></div><div class="exp"><code>'a'-'A'=32</code>，<code>'C'(67)+32=99</code>，按字符输出为 <code>'c'</code>。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div><div class="exp"><code>a-=3</code> → 2，<code>a*=4</code> → 8。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div><div class="exp"><code>10%3=1</code>、<code>10/3=3</code>、<code>10*3=30</code>，输出 <code>1 3 30</code>。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div><div class="exp"><code>a!=5</code> 为假(0)，<code>a&gt;0</code> 为真(1)，<code>0||1=1</code>。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">A</span></div><div class="exp">1~6 中 3 的倍数 3、6，<code>s=3+6=9</code>。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">A</span></div><div class="exp">i&lt;j 的有序对个数 = C(5,2) = 10。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">A</span></div><div class="exp">统计 N 的约数个数用 <code>N % i == 0</code>；恰好 2 个约数（1 和自身）即质数。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div><div class="exp">6 的真因数 1、2、3，和为 6（6 是完美数）。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">B</span></div><div class="exp">i：1→2→4→8→16→32→64，共乘了 6 次，i=64 时 <code>64&lt;64</code> 不成立停止，cnt=6。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">C</span></div><div class="exp">逐个比较取最大：m 从 2 更新到 3，再更新到 4。输出 4。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">B</span></div><div class="exp">循环不断取个位，最后一次 n=1 时 last=1（即最高位），输出 1。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">B</span></div><div class="exp">病毒可通过 U 盘等存储介质传播（B 对）。不联网也可能感染（A 错）；病毒主要破坏数据/程序（C 错）；杀毒软件无法杀掉所有未知病毒（D 错）。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">D</span></div><div class="exp">机器语言是二进制，人类很难阅读和编写，D 说法错误（本题选错误项）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">√</span></div><div class="exp"><code>cin</code> 以空白（空格、回车、制表符）分隔，可连续读入多个数。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">√</span></div><div class="exp"><code>2*3=6</code>，<code>6==6</code> 为真。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">输出 1、4、9、16（各数平方）。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">×</span></div><div class="exp">字符 <code>'0'</code> 的 ASCII 码是 48，不是 0。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">1+2+3+4 = 10。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div><div class="exp"><code>2&gt;1</code> 为真，<code>3&lt;2</code> 为假，<code>真&amp;&amp;假=假(0)</code>。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp"><code>7/2=3</code>（整除），<code>7.0/2=3.5</code>（浮点）。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">×</span></div><div class="exp">循环里 <code>i++</code> 让 i 越来越大，<code>i&gt;0</code> 一直成立——这确实会一直循环？注意：i 增大到 int 上限会溢出变负，循环最终会结束（虽不严谨，但严格说不是永久死循环）。GESP 中此类题判为<b>不是死循环</b>（×）。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">√</span></div><div class="exp">1 字节 = 8 位（bit）。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div><div class="exp">操作系统是系统软件，管理硬件与软件资源。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：求最大值与最小值</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int x;
+    cin &gt;&gt; x;
+    int mx = x, mn = x;        // 用第一个数初始化
+    for (int i = 1; i &lt; n; i++) {
+        cin &gt;&gt; x;
+        if (x &gt; mx) mx = x;
+        if (x &lt; mn) mn = x;
+    }
+    cout &lt;&lt; mx &lt;&lt; " " &lt;&lt; mn &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：用读入的第一个数初始化最大/最小值（不要用 0 初始化，否则负数会出错）。</div></div>
+  <div class="item"><div class="head">编程题 2：判断回文数</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long N, t, r = 0;
+    cin &gt;&gt; N;
+    t = N;
+    while (t &gt; 0) {            // 把 N 倒过来得到 r
+        r = r * 10 + t % 10;
+        t /= 10;
+    }
+    cout &lt;&lt; (r == N ? "YES" : "NO") &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：把 N 逆序得到 r，若 r 与原数相等即回文。注意逆序前先用临时变量 t 保存 N，N 最大 20 亿用 <code>long long</code>。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 07 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

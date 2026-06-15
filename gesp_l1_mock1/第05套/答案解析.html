@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 05 套 · 答案解析</title>
+<style>
+  :root{--primary:#3182ce;--primary-dark:#2c5282;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#eaf2fb,#dce9f7);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(49,130,206,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#eef5fd;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#f8fbff;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 05 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">B</td><td class="key">A</td><td class="key">C</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">C</td><td class="key">A</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">B</span></div><div class="exp">单引号括起的 <code>'5'</code> 是字符常量；<code>"5"</code> 是字符串，<code>5</code> 是整型，<code>5.0</code> 是浮点型。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div><div class="exp">先乘除：<code>3*4=12</code>、<code>6/2=3</code>，再 <code>1+2+12-3=12</code>。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">C</span></div><div class="exp"><code>'a'</code>=97，+2=99，赋回 char 后用 <code>cout</code> 按字符输出，ASCII 99 是 <code>'c'</code>。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div><div class="exp"><code>25/10=2</code>、<code>25%10=5</code>，格式串中间是 <code>.</code>，输出 <code>2.5</code>。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div><div class="exp"><code>a/b</code> 两个 int → 整除得 3；<code>(double)a/b</code> 浮点除 ≈3.33333。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div><div class="exp">x=6 满足 <code>&gt;0 &amp;&amp; &lt;10</code> 为真，三目取前者 100。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">A</span></div><div class="exp">奇数累加 1+3+5+7+9 = 25。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">A</span></div><div class="exp">n=5,3,1（下一次 -1&lt;0 停止），输出 <code>531</code>。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">B</span></div><div class="exp">数位计数：每次去掉个位 <code>N = N / 10</code>，计数加一。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">B</span></div><div class="exp">x: 1→3→7→15（每次 ×2+1）。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">A</span></div><div class="exp">构成三角形需任意两边之和都大于第三边，三个条件都要满足（用 <code>&amp;&amp;</code>）。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">B</span></div><div class="exp">2~12 中能整除 12 的：2,3,4,6,12，共 5 个。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">B</span></div><div class="exp">斐波那契：i=3→2，i=4→3，i=5→5，i=6→8，最终 b=8。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">C</span></div><div class="exp">内存（RAM）断电数据丢失；硬盘、U 盘、光盘都是外存，断电保留。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">A</span></div><div class="exp">"大模型"通常指大语言模型。B/C/D 说法都不准确（AI 会犯错、普通设备也能跑小模型、AI 不是简单查表）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">√</span></div><div class="exp">char 参与整数运算用 ASCII 码值，<code>'A'</code> 即 65。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">√</span></div><div class="exp"><code>15%4=3</code>（15=4×3+3）。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">输出 <code>1 2 3 </code>（每个数字后带空格）。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">×</span></div><div class="exp">for 的循环条件可以省略，省略表示条件恒为真，不会编译错误（可能死循环）。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">5 的阶乘 = 120。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div><div class="exp"><code>3&gt;5</code> 为 0，<code>0||0=0</code>（假）。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp"><code>5/2=2</code>、<code>5%2=1</code>，<code>2+1=3</code>。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">√</span></div><div class="exp">i 从 0 到 9，依次输出 0~9（每个后带空格）。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">×</span></div><div class="exp">内存读写速度远快于外存（硬盘）。访问速度：寄存器&gt;高速缓存&gt;内存&gt;外存。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div><div class="exp">编译型语言一次性编译并优化，运行通常比逐行解释的解释型语言快。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：时间换算</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long s;
+    cin &gt;&gt; s;
+    long long h = s / 3600;
+    long long m = s % 3600 / 60;
+    long long sec = s % 60;
+    cout &lt;&lt; h &lt;&lt; " " &lt;&lt; m &lt;&lt; " " &lt;&lt; sec &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：小时 = 总秒 /3600；分钟 = 余下秒 /60（先 %3600 再 /60）；秒 = %60。</div></div>
+  <div class="item"><div class="head">编程题 2：最大公约数</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    // 辗转相除法（欧几里得算法）
+    while (b != 0) {
+        int r = a % b;
+        a = b;
+        b = r;
+    }
+    cout &lt;&lt; a &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：辗转相除法——不断用 <code>a % b</code> 取代，直到余数为 0，此时 a 就是最大公约数。也可从 min(a,b) 往下枚举第一个公约数（数据范围小，亦可通过）。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 05 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

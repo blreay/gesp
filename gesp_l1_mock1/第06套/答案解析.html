@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 06 套 · 答案解析</title>
+<style>
+  :root{--primary:#2c7a7b;--primary-dark:#1d5354;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#e6f3f3,#d6ecec);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(44,122,123,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#e9f5f5;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#f7fcfc;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 06 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">C</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">C</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">C</span></div><div class="exp"><code>return</code> 是关键字，不能用作变量名。其余均合法（下划线开头也允许）。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div><div class="exp"><code>(7+3)=10</code>，<code>10%4=2</code>，<code>2*2=4</code>。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">B</span></div><div class="exp"><code>b</code> 是 double，<code>a/b</code> 为浮点除法，得 3.5。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div><div class="exp">do-while 输出 0 1 2（i=3 时条件不满足停止）。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div><div class="exp">后置 <code>x++</code> 用原值 4：<code>4%3=1</code>，整个表达式结果 1 赋回 x（自增的 5 被覆盖），x=1。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">B</span></div><div class="exp">85 不 ≥90，但 ≥80 → 输出 B，整条 if-else 链只走一支。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">A</span></div><div class="exp">累加到 1+2+3+4+5+6=21&gt;20，break，输出 21。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">B</span></div><div class="exp">嵌套循环共执行 3×4=12 次。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">B</span></div><div class="exp">2 的 n 次方是连乘 2，<code>p *= 2</code>，初值 p=1。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div><div class="exp">关系结果 1/0：<code>3&gt;2</code>=1、<code>2&gt;3</code>=0、<code>5==5</code>=1，连续输出 101。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">B</span></div><div class="exp">偶数即 <code>i%2==0</code>。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">A</span></div><div class="exp">a 从 10 递减，3 的倍数依次为 9、6、3，输出 <code>9 6 3</code>（0 不在 a&gt;0 范围内）。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">A</span></div><div class="exp">7×6×5×4×3×2 = 5040。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">B</span></div><div class="exp">ENIAC 于 1946 年在美国宾夕法尼亚大学诞生。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">C</span></div><div class="exp">图灵奖由 ACM 设立，以阿兰·图灵命名，被誉为"计算机界的诺贝尔奖"。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">√</span></div><div class="exp">double 可以存整数值，<code>double d = 5;</code> 合法，d 为 5.0。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">×</span></div><div class="exp"><code>10%3=1</code>（10=3×3+1），不是 3。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">i 自增到 3 时 <code>3&lt;3</code> 不成立停止，输出 3。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">√</span></div><div class="exp"><code>break</code> 既能跳出循环，也能用于 switch 结束某分支。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">0~5 中偶数 0、2、4，输出 <code>0 2 4</code>。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div><div class="exp"><code>!0</code> 取非，0 为假，非后为真即 1。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp"><code>3+4=7</code>，<code>7&gt;5</code> 为真。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">×</span></div><div class="exp">条件是 <code>i&lt;5</code>，只输出 0 1 2 3 4，没有 5。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">√</span></div><div class="exp">CPU 是计算机核心，被称为"大脑"。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div><div class="exp">冯·诺依曼提出存储程序原理（冯·诺依曼结构）。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：鸡兔同笼</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int h, f;
+    cin &gt;&gt; h &gt;&gt; f;
+    // 设兔 t 只，鸡 (h-t) 只：2*(h-t)+4*t = f  =&gt;  t = (f-2*h)/2
+    int t = (f - 2 * h) / 2;   // 兔
+    int c = h - t;             // 鸡
+    cout &lt;&lt; c &lt;&lt; " " &lt;&lt; t &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：由方程组直接解出兔数 <code>t=(f-2h)/2</code>，鸡数 <code>c=h-t</code>。也可用循环枚举鸡的只数 0~h，找到脚数匹配的解。</div></div>
+  <div class="item"><div class="head">编程题 2：数列求和</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    double s = 0;
+    for (int i = 1; i &lt;= n; i++)
+        s += 1.0 / i;      // 注意写 1.0 / i 而不是 1 / i
+    printf("%.2lf\n", s);
+    return 0;
+}</code></pre>
+    <div class="exp">易错点：必须写 <code>1.0 / i</code>，若写 <code>1 / i</code> 则是整数除法，除 i=1 外都得 0。累加用 double，<code>%.2lf</code> 保留两位。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 06 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

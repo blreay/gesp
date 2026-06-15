@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 04 套 · 答案解析</title>
+<style>
+  :root{--primary:#c05621;--primary-dark:#9c4221;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#fdf3ea,#fae8d8);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(192,86,33,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#fdf0e6;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#fffaf6;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 04 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">D</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">B</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">D</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">D</span></div><div class="exp">注释内容不会被编译执行，仅供阅读，D 错误（本题选错误项）。A、B、C 均正确。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div><div class="exp">从左到右：<code>20%6=2</code>，<code>2/2=1</code>。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">B</span></div><div class="exp"><code>1.0/4</code>，因有 1.0 是浮点，结果为 0.25，<code>%.2lf</code> 输出 <code>0.25</code>。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div><div class="exp"><code>17/10=1</code>、<code>17%10=7</code>，连续输出（无空格）得 <code>17</code>。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">B</span></div><div class="exp"><code>x += x*2</code> 即 <code>x = 3 + 3*2 = 9</code>。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div><div class="exp"><code>a&gt;b</code> 即 4&gt;7 为假，取非为真(1)；<code>a+b=11&gt;10</code> 为真。<code>1&amp;&amp;1=1</code>。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">B</span></div><div class="exp">i=3 被 continue 跳过，<code>s=1+2+4+5=12</code>。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">B</span></div><div class="exp">连乘 1×2×3×4 = 24（4 的阶乘）。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">B</span></div><div class="exp">"7 的倍数"即能被 7 整除，<code>i % 7 == 0</code>。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div><div class="exp">100→50→25→12→6→3→1，每次除 2 并计数，共 6 次。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">A</span></div><div class="exp">较大值用三目：<code>(a&gt;b)?a:b</code>，条件真取 a，否则取 b。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">B</span></div><div class="exp">i+j=4 的组合：(1,3)(2,2)(3,1)，共 3 个。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">A</span></div><div class="exp">各位求和 2+3+4 = 9。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">A</span></div><div class="exp">计算机内部用二进制（A 对）。十进制 10 的二进制是 1010（B 错）；二进制可编码字符（C 错）；1 字节=8 位（D 错）。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">D</span></div><div class="exp">杀毒软件是应用软件，可安装/卸载，不属于操作系统，D 错误（本题选错误项）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">×</span></div><div class="exp">int 只能存整数，存小数会被截断，不能存储小数。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">√</span></div><div class="exp"><code>8/3=2</code>（整除），<code>8.0/3≈2.67</code>（浮点除）。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">i 从 5 递减输出 5 4 3 2 1。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">×</span></div><div class="exp"><code>continue</code> 只跳过本次循环剩余部分，进入下一次；结束整个循环的是 <code>break</code>。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">0+1+2+3 = 6。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div><div class="exp"><code>3==3.0</code> 比较时 3 被提升为 3.0，相等，结果为真。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp"><code>10/4.0</code> 有浮点参与，结果 2.5。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">√</span></div><div class="exp">i=1,2,3 时 c++ 各一次，i=4 时 <code>i&gt;3</code> break，c=3。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">√</span></div><div class="exp">int 4 字节，最大约 2147483647，约 21 亿。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">×</span></div><div class="exp">C 语言是面向过程语言；C++、Java、Python 等才是面向对象语言。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：购票找零</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long m;
+    cin &gt;&gt; m;
+    cout &lt;&lt; m / 45 &lt;&lt; " " &lt;&lt; m % 45 &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：能买票数 = <code>m / 45</code>（整除），剩余 = <code>m % 45</code>（取模）。</div></div>
+  <div class="item"><div class="head">编程题 2：统计奇偶</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int odd = 0, even = 0, oddSum = 0, x;
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; x;
+        if (x % 2 != 0) { odd++; oddSum += x; }  // 注意负奇数
+        else even++;
+    }
+    cout &lt;&lt; odd &lt;&lt; " " &lt;&lt; even &lt;&lt; " " &lt;&lt; oddSum &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：用 <code>x % 2 != 0</code> 判断奇数（对负数也成立，C++ 中负奇数 %2 得 -1）；偶数（含 0）走 else 分支。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 04 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

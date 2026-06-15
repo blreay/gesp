@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 03 套 · 答案解析</title>
+<style>
+  :root{--primary:#1f8a70;--primary-dark:#136355;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#e9f6f2,#dff0ea);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(31,138,112,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#eefaf5;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#f8fdfb;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header">
+    <div class="badge">参考答案 & 详细解析</div>
+    <h1>C++ 一级 · 模拟卷 第 03 套</h1>
+  </div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">D</td><td class="key">A</td><td class="key">C</td><td class="key">D</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">×</td><td class="key">√</td><td class="key">×</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">×</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+
+  <div class="item"><div class="head">第 1 题 <span class="res">A</span></div>
+    <div class="exp">常量定义后不可修改（A 对）。<code>#define</code> 定义的是宏，不是变量（B 错）；const 变量不可再赋值（C 错）；常量既可用 const 也可用 #define（D 错）。</div></div>
+
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div>
+    <div class="exp">顺序赋值：<code>a=b</code> → a=2；<code>b=c</code> → b=3；<code>c=a</code> → c=2（此时 a 已是 2）。输出 <code>232</code>。这并非正确的三变量交换。</div></div>
+
+  <div class="item"><div class="head">第 3 题 <span class="res">B</span></div>
+    <div class="exp"><code>(double)(5/2)</code>：先整数除法 5/2=2，再转 double 得 <b>2.0</b>；<code>(double)5/2</code>：先把 5 转 double，再 5.0/2 得 <b>2.5</b>。</div></div>
+
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div>
+    <div class="exp"><code>5/2=2</code>（整除）、<code>5%2=1</code>、<code>5*2=10</code>，输出 <code>2 1 10</code>。</div></div>
+
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div>
+    <div class="exp">后置 <code>n++</code> 先用原值 10 比较：<code>10&gt;10</code> 为假即 0；比较后 n 自增为 11。输出 <code>0 11</code>。</div></div>
+
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div>
+    <div class="exp">x=8：<code>x&gt;10</code> 否，<code>x&gt;5</code> 是 → 输出 B 并结束整条 if-else 链；之后无条件输出 D。结果 <code>BD</code>。</div></div>
+
+  <div class="item"><div class="head">第 7 题 <span class="res">A</span></div>
+    <div class="exp">只有 i==j 时累加 i*j：1×1 + 2×2 + 3×3 = 1+4+9 = 14（j 只到 3，i=4 时无匹配）。</div></div>
+
+  <div class="item"><div class="head">第 8 题 <span class="res">B</span></div>
+    <div class="exp">"同时被 3 和 5 整除"即两个条件都成立，用 <code>&amp;&amp;</code>。等价于被 15 整除。</div></div>
+
+  <div class="item"><div class="head">第 9 题 <span class="res">A</span></div>
+    <div class="exp">n=5：<code>t = 0*10 + 5%10 = 5</code>，<code>n = 5/10 = 0</code>，循环结束。输出 5。</div></div>
+
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div>
+    <div class="exp">数字逆序经典写法：r 依次得 3 → 32 → 321。这是把 123 倒过来。</div></div>
+
+  <div class="item"><div class="head">第 11 题 <span class="res">A</span></div>
+    <div class="exp">每轮 i 加 1、j 减 1，二者向中间靠拢。i=5,j=5 时 <code>5&lt;5</code> 不成立停止。输出 <code>5 5</code>。</div></div>
+
+  <div class="item"><div class="head">第 12 题 <span class="res">D</span></div>
+    <div class="exp"><code>a == a*2</code> 是比较运算（判断相等），不会改变 a 的值，因此不能完成"乘以 2"。A/B/C 都正确赋值。</div></div>
+
+  <div class="item"><div class="head">第 13 题 <span class="res">A</span></div>
+    <div class="exp">i=1：sum=1；i=2：sum=3；i=3：被 3 整除 continue；i=4：被 4 整除 break。结束时 sum=3。</div></div>
+
+  <div class="item"><div class="head">第 14 题 <span class="res">C</span></div>
+    <div class="exp">触摸屏既能显示（输出）又能接受触摸操作（输入），是典型的输入输出双重设备。键盘只输入，显示器/打印机只输出。</div></div>
+
+  <div class="item"><div class="head">第 15 题 <span class="res">D</span></div>
+    <div class="exp">没有语法错误只能保证能编译运行，但<b>逻辑错误</b>仍可能导致结果不正确，D 错误。A、B、C 均正确（for 总能改写为 while）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+
+  <div class="item"><div class="head">第 1 题 <span class="res">×</span></div>
+    <div class="exp">字符 <code>'9'</code> 的 ASCII 码是 57，而整数 9 是 9，两者不相等。</div></div>
+
+  <div class="item"><div class="head">第 2 题 <span class="res">√</span></div>
+    <div class="exp">i 从 0 起每次 +2，取 0,2,4,6,8（10 不满足 &lt;10），输出 <code>0 2 4 6 8</code>。</div></div>
+
+  <div class="item"><div class="head">第 3 题 <span class="res">×</span></div>
+    <div class="exp"><code>3&gt;2</code> 为真（值为 1），逻辑非 <code>!1 = 0</code>。所以 <code>!(3&gt;2)</code> 的值是 <b>0</b>，而题面说"值为 1"，故命题<b>错误</b>。</div></div>
+
+  <div class="item"><div class="head">第 4 题 <span class="res">×</span></div>
+    <div class="exp"><code>10/3=3</code>（整除），<code>3*3=9</code>，不等于 10。整数除法会丢弃余数。</div></div>
+
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div>
+    <div class="exp">两段都输出 <code>123</code>。当条件初始即满足时，while 与 do-while 行为一致。</div></div>
+
+  <div class="item"><div class="head">第 6 题 <span class="res">√</span></div>
+    <div class="exp">i 从 5 递减到 1，累加 5+4+3+2+1 = 15。</div></div>
+
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div>
+    <div class="exp"><code>cout</code> 从左到右：先算 <code>3+4=7</code> 输出，再输出 <code>=</code>，再输出 <code>7</code>，得 <code>7=7</code>。</div></div>
+
+  <div class="item"><div class="head">第 8 题 <span class="res">×</span></div>
+    <div class="exp">逻辑与 <code>5 &amp;&amp; 0</code> 的结果是布尔值，有一个为 0 即为假，结果是 <code>0</code>，不是 5。</div></div>
+
+  <div class="item"><div class="head">第 9 题 <span class="res">×</span></div>
+    <div class="exp">i 取 10,7,4,1（下一次 -2 不满足 &gt;0），共循环 <b>4</b> 次，输出 4，不是 3。</div></div>
+
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div>
+    <div class="exp">图灵奖由 ACM 于 1966 年设立，被誉为"计算机界的诺贝尔奖"。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+
+  <div class="item"><div class="head">编程题 1：阶梯电价</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int x;
+    cin &gt;&gt; x;
+    double fee;
+    if (x &lt;= 200)
+        fee = x * 0.5;
+    else
+        fee = 200 * 0.5 + (x - 200) * 0.8;
+    printf("%.2lf\n", fee);
+    return 0;
+}</code></pre>
+    <div class="exp">要点：分两段计算，超过 200 度的部分单独用 0.8 元/度；注意前 200 度始终按 0.5 计费。用 <code>%.2lf</code> 保留两位小数。</div></div>
+
+  <div class="item"><div class="head">编程题 2：第一个完全平方数</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long N;
+    cin &gt;&gt; N;
+    long long i = 1;
+    while (i * i &lt; N) i++;   // 找到第一个 i 使 i*i >= N
+    cout &lt;&lt; i * i &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：从 1 开始枚举 i，找到第一个满足 <code>i*i &gt;= N</code> 的 i，输出 <code>i*i</code>。N 最大 100 万，i 最多约 1000，循环很快。用 <code>i*i</code> 注意不要溢出（long long 稳妥）。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 03 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>

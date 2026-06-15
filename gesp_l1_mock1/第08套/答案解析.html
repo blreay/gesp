@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 一级 模拟卷 第 08 套 · 答案解析</title>
+<style>
+  :root{--primary:#b83280;--primary-dark:#8a2461;--accent:#e53e3e;--ok:#2f855a;--card:#fff;--code-bg:#f6f8fa;--border:#e2e8f0;--text:#2d3748;--muted:#718096;}
+  *{box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;background:linear-gradient(135deg,#fbecf4,#f7dcec);color:var(--text);margin:0;padding:32px 16px;line-height:1.8;}
+  .paper{max-width:860px;margin:0 auto;background:var(--card);border-radius:18px;box-shadow:0 10px 40px rgba(184,50,128,.13);padding:48px 56px;}
+  .header{text-align:center;border-bottom:3px solid var(--ok);padding-bottom:18px;margin-bottom:18px;}
+  .header .badge{display:inline-block;background:linear-gradient(135deg,var(--ok),#22543d);color:#fff;font-size:14px;letter-spacing:2px;padding:4px 18px;border-radius:20px;margin-bottom:10px;}
+  .header h1{font-size:27px;margin:6px 0;color:#22543d;letter-spacing:3px;}
+  .section-title{font-size:20px;color:var(--primary-dark);margin:34px 0 12px;padding-left:14px;border-left:6px solid var(--ok);font-weight:700;}
+  table.ans{border-collapse:collapse;width:100%;margin:8px 0 20px;font-size:14px;}
+  table.ans th,table.ans td{border:1px solid var(--border);padding:6px 4px;text-align:center;}
+  table.ans th{background:#fbeef5;color:var(--primary-dark);}
+  table.ans td.key{color:var(--accent);font-weight:700;font-size:16px;}
+  .item{margin:14px 0;padding:14px 18px;background:#fdf7fb;border:1px solid var(--border);border-radius:10px;}
+  .item .head{font-weight:700;color:var(--primary-dark);}
+  .item .head .res{color:var(--accent);margin-left:10px;}
+  .item .exp{margin-top:6px;color:#444;font-size:14.5px;}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;overflow-x:auto;font-family:"Consolas","Courier New",monospace;font-size:13.5px;line-height:1.5;margin:8px 0;}
+  code{background:#eef2f7;border-radius:4px;padding:0 4px;font-family:"Consolas",monospace;font-size:13.5px;}
+  .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:40px;padding-top:16px;border-top:1px dashed var(--border);}
+</style>
+</head>
+<body>
+<div class="paper">
+  <div class="header"><div class="badge">参考答案 & 详细解析</div><h1>C++ 一级 · 模拟卷 第 08 套</h1></div>
+
+  <div class="section-title">一、单选题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+    <tr><td>答案</td><td class="key">C</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">B</td><td class="key">A</td><td class="key">A</td><td class="key">A</td><td class="key">C</td><td class="key">A</td><td class="key">A</td></tr>
+  </table>
+
+  <div class="section-title">二、判断题答案速查</div>
+  <table class="ans">
+    <tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+    <tr><td>答案</td><td class="key">×</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">×</td><td class="key">√</td><td class="key">√</td></tr>
+  </table>
+
+  <div class="section-title">三、单选题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">C</span></div><div class="exp"><code>int</code> 只能存整数；float、double 都能存小数。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">A</span></div><div class="exp">先括号 <code>3+4=7</code>，<code>2*7=14</code>，<code>14%5=4</code>（<code>*</code> 与 <code>%</code> 同级从左到右）。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">B</span></div><div class="exp">double 转 int 直接截断小数，<code>(int)3.99 = 3</code>。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">A</span></div><div class="exp"><code>-7/2=-3</code>（向 0 取整），<code>-7%2=-1</code>（符号同被除数）。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">A</span></div><div class="exp">后置 <code>x++</code> 用原值 2：<code>y=5+2=7</code>，之后 x 自增为 3。输出 <code>3 7</code>。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">A</span></div><div class="exp">8 能被 2 整除也能被 4 整除，两条件都真，结果 1。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">B</span></div><div class="exp">每行星数 1+2+3+4 = 10 个 <code>*</code>。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">A</span></div><div class="exp">s 依次 1、3、6、10，当 i=4 时 s=10≥10 break，输出 i=4。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">B</span></div><div class="exp">逐位处理需去掉个位：<code>N = N / 10</code>。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">A</span></div><div class="exp">平方和 1+4+9+16+25 = 55。</div></div>
+  <div class="item"><div class="head">第 11 题 <span class="res">A</span></div><div class="exp">2000 能被 400 整除 → 满足 <code>|| y%400==0</code>，输出"闰年"。</div></div>
+  <div class="item"><div class="head">第 12 题 <span class="res">A</span></div><div class="exp"><code>a=a+a</code> 即每次翻倍：1→2→4→8→16。</div></div>
+  <div class="item"><div class="head">第 13 题 <span class="res">C</span></div><div class="exp">输入 0：既不&gt;0 也不&lt;0，走 else 输出"零"。</div></div>
+  <div class="item"><div class="head">第 14 题 <span class="res">A</span></div><div class="exp">1 KB = 1024 字节。1 字节=8 位（B 错）；1 MB=1024 KB（C 错）；位比字节小（D 错）。</div></div>
+  <div class="item"><div class="head">第 15 题 <span class="res">A</span></div><div class="exp">键盘、鼠标、麦克风都是输入设备。其余组里含显示器/打印机/音箱（输出设备）。</div></div>
+
+  <div class="section-title">四、判断题解析</div>
+  <div class="item"><div class="head">第 1 题 <span class="res">×</span></div><div class="exp">double（8 字节，15~16 位有效数字）比 float（4 字节，6~7 位）精度更高，说反了。</div></div>
+  <div class="item"><div class="head">第 2 题 <span class="res">√</span></div><div class="exp"><code>9%3=0</code>，9 能被 3 整除。</div></div>
+  <div class="item"><div class="head">第 3 题 <span class="res">√</span></div><div class="exp">i 从 2 每次 +2，取 2 4 6 8 10。</div></div>
+  <div class="item"><div class="head">第 4 题 <span class="res">√</span></div><div class="exp"><code>n/2.0</code> 有浮点，<code>7/2.0=3.5</code>。</div></div>
+  <div class="item"><div class="head">第 5 题 <span class="res">√</span></div><div class="exp">5×4×3×2×1 = 120。</div></div>
+  <div class="item"><div class="head">第 6 题 <span class="res">×</span></div><div class="exp"><code>5==5</code> 为真(1)，取非为 0，不是 1。</div></div>
+  <div class="item"><div class="head">第 7 题 <span class="res">√</span></div><div class="exp">double 占 8 个字节。</div></div>
+  <div class="item"><div class="head">第 8 题 <span class="res">×</span></div><div class="exp">条件 <code>i&gt;0</code>，输出 5 4 3 2 1，没有 0。</div></div>
+  <div class="item"><div class="head">第 9 题 <span class="res">√</span></div><div class="exp">巨型机（超算）运算速度、容量远高于微型机。</div></div>
+  <div class="item"><div class="head">第 10 题 <span class="res">√</span></div><div class="exp">显示器、打印机都是输出设备。</div></div>
+
+  <div class="section-title">五、编程题参考程序</div>
+  <div class="item"><div class="head">编程题 1：长方形周长与面积</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    long long a, b;
+    cin &gt;&gt; a &gt;&gt; b;
+    cout &lt;&lt; 2 * (a + b) &lt;&lt; " " &lt;&lt; a * b &lt;&lt; endl;
+    return 0;
+}</code></pre>
+    <div class="exp">要点：周长 <code>2*(a+b)</code>，面积 <code>a*b</code>。a、b 可达 10000，面积最大 1 亿，int 够用，用 long long 更稳妥。</div></div>
+  <div class="item"><div class="head">编程题 2：数字三角形</div>
+    <pre><code>#include &lt;iostream&gt;
+using namespace std;
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            if (j &gt; 1) cout &lt;&lt; " ";  // 数字间一个空格，行首不加
+            cout &lt;&lt; j;
+        }
+        cout &lt;&lt; endl;               // 每行换行
+    }
+    return 0;
+}</code></pre>
+    <div class="exp">要点：双重循环，第 i 行打印 1~i；用 <code>if(j&gt;1)</code> 控制空格位置，保证每行末尾无多余空格。</div></div>
+
+  <div class="footer">GESP C++ 一级 模拟冲刺卷 · 第 08 套 答案解析　|　仅供练习使用</div>
+</div>
+</body>
+</html>
