@@ -447,6 +447,7 @@
 <body>
 <div class="container">
 
+    <!-- Header -->
     <div class="header">
         <div class="logo-line">
             <span class="badge">GESP</span>
@@ -461,10 +462,15 @@
         <div class="score-display" id="scoreDisplay"></div>
     </div>
 
+    <!-- Score overview -->
     <table class="score-table">
-        <tr><th>题型</th><th>单选题</th><th>判断题</th><th>编程题</th><th>总分</th></tr>
-        <tr><td>分值</td><td>30 分</td><td>20 分</td><td>50 分</td><td>100 分</td></tr>
-                <tr>
+        <tr>
+            <th>题型</th><th>单选题</th><th>判断题</th><th>编程题</th><th>总分</th>
+        </tr>
+        <tr>
+            <td>分值</td><td>30 分</td><td>20 分</td><td>50 分</td><td>100 分</td>
+        </tr>
+        <tr>
             <td>得分</td>
             <td id="scoreChoice" class="scored">—</td>
             <td id="scoreTF" class="scored">—</td>
@@ -488,7 +494,7 @@
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 编译器</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 控制器</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q2 -->
@@ -501,7 +507,7 @@
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 解释型语言运行速度通常比编译型语言快</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 编译型语言不需要编译器就能运行</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q3 -->
@@ -514,7 +520,7 @@
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>'C'</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 编译错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q4 -->
@@ -534,7 +540,7 @@ printf(<span class="string">"%d %d"</span>, a, b);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>3 3</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>5 5</code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q5 -->
@@ -550,7 +556,7 @@ printf(<span class="string">"%2d|%02d|%-5d|"</span>, 8, 3, 42);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>8&nbsp;|03|42&nbsp;&nbsp;&nbsp;|</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code> 8|3&nbsp;|42&nbsp;&nbsp;&nbsp;|</code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q6 -->
@@ -568,7 +574,7 @@ printf(<span class="string">"%d"</span>, r);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 2</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 编译错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q7 -->
@@ -586,7 +592,7 @@ printf(<span class="string">"%d %d %d"</span>, a, b, r);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>0 1 1</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>1 1 0</code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q8 -->
@@ -606,7 +612,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 55</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 20</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q9 -->
@@ -627,7 +633,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 100</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 55</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q10 -->
@@ -654,7 +660,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>2 5 8 1 9 </code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>2 5 1 9 8 </code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q11 -->
@@ -675,7 +681,7 @@ printf(<span class="string">"%d"</span>, cnt);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 4</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 5</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q12 -->
@@ -695,7 +701,7 @@ printf(<span class="string">"%d"</span>, n);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 77</div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 7007</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q13 -->
@@ -714,7 +720,7 @@ printf(<span class="string">"%d"</span>, n);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>aeiou</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>acegh</code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q14 -->
@@ -737,7 +743,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>i &gt; 0</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>i / 2 == 0</code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- Q15 -->
@@ -760,7 +766,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>Z</code></div>
             <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>XY</code></div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- ==================== 二、判断题 ==================== -->
@@ -775,7 +781,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="17" data-answer="A">
@@ -785,7 +791,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="18" data-answer="A">
@@ -795,7 +801,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="19" data-answer="B">
@@ -805,7 +811,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="20" data-answer="A">
@@ -819,7 +825,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="21" data-answer="B">
@@ -829,7 +835,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="22" data-answer="A">
@@ -846,7 +852,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="23" data-answer="A">
@@ -856,7 +862,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="24" data-answer="B">
@@ -866,7 +872,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <div class="tf-item" data-qtype="tf" data-qnum="25" data-answer="A">
@@ -876,7 +882,7 @@ printf(<span class="string">"%d"</span>, s);
             <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
             <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
         </div>
-            <div class="correct-answer-tag"></div>
+        <div class="correct-answer-tag"></div>
     </div>
 
     <!-- ==================== 三、编程题 ==================== -->
@@ -1033,13 +1039,11 @@ function selectTF(el) {
 // ========== Get user answers ==========
 function getUserAnswers() {
     const answers = {};
-    // Choice questions
     document.querySelectorAll('.question[data-qtype="choice"]').forEach(q => {
         const num = q.dataset.qnum;
         const sel = q.querySelector('.opt.selected');
         answers[num] = sel ? sel.dataset.val : null;
     });
-    // TF questions
     document.querySelectorAll('.tf-item[data-qtype="tf"]').forEach(q => {
         const num = q.dataset.qnum;
         const sel = q.querySelector('.tf-opt.selected');
@@ -1058,14 +1062,12 @@ function closeMissingModal(proceed) {
 }
 
 function gradeExam() {
-    // Clear previous grading state
     document.querySelectorAll('.question, .tf-item').forEach(el => {
         el.classList.remove('wrong', 'correct-graded');
     });
 
     const answers = getUserAnswers();
 
-    // Check for missing
     const missing = [];
     for (let i = 1; i <= 15; i++) {
         if (!answers[String(i)]) missing.push('单选第 ' + i + ' 题');
@@ -1077,23 +1079,18 @@ function gradeExam() {
     const doGrade = () => {
         let choiceScore = 0, tfScore = 0;
 
-        // Grade choice
         document.querySelectorAll('.question[data-qtype="choice"]').forEach(q => {
             const num = q.dataset.qnum;
             const correct = q.dataset.answer;
             const user = answers[num];
             const tag = q.querySelector('.correct-answer-tag');
-            if (user === null) {
-                // unanswered - skip
-                return;
-            }
+            if (user === null) return;
             if (user === correct) {
                 choiceScore += 2;
                 q.classList.add('correct-graded');
                 tag.style.display = 'none';
             } else {
                 q.classList.add('wrong');
-                // Find the correct option text
                 const correctOpt = q.querySelector('.opt[data-val="'+correct+'"]');
                 const correctText = correctOpt ? correctOpt.textContent.trim() : correct;
                 tag.innerHTML = '✅ 正确答案：' + correct + '. ' + correctText.substring(correctText.indexOf('.')+1).trim();
@@ -1101,7 +1098,6 @@ function gradeExam() {
             }
         });
 
-        // Grade TF
         document.querySelectorAll('.tf-item[data-qtype="tf"]').forEach(q => {
             const num = q.dataset.qnum;
             const correct = q.dataset.answer;
@@ -1121,19 +1117,16 @@ function gradeExam() {
 
         const total = choiceScore + tfScore;
 
-        // Update score table
         document.getElementById('scoreChoice').textContent = choiceScore + ' 分';
         document.getElementById('scoreTF').textContent = tfScore + ' 分';
         document.getElementById('scoreProg').textContent = '—';
         document.getElementById('scoreTotal').textContent = total + ' / 50 分';
 
-        // Show big score
         const disp = document.getElementById('scoreDisplay');
         let emoji = total >= 40 ? '🎉' : total >= 25 ? '💪' : '📖';
         disp.innerHTML = emoji + ' 选择 + 判断得分：<span class="big-score">' + total + '</span> / 50 分（编程题需线下评测）';
         disp.style.display = 'block';
 
-        // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -1157,21 +1150,16 @@ function copyQuestion(btn) {
     const correct = container.dataset.answer;
 
     if (qtype === 'choice') {
-        // Question text (including code blocks)
         const qText = container.querySelector('.q-text').textContent;
         text += qText + '\n';
-        // If there's a pre block inside, get its text
         const pre = container.querySelector('pre');
         if (pre) text += '\n' + pre.textContent.trim() + '\n';
-        // Options
         text += '\n';
         container.querySelectorAll('.opt').forEach(opt => {
-            const val = opt.dataset.val;
             const optText = opt.textContent.trim();
             const sel = opt.classList.contains('selected');
             text += (sel ? '→ ' : '  ') + optText + '\n';
         });
-        // User answer & correct answer
         const userSel = container.querySelector('.opt.selected');
         const userAns = userSel ? userSel.dataset.val : '未作答';
         text += '\n❌ 我的答案：' + userAns;
@@ -1179,7 +1167,6 @@ function copyQuestion(btn) {
         const correctLabel = correctOpt ? correctOpt.textContent.trim() : correct;
         text += '\n✅ 正确答案：' + correctLabel + '\n';
     } else {
-        // TF
         const tfText = container.querySelector('.tf-text').textContent;
         text += tfText + '\n';
         const pre = container.querySelector('pre');
@@ -1200,7 +1187,6 @@ function copyQuestion(btn) {
             btn.classList.remove('copied');
         }, 2000);
     }).catch(() => {
-        // Fallback
         const ta = document.createElement('textarea');
         ta.value = text;
         document.body.appendChild(ta);
