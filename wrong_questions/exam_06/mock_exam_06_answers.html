@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级 错题强化卷（六）— 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 26px;
+            color: #c0392b;
+            margin-bottom: 5px;
+        }
+        .header .sub {
+            font-size: 14px;
+            color: #888;
+        }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        /* Answer table */
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th {
+            background: #fdeaea;
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .ans-table td.ans {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        .explain .kp-tag {
+            display: inline-block;
+            background: #eaf2f8;
+            color: #2980b9;
+            padding: 1px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+        .coverage {
+            margin: 20px 0;
+            padding: 15px;
+            background: #eaf2f8;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        .coverage h3 {
+            color: #1a5276;
+            margin-bottom: 10px;
+        }
+        .coverage table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .coverage table th, .coverage table td {
+            border: 1px solid #bdd5ea;
+            padding: 4px 8px;
+            text-align: left;
+        }
+        .coverage table th {
+            background: #d4e6f1;
+            color: #1a5276;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>错题强化卷（六）— 参考答案与解析</h1>
+        <div class="sub">终极冲刺 · 全面攻克薄弱知识点 · 全部 30 个知识点覆盖</div>
+    </div>
+
+    <!-- 知识点覆盖总览 -->
+    <div class="coverage">
+        <h3>知识点覆盖总览（30/30 全覆盖）</h3>
+        <table>
+            <tr><th>题号</th><th>覆盖知识点</th></tr>
+            <tr><td>单选 Q1</td><td>#1 运算符识别（=&gt;不是合法运算符，/= 和 &gt;= 是合法的）</td></tr>
+            <tr><td>单选 Q2</td><td>#2 整除vs浮点除法、#13 混合运算类型提升（int/int=int, int/double=double）</td></tr>
+            <tr><td>单选 Q3</td><td>#3 运算符优先级（三元运算符中赋值优先级最低）</td></tr>
+            <tr><td>单选 Q4</td><td>#4 取余的数学应用（取余提取个位十位 + 判断奇偶，一题两考）</td></tr>
+            <tr><td>单选 Q5</td><td>#5 复合运算符（a *= b+c 先算 b+c 再乘）</td></tr>
+            <tr><td>单选 Q6</td><td>#6 德摩根定律（!(A && B) = !A || !B）</td></tr>
+            <tr><td>单选 Q7</td><td>#7 && 和 || 优先级（&& 高于 ||）</td></tr>
+            <tr><td>单选 Q8</td><td>#8 !运算在复合条件中、#9 赋值在条件中（while(n=n/10)）</td></tr>
+            <tr><td>单选 Q9</td><td>#10 多重截断（int(3.9)*int(2.1)=6 vs int(3.9*2.1)=8）</td></tr>
+            <tr><td>单选 Q10</td><td>#21 异或交换（a^=b; b^=a; a^=b;）、#26 二进制运算</td></tr>
+            <tr><td>单选 Q11</td><td>#22 最大公约数代码跟踪（辗转相除法）</td></tr>
+            <tr><td>单选 Q12</td><td>#23 数位求和while循环嵌套在for中、#24 复杂for循环</td></tr>
+            <tr><td>单选 Q13</td><td>#15 三层嵌套循环中的break（只终止最内层）</td></tr>
+            <tr><td>单选 Q14</td><td>#16 while(n--)的执行次数（后置递减，n=5循环5次，最终n=-1）</td></tr>
+            <tr><td>单选 Q15</td><td>#19 %d输出char变量（'A'=65）、#20 printf返回值（返回字符数）</td></tr>
+            <tr><td>判断 T1</td><td>#25 冯·诺依曼体系五大部件（运算器+控制器=CPU）</td></tr>
+            <tr><td>判断 T2</td><td>#27 图灵测试的含义（判断机器智能，不是测试运算速度）</td></tr>
+            <tr><td>判断 T3</td><td>#28 DNS作用（域名解析为IP地址）</td></tr>
+            <tr><td>判断 T4</td><td>#29 操作系统举例（Word不是操作系统）</td></tr>
+            <tr><td>判断 T5</td><td>#30 编译错误vs运行错误（除以零是运行期错误）</td></tr>
+            <tr><td>判断 T6</td><td>#11 bool的本质（sizeof(true)=1，不是4）</td></tr>
+            <tr><td>判断 T7</td><td>#12 char的数值本质（char c=200溢出，不一定输出200）</td></tr>
+            <tr><td>判断 T8</td><td>#14 标识符命名综合（5个中只有2个合法）</td></tr>
+            <tr><td>判断 T9</td><td>#17 for(;;)与while(1)都是合法死循环</td></tr>
+            <tr><td>判断 T10</td><td>#18 switch中无default（不匹配时什么都不输出）</td></tr>
+        </table>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">D</td><td class="ans">C</td><td class="ans">B</td>
+            <td class="ans">A</td><td class="ans">B</td><td class="ans">C</td>
+            <td class="ans">D</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">D</td><td class="ans">C</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 C：</strong><span class="kp-tag">#1 运算符识别</span><br>
+        逐行分析这段代码：<br>
+        - 第1行 <code>a % b</code>：<code>%</code> 是合法的取余运算符，int 对 int 取余完全合法 ✓<br>
+        - 第2行 <code>a /= b</code>：<code>/=</code> 是合法的复合除法赋值运算符。<code>int d = a /= b;</code> 先将 a 除以 b 并赋值给 a（a变为3），然后将 a 的新值赋给 d ✓<br>
+        - 第3行 <code>a >= b</code>：<code>>=</code> 是合法的"大于等于"比较运算符 ✓<br>
+        - 第4行 <code>a => b</code>：<code>=></code> <b>不是</b>合法的 C++ 运算符！<br>
+        <b>陷阱分析：</b>A 选项想让你以为全部合法；B 选项设了陷阱说 <code>/=</code> 不能用于初始化（实际上可以）；D 选项说 <code>%</code> 不能用于 int（完全错误，% 就是用于整数的）。关键是区分 <code>=></code>（非法）和 <code>>=</code>（合法）——顺序反了就不对。
+    </div>
+
+    <div class="explain">
+        <strong>第2题 B：</strong><span class="kp-tag">#2 整除vs浮点除法</span><span class="kp-tag">#13 混合类型提升</span><br>
+        <code>int a=7, b=2;</code><br>
+        <code>double x = a / b;</code>：a 和 b 都是 int，<b>int / int = int</b>，7/2=<b>3</b>（截断），然后 3 赋给 double 变量 x，x=<b>3</b>（注意 cout 默认输出 double 时不显示 .0 如果值恰好为整数，实际输出为 3）。<br>
+        <code>double y = a / 2.0;</code>：a 是 int，2.0 是 double，<b>int / double → double</b>，7/2.0=<b>3.5</b>。<br>
+        输出：<code>3 3.5</code><br>
+        <b>关键陷阱：</b>"x 是 double 类型"不意味着除法会按 double 来算！类型转换发生在<b>赋值时</b>，不是运算时。<code>a/b</code> 在运算时两边都是 int，结果就是 int，之后才赋给 double。
+    </div>
+
+    <div class="explain">
+        <strong>第3题 A：</strong><span class="kp-tag">#3 运算符优先级</span><br>
+        <code>int result = a > b ? c : d;</code><br>
+        解析优先级：赋值运算符 <code>=</code> 的优先级最低。三元运算符 <code>?:</code> 优先级高于 <code>=</code>，比较运算符 <code>></code> 优先级更高。<br>
+        等价于：<code>result = ((a > b) ? c : d)</code><br>
+        - <code>a > b</code> 即 <code>5 > 3</code> 为 true<br>
+        - 三元运算符取 c 的值，即 <b>8</b><br>
+        - result = 8<br>
+        <b>陷阱：</b>C 选项诱导你以为 <code>a > b</code> 的结果（true=1）就是最终值。实际上三元运算符的意思是"如果条件为真取第一个值，否则取第二个值"。D 选项诱导你以为结果是 a 本身的值。
+    </div>
+
+    <div class="explain">
+        <strong>第4题 D：</strong><span class="kp-tag">#4 取余的数学应用</span><br>
+        n = 4567：<br>
+        - <code>ones = n % 10 = 4567 % 10 = <b>7</b></code>（个位）<br>
+        - <code>tens = n / 10 % 10 = 456 % 10 = <b>6</b></code>（十位：先除以10去掉个位，再取余得到十位）<br>
+        - <code>ones + tens = 7 + 6 = <b>13</b></code><br>
+        - <code>13 % 2 = 1 ≠ 0</code>，进入 else 分支，输出 <code>odd</code><br>
+        <b>双重陷阱：</b><br>
+        ① A 选项故意写了"正确推理过程"但最后给了错误结论（说应该输出 odd，但又标注"等等，应该输出 odd"来制造混淆）——这是"看起来像陷阱但其实推理正确，只是表述混乱"的选项。<br>
+        ② C 选项说 tens=5（把 n/10%10 算错了：4567/10=456，456%10=6 不是5）。<br>
+        ③ B 选项用 n 本身的奇偶性来判断，但代码判断的是个位+十位之和的奇偶性，不是 n 本身。
+    </div>
+
+    <div class="explain">
+        <strong>第5题 C：</strong><span class="kp-tag">#5 复合运算符</span><br>
+        <code>a *= b + c;</code> 等价于 <code>a = a * (b + c);</code>（不是 <code>(a * b) + c</code>）<br>
+        因为复合赋值运算符的右侧是一个完整的表达式 <code>b + c</code>，先计算完再与 a 相乘。<br>
+        <code>a = 3 * (4 + 5) = 3 * 9 = <b>27</b></code><br>
+        <b>经典陷阱：</b>A 选项诱导你以为先算 <code>a*b=12</code> 再加 c=5 得17。这是最常见的错误理解。记住：<b><code>a *= expr</code> 等价于 <code>a = a * (expr)</code></b>，右边的表达式会先完整计算。
+    </div>
+
+    <div class="explain">
+        <strong>第6题 B：</strong><span class="kp-tag">#6 德摩根定律</span><br>
+        if 条件是 <code>score >= 60 && age < 18</code>。进入 else 意味着 if 条件为假。<br>
+        根据德摩根定律：<code>!(A && B) = !A || !B</code><br>
+        - A = <code>score >= 60</code>，!A = <code>score < 60</code>（注意 >= 取反是 <）<br>
+        - B = <code>age < 18</code>，!B = <code>age >= 18</code>（注意 < 取反是 >=）<br>
+        所以 else 条件是：<code>score < 60 || age >= 18</code><br>
+        <b>陷阱分析：</b><br>
+        ① A 选项用了 &&（应该是 ||，德摩根定律取反后 && 变 ||）<br>
+        ② C 选项写了 <code>age > 18</code>（边界错误：<code>< 18</code> 取反应该是 <code>>= 18</code>，不是 <code>> 18</code>）<br>
+        ③ D 选项同时犯了用 && 和边界值两个错误
+    </div>
+
+    <div class="explain">
+        <strong>第7题 A：</strong><span class="kp-tag">#7 && 和 || 优先级</span><br>
+        C++ 中 <code>&&</code> 的优先级<b>高于</b> <code>||</code>。<br>
+        <code>r1 = a || b && c</code> 等价于 <code>a || (b && c)</code> = <code>true || (false && false)</code> = <code>true || false</code> = <b>true (1)</b><br>
+        <code>r2 = (a || b) && c</code> = <code>(true || false) && false</code> = <code>true && false</code> = <b>false (0)</b><br>
+        输出：<code>1 0</code><br>
+        <b>陷阱：</b>如果不知道 && 优先级高于 ||，会以为 <code>a || b && c</code> 等于 <code>(a || b) && c</code>，得到错误答案 <code>0 0</code>。
+    </div>
+
+    <div class="explain">
+        <strong>第8题 B：</strong><span class="kp-tag">#8 ! 运算</span><span class="kp-tag">#9 赋值在条件中</span><br>
+        <code>while (n = n / 10)</code> 这里是<b>赋值</b>（<code>=</code>），不是比较（<code>==</code>）。<br>
+        每次循环先计算 <code>n/10</code>，赋值给 n，然后将 n 的新值作为 while 的条件（非零为真，零为假）。<br>
+        跟踪过程：<br>
+        - 第1次：n = 4567/10 = 456（非零，进入循环），count=1<br>
+        - 第2次：n = 456/10 = 45（非零），count=2<br>
+        - 第3次：n = 45/10 = 4（非零），count=3<br>
+        - 第4次：n = 4/10 = <b>0</b>（为零，循环结束）<br>
+        输出：<b>3</b><br>
+        <b>陷阱：</b>A 选项诱导你以为"4位数字→循环4次"，但第4次时 n 变为 0，条件不满足，循环体<b>不执行</b>。D 选项诱导你以为条件中不能赋值（实际上 C++ 允许，只是编译器可能发出警告）。
+    </div>
+
+    <div class="explain">
+        <strong>第9题 C：</strong><span class="kp-tag">#10 多重截断</span><br>
+        <code>int(3.9)</code> = <b>3</b>（截断小数部分，不是四舍五入！）<br>
+        <code>int(2.1)</code> = <b>2</b>（同样截断）<br>
+        <code>a = 3 * 2 = <b>6</b></code><br>
+        <br>
+        <code>3.9 * 2.1 = 8.19</code>（先做浮点乘法）<br>
+        <code>int(8.19)</code> = <b>8</b>（再截断）<br>
+        <code>b = <b>8</b></code><br>
+        <br>
+        输出：<code>6 8</code><br>
+        <b>核心陷阱：</b><code>int(3.9) * int(2.1)</code> 和 <code>int(3.9 * 2.1)</code> 结果不同！前者先截断再乘（3*2=6），后者先乘再截断（8.19→8）。这是"截断的时机"问题。
+    </div>
+
+    <div class="explain">
+        <strong>第10题 D：</strong><span class="kp-tag">#21 异或交换</span><span class="kp-tag">#26 二进制运算</span><br>
+        异或交换三步法（不使用临时变量交换两个值）：<br>
+        初始：a=13 (二进制 1101), b=7 (二进制 0111)<br>
+        <br>
+        第1步 <code>a ^= b</code>：a = 1101 ^ 0111 = <b>1010</b> = 10<br>
+        第2步 <code>b ^= a</code>：b = 0111 ^ 1010 = <b>1101</b> = 13<br>
+        第3步 <code>a ^= b</code>：a = 1010 ^ 1101 = <b>0111</b> = 7<br>
+        <br>
+        结果：a=7, b=13（交换成功！）<br>
+        <b>原理：</b>异或有"自反性"：<code>x ^ y ^ y = x</code>。三步异或操作本质是利用这个性质完成交换。<br>
+        <b>陷阱：</b>B 选项只跟踪了第一步就停了；C 选项以为异或会互相抵消为0。
+    </div>
+
+    <div class="explain">
+        <strong>第11题 B：</strong><span class="kp-tag">#22 最大公约数</span><br>
+        这是<b>辗转相除法</b>（欧几里得算法）求最大公约数。逐步跟踪：<br>
+        初始：a=48, b=18<br>
+        <br>
+        第1轮：t=18, b=48%18=<b>12</b>, a=18 → (a=18, b=12)<br>
+        第2轮：t=12, b=18%12=<b>6</b>, a=12 → (a=12, b=6)<br>
+        第3轮：t=6, b=12%6=<b>0</b>, a=6 → (a=6, b=0)<br>
+        <br>
+        b=0，while(b) 条件为假，循环结束。输出 a = <b>6</b><br>
+        验证：48 = 6 x 8, 18 = 6 x 3，GCD(48,18) = 6 ✓<br>
+        <b>陷阱：</b>C 选项（18）是以为循环只执行一轮就结束了；A 选项（2）是算错了取余。
+    </div>
+
+    <div class="explain">
+        <strong>第12题 A：</strong><span class="kp-tag">#23 数位求和</span><span class="kp-tag">#24 复杂循环</span><br>
+        外层 for 循环遍历 num = 38, 39, 40。内层 while 循环对每个 num 求各位数字之和。<br>
+        <br>
+        num=38：3+8 = <b>11</b><br>
+        num=39：3+9 = <b>12</b><br>
+        num=40：4+0 = <b>4</b><br>
+        <br>
+        total = 11 + 12 + 4 = <b>27</b><br>
+        <b>陷阱：</b>B 选项把 40 的数位和算成了 7（把 40 当成 4+0=4 算对了但总和加错了，或者把 40 当成个位0十位4百位0漏算）；D 选项把 39 的数位和少算了一位。
+    </div>
+
+    <div class="explain">
+        <strong>第13题 B：</strong><span class="kp-tag">#15 三层嵌套循环中的break</span><br>
+        三层循环中，<code>break</code> 只能跳出<b>最内层</b>的循环（k 循环），外面两层（i 和 j 循环）继续执行。<br>
+        <br>
+        对于每一对 (i, j)：<br>
+        - k=0：k!=1，执行 count++（count加1）<br>
+        - k=1：k==1，执行 break，跳出 k 循环<br>
+        <br>
+        所以每次内层循环只执行 k=0 这一次，count 加 1。<br>
+        i 有 3 个值 (0,1,2)，j 有 3 个值 (0,1,2)，共 3 x 3 = <b>9</b> 次。<br>
+        <br>
+        <b>核心知识点：</b>break 只跳出<b>直接包含它的那一层</b>循环！<br>
+        <b>陷阱：</b>A 选项以为 break 只执行了一个 i 循环（3次）；D 选项以为第一次 break 就终止了所有循环。
+    </div>
+
+    <div class="explain">
+        <strong>第14题 D：</strong><span class="kp-tag">#16 while(n--)执行次数</span><br>
+        <code>n--</code> 是<b>后置递减</b>：先取 n 的当前值作为表达式的值（用于条件判断），然后再将 n 减 1。<br>
+        <br>
+        跟踪：<br>
+        - 判断 n=5（非零=true），n 变为 4，count=1<br>
+        - 判断 n=4（非零=true），n 变为 3，count=2<br>
+        - 判断 n=3（非零=true），n 变为 2，count=3<br>
+        - 判断 n=2（非零=true），n 变为 1，count=4<br>
+        - 判断 n=1（非零=true），n 变为 0，count=5<br>
+        - 判断 n=0（零=false），n 变为 <b>-1</b>，循环结束<br>
+        <br>
+        循环体执行 <b>5</b> 次，最终 n = <b>-1</b>。输出：<code>5 -1</code><br>
+        <b>陷阱：</b>A 选项以为 n 最终为 0（忘了最后一次判断时 n=0 还会执行 n--）；B 选项混淆了前置递减 <code>--n</code>（那样才是先减再判断，只循环4次）。
+    </div>
+
+    <div class="explain">
+        <strong>第15题 C：</strong><span class="kp-tag">#19 %d输出char</span><span class="kp-tag">#20 printf返回值</span><br>
+        <code>printf("%d", 'A')</code>：<br>
+        - <code>'A'</code> 的 ASCII 码是 <b>65</b><br>
+        - <code>%d</code> 按整数输出，所以打印出 <code>65</code>（两个字符）<br>
+        - <code>printf</code> 的返回值是<b>成功输出的字符个数</b>，"65" 是 2 个字符，所以 r = <b>2</b><br>
+        <br>
+        接着 <code>cout << " " << r</code> 输出空格和2。<br>
+        最终输出：<code>65 2</code><br>
+        <b>双重陷阱：</b><br>
+        ① A 选项以为 %d 会输出字符 A（%d 是按整数格式输出，要输出字符应该用 %c）<br>
+        ② B 选项知道输出 65，但以为 printf 返回 1（以为是"输出了1个参数"，实际是"输出了2个字符"）
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">&#10003;</td><td class="ans">&#10007;</td><td class="ans">&#10003;</td>
+            <td class="ans">&#10007;</td><td class="ans">&#10003;</td><td class="ans">&#10007;</td>
+            <td class="ans">&#10007;</td><td class="ans">&#10007;</td><td class="ans">&#10003;</td>
+            <td class="ans">&#10007;</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 ✓ (正确)：</strong><span class="kp-tag">#25 冯·诺依曼体系</span><br>
+        冯·诺依曼体系结构（1945年提出）确实包含五大部件：<b>运算器</b>（ALU）、<b>控制器</b>（CU）、<b>存储器</b>（Memory）、<b>输入设备</b>（Input）和<b>输出设备</b>（Output）。其中运算器和控制器合在一起组成了 <b>CPU</b>（中央处理器）。<br>
+        <b>这道题看起来像是"太简单肯定有陷阱"，但实际上就是正确的。</b>这就是"陷阱中的陷阱"——让你因为怀疑而选错。
+    </div>
+
+    <div class="explain">
+        <strong>第2题 ✗ (错误)：</strong><span class="kp-tag">#27 图灵测试</span><br>
+        图灵测试（Turing Test）是由计算机科学之父阿兰·图灵在 1950 年提出的，用于判断<b>机器是否具有智能</b>（能否表现出与人类无法区分的行为），而<b>不是</b>测试计算机运算速度。<br>
+        测试方法：一个人通过文字与机器和另一个人分别对话，如果无法分辨哪个是机器，则认为该机器通过了图灵测试。<br>
+        <b>易错点：</b>把"图灵测试"和"性能测试（benchmark）"搞混。
+    </div>
+
+    <div class="explain">
+        <strong>第3题 ✓ (正确)：</strong><span class="kp-tag">#28 DNS作用</span><br>
+        DNS（域名系统）的核心作用就是将人类可读的<b>域名</b>（如 www.baidu.com）解析为计算机可识别的 <b>IP 地址</b>（如 110.242.68.66）。没有 DNS，我们就必须记住每个网站的 IP 地址才能访问。<br>
+        <b>这道题也是"正确的"——故意设计让考生在一连串正确/错误交替的题目中容易判断失误。</b>
+    </div>
+
+    <div class="explain">
+        <strong>第4题 ✗ (错误)：</strong><span class="kp-tag">#29 操作系统举例</span><br>
+        Windows、Linux、macOS 都是<b>操作系统</b> ✓<br>
+        但 Microsoft Word 是<b>应用软件</b>（文字处理软件），<b>不是</b>操作系统 ✗<br>
+        操作系统是管理计算机硬件和软件资源的系统软件，为应用程序提供运行环境。Word 是运行在操作系统之上的应用程序。<br>
+        <b>易错点：</b>容易快速扫一眼题目，看到前三个都是操作系统就选正确，忽略了最后一个 Word。
+    </div>
+
+    <div class="explain">
+        <strong>第5题 ✓ (正确)：</strong><span class="kp-tag">#30 编译错误vs运行错误</span><br>
+        <code>int a = 10 / 0;</code> 在语法上是合法的 C++ 代码（编译器可以编译通过，虽然可能发出警告），但在运行时会因为<b>除以零</b>导致未定义行为（通常程序崩溃）。<br>
+        <b>编译错误</b>（compile error）：语法不符合 C++ 规则，如 <code>int 3x = 5;</code>（变量名以数字开头）。<br>
+        <b>运行错误</b>（runtime error）：语法正确但执行时出问题，如除以零、数组越界等。<br>
+        <b>注意：</b>这题是正确的！虽然编译器可能发出"除以零"的警告，但<b>警告不是错误</b>，代码仍然可以编译通过。
+    </div>
+
+    <div class="explain">
+        <strong>第6题 ✗ (错误)：</strong><span class="kp-tag">#11 bool的本质</span><br>
+        在 <b>C++</b> 中，<code>true</code> 是 <code>bool</code> 类型的值，<code>sizeof(bool)</code> = <code>sizeof(true)</code> = <b>1</b>（1个字节），不是4。<br>
+        虽然 <code>true</code> 在参与整数运算时会被提升为 int（值为1），但 <code>sizeof</code> 检查的是<b>原始类型</b>的大小，<code>true</code> 的类型是 <code>bool</code>，大小为 1。<br>
+        <b>注意区别：</b>在 C 语言中，<code>sizeof(true)</code> 确实是 4（因为 C 语言中 true 定义为 int 类型的 1）。但 C++ 中 true 是 bool 类型的字面量。
+    </div>
+
+    <div class="explain">
+        <strong>第7题 ✗ (错误)：</strong><span class="kp-tag">#12 char溢出</span><br>
+        <code>char</code> 类型在大多数平台上是 <b>signed char</b>（有符号），范围是 <b>-128 ~ 127</b>。<br>
+        赋值 200 超出了这个范围，会发生<b>溢出</b>。200 的二进制是 11001000，作为 signed char 解释：最高位是符号位（1=负），值为 200 - 256 = <b>-56</b>。<br>
+        所以 <code>(int)c</code> 输出的是 <b>-56</b>，不是 200。<br>
+        <b>深层知识：</b>如果用 <code>unsigned char c = 200;</code> 则可以正确存储 200（无符号 char 范围是 0~255）。
+    </div>
+
+    <div class="explain">
+        <strong>第8题 ✗ (错误)：</strong><span class="kp-tag">#14 标识符命名</span><br>
+        逐个分析5个标识符：<br>
+        - <code>_total</code>：以下划线开头，合法 ✓<br>
+        - <code>for</code>：是 C++ <b>关键字</b>，不能作为变量名 ✗<br>
+        - <code>x2y</code>：以字母开头，包含字母和数字，合法 ✓<br>
+        - <code>2nd_place</code>：以<b>数字开头</b>，不合法 ✗<br>
+        - <code>my-var</code>：包含<b>连字符 -</b>（减号），不合法 ✗<br>
+        <br>
+        合法的只有 <b>2 个</b>（_total 和 x2y），不是3个。<br>
+        <b>陷阱：</b>容易把 <code>my-var</code> 误认为合法（以为连字符像下划线一样可以用于变量名），或者忘了 <code>for</code> 是关键字。
+    </div>
+
+    <div class="explain">
+        <strong>第9题 ✓ (正确)：</strong><span class="kp-tag">#17 死循环写法</span><br>
+        <code>for(;;)</code> 是合法的 C++ 写法，三个表达式（初始化、条件、更新）全部省略。省略条件时默认为 true，所以是死循环 ✓<br>
+        <code>while(1)</code> 条件永远为真（1 是非零值），也是死循环 ✓<br>
+        两种写法在 C++ 中都是标准的死循环写法，完全合法。<br>
+        <b>"看起来像陷阱"：</b>for 的三个部分全部空着看起来很奇怪，可能让人以为是语法错误，但 C++ 标准明确允许这种写法。
+    </div>
+
+    <div class="explain">
+        <strong>第10题 ✗ (错误)：</strong><span class="kp-tag">#18 switch无default</span><br>
+        x=5，switch 中只有 case 1、case 2、case 3，<b>没有 default</b>。<br>
+        当 x=5 不匹配任何 case 时，switch 语句<b>什么都不执行</b>，直接跳过整个 switch 块。<br>
+        然后执行 switch 后面的 <code>cout << "done";</code>，输出 <code>done</code>。<br>
+        <br>
+        题目说"会输出 other"，但实际输出是 <code>done</code>（没有 "other"），所以是<b>错误</b>的。<br>
+        <b>关键：</b>没有 default 分支时，不匹配的值不会触发任何 case 的执行。如果需要在不匹配时输出 "other"，应该加上 <code>default: cout << "other"; break;</code>。
+    </div>
+
+    <div class="footer">
+        GESP C++ 一级 · 错题强化卷（六）— 参考答案 · 终极冲刺 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级 · 错题强化卷（二） · 答案与解析</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header .logo-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .header .logo-line .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a5276, #2980b9);
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 6px;
+            letter-spacing: 3px;
+        }
+        .header h1 {
+            font-size: 26px;
+            margin: 15px 0 5px;
+            color: #1a5276;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 13px;
+        }
+        .section-title {
+            background: linear-gradient(90deg, #1a5276, #2980b9);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 30px 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .answer-item {
+            margin-bottom: 18px;
+            padding: 14px 18px;
+            background: #f9fbfd;
+            border-left: 4px solid #27ae60;
+            border-radius: 0 6px 6px 0;
+        }
+        .answer-item .q-title {
+            font-weight: bold;
+            font-size: 15px;
+            color: #1a5276;
+            margin-bottom: 6px;
+        }
+        .answer-item .answer-line {
+            font-size: 15px;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 6px;
+        }
+        .answer-item .explanation {
+            font-size: 14px;
+            color: #555;
+            padding: 8px 12px;
+            background: #f0f7f0;
+            border-radius: 5px;
+            margin-top: 6px;
+        }
+        .answer-item .knowledge-tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #2980b9;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 6px;
+        }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 10px 14px;
+            margin: 6px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .answer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 25px;
+            font-size: 14px;
+        }
+        .answer-table th, .answer-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .answer-table th {
+            background: #eaf2f8;
+            color: #1a5276;
+            font-weight: bold;
+        }
+        .answer-table td.ans {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="logo-line">
+            <span class="badge">GESP</span>
+            <span style="font-size:16px; color:#1a5276; font-weight:bold;">CCF 编程能力等级认证</span>
+        </div>
+        <div class="subtitle">针对薄弱知识点专项训练</div>
+        <h1>C++ 一级 · 错题强化卷（二） · 答案与解析</h1>
+    </div>
+
+    <!-- Quick answer table -->
+    <h3 style="color:#1a5276; margin-bottom:10px;">快速答案对照表</h3>
+    <table class="answer-table">
+        <tr>
+            <th>单选</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <td>答案</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">D</td><td class="ans">A</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">D</td><td class="ans">B</td><td class="ans">A</td><td class="ans">C</td>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">C</td><td class="ans">D</td><td class="ans">B</td>
+        </tr>
+    </table>
+    <table class="answer-table">
+        <tr>
+            <th>判断</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <td>答案</td>
+            <td class="ans">A(✔)</td><td class="ans">A(✔)</td><td class="ans">B(✘)</td><td class="ans">A(✔)</td><td class="ans">B(✘)</td>
+            <td class="ans">A(✔)</td><td class="ans">A(✔)</td><td class="ans">A(✔)</td><td class="ans">B(✘)</td><td class="ans">B(✘)</td>
+        </tr>
+    </table>
+
+    <!-- ==================== 单选题解析 ==================== -->
+    <div class="section-title">
+        <span>一、单选题 · 详细解析</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 1 题</div>
+        <div class="answer-line">答案：C（<code>=></code>）</div>
+        <div class="explanation">
+            <code>%=</code>（取余赋值）、<code>--</code>（自减）、<code>!=</code>（不等于）都是 C++ 的合法运算符。<code>=></code> 不是 C++ 运算符（C++ 中只有 <code>>=</code> 表示"大于等于"，注意符号顺序）。常见陷阱：<code>\=</code> 和 <code>=></code> 都不是 C++ 运算符。
+        </div>
+        <span class="knowledge-tag">知识点：运算符识别</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 2 题</div>
+        <div class="answer-line">答案：B（2）</div>
+        <div class="explanation">
+            <code>11 / 4</code> 是两个 int 相除，结果为 int 类型，值为 2（截断小数部分）。然后赋值给 double 变量，变成 2.0，但 cout 输出时显示为 2。<strong>关键</strong>：整数除法在运算时就已经截断了，之后赋给 double 也无法恢复小数部分。要得到 2.75 需要写 <code>11.0 / 4</code> 或 <code>(double)11 / 4</code>。
+        </div>
+        <span class="knowledge-tag">知识点：整除vs浮点除法 + int截断</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 3 题</div>
+        <div class="answer-line">答案：D（11）</div>
+        <div class="explanation">
+            运算符优先级：<code>%</code> 和 <code>*</code> 同级，从左到右计算，优先于 <code>+</code>。<br>
+            计算过程：<code>15 % 4</code> = 3，<code>3 * 3</code> = 9，<code>2 + 9</code> = 11。<br>
+            常见错误：误以为先算 <code>4 * 3</code> 或者忽略 <code>%</code> 和 <code>*</code> 的同级关系。
+        </div>
+        <span class="knowledge-tag">知识点：运算符优先级（含%混合表达式）</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 4 题</div>
+        <div class="answer-line">答案：A（5）</div>
+        <div class="explanation">
+            <code>29 % 6</code>：29 / 6 = 4 余 5，所以 <code>29 % 6 = 5</code>。<br>
+            验证：4 x 6 = 24，29 - 24 = 5。
+        </div>
+        <span class="knowledge-tag">知识点：取余运算</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 5 题</div>
+        <div class="answer-line">答案：C（20）</div>
+        <div class="explanation">
+            <code>x *= 2 + 3;</code> 等价于 <code>x = x * (2 + 3);</code>，即 <code>x = 4 * 5 = 20</code>。<br>
+            <strong>关键陷阱</strong>：复合赋值运算符右边的表达式会先完整计算，再与左边运算。<code>x *= 2 + 3</code> 不是 <code>x = x*2 + 3 = 11</code>！
+        </div>
+        <span class="knowledge-tag">知识点：复合运算符</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 6 题</div>
+        <div class="answer-line">答案：B（<code>x <= 5 && y >= 3</code>）</div>
+        <div class="explanation">
+            根据德摩根定律：<code>!(A || B)</code> 等价于 <code>!A && !B</code>。<br>
+            所以 <code>!(x > 5 || y < 3)</code> = <code>!(x > 5) && !(y < 3)</code> = <code>x <= 5 && y >= 3</code>。<br>
+            注意选项 C 用的是 <code>||</code>（或），D 用的也是 <code>||</code>，只有 B 正确使用了 <code>&&</code>（与）。
+        </div>
+        <span class="knowledge-tag">知识点：德摩根定律</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 7 题</div>
+        <div class="answer-line">答案：D（<code>n % 5 == 0 && n % 3 != 0</code>）</div>
+        <div class="explanation">
+            "能被5整除"用 <code>n % 5 == 0</code>，"不能被3整除"用 <code>n % 3 != 0</code>，两个条件同时满足用 <code>&&</code>。<br>
+            选项 A 用了 <code>||</code>（或），不满足"同时"要求；B 的条件含义反了；C 用了 <code>/</code> 而非 <code>%</code>。
+        </div>
+        <span class="knowledge-tag">知识点：逻辑条件组合</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 8 题</div>
+        <div class="answer-line">答案：B（G）</div>
+        <div class="explanation">
+            字符 <code>'D'</code> 的 ASCII 码为 68，<code>68 + 3 = 71</code>，71 对应字符 <code>'G'</code>。<br>
+            通过 <code>(char)</code> 强制转换后输出字符而非数字。ASCII 码中大写字母连续排列：A=65, B=66, C=67, D=68, E=69, F=70, G=71。
+        </div>
+        <span class="knowledge-tag">知识点：char运算/ASCII码</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 9 题</div>
+        <div class="answer-line">答案：A（<code>2 2.25</code>）</div>
+        <div class="explanation">
+            <code>(double)(9 / 4)</code>：先算 <code>9/4=2</code>（整数除法），再转 double 得 2.0，输出 2。<br>
+            <code>(double)9 / 4</code>：先把 9 转成 double 9.0，再除以 4，得 2.25。<br>
+            <strong>关键区别</strong>：强制类型转换的括号位置决定了转换发生在除法之前还是之后。
+        </div>
+        <span class="knowledge-tag">知识点：类型转换（强制转换位置）</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 10 题</div>
+        <div class="answer-line">答案：C（12）</div>
+        <div class="explanation">
+            逐步跟踪：<br>
+            i=1：1%3=1 (不跳过)，i!=7，s=0+1=1<br>
+            i=2：2%3=2 (不跳过)，i!=7，s=1+2=3<br>
+            i=3：3%3=0 (continue跳过)<br>
+            i=4：4%3=1 (不跳过)，i!=7，s=3+4=7<br>
+            i=5：5%3=2 (不跳过)，i!=7，s=7+5=12<br>
+            i=6：6%3=0 (continue跳过)<br>
+            i=7：7%3=1 (不跳过)，i==7 (break退出)<br>
+            最终 s=12。
+        </div>
+        <span class="knowledge-tag">知识点：break/continue混合</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 11 题</div>
+        <div class="answer-line">答案：B（BC）</div>
+        <div class="explanation">
+            k=2，直接跳到 <code>case 2</code>，输出 "B"。由于 case 2 后没有 break，发生 fall-through（穿透），继续执行 case 3，输出 "C"。case 3 后有 break，退出 switch。<br>
+            <strong>注意</strong>：switch 中如果不写 break，会从匹配的 case 一直往下执行（穿透），直到遇到 break 或 switch 结束。
+        </div>
+        <span class="knowledge-tag">知识点：switch fall-through</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 12 题</div>
+        <div class="answer-line">答案：C（<code>Score:08%</code>）</div>
+        <div class="explanation">
+            <code>%02d</code> 表示输出整数，至少 2 位，不足前面补 0。8 只有 1 位，补 0 变成 <code>08</code>。<br>
+            <code>%%</code> 在 printf 中是转义字符，输出一个 <code>%</code>。<br>
+            所以最终输出 <code>Score:08%</code>。
+        </div>
+        <span class="knowledge-tag">知识点：printf %02d补零 + %%转义</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 13 题</div>
+        <div class="answer-line">答案：C（王选院士是汉字激光照排系统的发明人）</div>
+        <div class="explanation">
+            A 错：第三代计算机的核心元件是集成电路（IC），不是电子管。电子管是第一代。<br>
+            B 错："银河一号"是中国第一台亿次巨型计算机（超级计算机），不是个人电脑。<br>
+            C 对：王选院士发明了汉字激光照排系统，被称为"当代毕昇"。<br>
+            D 错：第四代计算机使用的是大规模/超大规模集成电路（VLSI），晶体管是第二代。<br>
+            <strong>四代对应</strong>：电子管 → 晶体管 → 集成电路 → 大规模集成电路。
+        </div>
+        <span class="knowledge-tag">知识点：计算机发展代次 + 中国超算 + 中国IT名人</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 14 题</div>
+        <div class="answer-line">答案：D（<code>.cn</code> 是中国的顶级域名）</div>
+        <div class="explanation">
+            <code>.cn</code> 是中国的国家顶级域名（country-code TLD）。<br>
+            A 错：<code>.com</code> 是商业机构通用顶级域名，不是中国特有的。<br>
+            B 错：IP 地址与域名通过 DNS（域名系统）对应。域名就是 IP 的"人类可读"形式。<br>
+            C 错：域名主要由英文字母、数字和连字符组成。
+        </div>
+        <span class="knowledge-tag">知识点：网络知识（域名、IP地址）</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">第 15 题</div>
+        <div class="answer-line">答案：B（撤销）</div>
+        <div class="explanation">
+            Windows 常用快捷键：<br>
+            <code>Ctrl+Z</code> = 撤销（Undo）<br>
+            <code>Ctrl+C</code> = 复制（Copy）<br>
+            <code>Ctrl+V</code> = 粘贴（Paste）<br>
+            <code>Ctrl+S</code> = 保存（Save）<br>
+            <code>Ctrl+X</code> = 剪切（Cut）
+        </div>
+        <span class="knowledge-tag">知识点：操作系统快捷键</span>
+    </div>
+
+    <!-- ==================== 判断题解析 ==================== -->
+    <div class="section-title">
+        <span>二、判断题 · 详细解析</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 1 题</div>
+        <div class="answer-line">答案：A（正确 ✔）</div>
+        <div class="explanation">
+            <code>flag = false</code>，<code>!flag</code> = <code>!false</code> = <code>true</code>，所以 <code>if(!flag)</code> 的条件为真，会执行 if 里的语句。<br>
+            <code>!</code> 是逻辑取反运算符，<code>!true = false</code>，<code>!false = true</code>。
+        </div>
+        <span class="knowledge-tag">知识点：! 取反</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 2 题</div>
+        <div class="answer-line">答案：A（正确 ✔）</div>
+        <div class="explanation">
+            <code>if(a = 0)</code> 是赋值语句而非比较。它将 0 赋给 a，整个赋值表达式的值为 0。C++ 中 0 等价于 false，所以条件永远为假。<br>
+            <strong>对比</strong>：<code>if(a = 5)</code> 赋值后表达式值为 5（非0），条件永远为真。<br>
+            正确的比较应写 <code>if(a == 0)</code>（双等号）。
+        </div>
+        <span class="knowledge-tag">知识点：== vs =</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 3 题</div>
+        <div class="answer-line">答案：B（错误 ✘）</div>
+        <div class="explanation">
+            <code>cout << (5 == 5);</code> 输出的是 <code>1</code>，不是 <code>True</code>。<br>
+            C++ 中 bool 值用 cout 输出时默认显示为整数：<code>true</code> 输出 <code>1</code>，<code>false</code> 输出 <code>0</code>。<br>
+            另外，C++ 是大小写敏感的：<code>true</code>/<code>false</code> 是关键字，但 <code>True</code>/<code>False</code> 不是。
+        </div>
+        <span class="knowledge-tag">知识点：bool输出 + C++大小写敏感</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 4 题</div>
+        <div class="answer-line">答案：A（正确 ✔）</div>
+        <div class="explanation">
+            当 <code>i</code> 增长到 3 时，<code>if(i == 3) continue;</code> 会跳过本次循环剩余代码（包括 <code>i++</code>），直接回到 while 条件判断。此时 i 仍然是 3，再次进入循环体，再次 continue... 永远无法递增，形成死循环。<br>
+            <strong>教训</strong>：在 while 循环中使用 continue 时，要确保循环变量的更新不会被跳过。for 循环中 continue 不会跳过更新表达式，所以更安全。
+        </div>
+        <span class="knowledge-tag">知识点：continue可能导致while死循环</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 5 题</div>
+        <div class="answer-line">答案：B（错误 ✘）</div>
+        <div class="explanation">
+            <code>while(n--)</code> 先判断 n 的值，再减 1。n=3 时：判断 3（真），执行循环体(n变2)；判断 2（真），执行(n变1)；判断 1（真），执行(n变0)；判断 0（假），退出。<strong>循环体执行 3 次</strong>。<br>
+            <code>while(--n)</code> 先减 1，再判断。n=3 时：n变2，判断 2（真），执行；n变1，判断 1（真），执行；n变0，判断 0（假），退出。<strong>循环体执行 2 次</strong>。<br>
+            3 次 vs 2 次，不相同。
+        </div>
+        <span class="knowledge-tag">知识点：while(n--) vs while(--n)</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 6 题</div>
+        <div class="answer-line">答案：A（正确 ✔）</div>
+        <div class="explanation">
+            异或（XOR）交换法是一种不需要临时变量的交换方式：<br>
+            设 a=m, b=n。<br>
+            <code>a = a ^ b;</code> → a = m^n<br>
+            <code>b = a ^ b;</code> → b = (m^n)^n = m（异或自身为0，m^0=m）<br>
+            <code>a = a ^ b;</code> → a = (m^n)^m = n<br>
+            最终 a=n, b=m，交换成功。
+        </div>
+        <span class="knowledge-tag">知识点：变量交换（异或法）</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 7 题</div>
+        <div class="answer-line">答案：A（正确 ✔）</div>
+        <div class="explanation">
+            C++ 中逗号表达式 <code>(a, b, c)</code> 的值是最后一个表达式 c 的值。<br>
+            <code>int x = (5, 10, 15);</code> 中，逗号表达式依次计算 5、10、15，最终取最后一个值 15 赋给 x。<br>
+            注意：逗号表达式在实际编程中不常用，但考试中是常考知识点。
+        </div>
+        <span class="knowledge-tag">知识点：逗号表达式</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 8 题</div>
+        <div class="answer-line">答案：A（正确 ✔）</div>
+        <div class="explanation">
+            n=11 的因数只有 1 和 11，所以 cnt=2。<br>
+            代码逻辑：遍历 1 到 n，统计能整除 n 的数的个数。质数恰好只有两个因数（1 和自身），所以 cnt==2 时为质数。<br>
+            11 是质数，cnt=2，输出 "YES"。
+        </div>
+        <span class="knowledge-tag">知识点：质数判断代码</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 9 题</div>
+        <div class="answer-line">答案：B（错误 ✘）</div>
+        <div class="explanation">
+            n=2357，逐位提取各位数字并求和：<br>
+            2357%10=7, sum=7, n=235<br>
+            235%10=5, sum=12, n=23<br>
+            23%10=3, sum=15, n=2<br>
+            2%10=2, sum=17, n=0（退出）<br>
+            最终 sum=17，不是 14。<strong>2+3+5+7=17</strong>。<br>
+            这段代码是经典的"数位分离"模式：<code>n%10</code> 取最低位，<code>n/=10</code> 去掉最低位。
+        </div>
+        <span class="knowledge-tag">知识点：数位操作（while循环提取各位）</span>
+    </div>
+
+    <div class="answer-item">
+        <div class="q-title">判断第 10 题</div>
+        <div class="answer-line">答案：B（错误 ✘）</div>
+        <div class="explanation">
+            <code>scanf("%d", &x)</code> 的 <code>%d</code> 格式符用于读取 int 类型数据。如果 x 是 <code>double</code> 类型，应使用 <code>%lf</code>。<br>
+            使用 <code>%d</code> 读取 double 变量会导致类型不匹配，读入的数据不正确（可能是乱码/垃圾值）。<br>
+            <strong>对比</strong>：<code>cin >> x;</code> 会根据 x 的类型自动匹配，不存在这个问题。
+        </div>
+        <span class="knowledge-tag">知识点：scanf/cin类型匹配</span>
+    </div>
+
+    <div class="footer">
+        C++ 一级 · 错题强化卷（二） · 答案与解析 · 针对薄弱知识点专项训练
+    </div>
+</div>
+</body>
+</html>

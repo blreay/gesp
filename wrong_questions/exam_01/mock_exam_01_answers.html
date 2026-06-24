@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级 错题强化卷（一）— 参考答案</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #c0392b;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 26px;
+            color: #c0392b;
+            margin-bottom: 5px;
+        }
+        .header .sub {
+            font-size: 14px;
+            color: #888;
+        }
+        .section-title {
+            background: linear-gradient(90deg, #c0392b, #e74c3c);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 25px 0 15px;
+        }
+        /* Answer table */
+        .ans-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .ans-table th, .ans-table td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+        }
+        .ans-table th {
+            background: #fdeaea;
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .ans-table td.ans {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .explain {
+            margin: 15px 0;
+            padding: 12px 16px;
+            background: #fdf6f6;
+            border-left: 4px solid #e74c3c;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+        .explain strong { color: #c0392b; }
+        .explain .kp-tag {
+            display: inline-block;
+            background: #eaf2f8;
+            color: #2980b9;
+            padding: 1px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+        .coverage {
+            margin: 20px 0;
+            padding: 15px;
+            background: #eaf2f8;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+        .coverage h3 {
+            color: #1a5276;
+            margin-bottom: 10px;
+        }
+        .coverage table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .coverage table th, .coverage table td {
+            border: 1px solid #bdd5ea;
+            padding: 4px 8px;
+            text-align: left;
+        }
+        .coverage table th {
+            background: #d4e6f1;
+            color: #1a5276;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>错题强化卷（一）— 参考答案与解析</h1>
+        <div class="sub">针对薄弱知识点专项训练 · 全部 30 个知识点覆盖</div>
+    </div>
+
+    <!-- 知识点覆盖总览 -->
+    <div class="coverage">
+        <h3>知识点覆盖总览</h3>
+        <table>
+            <tr><th>题号</th><th>覆盖知识点</th></tr>
+            <tr><td>单选 Q1</td><td>#25 ENIAC用电子管、#26 中国第一台大型通用电子计算机也用电子管</td></tr>
+            <tr><td>单选 Q2</td><td>#1 运算符识别（>=, =>, \=, /=）</td></tr>
+            <tr><td>单选 Q3</td><td>#2 整除vs浮点除法、#3 运算符优先级</td></tr>
+            <tr><td>单选 Q4</td><td>#4 取余运算</td></tr>
+            <tr><td>单选 Q5</td><td>#5 复合运算符、#9 == vs =</td></tr>
+            <tr><td>单选 Q6</td><td>#6 德摩根定律</td></tr>
+            <tr><td>单选 Q7</td><td>#7 逻辑条件组合、#8 !取反运算</td></tr>
+            <tr><td>单选 Q8</td><td>#12 char运算/ASCII码</td></tr>
+            <tr><td>单选 Q9</td><td>#10 int截断、#11 bool输出</td></tr>
+            <tr><td>单选 Q10</td><td>#15 break/continue混合</td></tr>
+            <tr><td>单选 Q11</td><td>#16 continue跳过逻辑</td></tr>
+            <tr><td>单选 Q12</td><td>#18 switch fall-through</td></tr>
+            <tr><td>单选 Q13</td><td>#19 %2d宽度、#20 printf引号规则</td></tr>
+            <tr><td>单选 Q14</td><td>#21 变量交换、#24 逗号表达式</td></tr>
+            <tr><td>单选 Q15</td><td>#22 质数判断算法、#23 回文数/对称数判断</td></tr>
+            <tr><td>判断 T1</td><td>#27 王选先生——汉字激光照排系统</td></tr>
+            <tr><td>判断 T2</td><td>#28 域名知识</td></tr>
+            <tr><td>判断 T3</td><td>#29 Windows操作Ctrl+C/V</td></tr>
+            <tr><td>判断 T4</td><td>#13 float/int转换链</td></tr>
+            <tr><td>判断 T5</td><td>#14 C++大小写敏感</td></tr>
+            <tr><td>判断 T6</td><td>#17 while(N)循环</td></tr>
+            <tr><td>判断 T7</td><td>#30 cin>>X类型不匹配</td></tr>
+            <tr><td>判断 T8</td><td>#2 整除vs浮点除法、#3 运算符优先级（再强化）</td></tr>
+            <tr><td>判断 T9</td><td>#6 德摩根定律、#8 !取反运算（再强化）</td></tr>
+            <tr><td>判断 T10</td><td>#1 运算符识别（再强化）</td></tr>
+        </table>
+    </div>
+
+    <!-- 一、单选题答案 -->
+    <div class="section-title">一、单选题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+            <th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">D</td>
+            <td class="ans">C</td><td class="ans">B</td><td class="ans">A</td>
+            <td class="ans">D</td><td class="ans">C</td><td class="ans">A</td>
+            <td class="ans">B</td><td class="ans">C</td><td class="ans">D</td>
+            <td class="ans">A</td><td class="ans">C</td><td class="ans">B</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 C：</strong><span class="kp-tag">#25</span><span class="kp-tag">#26</span><br>
+        ENIAC（1946年）是世界上第一台通用电子计算机，使用的核心元件是<b>电子管</b>（真空管），不是晶体管也不是集成电路。中国第一台大型通用电子计算机（104机，1959年）同样使用电子管。<br>
+        <b>易错点：</b>容易把"电子管"和"晶体管"搞混。电子管是第一代计算机的标志，晶体管是第二代，集成电路是第三代。
+    </div>
+
+    <div class="explain">
+        <strong>第2题 B：</strong><span class="kp-tag">#1</span><br>
+        逐个分析：<br>
+        - <code>=></code> 不是C++运算符（C++中没有这个符号）<br>
+        - <code>\=</code> 不是C++运算符（反斜杠不构成赋值运算符）<br>
+        - <code>>=</code> 是"大于等于"比较运算符 ✓<br>
+        - <code>/=</code> 是"除法赋值"复合运算符 ✓<br>
+        - <code>!=</code> 是"不等于"比较运算符 ✓<br>
+        - <code>+=</code>、<code>%=</code> 都是合法运算符 ✓<br>
+        A 含 <code>=></code>（非法），C 含 <code>\=</code>（非法），D 同时含 <code>=></code> 和 <code>\=</code>（两个都非法）。只有 B 全部合法。<br>
+        <b>易错点：</b>把 <code>=></code> 当成 <code>>=</code> 的另一种写法，或把 <code>\=</code> 当成合法运算符。注意顺序很重要：<code>>=</code> 是合法的，但反过来写 <code>=></code> 就不是。
+    </div>
+
+    <div class="explain">
+        <strong>第3题 D：</strong><span class="kp-tag">#2</span><span class="kp-tag">#3</span><br>
+        <code>a / 4</code>：a 是 int（值为7），4 是 int，int/int = int，7/4 = 1（向零截断）。<br>
+        <code>a / b</code>：a 是 int（值为7），b 是 double（值为2.0），int/double 会把 int 提升为 double，7.0/2.0 = 3.5。<br>
+        由于 <code>*</code>、<code>/</code>、<code>%</code> 优先级高于 <code>+</code>，先算两个除法再相加：1 + 3.5 = 4.5。<br>
+        <b>易错点：</b>①以为 7/4 = 1.75（忘了 int 除法截断）；②以为 7/2.0 也截断为 3（忘了 int/double 结果是 double）。
+    </div>
+
+    <div class="explain">
+        <strong>第4题 C：</strong><span class="kp-tag">#4</span><br>
+        <code>N / 5 = 23 / 5 = 4</code>（int 整除），<code>N % 5 = 23 % 5 = 3</code>（取余），<code>4 + 3 = 7</code>。<br>
+        <b>易错点：</b>取余运算概念不清。<code>N % M</code> 就是 N 除以 M 的余数。23 = 5 x 4 + 3，所以余数是 3。
+    </div>
+
+    <div class="explain">
+        <strong>第5题 B：</strong><span class="kp-tag">#5</span><span class="kp-tag">#9</span><br>
+        逐步跟踪：x=10 → x+=5 得 x=15 → x-=3 得 x=12 → x%=4 得 x=12%4=0。<br>
+        <code>(x == 0)</code> 是比较运算（不改变 x 的值），结果为 true。<br>
+        <code>cout << (x == 0)</code> 输出的是 bool 值，在 C++ 中 bool 输出为整数 <b>1</b>（true）或 <b>0</b>（false），不是字符串 "true"/"false"。<br>
+        <b>易错点：</b>①混淆 <code>==</code>（比较）和 <code>=</code>（赋值），如果是 <code>x = 0</code> 则会改变 x 的值；②以为 bool 输出是 "true" 字样。
+    </div>
+
+    <div class="explain">
+        <strong>第6题 A：</strong><span class="kp-tag">#6</span><br>
+        德摩根定律：<code>!(A && B)</code> 等价于 <code>!A || !B</code>。<br>
+        这里 A 是 <code>x > 5</code>，B 是 <code>y < 10</code>。<br>
+        <code>!A</code> = <code>!(x > 5)</code> = <code>x <= 5</code>（取反后大于变小于等于）<br>
+        <code>!B</code> = <code>!(y < 10)</code> = <code>y >= 10</code>（取反后小于变大于等于）<br>
+        所以结果为 <code>x <= 5 || y >= 10</code>。<br>
+        <b>易错点：</b>①忘了 && 取反变 ||（或者反过来）；②取反 > 时写成 < 而不是 <=（边界值）。D 选项用了 &&，违反了德摩根定律。
+    </div>
+
+    <div class="explain">
+        <strong>第7题 D：</strong><span class="kp-tag">#7</span><span class="kp-tag">#8</span><br>
+        "既是偶数又能被5整除"需要两个条件<b>同时满足</b>，用 <code>&&</code>。<br>
+        偶数条件：<code>N % 2 == 0</code>，等价于 <code>!(N % 2)</code>（当 N%2 为 0 时，!0 = true）。<br>
+        能被5整除：<code>N % 5 == 0</code>，等价于 <code>!(N % 5)</code>。<br>
+        A 用了 ||（或），表示满足任一条件即可，逻辑错误。B 用了 ||，同理。C 中 <code>N % 2 && N % 5</code> 表示两个余数都非零，即"既不是偶数且不能被5整除"，完全反了。<br>
+        <b>易错点：</b>①把 "且" 写成 ||；②不理解 <code>!(N%2)</code> 等价于 <code>N%2==0</code>。
+    </div>
+
+    <div class="explain">
+        <strong>第8题 C：</strong><span class="kp-tag">#12</span><br>
+        字符 <code>'5'</code> 的 ASCII 码 = 48 + 5 = 53，字符 <code>'3'</code> 的 ASCII 码 = 48 + 3 = 51。<br>
+        <code>'5' + '3'</code> 是两个 char 类型相加，会提升为 int 进行运算：53 + 51 = <b>104</b>。<br>
+        结果不是数学上的 5+3=8，也不是字符 '8'。<br>
+        <b>易错点：</b>以为字符加法等于数字加法。在C++中，字符参与运算时使用其ASCII码值。
+    </div>
+
+    <div class="explain">
+        <strong>第9题 A：</strong><span class="kp-tag">#10</span><span class="kp-tag">#11</span><br>
+        <code>int score = 89.7;</code>：89.7 是 double，赋给 int 类型变量会<b>截断</b>小数部分，score = <b>89</b>（不是四舍五入！）。<br>
+        <code>bool pass = (score >= 60);</code>：89 >= 60 为 true，pass = true。<br>
+        <code>cout << score</code> 输出 89（int 不会显示小数点）。<br>
+        <code>cout << pass</code> 输出 <b>1</b>（bool 值 true 输出为 1，false 输出为 0，不会输出 "true" 字符串）。<br>
+        <b>易错点：</b>①以为 int 赋值 89.7 会四舍五入为 90；②以为 bool 输出 "true" 字符串。
+    </div>
+
+    <div class="explain">
+        <strong>第10题 B：</strong><span class="kp-tag">#15</span><br>
+        逐步跟踪（注意 sum+=i 在判断之前执行）：<br>
+        i=1: sum=0+1=1, 1%2==1 → continue（跳过 break 判断）<br>
+        i=2: sum=1+2=3, 2%2==0 → 不 continue, 2==6? 否<br>
+        i=3: sum=3+3=6, 3%2==1 → continue<br>
+        i=4: sum=6+4=10, 4%2==0 → 不 continue, 4==6? 否<br>
+        i=5: sum=10+5=15, 5%2==1 → continue<br>
+        i=6: sum=15+6=<b>21</b>, 6%2==0 → 不 continue, 6==6? <b>是 → break</b><br>
+        循环结束，sum = 21。<br>
+        <b>易错点：</b>①以为 continue 会跳过 sum+=i（实际上 sum+=i 在 continue 之前）；②没注意 break 只在偶数时才能执行到（奇数时已经 continue 了）。
+    </div>
+
+    <div class="explain">
+        <strong>第11题 C：</strong><span class="kp-tag">#16</span><br>
+        当 <code>i % 3 != 0</code> 时执行 continue，跳过 cout。<br>
+        只有当 <code>i % 3 == 0</code>（即 i 能被 3 整除）时，才会执行 cout 输出 i。<br>
+        1~8 中能被 3 整除的是：3, 6。所以输出 <code>3 6 </code>。<br>
+        <b>易错点：</b>①把 continue 的效果搞反，以为是跳过后面所有循环（那是 break）；②D 选项加了 9，但循环条件是 i<=8，9 不在范围内。
+    </div>
+
+    <div class="explain">
+        <strong>第12题 D：</strong><span class="kp-tag">#18</span><br>
+        x=2，进入 case 2，输出 "B"。<br>
+        case 2 后面<b>没有 break</b>，所以会"穿透"（fall-through）到 case 3，输出 "C"。<br>
+        case 3 后面<b>有 break</b>，跳出 switch。不会继续执行 case 4。<br>
+        最终输出 <code>BC</code>。<br>
+        <b>易错点：</b>①以为 switch 每个 case 自动停止（忘了 fall-through 机制）；②以为会穿透到 case 4（但 case 3 有 break）。
+    </div>
+
+    <div class="explain">
+        <strong>第13题 A：</strong><span class="kp-tag">#19</span><span class="kp-tag">#20</span><br>
+        <code>%3d</code>：宽度为 3，数值 5 只有 1 位，左边补 2 个空格，显示为 <code>_ _5</code>。<br>
+        <code>%2d</code>：宽度为 2，数值 123 有 3 位，<b>超过指定宽度时按实际宽度输出</b>，显示为 <code>123</code>（不会截断）。<br>
+        中间有逗号分隔，最终输出 <code>_ _5,123</code>。<br>
+        <b>易错点：</b>①以为 %2d 会截断为 12（宽度是最小宽度，不截断）；②以为是左对齐（默认右对齐）；③printf 格式串必须用双引号，不能用单引号。
+    </div>
+
+    <div class="explain">
+        <strong>第14题 C：</strong><span class="kp-tag">#21</span><span class="kp-tag">#24</span><br>
+        先看变量交换过程：a=3, b=7。<br>
+        a = a+b = 10; b = a-b = 10-7 = 3; a = a-b = 10-3 = 7。<br>
+        交换后：a=7, b=3。<br>
+        关键：<code>cout << (a, b)</code> 中的 <code>(a, b)</code> 是<b>逗号表达式</b>，它先计算 a（丢弃结果），再计算 b，整个表达式的值为 b 的值，即 <b>3</b>。<br>
+        <b>易错点：</b>①以为 <code>(a, b)</code> 会输出两个值（实际上逗号表达式只取最后一个值）；②交换逻辑算错。
+    </div>
+
+    <div class="explain">
+        <strong>第15题 B：</strong><span class="kp-tag">#22</span><span class="kp-tag">#23</span><br>
+        回文数判断思路：把数字的每一位反转，然后跟原数比较。<br>
+        <code>temp % 10</code> 取出当前最低位，<code>rev = rev * 10 + temp % 10</code> 把低位数字依次放到高位。<br>
+        例如 N=121：temp=121, rev=0*10+1=1; temp=12, rev=1*10+2=12; temp=1, rev=12*10+1=121。rev==N，是回文数。<br>
+        A 选项 <code>temp / 10</code> 取的是去掉个位后的数，不是个位本身。C/D 选项用了 N 而不是 temp，但 N 保持不变（用来最终比较），循环中应该操作 temp。<br>
+        <b>易错点：</b>混淆 <code>% 10</code>（取个位）和 <code>/ 10</code>（去掉个位）的作用。这也是质数判断中用 <code>N % i == 0</code> 而非 <code>N / i == 0</code> 的类似易混淆点。
+    </div>
+
+    <!-- 二、判断题答案 -->
+    <div class="section-title">二、判断题答案</div>
+    <table class="ans-table">
+        <tr>
+            <th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+            <th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+        </tr>
+        <tr>
+            <th>答案</th>
+            <td class="ans">×</td><td class="ans">×</td><td class="ans">√</td>
+            <td class="ans">√</td><td class="ans">×</td><td class="ans">√</td>
+            <td class="ans">×</td><td class="ans">×</td><td class="ans">√</td>
+            <td class="ans">×</td>
+        </tr>
+    </table>
+
+    <div class="explain">
+        <strong>第1题 × (错误)：</strong><span class="kp-tag">#27</span><br>
+        王选先生的主要贡献是发明了<b>汉字激光照排系统</b>，而不是中文操作系统。该系统彻底改变了中文印刷行业，被誉为"汉字印刷术的第二次发明"。<br>
+        <b>易错点：</b>将"激光照排系统"误记为"操作系统"或"输入法"等其他发明。
+    </div>
+
+    <div class="explain">
+        <strong>第2题 × (错误)：</strong><span class="kp-tag">#28</span><br>
+        在域名 <code>www.gesp.ccf.org.cn</code> 中，顶级域名是最后的 <code>.cn</code>（国家顶级域名），不是 <code>gesp</code>。域名从右往左解析：cn 是顶级域名，org 是二级域名，ccf 是三级域名，gesp 是四级域名，www 是主机名。<br>
+        <b>易错点：</b>把域名中最前面的部分误认为是顶级域名。记住：顶级域名在最右边（最后一个点之后的部分）。
+    </div>
+
+    <div class="explain">
+        <strong>第3题 √ (正确)：</strong><span class="kp-tag">#29</span><br>
+        Ctrl+C 是复制，Ctrl+V 是粘贴。在新文件夹中粘贴会创建原文件的一个<b>副本</b>（不是移动，原文件仍在）。如果想移动文件，应该用 Ctrl+X（剪切）+ Ctrl+V（粘贴）。<br>
+        <b>易错点：</b>混淆复制（Ctrl+C）和剪切（Ctrl+X）的区别。
+    </div>
+
+    <div class="explain">
+        <strong>第4题 √ (正确)：</strong><span class="kp-tag">#13</span><br>
+        <code>float(7)</code> 将整数 7 转为 float 类型，值为 7.0。<code>int(7.0)</code> 再将 7.0 转回 int，截断小数部分（7.0 没有小数部分），结果为 7。<br>
+        这种转换链在处理用户输入时很实用：先用 float 接收可能的浮点输入，再用 int() 截断得到整数。<br>
+        <b>易错点：</b>以为类型来回转换会丢失精度。对于整数值来说，int→float→int 不会丢失（只要数值在 float 精度范围内）。
+    </div>
+
+    <div class="explain">
+        <strong>第5题 × (错误)：</strong><span class="kp-tag">#14</span><br>
+        C++ 是<b>大小写敏感</b>的语言。<code>true</code>（全小写）是 C++ 关键字，表示布尔真值。<code>True</code>（首字母大写）不是 C++ 关键字，编译器不认识，会报错。<br>
+        同理，<code>int</code> 是关键字但 <code>Int</code> 不是，<code>false</code> 是关键字但 <code>False</code> 不是。<br>
+        <b>易错点：</b>受 Python 等语言影响，Python 中 True/False 首字母大写，但 C++ 中必须全小写。
+    </div>
+
+    <div class="explain">
+        <strong>第6题 √ (正确)：</strong><span class="kp-tag">#17</span><br>
+        <code>while(N)</code> 等价于 <code>while(N != 0)</code>。当 N=5 时，条件为 true，进入循环。<br>
+        循环体中只有 <code>cout << N</code>，<b>没有修改 N 的值</b>，所以 N 永远是 5，条件永远为 true，死循环。<br>
+        如果循环体中有 <code>N--</code> 或 <code>N /= 10</code> 等语句修改 N，最终 N 会变为 0，循环才会结束。<br>
+        <b>易错点：</b>①以为 while(N) 中的 N 会自动减少；②忘记 while(0) 不进入循环这个边界条件。
+    </div>
+
+    <div class="explain">
+        <strong>第7题 × (错误)：</strong><span class="kp-tag">#30</span><br>
+        <code>int X;</code> 声明了整型变量，<code>cin >> X</code> 期望读入一个整数。当用户输入 "hello"（非数字字符串）时，<code>cin</code> 无法将其解析为整数，会进入<b>失败状态</b>（failbit），X 的值不确定（C++11 起为 0），不可能原样输出 "hello"。<br>
+        <b>易错点：</b>以为 cin 会自动做类型转换，把非数字字符串存入 int 变量。实际上类型不匹配时 cin 会失败。
+    </div>
+
+    <div class="explain">
+        <strong>第8题 × (错误)：</strong><span class="kp-tag">#2</span><span class="kp-tag">#3</span><br>
+        <code>3 + 10 / 4</code>：先看优先级，<code>/</code> 优先于 <code>+</code>，所以先算 <code>10 / 4</code>。<br>
+        10 和 4 都是 int 类型，int / int = int（向零截断），<code>10 / 4 = 2</code>（不是 2.5！）。<br>
+        然后 <code>3 + 2 = 5</code>，结果是整数 5，不是 3.25 也不是 5.5。<br>
+        <b>易错点：</b>以为 10/4 = 2.5 然后 3+2.5 = 5.5 或 10/4 = 0.25 然后 3+0.25 = 3.25。记住：两个 int 相除，结果仍是 int，小数部分直接丢弃。
+    </div>
+
+    <div class="explain">
+        <strong>第9题 √ (正确)：</strong><span class="kp-tag">#6</span><span class="kp-tag">#8</span><br>
+        这是德摩根定律的另一种形式：<code>!(A || B)</code> 等价于 <code>!A && !B</code>。<br>
+        德摩根定律有两条：<br>
+        - <code>!(A && B) = !A || !B</code>（取反后 && 变 ||）<br>
+        - <code>!(A || B) = !A && !B</code>（取反后 || 变 &&）<br>
+        对于任意布尔值 a 和 b，这两个表达式的结果总是相同的。<br>
+        <b>易错点：</b>记反了德摩根定律，以为 !(a||b) = !a || !b（运算符没变）。
+    </div>
+
+    <div class="explain">
+        <strong>第10题 × (错误)：</strong><span class="kp-tag">#1</span><br>
+        <code>=></code> 不是 C++ 的合法运算符。虽然 <code>>=</code>（大于等于）是合法运算符，但把两个字符反过来写成 <code>=></code> 就不是了。<br>
+        <code>\=</code> 也不是 C++ 的合法运算符。虽然 <code>/=</code>（除法赋值）是合法运算符，但 <code>\</code>（反斜杠）在 C++ 中是转义字符前缀，不构成赋值运算符。<br>
+        两个都不是合法运算符，所以说"都是合法运算符"是错误的。<br>
+        <b>易错点：</b>把 <code>=></code> 和 <code>>=</code> 搞混，把 <code>\=</code> 和 <code>/=</code> 搞混。
+    </div>
+
+    <div class="footer">
+        GESP C++ 一级 · 错题强化卷（一）— 参考答案 · 仅供练习使用
+    </div>
+</div>
+</body>
+</html>

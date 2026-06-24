@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级 错题强化卷（五）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        /* Header */
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header .logo-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .header .logo-line .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a5276, #2980b9);
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 6px;
+            letter-spacing: 3px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        .header h1 {
+            font-size: 28px;
+            margin: 15px 0 5px;
+            color: #1a5276;
+        }
+        .header .exam-info-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        .header .exam-info {
+            font-size: 15px;
+            color: #555;
+        }
+        /* Grade button */
+        .btn-grade {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: #fff;
+            border: none;
+            padding: 8px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: 0 3px 10px rgba(192,57,43,0.3);
+            transition: all 0.2s;
+        }
+        .btn-grade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(192,57,43,0.4);
+        }
+        .btn-grade:active { transform: translateY(0); }
+        /* Score display */
+        .score-display {
+            display: none;
+            margin-top: 12px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #c0392b;
+            text-align: center;
+            animation: scoreIn 0.5s ease;
+        }
+        .score-display .big-score {
+            font-size: 48px;
+            display: inline-block;
+            margin: 0 5px;
+            text-shadow: 1px 1px 3px rgba(192,57,43,0.2);
+        }
+        @keyframes scoreIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        /* Score table */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px;
+            font-size: 14px;
+        }
+        .score-table th, .score-table td {
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            text-align: center;
+        }
+        .score-table th {
+            background: #eaf2f8;
+            color: #1a5276;
+            font-weight: bold;
+        }
+        .score-table td.scored {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        /* Section title */
+        .section-title {
+            background: linear-gradient(90deg, #1a5276, #2980b9);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 30px 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        /* Questions */
+        .question {
+            margin-bottom: 22px;
+            padding: 15px 18px;
+            background: #fafbfc;
+            border-left: 4px solid #2980b9;
+            border-radius: 0 6px 6px 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .question:hover { background: #f0f6fb; }
+        .question .q-text {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .question .options { padding-left: 10px; }
+        .question .options .opt {
+            margin: 4px 0;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: 2px solid transparent;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .question .options .opt:hover {
+            background: #e8f4fd;
+        }
+        .question .options .opt .radio-dot {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #aaa;
+            flex-shrink: 0;
+            position: relative;
+            transition: all 0.15s;
+        }
+        .question .options .opt.selected {
+            background: #dceefb;
+            border-color: #2980b9;
+            font-weight: bold;
+        }
+        .question .options .opt.selected .radio-dot {
+            border-color: #2980b9;
+        }
+        .question .options .opt.selected .radio-dot::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #2980b9;
+        }
+        /* Wrong/Correct highlights after grading */
+        .question.wrong {
+            background: #fff0f0 !important;
+            border-left-color: #e74c3c !important;
+            box-shadow: 0 0 0 2px rgba(231,76,60,0.2);
+        }
+        .question.correct-graded {
+            background: #f0fff0 !important;
+            border-left-color: #27ae60 !important;
+        }
+        .question .correct-answer-tag {
+            display: none;
+            margin-top: 10px;
+            padding: 6px 14px;
+            background: #27ae60;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .question.wrong .correct-answer-tag { display: inline-block; }
+        /* Copy button for wrong questions */
+        .btn-copy {
+            display: none;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 4px 14px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.15s;
+        }
+        .btn-copy:hover { background: #c0392b; }
+        .btn-copy.copied { background: #27ae60; }
+        .question.wrong .btn-copy { display: block; }
+        /* Code blocks */
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        pre .keyword { color: #0000ff; font-weight: bold; }
+        pre .comment { color: #008000; }
+        pre .string { color: #a31515; }
+        /* True/False */
+        .tf-item {
+            margin-bottom: 14px;
+            padding: 10px 15px;
+            background: #fafbfc;
+            border-left: 4px solid #27ae60;
+            border-radius: 0 6px 6px 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .tf-item .tf-text { font-size: 14px; }
+        .tf-item .tf-options {
+            margin-top: 8px;
+            display: flex;
+            gap: 15px;
+        }
+        .tf-item .tf-options .tf-opt {
+            padding: 5px 20px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.15s;
+            user-select: none;
+        }
+        .tf-item .tf-options .tf-opt:hover {
+            border-color: #27ae60;
+            background: #f0fff0;
+        }
+        .tf-item .tf-options .tf-opt.selected {
+            border-color: #27ae60;
+            background: #27ae60;
+            color: #fff;
+            font-weight: bold;
+        }
+        .tf-item.wrong {
+            background: #fff0f0 !important;
+            border-left-color: #e74c3c !important;
+            box-shadow: 0 0 0 2px rgba(231,76,60,0.2);
+        }
+        .tf-item.correct-graded {
+            background: #f0fff0 !important;
+        }
+        .tf-item .correct-answer-tag {
+            display: none;
+            margin-top: 8px;
+            padding: 4px 12px;
+            background: #27ae60;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .tf-item.wrong .correct-answer-tag { display: inline-block; }
+        .tf-item .btn-copy {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 4px 14px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.15s;
+        }
+        .tf-item .btn-copy:hover { background: #c0392b; }
+        .tf-item .btn-copy.copied { background: #27ae60; }
+        .tf-item.wrong .btn-copy { display: block; }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+        .blank { color: #c0392b; font-weight: bold; }
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px 35px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: modalIn 0.25s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-box h3 {
+            font-size: 20px;
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+        .modal-box .missing-list {
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fdf6ec;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #e67e22;
+        }
+        .modal-box .modal-note {
+            font-size: 13px;
+            color: #888;
+            margin: 10px 0;
+        }
+        .modal-box button {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: #fff;
+            border: none;
+            padding: 10px 40px;
+            font-size: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .modal-box button:hover { opacity: 0.9; }
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-line">
+            <span class="badge">GESP</span>
+            <span style="font-size:16px; color:#1a5276; font-weight:bold;">CCF 编程能力等级认证</span>
+        </div>
+        <div class="subtitle">高难挑战 · 知识点交叉深度训练</div>
+        <h1>C++ 一级 · 错题强化卷（五）</h1>
+        <div class="exam-info-row">
+            <span class="exam-info">考试时间：90 分钟 &nbsp;|&nbsp; 满分：50 分</span>
+            <button class="btn-grade" onclick="gradeExam()">📝 判 卷</button>
+        </div>
+        <div class="score-display" id="scoreDisplay"></div>
+    </div>
+
+    <!-- Score overview -->
+    <table class="score-table">
+        <tr>
+            <th>题型</th><th>单选题</th><th>判断题</th><th>总分</th>
+        </tr>
+        <tr>
+            <td>分值</td><td>30 分</td><td>20 分</td><td>50 分</td>
+        </tr>
+        <tr>
+            <td>得分</td>
+            <td id="scoreChoice" class="scored">—</td>
+            <td id="scoreTF" class="scored">—</td>
+            <td id="scoreTotal" class="scored">—</td>
+        </tr>
+    </table>
+
+    <!-- ==================== 一、单选题 ==================== -->
+    <div class="section-title">
+        <span>一、单选题</span><span>（每题 2 分，共 30 分）</span>
+    </div>
+
+    <!-- Q1 (#1 运算符识别 + #14 标识符规则) -->
+    <div class="question" data-qtype="choice" data-qnum="1" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">1. 以下哪行 C++ 代码能够正确编译通过？（ ）</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. <code>int 2nd_place = 2;</code></div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. <code>int _MAX_SIZE = 100;</code></div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>int x+y = 5;</code></div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>int my var = 3;</code></div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q2 (#2 整除vs浮点除法 + #3 优先级 + #13 强制转换位置) -->
+    <div class="question" data-qtype="choice" data-qnum="2" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">2. C++ 表达式 <code>(int)(3.5 + 4.5) - int(3.5) - int(4.5)</code> 的值是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 0</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. -1</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 1</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 2</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q3 (#3 三目运算符优先级 + #8 !取反) -->
+    <div class="question" data-qtype="choice" data-qnum="3" data-answer="D">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">3. C++ 表达式 <code>!0 + !1 + !!2 + (3 > 2 ? 5 : 10)</code> 的值是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 12</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 6</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 8</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 7</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q4 (#4 取余用于周期性问题) -->
+    <div class="question" data-qtype="choice" data-qnum="4" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">4. 下面 C++ 代码执行后的输出是（ ）。（用 1~7 表示周一到周日，计算 100 天后是周几）</div>
+<pre>
+<span class="keyword">int</span> today = 3;  <span class="comment">// 今天是周三</span>
+<span class="keyword">int</span> days = 100;
+<span class="keyword">int</span> future = (today + days % 7) % 7;
+<span class="keyword">if</span> (future == 0) future = 7;
+cout &lt;&lt; future;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 3</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 5</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 6</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 2</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q5 (#5 复合运算符 a/=b+1) -->
+    <div class="question" data-qtype="choice" data-qnum="5" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">5. 下面 C++ 代码执行后的输出是（ ）。</div>
+<pre>
+<span class="keyword">int</span> a = 24, b = 3;
+a /= b + 1;
+cout &lt;&lt; a;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 8</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 6</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 9</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 7</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q6 (#6 德摩根定律 + #7 &&高于||) -->
+    <div class="question" data-qtype="choice" data-qnum="6" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">6. C++ 表达式 <code>!(a > 0 && b > 0 || c > 0)</code> 等价于（ ）。<br>（提示：<code>&&</code> 优先级高于 <code>||</code>）</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. <code>a &lt;= 0 || b &lt;= 0 || c &lt;= 0</code></div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. <code>a &lt;= 0 && b &lt;= 0 && c &lt;= 0</code></div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>(a &lt;= 0 || b &lt;= 0) && c &lt;= 0</code></div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>a &lt;= 0 || (b &lt;= 0 && c &lt;= 0)</code></div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q7 (#9 ==vs= + #11 bool参与算术) -->
+    <div class="question" data-qtype="choice" data-qnum="7" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">7. 下面 C++ 代码执行后的输出是（ ）。</div>
+<pre>
+<span class="keyword">int</span> x = 5;
+<span class="keyword">if</span> (x = 0) {
+    cout &lt;&lt; <span class="keyword">true</span> + <span class="keyword">true</span>;
+} <span class="keyword">else</span> {
+    cout &lt;&lt; <span class="keyword">true</span> * 10 + <span class="keyword">false</span> * 5;
+}
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 2</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 0</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 10</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 5</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q8 (#10 int截断向零 + #12 char相减) -->
+    <div class="question" data-qtype="choice" data-qnum="8" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">8. 下面 C++ 代码执行后的输出是（ ）。</div>
+<pre>
+<span class="keyword">char</span> ch1 = <span class="string">'G'</span>, ch2 = <span class="string">'A'</span>;
+<span class="keyword">int</span> dist = ch1 - ch2;
+<span class="keyword">double</span> x = -7.8;
+cout &lt;&lt; dist + <span class="keyword">int</span>(x);
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. -2</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. -1</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 1</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 13</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q9 (#15 双重循环break + #18 switch在for内部) -->
+    <div class="question" data-qtype="choice" data-qnum="9" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">9. 下面 C++ 代码执行后的输出是（ ）。</div>
+<pre>
+<span class="keyword">int</span> sum = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= 4; i++) {
+    <span class="keyword">switch</span> (i % 3) {
+        <span class="keyword">case</span> 0: sum += 10; <span class="keyword">break</span>;
+        <span class="keyword">case</span> 1: sum += 1;
+        <span class="keyword">case</span> 2: sum += 2; <span class="keyword">break</span>;
+    }
+}
+cout &lt;&lt; sum;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 16</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 18</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 14</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 15</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q10 (#16 continue位置影响) -->
+    <div class="question" data-qtype="choice" data-qnum="10" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">10. 下面 C++ 代码执行后的输出是（ ）。</div>
+<pre>
+<span class="keyword">int</span> n = 0, i = 0;
+<span class="keyword">while</span> (i &lt; 6) {
+    <span class="keyword">if</span> (i % 2 == 0) {
+        i++;
+        <span class="keyword">continue</span>;
+    }
+    n += i;
+    i++;
+}
+cout &lt;&lt; n;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 9</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 6</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 15</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 死循环</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q11 (#17 死循环判定) -->
+    <div class="question" data-qtype="choice" data-qnum="11" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">11. 以下四段 C++ 代码中，哪一段<strong>不是</strong>死循环？（ ）</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A.
+<pre><span class="keyword">for</span> (<span class="keyword">int</span> i = 10; i &gt; 0; i++)
+    cout &lt;&lt; i;</pre></div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B.
+<pre><span class="keyword">int</span> x = 1;
+<span class="keyword">while</span> (x != 10) {
+    x += 3;
+}</pre></div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C.
+<pre><span class="keyword">int</span> n = 5;
+<span class="keyword">while</span> (n &gt; 0)
+    cout &lt;&lt; n;</pre></div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D.
+<pre><span class="keyword">for</span> (;;)
+    cout &lt;&lt; 1;</pre></div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q12 (#19 宽度+补零+左对齐) -->
+    <div class="question" data-qtype="choice" data-qnum="12" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">12. 下面 C++ 语句执行后的输出是（ ）。（<code>_</code> 表示空格）</div>
+<pre>
+printf(<span class="string">"[%05d][%-5d]"</span>, 42, 42);
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. <code>[42000][00042]</code></div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. <code>[___42][42___]</code></div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>[00042][42___]</code></div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>[00042][___42]</code></div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q13 (#20 %%和{%d}混合) -->
+    <div class="question" data-qtype="choice" data-qnum="13" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">13. 下面 C++ 语句执行后的输出是（ ）。</div>
+<pre>
+printf(<span class="string">"{%%d}=%d"</span>, 5);
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. <code>{%d}=5</code></div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. <code>{5}=5</code></div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>{%%d}=5</code></div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>{d}=5</code></div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q14 (#21 变量交换 + #24 逗号表达式) -->
+    <div class="question" data-qtype="choice" data-qnum="14" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">14. 下面 C++ 代码执行后的输出是（ ）。</div>
+<pre>
+<span class="keyword">int</span> a = 5, b = 8;
+a = a + b;   <span class="comment">// a=13</span>
+b = a - b;   <span class="comment">// b=?</span>
+a = a - b;   <span class="comment">// a=?</span>
+<span class="keyword">int</span> c = (a++, b++, a + b);
+cout &lt;&lt; c;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 13</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 14</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 15</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 16</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- Q15 (#22 完全数 + #23 GCD辗转相除法) -->
+    <div class="question" data-qtype="choice" data-qnum="15" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">15. 下面 C++ 代码先判断 6 是否为完全数，再用辗转相除法求 48 和 18 的最大公约数，最终输出是（ ）。</div>
+<pre>
+<span class="keyword">int</span> n = 6, sum = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt; n; i++) {
+    <span class="keyword">if</span> (n % i == 0) sum += i;
+}
+<span class="keyword">int</span> a = 48, b = 18;
+<span class="keyword">while</span> (b != 0) {
+    <span class="keyword">int</span> r = a % b;
+    a = b;
+    b = r;
+}
+<span class="keyword">if</span> (sum == n)
+    cout &lt;&lt; <span class="string">"Y"</span> &lt;&lt; a;
+<span class="keyword">else</span>
+    cout &lt;&lt; <span class="string">"N"</span> &lt;&lt; a;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. <code>Y6</code></div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. <code>N6</code></div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. <code>Y12</code></div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. <code>Y48</code></div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- ==================== 二、判断题 ==================== -->
+    <div class="section-title">
+        <span>二、判断题</span><span>（每题 2 分，共 20 分）</span>
+    </div>
+
+    <!-- T1 (#25 计算机五大部件) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="16" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">1. 计算机的 CPU（中央处理器）由运算器和控制器组成，再加上存储器、输入设备和输出设备，共同构成计算机的五大部件。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T2 (#26 二进制基础) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="17" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">2. 十进制数 13 的二进制表示是 <code>1011</code>。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T3 (#27 冯诺依曼核心思想) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="18" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">3. 冯·诺依曼体系结构的核心思想是"存储程序"，即将程序和数据一起存储在内存中，计算机按照程序指令自动执行。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T4 (#28 URL完整结构) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="19" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">4. 在 URL <code>https://www.example.com:8080/path?q=1</code> 中，<code>https</code> 是协议，<code>8080</code> 是端口号，<code>/path</code> 是路径，<code>q=1</code> 是查询参数。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T5 (#29 文件类型) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="20" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">5. 在 C++ 编程中，<code>.cpp</code> 文件是源代码文件，<code>.obj</code> 文件是可执行文件，<code>.exe</code> 文件是目标文件。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T6 (#30 C++编译型语言) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="21" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">6. C++ 和 Python 都是解释型语言，可以直接逐行执行源代码，无需事先编译。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T7 (#13 强制转换位置再强化) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="22" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">7. C++ 中 <code>(int)(3.5 + 4.5)</code> 和 <code>int(3.5) + int(4.5)</code> 的结果相同，都等于 8。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T8 (#11 bool参与算术) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="23" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">8. C++ 中表达式 <code>true * 10 + false * 5</code> 的值是 15。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T9 (#17 死循环判定再强化) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="24" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">9. 下面 C++ 代码会正常终止（不是死循环）。（ ）</div>
+<pre>
+<span class="keyword">int</span> i = 1;
+<span class="keyword">while</span> (i != 10) {
+    i += 2;
+}
+</pre>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <!-- T10 (#24 逗号表达式 + #4 取余) -->
+    <div class="tf-item" data-qtype="tf" data-qnum="25" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">10. C++ 中 <code>int x = (7 % 3, 8 % 3, 9 % 3);</code> 执行后，<code>x</code> 的值为 1。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="footer">
+        GESP C++ 一级 · 错题强化卷（五） · 高难挑战 · 本试卷仅供练习使用
+    </div>
+</div>
+
+<!-- Missing-question modal -->
+<div class="modal-overlay" id="missingModal">
+    <div class="modal-box">
+        <h3>⚠️ 有题目未完成</h3>
+        <div class="missing-list" id="missingList"></div>
+        <div class="modal-note">未作答的题目将不计分，仅对已完成的题目判分。</div>
+        <button onclick="closeMissingModal(true)">继续判卷</button>
+        &nbsp;
+        <button onclick="closeMissingModal(false)" style="background:linear-gradient(135deg,#95a5a6,#bdc3c7);">返回答题</button>
+    </div>
+</div>
+
+<!-- Copy toast -->
+<div class="toast" id="copyToast">✅ 已复制到剪贴板</div>
+
+<script>
+// ========== Selection logic ==========
+function selectOpt(el) {
+    const siblings = el.parentElement.querySelectorAll('.opt');
+    siblings.forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function selectTF(el) {
+    const siblings = el.parentElement.querySelectorAll('.tf-opt');
+    siblings.forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+// ========== Get user answers ==========
+function getUserAnswers() {
+    const answers = {};
+    // Choice questions
+    document.querySelectorAll('.question[data-qtype="choice"]').forEach(q => {
+        const num = q.dataset.qnum;
+        const sel = q.querySelector('.opt.selected');
+        answers[num] = sel ? sel.dataset.val : null;
+    });
+    // TF questions
+    document.querySelectorAll('.tf-item[data-qtype="tf"]').forEach(q => {
+        const num = q.dataset.qnum;
+        const sel = q.querySelector('.tf-opt.selected');
+        answers[num] = sel ? sel.dataset.val : null;
+    });
+    return answers;
+}
+
+// ========== Grading ==========
+let missingCallback = null;
+
+function closeMissingModal(proceed) {
+    document.getElementById('missingModal').classList.remove('show');
+    if (proceed && missingCallback) missingCallback();
+    missingCallback = null;
+}
+
+function gradeExam() {
+    // Clear previous grading state
+    document.querySelectorAll('.question, .tf-item').forEach(el => {
+        el.classList.remove('wrong', 'correct-graded');
+    });
+
+    const answers = getUserAnswers();
+
+    // Check for missing
+    const missing = [];
+    for (let i = 1; i <= 15; i++) {
+        if (!answers[String(i)]) missing.push('单选第 ' + i + ' 题');
+    }
+    for (let i = 16; i <= 25; i++) {
+        if (!answers[String(i)]) missing.push('判断第 ' + (i - 15) + ' 题');
+    }
+
+    const doGrade = () => {
+        let choiceScore = 0, tfScore = 0;
+
+        // Grade choice
+        document.querySelectorAll('.question[data-qtype="choice"]').forEach(q => {
+            const num = q.dataset.qnum;
+            const correct = q.dataset.answer;
+            const user = answers[num];
+            const tag = q.querySelector('.correct-answer-tag');
+            if (user === null) {
+                return;
+            }
+            if (user === correct) {
+                choiceScore += 2;
+                q.classList.add('correct-graded');
+                tag.style.display = 'none';
+            } else {
+                q.classList.add('wrong');
+                const correctOpt = q.querySelector('.opt[data-val="'+correct+'"]');
+                const correctText = correctOpt ? correctOpt.textContent.trim() : correct;
+                tag.innerHTML = '✅ 正确答案：' + correct + '. ' + correctText.substring(correctText.indexOf('.')+1).trim();
+                tag.style.display = 'inline-block';
+            }
+        });
+
+        // Grade TF
+        document.querySelectorAll('.tf-item[data-qtype="tf"]').forEach(q => {
+            const num = q.dataset.qnum;
+            const correct = q.dataset.answer;
+            const user = answers[num];
+            const tag = q.querySelector('.correct-answer-tag');
+            if (user === null) return;
+            if (user === correct) {
+                tfScore += 2;
+                q.classList.add('correct-graded');
+                tag.style.display = 'none';
+            } else {
+                q.classList.add('wrong');
+                tag.innerHTML = '✅ 正确答案：' + (correct === 'A' ? '正确 ✔' : '错误 ✘');
+                tag.style.display = 'inline-block';
+            }
+        });
+
+        const total = choiceScore + tfScore;
+
+        // Update score table
+        document.getElementById('scoreChoice').textContent = choiceScore + ' 分';
+        document.getElementById('scoreTF').textContent = tfScore + ' 分';
+        document.getElementById('scoreTotal').textContent = total + ' / 50 分';
+
+        // Show big score
+        const disp = document.getElementById('scoreDisplay');
+        let emoji = total >= 40 ? '🎉' : total >= 25 ? '💪' : '📖';
+        disp.innerHTML = emoji + ' 得分：<span class="big-score">' + total + '</span> / 50 分';
+        disp.style.display = 'block';
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    if (missing.length > 0) {
+        document.getElementById('missingList').innerHTML =
+            missing.map(m => '• ' + m).join('<br>');
+        document.getElementById('missingModal').classList.add('show');
+        missingCallback = doGrade;
+    } else {
+        doGrade();
+    }
+}
+
+// ========== Copy to clipboard ==========
+function copyQuestion(btn) {
+    const container = btn.closest('.question') || btn.closest('.tf-item');
+    if (!container) return;
+
+    let text = '';
+    const qtype = container.dataset.qtype;
+    const correct = container.dataset.answer;
+
+    if (qtype === 'choice') {
+        const qText = container.querySelector('.q-text').textContent;
+        text += qText + '\n';
+        const pre = container.querySelector('pre');
+        if (pre) text += '\n' + pre.textContent.trim() + '\n';
+        text += '\n';
+        container.querySelectorAll('.opt').forEach(opt => {
+            const sel = opt.classList.contains('selected');
+            text += (sel ? '→ ' : '  ') + opt.textContent.trim() + '\n';
+        });
+        const userSel = container.querySelector('.opt.selected');
+        const userAns = userSel ? userSel.dataset.val : '未作答';
+        text += '\n❌ 我的答案：' + userAns;
+        const correctOpt = container.querySelector('.opt[data-val="'+correct+'"]');
+        const correctLabel = correctOpt ? correctOpt.textContent.trim() : correct;
+        text += '\n✅ 正确答案：' + correctLabel + '\n';
+    } else {
+        const tfText = container.querySelector('.tf-text').textContent;
+        text += tfText + '\n';
+        const pre = container.querySelector('pre');
+        if (pre) text += '\n' + pre.textContent.trim() + '\n';
+        const userSel = container.querySelector('.tf-opt.selected');
+        const userAns = userSel ? (userSel.dataset.val === 'A' ? '正确' : '错误') : '未作答';
+        const correctAns = correct === 'A' ? '正确' : '错误';
+        text += '\n❌ 我的答案：' + userAns;
+        text += '\n✅ 正确答案：' + correctAns + '\n';
+    }
+
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ 已复制';
+        btn.classList.add('copied');
+        showToast('已复制到剪贴板，可粘贴到错题本');
+        setTimeout(() => {
+            btn.textContent = '📋 复制到错题本';
+            btn.classList.remove('copied');
+        }, 2000);
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = '✅ 已复制';
+        btn.classList.add('copied');
+        showToast('已复制到剪贴板');
+        setTimeout(() => {
+            btn.textContent = '📋 复制到错题本';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+function showToast(msg) {
+    const t = document.getElementById('copyToast');
+    t.textContent = '✅ ' + msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+}
+</script>
+</body>
+</html>

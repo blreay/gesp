@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++一级 错题强化训练</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: linear-gradient(135deg, #2c0829, #6b1d3d, #1a1a3e);
+            min-height: 100vh;
+            color: #333;
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 20px 30px;
+            color: #fff;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 6px 18px;
+            border-radius: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(231,76,60,0.4);
+        }
+        .hero h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero h1 .highlight { color: #f39c12; }
+        .hero p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.65);
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .hero .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 13px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 5px 18px;
+            border-radius: 15px;
+            transition: all 0.2s;
+        }
+        .hero .back-link:hover {
+            color: #fff;
+            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
+        }
+        /* Weakness summary */
+        .weakness-section {
+            max-width: 900px;
+            margin: 10px auto 30px;
+            padding: 0 20px;
+        }
+        .weakness-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px 30px;
+            color: #fff;
+        }
+        .weakness-card h3 {
+            font-size: 16px;
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+        .weakness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 8px;
+        }
+        .weakness-grid .w-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+            padding: 5px 0;
+        }
+        .weakness-grid .w-item .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .dot.red { background: #e74c3c; }
+        .dot.orange { background: #f39c12; }
+        .dot.yellow { background: #f1c40f; }
+        .dot.blue { background: #3498db; }
+        .legend {
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+        .legend span { display: flex; align-items: center; gap: 5px; }
+        /* Cards */
+        .grid {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .card .card-banner {
+            height: 8px;
+        }
+        .card:nth-child(1) .card-banner { background: linear-gradient(90deg, #e74c3c, #f39c12); }
+        .card:nth-child(2) .card-banner { background: linear-gradient(90deg, #e67e22, #f1c40f); }
+        .card:nth-child(3) .card-banner { background: linear-gradient(90deg, #c0392b, #e74c3c); }
+        .card:nth-child(4) .card-banner { background: linear-gradient(90deg, #8e44ad, #9b59b6); }
+        .card:nth-child(5) .card-banner { background: linear-gradient(90deg, #2c3e50, #e74c3c); }
+        .card:nth-child(6) .card-banner { background: linear-gradient(90deg, #1a1a2e, #e94560); }
+        .card .card-body { padding: 22px 25px; }
+        .card .card-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .card .card-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .card .card-subtitle {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 14px;
+        }
+        .card .card-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .card .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+        .card .card-meta .info {
+            font-size: 12px;
+            color: #aaa;
+        }
+        .card .card-meta .start-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            padding: 7px 20px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+        .card:hover .card-meta .start-btn {
+            box-shadow: 0 3px 10px rgba(231,76,60,0.3);
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="badge">🎯 错题强化</div>
+    <h1>C++ 一级 · <span class="highlight">薄弱知识点</span>专项训练</h1>
+    <p>基于错题记录分析，提炼出 30 个薄弱知识点。6 套强化卷，难度递进，每套覆盖全部薄弱点，用不同场景和数值反复强化，直到真正掌握。</p>
+    <a class="back-link" href="../index.html">← 返回模拟题库</a>
+</div>
+
+<div class="weakness-section">
+    <div class="weakness-card">
+        <h3>📊 薄弱知识点分布（共 30 个）</h3>
+        <div class="weakness-grid">
+            <div class="w-item"><span class="dot red"></span>运算符识别</div>
+            <div class="w-item"><span class="dot red"></span>整除 vs 浮点除</div>
+            <div class="w-item"><span class="dot red"></span>运算符优先级</div>
+            <div class="w-item"><span class="dot red"></span>德摩根定律</div>
+            <div class="w-item"><span class="dot red"></span>逻辑条件组合</div>
+            <div class="w-item"><span class="dot red"></span>break/continue混合</div>
+            <div class="w-item"><span class="dot orange"></span>int 截断/类型转换</div>
+            <div class="w-item"><span class="dot orange"></span>bool 输出 0/1</div>
+            <div class="w-item"><span class="dot orange"></span>char/ASCII 运算</div>
+            <div class="w-item"><span class="dot orange"></span>== vs = 混淆</div>
+            <div class="w-item"><span class="dot orange"></span>switch fall-through</div>
+            <div class="w-item"><span class="dot orange"></span>printf 格式化</div>
+            <div class="w-item"><span class="dot yellow"></span>continue 跳过逻辑</div>
+            <div class="w-item"><span class="dot yellow"></span>while 循环条件</div>
+            <div class="w-item"><span class="dot yellow"></span>逗号表达式</div>
+            <div class="w-item"><span class="dot yellow"></span>变量交换算法</div>
+            <div class="w-item"><span class="dot yellow"></span>质数/回文数算法</div>
+            <div class="w-item"><span class="dot yellow"></span>C++ 大小写敏感</div>
+            <div class="w-item"><span class="dot blue"></span>ENIAC/电子管</div>
+            <div class="w-item"><span class="dot blue"></span>中国计算机史</div>
+            <div class="w-item"><span class="dot blue"></span>王选·激光照排</div>
+            <div class="w-item"><span class="dot blue"></span>域名/网络基础</div>
+            <div class="w-item"><span class="dot blue"></span>Windows 操作</div>
+            <div class="w-item"><span class="dot blue"></span>输入输出类型匹配</div>
+        </div>
+        <div class="legend">
+            <span><span class="dot red"></span> 高频错误</span>
+            <span><span class="dot orange"></span> 中频错误</span>
+            <span><span class="dot yellow"></span> 低频但易混</span>
+            <span><span class="dot blue"></span> 计算机常识</span>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+
+    <div class="card" onclick="location.href='exam_01/mock_exam_01.html'">
+        <div class="card-banner"></div>
+        <div class="card-body">
+            <div class="card-icon">📝</div>
+            <div class="card-title">错题强化卷（一）</div>
+            <div class="card-subtitle">基础巩固</div>
+            <div class="card-desc">
+                针对全部 30 个薄弱点设计基础题目，帮助建立正确的解题思路。每道题都是全新设计，覆盖原题的核心知识点。
+            </div>
+            <div class="card-meta">
+                <span class="info">15 单选 + 10 判断 · 50 分</span>
+                <a class="start-btn" href="exam_01/mock_exam_01.html">开始练习 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='exam_02/mock_exam_02.html'">
+        <div class="card-banner"></div>
+        <div class="card-body">
+            <div class="card-icon">🔄</div>
+            <div class="card-title">错题强化卷（二）</div>
+            <div class="card-subtitle">变式训练</div>
+            <div class="card-desc">
+                同样的知识点，换不同的数值和代码片段。如果第一套能拿满分但第二套不行，说明还没真正掌握，只是记住了答案。
+            </div>
+            <div class="card-meta">
+                <span class="info">15 单选 + 10 判断 · 50 分</span>
+                <a class="start-btn" href="exam_02/mock_exam_02.html">开始练习 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='exam_03/mock_exam_03.html'">
+        <div class="card-banner"></div>
+        <div class="card-body">
+            <div class="card-icon">🏆</div>
+            <div class="card-title">错题强化卷（三）</div>
+            <div class="card-subtitle">综合冲刺</div>
+            <div class="card-desc">
+                最具迷惑性的综合卷。包含负数取余、短路求值、嵌套循环 break、连续复合赋值等高难度变体。三套全过才算真正掌握。
+            </div>
+            <div class="card-meta">
+                <span class="info">15 单选 + 10 判断 · 50 分</span>
+                <a class="start-btn" href="exam_03/mock_exam_03.html">开始练习 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='exam_04/mock_exam_04.html'">
+        <div class="card-banner"></div>
+        <div class="card-body">
+            <div class="card-icon">🔥</div>
+            <div class="card-title">错题强化卷（四）</div>
+            <div class="card-subtitle">进阶挑战</div>
+            <div class="card-desc">
+                多步推导题：链式取余 100%7%3、闰年条件表达式、嵌套复合赋值 a+=b%=c、三层循环 break。需要耐心逐步计算。
+            </div>
+            <div class="card-meta">
+                <span class="info">15 单选 + 10 判断 · 50 分</span>
+                <a class="start-btn" href="exam_04/mock_exam_04.html">开始练习 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='exam_05/mock_exam_05.html'">
+        <div class="card-banner"></div>
+        <div class="card-body">
+            <div class="card-icon">⚡</div>
+            <div class="card-title">错题强化卷（五）</div>
+            <div class="card-subtitle">高难·知识点交叉</div>
+            <div class="card-desc">
+                一道题考 2-3 个知识点：三目运算符+取反、switch穿透+循环break、强制转换位置不同结果不同。干扰项都是常见错误的结果。
+            </div>
+            <div class="card-meta">
+                <span class="info">15 单选 + 10 判断 · 50 分</span>
+                <a class="start-btn" href="exam_05/mock_exam_05.html">开始练习 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='exam_06/mock_exam_06.html'">
+        <div class="card-banner"></div>
+        <div class="card-body">
+            <div class="card-icon">👑</div>
+            <div class="card-title">错题强化卷（六）</div>
+            <div class="card-subtitle">终极冲刺</div>
+            <div class="card-desc">
+                6套中最难的一套。异或交换、GCD跟踪、10行以上代码推演、"陷阱中的陷阱"。满分 = 薄弱知识点完全攻克。
+            </div>
+            <div class="card-meta">
+                <span class="info">15 单选 + 10 判断 · 50 分</span>
+                <a class="start-btn" href="exam_06/mock_exam_06.html">开始练习 →</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    GESP C++ 一级 · 错题强化训练 · 基于错题记录自动生成
+</div>
+
+</body>
+</html>
