@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI赋能环保实业：从企业管理、精准营销到智能水处理装备的落地路径</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  background: #0f172a;
+  color: #1e293b;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  min-height: 100vh;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .slide { padding: 40px 24px; }
+}
+
+/* Cover slide */
+.slide-cover {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f766e 100%);
+  color: white;
+  text-align: center;
+  align-items: center;
+}
+.slide-cover::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 70%, rgba(14,165,233,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(16,185,129,0.08) 0%, transparent 50%);
+  animation: float 20s infinite linear;
+}
+@keyframes float { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.slide-cover h1 {
+  font-size: 2.8em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+.slide-cover h2 {
+  font-size: 1.3em;
+  font-weight: 400;
+  opacity: 0.85;
+  position: relative;
+  z-index: 1;
+  max-width: 750px;
+  line-height: 1.8;
+}
+.slide-cover .tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-size: 0.9em;
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section titles */
+.slide-section {
+  background: linear-gradient(160deg, #f8fafc, #e2e8f0);
+}
+.slide-section .section-label {
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #0ea5e9;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.slide-section h2 {
+  font-size: 2.4em;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+.slide-section .subtitle {
+  font-size: 1.15em;
+  color: #475569;
+  max-width: 800px;
+  line-height: 1.8;
+}
+
+/* Content slides */
+.slide-content {
+  background: #ffffff;
+}
+.slide-content h3 {
+  font-size: 1.6em;
+  color: #0f172a;
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #0ea5e9;
+  display: inline-block;
+}
+
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+.card {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+}
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  margin-bottom: 16px;
+}
+.card-icon.blue { background: #dbeafe; }
+.card-icon.green { background: #d1fae5; }
+.card-icon.purple { background: #ede9fe; }
+.card-icon.orange { background: #fed7aa; }
+.card-icon.teal { background: #ccfbf1; }
+.card-icon.pink { background: #fce7f3; }
+.card-icon.red { background: #fee2e2; }
+.card h4 {
+  font-size: 1.1em;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+.card p, .card ul {
+  font-size: 0.92em;
+  color: #64748b;
+  line-height: 1.7;
+}
+.card ul {
+  padding-left: 1.2em;
+}
+.card ul li {
+  margin: 4px 0;
+}
+
+/* Two-column layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; gap: 30px; }
+}
+.col h4 {
+  font-size: 1.2em;
+  color: #0f172a;
+  margin-bottom: 16px;
+  padding-left: 14px;
+  border-left: 4px solid #0ea5e9;
+}
+.col ul {
+  list-style: none;
+  padding: 0;
+}
+.col ul li {
+  padding: 8px 0 8px 24px;
+  position: relative;
+  color: #475569;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+.col ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #0ea5e9;
+  font-weight: bold;
+}
+
+/* Highlight block */
+.highlight {
+  background: linear-gradient(135deg, #0f766e, #0d9488);
+  border-radius: 16px;
+  padding: 36px 40px;
+  color: white;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 30px;
+}
+.highlight h4 {
+  font-size: 1.15em;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+.highlight p, .highlight blockquote {
+  font-size: 1.05em;
+  line-height: 1.9;
+  opacity: 0.95;
+}
+.highlight blockquote {
+  border-left: 3px solid rgba(255,255,255,0.5);
+  padding-left: 20px;
+  margin: 16px 0;
+  font-style: italic;
+}
+
+/* Warning/info highlight */
+.highlight-warn {
+  background: linear-gradient(135deg, #92400e, #b45309);
+}
+.highlight-blue {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+}
+
+/* Timeline */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+@media (max-width: 900px) {
+  .timeline { grid-template-columns: 1fr; }
+}
+.timeline-item {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 30px;
+  border-top: 4px solid;
+  position: relative;
+}
+.timeline-item:nth-child(1) { border-top-color: #22c55e; }
+.timeline-item:nth-child(2) { border-top-color: #f59e0b; }
+.timeline-item:nth-child(3) { border-top-color: #8b5cf6; }
+.timeline-item .period {
+  font-size: 0.8em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.timeline-item:nth-child(1) .period { color: #22c55e; }
+.timeline-item:nth-child(2) .period { color: #f59e0b; }
+.timeline-item:nth-child(3) .period { color: #8b5cf6; }
+.timeline-item h4 {
+  font-size: 1.15em;
+  color: #0f172a;
+  margin-bottom: 14px;
+}
+.timeline-item ul {
+  list-style: none;
+  padding: 0;
+}
+.timeline-item ul li {
+  padding: 5px 0;
+  color: #475569;
+  font-size: 0.9em;
+  padding-left: 16px;
+  position: relative;
+}
+.timeline-item ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+.timeline-item:nth-child(1) ul li::before { color: #22c55e; }
+.timeline-item:nth-child(2) ul li::before { color: #f59e0b; }
+.timeline-item:nth-child(3) ul li::before { color: #8b5cf6; }
+
+/* Numbered list items */
+.numbered-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+.numbered-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+}
+.numbered-item .num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95em;
+}
+.numbered-item p {
+  color: #334155;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+/* Dark slide */
+.slide-dark {
+  background: linear-gradient(160deg, #0f172a, #1e293b);
+  color: white;
+}
+.slide-dark h3 {
+  color: white;
+  border-bottom-color: #0ea5e9;
+}
+.slide-dark .card {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.1);
+}
+.slide-dark .card h4 { color: #f1f5f9; }
+.slide-dark .card p, .slide-dark .card ul { color: #94a3b8; }
+
+/* Pill tags */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.pill {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+.pill.green { background: #d1fae5; color: #065f46; }
+.pill.purple { background: #ede9fe; color: #5b21b6; }
+.pill.orange { background: #ffedd5; color: #9a3412; }
+
+/* Page number */
+.page-num {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  font-size: 0.8em;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Blockquote styled */
+.quote-box {
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border: 1px solid #bfdbfe;
+  border-left: 4px solid #2563eb;
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-top: 24px;
+  width: 100%;
+  max-width: 1200px;
+  font-size: 1em;
+  color: #1e40af;
+  line-height: 2;
+  font-style: italic;
+}
+
+/* Steps */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+.step {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+.step-num {
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+.step h4 {
+  font-size: 1.05em;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+.step .step-period {
+  font-size: 0.8em;
+  color: #0ea5e9;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.step ul {
+  list-style: none;
+  padding: 0;
+}
+.step ul li {
+  padding: 4px 0 4px 16px;
+  position: relative;
+  color: #475569;
+  font-size: 0.88em;
+}
+.step ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #0ea5e9;
+}
+
+/* Product upgrade path */
+.upgrade-path {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px 0;
+}
+.upgrade-item {
+  flex: 1;
+  text-align: center;
+  padding: 20px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+.upgrade-item:first-child { border-radius: 12px 0 0 12px; }
+.upgrade-item:last-child { border-radius: 0 12px 12px 0; }
+.upgrade-item h5 {
+  font-size: 0.85em;
+  color: #0ea5e9;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.upgrade-item p {
+  font-size: 0.85em;
+  color: #334155;
+  font-weight: 500;
+}
+.upgrade-arrow {
+  width: 30px;
+  text-align: center;
+  color: #0ea5e9;
+  font-size: 1.3em;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .upgrade-path { flex-direction: column; }
+  .upgrade-item { border-radius: 12px !important; }
+  .upgrade-arrow { transform: rotate(90deg); }
+}
+
+/* Video grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+.video-card {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid;
+}
+.video-card:nth-child(1) { border-left-color: #ef4444; }
+.video-card:nth-child(2) { border-left-color: #f59e0b; }
+.video-card:nth-child(3) { border-left-color: #22c55e; }
+.video-card:nth-child(4) { border-left-color: #3b82f6; }
+.video-card:nth-child(5) { border-left-color: #8b5cf6; }
+.video-card h4 {
+  font-size: 1em;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+.video-card ul {
+  list-style: none;
+  padding: 0;
+}
+.video-card ul li {
+  padding: 3px 0;
+  color: #64748b;
+  font-size: 0.88em;
+}
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Cover -->
+<div class="slide slide-cover">
+  <h1>AI赋能环保实业</h1>
+  <h2>从企业管理、精准营销到智能水处理装备的落地路径</h2>
+  <div class="tag">睿美达 × AI算法专家 · 交流提纲</div>
+  <span class="page-num" style="color:rgba(255,255,255,0.4)">01</span>
+</div>
+
+<!-- Slide 2: 核心目标 -->
+<div class="slide slide-section">
+  <div class="section-label">Core Objectives</div>
+  <h2>明天交流的核心目标</h2>
+  <div class="subtitle" style="margin-bottom: 36px;">
+    不要只聊"AI能做什么"，要聊清楚"环保企业在哪些环节最值得AI化、先做什么、怎么落地、怎么变成产品卖点、怎么形成长期壁垒"。
+  </div>
+  <div class="cards" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="card" style="text-align: center;">
+      <div class="card-icon blue" style="margin: 0 auto 12px;">🎤</div>
+      <h4>听对方讲</h4>
+      <p>AI如何给环保企业赋能，结合真实业务场景</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div class="card-icon green" style="margin: 0 auto 12px;">🏢</div>
+      <h4>让对方理解</h4>
+      <p>睿美达的业务特点、核心技术和应用场景</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div class="card-icon purple" style="margin: 0 auto 12px;">🎯</div>
+      <h4>共同判断</h4>
+      <p>哪些AI方向最适合短期落地</p>
+    </div>
+    <div class="card" style="text-align: center;">
+      <div class="card-icon orange" style="margin: 0 auto 12px;">🤝</div>
+      <h4>探讨合作</h4>
+      <p>双方如何分工、共建产品</p>
+    </div>
+  </div>
+  <span class="page-num">02</span>
+</div>
+
+<!-- Slide 3: 开场表达 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>建议开场表达</h3>
+  <div class="quote-box">
+    我们公司主要做超微纳米曝气和臭氧催化氧化水处理装备，服务市政污水提标和工业高难度废水治理。现在行业里有几个痛点：一是能耗高，二是水质波动大，三是设备运行依赖人工经验，四是客户越来越关注长期运维成本和数据化管理。<br><br>
+    所以我们想请你从AI算法和数字化角度帮我们判断一下：AI能不能真正嵌入我们的设备和工艺系统里，形成智能调控、节能降耗、远程运维、工况诊断这些能力？<br><br>
+    我们希望不是做一个概念，而是能形成清晰路径：<strong>短期能做什么，中期能形成什么产品，长期能建立什么样的行业壁垒。</strong>
+  </div>
+  <div style="margin-top: 30px; width: 100%; max-width: 1200px;">
+    <h4 style="font-size: 1em; color: #475569; margin-bottom: 14px;">推荐交流标题</h4>
+    <div class="pills">
+      <span class="pill purple">方案一（正式）：环保实业公司 × AI算法专家跨界对话</span>
+    </div>
+    <div class="pills">
+      <span class="pill green">方案二（视频）：当环保装备遇上AI：传统污水处理如何实现智能调控？</span>
+    </div>
+    <div class="pills">
+      <span class="pill orange">方案三（商业）：AI赋能环保实业：从企业管理到智能水处理装备的落地路径</span>
+    </div>
+  </div>
+  <span class="page-num">03</span>
+</div>
+
+<!-- Slide 4: AI赋能框架 -->
+<div class="slide slide-content">
+  <h3>AI赋能环保企业的完整框架</h3>
+  <div class="cards" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="card" style="border-top: 4px solid #3b82f6;">
+      <div class="card-icon blue">🏛️</div>
+      <h4>企业经营端</h4>
+      <ul>
+        <li>知识库建设</li>
+        <li>项目管理AI化</li>
+        <li>财务成本测算</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid #22c55e;">
+      <div class="card-icon green">📣</div>
+      <h4>市场营销端</h4>
+      <ul>
+        <li>客户画像获客</li>
+        <li>内容生产矩阵</li>
+        <li>数字展厅可视化</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid #f59e0b;">
+      <div class="card-icon orange">🔧</div>
+      <h4>工程项目端</h4>
+      <ul>
+        <li>工艺方案设计</li>
+        <li>项目诊断工具</li>
+        <li>投标文件生成</li>
+      </ul>
+    </div>
+    <div class="card" style="border-top: 4px solid #8b5cf6;">
+      <div class="card-icon purple">⚙️</div>
+      <h4>产品设备端</h4>
+      <ul>
+        <li>智能控制柜</li>
+        <li>臭氧/曝气AI控制</li>
+        <li>水质预测与故障预警</li>
+      </ul>
+    </div>
+  </div>
+  <span class="page-num">04</span>
+</div>
+
+<!-- Slide 5: 企业经营端标题 -->
+<div class="slide slide-dark" style="align-items: center; text-align: center;">
+  <div class="section-label" style="color: #38bdf8;">板块一</div>
+  <h2 style="font-size: 2.2em; color: white; margin-bottom: 16px;">企业经营端 AI 赋能</h2>
+  <p style="color: #94a3b8; font-size: 1.1em; max-width: 600px;">知识库 · 项目管理 · 财务成本</p>
+  <span class="page-num" style="color: rgba(255,255,255,0.3);">05</span>
+</div>
+
+<!-- Slide 6: 企业知识库 -->
+<div class="slide slide-content">
+  <h3>企业知识库与技术资料管理</h3>
+  <div class="two-col">
+    <div class="col">
+      <h4>企业现有资料</h4>
+      <ul>
+        <li>工艺方案</li>
+        <li>设备说明书</li>
+        <li>项目案例</li>
+        <li>报价模板</li>
+        <li>投标文件</li>
+        <li>设计图纸</li>
+        <li>运维记录</li>
+        <li>水质检测报告</li>
+        <li>常见问题处理经验</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>AI知识库能回答的问题</h4>
+      <ul>
+        <li>某类工业废水适合什么工艺？</li>
+        <li>超微纳米曝气的优势怎么表达？</li>
+        <li>臭氧催化氧化设备选型依据？</li>
+        <li>某个项目类似案例有哪些？</li>
+        <li>技术方案怎么写？</li>
+        <li>标书中的技术响应怎么生成？</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight">
+    <h4>短期成果（投入低、见效快）</h4>
+    <p>内部AI助手 · 技术方案自动生成 · 销售问答助手 · 标书初稿自动生成 · 项目案例智能检索</p>
+  </div>
+  <span class="page-num">06</span>
+</div>
+
+<!-- Slide 7: 项目管理 + 财务 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>项目管理 & 财务成本AI化</h3>
+  <div class="cards" style="grid-template-columns: 1fr 1fr;">
+    <div class="card">
+      <div class="card-icon green">📋</div>
+      <h4>项目管理AI化</h4>
+      <ul>
+        <li>项目进度自动提醒</li>
+        <li>项目风险识别</li>
+        <li>施工日志智能整理</li>
+        <li>会议纪要自动生成</li>
+        <li>日报/周报自动生成</li>
+        <li>采购/发货/调试节点自动跟踪</li>
+      </ul>
+      <p style="margin-top: 12px; font-weight: 600; color: #059669;">价值：降低沟通成本 · 减少对人依赖 · 积累数据</p>
+    </div>
+    <div class="card">
+      <div class="card-icon orange">💰</div>
+      <h4>财务与成本测算AI化</h4>
+      <ul>
+        <li>项目报价辅助模型</li>
+        <li>运维成本测算模型</li>
+        <li>投资回收期测算</li>
+        <li>不同工艺路线成本对比</li>
+        <li>项目毛利预警</li>
+        <li>售前快速测算工具</li>
+      </ul>
+      <p style="margin-top: 12px; font-weight: 600; color: #d97706;">对外：快速展示改造前后成本对比，极具说服力</p>
+    </div>
+  </div>
+  <span class="page-num">07</span>
+</div>
+
+<!-- Slide 8: 市场营销端标题 -->
+<div class="slide slide-dark" style="align-items: center; text-align: center;">
+  <div class="section-label" style="color: #34d399;">板块二</div>
+  <h2 style="font-size: 2.2em; color: white; margin-bottom: 16px;">市场营销端 AI 赋能</h2>
+  <p style="color: #94a3b8; font-size: 1.1em; max-width: 600px;">精准获客 · 内容生产矩阵 · 数字展厅 · 3D可视化</p>
+  <span class="page-num" style="color: rgba(255,255,255,0.3);">08</span>
+</div>
+
+<!-- Slide 9: 客户画像 + 内容矩阵 -->
+<div class="slide slide-content">
+  <h3>AI客户画像与内容生产矩阵</h3>
+  <div class="two-col">
+    <div class="col">
+      <h4>AI精准获客能力</h4>
+      <ul>
+        <li>按行业筛选潜在客户</li>
+        <li>分析企业排污类型</li>
+        <li>判断是否存在提标改造需求</li>
+        <li>根据公开信息识别项目机会</li>
+        <li>自动生成客户拜访话术</li>
+        <li>自动生成定制化方案介绍</li>
+      </ul>
+      <div class="pills" style="margin-top: 16px;">
+        <span class="pill">市政污水厂</span>
+        <span class="pill">工业园区</span>
+        <span class="pill green">化工企业</span>
+        <span class="pill green">印染/制药</span>
+        <span class="pill purple">设计院</span>
+        <span class="pill purple">环保工程公司</span>
+      </div>
+    </div>
+    <div class="col">
+      <h4>AI内容生产方向</h4>
+      <ul>
+        <li><strong>技术科普类</strong> — 纳米气泡原理、臭氧效率</li>
+        <li><strong>案例展示类</strong> — 工业废水/节能改造案例</li>
+        <li><strong>产品讲解类</strong> — 智能设备、云端运维平台</li>
+        <li><strong>行业观点类</strong> — 智能化趋势、AI决策</li>
+      </ul>
+      <p style="margin-top: 16px; color: #475569; font-size: 0.9em; line-height: 1.7;">
+        环保企业不只是卖设备，而是卖长期稳定达标和低成本运行能力。
+      </p>
+    </div>
+  </div>
+  <span class="page-num">09</span>
+</div>
+
+<!-- Slide 10: 数字展厅 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>AI数字展厅和3D可视化（分阶段）</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="period">初级版</div>
+      <h4>展示与宣传</h4>
+      <ul>
+        <li>设备三维展示</li>
+        <li>工艺流程动画</li>
+        <li>臭氧/曝气/催化氧化可视化</li>
+        <li>用于销售演示和视频宣传</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="period">中级版</div>
+      <h4>数据接入</h4>
+      <ul>
+        <li>接入真实设备运行数据</li>
+        <li>展示水质、流量、能耗</li>
+        <li>展示臭氧投加量</li>
+        <li>支持远程查看运行状态</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="period">高级版</div>
+      <h4>数字孪生</h4>
+      <ul>
+        <li>数字孪生污水站</li>
+        <li>模拟不同进水水质的效果</li>
+        <li>预测能耗和出水指标</li>
+        <li>辅助客户做方案决策</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight-warn highlight" style="margin-top: 30px;">
+    <p>短期建议先做初级版和中级版，不要一开始就做重型数字孪生，成本高、周期长。</p>
+  </div>
+  <span class="page-num">10</span>
+</div>
+
+<!-- Slide 11: 工程项目端标题 -->
+<div class="slide slide-dark" style="align-items: center; text-align: center;">
+  <div class="section-label" style="color: #fbbf24;">板块三</div>
+  <h2 style="font-size: 2.2em; color: white; margin-bottom: 16px;">工程项目端 AI 赋能</h2>
+  <p style="color: #94a3b8; font-size: 1.1em; max-width: 650px;">工艺方案设计 · AI诊断系统 · 投标文件生成</p>
+  <span class="page-num" style="color: rgba(255,255,255,0.3);">11</span>
+</div>
+
+<!-- Slide 12: 工艺方案 + 诊断 -->
+<div class="slide slide-content">
+  <h3>AI辅助工艺方案设计</h3>
+  <div class="two-col">
+    <div class="col">
+      <h4>输入数据</h4>
+      <ul>
+        <li>水量、COD、BOD、氨氮</li>
+        <li>总氮、总磷、色度、盐分、pH</li>
+        <li>原有工艺</li>
+        <li>出水标准</li>
+        <li>场地限制</li>
+        <li>客户预算</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>AI自动输出</h4>
+      <ul>
+        <li>推荐工艺路线</li>
+        <li>设备选型</li>
+        <li>臭氧投加量初步范围</li>
+        <li>曝气系统配置</li>
+        <li>电耗 / 药剂成本估算</li>
+        <li>改造投资估算</li>
+        <li>运行成本测算</li>
+        <li>技术方案初稿</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight">
+    <h4>核心价值</h4>
+    <p>大幅提高售前响应速度，让销售人员不再完全依赖技术负责人。</p>
+  </div>
+  <span class="page-num">12</span>
+</div>
+
+<!-- Slide 13: 诊断系统 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>"睿美达AI水处理工况诊断系统"</h3>
+  <div class="two-col">
+    <div class="col">
+      <h4>系统功能</h4>
+      <ul>
+        <li>上传历史运行数据</li>
+        <li>分析水质波动规律</li>
+        <li>识别高能耗环节</li>
+        <li>判断臭氧利用效率</li>
+        <li>判断曝气系统是否过曝或欠曝</li>
+        <li>预测改造后节能空间</li>
+        <li>自动生成诊断报告</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>对客户输出</h4>
+      <ul>
+        <li>当前系统问题</li>
+        <li>改造建议</li>
+        <li>投资估算</li>
+        <li>运行成本变化</li>
+        <li>节能降耗测算</li>
+        <li>回收周期</li>
+        <li>风险提示</li>
+      </ul>
+      <p style="margin-top: 16px; font-weight: 600; color: #0ea5e9;">
+        → 可成为售前成交的"武器"
+      </p>
+    </div>
+  </div>
+  <div style="margin-top: 30px; width: 100%; max-width: 1200px;">
+    <h4 style="font-size: 1em; color: #475569; margin-bottom: 14px;">AI投标与方案文件可覆盖内容</h4>
+    <div class="pills">
+      <span class="pill">技术方案初稿</span>
+      <span class="pill">商务标响应</span>
+      <span class="pill green">施工组织设计</span>
+      <span class="pill green">设备参数说明</span>
+      <span class="pill purple">运维服务方案</span>
+      <span class="pill purple">PPT汇报材料</span>
+      <span class="pill orange">类似业绩整理</span>
+    </div>
+    <p style="margin-top: 12px; color: #64748b; font-size: 0.9em;">AI可完成约70%初稿工作，技术人员只需校对和优化。</p>
+  </div>
+  <span class="page-num">13</span>
+</div>
+
+<!-- Slide 14: 产品设备端标题 -->
+<div class="slide slide-dark" style="align-items: center; text-align: center;">
+  <div class="section-label" style="color: #a78bfa;">板块四（核心）</div>
+  <h2 style="font-size: 2.2em; color: white; margin-bottom: 16px;">产品设备端 AI 赋能</h2>
+  <p style="color: #94a3b8; font-size: 1.1em; max-width: 700px;">最核心的差异化方向 —— 从基础产品到智能产品到平台产品的升级路径</p>
+  <span class="page-num" style="color: rgba(255,255,255,0.3);">14</span>
+</div>
+
+<!-- Slide 15: 产品升级路径 -->
+<div class="slide slide-content">
+  <h3>产品升级路径</h3>
+  <div class="upgrade-path">
+    <div class="upgrade-item">
+      <h5>基础产品</h5>
+      <p>超微纳米曝气器<br>臭氧催化氧化设备</p>
+    </div>
+    <div class="upgrade-arrow">→</div>
+    <div class="upgrade-item">
+      <h5>升级产品</h5>
+      <p>纳米曝气臭氧催化氧化<br>一体化设备</p>
+    </div>
+    <div class="upgrade-arrow">→</div>
+    <div class="upgrade-item">
+      <h5>智能产品</h5>
+      <p>AI智能超微纳米曝气<br>臭氧催化氧化系统</p>
+    </div>
+    <div class="upgrade-arrow">→</div>
+    <div class="upgrade-item">
+      <h5>平台产品</h5>
+      <p>智慧水处理<br>运维管理平台</p>
+    </div>
+  </div>
+  <div class="cards" style="margin-top: 36px; grid-template-columns: repeat(3, 1fr);">
+    <div class="card">
+      <div class="card-icon blue">🖥️</div>
+      <h4>AI智能控制柜</h4>
+      <p>最快落地的产品形态。接入臭氧发生器、曝气机组、风机、循环泵、加药系统、PLC等。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">💨</div>
+      <h4>AI自适应臭氧投加</h4>
+      <p>根据进水COD/ORP/pH预测臭氧需求，动态调整功率，减少过量投加。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon purple">🌊</div>
+      <h4>AI智能曝气控制</h4>
+      <p>根据DO/流量/水质负荷动态调节风机频率，避免过曝，放大节能优势。</p>
+    </div>
+  </div>
+  <span class="page-num">15</span>
+</div>
+
+<!-- Slide 16: 智能控制柜详情 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>AI智能控制柜 — 接入参数与控制目标</h3>
+  <div class="two-col">
+    <div class="col">
+      <h4>接入设备</h4>
+      <ul>
+        <li>臭氧发生器</li>
+        <li>曝气机组 / 风机</li>
+        <li>循环泵</li>
+        <li>加药系统</li>
+        <li>在线仪表</li>
+        <li>阀门</li>
+        <li>PLC控制系统</li>
+      </ul>
+      <h4 style="margin-top: 20px;">关键数据</h4>
+      <div class="pills">
+        <span class="pill">进水流量</span>
+        <span class="pill">COD</span>
+        <span class="pill">pH</span>
+        <span class="pill">ORP</span>
+        <span class="pill green">DO</span>
+        <span class="pill green">温度</span>
+        <span class="pill green">浊度</span>
+        <span class="pill purple">氨氮</span>
+        <span class="pill purple">总磷</span>
+        <span class="pill orange">残余臭氧</span>
+        <span class="pill orange">出水COD</span>
+        <span class="pill">电耗</span>
+        <span class="pill">风机频率</span>
+      </div>
+    </div>
+    <div class="col">
+      <h4>AI控制目标</h4>
+      <ul>
+        <li>保证出水达标</li>
+        <li>降低臭氧用量</li>
+        <li>降低风机能耗</li>
+        <li>减少人工调试</li>
+        <li>提高系统稳定性</li>
+        <li>发现异常工况</li>
+      </ul>
+      <h4 style="margin-top: 20px;">对外卖点</h4>
+      <ul>
+        <li>臭氧投加更精准，减少过量投加</li>
+        <li>提高臭氧利用率</li>
+        <li>曝气系统智能节能</li>
+        <li>风机按需运行，降低电耗</li>
+        <li>降低吨水处理成本</li>
+      </ul>
+    </div>
+  </div>
+  <span class="page-num">16</span>
+</div>
+
+<!-- Slide 17: 水质预测 + 故障预测 -->
+<div class="slide slide-content">
+  <h3>AI水质预测与设备故障预测</h3>
+  <div class="cards" style="grid-template-columns: 1fr 1fr;">
+    <div class="card">
+      <div class="card-icon teal">📈</div>
+      <h4>AI水质预测</h4>
+      <p style="margin-bottom: 12px;">水处理系统最大痛点之一是"滞后性" —— 检测出来时问题已经发生。</p>
+      <ul>
+        <li>预测未来1/3/6小时出水水质</li>
+        <li>提前预警COD超标风险</li>
+        <li>提前提示臭氧投加不足</li>
+        <li>提前提示催化剂活性下降</li>
+        <li>提前提示进水冲击负荷</li>
+      </ul>
+      <p style="margin-top: 12px; font-weight: 600; color: #0d9488;">不是等超标后处理，而是提前干预</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">🔧</div>
+      <h4>AI设备故障预测与运维</h4>
+      <p style="margin-bottom: 12px;">可预测对象：臭氧发生器、风机、泵、阀门、在线仪表、催化剂模块、曝气器堵塞等。</p>
+      <ul>
+        <li>设备异常报警</li>
+        <li>故障原因判断</li>
+        <li>维护周期预测</li>
+        <li>备件更换提醒</li>
+        <li>运维工单自动生成</li>
+        <li>远程专家诊断</li>
+      </ul>
+      <p style="margin-top: 12px; font-weight: 600; color: #dc2626;">减少停机 · 降低巡检 · 减少现场人员</p>
+    </div>
+  </div>
+  <span class="page-num">17</span>
+</div>
+
+<!-- Slide 18: 实施路径 -->
+<div class="slide slide-dark" style="align-items: center; text-align: center;">
+  <div class="section-label" style="color: #fbbf24;">Implementation</div>
+  <h2 style="font-size: 2.2em; color: white; margin-bottom: 16px;">短中长期实施路径</h2>
+  <p style="color: #94a3b8; font-size: 1.1em;">哪些能三个月做出来？哪些需要一年？哪些是长期平台能力？</p>
+  <span class="page-num" style="color: rgba(255,255,255,0.3);">18</span>
+</div>
+
+<!-- Slide 19: 三阶段 -->
+<div class="slide slide-content">
+  <h3>三阶段实施规划</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="period">短期 0-3个月</div>
+      <h4>低成本试点，形成可展示成果</h4>
+      <ul>
+        <li>梳理资料建立AI知识库</li>
+        <li>搭建AI营销内容生成体系</li>
+        <li>整理案例形成标准化话术</li>
+        <li>选一套设备加装数据采集</li>
+        <li>搭建设备云端看板</li>
+        <li>形成智能控制柜概念方案</li>
+        <li>做3D工艺流程演示视频</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="period">中期 3-12个月</div>
+      <h4>做出试点项目，验证节能效果</h4>
+      <ul>
+        <li>找实际项目作为AI控制试点</li>
+        <li>接入在线水质/电耗/流量数据</li>
+        <li>建立臭氧投加和曝气控制模型</li>
+        <li>做运行数据对比</li>
+        <li>形成节能降耗评估报告</li>
+        <li>打磨AI智能臭氧设备产品</li>
+        <li>建立远程运维平台基础版</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="period">长期 1-3年</div>
+      <h4>升级为"环保装备+AI运维服务商"</h4>
+      <ul>
+        <li>建立多项目数据样本库</li>
+        <li>建立不同水质类型AI模型</li>
+        <li>形成标准化智能控制系统</li>
+        <li>打造智慧水处理运维平台</li>
+        <li>推出按年收费远程运维服务</li>
+        <li>建设数字孪生污水站</li>
+        <li>形成行业合作生态</li>
+      </ul>
+    </div>
+  </div>
+  <span class="page-num">19</span>
+</div>
+
+<!-- Slide 20: 阶段宣传口径 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>各阶段宣传口径</h3>
+  <div class="cards" style="grid-template-columns: 1fr 1fr;">
+    <div class="card" style="border-top: 4px solid #22c55e;">
+      <h4 style="color: #22c55e;">短期口径</h4>
+      <p style="line-height: 1.9; font-style: italic;">"睿美达正在推动超微纳米曝气臭氧水处理装备从传统设备向智能化装备升级，实现远程监控、数据分析和智能调控。"</p>
+    </div>
+    <div class="card" style="border-top: 4px solid #f59e0b;">
+      <h4 style="color: #f59e0b;">中期口径</h4>
+      <p style="line-height: 1.9; font-style: italic;">"通过在线监测和AI算法优化，系统可根据水质负荷变化动态调整臭氧投加和曝气强度，在保障出水稳定达标的同时，降低运行能耗和药剂消耗。"</p>
+    </div>
+  </div>
+  <div class="highlight-warn highlight" style="margin-top: 24px;">
+    <h4>节能比例表达注意</h4>
+    <p>没有实测数据前不要直接写"降低15%-30%"，建议表达为："具备降低运行能耗的潜力，具体节能效果依据项目水质和运行条件测算。"</p>
+  </div>
+  <span class="page-num">20</span>
+</div>
+
+<!-- Slide 21: 请教问题 -->
+<div class="slide slide-content">
+  <h3>可以向AI专家重点请教的问题</h3>
+  <div class="cards" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div class="card">
+      <div class="card-icon blue">🏢</div>
+      <h4>企业端问题</h4>
+      <ul>
+        <li>最适合先做哪些AI应用？</li>
+        <li>AI知识库怎么搭建？</li>
+        <li>标书/方案能否AI生成？</li>
+        <li>客户画像做到什么程度？</li>
+        <li>AI营销如何避免空泛？</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon purple">⚙️</div>
+      <h4>产品端问题</h4>
+      <ul>
+        <li>臭氧/曝气是否适合AI优化？</li>
+        <li>需要哪些传感器和数据？</li>
+        <li>数据量不大能否先用规则+AI？</li>
+        <li>AI和PLC如何结合？</li>
+        <li>智能控制柜最小可行版本？</li>
+        <li>水质预测需要多少历史数据？</li>
+        <li>COD仪表替代方案？</li>
+        <li>AI如何避免误判？</li>
+        <li>设备端/云端如何分工？</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon green">🤝</div>
+      <h4>合作模式问题</h4>
+      <ul>
+        <li>能否先做三个月试点？</li>
+        <li>试点需要哪些投入？</li>
+        <li>双方如何分工？</li>
+        <li>知识产权如何划分？</li>
+        <li>能否共同打造样板案例？</li>
+      </ul>
+    </div>
+  </div>
+  <span class="page-num">21</span>
+</div>
+
+<!-- Slide 22: 合作方案 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>建议三步合作模式</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>AI赋能诊断</h4>
+      <div class="step-period">周期：2—4周</div>
+      <ul>
+        <li>睿美达AI赋能诊断报告</li>
+        <li>企业内部效率提升建议</li>
+        <li>产品智能化改造建议</li>
+        <li>数据采集清单</li>
+        <li>试点设备方案</li>
+        <li>项目预算预估</li>
+      </ul>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>样机与试点项目</h4>
+      <div class="step-period">周期：3—6个月</div>
+      <ul>
+        <li>AI智能控制柜样机</li>
+        <li>设备远程数据看板</li>
+        <li>臭氧/曝气智能调控模型初版</li>
+        <li>试点运行数据</li>
+        <li>节能效果评估报告</li>
+        <li>产品宣传资料</li>
+      </ul>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>产品化与市场推广</h4>
+      <div class="step-period">周期：6—12个月</div>
+      <ul>
+        <li>AI智能超微纳米臭氧水处理系统</li>
+        <li>标准化产品手册</li>
+        <li>销售PPT + 应用方案</li>
+        <li>数字展厅视频</li>
+        <li>行业白皮书</li>
+        <li>联合品牌推广</li>
+      </ul>
+    </div>
+  </div>
+  <span class="page-num">22</span>
+</div>
+
+<!-- Slide 23: 视频内容 -->
+<div class="slide slide-content">
+  <h3>后期视频内容系列规划</h3>
+  <div class="video-grid">
+    <div class="video-card">
+      <h4>主题一：环保装备为什么必须智能化？</h4>
+      <ul>
+        <li>人工调试经验依赖强</li>
+        <li>水质波动难管控</li>
+        <li>能耗和药耗居高不下</li>
+        <li>AI让设备从"被动运行"变成"主动优化"</li>
+      </ul>
+    </div>
+    <div class="video-card">
+      <h4>主题二：AI如何帮助臭氧水处理降本？</h4>
+      <ul>
+        <li>臭氧投加过多是浪费</li>
+        <li>AI根据水质变化动态调节</li>
+        <li>纳米气泡提升传质效率</li>
+        <li>AI+高效曝气形成组合优势</li>
+      </ul>
+    </div>
+    <div class="video-card">
+      <h4>主题三：从传统曝气到AI智能曝气</h4>
+      <ul>
+        <li>曝气是高能耗环节</li>
+        <li>AI根据DO/流量动态调节</li>
+        <li>超微纳米提升氧利用效率</li>
+        <li>实现节能和稳定运行</li>
+      </ul>
+    </div>
+    <div class="video-card">
+      <h4>主题四：AI智能水处理设备长什么样？</h4>
+      <ul>
+        <li>在线监测 + 智能控制柜</li>
+        <li>云端看板 + 自动报警</li>
+        <li>远程运维 + 水质预测</li>
+        <li>能耗统计 + 报告自动生成</li>
+      </ul>
+    </div>
+    <div class="video-card">
+      <h4>主题五：环保创始人 × AI专家对话</h4>
+      <ul>
+        <li>AI放大工程师经验</li>
+        <li>传统设备为什么要接入数据</li>
+        <li>AI最现实的落地场景</li>
+        <li>从卖设备到卖智能运维服务</li>
+      </ul>
+    </div>
+  </div>
+  <span class="page-num">23</span>
+</div>
+
+<!-- Slide 24: 注意事项 -->
+<div class="slide slide-content" style="background: #fafbfc;">
+  <h3>方案中需要注意的几个问题</h3>
+  <div class="cards" style="grid-template-columns: 1fr 1fr;">
+    <div class="card" style="border-left: 4px solid #ef4444;">
+      <h4>不要一上来就讲太大</h4>
+      <p>"数字孪生""无人化运维""AI全面决策"作为中长期目标，短期先讲数据采集、远程监控、智能报警、辅助决策。</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #f59e0b;">
+      <h4>节能比例要谨慎</h4>
+      <p>"15%-30%"可作为目标区间，没有实际验证前写"有望实现…具体需通过试点数据验证"。</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #22c55e;">
+      <h4>AI不能脱离工艺机理</h4>
+      <p>建议强调"工艺机理模型+运行数据模型+专家经验规则"的组合方式，不是单纯黑箱算法。这句话很专业。</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #3b82f6;">
+      <h4>数据质量是关键</h4>
+      <p>请教：哪些数据必须采？传感器怎么选？采样频率？历史数据不完整怎么办？仪表漂移怎么校准？</p>
+    </div>
+  </div>
+  <span class="page-num">24</span>
+</div>
+
+<!-- Slide 25: 交流提纲 -->
+<div class="slide slide-content">
+  <h3>明天交流提纲顺序</h3>
+  <div class="numbered-list" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="numbered-item">
+      <div class="num">1</div>
+      <p><strong>公司介绍</strong><br>业务、核心技术、应用场景、行业痛点</p>
+    </div>
+    <div class="numbered-item">
+      <div class="num">2</div>
+      <p><strong>为什么关注AI</strong><br>更低成本、更稳达标、更少人工、更智能</p>
+    </div>
+    <div class="numbered-item">
+      <div class="num">3</div>
+      <p><strong>方向一：企业端</strong><br>知识库、方案生成、标书、营销、获客</p>
+    </div>
+    <div class="numbered-item">
+      <div class="num">4</div>
+      <p><strong>方向二：产品端</strong><br>智能控制、臭氧/曝气、水质预测、运维</p>
+    </div>
+    <div class="numbered-item">
+      <div class="num">5</div>
+      <p><strong>方向三：实施路径</strong><br>0-3月、3-12月、1-3年、数据和硬件需求</p>
+    </div>
+    <div class="numbered-item">
+      <div class="num">6</div>
+      <p><strong>方向四：合作模式</strong><br>诊断→试点→产品化、分工、宣传、知识产权</p>
+    </div>
+  </div>
+  <span class="page-num">25</span>
+</div>
+
+<!-- Slide 26: 总定位收尾 -->
+<div class="slide slide-cover" style="background: linear-gradient(135deg, #0f172a 0%, #164e63 50%, #0f766e 100%);">
+  <div style="max-width: 850px; position: relative; z-index: 1;">
+    <div class="section-label" style="color: #5eead4; text-align: center; margin-bottom: 30px;">总定位</div>
+    <h2 style="font-size: 1.4em; font-weight: 400; line-height: 2.2; text-align: center; opacity: 0.95;">
+      睿美达希望以<strong>超微纳米曝气</strong>和<strong>臭氧催化氧化工艺</strong>为核心，<br>
+      融合AI算法、在线监测和远程运维系统，<br>
+      打造新一代<strong>AI智能水处理装备</strong>，<br>
+      实现污水处理从<br>
+    </h2>
+    <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 20px;">
+      <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); border-radius: 12px; padding: 12px 24px; font-size: 1.1em;">人工经验运行</span>
+      <span style="font-size: 1.5em; opacity: 0.6;">→</span>
+      <span style="background: rgba(16,185,129,0.2); border: 1px solid rgba(16,185,129,0.5); border-radius: 12px; padding: 12px 24px; font-size: 1.1em; color: #5eead4;">数据驱动 · 智能调控 · 节能降耗 · 稳定达标</span>
+    </div>
+    <p style="margin-top: 40px; font-size: 0.95em; opacity: 0.6; text-align: center;">这句话后期可以放在PPT、视频、宣传册里</p>
+  </div>
+  <span class="page-num" style="color:rgba(255,255,255,0.4)">26</span>
+</div>
+
+</body>
+</html>
