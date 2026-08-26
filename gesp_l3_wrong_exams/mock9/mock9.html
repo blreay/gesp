@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟卷 九：异常处理 &amp; 文件流专题</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #1a5276;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header .logo-line {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .header .logo-line .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a5276, #2980b9);
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 6px;
+            letter-spacing: 3px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+        .header h1 {
+            font-size: 26px;
+            margin: 15px 0 5px;
+            color: #1a5276;
+        }
+        .header .exam-info-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .header .exam-info {
+            font-size: 15px;
+            color: #555;
+        }
+        .btn-grade {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: #fff;
+            border: none;
+            padding: 8px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: 0 3px 10px rgba(192,57,43,0.3);
+            transition: all 0.2s;
+        }
+        .btn-grade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(192,57,43,0.4);
+        }
+        .btn-grade:active { transform: translateY(0); }
+        .score-display {
+            display: none;
+            margin-top: 12px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #c0392b;
+            text-align: center;
+            animation: scoreIn 0.5s ease;
+        }
+        .score-display .big-score {
+            font-size: 48px;
+            display: inline-block;
+            margin: 0 5px;
+            text-shadow: 1px 1px 3px rgba(192,57,43,0.2);
+        }
+        @keyframes scoreIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px;
+            font-size: 14px;
+        }
+        .score-table th, .score-table td {
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            text-align: center;
+        }
+        .score-table th {
+            background: #eaf2f8;
+            color: #1a5276;
+            font-weight: bold;
+        }
+        .score-table td.scored {
+            color: #c0392b;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .section-title {
+            background: linear-gradient(90deg, #1a5276, #2980b9);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 30px 0 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .question {
+            margin-bottom: 22px;
+            padding: 15px 18px;
+            background: #fafbfc;
+            border-left: 4px solid #2980b9;
+            border-radius: 0 6px 6px 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .question:hover { background: #f0f6fb; }
+        .question .q-text {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        .question .options { padding-left: 10px; }
+        .question .options .opt {
+            margin: 4px 0;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: 2px solid transparent;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .question .options .opt:hover {
+            background: #e8f4fd;
+        }
+        .question .options .opt .radio-dot {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid #aaa;
+            flex-shrink: 0;
+            position: relative;
+            transition: all 0.15s;
+        }
+        .question .options .opt.selected {
+            background: #dceefb;
+            border-color: #2980b9;
+            font-weight: bold;
+        }
+        .question .options .opt.selected .radio-dot {
+            border-color: #2980b9;
+        }
+        .question .options .opt.selected .radio-dot::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #2980b9;
+        }
+        .question.wrong {
+            background: #fff0f0 !important;
+            border-left-color: #e74c3c !important;
+            box-shadow: 0 0 0 2px rgba(231,76,60,0.2);
+        }
+        .question.correct-graded {
+            background: #f0fff0 !important;
+            border-left-color: #27ae60 !important;
+        }
+        .question .correct-answer-tag {
+            display: none;
+            margin-top: 10px;
+            padding: 6px 14px;
+            background: #27ae60;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .question.wrong .correct-answer-tag { display: inline-block; }
+        .btn-copy {
+            display: none;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 4px 14px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.15s;
+        }
+        .btn-copy:hover { background: #c0392b; }
+        .btn-copy.copied { background: #27ae60; }
+        .question.wrong .btn-copy { display: block; }
+        pre {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-family: "Consolas", "Courier New", monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        pre .keyword { color: #0000ff; font-weight: bold; }
+        pre .comment { color: #008000; }
+        pre .string { color: #a31515; }
+        .tf-item {
+            margin-bottom: 14px;
+            padding: 10px 15px;
+            background: #fafbfc;
+            border-left: 4px solid #27ae60;
+            border-radius: 0 6px 6px 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .tf-item .tf-text { font-size: 14px; }
+        .tf-item .tf-options {
+            margin-top: 8px;
+            display: flex;
+            gap: 15px;
+        }
+        .tf-item .tf-options .tf-opt {
+            padding: 5px 20px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.15s;
+            user-select: none;
+        }
+        .tf-item .tf-options .tf-opt:hover {
+            border-color: #27ae60;
+            background: #f0fff0;
+        }
+        .tf-item .tf-options .tf-opt.selected {
+            border-color: #27ae60;
+            background: #27ae60;
+            color: #fff;
+            font-weight: bold;
+        }
+        .tf-item.wrong {
+            background: #fff0f0 !important;
+            border-left-color: #e74c3c !important;
+            box-shadow: 0 0 0 2px rgba(231,76,60,0.2);
+        }
+        .tf-item.correct-graded {
+            background: #f0fff0 !important;
+        }
+        .tf-item .correct-answer-tag {
+            display: none;
+            margin-top: 8px;
+            padding: 4px 12px;
+            background: #27ae60;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .tf-item.wrong .correct-answer-tag { display: inline-block; }
+        .tf-item .btn-copy {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 4px 14px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.15s;
+        }
+        .tf-item .btn-copy:hover { background: #c0392b; }
+        .tf-item .btn-copy.copied { background: #27ae60; }
+        .tf-item.wrong .btn-copy { display: block; }
+        .prog-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fdf9f0;
+            border: 1px solid #f0d9a0;
+            border-radius: 8px;
+        }
+        .prog-section h3 {
+            color: #b8860b;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+        .prog-section .label {
+            font-weight: bold;
+            color: #8b6914;
+            margin-top: 12px;
+        }
+        .sample-box {
+            display: flex;
+            gap: 40px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+        .sample-box .sample {
+            flex: 1;
+            min-width: 200px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+        .sample-box .sample h4 {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            color: #999;
+            font-size: 12px;
+        }
+        .blank { color: #c0392b; font-weight: bold; }
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px 35px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: modalIn 0.25s ease;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-box h3 {
+            font-size: 20px;
+            color: #e67e22;
+            margin-bottom: 15px;
+        }
+        .modal-box .missing-list {
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fdf6ec;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #e67e22;
+        }
+        .modal-box .modal-note {
+            font-size: 13px;
+            color: #888;
+            margin: 10px 0;
+        }
+        .modal-box button {
+            background: linear-gradient(135deg, #e67e22, #f39c12);
+            color: #fff;
+            border: none;
+            padding: 10px 40px;
+            font-size: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .modal-box button:hover { opacity: 0.9; }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 14px;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .toast.show { opacity: 1; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="logo-line">
+            <span class="badge">GESP</span>
+            <span style="font-size:16px; color:#1a5276; font-weight:bold;">CCF 编程能力等级认证 · 错题强化</span>
+        </div>
+        <div class="subtitle">题型仿照 GESP C++ 三级真题格式 · 建议用时 60 分钟</div>
+        <h1>模拟卷 九：异常处理 &amp; 文件流专题</h1>
+        <div class="exam-info-row">
+            <span class="exam-info">考试时间：90 分钟 &nbsp;|&nbsp; 满分：100 分</span>
+            <button class="btn-grade" onclick="gradeExam()">📝 判 卷</button>
+        </div>
+        <div class="score-display" id="scoreDisplay"></div>
+    </div>
+
+    <table class="score-table">
+        <tr>
+            <th>题型</th><th>单选题</th><th>判断题</th><th>编程题</th><th>总分</th>
+        </tr>
+        <tr>
+            <td>分值</td><td>30 分</td><td>20 分</td><td>50 分</td><td>100 分</td>
+        </tr>
+        <tr>
+            <td>得分</td>
+            <td id="scoreChoice" class="scored">—</td>
+            <td id="scoreTF" class="scored">—</td>
+            <td id="scoreProg" class="scored">—</td>
+            <td id="scoreTotal" class="scored">—</td>
+        </tr>
+    </table>
+
+    <div class="section-title">
+        <span>一、单选题</span><span>（每题 2 分，共 30 分）</span>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="1" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">1. 函数 hmean(a, b) 在 a==-b 时会 `throw runtime_error("Runtime error occurred.")`，main 中 `x=10, y=-10` 调用 `hmean(x,y)`，并有 `catch (const runtime_error&amp; e) {...}` 和 `catch (...) {...}`，运行结果是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 屏幕上输出 "Caught: Runtime error occurred."</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 屏幕上输出 "Caught an unknown exception."</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 程序调用 std::terminate() 崩溃</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 编译错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="2" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">2. 如果程序中有一个 `try` 块，但抛出的异常类型没有对应的 `catch` 能匹配，会发生什么（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 程序会自动修复并继续运行</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 程序调用 std::terminate()，直接终止（崩溃）</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 忽略这个异常，继续往下执行</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 自动跳到 main 函数重新开始</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="3" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">3. 关于自定义异常类，下列写法正确的是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 异常类必须继承自 int 类型</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. throw 语句只能抛出 int 或 string，不能抛出自定义类对象</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. class MyError { public: string reason; int code; MyError(string r, int c): reason(r), code(c) {} }; 定义好后可以 `throw MyError("超重", 5);`</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. catch 块无法通过引用接收自定义异常类对象</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="4" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">4. 关于"栈展开"（stack unwinding）和 RAII，说法正确的是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 异常抛出后，调用栈上的局部对象的析构函数不会被调用</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 异常从被抛出到被 catch 的过程中，途经的函数栈帧上的局部对象会依次被析构（自动释放内存/关闭文件等），这就是栈展开</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. RAII 指的是必须手动在每个 catch 块里释放资源</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 栈展开只在程序正常返回时发生，异常时不会发生</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="5" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">5. 下面哪种方式**不能**实现把字符串 "Welcome to 2026!" 输出重定向到文件 log.txt（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 用 freopen("log.txt", "w", stdout) 后再用 printf/cout</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. std::ofstream out("log.txt"); out &lt;&lt; "Welcome to 2026!";</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. std::ofstream out("log.txt"); cout &lt;&lt; "Welcome to 2026!";（没有把 cout 的缓冲区重定向，直接输出到屏幕）</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. cout.rdbuf() 重定向到 ofstream 关联的 streambuf 后，再用 cout &lt;&lt;</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="6" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">6. 下面代码用 ifstream 打开 data.txt 并用 getline 逐行读取输出，对程序功能最准确的描述是（ ）。</div>
+<pre>
+ifstream fin(<span class="string">"data.txt"</span>);
+<span class="keyword">string</span> line;
+<span class="keyword">while</span> (getline(fin, line)) {
+    cout &lt;&lt; line &lt;&lt; endl;
+}
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 从标准输入（键盘）读取每行并输出到屏幕</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 程序无法运行，因为 getline 只能读取 cin</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 把 data.txt 文件的每一行内容依次读取并输出到屏幕</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 程序会创建 data.txt 并写入默认文本</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="7" data-answer="D">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">7. 代码把 "Happy" 和 "New Year" 写入 test.txt（中间用空格分隔），再用 `&gt;&gt;` 读取到 s1，再用 `getline` 读取剩余部分到 s2，输出 `s1 &lt;&lt; "|" &lt;&lt; s2`，结果是（ ）。</div>
+<pre>
+ofstream fout(<span class="string">"test.txt"</span>);
+fout &lt;&lt; <span class="string">"Happy New Year"</span>;
+fout.close();
+ifstream fin(<span class="string">"test.txt"</span>);
+<span class="keyword">string</span> s1, s2;
+fin &gt;&gt; s1;
+getline(fin, s2);
+cout &lt;&lt; s1 &lt;&lt; <span class="string">"|"</span> &lt;&lt; s2;
+</pre>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. Happy|New Year</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. Happy| New Year</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. HappyNew Year|</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. Happy| New Year（getline 会读到 "&gt;&gt;" 留下的那个空格）</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="8" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">8. 关于文件流的状态位，下列描述正确的顺序（检查优先级从高到低）是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 先查 eof，再查 fail，最后查 bad</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 只需要查 good 即可，不需要查其他三个</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 应该先查 bad（硬件级错误最严重），再查 fail（格式错误），最后查 eof（正常读到文件尾）</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 四个状态位互相排斥，同一时刻只可能有一个为真</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="9" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">9. 文件流对象调用 `clear()` 方法的作用是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 清空文件内容</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 清除流对象的错误状态位（如 fail、eof），使流恢复可用</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 关闭文件</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 删除文件</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="10" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">10. `文件流.seekg(0, ios::end);` 之后再调用 `文件流.tellg();`，得到的是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 文件的总字节数（读指针跳到末尾后的位置）</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 文件的第一个字节内容</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 永远是 0</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 文件名的长度</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="11" data-answer="D">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">11. 结构体 `struct Rec { string name; int score; };`（含 string 成员），如果直接用 `文件.write((char*)&amp;rec, sizeof(rec));` 把整个结构体写入二进制文件，会有什么问题（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 完全没问题，读写都正常</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 只有 score 字段能正确保存</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 编译错误</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. string 内部一般是指向堆内存的指针，直接按字节写入只会保存这个指针本身，重新读取后指针失效，数据损坏或崩溃</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="12" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">12. 要把一个 string 安全地序列化保存进二进制文件，正确的做法是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 直接 write(&amp;str, sizeof(str))</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 先写入字符串长度（如一个 int），再写入 str.c_str() 对应的字节内容；读取时先读长度，再 resize 后读入字符内容</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. string 不能被保存到文件中</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 只需要 write(str.c_str(), 1) 就够了</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="13" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">13. `#include "myheader.h"` 和 `#include &lt;myheader.h&gt;` 的主要区别是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 双引号形式通常先在当前源文件所在目录查找，再到系统标准路径查找；尖括号形式一般直接按系统标准路径查找</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. 两者完全没有区别，只是写法习惯不同</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 尖括号只能用于 C 语言，双引号只能用于 C++</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 双引号形式性能更快</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="14" data-answer="C">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">14. 代码 `ofstream out("data.txt"); out &lt;&lt; "Hello"; out.close();` 运行后（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 因为 data.txt 一开始不存在，程序会报错</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. "Hello" 会输出到屏幕，不会写入文件</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. 如果 data.txt 不存在会自动创建，并把 "Hello" 写入其中</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 必须先用 ifstream 打开文件才能用 ofstream 写入</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="question" data-qtype="choice" data-qnum="15" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="q-text">15. 关于文件打开模式，`ofstream out("a.txt", ios::app);` 和默认不加任何模式相比，区别是（ ）。</div>
+        <div class="options">
+            <div class="opt" data-val="A" onclick="selectOpt(this)"><span class="radio-dot"></span>A. 两者完全一样</div>
+            <div class="opt" data-val="B" onclick="selectOpt(this)"><span class="radio-dot"></span>B. app（追加）模式会保留文件原有内容，新写入的内容加在末尾；默认模式会先清空原有内容再写入</div>
+            <div class="opt" data-val="C" onclick="selectOpt(this)"><span class="radio-dot"></span>C. app 模式只能读不能写</div>
+            <div class="opt" data-val="D" onclick="selectOpt(this)"><span class="radio-dot"></span>D. 默认模式是二进制模式，app 是文本模式</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="section-title">
+        <span>二、判断题</span><span>（每题 2 分，共 20 分）</span>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="16" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">1. 在 C++ 中，如果一个函数可能抛出异常，那么调用它时一定要放在 try 子句里，否则程序无法通过编译。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="17" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">2. 未捕获的异常（没有匹配的 catch 块）会调用 std::terminate() 终止程序。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="18" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">3. 在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会打印一条警告后继续正常执行，不会终止。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="19" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">4. `catch(...) {}`（空的捕获所有异常的语句块）是一种推荐的良好编程习惯，因为它能"兜底"处理所有异常。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="20" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">5. 下面代码可以正确地把 "hello" 写入 1.txt 文件（`ifstream` 对象也可以用来写文件）。（ ）</div>
+<pre>
+ifstream filein;
+filein.open(<span class="string">"1.txt"</span>);
+filein &lt;&lt; <span class="string">"hello"</span>;
+</pre>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="21" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">6. 文本文件 1.txt 第 1 行内容是 "01234"（5 个字符，没有空格）。用下面代码读取后，`buff` 的值是字符串 "01234"（即读取到全部 5 个字符）。（ ）</div>
+<pre>
+ifstream filein(<span class="string">"1.txt"</span>);
+<span class="keyword">int</span> buff;
+filein &gt;&gt; buff;
+cout &lt;&lt; buff &lt;&lt; endl;
+</pre>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="22" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">7. 由于操作系统层面的文件重定向，程序员用 C++ 编写程序时，即使代码里写的是 `cout &lt;&lt;`，也不能保证内容一定会显示在屏幕上（可能被重定向到了文件）。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="23" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">8. `[(1,2)*2]*3` 这样的写法在 C++ 中不是合法的表达式（方括号不能这样用于分组）。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="24" data-answer="A">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">9. 一个类的析构函数在异常导致的栈展开过程中依然会被正常调用，这是 C++ 资源管理（RAII）能够正常工作的重要保证。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="tf-item" data-qtype="tf" data-qnum="25" data-answer="B">
+        <button class="btn-copy" onclick="copyQuestion(this)">📋 复制到错题本</button>
+        <div class="tf-text">10. `new` 表达式在内存分配失败时，默认会返回 `nullptr`（类似 C 语言的 malloc 失败返回 NULL），而不是抛出异常。（ ）</div>
+        <div class="tf-options">
+            <div class="tf-opt" data-val="A" onclick="selectTF(this)">✔ 正确</div>
+            <div class="tf-opt" data-val="B" onclick="selectTF(this)">✘ 错误</div>
+        </div>
+        <div class="correct-answer-tag"></div>
+    </div>
+
+    <div class="section-title">
+        <span>三、编程题</span><span>（每题 25 分，共 50 分）</span>
+    </div>
+
+    <div class="prog-section">
+        <h3>编程题 1：自定义异常——安全除法计算器</h3>
+        <p><strong>时间限制：</strong>1.0 s &emsp; <strong>内存限制：</strong>128.0 MB</p>
+        <p class="label">【问题描述】</p>
+        <p>设计一个自定义异常类 DivideError（至少包含被除数、除数两个信息），编写一个除法函数：当除数为 0 时抛出该异常；main 函数中用 try-catch 捕获，若捕获到异常，输出 "Error: divide by zero, a=X"（X 为被除数）；若没有异常，输出正常的除法结果（整数除法，向下取整，即 C++ 默认截断行为）。</p>
+        <p class="label">【输入描述】</p>
+        <p>一行两个整数 a 和 b。</p>
+        <p class="label">【输出描述】</p>
+        <p>若 b 不为 0，输出 a/b（整数除法结果）；若 b 为 0，输出 "Error: divide by zero, a=" 后面接 a 的值（无空格）。</p>
+        <div class="sample-box">
+            <div class="sample"><h4>样例输入 1</h4><pre>10 2</pre></div>
+            <div class="sample"><h4>样例输出 1</h4><pre>5</pre></div>
+        </div>
+        <div class="sample-box">
+            <div class="sample"><h4>样例输入 2</h4><pre>7 0</pre></div>
+            <div class="sample"><h4>样例输出 2</h4><pre>Error: divide by zero, a=7</pre></div>
+        </div>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock9_prob1_divide_exception.cpp</code></p>
+    </div>
+
+    <div class="prog-section">
+        <h3>编程题 2：二进制文件存取学生记录</h3>
+        <p><strong>时间限制：</strong>1.0 s &emsp; <strong>内存限制：</strong>128.0 MB</p>
+        <p class="label">【问题描述】</p>
+        <p>输入 n 名学生的姓名（不含空格，长度不超过20）和分数，请把这些记录以二进制方式写入一个临时文件（文件名固定为 `students.bin`，写入前如果姓名带 string 需要注意序列化，不能直接对含 string 成员的结构体整体 write），然后立刻从该文件重新读取出来，按"姓名 分数"的格式输出（用于验证你的二进制序列化/反序列化是否正确）。</p>
+        <p class="label">【输入描述】</p>
+        <p>第一行一个整数 n；接下来 n 行，每行一个姓名和一个整数分数。</p>
+        <p class="label">【输出描述】</p>
+        <p>输出 n 行，每行是从二进制文件里重新读出来的 "姓名 分数"，顺序与输入一致。</p>
+        <div class="sample-box">
+            <div class="sample"><h4>样例输入</h4><pre>2
+Alice 90
+Bob 88</pre></div>
+            <div class="sample"><h4>样例输出</h4><pre>Alice 90
+Bob 88</pre></div>
+        </div>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock9_prob2_binary_student_io.cpp</code>（只检查最终标准输出内容，不检查 students.bin 文件本身的格式）</p>
+    </div>
+
+    <div class="footer">
+        模拟卷 九：异常处理 &amp; 文件流专题 · 本试卷仅供练习使用
+    </div>
+</div>
+
+<div class="modal-overlay" id="missingModal">
+    <div class="modal-box">
+        <h3>⚠️ 有题目未完成</h3>
+        <div class="missing-list" id="missingList"></div>
+        <div class="modal-note">未作答的题目将不计分，仅对已完成的题目判分。</div>
+        <button onclick="closeMissingModal(true)">继续判卷</button>
+        &nbsp;
+        <button onclick="closeMissingModal(false)" style="background:linear-gradient(135deg,#95a5a6,#bdc3c7);">返回答题</button>
+    </div>
+</div>
+
+<div class="toast" id="copyToast">✅ 已复制到剪贴板</div>
+
+<script>
+function selectOpt(el) {
+    const siblings = el.parentElement.querySelectorAll('.opt');
+    siblings.forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function selectTF(el) {
+    const siblings = el.parentElement.querySelectorAll('.tf-opt');
+    siblings.forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function getUserAnswers() {
+    const answers = {};
+    document.querySelectorAll('.question[data-qtype="choice"]').forEach(q => {
+        const num = q.dataset.qnum;
+        const sel = q.querySelector('.opt.selected');
+        answers[num] = sel ? sel.dataset.val : null;
+    });
+    document.querySelectorAll('.tf-item[data-qtype="tf"]').forEach(q => {
+        const num = q.dataset.qnum;
+        const sel = q.querySelector('.tf-opt.selected');
+        answers[num] = sel ? sel.dataset.val : null;
+    });
+    return answers;
+}
+
+let missingCallback = null;
+
+function closeMissingModal(proceed) {
+    document.getElementById('missingModal').classList.remove('show');
+    if (proceed && missingCallback) missingCallback();
+    missingCallback = null;
+}
+
+function gradeExam() {
+    document.querySelectorAll('.question, .tf-item').forEach(el => {
+        el.classList.remove('wrong', 'correct-graded');
+    });
+
+    const answers = getUserAnswers();
+
+    const missing = [];
+    for (let i = 1; i <= 15; i++) {
+        if (!answers[String(i)]) missing.push('单选第 ' + i + ' 题');
+    }
+    for (let i = 16; i <= 25; i++) {
+        if (!answers[String(i)]) missing.push('判断第 ' + (i - 15) + ' 题');
+    }
+
+    const doGrade = () => {
+        let choiceScore = 0, tfScore = 0;
+
+        document.querySelectorAll('.question[data-qtype="choice"]').forEach(q => {
+            const num = q.dataset.qnum;
+            const correct = q.dataset.answer;
+            const user = answers[num];
+            const tag = q.querySelector('.correct-answer-tag');
+            if (user === null) return;
+            if (user === correct) {
+                choiceScore += 2;
+                q.classList.add('correct-graded');
+                tag.style.display = 'none';
+            } else {
+                q.classList.add('wrong');
+                const correctOpt = q.querySelector('.opt[data-val="'+correct+'"]');
+                const correctText = correctOpt ? correctOpt.textContent.trim() : correct;
+                tag.innerHTML = '✅ 正确答案：' + correct + '. ' + correctText.substring(correctText.indexOf('.')+1).trim();
+                tag.style.display = 'inline-block';
+            }
+        });
+
+        document.querySelectorAll('.tf-item[data-qtype="tf"]').forEach(q => {
+            const num = q.dataset.qnum;
+            const correct = q.dataset.answer;
+            const user = answers[num];
+            const tag = q.querySelector('.correct-answer-tag');
+            if (user === null) return;
+            if (user === correct) {
+                tfScore += 2;
+                q.classList.add('correct-graded');
+                tag.style.display = 'none';
+            } else {
+                q.classList.add('wrong');
+                tag.innerHTML = '✅ 正确答案：' + (correct === 'A' ? '正确 ✔' : '错误 ✘');
+                tag.style.display = 'inline-block';
+            }
+        });
+
+        const total = choiceScore + tfScore;
+
+        document.getElementById('scoreChoice').textContent = choiceScore + ' 分';
+        document.getElementById('scoreTF').textContent = tfScore + ' 分';
+        document.getElementById('scoreProg').textContent = '需线下评测';
+        document.getElementById('scoreTotal').textContent = total + ' / 50 分';
+
+        const disp = document.getElementById('scoreDisplay');
+        let emoji = total >= 40 ? '🎉' : total >= 25 ? '💪' : '📖';
+        disp.innerHTML = emoji + ' 选择 + 判断得分：<span class="big-score">' + total + '</span> / 50 分（编程题请用配套 C++ 测试程序评测）';
+        disp.style.display = 'block';
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    if (missing.length > 0) {
+        document.getElementById('missingList').innerHTML =
+            missing.map(m => '• ' + m).join('<br>');
+        document.getElementById('missingModal').classList.add('show');
+        missingCallback = doGrade;
+    } else {
+        doGrade();
+    }
+}
+
+function copyQuestion(btn) {
+    const container = btn.closest('.question') || btn.closest('.tf-item');
+    if (!container) return;
+
+    let text = '';
+    const qtype = container.dataset.qtype;
+    const correct = container.dataset.answer;
+
+    if (qtype === 'choice') {
+        const qText = container.querySelector('.q-text').textContent;
+        text += qText + '\n';
+        const pre = container.querySelector('pre');
+        if (pre) text += '\n' + pre.textContent.trim() + '\n';
+        text += '\n';
+        container.querySelectorAll('.opt').forEach(opt => {
+            const optText = opt.textContent.trim();
+            const sel = opt.classList.contains('selected');
+            text += (sel ? '→ ' : '  ') + optText + '\n';
+        });
+        const userSel = container.querySelector('.opt.selected');
+        const userAns = userSel ? userSel.dataset.val : '未作答';
+        text += '\n❌ 我的答案：' + userAns;
+        const correctOpt = container.querySelector('.opt[data-val="'+correct+'"]');
+        const correctLabel = correctOpt ? correctOpt.textContent.trim() : correct;
+        text += '\n✅ 正确答案：' + correctLabel + '\n';
+    } else {
+        const tfText = container.querySelector('.tf-text').textContent;
+        text += tfText + '\n';
+        const pre = container.querySelector('pre');
+        if (pre) text += '\n' + pre.textContent.trim() + '\n';
+        const userSel = container.querySelector('.tf-opt.selected');
+        const userAns = userSel ? (userSel.dataset.val === 'A' ? '正确' : '错误') : '未作答';
+        const correctAns = correct === 'A' ? '正确' : '错误';
+        text += '\n❌ 我的答案：' + userAns;
+        text += '\n✅ 正确答案：' + correctAns + '\n';
+    }
+
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ 已复制';
+        btn.classList.add('copied');
+        showToast('已复制到剪贴板，可粘贴到错题本');
+        setTimeout(() => {
+            btn.textContent = '📋 复制到错题本';
+            btn.classList.remove('copied');
+        }, 2000);
+    }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = '✅ 已复制';
+        btn.classList.add('copied');
+        showToast('已复制到剪贴板');
+        setTimeout(() => {
+            btn.textContent = '📋 复制到错题本';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+function showToast(msg) {
+    const t = document.getElementById('copyToast');
+    t.textContent = '✅ ' + msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+}
+</script>
+</body>
+</html>

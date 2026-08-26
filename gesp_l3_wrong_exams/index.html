@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESP C++ 三级/四级 错题强化题库</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "SimSun", sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            min-height: 100vh;
+            color: #333;
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: #fff;
+        }
+        .hero .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 6px 22px;
+            border-radius: 20px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(231,76,60,0.4);
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .hero .stats {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .hero .stats .stat {
+            text-align: center;
+        }
+        .hero .stats .stat .num {
+            font-size: 36px;
+            font-weight: bold;
+            color: #f39c12;
+            text-shadow: 0 2px 8px rgba(243,156,18,0.3);
+        }
+        .hero .stats .stat .label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 2px;
+        }
+        .grid {
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+        .card .card-top {
+            padding: 25px 25px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .card .card-num {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .card:nth-child(1)  .card-num { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .card:nth-child(2)  .card-num { background: linear-gradient(135deg, #00b894, #55efc4); }
+        .card:nth-child(3)  .card-num { background: linear-gradient(135deg, #e17055, #fab1a0); }
+        .card:nth-child(4)  .card-num { background: linear-gradient(135deg, #0984e3, #74b9ff); }
+        .card:nth-child(5)  .card-num { background: linear-gradient(135deg, #fdcb6e, #f39c12); }
+        .card:nth-child(6)  .card-num { background: linear-gradient(135deg, #e84393, #fd79a8); }
+        .card:nth-child(7)  .card-num { background: linear-gradient(135deg, #00cec9, #81ecec); }
+        .card:nth-child(8)  .card-num { background: linear-gradient(135deg, #636e72, #b2bec3); }
+        .card:nth-child(9)  .card-num { background: linear-gradient(135deg, #d63031, #ff7675); }
+        .card:nth-child(10) .card-num { background: linear-gradient(135deg, #2d3436, #636e72); }
+        .card .card-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .card .card-subtitle {
+            font-size: 12px;
+            color: #999;
+            margin-top: 2px;
+        }
+        .card .card-body {
+            padding: 0 25px 20px;
+            flex: 1;
+        }
+        .card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        .card .tags .tag {
+            background: #f0f4f8;
+            color: #555;
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+        .card .card-footer {
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #888;
+            gap: 10px;
+        }
+        .card .card-footer span { line-height: 1.5; }
+        .card .card-footer .start-btn {
+            background: linear-gradient(135deg, #2980b9, #3498db);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.15s;
+        }
+        .card:hover .card-footer .start-btn {
+            background: linear-gradient(135deg, #1a5276, #2980b9);
+            box-shadow: 0 3px 10px rgba(41,128,185,0.3);
+        }
+        .note-box {
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            padding: 22px 30px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            color: rgba(255,255,255,0.75);
+            font-size: 13.5px;
+            line-height: 1.9;
+        }
+        .note-box b { color: #fff; }
+        .note-box a { color: #74b9ff; text-decoration: none; font-weight: bold; }
+        .note-box a:hover { text-decoration: underline; }
+        .note-box code {
+            background: rgba(255,255,255,0.12);
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-size: 12.5px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="badge">GESP</div>
+    <h1>C++ 三级 / 四级 · 错题强化题库</h1>
+    <p>基于错题本（113 张真题截图 + 20 余条文字错题）与 AI 答疑记录整理出 150+ 个知识点，出成 10 套仿真模拟卷。<br>结构对齐 GESP 三级真题：支持在线答题、自动判卷、错题一键复制。</p>
+    <div class="stats">
+        <div class="stat">
+            <div class="num">10</div>
+            <div class="label">套模拟卷</div>
+        </div>
+        <div class="stat">
+            <div class="num">250</div>
+            <div class="label">道选择/判断</div>
+        </div>
+        <div class="stat">
+            <div class="num">20</div>
+            <div class="label">道编程题</div>
+        </div>
+        <div class="stat">
+            <div class="num">150+</div>
+            <div class="label">个知识点覆盖</div>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+
+    <div class="card" onclick="location.href='mock1/mock1.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">01</div>
+            <div>
+                <div class="card-title">模拟试卷（一）</div>
+                <div class="card-subtitle">计算机常识 &amp; 运算符基础</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">计算机常识</span>
+                <span class="tag">运算符优先级</span>
+                <span class="tag">ASCII运算</span>
+                <span class="tag">类型转换</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：字符画像统计 · 存储单位换算</span>
+            <a class="start-btn" href="mock1/mock1.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock2/mock2.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">02</div>
+            <div>
+                <div class="card-title">模拟试卷（二）</div>
+                <div class="card-subtitle">进制转换 &amp; 位运算 &amp; 编码</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">短除法/权重法</span>
+                <span class="tag">原码反码补码</span>
+                <span class="tag">异或与幂符号</span>
+                <span class="tag">按位取反</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：任意进制转换器 · 异或找唯一数</span>
+            <a class="start-btn" href="mock2/mock2.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock3/mock3.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">03</div>
+            <div>
+                <div class="card-title">模拟试卷（三）</div>
+                <div class="card-subtitle">循环 &amp; 条件判断专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">质数/回文判断</span>
+                <span class="tag">continue/break</span>
+                <span class="tag">switch穿透</span>
+                <span class="tag">德摩根定律</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：找所有因数 · 安全整数反转</span>
+            <a class="start-btn" href="mock3/mock3.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock4/mock4.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">04</div>
+            <div>
+                <div class="card-title">模拟试卷（四）</div>
+                <div class="card-subtitle">数组 &amp; 字符串专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">二维数组地址</span>
+                <span class="tag">string vs char[]</span>
+                <span class="tag">ASCII累加</span>
+                <span class="tag">越界访问</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：身高筛选统计 · 字符串数字提取</span>
+            <a class="start-btn" href="mock4/mock4.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock5/mock5.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">05</div>
+            <div>
+                <div class="card-title">模拟试卷（五）</div>
+                <div class="card-subtitle">排序算法专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">冒泡/选择/插入</span>
+                <span class="tag">排序稳定性</span>
+                <span class="tag">sort自定义比较器</span>
+                <span class="tag">lambda/qsort</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：按成绩排名 · 手写冒泡排序</span>
+            <a class="start-btn" href="mock5/mock5.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock6/mock6.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">06</div>
+            <div>
+                <div class="card-title">模拟试卷（六）</div>
+                <div class="card-subtitle">指针 &amp; 变量作用域专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">野指针</span>
+                <span class="tag">指针运算</span>
+                <span class="tag">全局/局部遮蔽</span>
+                <span class="tag">函数声明顺序</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：二维数组统计 · 递归求最大公约数</span>
+            <a class="start-btn" href="mock6/mock6.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock7/mock7.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">07</div>
+            <div>
+                <div class="card-title">模拟试卷（七）</div>
+                <div class="card-subtitle">参数传递 &amp; 结构体专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">值/引用/指针传递</span>
+                <span class="tag">const参数</span>
+                <span class="tag">结构体初始化</span>
+                <span class="tag">重载二义性</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：学生成绩结构体 · Swap与数组去重</span>
+            <a class="start-btn" href="mock7/mock7.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock8/mock8.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">08</div>
+            <div>
+                <div class="card-title">模拟试卷（八）</div>
+                <div class="card-subtitle">时间复杂度 &amp; 递归专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">递归vs递推</span>
+                <span class="tag">O(2ⁿ)辨析</span>
+                <span class="tag">chrono计时</span>
+                <span class="tag">steady_clock</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：斐波那契记忆化 · 汉诺塔移动步数</span>
+            <a class="start-btn" href="mock8/mock8.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock9/mock9.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">09</div>
+            <div>
+                <div class="card-title">模拟试卷（九）</div>
+                <div class="card-subtitle">异常处理 &amp; 文件流专题</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">自定义异常类</span>
+                <span class="tag">RAII/栈展开</span>
+                <span class="tag">流状态位</span>
+                <span class="tag">二进制文件序列化</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：自定义异常除法器 · 二进制文件存取</span>
+            <a class="start-btn" href="mock9/mock9.html">开始答题 →</a>
+        </div>
+    </div>
+
+    <div class="card" onclick="location.href='mock10/mock10.html'" style="cursor:pointer">
+        <div class="card-top">
+            <div class="card-num">10</div>
+            <div>
+                <div class="card-title">模拟试卷（十）</div>
+                <div class="card-subtitle">STL（map）&amp; 综合应用</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="tags">
+                <span class="tag">map自动插入陷阱</span>
+                <span class="tag">find/count</span>
+                <span class="tag">字节单位换算</span>
+                <span class="tag">综合复习</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span>📝 编程：单词词频统计 · 查找重复学号</span>
+            <a class="start-btn" href="mock10/mock10.html">开始答题 →</a>
+        </div>
+    </div>
+
+</div>
+
+<div class="note-box">
+    <b>使用说明：</b>每套模拟卷的选择题/判断题选项均可点击选中，答完后点击卷面右上角的「判卷」按钮即可自动计分（未完成的题目会弹窗提示，不计入得分）；答错的题目会用高亮反差色标出，并附正确答案与「复制」按钮，方便整理错题本。
+    编程题需要自己编译提交的代码，再用配套的 <code>mockN_probM_*.cpp</code> 测试程序验证正确性（用法：<code>g++ -O2 -o test mockN_probM_xxx.cpp &amp;&amp; ./test 你的程序路径</code>）。
+    知识点覆盖核对详情见 <a href="coverage.md">coverage.md</a>。
+</div>
+
+<div class="footer">
+    GESP C++ 三级/四级 错题强化题库 · 基于错题本与 AI 答疑记录整理生成 · 仅供个人练习使用
+</div>
+
+</body>
+</html>
