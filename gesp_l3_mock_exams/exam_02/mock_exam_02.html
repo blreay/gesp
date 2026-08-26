@@ -428,6 +428,25 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+
+        .prog-section .test-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #e0c98a;
+            font-size: 13px;
+            color: #8b6914;
+        }
+        .prog-section .test-note a {
+            color: #b8860b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .prog-section .test-note a:hover { text-decoration: underline; }
+        .prog-section .test-note code {
+            background: #fff8ea;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -783,6 +802,7 @@ N</pre></div>
 </div>
     <p><strong>说明：</strong>判断时忽略大小写，忽略非字母数字字符。例如 "A man, a plan, a canal: Panama" 是回文。</p>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_02_prog1.cpp">test_02_prog1.cpp</a>（编译考生程序后，运行 <code>./test_02_prog1 考生程序路径</code> 即可自动验证）</p>
     </div>
 
     <div class="prog-section">
@@ -804,6 +824,7 @@ Charlie 70 60 50</pre></div>
 3 Charlie 180</pre></div>
 </div>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_02_prog2.cpp">test_02_prog2.cpp</a>（编译考生程序后，运行 <code>./test_02_prog2 考生程序路径</code> 即可自动验证）</p>
     </div>
 
 

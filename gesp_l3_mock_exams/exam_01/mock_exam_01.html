@@ -428,6 +428,25 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+
+        .prog-section .test-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #e0c98a;
+            font-size: 13px;
+            color: #8b6914;
+        }
+        .prog-section .test-note a {
+            color: #b8860b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .prog-section .test-note a:hover { text-decoration: underline; }
+        .prog-section .test-note code {
+            background: #fff8ea;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -800,6 +819,7 @@ a = a ^ b;</pre></div>
     <div class="sample"><h4>样例输出2</h4><pre>5 0</pre></div>
 </div>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_01_prog1.cpp">test_01_prog1.cpp</a>（编译考生程序后，运行 <code>./test_01_prog1 考生程序路径</code> 即可自动验证）</p>
     </div>
 
     <div class="prog-section">
@@ -820,6 +840,7 @@ a = a ^ b;</pre></div>
 </div>
     <p><strong>解释：</strong>主对角线：1+5+9=15，副对角线：3+5+7=15，中心5重复只算一次，答案=15+15-5=25。</p>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_01_prog2.cpp">test_01_prog2.cpp</a>（编译考生程序后，运行 <code>./test_01_prog2 考生程序路径</code> 即可自动验证）</p>
     </div>
 
 

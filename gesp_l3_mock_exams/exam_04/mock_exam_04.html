@@ -428,6 +428,25 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+
+        .prog-section .test-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #e0c98a;
+            font-size: 13px;
+            color: #8b6914;
+        }
+        .prog-section .test-note a {
+            color: #b8860b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .prog-section .test-note a:hover { text-decoration: underline; }
+        .prog-section .test-note code {
+            background: #fff8ea;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -776,6 +795,7 @@ int main(){ f(); f()=10; cout&lt;&lt;f(); }</div>
 </div>
     <p><strong>解释：</strong>12=2×2×3</p>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_04_prog1.cpp">test_04_prog1.cpp</a>（编译考生程序后，运行 <code>./test_04_prog1 考生程序路径</code> 即可自动验证）</p>
     </div>
 
     <div class="prog-section">
@@ -794,6 +814,7 @@ int main(){ f(); f()=10; cout&lt;&lt;f(); }</div>
 </div>
     <p><strong>解释：</strong>3×3的螺旋矩阵：从1开始顺时针填入</p>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_04_prog2.cpp">test_04_prog2.cpp</a>（编译考生程序后，运行 <code>./test_04_prog2 考生程序路径</code> 即可自动验证）</p>
     </div>
 
 

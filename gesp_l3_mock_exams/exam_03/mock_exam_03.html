@@ -428,6 +428,25 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+
+        .prog-section .test-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed #e0c98a;
+            font-size: 13px;
+            color: #8b6914;
+        }
+        .prog-section .test-note a {
+            color: #b8860b;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .prog-section .test-note a:hover { text-decoration: underline; }
+        .prog-section .test-note code {
+            background: #fff8ea;
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body>
@@ -768,6 +787,7 @@ Hello123World</pre></div>
 </div>
     <p><strong>解释：</strong>H→K, e→h, l→o, o→r, W→Z, o→r, r→u, l→o, d→g，数字不变</p>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_03_prog1.cpp">test_03_prog1.cpp</a>（编译考生程序后，运行 <code>./test_03_prog1 考生程序路径</code> 即可自动验证）</p>
     </div>
 
     <div class="prog-section">
@@ -785,6 +805,7 @@ Hello123World</pre></div>
 </div>
     <p><strong>解释：</strong>向右旋转2位：[1,2,3,4,5]→[4,5,1,2,3]</p>
 
+            <p class="test-note">🧪 配套测试程序：<a href="test_03_prog2.cpp">test_03_prog2.cpp</a>（编译考生程序后，运行 <code>./test_03_prog2 考生程序路径</code> 即可自动验证）</p>
     </div>
 
 
