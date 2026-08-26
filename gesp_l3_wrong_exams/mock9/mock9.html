@@ -432,6 +432,16 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+        .prog-file-link {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed #2980b9;
+        }
+        .prog-file-link:hover {
+            color: #c0392b;
+            border-bottom-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -804,7 +814,7 @@ cout &lt;&lt; buff &lt;&lt; endl;
             <div class="sample"><h4>样例输入 2</h4><pre>7 0</pre></div>
             <div class="sample"><h4>样例输出 2</h4><pre>Error: divide by zero, a=7</pre></div>
         </div>
-        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock9_prob1_divide_exception.cpp</code></p>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<a class="prog-file-link" href="mock9_prob1_divide_exception.cpp" target="_blank"><code>mock9_prob1_divide_exception.cpp</code></a>（编译考生程序后，运行 <code>./mock9_prob1_divide_exception 考生程序路径</code> 即可自动验证）</p>
     </div>
 
     <div class="prog-section">
@@ -823,7 +833,7 @@ Bob 88</pre></div>
             <div class="sample"><h4>样例输出</h4><pre>Alice 90
 Bob 88</pre></div>
         </div>
-        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock9_prob2_binary_student_io.cpp</code>（只检查最终标准输出内容，不检查 students.bin 文件本身的格式）</p>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<a class="prog-file-link" href="mock9_prob2_binary_student_io.cpp" target="_blank"><code>mock9_prob2_binary_student_io.cpp</code></a>（编译考生程序后，运行 <code>./mock9_prob2_binary_student_io 考生程序路径</code> 即可自动验证；只检查最终标准输出内容，不检查 students.bin 文件本身的格式）</p>
     </div>
 
     <div class="footer">

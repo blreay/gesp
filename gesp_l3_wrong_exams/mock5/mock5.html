@@ -432,6 +432,16 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+        .prog-file-link {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed #2980b9;
+        }
+        .prog-file-link:hover {
+            color: #c0392b;
+            border-bottom-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -798,7 +808,7 @@ Alice
 Cathy
 David</pre></div>
         </div>
-        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock5_prob1_rank_students.cpp</code>（本题重点考察自定义比较器/稳定排序，测试程序只校验输出结果，不检查实现方式）</p>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<a class="prog-file-link" href="mock5_prob1_rank_students.cpp" target="_blank"><code>mock5_prob1_rank_students.cpp</code></a>（编译考生程序后，运行 <code>./mock5_prob1_rank_students 考生程序路径</code> 即可自动验证；本题重点考察自定义比较器/稳定排序，测试程序只校验输出结果，不检查实现方式）</p>
     </div>
 
     <div class="prog-section">
@@ -815,7 +825,7 @@ David</pre></div>
 5 3 8 1 9 2</pre></div>
             <div class="sample"><h4>样例输出</h4><pre>1 2 3 5 8 9</pre></div>
         </div>
-        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock5_prob2_bubble_sort.cpp</code>（测试程序只校验最终排序结果，无法检测是否真的"手写"了冒泡排序，请自觉遵守题目要求）</p>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<a class="prog-file-link" href="mock5_prob2_bubble_sort.cpp" target="_blank"><code>mock5_prob2_bubble_sort.cpp</code></a>（编译考生程序后，运行 <code>./mock5_prob2_bubble_sort 考生程序路径</code> 即可自动验证；测试程序只校验最终排序结果，无法检测是否真的"手写"了冒泡排序，请自觉遵守题目要求）</p>
     </div>
 
     <div class="footer">

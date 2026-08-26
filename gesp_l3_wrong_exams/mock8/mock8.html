@@ -432,6 +432,16 @@
             transition: opacity 0.3s;
         }
         .toast.show { opacity: 1; }
+        .prog-file-link {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed #2980b9;
+        }
+        .prog-file-link:hover {
+            color: #c0392b;
+            border-bottom-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -832,7 +842,7 @@
             <div class="sample"><h4>样例输入 2</h4><pre>40</pre></div>
             <div class="sample"><h4>样例输出 2</h4><pre>102334155</pre></div>
         </div>
-        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock8_prob1_fib_memo.cpp</code>（设置了2秒超时，用于提醒你关注算法效率；只看输出结果是否正确，不检查具体实现方式）</p>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<a class="prog-file-link" href="mock8_prob1_fib_memo.cpp" target="_blank"><code>mock8_prob1_fib_memo.cpp</code></a>（编译考生程序后，运行 <code>./mock8_prob1_fib_memo 考生程序路径</code> 即可自动验证；设置了2秒超时，用于提醒你关注算法效率；只看输出结果是否正确，不检查具体实现方式）</p>
     </div>
 
     <div class="prog-section">
@@ -852,7 +862,7 @@
             <div class="sample"><h4>样例输入 2</h4><pre>10</pre></div>
             <div class="sample"><h4>样例输出 2</h4><pre>1023</pre></div>
         </div>
-        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<code>mock8_prob2_hanoi_moves.cpp</code></p>
+        <p style="font-size:13px;color:#888;margin-top:10px;">配套测试程序：<a class="prog-file-link" href="mock8_prob2_hanoi_moves.cpp" target="_blank"><code>mock8_prob2_hanoi_moves.cpp</code></a>（编译考生程序后，运行 <code>./mock8_prob2_hanoi_moves 考生程序路径</code> 即可自动验证）</p>
     </div>
 
     <div class="footer">
