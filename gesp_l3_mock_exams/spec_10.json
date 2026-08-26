@@ -1,0 +1,57 @@
+{
+  "exam_num": 10,
+  "difficulty": "综合冲刺",
+  "choice_questions": [
+    {"text": "十进制数100转换为二进制是（）", "options": ["A. 1100100₂", "B. 1100010₂", "C. 1100000₂", "D. 1101100₂"], "answer": "A", "explanation": "100=64+32+4=1100100₂"},
+    {"text": "八进制数 77₈ 加 1₈ 的结果是（）", "options": ["A. 78₈", "B. 100₈", "C. 80₈", "D. 78₁₀"], "answer": "B", "explanation": "77₈+1₈=100₈（类似十进制99+1=100的进位）"},
+    {"text": "int x=0xAB; x&0x0F 的结果是（）", "options": ["A. 0x0A", "B. 0x0B", "C. 0xAB", "D. 0xA0"], "answer": "B", "explanation": "0xAB & 0x0F 取低4位，结果为0x0B=11"},
+    {"text": "将整数x的第n位取反（翻转），正确的操作是（）", "options": ["A. x ^= (1<<n)", "B. x |= (1<<n)", "C. x &= (1<<n)", "D. x &= ~(1<<n)"], "answer": "A", "explanation": "异或1可以翻转对应位"},
+    {"text": "short类型占2字节，short x=-1; unsigned short y=x; y的值是（）", "options": ["A. -1", "B. 32767", "C. 65535", "D. 65536"], "answer": "C", "explanation": "-1的补码全为1，16位全1作为unsigned解释为2^16-1=65535"},
+    {"text": "int a[10]; 数组名a不能进行的操作是（）", "options": ["A. a+1", "B. *a", "C. a++", "D. a==NULL"], "answer": "C", "explanation": "数组名是常量地址，不能自增(++)，但可以参与加法运算"},
+    {"text": "char str[]=\"12345\"; strlen(str)+sizeof(str)的值是（）", "options": ["A. 10", "B. 11", "C. 12", "D. 5"], "answer": "B", "explanation": "strlen(\"12345\")=5, sizeof(str)=6（含'\\0'），5+6=11"},
+    {"text": "int f(int a, int b=10, int c=20); 以下调用合法的是（）", "options": ["A. f(1, , 3)", "B. f()", "C. f(1, 2)", "D. f(1, 2, 3, 4)"], "answer": "C", "explanation": "f有1个必选参数和2个默认参数，f(1,2)合法，传a=1,b=2,c用默认值20"},
+    {"text": "以下哪种情况不属于函数重载？（）", "options": ["A. 参数个数不同", "B. 参数类型不同", "C. 仅返回类型不同", "D. 参数顺序不同"], "answer": "C", "explanation": "仅返回类型不同不构成重载，会导致编译错误"},
+    {"text": "冒泡排序N个元素最多需要比较的次数是（）", "options": ["A. N", "B. N-1", "C. N(N-1)/2", "D. N²"], "answer": "C", "explanation": "冒泡排序最坏情况比较次数为(N-1)+(N-2)+...+1=N(N-1)/2"},
+    {"text": "以下代码输出什么？\nint a=5; int *p=&a; int **pp=&p;\ncout<<**pp;", "options": ["A. 5", "B. a的地址", "C. p的地址", "D. 编译错误"], "answer": "A", "explanation": "pp是指向p的指针，*pp得到p，**pp得到*p即a=5"},
+    {"text": "递归函数int f(int n){if(n<=1)return 1; return n*f(n-1);} f(5)=（）", "options": ["A. 15", "B. 24", "C. 120", "D. 60"], "answer": "C", "explanation": "f(5)=5*4*3*2*1=120，这是阶乘函数"},
+    {"text": "以下代码段执行后，数组a的内容是？\nint a[5]={5,3,1,4,2};\nfor(int i=0;i<4;i++)\n  if(a[i]>a[i+1]) swap(a[i],a[i+1]);", "options": ["A. {3,1,4,2,5}", "B. {1,3,4,2,5}", "C. {3,1,2,4,5}", "D. {1,2,3,4,5}"], "answer": "A", "explanation": "这是冒泡排序的一轮：(5,3)交换→{3,5,1,4,2},(5,1)交换→{3,1,5,4,2},(5,4)交换→{3,1,4,5,2},(5,2)交换→{3,1,4,2,5}"},
+    {"text": "string s=\"ABCDE\"; for(int i=0;i<s.length();i++) s[i]=s[i]+32; cout<<s; 输出（）", "options": ["A. abcde", "B. ABCDE", "C. 乱码", "D. 编译错误"], "answer": "A", "explanation": "大写字母ASCII加32得到对应小写字母，ABCDE→abcde"},
+    {"text": "以下代码的输出是？\nint x=1;\nfor(int i=1;i<=4;i++) x*=i;\ncout<<x;", "options": ["A. 10", "B. 24", "C. 4", "D. 16"], "answer": "B", "explanation": "x依次为1*1=1, 1*2=2, 2*3=6, 6*4=24"}
+  ],
+  "tf_questions": [
+    {"text": "C++中的struct和class的区别仅在于默认访问权限不同。", "answer": "T", "explanation": "struct默认public，class默认private，其他功能相同"},
+    {"text": "指针可以进行加减整数运算，但两个指针不能相加。", "answer": "T", "explanation": "两个指针相加没有意义，但可以相减得到元素个数差"},
+    {"text": "冒泡排序是稳定排序，选择排序是不稳定排序。", "answer": "T", "explanation": "冒泡排序不会交换相等元素所以稳定，选择排序可能改变相等元素顺序"},
+    {"text": "对长度为n的有序数组进行二分查找，最多比较次数约为log₂n。", "answer": "T", "explanation": "二分查找时间复杂度O(log n)"},
+    {"text": "递归函数每次调用都会在栈上分配新的局部变量空间。", "answer": "T", "explanation": "每次函数调用都有自己的栈帧，包含局部变量"},
+    {"text": "C++中数组下标从0开始，所以长度为n的数组最大下标是n。", "answer": "F", "explanation": "最大合法下标是n-1"},
+    {"text": "int a=INT_MAX; a+1的结果是INT_MIN（有符号溢出）。", "answer": "F", "explanation": "有符号整数溢出是未定义行为，虽然大多数系统上结果是INT_MIN，但标准不保证"},
+    {"text": "switch语句中，如果没有break，会从匹配的case继续执行到后续case。", "answer": "T", "explanation": "这称为case穿透(fall-through)"},
+    {"text": "const int N=10; int a[N]; 这段代码在C++中是合法的。", "answer": "T", "explanation": "const整型变量在C++中可以作为数组大小（编译期常量）"},
+    {"text": "位运算通常比乘除法运算更快。", "answer": "T", "explanation": "位运算直接对应CPU位操作指令，比乘除法快"}
+  ],
+  "programming": [
+    {
+      "title": "大整数加法",
+      "description": "给定两个非负大整数（位数可达1000位），计算它们的和。",
+      "input_format": "两行，每行一个非负整数（不含前导零，但0本身用'0'表示）。位数不超过1000。",
+      "output_format": "一行，两个大整数的和（不含前导零）。",
+      "sample_input": "999999999999999999999999\n1",
+      "sample_output": "1000000000000000000000000",
+      "explanation": "24位的全9加1得到25位的1后面24个0"
+    },
+    {
+      "title": "括号匹配",
+      "description": "给定一个只包含括号字符'(', ')', '[', ']', '{', '}'的字符串，判断括号是否正确匹配。匹配规则：左括号必须与对应类型的右括号配对，且嵌套顺序正确。",
+      "input_format": "一行字符串，只包含()[]{}六种字符，长度不超过10000。",
+      "output_format": "如果匹配输出Yes，否则输出No。",
+      "sample_input": "{[()]}",
+      "sample_output": "Yes",
+      "explanation": "括号正确嵌套配对"
+    }
+  ],
+  "solutions": [
+    "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    string a, b;\n    cin >> a >> b;\n    reverse(a.begin(), a.end());\n    reverse(b.begin(), b.end());\n    string result = \"\";\n    int carry = 0;\n    int maxLen = max(a.length(), b.length());\n    for (int i = 0; i < maxLen; i++) {\n        int da = (i < a.length()) ? (a[i] - '0') : 0;\n        int db = (i < b.length()) ? (b[i] - '0') : 0;\n        int sum = da + db + carry;\n        result += (char)('0' + sum % 10);\n        carry = sum / 10;\n    }\n    if (carry) result += '1';\n    reverse(result.begin(), result.end());\n    cout << result << endl;\n    return 0;\n}",
+    "#include <iostream>\n#include <string>\n#include <stack>\nusing namespace std;\n\nint main() {\n    string s;\n    cin >> s;\n    stack<char> st;\n    for (int i = 0; i < s.length(); i++) {\n        char c = s[i];\n        if (c == '(' || c == '[' || c == '{') {\n            st.push(c);\n        } else {\n            if (st.empty()) { cout << \"No\" << endl; return 0; }\n            char top = st.top();\n            if ((c == ')' && top == '(') || (c == ']' && top == '[') || (c == '}' && top == '{')) {\n                st.pop();\n            } else {\n                cout << \"No\" << endl; return 0;\n            }\n        }\n    }\n    cout << (st.empty() ? \"Yes\" : \"No\") << endl;\n    return 0;\n}"
+  ]
+}

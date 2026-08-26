@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>GESP C++ 三级模拟试卷（第6套）- 参考答案</title>
+<style>
+body { font-family: 'Microsoft YaHei', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.8; }
+h1 { color: #1a237e; border-bottom: 2px solid #7b1fa2; padding-bottom: 10px; }
+table { border-collapse: collapse; margin: 15px 0; }
+th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: center; }
+th { background: #1a237e; color: white; }
+pre { background: #f5f5f5; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+h2 { color: #7b1fa2; margin-top: 30px; }
+h3 { color: #1a237e; margin-top: 20px; }
+</style>
+</head>
+<body>
+<h1>GESP C++ 三级模拟试卷（第6套）- 参考答案</h1>
+
+<h2>一、单选题答案</h2>
+<table>
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>A</td><td>B</td><td>C</td><td>A</td><td>B</td><td>C</td><td>D</td><td>B</td><td>A</td><td>B</td><td>D</td><td>D</td><td>A</td><td>A</td><td>B</td></tr>
+</table>
+
+<h2>二、判断题答案</h2>
+<table>
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+<tr><td>答案</td><td>√</td><td>√</td><td>√</td><td>√</td><td>×</td><td>√</td><td>×</td><td>√</td><td>√</td><td>√</td></tr>
+</table>
+
+<h2>详细解析</h2>
+<p><strong>1.</strong> 答案A。3₈=011₂, 7₈=111₂, 合并为011111₂即11111₂</p>
+<p><strong>2.</strong> 答案B。A₁₆=10, A5₁₆=10×16+5=165</p>
+<p><strong>3.</strong> 答案C。任何数与自身异或结果为0</p>
+<p><strong>4.</strong> 答案A。异或交换法：a^=b使a=a^b，b^=a使b=b^(a^b)=a，a^=b使a=(a^b)^a=b</p>
+<p><strong>5.</strong> 答案B。8位补码范围为-2^7到2^7-1，即-128到127</p>
+<p><strong>6.</strong> 答案C。-1的补码全部位为1，32位即0xFFFFFFFF</p>
+<p><strong>7.</strong> 答案D。数组下标0~4有效，a[5]越界访问，属于未定义行为</p>
+<p><strong>8.</strong> 答案B。*(p++)先取*p的值即a[0]=1，然后p自增</p>
+<p><strong>9.</strong> 答案A。s.substr(2,3)="cde", s.substr(0,2)="ab", 拼接为"cdeab"</p>
+<p><strong>10.</strong> 答案B。"Hello"的第0个字符'H'改为'h'，得到"hello"</p>
+<p><strong>11.</strong> 答案D。结构体定义需要分号结尾，成员用分号分隔</p>
+<p><strong>12.</strong> 答案D。内存对齐：name[20]+padding(4)+age(4)+padding(4)+score(8)=40字节（double需要8字节对齐）</p>
+<p><strong>13.</strong> 答案A。经典交换算法：用c暂存a的值，a=b=5，b=c=3，输出"5 3"</p>
+<p><strong>14.</strong> 答案A。跳过i=3，sum=1+2+4+5=12</p>
+<p><strong>15.</strong> 答案B。字符串中数字字符有'1','2','3'共3个</p>
+<p><strong>16.</strong> 对。同类型结构体支持赋值运算，执行逐成员拷贝</p>
+<p><strong>17.</strong> 对。结构体支持值传递和作为返回值</p>
+<p><strong>18.</strong> 对。优化版冒泡排序（加标志位）在已排序时只需一轮比较，时间O(n)</p>
+<p><strong>19.</strong> 对。基本有序时插入排序接近O(n)</p>
+<p><strong>20.</strong> 错。strlen不计算末尾'\0'，长度为3</p>
+<p><strong>21.</strong> 对。C++ string重载了+运算符用于字符串拼接</p>
+<p><strong>22.</strong> 错。==的优先级高于|，所以a|b==c实际是a|(b==c)</p>
+<p><strong>23.</strong> 对。位运算符只适用于整数类型</p>
+<p><strong>24.</strong> 对。const变量定义后不能修改，所以必须在定义时初始化</p>
+<p><strong>25.</strong> 对。全局变量和静态变量会被自动零初始化</p>
+
+
+<h2>三、编程题参考答案</h2>
+<h3>编程题1参考代码</h3>
+<pre>#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+    int upper=0, lower=0, digit=0, space=0, other=0;
+    for (int i = 0; i < s.length(); i++) {
+        if (s[i] >= 'A' && s[i] <= 'Z') upper++;
+        else if (s[i] >= 'a' && s[i] <= 'z') lower++;
+        else if (s[i] >= '0' && s[i] <= '9') digit++;
+        else if (s[i] == ' ') space++;
+        else other++;
+    }
+    cout << upper << endl << lower << endl << digit << endl << space << endl << other << endl;
+    return 0;
+}</pre>
+<h3>编程题2参考代码</h3>
+<pre>#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    vector<int> people;
+    for (int i = 1; i <= n; i++) people.push_back(i);
+    int idx = 0;
+    for (int i = 0; i < n; i++) {
+        idx = (idx + m - 1) % people.size();
+        if (i > 0) cout << " ";
+        cout << people[idx];
+        people.erase(people.begin() + idx);
+        if (idx >= (int)people.size()) idx = 0;
+    }
+    cout << endl;
+    return 0;
+}</pre>
+
+</body>
+</html>

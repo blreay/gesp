@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 三级模拟试卷（第7套）- 答案与解析</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f7fa; padding: 20px; line-height: 1.8; }
+.header { background: linear-gradient(135deg, #1a237e, #7b1fa2); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+.header h1 { font-size: 24px; }
+.answer-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.answer-table th { background: #1a237e; color: white; padding: 10px; }
+.answer-table td { padding: 8px 12px; border: 1px solid #e0e0e0; text-align: center; }
+.answer-table tr:nth-child(even) { background: #f5f5f5; }
+.section-title { background: #1a237e; color: white; padding: 12px 20px; border-radius: 8px; font-size: 18px; margin-top: 30px; margin-bottom: 15px; }
+.explanation { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.explanation h3 { color: #1a237e; margin-bottom: 8px; }
+.explanation .answer-mark { color: #4caf50; font-weight: bold; }
+pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-family: 'Courier New', Consolas, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>GESP C++ 三级模拟试卷（第7套）- 答案与解析</h1>
+</div>
+
+<div class="section-title">答案一览表</div>
+<table class="answer-table">
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>C</td><td>B</td><td>A</td><td>D</td><td>B</td><td>C</td><td>A</td><td>D</td><td>C</td><td>B</td><td>A</td><td>C</td><td>B</td><td>A</td><td>D</td></tr>
+<tr><th>题号</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th colspan="5"></th></tr>
+<tr><td>答案</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td colspan="5"></td></tr>
+</table>
+
+<div class="section-title">单选题详细解析</div>
+
+<div class="explanation">
+<h3>第1题 <span class="answer-mark">答案：C</span></h3>
+<p>45的二进制为00101101。取反得11010010，加1得11010011。所以-45的8位补码为11010011。验证：-128+64+16+2+1=-128+83=-45。</p>
+</div>
+
+<div class="explanation">
+<h3>第2题 <span class="answer-mark">答案：B</span></h3>
+<p>0x3F = 3×16 + 15 = 48 + 15 = 63。</p>
+</div>
+
+<div class="explanation">
+<h3>第3题 <span class="answer-mark">答案：A</span></h3>
+<p>0xAB = 10×16+11 = 171，二进制为10101011。右移4位：00001010=10（即高4位A=10）。与0x0F：取低4位00001011=11（即B=11）。输出"10 11"。</p>
+</div>
+
+<div class="explanation">
+<h3>第4题 <span class="answer-mark">答案：D</span></h3>
+<p>100的二进制为1100100。n | (1&lt;&lt;3)：将第3位置1，得1101100=108。n & ~(1&lt;&lt;2)：将第2位清0，1101100 & 1111011 = 1101000 = 104。</p>
+</div>
+
+<div class="explanation">
+<h3>第5题 <span class="answer-mark">答案：B</span></h3>
+<p>2的幂的二进制只有一个1（如8=1000）。n-1会把该位变0，低位全变1（如7=0111）。n&(n-1)=0。这是经典的判断2的幂的方法。注意n必须为正数。</p>
+</div>
+
+<div class="explanation">
+<h3>第6题 <span class="answer-mark">答案：C</span></h3>
+<p>最高位为1表示负数。补码10000001，取反得01111110=126，加1得127。所以表示-127。</p>
+</div>
+
+<div class="explanation">
+<h3>第7题 <span class="answer-mark">答案：A</span></h3>
+<p>p = a+2，指向a[2]=30。p-1指向a[1]=20，p+1指向a[3]=40。输出"20 40"。</p>
+</div>
+
+<div class="explanation">
+<h3>第8题 <span class="answer-mark">答案：D</span></h3>
+<p>p指向a[0]。*(p+3)即a[3]，*p即a[0]=5，*(p+4)即a[4]=9。a[3] = 5 + 9 = 14。数组变为{5,3,8,14,9}。</p>
+</div>
+
+<div class="explanation">
+<h3>第9题 <span class="answer-mark">答案：C</span></h3>
+<p>这是斐波那契数列：f(1)=1, f(2)=1, f(3)=2, f(4)=3, f(5)=f(4)+f(3)=3+2=5。等等，让我重新计算：f(0)=1, f(1)=1, f(2)=f(1)+f(0)=2, f(3)=f(2)+f(1)=3, f(4)=f(3)+f(2)=5, f(5)=f(4)+f(3)=8。答案为8。</p>
+</div>
+
+<div class="explanation">
+<h3>第10题 <span class="answer-mark">答案：B</span></h3>
+<p>递归先处理g(n/10)再输出n%10。g(1234)→g(123)→g(12)→g(1)→g(0)(返回)。回溯时依次输出：1%10=1，12%10=2，123%10=3，1234%10=4。最终输出"1234"。</p>
+</div>
+
+<div class="explanation">
+<h3>第11题 <span class="answer-mark">答案：A</span></h3>
+<p>冒泡排序第一趟从左到右比较相邻元素：(5,2)交换→{2,5,8,3,1}；(5,8)不换；(8,3)交换→{2,5,3,8,1}；(8,1)交换→{2,5,3,1,8}。最大值8到末尾。</p>
+</div>
+
+<div class="explanation">
+<h3>第12题 <span class="answer-mark">答案：C</span></h3>
+<p>选择排序每轮从剩余元素中选最小值，需要比较(n-1)+(n-2)+...+1 = n*(n-1)/2次，与数据初始顺序无关。</p>
+</div>
+
+<div class="explanation">
+<h3>第13题 <span class="answer-mark">答案：B</span></h3>
+<p>a++是后置递增，先取a=3参与运算，运算后a变4。++b是前置递增，b先变6再参与运算。c = 3 + 6 = 9。最终a=4, b=6, c=9。</p>
+</div>
+
+<div class="explanation">
+<h3>第14题 <span class="answer-mark">答案：A</span></h3>
+<p>条件i%3==0 && i%5==0等价于i%15==0。1到100中15的倍数：15+30+45+60+75+90=315。</p>
+</div>
+
+<div class="explanation">
+<h3>第15题 <span class="answer-mark">答案：D</span></h3>
+<p>逐步计算XOR：0^2=2, 2^4=6, 6^6=0, 0^8=8, 8^10=2。二进制：1000^1010=0010=2。答案为2。</p>
+</div>
+
+<div class="section-title">判断题详细解析</div>
+
+<div class="explanation">
+<h3>第16题 <span class="answer-mark">答案：对</span></h3>
+<p>优化版冒泡排序加入标志位，若一趟没有交换则提前结束。数据已有序时只需一趟扫描O(n)即可确认。</p>
+</div>
+
+<div class="explanation">
+<h3>第17题 <span class="answer-mark">答案：错</span></h3>
+<p>选择排序不稳定。例如{5a, 5b, 2}，第一趟选最小值2与5a交换，得{2, 5b, 5a}，两个5的相对顺序改变。</p>
+</div>
+
+<div class="explanation">
+<h3>第18题 <span class="answer-mark">答案：对</span></h3>
+<p>1&lt;&lt;31将1移到32位int的最高位（符号位），得到0x80000000，在有符号int中表示INT_MIN=-2147483648，是负数。</p>
+</div>
+
+<div class="explanation">
+<h3>第19题 <span class="answer-mark">答案：错</span></h3>
+<p>~0将所有位取反，0的所有位为0，取反后全为1，即0xFFFFFFFF，在有符号int中等于-1，不是1。</p>
+</div>
+
+<div class="explanation">
+<h3>第20题 <span class="answer-mark">答案：对</span></h3>
+<p>指针变量的值是内存地址。通过解引用操作符*才能访问该地址存储的值。</p>
+</div>
+
+<div class="explanation">
+<h3>第21题 <span class="answer-mark">答案：错</span></h3>
+<p>p+5指向a[5]，已经越过数组最后一个元素a[4]。p+4才指向最后一个元素a[4]。p+5指向的是数组尾后位置。</p>
+</div>
+
+<div class="explanation">
+<h3>第22题 <span class="answer-mark">答案：对</span></h3>
+<p>插入排序对于近乎有序的数据，内层循环几乎不需要移动元素，每次插入只需O(1)，总体接近O(n)。</p>
+</div>
+
+<div class="explanation">
+<h3>第23题 <span class="answer-mark">答案：错</span></h3>
+<p>选择排序最坏情况下交换次数为O(n)（每轮最多交换1次）。冒泡排序最坏情况下交换次数为O(n^2)（逆序时每次比较都交换）。两者不同。</p>
+</div>
+
+<div class="explanation">
+<h3>第24题 <span class="answer-mark">答案：对</span></h3>
+<p>double转int时小数部分被截断（向零取整），如3.9变为3，-2.7变为-2。</p>
+</div>
+
+<div class="explanation">
+<h3>第25题 <span class="answer-mark">答案：错</span></h3>
+<p>unsigned int为无符号类型，不能表示负数。0u-1会发生无符号下溢，结果为UINT_MAX（32位下为4294967295），而不是-1。</p>
+</div>
+
+<div class="section-title">编程题参考答案</div>
+
+<div class="explanation">
+<h3>编程题1：最大公约数与最小公倍数</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+long long gcd(long long a, long long b) {
+    while (b != 0) {
+        long long t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
+}
+
+long long lcm(long long a, long long b) {
+    return a / gcd(a, b) * b;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    long long g, l;
+    cin >> g;
+    l = g;
+    for (int i = 1; i < n; i++) {
+        long long x;
+        cin >> x;
+        g = gcd(g, x);
+        l = lcm(l, x);
+    }
+    cout << g << " " << l << endl;
+    return 0;
+}</pre>
+</div>
+
+<div class="explanation">
+<h3>编程题2：杨辉三角</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[20][20] = {0};
+    for (int i = 0; i < n; i++) {
+        a[i][0] = 1;
+        a[i][i] = 1;
+        for (int j = 1; j < i; j++)
+            a[i][j] = a[i-1][j-1] + a[i-1][j];
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= i; j++)
+            cout << setw(4) << a[i][j];
+        cout << endl;
+    }
+    return 0;
+}</pre>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 三级模拟试卷集</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #e0e0e0;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 40px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.hero h1 {
+    font-size: 36px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+}
+.hero p { font-size: 16px; color: #aaa; margin-bottom: 20px; }
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 25px;
+}
+.stat-item {
+    text-align: center;
+}
+.stat-num {
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.stat-label { font-size: 14px; color: #888; margin-top: 5px; }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+.card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(102,126,234,0.5);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.card-num {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 80px;
+    font-weight: bold;
+    opacity: 0.05;
+    color: white;
+}
+.card-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.badge-medium { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.badge-hard { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.badge-challenge { background: linear-gradient(135deg, #fa709a, #fee140); color: #333; }
+.card h3 { font-size: 18px; margin-bottom: 8px; color: #fff; }
+.card .subtitle { font-size: 13px; color: #999; margin-bottom: 15px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 15px; }
+.tag {
+    padding: 3px 10px;
+    background: rgba(102,126,234,0.15);
+    border: 1px solid rgba(102,126,234,0.3);
+    border-radius: 10px;
+    font-size: 11px;
+    color: #a8b5ff;
+}
+.prog-list { margin-bottom: 18px; }
+.prog-item {
+    font-size: 13px;
+    color: #bbb;
+    padding: 3px 0;
+}
+.prog-item::before { content: "💻 "; }
+.btn-start {
+    display: inline-block;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.btn-start:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+}
+.footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #666;
+    font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+    <h1>GESP C++ 三级模拟试卷集</h1>
+    <p>基于 CCF GESP 考纲知识点和 2023-2025 年真题分析，难度递进式编排</p>
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-num">10</div>
+            <div class="stat-label">套模拟卷</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">250</div>
+            <div class="stat-label">道选择判断题</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">20</div>
+            <div class="stat-label">道编程题</div>
+        </div>
+    </div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+    <div class="card-num">01</div>
+    <span class="card-badge badge-medium">中等偏上</span>
+    <h3>第 1 套模拟试卷</h3>
+    <div class="subtitle">进制转换 · 位运算基础 · 函数传参</div>
+    <div class="tags">
+        <span class="tag">二进制小数</span>
+        <span class="tag">位运算交换</span>
+        <span class="tag">补码</span>
+        <span class="tag">引用传递</span>
+        <span class="tag">指针基础</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">数位之和（递归求和）</div>
+        <div class="prog-item">矩阵对角线（二维数组）</div>
+    </div>
+    <a href="exam_01/mock_exam_01.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">02</div>
+    <span class="card-badge badge-medium">中等偏上</span>
+    <h3>第 2 套模拟试卷</h3>
+    <div class="subtitle">八/十六进制运算 · 递归 · 排序基础</div>
+    <div class="tags">
+        <span class="tag">进制加法</span>
+        <span class="tag">按位取反</span>
+        <span class="tag">冒泡排序</span>
+        <span class="tag">递归函数</span>
+        <span class="tag">二分查找</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">回文判断（字符串处理）</div>
+        <div class="prog-item">成绩统计（排序应用）</div>
+    </div>
+    <a href="exam_02/mock_exam_02.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">03</div>
+    <span class="card-badge badge-medium">中等偏上</span>
+    <h3>第 3 套模拟试卷</h3>
+    <div class="subtitle">位操作进阶 · 二维数组 · 静态变量</div>
+    <div class="tags">
+        <span class="tag">lowbit</span>
+        <span class="tag">算术右移</span>
+        <span class="tag">补码加法</span>
+        <span class="tag">static变量</span>
+        <span class="tag">指针解引用</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">密码生成器（凯撒加密）</div>
+        <div class="prog-item">数组旋转（三次反转法）</div>
+    </div>
+    <a href="exam_03/mock_exam_03.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">04</div>
+    <span class="card-badge badge-medium">中等偏上</span>
+    <h3>第 4 套模拟试卷</h3>
+    <div class="subtitle">整数溢出 · 函数重载 · 选择排序</div>
+    <div class="tags">
+        <span class="tag">unsigned溢出</span>
+        <span class="tag">函数重载</span>
+        <span class="tag">默认参数</span>
+        <span class="tag">选择排序</span>
+        <span class="tag">二进制乘法</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">质因数分解</div>
+        <div class="prog-item">蛇形矩阵（螺旋填充）</div>
+    </div>
+    <a href="exam_04/mock_exam_04.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">05</div>
+    <span class="card-badge badge-hard">较难</span>
+    <h3>第 5 套模拟试卷</h3>
+    <div class="subtitle">指针与数组 · 位掩码 · 递归深度</div>
+    <div class="tags">
+        <span class="tag">小数转二进制</span>
+        <span class="tag">位掩码提取</span>
+        <span class="tag">指针算术</span>
+        <span class="tag">插入排序</span>
+        <span class="tag">递归计数</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">进制转换器（任意进制）</div>
+        <div class="prog-item">矩阵乘法</div>
+    </div>
+    <a href="exam_05/mock_exam_05.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">06</div>
+    <span class="card-badge badge-hard">较难</span>
+    <h3>第 6 套模拟试卷</h3>
+    <div class="subtitle">结构体 · 字符串操作 · 排序比较</div>
+    <div class="tags">
+        <span class="tag">结构体</span>
+        <span class="tag">string操作</span>
+        <span class="tag">异或交换</span>
+        <span class="tag">补码表示</span>
+        <span class="tag">排序稳定性</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">字符统计（文本分析）</div>
+        <div class="prog-item">约瑟夫环（模拟）</div>
+    </div>
+    <a href="exam_06/mock_exam_06.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">07</div>
+    <span class="card-badge badge-hard">较难</span>
+    <h3>第 7 套模拟试卷</h3>
+    <div class="subtitle">递归与分治 · 排序分析 · 位运算综合</div>
+    <div class="tags">
+        <span class="tag">递归深度</span>
+        <span class="tag">排序交换次数</span>
+        <span class="tag">位运算综合</span>
+        <span class="tag">函数调用栈</span>
+        <span class="tag">指针运算</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">最大公约数与最小公倍数</div>
+        <div class="prog-item">杨辉三角（格式化输出）</div>
+    </div>
+    <a href="exam_07/mock_exam_07.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">08</div>
+    <span class="card-badge badge-hard">较难</span>
+    <h3>第 8 套模拟试卷</h3>
+    <div class="subtitle">补码陷阱 · 数组排序 · 字符串匹配</div>
+    <div class="tags">
+        <span class="tag">补码比较</span>
+        <span class="tag">二分查找</span>
+        <span class="tag">数组拷贝</span>
+        <span class="tag">const参数</span>
+        <span class="tag">插入排序</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">水仙花数扩展（自恋数）</div>
+        <div class="prog-item">稀疏矩阵压缩（三元组）</div>
+    </div>
+    <a href="exam_08/mock_exam_08.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">09</div>
+    <span class="card-badge badge-challenge">综合冲刺</span>
+    <h3>第 9 套模拟试卷</h3>
+    <div class="subtitle">指针数组 · 复杂递归 · 综合应用</div>
+    <div class="tags">
+        <span class="tag">多级指针</span>
+        <span class="tag">复杂递归</span>
+        <span class="tag">位运算max</span>
+        <span class="tag">补码溢出</span>
+        <span class="tag">排序稳定性</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">表达式求值（优先级）</div>
+        <div class="prog-item">迷宫最短路径（BFS）</div>
+    </div>
+    <a href="exam_09/mock_exam_09.html" class="btn-start">开始答题 →</a>
+</div>
+
+<div class="card">
+    <div class="card-num">10</div>
+    <span class="card-badge badge-challenge">综合冲刺</span>
+    <h3>第 10 套模拟试卷</h3>
+    <div class="subtitle">全面综合 · 算法思维 · 最高难度</div>
+    <div class="tags">
+        <span class="tag">IEEE754</span>
+        <span class="tag">动态内存</span>
+        <span class="tag">结构体排序</span>
+        <span class="tag">双指针</span>
+        <span class="tag">位运算加密</span>
+    </div>
+    <div class="prog-list">
+        <div class="prog-item">大整数加法（高精度）</div>
+        <div class="prog-item">括号匹配（栈应用）</div>
+    </div>
+    <a href="exam_10/mock_exam_10.html" class="btn-start">开始答题 →</a>
+</div>
+
+</div>
+
+<div class="footer">
+    <p>GESP C++ 三级模拟试卷集 | 基于 2023-2025 真题分析生成 | 共 10 套 250+20 题</p>
+    <p style="margin-top:8px">使用方法：点击"开始答题"进入试卷 → 点选答案 → 点击【判卷】自动评分 → 错题可一键复制</p>
+    <p style="margin-top:8px">编程题测试：g++ -o test test_XX_progN.cpp && ./test ./your_solution</p>
+</div>
+
+</div>
+</body>
+</html>

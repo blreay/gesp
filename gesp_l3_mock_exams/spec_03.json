@@ -1,0 +1,57 @@
+{
+  "exam_num": 3,
+  "difficulty": "中等偏上",
+  "choice_questions": [
+    {"text": "十六进制数 2B 转换为八进制是（）", "options": ["A. 53", "B. 43", "C. 63", "D. 33"], "answer": "A", "explanation": "2B₁₆ = 2×16+11 = 43₁₀ = 5×8+3 = 53₈"},
+    {"text": "比较二进制数 1010₂ 和八进制数 12₈ 的大小关系（）", "options": ["A. 前者大", "B. 后者大", "C. 相等", "D. 无法比较"], "answer": "C", "explanation": "1010₂=10₁₀, 12₈=1×8+2=10₁₀，两者相等"},
+    {"text": "表达式 n & (n-1) 的作用是（n为正整数）（）", "options": ["A. 判断n是否为奇数", "B. 清除n最低位的1", "C. 取n最低位的1", "D. 将n加1"], "answer": "B", "explanation": "n&(n-1)会清除n的二进制表示中最低位的1"},
+    {"text": "要将变量x的第3位（从第0位开始）清零，应使用（）", "options": ["A. x &= ~(1<<3)", "B. x |= (1<<3)", "C. x ^= (1<<3)", "D. x &= (1<<3)"], "answer": "A", "explanation": "~(1<<3)将第3位取反为0，其余为1，与x做AND清零第3位"},
+    {"text": "int a = -1; a >> 1 在大多数编译器上的结果是（）", "options": ["A. 0", "B. -1", "C. 2147483647", "D. 未定义行为"], "answer": "B", "explanation": "有符号数右移是算术移位，符号位保持不变，-1右移还是-1"},
+    {"text": "8位补码 10000001 加上 11111111 的结果（8位截断）是（）", "options": ["A. 10000000", "B. 01111111", "C. 00000000", "D. 100000000"], "answer": "A", "explanation": "10000001=-127, 11111111=-1, -127+(-1)=-128, 补码为10000000"},
+    {"text": "以下哪个是正确的二维数组定义？（）", "options": ["A. int a[][] = {{1,2},{3,4}}", "B. int a[2][] = {{1,2},{3,4}}", "C. int a[][2] = {{1,2},{3,4}}", "D. int a[,] = {{1,2},{3,4}}"], "answer": "C", "explanation": "C++中二维数组定义可以省略第一维大小，但第二维必须指定"},
+    {"text": "对于 int a[3][4]，表达式 &a[1][2] - &a[0][0] 的值是（）", "options": ["A. 4", "B. 5", "C. 6", "D. 8"], "answer": "C", "explanation": "a[1][2]在第1行第2列，偏移量为1×4+2=6个int"},
+    {"text": "字符 'a' 的ASCII码是97，则表达式 'a'+3 的结果作为字符输出是（）", "options": ["A. 字符'd'", "B. 数字100", "C. 两种说法都可能正确", "D. 编译错误"], "answer": "A", "explanation": "'a'+3=97+3=100，对应字符'd'。用cout输出char类型显示字符"},
+    {"text": "string s=\"Hello\"; s.substr(1,3) 的结果是（）", "options": ["A. \"Hel\"", "B. \"ell\"", "C. \"ello\"", "D. \"lo\""], "answer": "B", "explanation": "substr(pos,len)从位置1开始取3个字符，即\"ell\""},
+    {"text": "全局变量和局部变量同名时，函数内访问的是（）", "options": ["A. 全局变量", "B. 局部变量", "C. 编译错误", "D. 未定义行为"], "answer": "B", "explanation": "局部变量会遮蔽同名的全局变量"},
+    {"text": "关于static局部变量，正确的是（）", "options": ["A. 每次函数调用时重新初始化", "B. 函数返回后仍然保持其值", "C. 只能是int类型", "D. 不能赋初始值"], "answer": "B", "explanation": "static局部变量只初始化一次，函数退出后值不丢失"},
+    {"text": "以下代码执行后cnt的值是？int cnt=0; for(int i=1;i<=4;i++) for(int j=1;j<=i;j++) cnt++;", "options": ["A. 8", "B. 10", "C. 12", "D. 16"], "answer": "B", "explanation": "i=1时j循环1次，i=2时2次，i=3时3次，i=4时4次，共1+2+3+4=10"},
+    {"text": "递归函数 int f(int n){if(n==0)return 0; return n+f(n-1);} 调用f(5)的返回值是（）", "options": ["A. 10", "B. 15", "C. 20", "D. 5"], "answer": "B", "explanation": "f(5)=5+f(4)=5+4+f(3)=...=5+4+3+2+1+0=15"},
+    {"text": "以下代码输出什么？int *p, a=10; p=&a; *p=20; cout<<a;", "options": ["A. 10", "B. 20", "C. 地址值", "D. 编译错误"], "answer": "B", "explanation": "p指向a，*p=20修改了a的值，所以输出20"}
+  ],
+  "tf_questions": [
+    {"text": "十六进制数F的十进制值是15，比十进制数14大。", "answer": "T", "explanation": "F₁₆=15₁₀ > 14"},
+    {"text": "二进制数的位数越多，表示的数值一定越大。", "answer": "F", "explanation": "00001=1只有5位但等于1，而1只有1位也等于1。位数多不代表值大"},
+    {"text": "对正整数n，n & (-n) 可以获得n的最低位的1所对应的值。", "answer": "T", "explanation": "这就是lowbit操作，-n是n的补码取反加1"},
+    {"text": "左移1位等价于乘2，右移1位也总是等价于除以2。", "answer": "F", "explanation": "对负奇数如-3，-3>>1得到-2(算术右移)，但-3/2=-1(向零取整)"},
+    {"text": "函数声明和函数定义必须在同一个源文件中。", "answer": "F", "explanation": "函数可以在头文件中声明，在另一个源文件中定义"},
+    {"text": "C++中函数可以嵌套定义（在一个函数内部定义另一个函数）。", "answer": "F", "explanation": "标准C++不支持函数嵌套定义（lambda除外）"},
+    {"text": "int a[10]={1}; 表示a[0]=1，其余元素自动初始化为0。", "answer": "T", "explanation": "部分初始化时，未指定的元素被零初始化"},
+    {"text": "二维数组在内存中是按行优先连续存储的。", "answer": "T", "explanation": "C/C++中多维数组按行主序存储"},
+    {"text": "strlen(\"abc\") 的返回值是4。", "answer": "F", "explanation": "strlen返回字符串长度不含'\\0'，\"abc\"长度为3"},
+    {"text": "指针变量本身也占用内存空间。", "answer": "T", "explanation": "指针是一个变量，在32位系统占4字节，64位系统占8字节"}
+  ],
+  "programming": [
+    {
+      "title": "密码生成器（凯撒加密）",
+      "description": "给定一个字符串和一个整数偏移量k(1≤k≤25)，对字符串中每个字母进行凯撒加密：将字母在字母表中循环后移k位。大写字母加密后仍为大写，小写字母加密后仍为小写。数字和其他字符保持不变。",
+      "input_format": "第一行一个整数k(1≤k≤25)，第二行一个字符串（长度不超过1000，不含空格）。",
+      "output_format": "一行，加密后的字符串。",
+      "sample_input": "3\nHello123World",
+      "sample_output": "Khoor123Zruog",
+      "explanation": "H→K, e→h, l→o, o→r, W→Z, o→r, r→u, l→o, d→g，数字不变"
+    },
+    {
+      "title": "数组旋转",
+      "description": "将一个包含N个整数的数组向右旋转K位。即数组末尾的K个元素移到数组开头。要求输出旋转后的数组。",
+      "input_format": "第一行两个整数N和K(1≤N≤100000, 0≤K≤10^9)，第二行N个整数表示数组元素（元素绝对值不超过10^9）。",
+      "output_format": "一行N个整数，空格分隔，表示旋转后的数组。",
+      "sample_input": "5 2\n1 2 3 4 5",
+      "sample_output": "4 5 1 2 3",
+      "explanation": "向右旋转2位：[1,2,3,4,5]→[4,5,1,2,3]"
+    }
+  ],
+  "solutions": [
+    "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    int k;\n    string s;\n    cin >> k >> s;\n    for (int i = 0; i < s.length(); i++) {\n        if (s[i] >= 'A' && s[i] <= 'Z') {\n            s[i] = (s[i] - 'A' + k) % 26 + 'A';\n        } else if (s[i] >= 'a' && s[i] <= 'z') {\n            s[i] = (s[i] - 'a' + k) % 26 + 'a';\n        }\n    }\n    cout << s << endl;\n    return 0;\n}",
+    "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    int a[100000];\n    for (int i = 0; i < n; i++) cin >> a[i];\n    k = k % n;\n    if (k == 0) {\n        for (int i = 0; i < n; i++) cout << a[i] << (i<n-1?\" \":\"\\n\");\n        return 0;\n    }\n    // 三次反转法\n    // reverse all\n    for (int i = 0; i < n/2; i++) swap(a[i], a[n-1-i]);\n    // reverse first k\n    for (int i = 0; i < k/2; i++) swap(a[i], a[k-1-i]);\n    // reverse rest\n    for (int i = k; i < (n+k)/2; i++) swap(a[i], a[n-1-i+k]);\n    for (int i = 0; i < n; i++) cout << a[i] << (i<n-1?\" \":\"\\n\");\n    return 0;\n}"
+  ]
+}

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 三级模拟试卷（第1套）- 答案与解析</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f7fa; padding: 20px; line-height: 1.8; }
+.header { background: linear-gradient(135deg, #1a237e, #7b1fa2); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+.header h1 { font-size: 24px; }
+.answer-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.answer-table th { background: #1a237e; color: white; padding: 10px; }
+.answer-table td { padding: 8px 12px; border: 1px solid #e0e0e0; text-align: center; }
+.answer-table tr:nth-child(even) { background: #f5f5f5; }
+.section-title { background: #1a237e; color: white; padding: 12px 20px; border-radius: 8px; font-size: 18px; margin-top: 30px; margin-bottom: 15px; }
+.explanation { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.explanation h3 { color: #1a237e; margin-bottom: 8px; }
+.explanation .answer-mark { color: #4caf50; font-weight: bold; }
+pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-family: 'Courier New', Consolas, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>GESP C++ 三级模拟试卷（第1套）- 答案与解析</h1>
+</div>
+
+<div class="section-title">答案一览表</div>
+<table class="answer-table">
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>A</td><td>B</td><td>D</td><td>A</td><td>C</td><td>B</td><td>C</td><td>D</td><td>B</td><td>A</td><td>B</td><td>C</td><td>D</td><td>A</td><td>B</td></tr>
+<tr><th>题号</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th colspan="5"></th></tr>
+<tr><td>答案</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td colspan="5"></td></tr>
+</table>
+
+<div class="section-title">单选题详细解析</div>
+
+<div class="explanation">
+<h3>第1题 <span class="answer-mark">答案：A</span></h3>
+<p>156转二进制：156÷2=78...0, 78÷2=39...0, 39÷2=19...1, 19÷2=9...1, 9÷2=4...1, 4÷2=2...0, 2÷2=1...0, 1÷2=0...1。从下往上读：10011100。验证：128+16+8+4=156。</p>
+</div>
+
+<div class="explanation">
+<h3>第2题 <span class="answer-mark">答案：B</span></h3>
+<p>二进制小数 0.1101 转十进制：1×2^(-1) + 1×2^(-2) + 0×2^(-3) + 1×2^(-4) = 0.5 + 0.25 + 0 + 0.0625 = 0.8125。</p>
+</div>
+
+<div class="explanation">
+<h3>第3题 <span class="answer-mark">答案：D</span></h3>
+<p>12的二进制：1100，10的二进制：1010。按位与：1100 & 1010 = 1000 = 8。</p>
+</div>
+
+<div class="explanation">
+<h3>第4题 <span class="answer-mark">答案：A</span></h3>
+<p>异或交换是经典算法：a^=b使a=a^b；b^=a使b=b^(a^b)=a；a^=b使a=(a^b)^a=b。三步完成交换。</p>
+</div>
+
+<div class="explanation">
+<h3>第5题 <span class="answer-mark">答案：C</span></h3>
+<p>左移n位相当于乘以2^n。5 << 3 = 5 × 2^3 = 5 × 8 = 40。</p>
+</div>
+
+<div class="explanation">
+<h3>第6题 <span class="answer-mark">答案：B</span></h3>
+<p>8位补码范围是-128~127。-128的补码是10000000。这是一个特殊值，它没有对应的原码（因为+128超出了8位有符号数范围）。</p>
+</div>
+
+<div class="explanation">
+<h3>第7题 <span class="answer-mark">答案：C</span></h3>
+<p>int类型在32位系统占4字节，数组有5个元素，sizeof(a) = 5 × 4 = 20。</p>
+</div>
+
+<div class="explanation">
+<h3>第8题 <span class="answer-mark">答案：D</span></h3>
+<p>a[3][4]意味着3行4列。a[2][3]位于第3行第4列（从0开始），即第 2×4+3+1 = 12 个元素。</p>
+</div>
+
+<div class="explanation">
+<h3>第9题 <span class="answer-mark">答案：B</span></h3>
+<p>"Hello"长度为5，s[1]是第2个字符'e'（下标从0开始，s[0]='H', s[1]='e'）。</p>
+</div>
+
+<div class="explanation">
+<h3>第10题 <span class="answer-mark">答案：A</span></h3>
+<p>func使用值传递，形参a是x的副本。在函数内修改a不影响main中的x，所以x仍为5。</p>
+</div>
+
+<div class="explanation">
+<h3>第11题 <span class="answer-mark">答案：B</span></h3>
+<p>func使用引用传递（int &a），形参a是x的别名。修改a就是修改x本身。7×2=14。</p>
+</div>
+
+<div class="explanation">
+<h3>第12题 <span class="answer-mark">答案：C</span></h3>
+<p>int *p = &x; 表示p是一个int类型的指针，&x取x的地址赋给p，所以p存储的是x的内存地址。</p>
+</div>
+
+<div class="explanation">
+<h3>第13题 <span class="answer-mark">答案：D</span></h3>
+<p>这段代码统计15的二进制中1的个数。15的二进制是1111，有4个1。循环中(15>>i)&1依次取出每一位：i=0得1, i=1得1, i=2得1, i=3得1, i=4~7得0。result=4。</p>
+</div>
+
+<div class="explanation">
+<h3>第14题 <span class="answer-mark">答案：A</span></h3>
+<p>遍历数组找最大值。数组为{3,7,1,9,4,6}，最大值显然是9。</p>
+</div>
+
+<div class="explanation">
+<h3>第15题 <span class="answer-mark">答案：B</span></h3>
+<p>异或交换：a=5^9=12, b=12^9=5, a=12^5=9。最终a=9, b=5，完成了交换。</p>
+</div>
+
+<div class="section-title">判断题详细解析</div>
+
+<div class="explanation">
+<h3>第16题 <span class="answer-mark">答案：对</span></h3>
+<p>255 = 15×16+15 = F×16+F = FF(十六进制)。</p>
+</div>
+
+<div class="explanation">
+<h3>第17题 <span class="answer-mark">答案：错</span></h3>
+<p>八进制只能使用0-7这8个数字，数字9不是合法的八进制数字，所以"19"不是合法的八进制数。</p>
+</div>
+
+<div class="explanation">
+<h3>第18题 <span class="answer-mark">答案：对</span></h3>
+<p>n&1取n的最低位，对于非负整数等价于n%2。当n为奇数时结果为1，偶数时为0。</p>
+</div>
+
+<div class="explanation">
+<h3>第19题 <span class="answer-mark">答案：对</span></h3>
+<p>异或运算的性质：任何数与自身异或结果为0。因为相同位异或得0。</p>
+</div>
+
+<div class="explanation">
+<h3>第20题 <span class="answer-mark">答案：错</span></h3>
+<p>C++标准不支持变长数组(VLA)。虽然某些编译器（如GCC）作为扩展支持，但这不是标准C++语法。应使用常量或动态分配。</p>
+</div>
+
+<div class="explanation">
+<h3>第21题 <span class="answer-mark">答案：错</span></h3>
+<p>数组越界访问不会导致编译错误，而是运行时的未定义行为。编译器不会检查数组下标是否越界。</p>
+</div>
+
+<div class="explanation">
+<h3>第22题 <span class="answer-mark">答案：对</span></h3>
+<p>局部变量存储在栈上，函数调用结束时栈帧被释放，局部变量随之销毁。</p>
+</div>
+
+<div class="explanation">
+<h3>第23题 <span class="answer-mark">答案：错</span></h3>
+<p>引用传递传递的是变量的别名，函数内对形参的修改会直接影响实参。值传递则是副本，不影响实参。两者效果不同。</p>
+</div>
+
+<div class="explanation">
+<h3>第24题 <span class="answer-mark">答案：对</span></h3>
+<p>标准ASCII码表中，'0'=48, 'A'=65, 'a'=97。这是需要记住的基础知识。</p>
+</div>
+
+<div class="explanation">
+<h3>第25题 <span class="answer-mark">答案：错</span></h3>
+<p>字符串"abc"长度为3，有效下标为0,1,2。s[3]访问的是字符串结束符'\0'，不是'c'。s[2]才是'c'。</p>
+</div>
+
+<div class="section-title">编程题参考代码</div>
+
+<div class="explanation">
+<h3>编程题1：数位之和</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    long long n;
+    cin &gt;&gt; n;
+    int steps = 0;
+    while (n &gt;= 10) {
+        long long sum = 0;
+        while (n &gt; 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        n = sum;
+        steps++;
+    }
+    cout &lt;&lt; n &lt;&lt; " " &lt;&lt; steps &lt;&lt; endl;
+    return 0;
+}</pre>
+<p><strong>思路：</strong>反复对数字求各位数字之和，直到结果小于10为止。注意使用long long处理大数。</p>
+</div>
+
+<div class="explanation">
+<h3>编程题2：矩阵对角线</h3>
+<pre>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    int a[100][100];
+    for (int i = 0; i &lt; n; i++)
+        for (int j = 0; j &lt; n; j++)
+            cin &gt;&gt; a[i][j];
+
+    long long sum = 0;
+    for (int i = 0; i &lt; n; i++) {
+        sum += a[i][i];           // 主对角线
+        if (i != n - 1 - i)
+            sum += a[i][n-1-i];   // 副对角线（避免重复）
+    }
+    cout &lt;&lt; sum &lt;&lt; endl;
+    return 0;
+}</pre>
+<p><strong>思路：</strong>遍历行号i，a[i][i]是主对角线元素，a[i][n-1-i]是副对角线元素。当i==n-1-i时（N为奇数的中心位置），只加一次。</p>
+</div>
+
+</body>
+</html>

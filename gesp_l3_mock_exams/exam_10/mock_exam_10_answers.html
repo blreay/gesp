@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>GESP C++ 三级模拟试卷（第10套）- 参考答案</title>
+<style>
+body { font-family: 'Microsoft YaHei', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.8; }
+h1 { color: #1a237e; border-bottom: 2px solid #7b1fa2; padding-bottom: 10px; }
+table { border-collapse: collapse; margin: 15px 0; }
+th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: center; }
+th { background: #1a237e; color: white; }
+pre { background: #f5f5f5; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+h2 { color: #7b1fa2; margin-top: 30px; }
+h3 { color: #1a237e; margin-top: 20px; }
+</style>
+</head>
+<body>
+<h1>GESP C++ 三级模拟试卷（第10套）- 参考答案</h1>
+
+<h2>一、单选题答案</h2>
+<table>
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>A</td><td>B</td><td>B</td><td>A</td><td>C</td><td>C</td><td>B</td><td>C</td><td>C</td><td>C</td><td>A</td><td>C</td><td>A</td><td>A</td><td>B</td></tr>
+</table>
+
+<h2>二、判断题答案</h2>
+<table>
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+<tr><td>答案</td><td>√</td><td>√</td><td>√</td><td>√</td><td>√</td><td>×</td><td>×</td><td>√</td><td>√</td><td>√</td></tr>
+</table>
+
+<h2>详细解析</h2>
+<p><strong>1.</strong> 答案A。100=64+32+4=1100100₂</p>
+<p><strong>2.</strong> 答案B。77₈+1₈=100₈（类似十进制99+1=100的进位）</p>
+<p><strong>3.</strong> 答案B。0xAB & 0x0F 取低4位，结果为0x0B=11</p>
+<p><strong>4.</strong> 答案A。异或1可以翻转对应位</p>
+<p><strong>5.</strong> 答案C。-1的补码全为1，16位全1作为unsigned解释为2^16-1=65535</p>
+<p><strong>6.</strong> 答案C。数组名是常量地址，不能自增(++)，但可以参与加法运算</p>
+<p><strong>7.</strong> 答案B。strlen("12345")=5, sizeof(str)=6（含'\0'），5+6=11</p>
+<p><strong>8.</strong> 答案C。f有1个必选参数和2个默认参数，f(1,2)合法，传a=1,b=2,c用默认值20</p>
+<p><strong>9.</strong> 答案C。仅返回类型不同不构成重载，会导致编译错误</p>
+<p><strong>10.</strong> 答案C。冒泡排序最坏情况比较次数为(N-1)+(N-2)+...+1=N(N-1)/2</p>
+<p><strong>11.</strong> 答案A。pp是指向p的指针，*pp得到p，**pp得到*p即a=5</p>
+<p><strong>12.</strong> 答案C。f(5)=5*4*3*2*1=120，这是阶乘函数</p>
+<p><strong>13.</strong> 答案A。这是冒泡排序的一轮：(5,3)交换→{3,5,1,4,2},(5,1)交换→{3,1,5,4,2},(5,4)交换→{3,1,4,5,2},(5,2)交换→{3,1,4,2,5}</p>
+<p><strong>14.</strong> 答案A。大写字母ASCII加32得到对应小写字母，ABCDE→abcde</p>
+<p><strong>15.</strong> 答案B。x依次为1*1=1, 1*2=2, 2*3=6, 6*4=24</p>
+<p><strong>16.</strong> 对。struct默认public，class默认private，其他功能相同</p>
+<p><strong>17.</strong> 对。两个指针相加没有意义，但可以相减得到元素个数差</p>
+<p><strong>18.</strong> 对。冒泡排序不会交换相等元素所以稳定，选择排序可能改变相等元素顺序</p>
+<p><strong>19.</strong> 对。二分查找时间复杂度O(log n)</p>
+<p><strong>20.</strong> 对。每次函数调用都有自己的栈帧，包含局部变量</p>
+<p><strong>21.</strong> 错。最大合法下标是n-1</p>
+<p><strong>22.</strong> 错。有符号整数溢出是未定义行为，虽然大多数系统上结果是INT_MIN，但标准不保证</p>
+<p><strong>23.</strong> 对。这称为case穿透(fall-through)</p>
+<p><strong>24.</strong> 对。const整型变量在C++中可以作为数组大小（编译期常量）</p>
+<p><strong>25.</strong> 对。位运算直接对应CPU位操作指令，比乘除法快</p>
+
+
+<h2>三、编程题参考答案</h2>
+<h3>编程题1参考代码</h3>
+<pre>#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    string a, b;
+    cin >> a >> b;
+    reverse(a.begin(), a.end());
+    reverse(b.begin(), b.end());
+    string result = "";
+    int carry = 0;
+    int maxLen = max(a.length(), b.length());
+    for (int i = 0; i < maxLen; i++) {
+        int da = (i < a.length()) ? (a[i] - '0') : 0;
+        int db = (i < b.length()) ? (b[i] - '0') : 0;
+        int sum = da + db + carry;
+        result += (char)('0' + sum % 10);
+        carry = sum / 10;
+    }
+    if (carry) result += '1';
+    reverse(result.begin(), result.end());
+    cout << result << endl;
+    return 0;
+}</pre>
+<h3>编程题2参考代码</h3>
+<pre>#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    stack<char> st;
+    for (int i = 0; i < s.length(); i++) {
+        char c = s[i];
+        if (c == '(' || c == '[' || c == '{') {
+            st.push(c);
+        } else {
+            if (st.empty()) { cout << "No" << endl; return 0; }
+            char top = st.top();
+            if ((c == ')' && top == '(') || (c == ']' && top == '[') || (c == '}' && top == '{')) {
+                st.pop();
+            } else {
+                cout << "No" << endl; return 0;
+            }
+        }
+    }
+    cout << (st.empty() ? "Yes" : "No") << endl;
+    return 0;
+}</pre>
+
+</body>
+</html>

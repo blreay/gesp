@@ -1,0 +1,57 @@
+{
+  "exam_num": 5,
+  "difficulty": "较难",
+  "choice_questions": [
+    {"text": "十进制小数0.6875转换为二进制是（）", "options": ["A. 0.1010", "B. 0.1011", "C. 0.1101", "D. 0.1100"], "answer": "B", "explanation": "0.6875×2=1.375取1，0.375×2=0.75取0，0.75×2=1.5取1，0.5×2=1.0取1，所以0.6875₁₀=0.1011₂"},
+    {"text": "十六进制数 FF + 1 的结果是（）", "options": ["A. 100₁₆", "B. 1FF₁₆", "C. 00₁₆", "D. FG₁₆"], "answer": "A", "explanation": "FF₁₆=255₁₀，255+1=256₁₀=100₁₆"},
+    {"text": "用位运算判断正整数n是否为2的幂，正确的表达式是（）", "options": ["A. n&(n+1)==0", "B. n|(n-1)==0", "C. (n>0)&&(n&(n-1))==0", "D. n^(n-1)==n-1"], "answer": "C", "explanation": "2的幂的二进制只有一个1，n&(n-1)清除最低位的1后为0"},
+    {"text": "要提取整数x的第8~15位（第二字节），正确的表达式是（）", "options": ["A. (x>>8)&0xFF", "B. x&0xFF00", "C. (x<<8)&0xFF", "D. x>>8"], "answer": "A", "explanation": "先右移8位把目标位移到最低，再与0xFF取低8位"},
+    {"text": "表达式 (a^b)&c | a&(b^c) 当a=5,b=3,c=6时的值是（）", "options": ["A. 4", "B. 6", "C. 5", "D. 7"], "answer": "D", "explanation": "a=101,b=011,c=110。a^b=110,（a^b)&c=110&110=110=6。b^c=101,a&(b^c)=101&101=101=5。6|5=111=7"},
+    {"text": "-128的8位补码是10000000，对它进行算术右移1位的结果是（）", "options": ["A. 01000000即64", "B. 11000000即-64", "C. 10000000即-128", "D. 00000000即0"], "answer": "B", "explanation": "算术右移保持符号位，10000000右移1位为11000000=-64"},
+    {"text": "int a[]={10,20,30,40,50}; int *p=a+2; p[-1]的值是（）", "options": ["A. 10", "B. 20", "C. 30", "D. 40"], "answer": "B", "explanation": "p指向a[2]即30，p[-1]等价于*(p-1)即a[1]=20"},
+    {"text": "对数组a，表达式*(a+i)等价于（）", "options": ["A. a[i]", "B. &a[i]", "C. a+i", "D. *a+i"], "answer": "A", "explanation": "*(a+i)是指针运算，等价于a[i]"},
+    {"text": "int a[3][4]; 表达式*(*(a+1)+2)等价于（）", "options": ["A. a[0][2]", "B. a[2][1]", "C. a[1][2]", "D. a[1][0]"], "answer": "C", "explanation": "*(a+1)是第1行首地址，+2偏移2个元素，解引用得a[1][2]"},
+    {"text": "递归函数f(n)=f(n-1)+f(n-2), f(0)=0, f(1)=1，则f(6)=（）", "options": ["A. 5", "B. 8", "C. 13", "D. 6"], "answer": "B", "explanation": "f(2)=1,f(3)=2,f(4)=3,f(5)=5,f(6)=8"},
+    {"text": "int f(int &a){a*=2; return a+1;} int x=3; int y=f(x); 则x和y的值分别是（）", "options": ["A. x=6, y=7", "B. x=3, y=7", "C. x=6, y=6", "D. x=3, y=6"], "answer": "A", "explanation": "引用传参修改x为6，返回值为6+1=7"},
+    {"text": "对数组{5,2,4,6,1,3}进行插入排序，完成第三步（前4个元素有序）后数组为（）", "options": ["A. {2,4,5,1,6,3}", "B. {2,5,4,6,1,3}", "C. {2,4,5,6,1,3}", "D. {2,4,6,5,1,3}"], "answer": "C", "explanation": "第1步插入2：{2,5,4,6,1,3}。第2步插入4：{2,4,5,6,1,3}。第3步插入6：{2,4,5,6,1,3}（6已在正确位置）"},
+    {"text": "int s=0; for(int i=1;i<=100;i++) if(i%3==0&&i%5!=0) s+=i; s的值是（）", "options": ["A. 1683", "B. 1368", "C. 1530", "D. 1200"], "answer": "B", "explanation": "3的倍数之和为1683，减去15的倍数之和315，得1368"},
+    {"text": "递归函数 int f(int n){if(n<2)return n; return f(n/2)+1;} 则f(16)=（）", "options": ["A. 4", "B. 3", "C. 16", "D. 5"], "answer": "D", "explanation": "f(16)=f(8)+1=f(4)+2=f(2)+3=f(1)+4=1+4=5"},
+    {"text": "int a[5]={1,2,3,4,5}; int *p=&a[4]; cout<<p-a; 输出（）", "options": ["A. 5", "B. 16", "C. 4", "D. 20"], "answer": "C", "explanation": "p指向a[4]，a指向a[0]，指针相减得到元素个数差=4"}
+  ],
+  "tf_questions": [
+    {"text": "指针变量p指向数组a的首元素时，p+1指向的是a[1]。", "answer": "T", "explanation": "指针加1移动一个元素大小的字节数"},
+    {"text": "int *p=NULL; *p=5; 这段代码会导致未定义行为。", "answer": "T", "explanation": "解引用空指针是未定义行为，通常会崩溃"},
+    {"text": "数组名是一个常量指针，不能对数组名进行赋值操作。", "answer": "T", "explanation": "数组名不是左值，不能被赋值"},
+    {"text": "按位取反运算符~的优先级高于算术运算符+。", "answer": "T", "explanation": "一元运算符~的优先级高于二元算术运算符"},
+    {"text": "对任意整数x，x^x的结果一定为0。", "answer": "T", "explanation": "任何数与自身异或结果为0"},
+    {"text": "函数的形参是实参的拷贝（值传递时），修改形参不影响实参。", "answer": "T", "explanation": "值传递时形参是实参的副本"},
+    {"text": "递归函数的时间复杂度一定比循环高。", "answer": "F", "explanation": "递归和循环可以实现同样的时间复杂度，如尾递归"},
+    {"text": "稳定排序算法能保证相等元素的相对顺序不变，插入排序是稳定的。", "answer": "T", "explanation": "插入排序是稳定的排序算法"},
+    {"text": "选择排序是稳定的排序算法。", "answer": "F", "explanation": "选择排序可能改变相等元素的相对顺序，例如{5a,5b,3}第一轮后变为{3,5b,5a}"},
+    {"text": "double类型可以精确表示所有的小数。", "answer": "F", "explanation": "浮点数有精度限制，不能精确表示所有小数，如0.1"}
+  ],
+  "programming": [
+    {
+      "title": "进制转换器",
+      "description": "将十进制正整数N转换为B进制表示（2≤B≤16）。对于大于9的数字使用大写字母A-F表示。",
+      "input_format": "一行两个整数N和B(0≤N≤10^9, 2≤B≤16)，空格分隔。",
+      "output_format": "一行，N的B进制表示。若N为0则输出0。",
+      "sample_input": "255 16",
+      "sample_output": "FF",
+      "explanation": "255₁₀=FF₁₆"
+    },
+    {
+      "title": "矩阵乘法",
+      "description": "给定一个M×K的矩阵A和一个K×N的矩阵B，计算它们的乘积C=A×B。C是M×N的矩阵，其中C[i][j]=Σ(A[i][k]*B[k][j])，k从0到K-1。",
+      "input_format": "第一行三个整数M, K, N(1≤M,K,N≤100)。\n接下来M行，每行K个整数，表示矩阵A。\n接下来K行，每行N个整数，表示矩阵B。\n所有矩阵元素的绝对值不超过100。",
+      "output_format": "M行，每行N个整数，空格分隔，表示矩阵C。",
+      "sample_input": "2 3 2\n1 2 3\n4 5 6\n1 4\n2 5\n3 6",
+      "sample_output": "14 32\n32 77",
+      "explanation": "C[0][0]=1*1+2*2+3*3=14, C[0][1]=1*4+2*5+3*6=32, C[1][0]=4*1+5*2+6*3=32, C[1][1]=4*4+5*5+6*6=77"
+    }
+  ],
+  "solutions": [
+    "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    string result = \"\";\n    char digits[] = \"0123456789ABCDEF\";\n    while (n > 0) {\n        result += digits[n % b];\n        n /= b;\n    }\n    reverse(result.begin(), result.end());\n    cout << result << endl;\n    return 0;\n}",
+    "#include <iostream>\nusing namespace std;\n\nint main() {\n    int m, k, n;\n    cin >> m >> k >> n;\n    int a[100][100], b[100][100], c[100][100];\n    for (int i = 0; i < m; i++)\n        for (int j = 0; j < k; j++)\n            cin >> a[i][j];\n    for (int i = 0; i < k; i++)\n        for (int j = 0; j < n; j++)\n            cin >> b[i][j];\n    for (int i = 0; i < m; i++)\n        for (int j = 0; j < n; j++) {\n            c[i][j] = 0;\n            for (int p = 0; p < k; p++)\n                c[i][j] += a[i][p] * b[p][j];\n        }\n    for (int i = 0; i < m; i++) {\n        for (int j = 0; j < n; j++)\n            cout << c[i][j] << (j < n-1 ? \" \" : \"\");\n        cout << endl;\n    }\n    return 0;\n}"
+  ]
+}

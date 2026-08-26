@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>GESP C++ 三级模拟试卷（第4套）- 参考答案</title>
+<style>
+body { font-family: 'Microsoft YaHei', sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.8; }
+h1 { color: #1a237e; border-bottom: 2px solid #7b1fa2; padding-bottom: 10px; }
+table { border-collapse: collapse; margin: 15px 0; }
+th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: center; }
+th { background: #1a237e; color: white; }
+pre { background: #f5f5f5; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+h2 { color: #7b1fa2; margin-top: 30px; }
+h3 { color: #1a237e; margin-top: 20px; }
+</style>
+</head>
+<body>
+<h1>GESP C++ 三级模拟试卷（第4套）- 参考答案</h1>
+
+<h2>一、单选题答案</h2>
+<table>
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>A</td><td>C</td><td>B</td><td>A</td><td>D</td><td>B</td><td>C</td><td>B</td><td>A</td><td>B</td><td>C</td><td>A</td><td>B</td><td>D</td><td>A</td></tr>
+</table>
+
+<h2>二、判断题答案</h2>
+<table>
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th></tr>
+<tr><td>答案</td><td>√</td><td>√</td><td>√</td><td>√</td><td>×</td><td>√</td><td>√</td><td>×</td><td>√</td><td>√</td></tr>
+</table>
+
+<h2>详细解析</h2>
+<p><strong>1.</strong> 答案A。3F₁₆=63₁₀, 1A₁₆=26₁₀, 63-26=37₁₀=2×16+5=25₁₆</p>
+<p><strong>2.</strong> 答案C。1100₂=12₁₀, 11₂=3₁₀, 12×3=36₁₀=100100₂</p>
+<p><strong>3.</strong> 答案B。12=1100₂，-12的补码为...10100₂，1100 & 10100 = 00100 = 4</p>
+<p><strong>4.</strong> 答案A。unsigned char范围0~255，200+100=300，300%256=44，溢出后得44</p>
+<p><strong>5.</strong> 答案D。-5的补码转为unsigned int解释为4294967296-5=4294967291</p>
+<p><strong>6.</strong> 答案B。字符串"GESP"有4个字符加上末尾的'\0'，共5字节</p>
+<p><strong>7.</strong> 答案C。作为参数时第一维大小可以省略，但第二维必须指定</p>
+<p><strong>8.</strong> 答案B。"ll"从索引2开始出现，所以返回2</p>
+<p><strong>9.</strong> 答案A。函数重载要求同名函数的参数列表（类型、个数或顺序）不同</p>
+<p><strong>10.</strong> 答案B。默认参数必须从右到左连续设置，不能在中间跳过</p>
+<p><strong>11.</strong> 答案C。第一轮找到最小值1（在位置3），与位置0的4交换，得{1,2,5,4,3}</p>
+<p><strong>12.</strong> 答案A。"Hello World Cup!"中大写字母有H、W、C，共3个</p>
+<p><strong>13.</strong> 答案B。100=1100100₂，有7位，其中0的位有4个（位置0,1,3,4处是0，但while循环只处理到最高位1为止，即7位中4个0）。实际100=1100100，0在第0,1,3,4位共4个</p>
+<p><strong>14.</strong> 答案D。第一次f(): x从0变为1。f()=10: 先x++变为2，返回x引用，赋值为10。第三次f(): x从10变为11，输出11</p>
+<p><strong>15.</strong> 答案A。第一轮：(5,1)交换→{1,5,4,2,8}，(5,4)交换→{1,4,5,2,8}，(5,2)交换→{1,4,2,5,8}，(5,8)不换→{1,4,2,5,8}。第二轮对前4个：(1,4)不换，(4,2)交换→{1,2,4,5,8}，(4,5)不换→{1,2,4,5,8}</p>
+<p><strong>16.</strong> 对。这是64位系统上的标准情况</p>
+<p><strong>17.</strong> 对。&&的优先级确实高于||</p>
+<p><strong>18.</strong> 对。标准C++不支持变长数组(VLA)，数组大小必须是编译期常量</p>
+<p><strong>19.</strong> 对。无终止条件的递归会无限调用，耗尽栈空间</p>
+<p><strong>20.</strong> 错。==的优先级高于&，所以 a&b==c 实际是 a&(b==c)</p>
+<p><strong>21.</strong> 对。a和&a的数值相同（都是数组首地址），但类型不同：a是int*，&a是int(*)[5]</p>
+<p><strong>22.</strong> 对。char本质上是整数类型，可以参与算术运算</p>
+<p><strong>23.</strong> 错。C++函数不能直接返回数组，可以返回指针或通过引用参数传递</p>
+<p><strong>24.</strong> 对。任何数与0做或运算，结果不变</p>
+<p><strong>25.</strong> 对。两者最坏情况都需要O(n²)次比较</p>
+
+
+<h2>三、编程题参考答案</h2>
+<h3>编程题1参考代码</h3>
+<pre>#include <iostream>
+using namespace std;
+
+int main() {
+    long long n;
+    cin >> n;
+    cout << n << "=";
+    bool first = true;
+    for (long long i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            if (!first) cout << "*";
+            cout << i;
+            first = false;
+            n /= i;
+        }
+    }
+    if (n > 1) {
+        if (!first) cout << "*";
+        cout << n;
+    }
+    cout << endl;
+    return 0;
+}</pre>
+<h3>编程题2参考代码</h3>
+<pre>#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int a[20][20] = {};
+    int dx[] = {0, 1, 0, -1};
+    int dy[] = {1, 0, -1, 0};
+    int x = 0, y = 0, dir = 0;
+    for (int i = 1; i <= n * n; i++) {
+        a[x][y] = i;
+        int nx = x + dx[dir], ny = y + dy[dir];
+        if (nx < 0 || nx >= n || ny < 0 || ny >= n || a[nx][ny] != 0) {
+            dir = (dir + 1) % 4;
+            nx = x + dx[dir];
+            ny = y + dy[dir];
+        }
+        x = nx; y = ny;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++)
+            cout << setw(4) << a[i][j];
+        cout << endl;
+    }
+    return 0;
+}</pre>
+
+</body>
+</html>

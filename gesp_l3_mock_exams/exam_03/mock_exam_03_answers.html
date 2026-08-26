@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 三级模拟试卷（第3套）- 答案与解析</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f7fa; padding: 20px; line-height: 1.8; }
+.header { background: linear-gradient(135deg, #1a237e, #7b1fa2); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+.header h1 { font-size: 24px; }
+.answer-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.answer-table th { background: #1a237e; color: white; padding: 10px; }
+.answer-table td { padding: 8px 12px; border: 1px solid #e0e0e0; text-align: center; }
+.answer-table tr:nth-child(even) { background: #f5f5f5; }
+.section-title { background: #1a237e; color: white; padding: 12px 20px; border-radius: 8px; font-size: 18px; margin-top: 30px; margin-bottom: 15px; }
+.explanation { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.explanation h3 { color: #1a237e; margin-bottom: 8px; }
+.explanation .answer-mark { color: #4caf50; font-weight: bold; }
+pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-family: 'Courier New', Consolas, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>GESP C++ 三级模拟试卷（第3套）- 答案与解析</h1>
+</div>
+
+<div class="section-title">答案一览表</div>
+<table class="answer-table">
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>A</td><td>C</td><td>B</td><td>A</td><td>B</td><td>A</td><td>C</td><td>C</td><td>C</td><td>B</td><td>B</td><td>B</td><td>B</td><td>B</td><td>B</td></tr>
+<tr><th>题号</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th colspan="5"></th></tr>
+<tr><td>答案</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td colspan="5"></td></tr>
+</table>
+
+<div class="section-title">单选题详细解析</div>
+
+<div class="explanation">
+<h3>第1题 <span class="answer-mark">答案：A</span></h3>
+<p>2B(十六进制)转十进制：2×16+11=43。43转八进制：43÷8=5...3，即53(八进制)。验证：5×8+3=43。</p>
+</div>
+
+<div class="explanation">
+<h3>第2题 <span class="answer-mark">答案：C</span></h3>
+<p>1010(二进制)=1×8+0×4+1×2+0=10(十进制)。12(八进制)=1×8+2=10(十进制)。两者相等。</p>
+</div>
+
+<div class="explanation">
+<h3>第3题 <span class="answer-mark">答案：B</span></h3>
+<p>n&(n-1)的效果是清除n二进制表示中最低位的1。例如n=12(1100)，n-1=11(1011)，n&(n-1)=1000=8，最低位的1(第2位)被清除。</p>
+</div>
+
+<div class="explanation">
+<h3>第4题 <span class="answer-mark">答案：A</span></h3>
+<p>清零某一位用"与非"操作：1<<3产生00001000，取反得11110111，与x相与可以只将第3位清零而不影响其他位。</p>
+</div>
+
+<div class="explanation">
+<h3>第5题 <span class="answer-mark">答案：B</span></h3>
+<p>-1的补码是全1(11...1)。大多数编译器对有符号数右移执行算术右移（高位补符号位1），右移后仍然是全1，即-1。</p>
+</div>
+
+<div class="explanation">
+<h3>第6题 <span class="answer-mark">答案：A</span></h3>
+<p>10000001(补码)=-127，11111111(补码)=-1。-127+(-1)=-128，-128的8位补码是10000000。没有溢出（-128在8位补码范围内）。</p>
+</div>
+
+<div class="explanation">
+<h3>第7题 <span class="answer-mark">答案：C</span></h3>
+<p>C++中二维数组可以省略第一维的大小（编译器根据初始化列表推断），但第二维必须指定。只有C选项int a[][2]满足此要求。</p>
+</div>
+
+<div class="explanation">
+<h3>第8题 <span class="answer-mark">答案：C</span></h3>
+<p>二维数组按行优先存储。a[1][2]在内存中的偏移量=1×4+2=6个int位置。指针相减得到的是元素个数差：6。</p>
+</div>
+
+<div class="explanation">
+<h3>第9题 <span class="answer-mark">答案：C</span></h3>
+<p>'a'+3的结果是整数100（=97+3）。当赋值给char变量或用%c输出时显示为字符'd'(ASCII 100)。作为int值就是100。所以A和B都正确。</p>
+</div>
+
+<div class="explanation">
+<h3>第10题 <span class="answer-mark">答案：B</span></h3>
+<p>substr(pos, len)从位置pos开始截取len个字符。s.substr(1,3)从下标1开始取3个字符：s[1]='e', s[2]='l', s[3]='l'，结果是"ell"。</p>
+</div>
+
+<div class="explanation">
+<h3>第11题 <span class="answer-mark">答案：B</span></h3>
+<p>C++中局部变量会遮蔽(shadow)同名的全局变量。在函数内部，直接使用该名字访问的是局部变量。若需访问全局变量，需使用::运算符。</p>
+</div>
+
+<div class="explanation">
+<h3>第12题 <span class="answer-mark">答案：B</span></h3>
+<p>static局部变量只在第一次执行到声明时初始化一次，此后函数返回时不销毁，下次调用时保持上次的值。它存储在静态存储区而非栈上。</p>
+</div>
+
+<div class="explanation">
+<h3>第13题 <span class="answer-mark">答案：B</span></h3>
+<p>内层循环执行次数：i=1时1次，i=2时2次，i=3时3次，i=4时4次。总共1+2+3+4=10次。</p>
+</div>
+
+<div class="explanation">
+<h3>第14题 <span class="answer-mark">答案：B</span></h3>
+<p>f(5)=5+f(4)=5+4+f(3)=5+4+3+f(2)=5+4+3+2+f(1)=5+4+3+2+1+f(0)=5+4+3+2+1+0=15。</p>
+</div>
+
+<div class="explanation">
+<h3>第15题 <span class="answer-mark">答案：B</span></h3>
+<p>p指向a的地址，*p=20通过指针修改了a所在内存的值。因此a的值变为20。输出20。</p>
+</div>
+
+<div class="section-title">判断题详细解析</div>
+
+<div class="explanation">
+<h3>第16题 <span class="answer-mark">答案：对</span></h3>
+<p>F(十六进制)=15(十进制)，15>14，所以F比14大。</p>
+</div>
+
+<div class="explanation">
+<h3>第17题 <span class="answer-mark">答案：错</span></h3>
+<p>位数多不一定值大。例如10(二进制，2位)=2，而1(二进制，1位)=1，虽然前者位数多且值大；但100(3位)=4 vs 11111(5位)=31就是位数少但值小的例子。关键反例：1000...0有很多位但可能比位数少的1111...1小（不对）。真正的反例是允许前导零时，如0001(4位)=1比11(2位)=3小。</p>
+</div>
+
+<div class="explanation">
+<h3>第18题 <span class="answer-mark">答案：对</span></h3>
+<p>-n在补码中等于按位取反加1。n&(-n)只保留最低位的1。例如n=6(110)，-n的补码=...11111010，6&(-6)=010=2，即最低位的1对应的值。</p>
+</div>
+
+<div class="explanation">
+<h3>第19题 <span class="answer-mark">答案：对</span></h3>
+<p>右移对负奇数执行的是向负无穷取整的除法。例如-3>>1=-2（算术右移，11...101右移得11...110=-2），而-3/2=-1（C++向零取整）。两者结果不同。</p>
+</div>
+
+<div class="explanation">
+<h3>第20题 <span class="answer-mark">答案：错</span></h3>
+<p>函数声明（原型）通常放在头文件中，函数定义放在源文件中。编译时通过链接器将声明和定义关联起来，不要求在同一文件中。</p>
+</div>
+
+<div class="explanation">
+<h3>第21题 <span class="answer-mark">答案：错</span></h3>
+<p>C++不允许在函数体内定义另一个函数（不支持嵌套函数定义）。虽然C++11的lambda表达式在语法上类似，但传统函数定义不能嵌套。</p>
+</div>
+
+<div class="explanation">
+<h3>第22题 <span class="answer-mark">答案：对</span></h3>
+<p>部分初始化时，未显式初始化的元素自动初始化为0。int a[10]={1}表示a[0]=1，a[1]到a[9]都是0。</p>
+</div>
+
+<div class="explanation">
+<h3>第23题 <span class="answer-mark">答案：对</span></h3>
+<p>C/C++中二维数组按行优先（row-major）连续存储。a[0][0], a[0][1], ..., a[0][n-1], a[1][0], ... 在内存中依次排列。</p>
+</div>
+
+<div class="explanation">
+<h3>第24题 <span class="answer-mark">答案：错</span></h3>
+<p>strlen计算字符串长度，不包含结束符'\0'。"abc"有3个字符，strlen返回3，不是4。注意与sizeof的区别（sizeof("abc")=4，包含'\0'）。</p>
+</div>
+
+<div class="explanation">
+<h3>第25题 <span class="answer-mark">答案：对</span></h3>
+<p>指针变量需要存储一个内存地址，因此它本身也占内存空间。在32位系统中占4字节，64位系统中占8字节。</p>
+</div>
+
+<div class="section-title">编程题参考代码</div>
+
+<div class="explanation">
+<h3>编程题1：密码生成器（凯撒加密）</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int main() {
+    string s;
+    int k;
+    getline(cin, s);
+    cin &gt;&gt; k;
+    k = k % 26; // 处理k>=26的情况
+    for (int i = 0; i &lt; (int)s.size(); i++) {
+        char c = s[i];
+        if (c &gt;= 'a' &amp;&amp; c &lt;= 'z') {
+            s[i] = 'a' + (c - 'a' + k) % 26;
+        } else if (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') {
+            s[i] = 'A' + (c - 'A' + k) % 26;
+        }
+        // 数字和特殊字符不变
+    }
+    cout &lt;&lt; s &lt;&lt; endl;
+    return 0;
+}</pre>
+<p><strong>思路：</strong>遍历每个字符，如果是字母则循环移位k位（用取模运算实现循环），非字母字符保持不变。注意大小写分别处理。</p>
+</div>
+
+<div class="explanation">
+<h3>编程题2：数组旋转（三次反转法）</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+int main() {
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    vector&lt;int&gt; a(n);
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+
+    k = k % n; // 处理k>=n的情况
+    if (k == 0) {
+        for (int i = 0; i &lt; n; i++) {
+            if (i &gt; 0) cout &lt;&lt; " ";
+            cout &lt;&lt; a[i];
+        }
+        cout &lt;&lt; endl;
+        return 0;
+    }
+
+    // 三次反转法
+    // 1. 反转整个数组
+    reverse(a.begin(), a.end());
+    // 2. 反转前k个元素
+    reverse(a.begin(), a.begin() + k);
+    // 3. 反转后n-k个元素
+    reverse(a.begin() + k, a.end());
+
+    for (int i = 0; i &lt; n; i++) {
+        if (i &gt; 0) cout &lt;&lt; " ";
+        cout &lt;&lt; a[i];
+    }
+    cout &lt;&lt; endl;
+    return 0;
+}</pre>
+<p><strong>思路：</strong>右旋转K位等价于：将数组最后K个元素移到前面。三次反转法：(1)整体反转，(2)反转前K个，(3)反转后N-K个。注意先将K对N取模。时间复杂度O(N)，空间复杂度O(1)（不计输入数组）。</p>
+</div>
+
+</body>
+</html>

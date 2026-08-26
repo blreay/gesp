@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 三级模拟试卷（第8套）- 答案与解析</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f7fa; padding: 20px; line-height: 1.8; }
+.header { background: linear-gradient(135deg, #1a237e, #7b1fa2); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+.header h1 { font-size: 24px; }
+.answer-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.answer-table th { background: #1a237e; color: white; padding: 10px; }
+.answer-table td { padding: 8px 12px; border: 1px solid #e0e0e0; text-align: center; }
+.answer-table tr:nth-child(even) { background: #f5f5f5; }
+.section-title { background: #1a237e; color: white; padding: 12px 20px; border-radius: 8px; font-size: 18px; margin-top: 30px; margin-bottom: 15px; }
+.explanation { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.explanation h3 { color: #1a237e; margin-bottom: 8px; }
+.explanation .answer-mark { color: #4caf50; font-weight: bold; }
+pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-family: 'Courier New', Consolas, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>GESP C++ 三级模拟试卷（第8套）- 答案与解析</h1>
+</div>
+
+<div class="section-title">答案一览表</div>
+<table class="answer-table">
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>B</td><td>D</td><td>C</td><td>A</td><td>B</td><td>C</td><td>D</td><td>A</td><td>B</td><td>C</td><td>D</td><td>A</td><td>B</td><td>C</td><td>A</td></tr>
+<tr><th>题号</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th colspan="5"></th></tr>
+<tr><td>答案</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td colspan="5"></td></tr>
+</table>
+
+<div class="section-title">单选题详细解析</div>
+
+<div class="explanation">
+<h3>第1题 <span class="answer-mark">答案：B</span></h3>
+<p>八进制0357转十进制：3×8² + 5×8¹ + 7×8⁰ = 3×64 + 5×8 + 7 = 192 + 40 + 7 = 239。</p>
+</div>
+
+<div class="explanation">
+<h3>第2题 <span class="answer-mark">答案：D</span></h3>
+<p>200÷16=12余8，12的十六进制为C。所以200 = 0xC8。</p>
+</div>
+
+<div class="explanation">
+<h3>第3题 <span class="answer-mark">答案：C</span></h3>
+<p>0x5A = 01011010，0xA5 = 10100101。XOR结果：11111111 = 255。这两个数互为按位取反关系（在8位内）。</p>
+</div>
+
+<div class="explanation">
+<h3>第4题 <span class="answer-mark">答案：A</span></h3>
+<p>~0x0F将低4位的1变0，高位的0变1，得...FFFFFFF0。再与0xFF做AND，保留低8位：11110000 = 0xF0。</p>
+</div>
+
+<div class="explanation">
+<h3>第5题 <span class="answer-mark">答案：B</span></h3>
+<p>-1的补码：1的原码00000001，取反11111110，加1得11111111。即全1。这也说明~0 == -1。</p>
+</div>
+
+<div class="explanation">
+<h3>第6题 <span class="answer-mark">答案：C</span></h3>
+<p>最高位为1表示负数。取反：00010011 = 19，加1得20。所以该补码表示-20。</p>
+</div>
+
+<div class="explanation">
+<h3>第7题 <span class="answer-mark">答案：D</span></h3>
+<p>a[1][2]是第2行第3列=7，a[2][0]是第3行第1列=9。7+9=16。</p>
+</div>
+
+<div class="explanation">
+<h3>第8题 <span class="answer-mark">答案：A</span></h3>
+<p>i=0: a[4]*1=5; i=1: a[3]*2=8; i=2: a[2]*3=9; i=3: a[1]*4=8; i=4: a[0]*5=5。sum=5+8+9+8+5=35。</p>
+</div>
+
+<div class="explanation">
+<h3>第9题 <span class="answer-mark">答案：B</span></h3>
+<p>逐行统计非零元素：第1行{1,0,2}有2个；第2行{0,3,0}有1个；第3行{4,0,5}有2个；第4行{0,6,0}有1个。共6个。</p>
+</div>
+
+<div class="explanation">
+<h3>第10题 <span class="answer-mark">答案：C</span></h3>
+<p>A用值传递，修改形参不影响实参。B只交换了指针变量本身。C用引用传递，直接操作实参。D虽能交换数组元素，但不是交换a和b本身。</p>
+</div>
+
+<div class="explanation">
+<h3>第11题 <span class="answer-mark">答案：D</span></h3>
+<p>f(n,m)计算组合数C(n,m)。f(4,2)=C(4,2)=4!/(2!×2!)=6。递归展开：f(4,2)=f(3,1)+f(3,2)=3+3=6。</p>
+</div>
+
+<div class="explanation">
+<h3>第12题 <span class="answer-mark">答案：A</span></h3>
+<p>string::find返回子串首次出现的起始位置（从0开始）。"cd"在"abcdef"中从下标2开始出现。</p>
+</div>
+
+<div class="explanation">
+<h3>第13题 <span class="answer-mark">答案：B</span></h3>
+<p>x--先取x=10再递减(x变9)，--x先递减(x变8)再取值8。y=10+8=18。注意：此表达式在C++标准中属于未定义行为，但常见编译器按此顺序求值。</p>
+</div>
+
+<div class="explanation">
+<h3>第14题 <span class="answer-mark">答案：C</span></h3>
+<p>i=1时j从1到5(5次)，i=2时j从2到5(4次)，...i=5时j从5到5(1次)。总计5+4+3+2+1=15。</p>
+</div>
+
+<div class="explanation">
+<h3>第15题 <span class="answer-mark">答案：A</span></h3>
+<p>用>=找最大值的最后出现位置。数组{3,1,4,1,5,9}中最大值9在下标5。输出"5 9"。</p>
+</div>
+
+<div class="section-title">判断题详细解析</div>
+
+<div class="explanation">
+<h3>第16题 <span class="answer-mark">答案：对</span></h3>
+<p>二分查找的前提是数据有序（升序或降序），通过每次将搜索范围缩小一半来快速定位目标。</p>
+</div>
+
+<div class="explanation">
+<h3>第17题 <span class="answer-mark">答案：对</span></h3>
+<p>二分查找每次排除一半数据，时间复杂度O(log n)，远优于顺序查找的O(n)。但需要数据预先排好序。</p>
+</div>
+
+<div class="explanation">
+<h3>第18题 <span class="answer-mark">答案：错</span></h3>
+<p>大O表示法描述的是增长趋势。对于小规模输入，O(n²)的算法可能因为常数因子小而比O(n*log n)更快。例如插入排序在小数组上可能比快速排序快。</p>
+</div>
+
+<div class="explanation">
+<h3>第19题 <span class="answer-mark">答案：错</span></h3>
+<p>局部数组（如函数内定义的int a[10]）不会自动初始化为0，其内容是未定义的垃圾值。只有全局/静态数组才会自动初始化为0。</p>
+</div>
+
+<div class="explanation">
+<h3>第20题 <span class="answer-mark">答案：对</span></h3>
+<p>C/C++中多维数组按行优先（row-major）顺序存储。a[0][0], a[0][1], ..., a[0][3], a[1][0], ... 在内存中连续。</p>
+</div>
+
+<div class="explanation">
+<h3>第21题 <span class="answer-mark">答案：对</span></h3>
+<p>值传递时，形参是实参的拷贝，存储在独立的内存位置。对形参的修改不会影响调用者的实参。</p>
+</div>
+
+<div class="explanation">
+<h3>第22题 <span class="answer-mark">答案：错</span></h3>
+<p>C++中函数不能直接返回数组类型。可以返回指向数组的指针、引用，或使用vector/array等容器，但不能直接return一个数组。</p>
+</div>
+
+<div class="explanation">
+<h3>第23题 <span class="answer-mark">答案：对</span></h3>
+<p>x&(x-1)是经典位运算技巧。x-1会将x最低位的1变0，该位以下全变1。与x做AND后，最低位的1被清除。例如：12(1100)&11(1011)=8(1000)。</p>
+</div>
+
+<div class="explanation">
+<h3>第24题 <span class="answer-mark">答案：错</span></h3>
+<p>对有符号负数右移时，不同实现可能做算术右移（高位补符号位）或逻辑右移（高位补0）。无符号数右移总是逻辑右移（补0）。因此行为不完全相同。</p>
+</div>
+
+<div class="explanation">
+<h3>第25题 <span class="answer-mark">答案：对</span></h3>
+<p>sizeof是C/C++中的运算符（operator），不是函数。它在编译时求值（对于非VLA类型），可以不加括号使用（如sizeof x），这证明它不是函数。</p>
+</div>
+
+<div class="section-title">编程题参考答案</div>
+
+<div class="explanation">
+<h3>编程题1：水仙花数扩展（N位自恋数）</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+using namespace std;
+
+int main() {
+    long long L, R;
+    int N;
+    cin >> L >> R >> N;
+    bool found = false;
+    for (long long num = L; num <= R; num++) {
+        long long sum = 0, tmp = num;
+        while (tmp > 0) {
+            int d = tmp % 10;
+            long long pw = 1;
+            for (int i = 0; i < N; i++) pw *= d;
+            sum += pw;
+            tmp /= 10;
+        }
+        if (sum == num) {
+            cout << num << endl;
+            found = true;
+        }
+    }
+    if (!found) cout << "None" << endl;
+    return 0;
+}</pre>
+</div>
+
+<div class="explanation">
+<h3>编程题2：稀疏矩阵压缩</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int main() {
+    int M, N;
+    cin >> M >> N;
+    vector&lt;tuple&lt;int,int,int&gt;&gt; triples;
+    for (int i = 1; i <= M; i++) {
+        for (int j = 1; j <= N; j++) {
+            int val;
+            cin >> val;
+            if (val != 0)
+                triples.push_back({i, j, val});
+        }
+    }
+    cout << triples.size() << endl;
+    for (auto& [r, c, v] : triples)
+        cout << r << " " << c << " " << v << endl;
+    return 0;
+}</pre>
+</div>
+
+</body>
+</html>

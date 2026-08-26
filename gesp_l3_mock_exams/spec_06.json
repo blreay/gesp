@@ -1,0 +1,57 @@
+{
+  "exam_num": 6,
+  "difficulty": "较难",
+  "choice_questions": [
+    {"text": "将八进制数 37₈ 转换为二进制是（）", "options": ["A. 11111₂", "B. 011111₂", "C. 111011₂", "D. 110111₂"], "answer": "A", "explanation": "3₈=011₂, 7₈=111₂, 合并为011111₂即11111₂"},
+    {"text": "十六进制数 A5₁₆ 转换为十进制是（）", "options": ["A. 155", "B. 165", "C. 175", "D. 105"], "answer": "B", "explanation": "A₁₆=10, A5₁₆=10×16+5=165"},
+    {"text": "表达式 x^x 的值是（x为整数）（）", "options": ["A. 2x", "B. x", "C. 0", "D. -1"], "answer": "C", "explanation": "任何数与自身异或结果为0"},
+    {"text": "不使用临时变量交换a和b的值，以下哪个方法正确？（）", "options": ["A. a^=b; b^=a; a^=b;", "B. a|=b; b|=a; a|=b;", "C. a&=b; b&=a; a&=b;", "D. a+=b; a-=b; b-=a;"], "answer": "A", "explanation": "异或交换法：a^=b使a=a^b，b^=a使b=b^(a^b)=a，a^=b使a=(a^b)^a=b"},
+    {"text": "8位有符号整数（补码表示）能表示的范围是（）", "options": ["A. -127到127", "B. -128到127", "C. -128到128", "D. -127到128"], "answer": "B", "explanation": "8位补码范围为-2^7到2^7-1，即-128到127"},
+    {"text": "-1的32位补码的十六进制表示是（）", "options": ["A. 0x00000001", "B. 0x80000001", "C. 0xFFFFFFFF", "D. 0x7FFFFFFF"], "answer": "C", "explanation": "-1的补码全部位为1，32位即0xFFFFFFFF"},
+    {"text": "int a[5]={1,2,3,4,5}; 则a[5]是（）", "options": ["A. 5", "B. 0", "C. 编译错误", "D. 越界访问，未定义行为"], "answer": "D", "explanation": "数组下标0~4有效，a[5]越界访问，属于未定义行为"},
+    {"text": "int a[3]={1,2,3}; int *p=a; *(p++)的值是（）", "options": ["A. 2", "B. 1", "C. 3", "D. 地址值"], "answer": "B", "explanation": "*(p++)先取*p的值即a[0]=1，然后p自增"},
+    {"text": "string s=\"abcdef\"; s.substr(2,3)+s.substr(0,2)的结果是（）", "options": ["A. \"cdeab\"", "B. \"abcde\"", "C. \"cdefab\"", "D. \"cdab\""], "answer": "A", "explanation": "s.substr(2,3)=\"cde\", s.substr(0,2)=\"ab\", 拼接为\"cdeab\""},
+    {"text": "string s=\"Hello\"; s[0]='h'; cout<<s; 输出（）", "options": ["A. Hello", "B. hello", "C. hELLO", "D. hello!"], "answer": "B", "explanation": "\"Hello\"的第0个字符'H'改为'h'，得到\"hello\""},
+    {"text": "以下结构体定义中，正确的是（）", "options": ["A. struct{int x; int y;} p;", "B. struct Point{int x; int y}", "C. struct Point{int x, int y;};", "D. struct Point{int x; int y;};"], "answer": "D", "explanation": "结构体定义需要分号结尾，成员用分号分隔"},
+    {"text": "struct Student{char name[20]; int age; double score;}; sizeof(Student)在64位系统上最可能是（）", "options": ["A. 32", "B. 28", "C. 30", "D. 40"], "answer": "D", "explanation": "内存对齐：name[20]+padding(4)+age(4)+padding(4)+score(8)=40字节（double需要8字节对齐）"},
+    {"text": "以下代码输出什么？\nint a=3,b=5,c; c=a; a=b; b=c; cout<<a<<\" \"<<b;", "options": ["A. 5 3", "B. 3 5", "C. 5 5", "D. 3 3"], "answer": "A", "explanation": "经典交换算法：用c暂存a的值，a=b=5，b=c=3，输出\"5 3\""},
+    {"text": "以下代码输出什么？\nint sum=0;\nfor(int i=1;i<=5;i++){\n  if(i==3) continue;\n  sum+=i;\n}\ncout<<sum;", "options": ["A. 12", "B. 15", "C. 10", "D. 9"], "answer": "A", "explanation": "跳过i=3，sum=1+2+4+5=12"},
+    {"text": "以下代码输出什么？\nchar s[]=\"abcABC123\";\nint cnt=0;\nfor(int i=0;s[i];i++)\n  if(s[i]>='0'&&s[i]<='9') cnt++;\ncout<<cnt;", "options": ["A. 6", "B. 3", "C. 9", "D. 0"], "answer": "B", "explanation": "字符串中数字字符有'1','2','3'共3个"}
+  ],
+  "tf_questions": [
+    {"text": "结构体变量可以用=号直接赋值给同类型的另一个结构体变量。", "answer": "T", "explanation": "同类型结构体支持赋值运算，执行逐成员拷贝"},
+    {"text": "结构体可以作为函数参数传递，也可以作为函数返回值。", "answer": "T", "explanation": "结构体支持值传递和作为返回值"},
+    {"text": "冒泡排序在最好情况下（数组已排序）的时间复杂度是O(n)。", "answer": "T", "explanation": "优化版冒泡排序（加标志位）在已排序时只需一轮比较，时间O(n)"},
+    {"text": "插入排序在数据基本有序时效率较高。", "answer": "T", "explanation": "基本有序时插入排序接近O(n)"},
+    {"text": "C++中字符串\"abc\"的长度（strlen）是4。", "answer": "F", "explanation": "strlen不计算末尾'\\0'，长度为3"},
+    {"text": "string类型的+运算符可以拼接两个字符串。", "answer": "T", "explanation": "C++ string重载了+运算符用于字符串拼接"},
+    {"text": "位运算符|的优先级高于比较运算符==。", "answer": "F", "explanation": "==的优先级高于|，所以a|b==c实际是a|(b==c)"},
+    {"text": "位运算只能用于整数类型，不能用于浮点数。", "answer": "T", "explanation": "位运算符只适用于整数类型"},
+    {"text": "const修饰的变量在定义时必须初始化。", "answer": "T", "explanation": "const变量定义后不能修改，所以必须在定义时初始化"},
+    {"text": "全局变量如果没有显式初始化，int类型默认值为0。", "answer": "T", "explanation": "全局变量和静态变量会被自动零初始化"}
+  ],
+  "programming": [
+    {
+      "title": "字符统计",
+      "description": "输入一行字符串（可能包含空格），统计其中大写字母、小写字母、数字、空格和其他字符的个数。",
+      "input_format": "一行字符串（长度不超过1000）。",
+      "output_format": "五行，每行一个整数，依次为大写字母个数、小写字母个数、数字个数、空格个数、其他字符个数。",
+      "sample_input": "Hello World! 123",
+      "sample_output": "2\n8\n3\n2\n1",
+      "explanation": "大写:H,W共2个; 小写:e,l,l,o,o,r,l,d共8个; 数字:1,2,3共3个; 空格2个; 其他:!共1个"
+    },
+    {
+      "title": "约瑟夫环",
+      "description": "N个人围成一圈，编号1到N。从第1个人开始报数，报到M的人出列，然后从出列者的下一个人重新从1开始报数，直到所有人出列。输出出列顺序。",
+      "input_format": "一行两个正整数N和M(1≤N≤1000, 1≤M≤1000)。",
+      "output_format": "一行N个整数，空格分隔，表示出列顺序。",
+      "sample_input": "5 3",
+      "sample_output": "3 1 5 2 4",
+      "explanation": "5人报数3：第一轮3出列，从4开始报数：4,5,1→1出列，从2开始：2,3(跳过),4(跳过),5→5出列，从2开始：2→2出列，最后4出列"
+    }
+  ],
+  "solutions": [
+    "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string s;\n    getline(cin, s);\n    int upper=0, lower=0, digit=0, space=0, other=0;\n    for (int i = 0; i < s.length(); i++) {\n        if (s[i] >= 'A' && s[i] <= 'Z') upper++;\n        else if (s[i] >= 'a' && s[i] <= 'z') lower++;\n        else if (s[i] >= '0' && s[i] <= '9') digit++;\n        else if (s[i] == ' ') space++;\n        else other++;\n    }\n    cout << upper << endl << lower << endl << digit << endl << space << endl << other << endl;\n    return 0;\n}",
+    "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<int> people;\n    for (int i = 1; i <= n; i++) people.push_back(i);\n    int idx = 0;\n    for (int i = 0; i < n; i++) {\n        idx = (idx + m - 1) % people.size();\n        if (i > 0) cout << \" \";\n        cout << people[idx];\n        people.erase(people.begin() + idx);\n        if (idx >= (int)people.size()) idx = 0;\n    }\n    cout << endl;\n    return 0;\n}"
+  ]
+}

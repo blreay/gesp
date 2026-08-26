@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GESP C++ 三级模拟试卷（第2套）- 答案与解析</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Microsoft YaHei', sans-serif; background: #f5f7fa; padding: 20px; line-height: 1.8; }
+.header { background: linear-gradient(135deg, #1a237e, #7b1fa2); color: white; padding: 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+.header h1 { font-size: 24px; }
+.answer-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.answer-table th { background: #1a237e; color: white; padding: 10px; }
+.answer-table td { padding: 8px 12px; border: 1px solid #e0e0e0; text-align: center; }
+.answer-table tr:nth-child(even) { background: #f5f5f5; }
+.section-title { background: #1a237e; color: white; padding: 12px 20px; border-radius: 8px; font-size: 18px; margin-top: 30px; margin-bottom: 15px; }
+.explanation { background: white; padding: 20px; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.explanation h3 { color: #1a237e; margin-bottom: 8px; }
+.explanation .answer-mark { color: #4caf50; font-weight: bold; }
+pre { background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; font-family: 'Courier New', Consolas, monospace; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>GESP C++ 三级模拟试卷（第2套）- 答案与解析</h1>
+</div>
+
+<div class="section-title">答案一览表</div>
+<table class="answer-table">
+<tr><th>题号</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr>
+<tr><td>答案</td><td>A</td><td>C</td><td>C</td><td>B</td><td>A</td><td>A</td><td>C</td><td>B</td><td>C</td><td>B</td><td>B</td><td>C</td><td>A</td><td>B</td><td>B</td></tr>
+<tr><th>题号</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th><th>24</th><th>25</th><th colspan="5"></th></tr>
+<tr><td>答案</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td colspan="5"></td></tr>
+</table>
+
+<div class="section-title">单选题详细解析</div>
+
+<div class="explanation">
+<h3>第1题 <span class="answer-mark">答案：A</span></h3>
+<p>八进制37转十进制：3×8+7=31。31转十六进制：31÷16=1...15(F)，所以31=1F(十六进制)。</p>
+</div>
+
+<div class="explanation">
+<h3>第2题 <span class="answer-mark">答案：C</span></h3>
+<p>十六进制加法：A(=10)+9=19(十进制)。19转十六进制：19÷16=1...3，即13(十六进制)。注意题目问的是十六进制结果。</p>
+</div>
+
+<div class="explanation">
+<h3>第3题 <span class="answer-mark">答案：C</span></h3>
+<p>~0将0的所有位取反，32位int中得到全1（即11111111 11111111 11111111 11111111），这是-1的补码表示。</p>
+</div>
+
+<div class="explanation">
+<h3>第4题 <span class="answer-mark">答案：B</span></h3>
+<p>由于运算符优先级，x&1==1 等价于 x&(1==1) 即 x&1，不是比较结果。需要加括号 (x&1)==1 才能正确判断奇偶。</p>
+</div>
+
+<div class="explanation">
+<h3>第5题 <span class="answer-mark">答案：A</span></h3>
+<p>7的二进制=111，3的二进制=011。7|3=111=7，7&3=011=3。7^3：111^011=100=4。</p>
+</div>
+
+<div class="explanation">
+<h3>第6题 <span class="answer-mark">答案：A</span></h3>
+<p>最高位是1，为负数。取反+1求绝对值：11110101取反=00001010=10，加1=00001011=11。所以原数是-11。</p>
+</div>
+
+<div class="explanation">
+<h3>第7题 <span class="answer-mark">答案：C</span></h3>
+<p>有符号int溢出在C++标准中属于未定义行为，但在大多数实现中表现为结果回绕（wrap around）。不会产生编译错误或运行时异常。</p>
+</div>
+
+<div class="explanation">
+<h3>第8题 <span class="answer-mark">答案：B</span></h3>
+<p>char s[] = "GESP" 包含4个字符加1个结束符'\0'，共5个字节。sizeof计算的是数组占用的总字节数。</p>
+</div>
+
+<div class="explanation">
+<h3>第9题 <span class="answer-mark">答案：C</span></h3>
+<p>C++不进行数组边界检查。越界访问不会导致编译错误（编译器不检查），也不一定产生运行时错误，而是导致未定义行为。</p>
+</div>
+
+<div class="explanation">
+<h3>第10题 <span class="answer-mark">答案：B</span></h3>
+<p>A选项中两个字符串字面量不能直接用+拼接（它们是const char*类型）。B正确，string对象可以和字符串字面量用+拼接。C中cd没有引号，语法错误。</p>
+</div>
+
+<div class="explanation">
+<h3>第11题 <span class="answer-mark">答案：B</span></h3>
+<p>f(0)=1, f(1)=1, f(2)=f(1)+f(0)=1+1=2, f(3)=f(2)+f(1)=2+1=3, f(4)=f(3)+f(2)=3+2=5。这是类斐波那契递归。</p>
+</div>
+
+<div class="explanation">
+<h3>第12题 <span class="answer-mark">答案：C</span></h3>
+<p>局部变量在函数返回后就被销毁了，返回其引用会导致悬空引用(dangling reference)，使用它属于未定义行为。编译器可能给出警告但不是语法错误。</p>
+</div>
+
+<div class="explanation">
+<h3>第13题 <span class="answer-mark">答案：A</span></h3>
+<p>冒泡排序第一趟从左到右比较相邻元素：5>3交换得{3,5,1,4,2}; 5>1交换得{3,1,5,4,2}; 5>4交换得{3,1,4,5,2}; 5>2交换得{3,1,4,2,5}。最大的5已冒泡到末尾。</p>
+</div>
+
+<div class="explanation">
+<h3>第14题 <span class="answer-mark">答案：B</span></h3>
+<p>二分查找要求数据有序（升序或降序），这是其核心前提。元素可以重复，长度可以是奇数或偶数，元素可以是任意可比较的值。</p>
+</div>
+
+<div class="explanation">
+<h3>第15题 <span class="answer-mark">答案：B</span></h3>
+<p>n&(n-1)每次清除n最低位的1。13=1101(二进制)，有3个1。执行过程：1101&1100=1100(cnt=1); 1100&1011=1000(cnt=2); 1000&0111=0000(cnt=3); n=0循环结束。输出3。</p>
+</div>
+
+<div class="section-title">判断题详细解析</div>
+
+<div class="explanation">
+<h3>第16题 <span class="answer-mark">答案：对</span></h3>
+<p>8位补码：最高位为符号位，可表示-128(10000000)到127(01111111)，共256个数。</p>
+</div>
+
+<div class="explanation">
+<h3>第17题 <span class="answer-mark">答案：错</span></h3>
+<p>16位unsigned short最大值是2^16-1=65535，不是65536。65536=2^16，超出了16位能表示的范围。</p>
+</div>
+
+<div class="explanation">
+<h3>第18题 <span class="answer-mark">答案：对</span></h3>
+<p>异或的性质：a^b^b = a^(b^b) = a^0 = a。任何数异或自身得0，任何数异或0得自身。</p>
+</div>
+
+<div class="explanation">
+<h3>第19题 <span class="answer-mark">答案：错</span></h3>
+<p>当a很大时(如INT_MAX)，a*2溢出属于未定义行为，而a<<1的行为也是未定义的（对有符号数左移导致溢出时）。两者在溢出情况下行为不保证相同。</p>
+</div>
+
+<div class="explanation">
+<h3>第20题 <span class="answer-mark">答案：对</span></h3>
+<p>数组名在大多数表达式中退化为指向首元素的指针。例外情况：sizeof(数组名)和&数组名时不退化。</p>
+</div>
+
+<div class="explanation">
+<h3>第21题 <span class="answer-mark">答案：错</span></h3>
+<p>sizeof(数组名)得到的是整个数组的字节数，不是指针大小。这是数组名不退化的例外情况之一。例如int a[5]; sizeof(a)=20（32位系统）。</p>
+</div>
+
+<div class="explanation">
+<h3>第22题 <span class="answer-mark">答案：对</span></h3>
+<p>选择排序在交换时可能改变相同元素的相对顺序。例如{5a, 5b, 3}，第一轮选出最小值3与5a交换，5a跑到了5b后面，稳定性被破坏。</p>
+</div>
+
+<div class="explanation">
+<h3>第23题 <span class="answer-mark">答案：对</span></h3>
+<p>优化版冒泡排序设置标志位，如果某一趟没有发生任何交换，说明数组已有序，提前终止。对已排序数组只需一趟扫描，时间复杂度O(n)。</p>
+</div>
+
+<div class="explanation">
+<h3>第24题 <span class="answer-mark">答案：错</span></h3>
+<p>C++函数参数默认以值传递方式传递。需要显式使用&声明引用参数才能实现引用传递。</p>
+</div>
+
+<div class="explanation">
+<h3>第25题 <span class="answer-mark">答案：对</span></h3>
+<p>void函数没有返回值，合法且常用。例如void print() { cout << "hello"; } 不需要return语句（或使用空return;）。</p>
+</div>
+
+<div class="section-title">编程题参考代码</div>
+
+<div class="explanation">
+<h3>编程题1：回文判断</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cctype&gt;
+using namespace std;
+
+bool isPalindrome(const string&amp; s) {
+    string filtered;
+    for (char c : s) {
+        if (isalnum(c)) {
+            filtered += tolower(c);
+        }
+    }
+    int left = 0, right = (int)filtered.size() - 1;
+    while (left &lt; right) {
+        if (filtered[left] != filtered[right]) return false;
+        left++;
+        right--;
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    cin.ignore();
+    for (int i = 0; i &lt; n; i++) {
+        string s;
+        getline(cin, s);
+        cout &lt;&lt; (isPalindrome(s) ? "Y" : "N") &lt;&lt; endl;
+    }
+    return 0;
+}</pre>
+<p><strong>思路：</strong>先过滤出字母和数字并转小写，然后用双指针从两端向中间比较。注意使用getline读取可能包含空格的字符串。</p>
+</div>
+
+<div class="explanation">
+<h3>编程题2：成绩统计</h3>
+<pre>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+struct Student {
+    string name;
+    int s1, s2, s3, total;
+    int order; // 输入顺序
+};
+
+int main() {
+    int n;
+    cin &gt;&gt; n;
+    vector&lt;Student&gt; stu(n);
+    for (int i = 0; i &lt; n; i++) {
+        cin &gt;&gt; stu[i].name &gt;&gt; stu[i].s1 &gt;&gt; stu[i].s2 &gt;&gt; stu[i].s3;
+        stu[i].total = stu[i].s1 + stu[i].s2 + stu[i].s3;
+        stu[i].order = i;
+    }
+    stable_sort(stu.begin(), stu.end(), [](const Student&amp; a, const Student&amp; b) {
+        return a.total &gt; b.total;
+    });
+    for (int i = 0; i &lt; n; i++) {
+        cout &lt;&lt; (i + 1) &lt;&lt; " " &lt;&lt; stu[i].name &lt;&lt; " " &lt;&lt; stu[i].total &lt;&lt; endl;
+    }
+    return 0;
+}</pre>
+<p><strong>思路：</strong>读入数据后计算总分，使用stable_sort按总分降序排序（保持相同总分的输入顺序），输出排名、姓名和总分。</p>
+</div>
+
+</body>
+</html>
