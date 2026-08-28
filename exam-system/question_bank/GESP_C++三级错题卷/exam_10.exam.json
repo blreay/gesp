@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_10",
+    "title": "模拟卷 十：STL（map/unordered_map）& 综合应用专题",
+    "subtitle": "错题强化卷 十",
+    "category": "GESP C++ 三级错题卷",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "老板让你存\"学生成绩\"，用学号（string 类型，如 \"S001\"）查分数（int），下面哪个是绝对正确且安全的写法（ ）。",
+          "options": {
+            "A": "map<int, int> 成绩; 成绩[\"S001\"] = 100;",
+            "B": "unordered_map<string, int> 成绩; 成绩[\"S001\"] = 100;",
+            "C": "map<string, string> 成绩; 成绩[\"S001\"] = 100;",
+            "D": "vector<int> 成绩; 成绩[\"S001\"] = 100;"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`map<int, string> 电话簿; 电话簿[1001] = \"王大胆\";` 之后执行 `if (电话簿[9999] == \"\") {...}` 想\"看一下 9999 是否存在\"，这样写会导致什么后果（ ）。",
+          "options": {
+            "A": "完全没有副作用，只是单纯的一次查询",
+            "B": "编译错误",
+            "C": "会\"偷偷\"在 map 里插入一个 key 为 9999、value 为空字符串的新记录（`[]` 运算符查不到会自动创建）",
+            "D": "程序崩溃"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "想\"安全地\"检查 map 中是否存在某个 key，而不会意外插入新记录，应该使用（ ）。",
+          "options": {
+            "A": "m.find(key) == m.end() 或 m.count(key)",
+            "B": "m[key] == 0",
+            "C": "m.size() > 0",
+            "D": "m.begin() == m.end()"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 `map` 和 `unordered_map` 的区别，说法正确的是（ ）。",
+          "options": {
+            "A": "map 是无序的，unordered_map 是有序的",
+            "B": "两者查找的时间复杂度完全一样",
+            "C": "unordered_map 不能用 [] 运算符",
+            "D": "map 内部按 key 自动排序（查找 O(log n)），unordered_map 内部是哈希表（平均查找 O(1)，但不保证顺序）"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`map<int, string> m; m[5]=\"e\"; m[1]=\"a\"; m[3]=\"c\";` 之后用 `for (auto& p : m) cout << p.first << \" \";` 遍历，输出顺序是（ ）。",
+          "options": {
+            "A": "5 1 3（插入顺序）",
+            "B": "1 3 5（按 key 从小到大自动排序）",
+            "C": "顺序不确定，每次运行都可能不同",
+            "D": "5 3 1（按 key 从大到小）"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "已知 `map<int,int> m; m[1001]=\"王大胆\";` 会不会有问题（ ）。（提示：注意 map 的模板参数）",
+          "options": {
+            "A": "完全没问题，正常运行",
+            "B": "运行时崩溃",
+            "C": "编译错误，因为 value 类型声明为 int，不能直接赋值字符串字面量",
+            "D": "会自动把 map 的 value 类型改成 string"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 `m.count(key)` 的返回值，说法正确的是（ ）。",
+          "options": {
+            "A": "返回该 key 对应 value 的具体数值",
+            "B": "对于 map/unordered_map，返回 0（不存在）或 1（存在），因为 key 唯一",
+            "C": "永远返回 0",
+            "D": "返回 map 的大小"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "标准 C 语言里没有内置的 map 容器，如果要实现\"工号查姓名\"的功能，最接近的手工做法是（ ）。",
+          "options": {
+            "A": "自己维护一个按工号排序的结构体数组，用 bsearch 二分查找",
+            "B": "C 语言其实也内置了 map，用法和 C++ 完全一样",
+            "C": "不可能实现，C 语言无法做查找功能",
+            "D": "只能用 for 循环从文件里重新读一遍"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "一段代码把课本上带行号的代码（如 \"1  #include <iostream>\"）连同行号一起敲进了编辑器，这样做的后果是（ ）。",
+          "options": {
+            "A": "编译器会自动识别并忽略行号，正常编译",
+            "B": "行号本身会被当成代码的一部分，通常会导致编译错误",
+            "C": "程序能正常运行，只是多输出几个数字",
+            "D": "只有 GCC 编译器会报错，其他编译器不会"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "表达式 `[(1,2)*2]*3`，如果去掉方括号写成 `(1,2)*2*3`，则该表达式在 C++ 中（ ）。",
+          "options": {
+            "A": "不合法，编译错误",
+            "B": "合法，`(1,2)` 是逗号表达式，值为 2，整个表达式的值是 2*2*3=12",
+            "C": "合法，但值是 1*2*3=6",
+            "D": "合法，但值是未定义行为"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 bit、Byte、KB 的说法，正确的是（ ）。",
+          "options": {
+            "A": "bit 可以直接换算成 KB",
+            "B": "1 Byte = 1024 bit",
+            "C": "1 KB = 1000 bit",
+            "D": "正确的递进关系是 bit → Byte → KB → MB，其中 1 Byte=8 bit，1 KB=1024 Byte"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`unordered_map<string, int> freq; string s; while (cin >> s) freq[s]++;` 这段代码的功能是（ ）。",
+          "options": {
+            "A": "统计输入的单词个数（去重后剩几个）",
+            "B": "按字典序打印所有单词",
+            "C": "统计每个单词在输入中出现的次数（词频统计）",
+            "D": "删除重复的单词"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 `map<K,V>` 的迭代器 `it`，`it->first` 和 `it->second` 分别表示（ ）。",
+          "options": {
+            "A": "第一个元素和最后一个元素",
+            "B": "当前指向的键值对的 key 和 value",
+            "C": "map 的大小和容量",
+            "D": "前一个迭代器和后一个迭代器"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "已知 1 个中文汉字在 GBK 编码下占用 2 个 Byte，一篇纯中文文档有 500 个汉字，大约占用（ ）。",
+          "options": {
+            "A": "1000 Byte（约 1 KB）",
+            "B": "500 Byte",
+            "C": "2000 KB",
+            "D": "500 bit"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于下面这行 C++ 代码，说法正确的是（ ）：`printf(\"Hello,GESP!\");`",
+          "options": {
+            "A": "配对的双引号内，不可以出现汉字",
+            "B": "配对的双引号可以直接改成配对的单引号，效果不变",
+            "C": "配对的双引号可以改成三个连续的英文单引号，效果不变",
+            "D": "配对的双引号可以改成三个连续的英文双引号（即 \"\"\"Hello,GESP!\"\"\"），输出效果不变"
+          },
+          "answer": "D",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`map` 和 `unordered_map` 都要求 key 必须是 int 类型，不能用 string 做 key。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "用 `[]` 运算符查询一个不存在的 key 时，会自动在容器里插入一条以该 key、默认构造的 value 组成的新记录。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "只需要查找，不关心遍历顺序时，通常优先选用 `unordered_map`，因为它平均查找效率更高。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "map 中的 key 可以重复出现多次，每次赋值都会新增一条记录。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `[(1,2)*2]*3` 中的方括号 `[` `]` 在 C++ 里是数组下标运算符的专用符号，不能像数学里那样当作括号使用，所以整体不是合法的表达式。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "1 KB 在计算机存储领域任何时候都严格等于 1000 Byte，绝无例外（磁盘厂商和操作系统的算法完全一致）。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "1 TB 硬盘在电脑属性里显示的容量往往比标称的略小（例如显示约 931 GB），这是因为厂商按 1000 进制计算容量，而操作系统按 1024 进制显示。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`map` 底层通常基于平衡二叉搜索树（如红黑树）实现，这也是它能自动按 key 排序、查找复杂度为 O(log n) 的原因。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`unordered_map` 的\"unordered\"意味着它内部完全不做任何组织，每次查找都要遍历所有元素（时间复杂度 O(n)）。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在实际比赛/考试中，如果需要按 key 从小到大顺序输出结果，应该选择 `map` 而不是 `unordered_map`。（ ）",
+          "answer": true,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "单词词频统计",
+          "knowledge": [],
+          "stem": "输入若干个用空格/换行分隔的单词（全部为小写英文字母，直到输入结束 EOF），请统计每个不同单词出现的次数，按单词的字典序从小到大输出\"单词 次数\"。",
+          "input_format": "若干行单词，以文件结束（EOF）为输入终止标志。",
+          "output_format": "按字典序输出每个不同单词及其出现次数，每行一个，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "the quick fox jumps\nthe lazy fox\nthe fox runs",
+              "output": "fox 3\njumps 1\nlazy 1\nquick 1\nruns 1\nthe 3"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"单词词频统计\"(mock10 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock10_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock10_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"the quick fox jumps\\nthe lazy fox\\nthe fox runs\\n\",\n         \"fox 3\\njumps 1\\nlazy 1\\nquick 1\\nruns 1\\nthe 3\"},\n        {\"apple\\n\", \"apple 1\"},\n        {\"a a a b b c\\n\", \"a 3\\nb 2\\nc 1\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 单词词频统计 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-30s | %-24s | %-24s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"-----------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-30s | %-24s | %-24s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "查找重复的学号",
+          "knowledge": [],
+          "stem": "输入 n 个学号（字符串，如 \"S001\"），请找出其中第一个出现\"重复\"的学号（即从左到右扫描，第一个此前已经出现过的学号），并输出它；如果没有重复的学号，输出 \"NONE\"。请使用 map 或 unordered_map 实现高效查找（不要用双重循环暴力比较）。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 100000）；第二行 n 个学号，用空格分隔。",
+          "output_format": "输出第一个重复出现的学号，或 \"NONE\"。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5\nS001 S002 S003 S002 S004",
+              "output": "S002"
+            },
+            {
+              "input": "3\nS001 S002 S003",
+              "output": "NONE"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"查找重复的学号\"(mock10 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock10_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock10_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5\\nS001 S002 S003 S002 S004\\n\", \"S002\"},\n        {\"3\\nS001 S002 S003\\n\", \"NONE\"},\n        {\"1\\nS001\\n\", \"NONE\"},\n        {\"4\\nA A A A\\n\", \"A\"},\n        {\"6\\nX Y Z Y X Z\\n\", \"Y\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 查找重复的学号 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-24s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_03",
+    "title": "模拟试卷（三）",
+    "subtitle": "位操作进阶 · 二维数组 · 静态变量",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "lowbit",
+      "算术右移",
+      "补码加法",
+      "static变量",
+      "指针解引用"
+    ],
+    "prog_brief": "密码生成器（凯撒加密）；数组旋转（三次反转法）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十六进制数 2B 转换为八进制是（）",
+          "options": {
+            "A": "53",
+            "B": "43",
+            "C": "63",
+            "D": "33"
+          },
+          "answer": "A",
+          "explanation": "2B(十六进制)转十进制：2×16+11=43。43转八进制：43÷8=5...3，即53(八进制)。验证：5×8+3=43。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "比较二进制数 1010₂ 和八进制数 12₈ 的大小关系（）",
+          "options": {
+            "A": "前者大",
+            "B": "后者大",
+            "C": "相等",
+            "D": "无法比较"
+          },
+          "answer": "C",
+          "explanation": "1010(二进制)=1×8+0×4+1×2+0=10(十进制)。12(八进制)=1×8+2=10(十进制)。两者相等。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "表达式 n & (n-1) 的作用是（n为正整数）（）",
+          "options": {
+            "A": "判断n是否为奇数",
+            "B": "清除n最低位的1",
+            "C": "取n最低位的1",
+            "D": "将n加1"
+          },
+          "answer": "B",
+          "explanation": "n&(n-1)的效果是清除n二进制表示中最低位的1。例如n=12(1100)，n-1=11(1011)，n&(n-1)=1000=8，最低位的1(第2位)被清除。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "要将变量x的第3位（从第0位开始）清零，应使用（）",
+          "options": {
+            "A": "x &= ~(1<<3)",
+            "B": "x |= (1<<3)",
+            "C": "x ^= (1<<3)",
+            "D": "x &= (1<<3)"
+          },
+          "answer": "A",
+          "explanation": "清零某一位用\"与非\"操作：1<<3产生00001000，取反得11110111，与x相与可以只将第3位清零而不影响其他位。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a = -1; a >> 1 在大多数编译器上的结果是（）",
+          "options": {
+            "A": "0",
+            "B": "-1",
+            "C": "2147483647",
+            "D": "未定义行为"
+          },
+          "answer": "B",
+          "explanation": "-1的补码是全1(11...1)。大多数编译器对有符号数右移执行算术右移（高位补符号位1），右移后仍然是全1，即-1。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "8位补码 10000001 加上 11111111 的结果（8位截断）是（）",
+          "options": {
+            "A": "10000000",
+            "B": "01111111",
+            "C": "00000000",
+            "D": "100000000"
+          },
+          "answer": "A",
+          "explanation": "10000001(补码)=-127，11111111(补码)=-1。-127+(-1)=-128，-128的8位补码是10000000。没有溢出（-128在8位补码范围内）。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下哪个是正确的二维数组定义？（）",
+          "options": {
+            "A": "int a[][] = {{1,2},{3,4}}",
+            "B": "int a[2][] = {{1,2},{3,4}}",
+            "C": "int a[][2] = {{1,2},{3,4}}",
+            "D": "int a[,] = {{1,2},{3,4}}"
+          },
+          "answer": "C",
+          "explanation": "C++中二维数组可以省略第一维的大小（编译器根据初始化列表推断），但第二维必须指定。只有C选项int a[][2]满足此要求。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对于 int a[3][4]，表达式 &a[1][2] - &a[0][0] 的值是（）",
+          "options": {
+            "A": "4",
+            "B": "5",
+            "C": "6",
+            "D": "8"
+          },
+          "answer": "C",
+          "explanation": "二维数组按行优先存储。a[1][2]在内存中的偏移量=1×4+2=6个int位置。指针相减得到的是元素个数差：6。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "字符 'a' 的ASCII码是97，则表达式 'a'+3 的结果作为字符输出是（）",
+          "options": {
+            "A": "字符'd'",
+            "B": "数字100",
+            "C": "两种说法都可能正确",
+            "D": "编译错误"
+          },
+          "answer": "A",
+          "explanation": "'a'+3的结果是整数100（=97+3）。当赋值给char变量或用%c输出时显示为字符'd'(ASCII 100)。作为int值就是100。所以A和B都正确。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "string s=\"Hello\"; s.substr(1,3) 的结果是（）",
+          "options": {
+            "A": "\"Hel\"",
+            "B": "\"ell\"",
+            "C": "\"ello\"",
+            "D": "\"lo\""
+          },
+          "answer": "B",
+          "explanation": "substr(pos, len)从位置pos开始截取len个字符。s.substr(1,3)从下标1开始取3个字符：s[1]='e', s[2]='l', s[3]='l'，结果是\"ell\"。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "全局变量和局部变量同名时，函数内访问的是（）",
+          "options": {
+            "A": "全局变量",
+            "B": "局部变量",
+            "C": "编译错误",
+            "D": "未定义行为"
+          },
+          "answer": "B",
+          "explanation": "C++中局部变量会遮蔽(shadow)同名的全局变量。在函数内部，直接使用该名字访问的是局部变量。若需访问全局变量，需使用::运算符。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于static局部变量，正确的是（）",
+          "options": {
+            "A": "每次函数调用时重新初始化",
+            "B": "函数返回后仍然保持其值",
+            "C": "只能是int类型",
+            "D": "不能赋初始值"
+          },
+          "answer": "B",
+          "explanation": "static局部变量只在第一次执行到声明时初始化一次，此后函数返回时不销毁，下次调用时保持上次的值。它存储在静态存储区而非栈上。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后cnt的值是？int cnt=0; for(int i=1;i<=4;i++) for(int j=1;j<=i;j++) cnt++;",
+          "options": {
+            "A": "8",
+            "B": "10",
+            "C": "12",
+            "D": "16"
+          },
+          "answer": "B",
+          "explanation": "内层循环执行次数：i=1时1次，i=2时2次，i=3时3次，i=4时4次。总共1+2+3+4=10次。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "递归函数 int f(int n){if(n==0)return 0; return n+f(n-1);} 调用f(5)的返回值是（）",
+          "options": {
+            "A": "10",
+            "B": "15",
+            "C": "20",
+            "D": "5"
+          },
+          "answer": "B",
+          "explanation": "f(5)=5+f(4)=5+4+f(3)=5+4+3+f(2)=5+4+3+2+f(1)=5+4+3+2+1+f(0)=5+4+3+2+1+0=15。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？int *p, a=10; p=&a; *p=20; cout<<a;",
+          "options": {
+            "A": "10",
+            "B": "20",
+            "C": "地址值",
+            "D": "编译错误"
+          },
+          "answer": "B",
+          "explanation": "p指向a的地址，*p=20通过指针修改了a所在内存的值。因此a的值变为20。输出20。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "十六进制数F的十进制值是15，比十进制数14大。",
+          "answer": true,
+          "explanation": "F(十六进制)=15(十进制)，15>14，所以F比14大。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "二进制数的位数越多，表示的数值一定越大。",
+          "answer": false,
+          "explanation": "位数多不一定值大。例如10(二进制，2位)=2，而1(二进制，1位)=1，虽然前者位数多且值大；但100(3位)=4 vs 11111(5位)=31就是位数少但值小的例子。关键反例：1000...0有很多位但可能比位数少的1111...1小（不对）。真正的反例是允许前导零时，如0001(4位)=1比11(2位)=3小。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对正整数n，n & (-n) 可以获得n的最低位的1所对应的值。",
+          "answer": true,
+          "explanation": "-n在补码中等于按位取反加1。n&(-n)只保留最低位的1。例如n=6(110)，-n的补码=...11111010，6&(-6)=010=2，即最低位的1对应的值。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "左移1位等价于乘2，右移1位也总是等价于除以2。",
+          "answer": false,
+          "explanation": "右移对负奇数执行的是向负无穷取整的除法。例如-3>>1=-2（算术右移，11...101右移得11...110=-2），而-3/2=-1（C++向零取整）。两者结果不同。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "函数声明和函数定义必须在同一个源文件中。",
+          "answer": false,
+          "explanation": "函数声明（原型）通常放在头文件中，函数定义放在源文件中。编译时通过链接器将声明和定义关联起来，不要求在同一文件中。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中函数可以嵌套定义（在一个函数内部定义另一个函数）。",
+          "answer": false,
+          "explanation": "C++不允许在函数体内定义另一个函数（不支持嵌套函数定义）。虽然C++11的lambda表达式在语法上类似，但传统函数定义不能嵌套。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "int a[10]={1}; 表示a[0]=1，其余元素自动初始化为0。",
+          "answer": true,
+          "explanation": "部分初始化时，未显式初始化的元素自动初始化为0。int a[10]={1}表示a[0]=1，a[1]到a[9]都是0。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "二维数组在内存中是按行优先连续存储的。",
+          "answer": true,
+          "explanation": "C/C++中二维数组按行优先（row-major）连续存储。a[0][0], a[0][1], ..., a[0][n-1], a[1][0], ... 在内存中依次排列。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "strlen(\"abc\") 的返回值是4。",
+          "answer": false,
+          "explanation": "strlen计算字符串长度，不包含结束符'\\0'。\"abc\"有3个字符，strlen返回3，不是4。注意与sizeof的区别（sizeof(\"abc\")=4，包含'\\0'）。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "指针变量本身也占用内存空间。",
+          "answer": true,
+          "explanation": "指针变量需要存储一个内存地址，因此它本身也占内存空间。在32位系统中占4字节，64位系统中占8字节。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "密码生成器（凯撒加密）",
+          "knowledge": [],
+          "stem": "给定一个字符串和一个整数偏移量k(1≤k≤25)，对字符串中每个字母进行凯撒加密：将字母在字母表中循环后移k位。大写字母加密后仍为大写，小写字母加密后仍为小写。数字和其他字符保持不变。",
+          "input_format": "第一行一个整数k(1≤k≤25)，第二行一个字符串（长度不超过1000，不含空格）。",
+          "output_format": "一行，加密后的字符串。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3\nHello123World",
+              "output": "Khoor123Zruog"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string s;\n    int k;\n    getline(cin, s);\n    cin >> k;\n    k = k % 26; // 处理k>=26的情况\n    for (int i = 0; i < (int)s.size(); i++) {\n        char c = s[i];\n        if (c >= 'a' && c <= 'z') {\n            s[i] = 'a' + (c - 'a' + k) % 26;\n        } else if (c >= 'A' && c <= 'Z') {\n            s[i] = 'A' + (c - 'A' + k) % 26;\n        }\n        // 数字和特殊字符不变\n    }\n    cout << s << endl;\n    return 0;\n}",
+            "solution": "遍历每个字符，如果是字母则循环移位k位（用取模运算实现循环），非字母字符保持不变。注意大小写分别处理。",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <sstream>\n\nusing namespace std;\n\n// Reference solution for \"密码生成器\"\n// Caesar cipher: shift letters by k positions (wrap around), digits and special chars unchanged\nstring referenceSolution(const string &s, int k) {\n    k = ((k % 26) + 26) % 26; // normalize k\n    string result = s;\n    for (int i = 0; i < (int)result.size(); i++) {\n        char c = result[i];\n        if (c >= 'a' && c <= 'z') {\n            result[i] = 'a' + (c - 'a' + k) % 26;\n        } else if (c >= 'A' && c <= 'Z') {\n            result[i] = 'A' + (c - 'A' + k) % 26;\n        }\n        // digits and special chars unchanged\n    }\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        string input;\n        int k;\n        string expected;\n    };\n\n    TestCase tests[] = {\n        {\"abc\", 3, \"\"},\n        {\"xyz\", 3, \"\"},\n        {\"ABC\", 1, \"\"},\n        {\"Hello\", 5, \"\"},\n        {\"abcXYZ\", 26, \"\"},\n        {\"a1b2c3\", 1, \"\"},\n        {\"Test!123\", 13, \"\"},\n        {\"ZZZZZ\", 1, \"\"},\n        {\"aaaa\", 25, \"\"},\n        {\"Pa$$w0rd\", 7, \"\"},\n        {\"NoShift\", 0, \"\"},\n        {\"Wrap around Z\", 2, \"\"},\n    };\n\n    int numTests = 12;\n    for (int i = 0; i < numTests; i++) {\n        tests[i].expected = referenceSolution(tests[i].input, tests[i].k);\n    }\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        string inputFile = \"/tmp/test_03_prog1_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_03_prog1_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].input << endl;\n        fin << tests[i].k << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \\\"\" << tests[i].input << \"\\\", k=\" << tests[i].k << endl;\n            cout << \"  Expected: \\\"\" << tests[i].expected << \"\\\"\" << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        string actual;\n        getline(fout, actual);\n        fout.close();\n\n        // Trim trailing whitespace\n        while (!actual.empty() && (actual.back() == '\\n' || actual.back() == '\\r' || actual.back() == ' '))\n            actual.pop_back();\n\n        if (actual == tests[i].expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: \\\"\" << tests[i].input << \"\\\", k=\" << tests[i].k << endl;\n            cout << \"  Expected: \\\"\" << tests[i].expected << \"\\\"\" << endl;\n            cout << \"  Actual:   \\\"\" << actual << \"\\\"\" << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "数组旋转",
+          "knowledge": [],
+          "stem": "将一个包含N个整数的数组向右旋转K位。即数组末尾的K个元素移到数组开头。要求输出旋转后的数组。",
+          "input_format": "第一行两个整数N和K(1≤N≤100000, 0≤K≤10^9)，第二行N个整数表示数组元素（元素绝对值不超过10^9）。",
+          "output_format": "一行N个整数，空格分隔，表示旋转后的数组。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5 2\n1 2 3 4 5",
+              "output": "4 5 1 2 3"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n\n    k = k % n; // 处理k>=n的情况\n    if (k == 0) {\n        for (int i = 0; i < n; i++) {\n            if (i > 0) cout << \" \";\n            cout << a[i];\n        }\n        cout << endl;\n        return 0;\n    }\n\n    // 三次反转法\n    // 1. 反转整个数组\n    reverse(a.begin(), a.end());\n    // 2. 反转前k个元素\n    reverse(a.begin(), a.begin() + k);\n    // 3. 反转后n-k个元素\n    reverse(a.begin() + k, a.end());\n\n    for (int i = 0; i < n; i++) {\n        if (i > 0) cout << \" \";\n        cout << a[i];\n    }\n    cout << endl;\n    return 0;\n}",
+            "solution": "右旋转K位等价于：将数组最后K个元素移到前面。三次反转法：(1)整体反转，(2)反转前K个，(3)反转后N-K个。注意先将K对N取模。时间复杂度O(N)，空间复杂度O(1)（不计输入数组）。",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <sstream>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution for \"数组旋转\"\n// Rotate array right by K positions using three-reversal method\nvoid referenceRotate(vector<int> &arr, int k) {\n    int n = arr.size();\n    if (n == 0) return;\n    k = k % n;\n    if (k == 0) return;\n    // reverse entire array\n    for (int i = 0, j = n-1; i < j; i++, j--) swap(arr[i], arr[j]);\n    // reverse first k elements\n    for (int i = 0, j = k-1; i < j; i++, j--) swap(arr[i], arr[j]);\n    // reverse remaining\n    for (int i = k, j = n-1; i < j; i++, j--) swap(arr[i], arr[j]);\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        int n, k;\n        vector<int> arr;\n    };\n\n    TestCase tests[] = {\n        {5, 2, {1,2,3,4,5}},\n        {7, 3, {1,2,3,4,5,6,7}},\n        {4, 0, {1,2,3,4}},\n        {4, 4, {1,2,3,4}},\n        {4, 8, {1,2,3,4}},\n        {1, 5, {42}},\n        {6, 1, {10,20,30,40,50,60}},\n        {5, 5, {1,2,3,4,5}},\n        {3, 1, {100,200,300}},\n        {8, 3, {1,2,3,4,5,6,7,8}},\n        {10, 7, {1,2,3,4,5,6,7,8,9,10}},\n        {2, 1, {99, 1}},\n    };\n\n    int numTests = 12;\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        // Compute expected\n        vector<int> expected = tests[i].arr;\n        referenceRotate(expected, tests[i].k);\n\n        string inputFile = \"/tmp/test_03_prog2_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_03_prog2_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].n << \" \" << tests[i].k << endl;\n        for (int j = 0; j < tests[i].n; j++) {\n            if (j > 0) fin << \" \";\n            fin << tests[i].arr[j];\n        }\n        fin << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: N=\" << tests[i].n << \" K=\" << tests[i].k << \" arr=[\";\n            for (int j = 0; j < tests[i].n; j++) cout << (j?\",\":\"\") << tests[i].arr[j];\n            cout << \"]\" << endl;\n            cout << \"  Expected: \";\n            for (int j = 0; j < (int)expected.size(); j++) cout << (j?\" \":\"\") << expected[j];\n            cout << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        vector<int> actual;\n        int val;\n        while (fout >> val) actual.push_back(val);\n        fout.close();\n\n        if (actual == expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: N=\" << tests[i].n << \" K=\" << tests[i].k << \" arr=[\";\n            for (int j = 0; j < tests[i].n; j++) cout << (j?\",\":\"\") << tests[i].arr[j];\n            cout << \"]\" << endl;\n            cout << \"  Expected: \";\n            for (int j = 0; j < (int)expected.size(); j++) cout << (j?\" \":\"\") << expected[j];\n            cout << endl;\n            cout << \"  Actual:   \";\n            for (int j = 0; j < (int)actual.size(); j++) cout << (j?\" \":\"\") << actual[j];\n            cout << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_08",
+    "title": "模拟试卷（八）",
+    "subtitle": "补码陷阱 · 数组排序 · 字符串匹配",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "补码比较",
+      "二分查找",
+      "数组拷贝",
+      "const参数",
+      "插入排序"
+    ],
+    "prog_brief": "水仙花数扩展（自恋数）；稀疏矩阵压缩（三元组）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "八进制数 0357 转换为十进制是：",
+          "options": {
+            "A": "231",
+            "B": "239",
+            "C": "247",
+            "D": "215"
+          },
+          "answer": "B",
+          "explanation": "八进制0357转十进制：3×8² + 5×8¹ + 7×8⁰ = 3×64 + 5×8 + 7 = 192 + 40 + 7 = 239。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十进制数 200 转换为十六进制是：",
+          "options": {
+            "A": "D8",
+            "B": "CA",
+            "C": "CC",
+            "D": "C8"
+          },
+          "answer": "D",
+          "explanation": "200÷16=12余8，12的十六进制为C。所以200 = 0xC8。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\n```\nint a = 0x5A, b = 0xA5;\ncout << (a ^ b);\n```",
+          "options": {
+            "A": "0",
+            "B": "171",
+            "C": "255",
+            "D": "90"
+          },
+          "answer": "C",
+          "explanation": "0x5A = 01011010，0xA5 = 10100101。XOR结果：11111111 = 255。这两个数互为按位取反关系（在8位内）。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "表达式 `(~0x0F) & 0xFF` 的值（以十六进制表示）是：",
+          "options": {
+            "A": "0xF0",
+            "B": "0x0F",
+            "C": "0xFF",
+            "D": "0x00"
+          },
+          "answer": "A",
+          "explanation": "~0x0F将低4位的1变0，高位的0变1，得...FFFFFFF0。再与0xFF做AND，保留低8位：11110000 = 0xF0。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在8位补码中，-1的表示是：",
+          "options": {
+            "A": "10000001",
+            "B": "11111111",
+            "C": "11111110",
+            "D": "10000000"
+          },
+          "answer": "B",
+          "explanation": "-1的补码：1的原码00000001，取反11111110，加1得11111111。即全1。这也说明~0 == -1。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "8位补码 11101100 表示的十进制数是：",
+          "options": {
+            "A": "-12",
+            "B": "236",
+            "C": "-20",
+            "D": "-19"
+          },
+          "answer": "C",
+          "explanation": "最高位为1表示负数。取反：00010011 = 19，加1得20。所以该补码表示-20。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "定义 `int a[3][4] = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};`，则 `a[1][2] + a[2][0]` 的值是：",
+          "options": {
+            "A": "14",
+            "B": "15",
+            "C": "17",
+            "D": "16"
+          },
+          "answer": "D",
+          "explanation": "a[1][2]是第2行第3列=7，a[2][0]是第3行第1列=9。7+9=16。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后输出什么？\n```\nint a[5] = {1, 2, 3, 4, 5};\nint sum = 0;\nfor (int i = 0; i < 5; i++)\n    sum += a[4-i] * (i + 1);\ncout << sum;\n```",
+          "options": {
+            "A": "35",
+            "B": "45",
+            "C": "55",
+            "D": "40"
+          },
+          "answer": "A",
+          "explanation": "i=0: a[4]*1=5; i=1: a[3]*2=8; i=2: a[2]*3=9; i=3: a[1]*4=8; i=4: a[0]*5=5。sum=5+8+9+8+5=35。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码中count的最终值是？\n```\nint a[4][3] = {{1,0,2},{0,3,0},{4,0,5},{0,6,0}};\nint count = 0;\nfor (int i = 0; i < 4; i++)\n    for (int j = 0; j < 3; j++)\n        if (a[i][j] != 0) count++;\n```",
+          "options": {
+            "A": "5",
+            "B": "6",
+            "C": "7",
+            "D": "8"
+          },
+          "answer": "B",
+          "explanation": "逐行统计非零元素：第1行{1,0,2}有2个；第2行{0,3,0}有1个；第3行{4,0,5}有2个；第4行{0,6,0}有1个。共6个。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下函数执行 swap(a, b) 后能成功交换a和b的值的是：",
+          "options": {
+            "A": "void swap(int a, int b) { int t=a; a=b; b=t; }",
+            "B": "void swap(int *a, int *b) { int *t=a; a=b; b=t; }",
+            "C": "void swap(int &a, int &b) { int t=a; a=b; b=t; }",
+            "D": "void swap(int a[], int b[]) { int t=a[0]; a[0]=b[0]; b[0]=t; }"
+          },
+          "answer": "C",
+          "explanation": "A用值传递，修改形参不影响实参。B只交换了指针变量本身。C用引用传递，直接操作实参。D虽能交换数组元素，但不是交换a和b本身。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码中函数f的返回值f(4,2)是？\n```\nint f(int n, int m) {\n    if (m == 0 || m == n) return 1;\n    return f(n-1, m-1) + f(n-1, m);\n}\n```",
+          "options": {
+            "A": "4",
+            "B": "8",
+            "C": "3",
+            "D": "6"
+          },
+          "answer": "D",
+          "explanation": "f(n,m)计算组合数C(n,m)。f(4,2)=C(4,2)=4!/(2!×2!)=6。递归展开：f(4,2)=f(3,1)+f(3,2)=3+3=6。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码中，`s.find(\"cd\")` 的返回值是？\n```\nstring s = \"abcdef\";\n```",
+          "options": {
+            "A": "2",
+            "B": "3",
+            "C": "-1",
+            "D": "4"
+          },
+          "answer": "A",
+          "explanation": "string::find返回子串首次出现的起始位置（从0开始）。\"cd\"在\"abcdef\"中从下标2开始出现。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后输出什么？\n```\nint x = 10;\nint y = x-- + --x;\ncout << y;\n```",
+          "options": {
+            "A": "20",
+            "B": "18",
+            "C": "19",
+            "D": "17"
+          },
+          "answer": "B",
+          "explanation": "x--先取x=10再递减(x变9)，--x先递减(x变8)再取值8。y=10+8=18。注意：此表达式在C++标准中属于未定义行为，但常见编译器按此顺序求值。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后k的值是？\n```\nint k = 0;\nfor (int i = 1; i <= 5; i++)\n    for (int j = i; j <= 5; j++)\n        k++;\ncout << k;\n```",
+          "options": {
+            "A": "10",
+            "B": "25",
+            "C": "15",
+            "D": "20"
+          },
+          "answer": "C",
+          "explanation": "i=1时j从1到5(5次)，i=2时j从2到5(4次)，...i=5时j从5到5(1次)。总计5+4+3+2+1=15。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后输出什么？\n```\nint a[6] = {3, 1, 4, 1, 5, 9};\nint m = a[0], idx = 0;\nfor (int i = 1; i < 6; i++) {\n    if (a[i] >= m) { m = a[i]; idx = i; }\n}\ncout << idx << \" \" << m;\n```",
+          "options": {
+            "A": "5 9",
+            "B": "4 5",
+            "C": "0 3",
+            "D": "2 4"
+          },
+          "answer": "A",
+          "explanation": "用>=找最大值的最后出现位置。数组{3,1,4,1,5,9}中最大值9在下标5。输出\"5 9\"。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "二分查找要求数据必须是有序的。",
+          "answer": true,
+          "explanation": "二分查找的前提是数据有序（升序或降序），通过每次将搜索范围缩小一半来快速定位目标。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "二分查找的时间复杂度为O(log n)，比顺序查找O(n)更高效。",
+          "answer": true,
+          "explanation": "二分查找每次排除一半数据，时间复杂度O(log n)，远优于顺序查找的O(n)。但需要数据预先排好序。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "O(n^2)的算法在任何输入规模下都比O(n*log n)的算法慢。",
+          "answer": false,
+          "explanation": "大O表示法描述的是增长趋势。对于小规模输入，O(n²)的算法可能因为常数因子小而比O(n*log n)更快。例如插入排序在小数组上可能比快速排序快。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "定义 `int a[10];`，则a数组中所有元素的初始值都是0。",
+          "answer": false,
+          "explanation": "局部数组（如函数内定义的int a[10]）不会自动初始化为0，其内容是未定义的垃圾值。只有全局/静态数组才会自动初始化为0。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "二维数组 `int a[3][4]` 在内存中是按行优先连续存储的。",
+          "answer": true,
+          "explanation": "C/C++中多维数组按行优先（row-major）顺序存储。a[0][0], a[0][1], ..., a[0][3], a[1][0], ... 在内存中连续。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "函数的形参是实参的副本（值传递时），修改形参不影响实参。",
+          "answer": true,
+          "explanation": "值传递时，形参是实参的拷贝，存储在独立的内存位置。对形参的修改不会影响调用者的实参。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中函数可以返回一个数组。",
+          "answer": false,
+          "explanation": "C++中函数不能直接返回数组类型。可以返回指向数组的指针、引用，或使用vector/array等容器，但不能直接return一个数组。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `x & (x-1)` 可以将x的二进制表示中最低位的1变为0。",
+          "answer": true,
+          "explanation": "x&(x-1)是经典位运算技巧。x-1会将x最低位的1变0，该位以下全变1。与x做AND后，最低位的1被清除。例如：12(1100)&11(1011)=8(1000)。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "左移运算符 `<<` 和右移运算符 `>>` 对有符号数和无符号数的行为完全相同。",
+          "answer": false,
+          "explanation": "对有符号负数右移时，不同实现可能做算术右移（高位补符号位）或逻辑右移（高位补0）。无符号数右移总是逻辑右移（补0）。因此行为不完全相同。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中 `sizeof` 是一个运算符，不是函数。",
+          "answer": true,
+          "explanation": "sizeof是C/C++中的运算符（operator），不是函数。它在编译时求值（对于非VLA类型），可以不加括号使用（如sizeof x），这证明它不是函数。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "水仙花数扩展（N位自恋数）",
+          "knowledge": [],
+          "stem": "给定范围[L, R]和位数N，找出该范围内所有的N位自恋数。N位自恋数是指一个N位数，其各位数字的N次方之和等于该数本身。如果不存在这样的数，输出\"None\"。",
+          "input_format": "一行三个整数 L, R, N（1 ≤ L ≤ R ≤ 10^7, 1 ≤ N ≤ 7），保证L和R都是N位数。",
+          "output_format": "每行输出一个满足条件的自恋数（升序）。如果没有，输出\"None\"。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "100 999 3",
+              "output": "153\n370\n371\n407"
+            },
+            {
+              "input": "200 300 3",
+              "output": "None"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <cmath>\nusing namespace std;\n\nint main() {\n    long long L, R;\n    int N;\n    cin >> L >> R >> N;\n    bool found = false;\n    for (long long num = L; num <= R; num++) {\n        long long sum = 0, tmp = num;\n        while (tmp > 0) {\n            int d = tmp % 10;\n            long long pw = 1;\n            for (int i = 0; i < N; i++) pw *= d;\n            sum += pw;\n            tmp /= 10;\n        }\n        if (sum == num) {\n            cout << num << endl;\n            found = true;\n        }\n    }\n    if (!found) cout << \"None\" << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <string>\n#include <vector>\n#include <cmath>\n\nusing namespace std;\n\n// Reference solution: N-digit narcissistic numbers in [L, R]\nvector<long long> referenceSolution(long long L, long long R, int N) {\n    vector<long long> result;\n    for (long long num = L; num <= R; num++) {\n        long long sum = 0, tmp = num;\n        while (tmp > 0) {\n            int d = tmp % 10;\n            long long pw = 1;\n            for (int i = 0; i < N; i++) pw *= d;\n            sum += pw;\n            tmp /= 10;\n        }\n        if (sum == num) {\n            result.push_back(num);\n        }\n    }\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        long long L, R;\n        int N;\n    };\n\n    vector<TestCase> tests = {\n        {100, 999, 3},\n        {200, 300, 3},\n        {1, 9, 1},\n        {10, 99, 2},\n        {1000, 9999, 4},\n        {100, 200, 3},\n        {370, 410, 3},\n        {8000, 9000, 4},\n        {1000000, 9999999, 7},\n        {150, 160, 3},\n        {400, 500, 3},\n        {9800, 9999, 4},\n    };\n\n    int passed = 0, failed = 0;\n    int numTests = tests.size();\n\n    for (int t = 0; t < numTests; t++) {\n        string inputFile = \"/tmp/test_08_prog1_input_\" + to_string(t) + \".txt\";\n        string outputFile = \"/tmp/test_08_prog1_output_\" + to_string(t) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[t].L << \" \" << tests[t].R << \" \" << tests[t].N << endl;\n        fin.close();\n\n        vector<long long> expected = referenceSolution(tests[t].L, tests[t].R, tests[t].N);\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (t+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: L=\" << tests[t].L << \" R=\" << tests[t].R << \" N=\" << tests[t].N << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        vector<string> lines;\n        string line;\n        while (getline(fout, line)) {\n            // trim\n            while (!line.empty() && (line.back() == '\\r' || line.back() == ' '))\n                line.pop_back();\n            if (!line.empty())\n                lines.push_back(line);\n        }\n        fout.close();\n\n        // Build expected output\n        vector<string> expLines;\n        if (expected.empty()) {\n            expLines.push_back(\"None\");\n        } else {\n            for (auto v : expected)\n                expLines.push_back(to_string(v));\n        }\n\n        bool ok = (lines.size() == expLines.size());\n        if (ok) {\n            for (int i = 0; i < (int)lines.size(); i++) {\n                if (lines[i] != expLines[i]) { ok = false; break; }\n            }\n        }\n\n        if (ok) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (t+1) << \":\" << endl;\n            cout << \"  Input: L=\" << tests[t].L << \" R=\" << tests[t].R << \" N=\" << tests[t].N << endl;\n            cout << \"  Expected \" << expLines.size() << \" line(s): \";\n            for (auto& s : expLines) cout << s << \" \";\n            cout << endl;\n            cout << \"  Actual \" << lines.size() << \" line(s): \";\n            for (auto& s : lines) cout << s << \" \";\n            cout << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "稀疏矩阵压缩",
+          "knowledge": [],
+          "stem": "输入一个M行N列的整数矩阵，输出其中所有非零元素的三元组表示（行号, 列号, 值）。行号和列号从1开始。三元组按行优先、同行按列递增的顺序输出。",
+          "input_format": "第一行两个正整数 M, N（1 ≤ M, N ≤ 100）\n接下来 M 行，每行 N 个整数，表示矩阵元素（元素绝对值不超过1000）。",
+          "output_format": "第一行输出非零元素的个数 k。\n接下来 k 行，每行三个整数，表示一个非零元素的（行号, 列号, 值），用空格分隔。\n如果没有非零元素，只输出0。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3 4\n0 0 3 0\n0 0 0 0\n0 2 0 5",
+              "output": "3\n1 3 3\n3 2 2\n3 4 5"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nstruct Triple {\n    int r, c, v;\n};\n\nint main() {\n    int M, N;\n    cin >> M >> N;\n    vector<Triple> triples;\n    for (int i = 1; i <= M; i++) {\n        for (int j = 1; j <= N; j++) {\n            int val;\n            cin >> val;\n            if (val != 0) {\n                Triple t; t.r = i; t.c = j; t.v = val;\n                triples.push_back(t);\n            }\n        }\n    }\n    cout << triples.size() << endl;\n    for (int i = 0; i < (int)triples.size(); i++)\n        cout << triples[i].r << \" \" << triples[i].c << \" \" << triples[i].v << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nstruct Triple {\n    int row, col, val;\n};\n\n// Reference solution: Sparse matrix compression\nvector<Triple> referenceSolution(vector<vector<int>>& mat) {\n    vector<Triple> result;\n    int M = mat.size(), N = mat[0].size();\n    for (int i = 0; i < M; i++)\n        for (int j = 0; j < N; j++)\n            if (mat[i][j] != 0)\n                result.push_back({i+1, j+1, mat[i][j]});\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        int M, N;\n        vector<vector<int>> mat;\n    };\n\n    vector<TestCase> tests = {\n        {3, 4, {{0,0,3,0},{0,0,0,0},{0,2,0,5}}},\n        {1, 1, {{0}}},\n        {1, 1, {{7}}},\n        {2, 2, {{1,0},{0,1}}},\n        {3, 3, {{0,0,0},{0,0,0},{0,0,0}}},\n        {2, 3, {{1,2,3},{4,5,6}}},\n        {4, 4, {{0,0,0,0},{0,5,0,0},{0,0,0,0},{0,0,0,9}}},\n        {1, 5, {{0,0,3,0,0}}},\n        {5, 1, {{1},{0},{2},{0},{3}}},\n        {3, 3, {{-1,0,2},{0,-3,0},{4,0,-5}}},\n        {2, 4, {{0,0,0,0},{0,0,0,0}}},\n        {3, 3, {{1000,0,-1000},{0,999,0},{-999,0,1}}},\n    };\n\n    int passed = 0, failed = 0;\n    int numTests = tests.size();\n\n    for (int t = 0; t < numTests; t++) {\n        string inputFile = \"/tmp/test_08_prog2_input_\" + to_string(t) + \".txt\";\n        string outputFile = \"/tmp/test_08_prog2_output_\" + to_string(t) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[t].M << \" \" << tests[t].N << endl;\n        for (int i = 0; i < tests[t].M; i++) {\n            for (int j = 0; j < tests[t].N; j++) {\n                if (j > 0) fin << \" \";\n                fin << tests[t].mat[i][j];\n            }\n            fin << endl;\n        }\n        fin.close();\n\n        vector<Triple> expected = referenceSolution(tests[t].mat);\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (t+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \" << tests[t].M << \"x\" << tests[t].N << \" matrix\" << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        int k;\n        bool readOk = true;\n        if (!(fout >> k)) readOk = false;\n\n        bool ok = true;\n        if (!readOk || k != (int)expected.size()) {\n            ok = false;\n        } else {\n            for (int i = 0; i < k; i++) {\n                int r, c, v;\n                if (!(fout >> r >> c >> v)) { ok = false; break; }\n                if (r != expected[i].row || c != expected[i].col || v != expected[i].val) {\n                    ok = false;\n                    break;\n                }\n            }\n        }\n        fout.close();\n\n        if (ok) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (t+1) << \":\" << endl;\n            cout << \"  Input: \" << tests[t].M << \"x\" << tests[t].N << \" matrix\" << endl;\n            cout << \"  Expected \" << expected.size() << \" triples\" << endl;\n            if (readOk) {\n                cout << \"  Actual k=\" << k << endl;\n            } else {\n                cout << \"  Actual: (could not read output)\" << endl;\n            }\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

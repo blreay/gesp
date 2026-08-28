@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_06",
+    "title": "模拟试卷（六）",
+    "subtitle": "结构体 · 字符串操作 · 排序比较",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "结构体",
+      "string操作",
+      "异或交换",
+      "补码表示",
+      "排序稳定性"
+    ],
+    "prog_brief": "字符统计（文本分析）；约瑟夫环（模拟）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "将八进制数 37₈ 转换为二进制是（）",
+          "options": {
+            "A": "11111₂",
+            "B": "011111₂",
+            "C": "111011₂",
+            "D": "110111₂"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十六进制数 A5₁₆ 转换为十进制是（）",
+          "options": {
+            "A": "155",
+            "B": "165",
+            "C": "175",
+            "D": "105"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "表达式 x^x 的值是（x为整数）（）",
+          "options": {
+            "A": "2x",
+            "B": "x",
+            "C": "0",
+            "D": "-1"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "不使用临时变量交换a和b的值，以下哪个方法正确？（）",
+          "options": {
+            "A": "a^=b; b^=a; a^=b;",
+            "B": "a|=b; b|=a; a|=b;",
+            "C": "a&=b; b&=a; a&=b;",
+            "D": "a+=b; a-=b; b-=a;"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "8位有符号整数（补码表示）能表示的范围是（）",
+          "options": {
+            "A": "-127到127",
+            "B": "-128到127",
+            "C": "-128到128",
+            "D": "-127到128"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "-1的32位补码的十六进制表示是（）",
+          "options": {
+            "A": "0x00000001",
+            "B": "0x80000001",
+            "C": "0xFFFFFFFF",
+            "D": "0x7FFFFFFF"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a[5]={1,2,3,4,5}; 则a[5]是（）",
+          "options": {
+            "A": "5",
+            "B": "0",
+            "C": "编译错误",
+            "D": "越界访问，未定义行为"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a[3]={1,2,3}; int *p=a; *(p++)的值是（）",
+          "options": {
+            "A": "2",
+            "B": "1",
+            "C": "3",
+            "D": "地址值"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "string s=\"abcdef\"; s.substr(2,3)+s.substr(0,2)的结果是（）",
+          "options": {
+            "A": "\"cdeab\"",
+            "B": "\"abcde\"",
+            "C": "\"cdefab\"",
+            "D": "\"cdab\""
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "string s=\"Hello\"; s[0]='h'; cout<<s; 输出（）",
+          "options": {
+            "A": "Hello",
+            "B": "hello",
+            "C": "hELLO",
+            "D": "hello!"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下结构体定义中，正确的是（）",
+          "options": {
+            "A": "struct{int x; int y;} p;",
+            "B": "struct Point{int x; int y}",
+            "C": "struct Point{int x, int y;};",
+            "D": "struct Point{int x; int y;};"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "struct Student{char name[20]; int age; double score;}; sizeof(Student)在64位系统上最可能是（）",
+          "options": {
+            "A": "32",
+            "B": "28",
+            "C": "30",
+            "D": "40"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\nint a=3,b=5,c; c=a; a=b; b=c; cout<<a<<\" \"<<b;",
+          "options": {
+            "A": "5 3",
+            "B": "3 5",
+            "C": "5 5",
+            "D": "3 3"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\nint sum=0;\nfor(int i=1;i<=5;i++){\n  if(i==3) continue;\n  sum+=i;\n}\ncout<<sum;",
+          "options": {
+            "A": "12",
+            "B": "15",
+            "C": "10",
+            "D": "9"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\nchar s[]=\"abcABC123\";\nint cnt=0;\nfor(int i=0;s[i];i++)\n  if(s[i]>='0'&&s[i]<='9') cnt++;\ncout<<cnt;",
+          "options": {
+            "A": "6",
+            "B": "3",
+            "C": "9",
+            "D": "0"
+          },
+          "answer": "B",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "结构体变量可以用=号直接赋值给同类型的另一个结构体变量。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "结构体可以作为函数参数传递，也可以作为函数返回值。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "冒泡排序在最好情况下（数组已排序）的时间复杂度是O(n)。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "插入排序在数据基本有序时效率较高。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中字符串\"abc\"的长度（strlen）是4。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "string类型的+运算符可以拼接两个字符串。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "位运算符|的优先级高于比较运算符==。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "位运算只能用于整数类型，不能用于浮点数。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "const修饰的变量在定义时必须初始化。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "全局变量如果没有显式初始化，int类型默认值为0。",
+          "answer": true,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "字符统计",
+          "knowledge": [],
+          "stem": "输入一行字符串（可能包含空格），统计其中大写字母、小写字母、数字、空格和其他字符的个数。",
+          "input_format": "一行字符串（长度不超过1000）。",
+          "output_format": "五行，每行一个整数，依次为大写字母个数、小写字母个数、数字个数、空格个数、其他字符个数。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "Hello World! 123",
+              "output": "2\n8\n3\n2\n1"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string s;\n    getline(cin, s);\n    int upper=0, lower=0, digit=0, space=0, other=0;\n    for (int i = 0; i < s.length(); i++) {\n        if (s[i] >= 'A' && s[i] <= 'Z') upper++;\n        else if (s[i] >= 'a' && s[i] <= 'z') lower++;\n        else if (s[i] >= '0' && s[i] <= '9') digit++;\n        else if (s[i] == ' ') space++;\n        else other++;\n    }\n    cout << upper << endl << lower << endl << digit << endl << space << endl << other << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <string>\n#include <cctype>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution: Character statistics\n// Count uppercase, lowercase, digits, spaces, other characters\nstruct Stats {\n    int upper, lower, digits, spaces, other;\n};\n\nStats referenceSolution(const string& text) {\n    Stats s = {0, 0, 0, 0, 0};\n    for (char c : text) {\n        if (isupper(c)) {\n            s.upper++;\n        } else if (islower(c)) {\n            s.lower++;\n        } else if (isdigit(c)) {\n            s.digits++;\n        } else if (c == ' ') {\n            s.spaces++;\n        } else {\n            s.other++;\n        }\n    }\n    return s;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    vector<string> inputs = {\n        \"Hello World\",\n        \"ABC abc 123\",\n        \"   \",\n        \"a\",\n        \"AAABBB\",\n        \"Hello, World! 123\",\n        \"The Quick Brown Fox Jumps Over The Lazy Dog.\",\n        \"aAAaaa BBBb\",\n        \"12345 67890\",\n        \"!@#$%^&*()\",\n        \"Programming is Fun! C++ is great.\",\n        \"Test: 100% PASS ok?\",\n    };\n\n    int passed = 0, failed = 0;\n    int numTests = inputs.size();\n\n    for (int t = 0; t < numTests; t++) {\n        string inputFile = \"/tmp/test_06_prog1_input_\" + to_string(t) + \".txt\";\n        string outputFile = \"/tmp/test_06_prog1_output_\" + to_string(t) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << inputs[t];\n        fin.close();\n\n        Stats expected = referenceSolution(inputs[t]);\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (t+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \\\"\" << inputs[t] << \"\\\"\" << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        int aUpper, aLower, aDigits, aSpaces, aOther;\n        bool readOk = true;\n        if (!(fout >> aUpper >> aLower >> aDigits >> aSpaces >> aOther)) {\n            readOk = false;\n        }\n        fout.close();\n\n        if (readOk && aUpper == expected.upper && aLower == expected.lower &&\n            aDigits == expected.digits && aSpaces == expected.spaces &&\n            aOther == expected.other) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (t+1) << \":\" << endl;\n            cout << \"  Input: \\\"\" << inputs[t] << \"\\\"\" << endl;\n            cout << \"  Expected: \" << expected.upper << \" \" << expected.lower << \" \"\n                 << expected.digits << \" \" << expected.spaces << \" \" << expected.other << endl;\n            if (readOk) {\n                cout << \"  Actual:   \" << aUpper << \" \" << aLower << \" \"\n                     << aDigits << \" \" << aSpaces << \" \" << aOther << endl;\n            } else {\n                cout << \"  Actual:   (could not read output)\" << endl;\n            }\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "约瑟夫环",
+          "knowledge": [],
+          "stem": "N个人围成一圈，编号1到N。从第1个人开始报数，报到M的人出列，然后从出列者的下一个人重新从1开始报数，直到所有人出列。输出出列顺序。",
+          "input_format": "一行两个正整数N和M(1≤N≤1000, 1≤M≤1000)。",
+          "output_format": "一行N个整数，空格分隔，表示出列顺序。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5 3",
+              "output": "3 1 5 2 4"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<int> people;\n    for (int i = 1; i <= n; i++) people.push_back(i);\n    int idx = 0;\n    for (int i = 0; i < n; i++) {\n        idx = (idx + m - 1) % people.size();\n        if (i > 0) cout << \" \";\n        cout << people[idx];\n        people.erase(people.begin() + idx);\n        if (idx >= (int)people.size()) idx = 0;\n    }\n    cout << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution: Josephus problem\n// N people in a circle, count to M, output elimination order\nvector<int> josephus(int N, int M) {\n    vector<int> people;\n    for (int i = 1; i <= N; i++) people.push_back(i);\n\n    vector<int> order;\n    int idx = 0;\n    while (!people.empty()) {\n        idx = (idx + M - 1) % people.size();\n        order.push_back(people[idx]);\n        people.erase(people.begin() + idx);\n        if (!people.empty() && idx >= (int)people.size()) idx = 0;\n    }\n    return order;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        int N, M;\n    };\n\n    TestCase tests[] = {\n        {5, 2},    // classic small case\n        {1, 1},    // single person\n        {6, 3},    // another classic\n        {10, 3},   // medium\n        {7, 1},    // count by 1 (sequential)\n        {10, 10},  // count equals size\n        {3, 2},    // small\n        {8, 4},    // medium\n        {4, 3},    // small\n        {12, 5},   // larger\n        {10, 1},   // sequential elimination\n        {5, 5},    // count equals size\n    };\n\n    int numTests = sizeof(tests) / sizeof(tests[0]);\n    int passed = 0, failed = 0;\n\n    for (int t = 0; t < numTests; t++) {\n        string inputFile = \"/tmp/test_06_prog2_input_\" + to_string(t) + \".txt\";\n        string outputFile = \"/tmp/test_06_prog2_output_\" + to_string(t) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[t].N << \" \" << tests[t].M << endl;\n        fin.close();\n\n        vector<int> expected = josephus(tests[t].N, tests[t].M);\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (t+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: N=\" << tests[t].N << \" M=\" << tests[t].M << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        bool ok = true;\n        for (int i = 0; i < (int)expected.size(); i++) {\n            int val;\n            if (!(fout >> val)) { ok = false; break; }\n            if (val != expected[i]) { ok = false; break; }\n        }\n        fout.close();\n\n        if (ok) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (t+1) << \":\" << endl;\n            cout << \"  Input: N=\" << tests[t].N << \" M=\" << tests[t].M << endl;\n            cout << \"  Expected: \";\n            for (int i = 0; i < (int)expected.size(); i++) {\n                if (i) cout << \" \";\n                cout << expected[i];\n            }\n            cout << endl;\n            // Show actual\n            ifstream fout2(outputFile);\n            string line;\n            cout << \"  Actual: \";\n            while (getline(fout2, line)) cout << line << \" \";\n            cout << endl;\n            fout2.close();\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

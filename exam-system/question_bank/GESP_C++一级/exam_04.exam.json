@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l1_mock_04",
+    "title": "模拟试卷（四）",
+    "subtitle": "类型转换与ASCII码",
+    "category": "GESP C++ 一级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "char运算",
+      "dangling else",
+      "整除与浮点",
+      "短路求值"
+    ],
+    "prog_brief": "最大公约数 · 倒序数位"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint cnt = 0;\nfor (int i = 1; i <= 10; i++) {\n    cnt += i;\n    i++;\n}\ncout << cnt;\n```",
+          "options": {
+            "A": "55",
+            "B": "25",
+            "C": "30",
+            "D": "15"
+          },
+          "answer": "B",
+          "explanation": "循环内有双重自增：循环体内 i++ 和 for 的 i++。\n\n        i=1: cnt+=1(cnt=1), i->2, 然后i++->3\n\n        i=3: cnt+=3(cnt=4), i->4, 然后i++->5\n\n        i=5: cnt+=5(cnt=9), i->6, 然后i++->7\n\n        i=7: cnt+=7(cnt=16), i->8, 然后i++->9\n\n        i=9: cnt+=9(cnt=25), i->10, 然后i++->11\n\n        i=11: 11<=10 为假，退出。cnt=25。选 B。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint x = 3;\nif (x > 5)\n    if (x > 8)\n        printf(\"A\");\n    else\n        printf(\"B\");\nelse\n    printf(\"C\");\n```",
+          "options": {
+            "A": "A",
+            "B": "B",
+            "C": "C",
+            "D": "无输出"
+          },
+          "answer": "C",
+          "explanation": "这是\"悬挂 else\"问题。else 与最近未匹配的 if 配对。代码等价于：\n\n        if(x>5) { if(x>8) printf(\"A\"); else printf(\"B\"); } else printf(\"C\");\n\n        x=3，第一个 if 为假，执行外层 else，输出 C。选 C。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 7, b = 2;\ndouble c = a / b;\nprintf(\"%.1f\", c);\n```",
+          "options": {
+            "A": "3.5",
+            "B": "3.0",
+            "C": "4.0",
+            "D": "3"
+          },
+          "answer": "B",
+          "explanation": "a/b 是两个 int 相除，结果为 int 3（截断），再赋给 double c 为 3.0。输出 3.0。选 B。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nchar c = 'A' + 3;\nprintf(\"%c %d\", c, c);\n```",
+          "options": {
+            "A": "C 67",
+            "B": "D 68",
+            "C": "D 100",
+            "D": "A3 68"
+          },
+          "answer": "B",
+          "explanation": "'A' 的 ASCII 码是 65，加 3 得 68，对应字符 'D'。%c 输出字符 D，%d 输出整数 68。输出 D 68。选 B。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) continue;\n    s += i;\n}\ncout << s;\n```",
+          "options": {
+            "A": "55",
+            "B": "37",
+            "C": "45",
+            "D": "18"
+          },
+          "answer": "B",
+          "explanation": "跳过 3 的倍数（3,6,9），其余累加：1+2+4+5+7+8+10 = 37。选 B。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint i = 0, s = 0;\nwhile (i < 10) {\n    i++;\n    if (i % 2 == 0) continue;\n    s += i;\n}\ncout << s;\n```",
+          "options": {
+            "A": "30",
+            "B": "25",
+            "C": "20",
+            "D": "55"
+          },
+          "answer": "B",
+          "explanation": "while 循环中 i 先自增再判断。i 依次为 1,2,...,10。跳过偶数，累加奇数：1+3+5+7+9 = 25。\n\n        注意 continue 在 while 中跳转到条件判断处，不影响 i 的自增（因为 i++ 在 continue 之前）。选 B。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 1, b = 2, c = 3;\nif (a > b)\n    if (b > c)\n        printf(\"X\");\n    else\n        printf(\"Y\");\nprintf(\"Z\");\n```",
+          "options": {
+            "A": "XZ",
+            "B": "YZ",
+            "C": "Z",
+            "D": "Y"
+          },
+          "answer": "C",
+          "explanation": "a=1, b=2, a>b 为假，整个 if-else 结构（包括内层的 if-else）都不执行。但 printf(\"Z\") 不在 if 结构内，总会执行。输出 Z。选 C。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "C++ 表达式 `'5' - '0'` 的值是（ ）。",
+          "options": {
+            "A": "'5'",
+            "B": "5",
+            "C": "0",
+            "D": "53"
+          },
+          "answer": "B",
+          "explanation": "'5' 的 ASCII 码是 53，'0' 的 ASCII 码是 48。53 - 48 = 5。这是将字符数字转为对应整数的常用技巧。选 B。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 0; i < 10; ++i) {\n    if (i % 2 == 1) continue;\n    s += i;\n}\ncout << s;\n```",
+          "options": {
+            "A": "25",
+            "B": "20",
+            "C": "30",
+            "D": "45"
+          },
+          "answer": "B",
+          "explanation": "跳过奇数（i%2==1），累加偶数：0+2+4+6+8 = 20。选 B。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 10, b = 3;\ndouble result = (double)a / b;\nprintf(\"%.2f\", result);\n```",
+          "options": {
+            "A": "3.00",
+            "B": "3.33",
+            "C": "3.30",
+            "D": "3"
+          },
+          "answer": "B",
+          "explanation": "(double)a/b 先将 a 转为 double，再除以 b（b 也隐式转为 double），结果为 3.333...，%.2f 保留两位小数输出 3.33。选 B。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nchar c = 'a';\nc = c - 32;\nprintf(\"%c\", c);\n```",
+          "options": {
+            "A": "a",
+            "B": "A",
+            "C": "65",
+            "D": "32"
+          },
+          "answer": "B",
+          "explanation": "'a' 的 ASCII 码是 97，减 32 得 65，即 'A'。大写和小写字母的 ASCII 码差 32。输出 A。选 B。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint n = 100, cnt = 0;\nwhile (n > 1) {\n    n /= 2;\n    cnt++;\n}\ncout << cnt;\n```",
+          "options": {
+            "A": "5",
+            "B": "6",
+            "C": "7",
+            "D": "50"
+          },
+          "answer": "B",
+          "explanation": "n 依次为：100->50->25->12->6->3->1，共除了 6 次。cnt=6。选 B。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "定义 `int a = 0, b = 5;`，则 C++ 表达式 `(a != 0) && (b / a > 1)` 的值是（ ）。",
+          "options": {
+            "A": "程序崩溃（除零错误）",
+            "B": "0",
+            "C": "1",
+            "D": "5"
+          },
+          "answer": "B",
+          "explanation": "&& 有短路求值特性。a != 0 为假（a=0），整个表达式直接返回 0，不会计算 b/a，因此不会发生除零错误。选 B。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nfor (int i = 0; i < 5; i++)\n    printf(\"%d \", i * i);\n```",
+          "options": {
+            "A": "1 4 9 16 25",
+            "B": "0 1 4 9 16",
+            "C": "0 2 4 6 8",
+            "D": "0 1 2 3 4"
+          },
+          "answer": "B",
+          "explanation": "i 取值 0,1,2,3,4，对应 i*i 为 0,1,4,9,16。输出 0 1 4 9 16 。选 B。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在下面 C++ 代码的横线处填写（ ），可以使程序正确求两个正整数 a、b 的最大公约数（辗转相除法）。\n```\nint a, b;\ncin >> a >> b;\nwhile (__________) {\n    int t = b;\n    b = a % b;\n    a = t;\n}\ncout << a;\n```",
+          "options": {
+            "A": "a > 0",
+            "B": "b != 0",
+            "C": "a != b",
+            "D": "a % b != 0"
+          },
+          "answer": "B",
+          "explanation": "辗转相除法：当 b 不为 0 时，用 a%b 替换 b，b 变为 0 时 a 即为 GCD。\n\n        A 项 a > 0：a 始终大于 0，不会在正确时机停止。\n\n        C 项 a != b：辗转相除法不保证 a 和 b 相等时停止。\n\n        D 项 a % b != 0：当 a 能被 b 整除时停止，但此时 GCD 应为 b 而非 a，逻辑不对。\n\n        选 B (b != 0)。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 的 `for` 循环中，`continue` 会跳过本次循环体剩余语句，然后执行循环的自增表达式（如 `i++`）。（ ）",
+          "answer": true,
+          "explanation": "在 for 循环中，continue 跳过剩余循环体，然后执行自增表达式（i++），再判断条件。这是 for 循环中 continue 的特性。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 的 `while` 循环中，`continue` 会跳到循环条件判断处，而不是跳到循环体开头。（ ）",
+          "answer": true,
+          "explanation": "在 while 循环中，continue 跳到循环条件判断处重新检查条件。注意这和 for 循环不同：for 循环的 continue 会先执行自增表达式。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 表达式 `(int)3.9` 的值是 4。（ ）",
+          "answer": false,
+          "explanation": "(int)3.9 是强制类型转换，将 double 截断为 int，结果是 3，不是 4。C++ 的强制转换是截断（向零取整），不是四舍五入。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`char` 类型变量可以和整数进行加减运算。（ ）",
+          "answer": true,
+          "explanation": "char 类型本质上是整数类型（存储 ASCII 码），可以和整数进行加减运算。例如 'A' + 1 等于 66，即 'B'。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 表达式 `'A' + 1 == 'B'` 的值为 1（true）。（ ）",
+          "answer": true,
+          "explanation": "'A' 的 ASCII 码是 65，加 1 得 66，而 'B' 的 ASCII 码正好是 66。因此 'A'+1 == 'B' 为 true（值为 1）。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后将输出 `hello`。（ ）\n```\nint x = 0;\nif (x)\n    cout << \"hello\";\n```",
+          "answer": false,
+          "explanation": "x = 0，在 if 条件中 0 被视为 false，所以不会执行 cout << \"hello\"，不会输出任何内容。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 表达式 `7 / 2` 和 `7.0 / 2` 的值相同。（ ）",
+          "answer": false,
+          "explanation": "7/2 是整数除法，结果为 3（int 类型）。7.0/2 是浮点除法，结果为 3.5（double 类型）。两者的值不同。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，嵌套的 `if-else` 语句里，`else` 总是与离它最近的、还没有配对的 `if` 匹配。（ ）",
+          "answer": true,
+          "explanation": "这是 C++ 的\"最近匹配\"规则（也叫\"悬挂 else\"规则），else 与距离最近的、尚未匹配的 if 配对。可以用花括号 {} 来改变匹配关系。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后将输出 `3.5`。（ ）\n```\nint a = 7, b = 2;\ncout << a / b;\n```",
+          "answer": false,
+          "explanation": "a/b 即 7/2 是整数除法，结果为 3（不是 3.5）。cout 输出 3，不是 3.5。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`'0'` 的 ASCII 码值是 0。（ ）",
+          "answer": false,
+          "explanation": "'0' 是字符零，其 ASCII 码值是 48，不是 0。整数 0 对应的 ASCII 字符是 NUL（空字符），即 '\\0'。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "最大公约数",
+          "knowledge": [],
+          "stem": "给定两个正整数 A 和 B，请你求出它们的最大公约数（GCD）。",
+          "input_format": "输入一行，包含两个正整数 A 和 B，用空格分隔。",
+          "output_format": "输出一行，一个整数，表示 A 和 B 的最大公约数。",
+          "constraints": "对于所有测试数据，保证 1 ≤ A, B ≤ 1000000。",
+          "samples": [
+            {
+              "input": "12 8",
+              "output": "4"
+            },
+            {
+              "input": "7 3",
+              "output": "1"
+            },
+            {
+              "input": "100 25",
+              "output": "25"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    while (b != 0) {\n        int t = b;\n        b = a % b;\n        a = t;\n    }\n    cout << a << endl;\n    return 0;\n}",
+            "solution": "思路：使用辗转相除法（欧几里得算法）。不断用较大数除以较小数取余，直到余数为 0，此时除数即为最大公约数。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(四) - 编程题1「最大公约数」测试程序\n *\n * 用法: g++ -o test_04_prog1 test_04_prog1.cpp && ./test_04_prog1 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference implementation\nint gcd(int a, int b) {\n    while (b != 0) {\n        int t = b;\n        b = a % b;\n        a = t;\n    }\n    return a;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests = {\n        // 样例\n        {\"12 8\\n\",          \"\"},\n        {\"7 3\\n\",           \"\"},\n        {\"100 25\\n\",        \"\"},\n        // 相等\n        {\"17 17\\n\",         \"\"},\n        {\"1 1\\n\",           \"\"},\n        // 互质\n        {\"13 7\\n\",          \"\"},\n        {\"97 89\\n\",         \"\"},\n        // 一个是另一个的倍数\n        {\"1000 500\\n\",      \"\"},\n        {\"36 12\\n\",         \"\"},\n        // 大数\n        {\"1000000 999999\\n\",\"\"},\n        {\"999999 3\\n\",      \"\"},\n        // 1 和任何数\n        {\"1 1000000\\n\",     \"\"},\n        {\"1000000 1\\n\",     \"\"},\n        // 顺序不同\n        {\"8 12\\n\",          \"\"},\n        {\"3 7\\n\",           \"\"},\n    };\n\n    // Compute expected values\n    int inputs[][2] = {\n        {12,8}, {7,3}, {100,25},\n        {17,17}, {1,1},\n        {13,7}, {97,89},\n        {1000,500}, {36,12},\n        {1000000,999999}, {999999,3},\n        {1,1000000}, {1000000,1},\n        {8,12}, {3,7}\n    };\n    for (int i = 0; i < (int)tests.size(); i++) {\n        tests[i].expected = to_string(gcd(inputs[i][0], inputs[i][1]));\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题1「最大公约数」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-20s | %-10s | %-10s\\n\", \"编号\", \"输入(A B)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+----------------------+------------+-----------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-20s | %-10s | %-10s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "倒序输出数位",
+          "knowledge": [],
+          "stem": "给定一个正整数 N，请将 N 的各位数字倒序输出。注意：如果倒序后有前导零，需要去掉（例如 120 倒序后应输出 21 而不是 021）。",
+          "input_format": "输入一行，包含一个正整数 N。",
+          "output_format": "输出一行，一个整数，表示 N 倒序后的结果。",
+          "constraints": "对于所有测试数据，保证 1 ≤ N ≤ 1000000。",
+          "samples": [
+            {
+              "input": "1234",
+              "output": "4321"
+            },
+            {
+              "input": "120",
+              "output": "21"
+            },
+            {
+              "input": "5",
+              "output": "5"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int N;\n    cin >> N;\n    int rev = 0;\n    while (N > 0) {\n        rev = rev * 10 + N % 10;\n        N /= 10;\n    }\n    cout << rev << endl;\n    return 0;\n}",
+            "solution": "思路：不断取 N 的末位数字（N%10），拼接到结果 rev 中（rev = rev*10 + N%10），然后去掉 N 的末位（N/=10）。由于 rev 是整数，前导零自动消失。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(四) - 编程题2「倒序输出数位」测试程序\n *\n * 用法: g++ -o test_04_prog2 test_04_prog2.cpp && ./test_04_prog2 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference implementation\nint reverseNum(int n) {\n    int rev = 0;\n    while (n > 0) {\n        rev = rev * 10 + n % 10;\n        n /= 10;\n    }\n    return rev;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests = {\n        // 样例\n        {\"1234\\n\",      \"\"},\n        {\"120\\n\",       \"\"},\n        {\"5\\n\",         \"\"},\n        // 有尾部零\n        {\"1000\\n\",      \"\"},\n        {\"100\\n\",       \"\"},\n        {\"10\\n\",        \"\"},\n        {\"300\\n\",       \"\"},\n        // 回文数\n        {\"121\\n\",       \"\"},\n        {\"1001\\n\",      \"\"},\n        // 普通数\n        {\"9527\\n\",      \"\"},\n        {\"12345\\n\",     \"\"},\n        {\"999\\n\",       \"\"},\n        // 单位数\n        {\"1\\n\",         \"\"},\n        {\"9\\n\",         \"\"},\n        // 大数\n        {\"1000000\\n\",   \"\"},\n    };\n\n    // Compute expected values\n    int inputs[] = {1234, 120, 5, 1000, 100, 10, 300, 121, 1001, 9527, 12345, 999, 1, 9, 1000000};\n    for (int i = 0; i < (int)tests.size(); i++) {\n        tests[i].expected = to_string(reverseNum(inputs[i]));\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题2「倒序输出数位」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-12s | %-10s | %-10s\\n\", \"编号\", \"输入(N)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+--------------+------------+-----------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-12s | %-10s | %-10s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

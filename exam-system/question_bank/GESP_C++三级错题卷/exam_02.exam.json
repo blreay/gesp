@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_02",
+    "title": "模拟卷 二：进制转换 & 位运算 & 编码专题",
+    "subtitle": "错题强化卷 二",
+    "category": "GESP C++ 三级错题卷",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用\"短除法\"（除2取余法）将十进制数 27 转换为二进制，结果是（ ）。",
+          "options": {
+            "A": "10111",
+            "B": "11101",
+            "C": "11011",
+            "D": "11001"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "小数 0.625 转换成二进制是（ ）。",
+          "options": {
+            "A": "0.100",
+            "B": "0.010",
+            "C": "0.111",
+            "D": "0.101"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面代码用于把十进制数转换成八进制并存入数组 oct_number，横线处应填入（ ）。\n```\nint decimal, i = 0;\nint oct_number[32];\ncin >> decimal;\nwhile (decimal > 0) {\n    __________\n}\n```",
+          "options": {
+            "A": "oct_number[i] = decimal / 8; decimal %= 8;",
+            "B": "oct_number[i++] = decimal % 8; decimal /= 8;",
+            "C": "oct_number[i++] = decimal / 8; decimal %= 8;",
+            "D": "oct_number[i] = decimal % 8; decimal *= 8;"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十进制数 141 用一个 8 位无符号二进制数表示，正确的是（ ）。",
+          "options": {
+            "A": "1000 1101",
+            "B": "1000 1110",
+            "C": "0111 0010",
+            "D": "1001 1101"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "已知 8 位二进制数 1000 1101 是某数的补码，则它表示的真值是（ ）。",
+          "options": {
+            "A": "141",
+            "B": "-13",
+            "C": "-115",
+            "D": "13"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于计算机中的原码、反码、补码，下列说法错误的是（ ）。",
+          "options": {
+            "A": "求负数的补码，可以从原码右边找到第一个 1，其左边所有位（含符号位）取反",
+            "B": "对一个 n 位二进制数，其能表示的整数范围是 [2ⁿ⁻¹, 2ⁿ⁻¹ + 1]",
+            "C": "反码运算中，符号位可以直接参与加法运算",
+            "D": "反码表示中，0 有两种表示：0000 0000 和 1111 1111"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在数学表达式中我们看到 `2^7 = 128`，而在下面的 C++ 代码中，`res = res ^ array[i];` 里的 `^` 表示的运算是（ ）。",
+          "options": {
+            "A": "求 7 次方",
+            "B": "按位与",
+            "C": "按位或",
+            "D": "按位异或"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用\"按权展开求和法\"计算二进制数 1011 对应的十进制真值，正确的算式是（ ）。",
+          "options": {
+            "A": "1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 11",
+            "B": "1×2⁰ + 0×2¹ + 1×2² + 1×2³ = 13",
+            "C": "1×10³ + 0×10² + 1×10¹ + 1×10⁰ = 1011",
+            "D": "1+0+1+1 = 3"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对于 32 位有符号整数 int 类型数据 n，关于按位取反运算符 `~`，下列说法正确的是（ ）。",
+          "options": {
+            "A": "~6 的结果是 -6",
+            "B": "按位取反满足公式 ~n = -n - 1",
+            "C": "~0 的结果是 1",
+            "D": "~(-1) 的结果是 -1"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "已知 a 为 int 类型变量，下列哪个表达式能正确求出\"小于等于 a 且是 4 的倍数\"的最大整数？（ ）",
+          "options": {
+            "A": "(a << 2) >> 2",
+            "B": "a ^ 3",
+            "C": "a & (~3)",
+            "D": "a | 3"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "把两个 4 位数值 0x1 和 0x3 分别作为高 4 位、低 4 位压缩进同一个字节（即 0001 0011），下列写法正确的是（ ）。",
+          "options": {
+            "A": "13D",
+            "B": "13Q",
+            "C": "13B",
+            "D": "13H"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十六进制数 `0x2F` 换算成五进制，正确的是（ ）。（提示：0x2F = 47）",
+          "options": {
+            "A": "145",
+            "B": "132",
+            "C": "142",
+            "D": "152"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在下面代码的横线处填入什么，可以使得输出结果不是数组所有元素异或后的值本身（即让功能出错）？\n```\nint array[5] = {1, 2, 4, 8, 16};\nint res = 0;\nfor (int i = 0; i < 5; i++)\n    __________; // 填写代码\n```",
+          "options": {
+            "A": "res = res ^ array[i]",
+            "B": "res = res + array[i]",
+            "C": "res ^= array[i]",
+            "D": "res = array[i] ^ res"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "执行下面代码后，c 的值是（ ）。注意 `01100` 前面有一个前导 0。\n```\nint a = 0b1010;   // 二进制字面量，值为 10\nint b = 01100;    // 前导0表示八进制字面量，不是二进制 1100！\nint c = a & b;\ncout << c;\n```",
+          "options": {
+            "A": "8",
+            "B": "576",
+            "C": "0",
+            "D": "12"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于计算机中\"字节单位\"的说法，正确的是（ ）。",
+          "options": {
+            "A": "bit → Byte → KB → MB，其中 1 Byte = 8 bit，1 KB = 1024 Byte",
+            "B": "bit 可以直接换算为 KB，中间不需要经过 Byte",
+            "C": "1 KB 在任何场合都严格等于 1000 Byte",
+            "D": "1 个中文汉字在 GBK 编码下占用 1 个 Byte"
+          },
+          "answer": "A",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "用\"权重累加法\"（记住 128,64,32,16,8,4,2,1）比\"翻倍法\"更适合位数较少（≤8位）的二进制转十进制检查。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对于一个 n 位二进制补码，其表示范围是 [-2ⁿ, 2ⁿ - 1]。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "补码之所以能\"多表示一个最小负数\"（比如 8 位补码能表示 -128），是因为补码没有\"负 0\"，省下的编码被用来表示最小的负数。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "机器数（机器码）本身自带正负符号，计算机可以直接从二进制位组合中\"看出\"这个数是正是负，不需要额外的解释规则。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "双精度浮点数 double a = 0.9, b = 1.0; 判断 `(b - a) == 0.1` 的结果在大多数情况下是 false（不等），这是由浮点数存储精度导致的。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对任意正整数，它的二进制表示长度一定不会比它的十进制表示长度更短。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "正整数的八进制表示中，每一位可能出现的最大数字是 8。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "数学/手写文本中的 `^` 通常表示\"次方\"（如 3^2 = 9），而在 C++ 代码里的 `^` 表示\"按位异或\"，两者含义不同。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `a ^= b; b ^= a; a ^= b;`（`^` 为异或运算符）可以在不使用临时变量的情况下交换 a 和 b 的值。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `a &= b; b &= a; a &= b;`（`&` 为按位与运算符）同样可以正确交换 a 和 b 的值，效果与异或交换法相同。（ ）",
+          "answer": false,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "任意进制转换器",
+          "knowledge": [],
+          "stem": "输入一个十进制非负整数 N（0 ≤ N ≤ 100000）和一个进制 B（2 ≤ B ≤ 16），请用短除法思想把 N 转换成 B 进制并输出。若 B > 10，超过 9 的数位用大写字母 A、B、C… 表示（10 对应 A，11 对应 B，以此类推）。特别地，若 N 为 0，直接输出 0。",
+          "input_format": "一行，两个整数 N 和 B，用空格分隔。",
+          "output_format": "输出一行，N 在 B 进制下的表示（不含前导 0，除非 N 本身为 0）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "27 2",
+              "output": "11011"
+            },
+            {
+              "input": "255 16",
+              "output": "FF"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"任意进制转换器\"(mock2 编程题1)考生程序的正确性\n// 用法： g++ -O2 -o test1 mock2_prob1_base_convert.cpp\n//        ./test1 <考生二进制程序路径>\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock2_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock2_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    system(cmd.c_str());\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"27 2\\n\", \"11011\"},\n        {\"255 16\\n\", \"FF\"},\n        {\"0 5\\n\", \"0\"},\n        {\"100 8\\n\", \"144\"},\n        {\"1 2\\n\", \"1\"},\n        {\"4096 16\\n\", \"1000\"},\n        {\"31 16\\n\", \"1F\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 任意进制转换器 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-14s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-14s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "找出唯一的\"落单数\"",
+          "knowledge": [],
+          "stem": "给定一个正整数数组，其中除了一个数字只出现一次以外，其余每个数字都恰好出现两次。请利用位运算（异或运算 `^` 的自反性：任何数与自身异或为 0）找出这个只出现一次的数字，要求不使用额外的哈希表/map（用于巩固位运算知识点，需体现\"两两异或抵消\"的思路，暴力计数解法测试可能不会全部通过，但只看输入输出不检查实现方式）。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 100000，n 为奇数），第二行 n 个用空格分隔的正整数。",
+          "output_format": "输出一行，只出现一次的那个数字。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5\n4 1 2 1 2",
+              "output": "4"
+            },
+            {
+              "input": "7\n9 3 9 5 5 3 8",
+              "output": "8"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"找出唯一的落单数\"(mock2 编程题2)考生程序的正确性\n// 用法： g++ -O2 -o test2 mock2_prob2_xor_unique.cpp\n//        ./test2 <考生二进制程序路径>\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock2_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock2_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    system(cmd.c_str());\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5\\n4 1 2 1 2\\n\", \"4\"},\n        {\"7\\n9 3 9 5 5 3 8\\n\", \"8\"},\n        {\"1\\n42\\n\", \"42\"},\n        {\"9\\n1 2 3 4 5 4 3 2 1\\n\", \"5\"},\n        {\"3\\n100000 7 7\\n\", \"100000\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 找出唯一的落单数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-20s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-20s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

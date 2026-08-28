@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= title %> · GESP 模拟考试系统</title>
+<link rel="stylesheet" href="/css/base.css">
+<% if (typeof extraCss !== 'undefined') { extraCss.forEach(function(c){ %>
+<link rel="stylesheet" href="<%= c %>">
+<% }); } %>
+</head>
+<body>

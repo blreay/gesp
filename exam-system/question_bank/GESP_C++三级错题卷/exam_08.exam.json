@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_08",
+    "title": "模拟卷 八：时间复杂度 & 递归专题",
+    "subtitle": "错题强化卷 八",
+    "category": "GESP C++ 三级错题卷",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面递归函数用于求斐波那契数列第 n 项，它的时间复杂度是（ ）。\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    return fib(n - 1) + fib(n - 2);\n}\n```",
+          "options": {
+            "A": "O(n)",
+            "B": "O(n²)",
+            "C": "O(n³)",
+            "D": "O(2ⁿ)"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面用递推（循环）方式求斐波那契数列第 n 项，它的时间复杂度是（ ）。\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    int a = 0, b = 1;\n    for (int i = 2; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}\n```",
+          "options": {
+            "A": "O(n)",
+            "B": "O(n²)",
+            "C": "O(2ⁿ)",
+            "D": "O(log n)"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用递归法求 n 的阶乘（`f(n) = n * f(n-1)`，f(0)=1），它的时间复杂度是（ ）。",
+          "options": {
+            "A": "O(n)",
+            "B": "O(n²)",
+            "C": "O(2ⁿ)",
+            "D": "O(n!)"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面递归函数 cellRecur(n) 的时间复杂度是（ ）。\n```\nint cellRecur(int n) {\n    if (n == 1) return 1;\n    return cellRecur(n - 1) + cellRecur(n - 1) + 1;\n}\n```",
+          "options": {
+            "A": "O(n²)",
+            "B": "O(2ⁿ)",
+            "C": "O(1)",
+            "D": "O(n)"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用位运算枚举一个长度为 n 的数组的所有子集（`1<<n` 种子集，每种子集内层再遍历 n 个元素检查是否属于该子集），整个算法的时间复杂度是（ ）。",
+          "options": {
+            "A": "O(n²)",
+            "B": "O(n × 2ⁿ)",
+            "C": "O(1)",
+            "D": "O(n³)"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 climb(n) 函数用迭代方式计算类似斐波那契数列的值（爬楼梯问题），climb(6) 的返回值是（ ）。\n```\nint climb(int n) {\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}\n```",
+          "options": {
+            "A": "13",
+            "B": "8",
+            "C": "5",
+            "D": "10"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "\"递推算法\"和\"递归算法\"最主要的区别是（ ）。",
+          "options": {
+            "A": "递推算法一定比递归算法快，没有例外",
+            "B": "递归算法不会用到函数调用栈",
+            "C": "递推是从已知的初始状态逐步推出后续状态（自底向上，通常用循环）；递归是函数调用自身，从大问题分解出小问题（自顶向下）",
+            "D": "两者没有任何区别，只是叫法不同"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "使用 `` 中的 `steady_clock` 测量一段代码运行耗时，其相对于 `system_clock` 最大的优势是（ ）。",
+          "options": {
+            "A": "steady_clock 的精度总是更高",
+            "B": "steady_clock 不受用户或系统手动调整墙上时钟（系统时间）的影响，只会单调递增，更适合测量耗时",
+            "C": "steady_clock 可以直接转换成日历时间字符串，system_clock 不能",
+            "D": "steady_clock 只能在 C 语言中使用"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 C 语言 `time.h` 中的 `time(NULL)` 和 C++11 `` 中的 `system_clock::now()`，说法正确的是（ ）。",
+          "options": {
+            "A": "time(NULL) 精度能到纳秒",
+            "B": "system_clock::now() 只能精确到秒，和 time(NULL) 完全一样",
+            "C": "两者都无法获得当前时间",
+            "D": "time(NULL) 精度只到秒，而 system_clock 通常能获得更高精度（如毫秒、微秒）"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用 `high_resolution_clock` 测量 `sort` 排序 100 万个数所花费的时间，正确的写法思路是（ ）。",
+          "options": {
+            "A": "只需要调用一次 now()，无需在排序前后各调用一次",
+            "B": "time(NULL) 精度更适合此场景",
+            "C": "排序前调用 now() 记录起点，排序后再调用 now() 记录终点，用 duration_cast 求两者之差",
+            "D": "直接用 sort 函数的返回值即为耗时"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于时间复杂度的说法，正确的是（ ）。",
+          "options": {
+            "A": "时间复杂度就是程序实际运行的秒数",
+            "B": "时间复杂度描述的是算法基本操作次数随输入规模 n 增长的渐进趋势，与具体机器速度无关",
+            "C": "O(n) 的算法一定比 O(n²) 的算法运行得更快（对任意输入规模都是）",
+            "D": "递归算法的时间复杂度不可能是指数级的"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用记忆化（缓存已经算过的结果）优化递归求斐波那契数列，可以把时间复杂度从 O(2ⁿ) 降低到（ ）。",
+          "options": {
+            "A": "O(n)",
+            "B": "O(2ⁿ)（不变）",
+            "C": "O(1)",
+            "D": "O(n³)"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面代码用递归实现二分查找，在长度为 n 的有序数组中查找目标值，时间复杂度是（ ）。\n```\nint bsearch(int a[], int lo, int hi, int target) {\n    if (lo > hi) return -1;\n    int mid = (lo + hi) / 2;\n    if (a[mid] == target) return mid;\n    if (a[mid] < target) return bsearch(a, mid+1, hi, target);\n    return bsearch(a, lo, mid-1, target);\n}\n```",
+          "options": {
+            "A": "O(n)",
+            "B": "O(n²)",
+            "C": "O(log n)",
+            "D": "O(2ⁿ)"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "汉诺塔问题中，n 个盘子的移动总次数（递归解法的时间复杂度）是（ ）。",
+          "options": {
+            "A": "n",
+            "B": "n²",
+            "C": "n log n",
+            "D": "2ⁿ - 1"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于递归函数，说法正确的是（ ）。",
+          "options": {
+            "A": "递归函数不需要终止条件（base case），程序会自动停止",
+            "B": "递归函数如果没有正确的终止条件，可能导致栈溢出（stack overflow）",
+            "C": "递归函数的效率永远高于等价的循环实现",
+            "D": "递归函数不能有返回值"
+          },
+          "answer": "B",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面代码用递归法求斐波那契数列第 n 项，其时间复杂度是 O(n)。（ ）\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    return fib(n-1) + fib(n-2);\n}\n```",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面代码用递推法（循环）求斐波那契数列第 n 项，其时间复杂度是 O(n)。（ ）\n```\nint fib(int n) {\n    int a=0,b=1;\n    for(int i=0;i<n;i++){int c=a+b;a=b;b=c;}\n    return a;\n}\n```",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "递推算法通过逐步求解当前状态和前一个或几个状态之间的关系来解决问题（例如从 f(1)、f(2) 推出 f(3)……）。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "用递归法求 n 的阶乘（每层只做一次乘法，共递归 n 层），其时间复杂度是 O(2ⁿ)。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`steady_clock` 在测量代码运行耗时时，即使用户手动把系统时间往前调了1年，`duration_cast<seconds>(end-start).count()` 得到的仍然是真实经过的秒数，不受影响。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C 语言的 `time(NULL)` 可以精确到毫秒级别，和 C++11 的 `chrono` 精度一样高。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "32 位系统里 `time_t` 存储秒数，理论上到 2038 年 1 月 19 日附近会发生溢出（\"2038年问题\"），这是因为 32 位有符号整数能表示的范围有限。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "汉诺塔问题中 n 个盘子的最少移动次数是 2n（与 n 成线性关系）。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "枚举子集这类\"指数级\"算法在 n 较大（比如 n=30）时会因为运算量过大而在规定时限内跑不完，这是它的一个明显局限。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "任何递归算法都可以且必须改写成递推（循环）算法，否则程序无法正确运行。（ ）",
+          "answer": false,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "递归与迭代版斐波那契对比",
+          "knowledge": [],
+          "stem": "给定一个整数 n（0 ≤ n ≤ 40），请分别用\"记忆化递归\"（用数组缓存已算出的结果，避免重复计算）方式计算斐波那契数列第 n 项（约定 fib(0)=0, fib(1)=1），并输出结果。要求即使 n=40 也要能在 1 秒内跑完（这排除了朴素的指数级递归写法）。",
+          "input_format": "一个整数 n。",
+          "output_format": "输出 fib(n) 的值。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "10",
+              "output": "55"
+            },
+            {
+              "input": "40",
+              "output": "102334155"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"递归与迭代版斐波那契对比\"(mock8 编程题1)考生程序的正确性\n// 注意：本测试对每个样例设置了较短的超时时间，朴素O(2^n)递归在n较大时会超时失败\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n#include <sys/wait.h>\n#include <signal.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\n// 带超时的运行：用 timeout 命令限制运行时间，避免朴素递归卡死测试程序本身\nstatic std::string runProgram(const std::string& exePath, const std::string& input, int timeoutSec) {\n    std::string inFile = \"/tmp/mock8_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock8_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"timeout \" + std::to_string(timeoutSec) + \" \\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { /* 超时或非零退出，输出可能为空 */ }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"0\\n\", \"0\"},\n        {\"1\\n\", \"1\"},\n        {\"10\\n\", \"55\"},\n        {\"20\\n\", \"6765\"},\n        {\"40\\n\", \"102334155\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input, 2);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 递归与迭代版斐波那契对比 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期（超时也算作不符合预期，实际输出会显示为空）：\\n\");\n        printf(\"%-4s | %-8s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-8s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "汉诺塔移动步数与耗时测量",
+          "knowledge": [],
+          "stem": "输入盘子数量 n（1 ≤ n ≤ 20），请用递归方式模拟汉诺塔移动过程，输出总的移动步数（不需要输出每一步的具体移动过程）。",
+          "input_format": "一个整数 n。",
+          "output_format": "输出总移动步数（即 2ⁿ - 1）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3",
+              "output": "7"
+            },
+            {
+              "input": "10",
+              "output": "1023"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"汉诺塔移动步数\"(mock8 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock8_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock8_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"1\\n\", \"1\"},\n        {\"3\\n\", \"7\"},\n        {\"10\\n\", \"1023\"},\n        {\"20\\n\", \"1048575\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 汉诺塔移动步数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-8s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-8s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

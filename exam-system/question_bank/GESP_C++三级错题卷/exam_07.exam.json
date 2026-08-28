@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_07",
+    "title": "模拟卷 七：参数传递 & 结构体专题",
+    "subtitle": "错题强化卷 七",
+    "category": "GESP C++ 三级错题卷",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "代码定义 `void swap(int a, int b) { int t = a; a = b; b = t; }`，main 中 `int x = 1, y = 2; swap(x, y); cout << x << y;` 输出是（ ）。",
+          "options": {
+            "A": "12",
+            "B": "21",
+            "C": "22",
+            "D": "11"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`void increaseA(int x) { x++; }` 和 `void increaseB(int* p) { (*p)++; }`，main 中 `int a = 5; increaseA(a); cout << a; increaseB(&a); cout << a;`，输出是（ ）。",
+          "options": {
+            "A": "6 7",
+            "B": "6 6",
+            "C": "5 6",
+            "D": "5 5"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "函数声明为 `int f(int &x) { x += 3; return x; }`，对变量 `int a = 3;`，下列哪种调用能够改变 a 的值（ ）。",
+          "options": {
+            "A": "f(&a);",
+            "B": "f(*a);",
+            "C": "f(a);",
+            "D": "f(a - 3);"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面有关函数参数的说法，正确的是（ ）。",
+          "options": {
+            "A": "值传递时，子函数中修改形参的值，不会影响调用者传入的实参",
+            "B": "值传递时，子函数中修改形参的值，调用者的实参也会跟着改变",
+            "C": "引用传递时，子函数中修改形参的值，调用者的实参不受影响",
+            "D": "指针传递时，无论是否解引用，实参都不可能被修改"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于函数参数传递方式，下面说法正确的是（ ）。",
+          "options": {
+            "A": "只能用值传递避免拷贝大型对象",
+            "B": "只能用引用传递避免拷贝大型对象",
+            "C": "只能用指针传递避免拷贝大型对象",
+            "D": "引用传递和指针传递都可以避免拷贝大型对象"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "哪个选项正确地定义了一个名为 Person 的结构体，并正确地初始化了一个 Person 变量 p（结构体含 string name 和 int age 两个成员）？（ ）",
+          "options": {
+            "A": "struct Person{string name;int age;}; Person p(\"Yang\", 10);",
+            "B": "struct Person{string name;int age;}; Person p; p(\"Yang\", 10);",
+            "C": "struct Person{string name;int age;}; Person p = {\"Yang\", 10};",
+            "D": "struct Person{string name;int age;}; Person p = new Person(\"Yang\", 10);"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面哪个描述**不能**正确定义一个名为 Student 的结构体以及一个包含 20 个元素的结构体数组（ ）。",
+          "options": {
+            "A": "struct Student {...}; Student students[20];",
+            "B": "struct Student {...}; struct Student students[20];",
+            "C": "struct Student {...}; Student* students = new Student[20];",
+            "D": "struct Student {...}; Student students = new Student[20];"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "函数 `void printArray(int arr[3][4])`，在函数内部对 arr 使用 `sizeof(arr)` 求得的大小是（ ）。",
+          "options": {
+            "A": "sizeof(int) × 3 × 4，与整个二维数组大小一致",
+            "B": "一个指针的大小（因为数组形参会退化为指向长度为4的一维数组的指针）",
+            "C": "sizeof(int) × 4",
+            "D": "0"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "一段冒泡排序代码中有 `void swap(int &a, int &b) { int t=a; a=b; b=t; }`，主循环中 `if (a[j] > a[j+1])` 后横线处应填入（ ）。\n```\nif (a[j] > a[j+1]) {\n    __________\n}\n```",
+          "options": {
+            "A": "swap(a[j], a[j+1]);",
+            "B": "int t = a[j]; a[j+1] = a[j]; a[j] = t;",
+            "C": "a[j] = a[j+1];",
+            "D": "swap(j, j+1);"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "结构体 `struct Point { int x, y; };` 想要在函数中修改一个结构体变量的成员并让调用者看到修改，函数参数应该声明为（ ）。",
+          "options": {
+            "A": "void move(Point& p) { p.x++; p.y++; }",
+            "B": "void move(Point p) { p.x++; p.y++; }",
+            "C": "void move(const Point& p) { p.x++; p.y++; }",
+            "D": "以上都不行"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "函数 `void f(const int* p)` 中，下列哪个操作是合法的（ ）。",
+          "options": {
+            "A": "*p = 10;（通过 p 修改所指向的值）",
+            "B": "p = nullptr; 之后立刻 *p = 10;",
+            "C": "int v = *p;（只读取 p 指向的值）",
+            "D": "delete p; 然后继续用 p"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于函数重载（overload），下列说法正确的是（ ）。",
+          "options": {
+            "A": "两个函数只要返回值类型不同，就可以构成重载（即使参数完全相同）",
+            "B": "两个函数要构成重载，必须参数列表（类型或个数）不同",
+            "C": "C++ 中函数不支持重载",
+            "D": "重载函数调用时永远不会产生歧义"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面哪个语句正确定义了一个计算浮点数 x 的平方的函数，并成功调用该函数（ ）。",
+          "options": {
+            "A": "square(float x){return x*x;} float area=square(2);（缺少返回类型）",
+            "B": "void square(float x){return x*x;} float area=square(2);（void 函数不能返回值）",
+            "C": "float square(float x); float area=square(2);（只声明没定义就直接使用会链接失败）",
+            "D": "float square(float x){return x*x;} float area=square(2);"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 const 修饰函数参数的作用，说法正确的是（ ）。",
+          "options": {
+            "A": "const 参数会导致函数运行速度变慢",
+            "B": "传常量值、常量引用、常量指针都不能在函数内被修改，可用于防止意外修改",
+            "C": "const 只能用于修饰指针参数",
+            "D": "传值参数加 const 没有任何意义（完全没用）"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "结构体数组 `Student students[20];`（Student 只含 int id 和 int score），若想让某个函数修改数组中所有学生的 score 字段（比如统一加10分），下列哪种函数参数声明**不能**达到这个目的（ ）。",
+          "options": {
+            "A": "void addBonus(Student students[], int n)",
+            "B": "void addBonus(Student* students, int n)",
+            "C": "void addBonus(const Student* students, int n)",
+            "D": "void addBonus(Student (&students)[20])"
+          },
+          "answer": "C",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "值传递时，子函数内部修改形参的值，主函数中对应的实参值不会改变。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "一个函数没有被调用时，它的参数（形参）不占用内存。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`int f(int &x)` 这样的引用参数，在调用时必须写成 `f(&a)` 才能通过编译（像指针那样加取地址符）。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`Person p = {\"Yang\", 10};`（Person 含 string name 和 int age，且没有自定义构造函数）这种\"列表初始化\"结构体的写法是合法的。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`Student students = new Student[20];`（Student 不是指针类型）这种写法是合法的结构体数组定义。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`void increaseB(int* p) { (*p)++; }`，main 中 `int a=5; increaseB(&a);` 之后，a 的值会变成 6。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "两个函数 `int calculate(int x, int y=10);` 与 `int calculate(int x);` 同时存在时，调用 `calculate(5);` 一定能顺利编译，不会产生任何歧义。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "数组作为函数参数传递时，函数内部实际拿到的是指向数组首元素的指针（数组\"退化\"为指针），而不是整个数组的拷贝。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "结构体变量之间可以直接用 `=` 赋值（成员逐个拷贝），但结构体数组之间不能用 `=` 直接整体赋值。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "传递指针参数时，如果指针本身用 const 修饰为常量指针（如 `int* const p`），表示 p 不能再指向别的地址，但仍可以通过 `*p` 修改所指向的值。（ ）",
+          "answer": true,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "学生成绩结构体处理",
+          "knowledge": [],
+          "stem": "定义结构体 Student（包含姓名 name 和成绩 score）。输入 n 名学生信息后，请把每个人的成绩加上 5 分的奖励分（上限 100 分，超过 100 按 100 计），并输出调整后的所有学生信息（要求用引用或指针方式修改，不能重新构造新数组）。",
+          "input_format": "第一行一个整数 n；接下来 n 行，每行一个姓名和一个整数成绩。",
+          "output_format": "输出 n 行，每行为调整后的 \"姓名 成绩\"。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3\nAlice 90\nBob 98\nCathy 60",
+              "output": "Alice 95\nBob 100\nCathy 65"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"学生成绩结构体处理\"(mock7 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock7_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock7_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"3\\nAlice 90\\nBob 98\\nCathy 60\\n\", \"Alice 95\\nBob 100\\nCathy 65\"},\n        {\"1\\nZoe 0\\n\", \"Zoe 5\"},\n        {\"2\\nA 100\\nB 96\\n\", \"A 100\\nB 100\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 学生成绩结构体处理 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-22s | %-24s | %-24s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-22s | %-24s | %-24s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "自定义 Swap 与数组去重",
+          "knowledge": [],
+          "stem": "输入 n 个整数（顺序不一定有序），请先用引用参数手写一个 swap 函数，用它实现选择排序把数组按升序排好，再去除相邻的重复元素（去重后保持升序），输出去重后的结果。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 1000）；第二行 n 个整数。",
+          "output_format": "输出一行，升序排列且去重后的整数序列，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "7\n3 1 2 3 1 5 2",
+              "output": "1 2 3 5"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"自定义Swap与数组去重\"(mock7 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock7_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock7_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"7\\n3 1 2 3 1 5 2\\n\", \"1 2 3 5\"},\n        {\"1\\n9\\n\", \"9\"},\n        {\"5\\n2 2 2 2 2\\n\", \"2\"},\n        {\"6\\n6 5 4 3 2 1\\n\", \"1 2 3 4 5 6\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 自定义Swap与数组去重 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-20s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-20s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

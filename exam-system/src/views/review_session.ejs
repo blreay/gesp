@@ -1,0 +1,33 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<div class="exam-topbar">
+  <a class="btn btn-ghost" href="/review">&larr; 返回错题复习</a>
+  <div class="et-left"><span class="et-title">错题练习</span>
+    <span class="et-cat">共 <%= objective.length + prog.length %> 题（客观 <%= objective.length %> · 编程 <%= prog.length %>）</span></div>
+  <button class="btn btn-danger" id="btnGrade">判 卷</button>
+</div>
+
+<main class="exam-main">
+  <div class="paper">
+    <div class="score-display" id="scoreDisplay"></div>
+    <% if (objective.length) { %>
+    <div class="section-title"><span>客观题（重新作答）</span></div>
+    <% objective.forEach(function(it, i){ %>
+      <%- include('partials/question-block', { q: it.question, wrongId: it.wrong_id, qnum: i + 1, examTitle: it.exam_title, renderStem: renderStem }) %>
+    <% }); %>
+    <% } %>
+    <% if (prog.length) { %>
+    <div class="section-title"><span>编程题（打开判题页完成）</span></div>
+    <% prog.forEach(function(it){ %>
+    <div class="question prog-card">
+      <div class="q-text">💻 <%= it.question.title %> <span class="lv-badge lv-<%= Math.min(it.level, 5) %>">L<%= it.level %></span></div>
+      <a class="btn btn-primary" href="/prog/practice/<%= it.exam_id %>/<%= it.question_id %>?session=<%= session.id %>&wrong=<%= it.wrong_id %>">打开判题 →</a>
+    </div>
+    <% }); %>
+    <% } %>
+  </div>
+</main>
+
+<script>window.PAGE = { sessionId: <%= session.id %> };</script>
+<%- include('partials/foot', { extraJs: extraJs }) %>

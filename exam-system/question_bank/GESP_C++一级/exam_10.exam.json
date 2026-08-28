@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l1_mock_10",
+    "title": "模拟试卷（十）",
+    "subtitle": "综合冲刺",
+    "category": "GESP C++ 一级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "三目运算符",
+      "printf混合格式",
+      "int+double",
+      "AI时事"
+    ],
+    "prog_brief": "商店折扣 · 质数求和"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 0, b = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) { a++; continue; }\n    if (i % 5 == 0) { b++; break; }\n    a += i;\n}\ncout << a << \" \" << b;\n```",
+          "options": {
+            "A": "11 1",
+            "B": "8 1",
+            "C": "7 0",
+            "D": "10 2"
+          },
+          "answer": "B",
+          "explanation": "逐步跟踪循环：\n\n        i=1: 不是3的倍数，不是5的倍数，a += 1，a=1\n\n        i=2: 不是3的倍数，不是5的倍数，a += 2，a=3\n\n        i=3: 是3的倍数，a++，a=4，continue\n\n        i=4: 不是3的倍数，不是5的倍数，a += 4，a=8\n\n        i=5: 不是3的倍数，是5的倍数，b++，b=1，break\n\n        输出 8 1。选 B。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "C++ 语句 `printf(\"%d %c %x\", 65, 65, 65)` 的输出是（ ）。",
+          "options": {
+            "A": "65 65 65",
+            "B": "65 A 41",
+            "C": "A A 41",
+            "D": "65 A 65"
+          },
+          "answer": "B",
+          "explanation": "%d 按十进制整数输出 65，%c 按字符输出 ASCII 码 65 对应的字符 'A'，%x 按十六进制输出 65 = 0x41。输出 65 A 41。选 B。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 5;\ndouble b = a / 2 + 2.0;\ncout << b;\n```",
+          "options": {
+            "A": "4.5",
+            "B": "4",
+            "C": "4.0",
+            "D": "5"
+          },
+          "answer": "B",
+          "explanation": "a / 2 是整数除法，5 / 2 = 2（int），然后 2 + 2.0 = 4.0（int 自动转 double）。cout << 4.0 输出 4（cout 默认不带小数点显示整数值的 double）。选 B。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后，变量 `z` 的值是（ ）。\n```\nint x = 5, y = 8;\nint z = (x > y) ? x - y : y - x;\n```",
+          "options": {
+            "A": "5",
+            "B": "8",
+            "C": "3",
+            "D": "-3"
+          },
+          "answer": "C",
+          "explanation": "三目运算符 ? :：x > y 即 5 > 8 为假，取 y - x = 8 - 5 = 3。选 C。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下列选项中，能作为合法 C++ 标识符的是（ ）。",
+          "options": {
+            "A": "3D_model",
+            "B": "_MAX_SIZE",
+            "C": "my score",
+            "D": "int"
+          },
+          "answer": "B",
+          "explanation": "A 以数字开头，不合法；C 含空格，不合法；D 是关键字。_MAX_SIZE 以下划线开头，合法。选 B。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint cnt = 0, sum = 0;\nfor (int i = 1; i <= 30; i++) {\n    if (i % 4 == 0) continue;\n    if (i % 7 == 0) { cnt++; break; }\n    sum += i;\n}\ncout << cnt << \" \" << sum;\n```",
+          "options": {
+            "A": "1 17",
+            "B": "0 17",
+            "C": "1 21",
+            "D": "0 21"
+          },
+          "answer": "A",
+          "explanation": "逐步跟踪：\n\n        i=1: 不是4的倍数，不是7的倍数，sum += 1，sum=1\n\n        i=2: 不是4的倍数，不是7的倍数，sum += 2，sum=3\n\n        i=3: 不是4的倍数，不是7的倍数，sum += 3，sum=6\n\n        i=4: 是4的倍数，continue\n\n        i=5: 不是4的倍数，不是7的倍数，sum += 5，sum=11\n\n        i=6: 不是4的倍数，不是7的倍数，sum += 6，sum=17\n\n        i=7: 不是4的倍数，是7的倍数，cnt++，cnt=1，break\n\n        输出 1 17。选 A。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "C++ 语句 `printf(\"a=%d,b=%.1f\", 3, 4.56)` 的输出是（ ）。",
+          "options": {
+            "A": "a=3,b=4.56",
+            "B": "a=3,b=4.6",
+            "C": "a=3,b=4.5",
+            "D": "a=%d,b=%.1f"
+          },
+          "answer": "B",
+          "explanation": "%d 输出整数 3，%.1f 输出 4.56 保留 1 位小数为 4.6（四舍五入）。输出 a=3,b=4.6。选 B。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint x = 7;\nint y = (x > 10) ? x * 2 : (x > 5) ? x + 10 : x - 1;\ncout << y;\n```",
+          "options": {
+            "A": "14",
+            "B": "17",
+            "C": "6",
+            "D": "7"
+          },
+          "answer": "B",
+          "explanation": "嵌套三目运算符：x=7，x > 10 为假，进入第二个三目运算：x > 5 即 7 > 5 为真，取 x + 10 = 17。选 B。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 1; i <= 20; i++) {\n    if (i % 2 == 0) continue;\n    if (i > 15) break;\n    s += i;\n}\ncout << s;\n```",
+          "options": {
+            "A": "100",
+            "B": "81",
+            "C": "64",
+            "D": "48"
+          },
+          "answer": "C",
+          "explanation": "跳过偶数（continue），遇到 i > 15 时 break。\n\n        累加的奇数：1, 3, 5, 7, 9, 11, 13, 15（i=17 时 > 15，break，不累加 17）。\n\n        s = 1+3+5+7+9+11+13+15 = 64。选 C。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "2024 年底，中国杭州一家公司发布了一个名为 DeepSeek 的人工智能大模型，引起全球关注。关于人工智能（AI），下列说法错误的是（ ）。",
+          "options": {
+            "A": "人工智能的目标是让计算机模拟人类的智能行为",
+            "B": "DeepSeek 是一种大语言模型，属于人工智能领域",
+            "C": "人工智能已经完全超越了人类，可以解决所有问题",
+            "D": "机器学习和深度学习是人工智能的重要分支"
+          },
+          "answer": "C",
+          "explanation": "C 错误。人工智能目前还远未超越人类的所有方面，无法解决所有问题。A、B、D 都是正确的说法。选 C。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 3, b = 5, c = 4;\nint m = (a > b) ? a : ((b > c) ? b : c);\ncout << m;\n```",
+          "options": {
+            "A": "3",
+            "B": "4",
+            "C": "5",
+            "D": "无法编译"
+          },
+          "answer": "C",
+          "explanation": "a > b 即 3 > 5 为假，进入第二个三目运算：b > c 即 5 > 4 为真，取 b = 5。选 C。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\ndouble d = 10 / 3;\ncout << d;\n```",
+          "options": {
+            "A": "3.33333",
+            "B": "3",
+            "C": "3.0",
+            "D": "4"
+          },
+          "answer": "B",
+          "explanation": "10 / 3 是整数除法，结果为 3（int）。赋值给 double 变量 d 后为 3.0。cout << d 输出 3（cout 默认输出 double 时，如果值恰好是整数则不显示小数点）。选 B。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码中，在横线处填入代码，使程序求出 1 到 n 中能同时被 3 和 5 整除的数的个数。正确的是（ ）。\n```\nint n, cnt = 0;\ncin >> n;\nfor (int i = 1; i <= n; i++) {\n    if (__________)\n        cnt++;\n}\ncout << cnt;\n```",
+          "options": {
+            "A": "i % 3 == 0 || i % 5 == 0",
+            "B": "i % 3 == 0 && i % 5 == 0",
+            "C": "i % 15 == 0",
+            "D": "B 和 C 都正确"
+          },
+          "answer": "D",
+          "explanation": "\"同时被 3 和 5 整除\"等价于被 15 整除。i % 3 == 0 && i % 5 == 0 和 i % 15 == 0 效果相同。选 D。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "C++ 语句 `printf(\"%05d\", 42)` 的输出是（ ）。",
+          "options": {
+            "A": "42",
+            "B": "42",
+            "C": "00042",
+            "D": "42000"
+          },
+          "answer": "C",
+          "explanation": "%05d 表示输出宽度为 5，不足的位用 0 填充。42 只有 2 位，前面补 3 个零，输出 00042。选 C。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint n = 1;\nfor (int i = 1; i <= 4; i++) {\n    n = n * i + 1;\n}\ncout << n;\n```",
+          "options": {
+            "A": "65",
+            "B": "25",
+            "C": "33",
+            "D": "40"
+          },
+          "answer": "A",
+          "explanation": "逐步跟踪：n=1。\n\n        i=1: n = 1*1+1 = 2\n\n        i=2: n = 2*2+1 = 5\n\n        i=3: n = 5*3+1 = 16\n\n        i=4: n = 16*4+1 = 65\n\n        输出 65。选 A。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "DeepSeek 是由中国企业研发的人工智能大语言模型，于 2024-2025 年引发了全球科技界的广泛关注。（ ）",
+          "answer": true,
+          "explanation": "DeepSeek 确实是由中国杭州深度求索（DeepSeek）公司研发的大语言模型，于 2024-2025 年期间引发了全球科技界的广泛讨论和关注。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，三目运算符 `?:` 可以替代简单的 `if-else` 语句。（ ）",
+          "answer": true,
+          "explanation": "三目运算符 条件 ? 表达式1 : 表达式2 可以替代简单的 if-else 赋值语句。例如 int m = (a > b) ? a : b; 等价于 if-else 写法。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 表达式 `5 / 2.0` 的结果是 `2`。（ ）",
+          "answer": false,
+          "explanation": "5 / 2.0 中，由于 2.0 是 double 类型，5 会自动转换为 double，结果是 2.5，不是 2。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中可以使用下划线 `_` 作为变量名。（ ）",
+          "answer": true,
+          "explanation": "单独一个下划线 _ 是合法的 C++ 变量名。标识符可以由字母、数字和下划线组成，且不以数字开头。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 语句 `printf(\"%c\", 66)` 的输出是 `B`。（ ）",
+          "answer": true,
+          "explanation": "%c 格式按字符输出。ASCII 码 66 对应字符 'B'（'A'=65, 'B'=66），所以输出 B。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码的 `while` 循环会执行 10 次。（ ）\n```\nint i = 0;\nwhile (i < 10) {\n    i += 2;\n}\n```",
+          "answer": false,
+          "explanation": "i 从 0 开始，每次加 2：i 依次为 0, 2, 4, 6, 8, 10。当 i=10 时不满足 i < 10，循环结束。循环体执行了 5 次（i=0,2,4,6,8），不是 10 次。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，表达式 `3 + 4 * 2.0` 的计算结果类型是 `int`。（ ）",
+          "answer": false,
+          "explanation": "4 * 2.0 中 int 4 自动转为 double，结果 8.0 是 double 类型。3 + 8.0 中 int 3 也自动转为 double，最终结果 11.0 是 double 类型，不是 int。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`continue` 语句和 `break` 语句的作用相同，都是跳出循环。（ ）",
+          "answer": false,
+          "explanation": "continue 是跳过本次循环的剩余部分，直接进入下一次循环；break 是终止整个循环。两者作用不同。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后将输出 `2.5`。（ ）\n```\ncout << 5 / 2;\n```",
+          "answer": false,
+          "explanation": "5 / 2 是整数除法，结果为 2（int），cout << 2 输出 2，不是 2.5。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中 `ALL_UPPER` 是一个合法的变量名。（ ）",
+          "answer": true,
+          "explanation": "ALL_UPPER 由大写字母和下划线组成，以字母开头，是合法的 C++ 变量名。全大写通常用于常量命名约定，但语法上完全合法。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "商店折扣",
+          "knowledge": [],
+          "stem": "商店的折扣规则如下：\n输入商品的单价 p 和购买数量 n，请计算并输出实际应付金额（保留两位小数）。",
+          "input_format": "输入一行，包含一个实数 p 和一个正整数 n，用空格分隔，分别表示商品单价和购买数量。",
+          "output_format": "输出一行，一个实数，表示实际应付金额，保留两位小数。",
+          "constraints": "对于所有测试数据，保证 0.01 ≤ p ≤ 10000.00，1 ≤ n ≤ 1000。",
+          "samples": [
+            {
+              "input": "50 3",
+              "output": "135.00"
+            },
+            {
+              "input": "10 5",
+              "output": "50.00"
+            },
+            {
+              "input": "100 5",
+              "output": "400.00"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\nusing namespace std;\n\nint main() {\n    double p;\n    int n;\n    scanf(\"%lf %d\", &p, &n);\n    double total = p * n;\n    double pay;\n    if (total <= 100)\n        pay = total;\n    else if (total <= 300)\n        pay = total * 0.9;\n    else\n        pay = total * 0.8;\n    printf(\"%.2f\\n\", pay);\n    return 0;\n}",
+            "solution": "思路：先计算总价 total = p * n，然后按折扣规则分段判断实际应付金额。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(十) - 编程题1「商店折扣」测试程序\n *\n * 用法: g++ -o test_10_prog1 test_10_prog1.cpp && ./test_10_prog1 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <cmath>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference solution\nstring solve(double p, int n) {\n    double total = p * n;\n    double pay;\n    if (total <= 100)\n        pay = total;\n    else if (total <= 300)\n        pay = total * 0.9;\n    else\n        pay = total * 0.8;\n    char buf[64];\n    sprintf(buf, \"%.2f\", pay);\n    return string(buf);\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests = {\n        // 样例\n        {\"50 3\\n\",      \"135.00\"},\n        {\"10 5\\n\",      \"50.00\"},\n        {\"100 5\\n\",     \"400.00\"},\n        // 边界：刚好100\n        {\"25 4\\n\",      \"100.00\"},\n        // 刚超过100\n        {\"25.5 4\\n\",    \"\"},\n        // 刚好300\n        {\"300 1\\n\",     \"270.00\"},\n        // 刚超过300\n        {\"300.1 1\\n\",   \"\"},\n        // 不打折小额\n        {\"0.5 1\\n\",     \"0.50\"},\n        {\"19.9 5\\n\",    \"\"},\n        // 打9折\n        {\"33.5 2\\n\",    \"\"},\n        {\"100 1\\n\",     \"100.00\"},\n        {\"100.1 1\\n\",   \"\"},\n        // 打8折\n        {\"50 10\\n\",     \"400.00\"},\n        {\"1000 1\\n\",    \"800.00\"},\n        // 大数\n        {\"10000 1000\\n\", \"\"},\n        // 小数精度\n        {\"3.33 10\\n\",   \"\"},\n        {\"99.99 1\\n\",   \"\"},\n        {\"1.01 100\\n\",  \"\"},\n    };\n\n    // Fill in computed expected values using reference solution\n    for (auto& t : tests) {\n        if (t.expected.empty()) {\n            istringstream iss(t.input);\n            double p; int n;\n            iss >> p >> n;\n            t.expected = solve(p, n);\n        }\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题1「商店折扣」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-15s | %-15s | %-15s\\n\", \"编号\", \"输入(p n)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+-----------------+-----------------+----------------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-15s | %-15s | %-15s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "质数求和",
+          "knowledge": [],
+          "stem": "输入一个正整数 n，请输出 1 到 n 之间（含 n）所有质数的和。\n质数是大于 1 的自然数中，除了 1 和它本身以外不再有其他因数的数。例如，2、3、5、7 都是质数。",
+          "input_format": "输入一行，包含一个正整数 n。",
+          "output_format": "输出一行，一个整数，表示 1 到 n 之间所有质数的和。如果范围内没有质数，输出 0。",
+          "constraints": "对于所有测试数据，保证 1 ≤ n ≤ 10000。",
+          "samples": [
+            {
+              "input": "10",
+              "output": "17"
+            },
+            {
+              "input": "1",
+              "output": "0"
+            },
+            {
+              "input": "20",
+              "output": "77"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int sum = 0;\n    for (int i = 2; i <= n; i++) {\n        bool isPrime = true;\n        for (int j = 2; j * j <= i; j++) {\n            if (i % j == 0) {\n                isPrime = false;\n                break;\n            }\n        }\n        if (isPrime)\n            sum += i;\n    }\n    cout << sum << endl;\n    return 0;\n}",
+            "solution": "思路：遍历 2 到 n 的每个数，判断是否为质数（只需检查 2 到 sqrt(i) 之间有无因数），是质数则累加。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(十) - 编程题2「质数求和」测试程序\n *\n * 用法: g++ -o test_10_prog2 test_10_prog2.cpp && ./test_10_prog2 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference prime sum\nint primeSum(int n) {\n    int sum = 0;\n    for (int i = 2; i <= n; i++) {\n        bool isPrime = true;\n        for (int j = 2; j * j <= i; j++) {\n            if (i % j == 0) { isPrime = false; break; }\n        }\n        if (isPrime) sum += i;\n    }\n    return sum;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests = {\n        // 样例\n        {\"10\\n\",    \"17\"},\n        {\"1\\n\",     \"0\"},\n        {\"20\\n\",    \"77\"},\n        // 小值\n        {\"2\\n\",     \"2\"},\n        {\"3\\n\",     \"5\"},\n        {\"5\\n\",     \"10\"},\n        {\"7\\n\",     \"17\"},\n        // 中等值\n        {\"30\\n\",    \"\"},\n        {\"50\\n\",    \"\"},\n        {\"100\\n\",   \"\"},\n        // 较大值\n        {\"200\\n\",   \"\"},\n        {\"500\\n\",   \"\"},\n        {\"1000\\n\",  \"\"},\n        // 边界\n        {\"4\\n\",     \"\"},\n        {\"11\\n\",    \"\"},\n        {\"10000\\n\", \"\"},\n    };\n\n    // Fill in computed expected values\n    for (auto& t : tests) {\n        if (t.expected.empty()) {\n            int n = atoi(t.input.c_str());\n            t.expected = to_string(primeSum(n));\n        }\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题2「质数求和」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-10s | %-12s | %-12s\\n\", \"编号\", \"输入(n)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+------------+--------------+-------------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-10s | %-12s | %-12s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

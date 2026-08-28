@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_10",
+    "title": "模拟试卷（十）",
+    "subtitle": "全面综合 · 算法思维 · 最高难度",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "IEEE754",
+      "动态内存",
+      "结构体排序",
+      "双指针",
+      "位运算加密"
+    ],
+    "prog_brief": "大整数加法（高精度）；括号匹配（栈应用）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十进制数100转换为二进制是（）",
+          "options": {
+            "A": "1100100₂",
+            "B": "1100010₂",
+            "C": "1100000₂",
+            "D": "1101100₂"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "八进制数 77₈ 加 1₈ 的结果是（）",
+          "options": {
+            "A": "78₈",
+            "B": "100₈",
+            "C": "80₈",
+            "D": "78₁₀"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int x=0xAB; x&0x0F 的结果是（）",
+          "options": {
+            "A": "0x0A",
+            "B": "0x0B",
+            "C": "0xAB",
+            "D": "0xA0"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "将整数x的第n位取反（翻转），正确的操作是（）",
+          "options": {
+            "A": "10",
+            "B": "24",
+            "C": "4",
+            "D": "16"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "short类型占2字节，short x=-1; unsigned short y=x; y的值是（）",
+          "options": {
+            "A": "-1",
+            "B": "32767",
+            "C": "65535",
+            "D": "65536"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a[10]; 数组名a不能进行的操作是（）",
+          "options": {
+            "A": "a+1",
+            "B": "*a",
+            "C": "a++",
+            "D": "a==NULL"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "char str[]=\"12345\"; strlen(str)+sizeof(str)的值是（）",
+          "options": {
+            "A": "10",
+            "B": "11",
+            "C": "12",
+            "D": "5"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int f(int a, int b=10, int c=20); 以下调用合法的是（）",
+          "options": {
+            "A": "f(1, , 3)",
+            "B": "f()",
+            "C": "f(1, 2)",
+            "D": "f(1, 2, 3, 4)"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下哪种情况不属于函数重载？（）",
+          "options": {
+            "A": "参数个数不同",
+            "B": "参数类型不同",
+            "C": "仅返回类型不同",
+            "D": "参数顺序不同"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "冒泡排序N个元素最多需要比较的次数是（）",
+          "options": {
+            "A": "N",
+            "B": "N-1",
+            "C": "N(N-1)/2",
+            "D": "N²"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\nint a=5; int *p=&a; int **pp=&p;\ncout<<**pp;",
+          "options": {
+            "A": "5",
+            "B": "a的地址",
+            "C": "p的地址",
+            "D": "编译错误"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "递归函数int f(int n){if(n<=1)return 1; return n*f(n-1);} f(5)=（）",
+          "options": {
+            "A": "15",
+            "B": "24",
+            "C": "120",
+            "D": "60"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码段执行后，数组a的内容是？\nint a[5]={5,3,1,4,2};\nfor(int i=0;i<4;i++)\n  if(a[i]>a[i+1]) swap(a[i],a[i+1]);",
+          "options": {
+            "A": "{3,1,4,2,5}",
+            "B": "{1,3,4,2,5}",
+            "C": "{3,1,2,4,5}",
+            "D": "{1,2,3,4,5}"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "string s=\"ABCDE\"; for(int i=0;i<s.length();i++) s[i]=s[i]+32; cout<<s; 输出（）",
+          "options": {
+            "A": "abcde",
+            "B": "ABCDE",
+            "C": "乱码",
+            "D": "编译错误"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码的输出是？\nint x=1;\nfor(int i=1;i<=4;i++) x*=i;\ncout<<x;",
+          "options": {
+            "A": "10",
+            "B": "24",
+            "C": "4",
+            "D": "16"
+          },
+          "answer": "B",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中的struct和class的区别仅在于默认访问权限不同。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "指针可以进行加减整数运算，但两个指针不能相加。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "冒泡排序是稳定排序，选择排序是不稳定排序。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对长度为n的有序数组进行二分查找，最多比较次数约为log₂n。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "递归函数每次调用都会在栈上分配新的局部变量空间。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中数组下标从0开始，所以长度为n的数组最大下标是n。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "int a=INT_MAX; a+1的结果是INT_MIN（有符号溢出）。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "switch语句中，如果没有break，会从匹配的case继续执行到后续case。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "const int N=10; int a[N]; 这段代码在C++中是合法的。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "位运算通常比乘除法运算更快。",
+          "answer": true,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "大整数加法",
+          "knowledge": [],
+          "stem": "给定两个非负大整数（位数可达1000位），计算它们的和。",
+          "input_format": "两行，每行一个非负整数（不含前导零，但0本身用'0'表示）。位数不超过1000。",
+          "output_format": "一行，两个大整数的和（不含前导零）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "999999999999999999999999\n1",
+              "output": "1000000000000000000000000"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    string a, b;\n    cin >> a >> b;\n    reverse(a.begin(), a.end());\n    reverse(b.begin(), b.end());\n    string result = \"\";\n    int carry = 0;\n    int maxLen = max(a.length(), b.length());\n    for (int i = 0; i < maxLen; i++) {\n        int da = (i < a.length()) ? (a[i] - '0') : 0;\n        int db = (i < b.length()) ? (b[i] - '0') : 0;\n        int sum = da + db + carry;\n        result += (char)('0' + sum % 10);\n        carry = sum / 10;\n    }\n    if (carry) result += '1';\n    reverse(result.begin(), result.end());\n    cout << result << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <string>\n#include <algorithm>\n\nusing namespace std;\n\n// Reference solution for \"大整数加法\"\nstring bigAdd(string a, string b) {\n    reverse(a.begin(), a.end());\n    reverse(b.begin(), b.end());\n    string result = \"\";\n    int carry = 0;\n    int maxLen = max(a.length(), b.length());\n    for (int i = 0; i < maxLen; i++) {\n        int da = (i < (int)a.length()) ? (a[i] - '0') : 0;\n        int db = (i < (int)b.length()) ? (b[i] - '0') : 0;\n        int sum = da + db + carry;\n        result += (char)('0' + sum % 10);\n        carry = sum / 10;\n    }\n    if (carry) result += '1';\n    reverse(result.begin(), result.end());\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    // Test cases: {a, b}\n    string testA[] = {\n        \"0\", \"0\",\n        \"1\", \"9\",\n        \"123\", \"456\",\n        \"999\", \"1\",\n        \"999999999999999999999999\", \"1\",\n        \"12345678901234567890\", \"98765432109876543210\",\n        \"1\", \"99999999999999999999999999999999999999999999999999\",\n        \"55555555555555555555\", \"44444444444444444444\",\n        \"0\", \"123456789\",\n        \"100000000000000000000\", \"200000000000000000000\",\n        \"9\", \"9\",\n        \"11111111111111111111111111111111111111111111111111\", \"88888888888888888888888888888888888888888888888888\"\n    };\n    string testB[] = {\n        \"0\", \"0\",\n        \"1\", \"9\",\n        \"123\", \"456\",\n        \"999\", \"1\",\n        \"999999999999999999999999\", \"1\",\n        \"12345678901234567890\", \"98765432109876543210\",\n        \"1\", \"99999999999999999999999999999999999999999999999999\",\n        \"55555555555555555555\", \"44444444444444444444\",\n        \"0\", \"123456789\",\n        \"100000000000000000000\", \"200000000000000000000\",\n        \"9\", \"9\",\n        \"11111111111111111111111111111111111111111111111111\", \"88888888888888888888888888888888888888888888888888\"\n    };\n\n    // Properly structured test cases\n    struct TestCase { string a, b; };\n    TestCase tests[] = {\n        {\"0\", \"0\"},\n        {\"1\", \"9\"},\n        {\"123\", \"456\"},\n        {\"999\", \"1\"},\n        {\"999999999999999999999999\", \"1\"},\n        {\"12345678901234567890\", \"98765432109876543210\"},\n        {\"1\", \"99999999999999999999999999999999999999999999999999\"},\n        {\"55555555555555555555\", \"44444444444444444444\"},\n        {\"0\", \"123456789\"},\n        {\"100000000000000000000\", \"200000000000000000000\"},\n        {\"9\", \"9\"},\n        {\"11111111111111111111111111111111111111111111111111\", \"88888888888888888888888888888888888888888888888888\"}\n    };\n    int numTests = 12;\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        string expected = bigAdd(tests[i].a, tests[i].b);\n\n        string inputFile = \"/tmp/test_10_prog1_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_10_prog1_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].a << endl << tests[i].b << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \" << tests[i].a << \" + \" << tests[i].b << endl;\n            cout << \"  Expected: \" << expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        string actual;\n        getline(fout, actual);\n        fout.close();\n\n        // Trim trailing whitespace\n        while (!actual.empty() && (actual.back() == '\\n' || actual.back() == '\\r' || actual.back() == ' '))\n            actual.pop_back();\n\n        if (actual == expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: \" << tests[i].a << \" + \" << tests[i].b << endl;\n            cout << \"  Expected: \" << expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "括号匹配",
+          "knowledge": [],
+          "stem": "给定一个只包含括号字符'(', ')', '[', ']', '{', '}'的字符串，判断括号是否正确匹配。匹配规则：左括号必须与对应类型的右括号配对，且嵌套顺序正确。",
+          "input_format": "一行字符串，只包含()[]{}六种字符，长度不超过10000。",
+          "output_format": "如果匹配输出Yes，否则输出No。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "{[()]}",
+              "output": "Yes"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\n#include <stack>\nusing namespace std;\n\nint main() {\n    string s;\n    cin >> s;\n    stack<char> st;\n    for (int i = 0; i < s.length(); i++) {\n        char c = s[i];\n        if (c == '(' || c == '[' || c == '{') {\n            st.push(c);\n        } else {\n            if (st.empty()) { cout << \"No\" << endl; return 0; }\n            char top = st.top();\n            if ((c == ')' && top == '(') || (c == ']' && top == '[') || (c == '}' && top == '{')) {\n                st.pop();\n            } else {\n                cout << \"No\" << endl; return 0;\n            }\n        }\n    }\n    cout << (st.empty() ? \"Yes\" : \"No\") << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <string>\n#include <stack>\n\nusing namespace std;\n\n// Reference solution for \"括号匹配\"\nstring referenceCheck(const string& s) {\n    stack<char> st;\n    for (int i = 0; i < (int)s.length(); i++) {\n        char c = s[i];\n        if (c == '(' || c == '[' || c == '{') {\n            st.push(c);\n        } else {\n            if (st.empty()) return \"No\";\n            char top = st.top();\n            if ((c == ')' && top == '(') || (c == ']' && top == '[') || (c == '}' && top == '{')) {\n                st.pop();\n            } else {\n                return \"No\";\n            }\n        }\n    }\n    return st.empty() ? \"Yes\" : \"No\";\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    string tests[] = {\n        \"{[()]}\",\n        \"()\",\n        \"[]{}()\",\n        \"\",\n        \"((()))\",\n        \"([)]\",\n        \"(((\",\n        \")))\",\n        \"{[}]\",\n        \"({[()]})\",\n        \"(((((((((())))))))))\",\n        \"()[]{}{[()]}\",\n        \"(\",\n        \")\",\n        \"{{{{}}}\",\n        \"[](){}([{}])\"\n    };\n    int numTests = 16;\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        string expected = referenceCheck(tests[i]);\n\n        string inputFile = \"/tmp/test_10_prog2_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_10_prog2_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i] << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \\\"\" << tests[i] << \"\\\"\" << endl;\n            cout << \"  Expected: \" << expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        string actual;\n        getline(fout, actual);\n        fout.close();\n\n        // Trim trailing whitespace\n        while (!actual.empty() && (actual.back() == '\\n' || actual.back() == '\\r' || actual.back() == ' '))\n            actual.pop_back();\n\n        if (actual == expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: \\\"\" << tests[i] << \"\\\"\" << endl;\n            cout << \"  Expected: \" << expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

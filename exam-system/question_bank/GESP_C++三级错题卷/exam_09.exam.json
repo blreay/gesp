@@ -1,0 +1,371 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_09",
+    "title": "模拟卷 九：异常处理 & 文件流专题",
+    "subtitle": "错题强化卷 九",
+    "category": "GESP C++ 三级错题卷",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "函数 hmean(a, b) 在 a==-b 时会 `throw runtime_error(\"Runtime error occurred.\")`，main 中 `x=10, y=-10` 调用 `hmean(x,y)`，并有 `catch (const runtime_error& e) {...}` 和 `catch (...) {...}`，运行结果是（ ）。",
+          "options": {
+            "A": "屏幕上输出 \"Caught: Runtime error occurred.\"",
+            "B": "屏幕上输出 \"Caught an unknown exception.\"",
+            "C": "程序调用 std::terminate() 崩溃",
+            "D": "编译错误"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "如果程序中有一个 `try` 块，但抛出的异常类型没有对应的 `catch` 能匹配，会发生什么（ ）。",
+          "options": {
+            "A": "程序会自动修复并继续运行",
+            "B": "程序调用 std::terminate()，直接终止（崩溃）",
+            "C": "忽略这个异常，继续往下执行",
+            "D": "自动跳到 main 函数重新开始"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于自定义异常类，下列写法正确的是（ ）。",
+          "options": {
+            "A": "异常类必须继承自 int 类型",
+            "B": "throw 语句只能抛出 int 或 string，不能抛出自定义类对象",
+            "C": "class MyError { public: string reason; int code; MyError(string r, int c): reason(r), code(c) {} }; 定义好后可以 `throw MyError(\"超重\", 5);`",
+            "D": "catch 块无法通过引用接收自定义异常类对象"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于\"栈展开\"（stack unwinding）和 RAII，说法正确的是（ ）。",
+          "options": {
+            "A": "异常抛出后，调用栈上的局部对象的析构函数不会被调用",
+            "B": "异常从被抛出到被 catch 的过程中，途经的函数栈帧上的局部对象会依次被析构（自动释放内存/关闭文件等），这就是栈展开",
+            "C": "RAII 指的是必须手动在每个 catch 块里释放资源",
+            "D": "栈展开只在程序正常返回时发生，异常时不会发生"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面哪种方式**不能**实现把字符串 \"Welcome to 2026!\" 输出重定向到文件 log.txt（ ）。",
+          "options": {
+            "A": "用 freopen(\"log.txt\", \"w\", stdout) 后再用 printf/cout",
+            "B": "std::ofstream out(\"log.txt\"); out << \"Welcome to 2026!\";",
+            "C": "std::ofstream out(\"log.txt\"); cout << \"Welcome to 2026!\";（没有把 cout 的缓冲区重定向，直接输出到屏幕）",
+            "D": "cout.rdbuf() 重定向到 ofstream 关联的 streambuf 后，再用 cout <<"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面代码用 ifstream 打开 data.txt 并用 getline 逐行读取输出，对程序功能最准确的描述是（ ）。\n```\nifstream fin(\"data.txt\");\nstring line;\nwhile (getline(fin, line)) {\n    cout << line << endl;\n}\n```",
+          "options": {
+            "A": "从标准输入（键盘）读取每行并输出到屏幕",
+            "B": "程序无法运行，因为 getline 只能读取 cin",
+            "C": "把 data.txt 文件的每一行内容依次读取并输出到屏幕",
+            "D": "程序会创建 data.txt 并写入默认文本"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "代码把 \"Happy\" 和 \"New Year\" 写入 test.txt（中间用空格分隔），再用 `>>` 读取到 s1，再用 `getline` 读取剩余部分到 s2，输出 `s1 << \"|\" << s2`，结果是（ ）。\n```\nofstream fout(\"test.txt\");\nfout << \"Happy New Year\";\nfout.close();\nifstream fin(\"test.txt\");\nstring s1, s2;\nfin >> s1;\ngetline(fin, s2);\ncout << s1 << \"|\" << s2;\n```",
+          "options": {
+            "A": "Happy|New Year",
+            "B": "Happy| New Year",
+            "C": "HappyNew Year|",
+            "D": "Happy| New Year（getline 会读到 \">>\" 留下的那个空格）"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于文件流的状态位，下列描述正确的顺序（检查优先级从高到低）是（ ）。",
+          "options": {
+            "A": "先查 eof，再查 fail，最后查 bad",
+            "B": "只需要查 good 即可，不需要查其他三个",
+            "C": "应该先查 bad（硬件级错误最严重），再查 fail（格式错误），最后查 eof（正常读到文件尾）",
+            "D": "四个状态位互相排斥，同一时刻只可能有一个为真"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "文件流对象调用 `clear()` 方法的作用是（ ）。",
+          "options": {
+            "A": "清空文件内容",
+            "B": "清除流对象的错误状态位（如 fail、eof），使流恢复可用",
+            "C": "关闭文件",
+            "D": "删除文件"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`文件流.seekg(0, ios::end);` 之后再调用 `文件流.tellg();`，得到的是（ ）。",
+          "options": {
+            "A": "文件的总字节数（读指针跳到末尾后的位置）",
+            "B": "文件的第一个字节内容",
+            "C": "永远是 0",
+            "D": "文件名的长度"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "结构体 `struct Rec { string name; int score; };`（含 string 成员），如果直接用 `文件.write((char*)&rec, sizeof(rec));` 把整个结构体写入二进制文件，会有什么问题（ ）。",
+          "options": {
+            "A": "完全没问题，读写都正常",
+            "B": "只有 score 字段能正确保存",
+            "C": "编译错误",
+            "D": "string 内部一般是指向堆内存的指针，直接按字节写入只会保存这个指针本身，重新读取后指针失效，数据损坏或崩溃"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "要把一个 string 安全地序列化保存进二进制文件，正确的做法是（ ）。",
+          "options": {
+            "A": "直接 write(&str, sizeof(str))",
+            "B": "先写入字符串长度（如一个 int），再写入 str.c_str() 对应的字节内容；读取时先读长度，再 resize 后读入字符内容",
+            "C": "string 不能被保存到文件中",
+            "D": "只需要 write(str.c_str(), 1) 就够了"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`#include \"myheader.h\"` 和 `#include <myheader.h>` 的主要区别是（ ）。",
+          "options": {
+            "A": "双引号形式通常先在当前源文件所在目录查找，再到系统标准路径查找；尖括号形式一般直接按系统标准路径查找",
+            "B": "两者完全没有区别，只是写法习惯不同",
+            "C": "尖括号只能用于 C 语言，双引号只能用于 C++",
+            "D": "双引号形式性能更快"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "代码 `ofstream out(\"data.txt\"); out << \"Hello\"; out.close();` 运行后（ ）。",
+          "options": {
+            "A": "因为 data.txt 一开始不存在，程序会报错",
+            "B": "\"Hello\" 会输出到屏幕，不会写入文件",
+            "C": "如果 data.txt 不存在会自动创建，并把 \"Hello\" 写入其中",
+            "D": "必须先用 ifstream 打开文件才能用 ofstream 写入"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于文件打开模式，`ofstream out(\"a.txt\", ios::app);` 和默认不加任何模式相比，区别是（ ）。",
+          "options": {
+            "A": "两者完全一样",
+            "B": "app（追加）模式会保留文件原有内容，新写入的内容加在末尾；默认模式会先清空原有内容再写入",
+            "C": "app 模式只能读不能写",
+            "D": "默认模式是二进制模式，app 是文本模式"
+          },
+          "answer": "B",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，如果一个函数可能抛出异常，那么调用它时一定要放在 try 子句里，否则程序无法通过编译。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "未捕获的异常（没有匹配的 catch 块）会调用 std::terminate() 终止程序。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会打印一条警告后继续正常执行，不会终止。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`catch(...) {}`（空的捕获所有异常的语句块）是一种推荐的良好编程习惯，因为它能\"兜底\"处理所有异常。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面代码可以正确地把 \"hello\" 写入 1.txt 文件（`ifstream` 对象也可以用来写文件）。（ ）\n```\nifstream filein;\nfilein.open(\"1.txt\");\nfilein << \"hello\";\n```",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "文本文件 1.txt 第 1 行内容是 \"01234\"（5 个字符，没有空格）。用下面代码读取后，`buff` 的值是字符串 \"01234\"（即读取到全部 5 个字符）。（ ）\n```\nifstream filein(\"1.txt\");\nint buff;\nfilein >> buff;\ncout << buff << endl;\n```",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "由于操作系统层面的文件重定向，程序员用 C++ 编写程序时，即使代码里写的是 `cout <<`，也不能保证内容一定会显示在屏幕上（可能被重定向到了文件）。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`[(1,2)*2]*3` 这样的写法在 C++ 中不是合法的表达式（方括号不能这样用于分组）。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "一个类的析构函数在异常导致的栈展开过程中依然会被正常调用，这是 C++ 资源管理（RAII）能够正常工作的重要保证。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`new` 表达式在内存分配失败时，默认会返回 `nullptr`（类似 C 语言的 malloc 失败返回 NULL），而不是抛出异常。（ ）",
+          "answer": false,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "自定义异常——安全除法计算器",
+          "knowledge": [],
+          "stem": "设计一个自定义异常类 DivideError（至少包含被除数、除数两个信息），编写一个除法函数：当除数为 0 时抛出该异常；main 函数中用 try-catch 捕获，若捕获到异常，输出 \"Error: divide by zero, a=X\"（X 为被除数）；若没有异常，输出正常的除法结果（整数除法，向下取整，即 C++ 默认截断行为）。",
+          "input_format": "一行两个整数 a 和 b。",
+          "output_format": "若 b 不为 0，输出 a/b（整数除法结果）；若 b 为 0，输出 \"Error: divide by zero, a=\" 后面接 a 的值（无空格）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "10 2",
+              "output": "5"
+            },
+            {
+              "input": "7 0",
+              "output": "Error: divide by zero, a=7"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"自定义异常——安全除法计算器\"(mock9 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock9_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock9_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"10 2\\n\", \"5\"},\n        {\"7 0\\n\", \"Error: divide by zero, a=7\"},\n        {\"-9 3\\n\", \"-3\"},\n        {\"5 0\\n\", \"Error: divide by zero, a=5\"},\n        {\"0 5\\n\", \"0\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 安全除法计算器 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-10s | %-30s | %-30s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-10s | %-30s | %-30s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "二进制文件存取学生记录",
+          "knowledge": [],
+          "stem": "输入 n 名学生的姓名（不含空格，长度不超过20）和分数，请把这些记录以二进制方式写入一个临时文件（文件名固定为 `students.bin`，写入前如果姓名带 string 需要注意序列化，不能直接对含 string 成员的结构体整体 write），然后立刻从该文件重新读取出来，按\"姓名 分数\"的格式输出（用于验证你的二进制序列化/反序列化是否正确）。",
+          "input_format": "第一行一个整数 n；接下来 n 行，每行一个姓名和一个整数分数。",
+          "output_format": "输出 n 行，每行是从二进制文件里重新读出来的 \"姓名 分数\"，顺序与输入一致。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "2\nAlice 90\nBob 88",
+              "output": "Alice 90\nBob 88"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"二进制文件存取学生记录\"(mock9 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock9_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock9_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"2\\nAlice 90\\nBob 88\\n\", \"Alice 90\\nBob 88\"},\n        {\"1\\nZoe 100\\n\", \"Zoe 100\"},\n        {\"3\\nA 1\\nBB 22\\nCCC 333\\n\", \"A 1\\nBB 22\\nCCC 333\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 二进制文件存取学生记录 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-22s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-22s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

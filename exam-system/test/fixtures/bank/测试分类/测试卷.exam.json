@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "test_paper_01",
+    "title": "测试卷",
+    "subtitle": "单元测试专用",
+    "duration_minutes": 60,
+    "total_score": 100,
+    "tags": ["测试"],
+    "prog_brief": "两数之和"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 20 分，共 40 分）",
+      "question_type": "choice",
+      "score_per_question": 20,
+      "questions": [
+        {
+          "id": "q1", "type": "choice", "knowledge": ["基础"],
+          "stem": "1 + 1 = ?",
+          "options": { "A": "1", "B": "2", "C": "3", "D": "4" },
+          "answer": "B", "explanation": "加法"
+        },
+        {
+          "id": "q2", "type": "choice", "knowledge": ["基础"],
+          "stem": "2 × 3 = ?",
+          "options": { "A": "5", "B": "6", "C": "7", "D": "8" },
+          "answer": "B", "explanation": "乘法"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 10 分，共 10 分）",
+      "question_type": "tf",
+      "score_per_question": 10,
+      "questions": [
+        { "id": "q3", "type": "tf", "stem": "1 是奇数。", "answer": true, "explanation": "是" }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 50 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 50,
+      "questions": [
+        {
+          "id": "prog1", "type": "programming", "title": "两数之和",
+          "knowledge": ["输入输出"],
+          "stem": "输入两个整数，输出它们的和。",
+          "input_format": "一行两个整数 a, b",
+          "output_format": "一个整数",
+          "samples": [ { "input": "1 2", "output": "3" } ],
+          "constraints": "1 ≤ a, b ≤ 100",
+          "answer": {
+            "reference_code": "#include <iostream>\nint main(){int a,b;std::cin>>a>>b;std::cout<<a+b;}",
+            "solution": "直接相加",
+            "test_program": "TESTER_PLACEHOLDER_SOURCE"
+          }
+        }
+      ]
+    }
+  ]
+}

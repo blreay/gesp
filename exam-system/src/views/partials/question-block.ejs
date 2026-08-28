@@ -1,0 +1,22 @@
+<% if (q.type === 'choice') { %>
+<div class="question" data-wrong="<%= wrongId %>" data-qid="<%= q.id %>" data-type="choice">
+  <div class="q-text"><%= qnum %>. <%- renderStem(q.stem) %> <span class="from-tag">（来自 <%= examTitle || '未知试卷' %>）</span></div>
+  <div class="options">
+    <% Object.keys(q.options).forEach(function(k){ %>
+    <div class="opt" data-val="<%= k %>"><span class="radio-dot"></span><span><%= k %>. <%= q.options[k] %></span></div>
+    <% }); %>
+  </div>
+  <div class="correct-answer-tag"></div>
+  <div class="level-result"></div>
+</div>
+<% } else if (q.type === 'tf') { %>
+<div class="question tf-item" data-wrong="<%= wrongId %>" data-qid="<%= q.id %>" data-type="tf">
+  <div class="q-text"><%= qnum %>. <%- renderStem(q.stem) %> <span class="from-tag">（来自 <%= examTitle || '未知试卷' %>）</span></div>
+  <div class="tf-options">
+    <div class="tf-opt" data-val="true">&#x2714; 正确</div>
+    <div class="tf-opt" data-val="false">&#x2718; 错误</div>
+  </div>
+  <div class="correct-answer-tag"></div>
+  <div class="level-result"></div>
+</div>
+<% } %>

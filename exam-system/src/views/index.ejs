@@ -1,0 +1,73 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<div class="hero">
+  <div class="badge">GESP</div>
+  <h1>C++ 模拟考试中心</h1>
+  <p>在线答题 · 自动判卷 · 编程题在线评测 · 错题分级复习</p>
+  <div class="stats">
+    <div class="stat"><div class="num"><%= stats.exams %></div><div class="label">套试卷</div></div>
+    <div class="stat"><div class="num"><%= questionCount %></div><div class="label">道题目</div></div>
+    <div class="stat"><div class="num"><%= stats.attempts %></div><div class="label">次考试</div></div>
+    <div class="stat"><div class="num"><%= stats.avgScore %></div><div class="label">平均分</div></div>
+  </div>
+</div>
+
+<div class="cat-tabs" id="catTabs">
+  <button class="cat-tab active" data-cat="all">全部</button>
+  <% categories.forEach(function(c){ %>
+  <button class="cat-tab" data-cat="<%= c %>"><%= c %></button>
+  <% }); %>
+</div>
+
+<div class="grid">
+  <% grouped.forEach(function(g){ %>
+    <% g.exams.forEach(function(e){ %>
+    <div class="card" data-cat="<%= g.category %>" onclick="location.href='/exam/<%= e.id %>'" style="cursor:pointer">
+      <div class="card-top">
+        <div class="card-num"><%= e.num %></div>
+        <div>
+          <div class="card-title"><%= e.title %></div>
+          <div class="card-subtitle"><%= e.subtitle || g.category %></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="tags">
+          <% JSON.parse(e.tags_json || '[]').forEach(function(t){ %>
+          <span class="tag"><%= t %></span>
+          <% }); %>
+        </div>
+        <% if (e.prog_brief) { %><div class="prog-brief-line">📝 编程：<%= e.prog_brief %></div><% } %>
+      </div>
+      <div class="card-footer">
+        <% if (e.state.status === 'graded') { %>
+          <span class="state st-graded">✔ 已考试 · <%= e.state.score %> 分</span>
+          <span class="start-btn">再次挑战 →</span>
+        <% } else if (e.state.status === 'in_progress') { %>
+          <span class="state st-progress">⏳ 考试中 <span class="remain" data-deadline="<%= e.state.deadlineAt %>"></span></span>
+          <span class="start-btn">继续答题 →</span>
+        <% } else if (e.state.status === 'timeup') { %>
+          <span class="state st-timeup">⌛ 时间已到 · 待判卷</span>
+          <span class="start-btn">去判卷 →</span>
+        <% } else { %>
+          <span class="state st-none">未考试</span>
+          <span class="start-btn">开始答题 →</span>
+        <% } %>
+      </div>
+    </div>
+    <% }); %>
+  <% }); %>
+</div>
+
+<% if (stats.activeWrong > 0) { %>
+<div class="wrong-banner" onclick="location.href='/review'" style="cursor:pointer">
+  <div>
+    <div class="wb-title">🎯 错题强化训练</div>
+    <div class="wb-sub"><%= stats.activeWrong %> 道活跃错题待复习 · 分级递进 · 支持知识点备注</div>
+  </div>
+  <div class="wb-arrow">→</div>
+</div>
+<% } %>
+
+<div class="footer">GESP 模拟考试系统 · 仅供练习使用</div>
+<%- include('partials/foot', { extraJs: extraJs }) %>

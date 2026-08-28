@@ -1,0 +1,382 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_09",
+    "title": "模拟试卷（九）",
+    "subtitle": "指针数组 · 复杂递归 · 综合应用",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "多级指针",
+      "复杂递归",
+      "位运算max",
+      "补码溢出",
+      "排序稳定性"
+    ],
+    "prog_brief": "表达式求值（优先级）；迷宫最短路径（BFS）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十六进制数 0x3F 转换为十进制是：",
+          "options": {
+            "A": "62",
+            "B": "64",
+            "C": "63",
+            "D": "61"
+          },
+          "answer": "C",
+          "explanation": "0x3F = 3×16 + 15 = 48 + 15 = 63。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十进制数 -45 的8位二进制补码是：",
+          "options": {
+            "A": "10101101",
+            "B": "11010011",
+            "C": "11010010",
+            "D": "10101100"
+          },
+          "answer": "B",
+          "explanation": "45的二进制为00101101，取反得11010010，加1得11010011。所以-45的补码是11010011。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码的输出是什么？\n```\nint x = 0xAB;\ncout << (x >> 4) << \" \" << (x & 0x0F);\n```",
+          "options": {
+            "A": "10 10",
+            "B": "11 10",
+            "C": "10 12",
+            "D": "10 11"
+          },
+          "answer": "D",
+          "explanation": "0xAB = 10×16+11 = 171，二进制为10101011。右移4位得00001010=10（即0xA=10）。与0x0F（00001111）按位与得00001011=11（即0xB=11）。输出\"10 11\"。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下表达式中，能将 x 的第3位（从第0位开始）设为1，且不影响其他位的是：",
+          "options": {
+            "A": "x | (1 << 3)",
+            "B": "x & (1 << 3)",
+            "C": "x ^ (1 << 3)",
+            "D": "x | 3"
+          },
+          "answer": "A",
+          "explanation": "将第3位设为1用\"或\"操作：x | (1 << 3)。B选项是\"与\"操作会清除其他位；C选项是\"异或\"会翻转该位；D选项x|3是设置第0和第1位。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，val的值是？\n```\nunsigned char val = 0xC5;\nval = val ^ 0xFF;\n```",
+          "options": {
+            "A": "0x35",
+            "B": "0x3A",
+            "C": "0xC5",
+            "D": "0x5C"
+          },
+          "answer": "B",
+          "explanation": "0xC5 = 11000101。异或0xFF（11111111）相当于按位取反：00111010 = 0x3A。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "八进制数 0175 转换为二进制是：",
+          "options": {
+            "A": "01111100",
+            "B": "01111110",
+            "C": "01111101",
+            "D": "01110101"
+          },
+          "answer": "C",
+          "explanation": "八进制转二进制，每位八进制对应3位二进制：1→001, 7→111, 5→101。所以0175 = 001 111 101 = 01111101。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，p指向的值是？\n```\nint a[] = {10, 20, 30, 40, 50};\nint *p = a + 2;\np++;\ncout << *p;\n```",
+          "options": {
+            "A": "20",
+            "B": "30",
+            "C": "50",
+            "D": "40"
+          },
+          "answer": "D",
+          "explanation": "p = a+2 指向a[2]=30。p++后p指向a[3]=40。*p = 40。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码的输出是？\n```\nint arr[5] = {3, 1, 4, 1, 5};\nint *p = arr;\ncout << *(p + 4) - *(p + 1);\n```",
+          "options": {
+            "A": "4",
+            "B": "5",
+            "C": "2",
+            "D": "3"
+          },
+          "answer": "A",
+          "explanation": "*(p+4) = arr[4] = 5，*(p+1) = arr[1] = 1。5 - 1 = 4。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码中，数组a经过一趟冒泡排序（从前往后比较，大的后移）后的状态是？\n```\nint a[] = {5, 3, 8, 2, 7};\n```",
+          "options": {
+            "A": "3 5 2 7 8",
+            "B": "3 5 8 2 7",
+            "C": "3 5 2 7 8",
+            "D": "2 3 5 7 8"
+          },
+          "answer": "C",
+          "explanation": "冒泡排序一趟（从前往后相邻比较交换大的）：\n(5,3)→交换→{3,5,8,2,7}; (5,8)→不换; (8,2)→交换→{3,5,2,8,7}; (8,7)→交换→{3,5,2,7,8}。\n结果：3 5 2 7 8。注意A和C选项相同，正确答案是C。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下函数的返回值是什么？\n```\nint mystery(int n) {\n    if (n <= 1) return n;\n    return mystery(n-1) + mystery(n-2);\n}\n// 调用 mystery(6)\n```",
+          "options": {
+            "A": "5",
+            "B": "8",
+            "C": "13",
+            "D": "6"
+          },
+          "answer": "B",
+          "explanation": "这是斐波那契数列：f(0)=0, f(1)=1, f(2)=1, f(3)=2, f(4)=3, f(5)=5, f(6)=8。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码中，函数f的调用次数是多少？\n```\nint f(int n) {\n    if (n == 0) return 1;\n    return f(n-1) * n;\n}\n// 调用 f(5)\n```",
+          "options": {
+            "A": "6",
+            "B": "5",
+            "C": "4",
+            "D": "7"
+          },
+          "answer": "A",
+          "explanation": "f(5)调用f(4)，f(4)调用f(3)，...f(1)调用f(0)。从f(5)到f(0)共调用了6次。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "定义 `int a[3] = {1, 2, 3};`，则表达式 `*a + *(a+1) + *(a+2)` 的值是：",
+          "options": {
+            "A": "3",
+            "B": "5",
+            "C": "4",
+            "D": "6"
+          },
+          "answer": "D",
+          "explanation": "*a = a[0] = 1，*(a+1) = a[1] = 2，*(a+2) = a[2] = 3。1+2+3 = 6。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后输出什么？\n```\nint cnt = 0;\nfor (int i = 1; i <= 100; i++) {\n    int t = i;\n    while (t > 0) {\n        if (t % 10 == 7) cnt++;\n        t /= 10;\n    }\n}\ncout << cnt;\n```",
+          "options": {
+            "A": "10",
+            "B": "19",
+            "C": "20",
+            "D": "21"
+          },
+          "answer": "C",
+          "explanation": "统计1到100中数字7出现的次数。个位是7的：7,17,27,37,47,57,67,77,87,97共10个。十位是7的：70,71,72,73,74,75,76,77,78,79共10个。其中77被数了两次（个位和十位各一次）。总共 10+10 = 20次。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，x的值是？\n```\nint x = 100;\nint *p = &x;\n*p = *p / 4 + *p % 7;\ncout << x;\n```",
+          "options": {
+            "A": "26",
+            "B": "27",
+            "C": "25",
+            "D": "28"
+          },
+          "answer": "B",
+          "explanation": "*p就是x=100。100/4=25, 100%7=2。25+2=27。所以x变为27。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后输出什么？\n```\nint a[4] = {6, 10, 12, 9};\nint sum = 0;\nfor (int i = 0; i < 4; i++)\n    sum += a[i] & (a[i] - 1);\ncout << sum;\n```",
+          "options": {
+            "A": "28",
+            "B": "20",
+            "C": "24",
+            "D": "32"
+          },
+          "answer": "A",
+          "explanation": "a[i] & (a[i]-1) 的作用是清除a[i]最低位的1：\n6=0110, 5=0101, 6&5=0100=4；10=1010, 9=1001, 10&9=1000=8；12=1100, 11=1011, 12&11=1000=8；9=1001, 8=1000, 9&8=1000=8。\nsum = 4+8+8+8 = 28。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `(int)3.9 + (int)4.1` 的结果是8。",
+          "answer": false,
+          "explanation": "(int)3.9 = 3，(int)4.1 = 4，3+4 = 7，不是8。强制类型转换为int是截断小数部分（向零取整），不是四舍五入。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `int a = 3 / 2 * 2;` 执行后 a 的值等于3。",
+          "answer": false,
+          "explanation": "3/2在整数除法中结果为1（向零截断），1*2=2。所以a=2，不是3。整数除法会丢失小数部分，运算顺序从左到右。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "定义 `int *p; *p = 10;` 是合法且安全的操作。",
+          "answer": false,
+          "explanation": "int *p; 只声明了指针但未初始化，p指向随机地址（野指针）。对野指针解引用赋值是未定义行为，极其危险。必须先让p指向有效内存（如 p = new int; 或 p = &x;）。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "定义 `int a[10]; int *p = a;` 后，`p[3]` 和 `a[3]` 是等价的。",
+          "answer": true,
+          "explanation": "当p指向数组首元素时，p[i]等价于*(p+i)，也等价于a[i]。所以p[3]和a[3]完全等价。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "选择排序在最好情况下的时间复杂度是O(n)。",
+          "answer": false,
+          "explanation": "选择排序无论最好还是最坏情况，时间复杂度都是O(n^2)，因为每轮都要扫描剩余元素找最小值。不像冒泡排序可以通过标记提前终止。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "冒泡排序是稳定的排序算法，选择排序是不稳定的排序算法。",
+          "answer": true,
+          "explanation": "冒泡排序只在相邻元素严格大于时交换，相等元素不交换，所以稳定。选择排序在交换时可能改变相等元素的相对顺序，如{5a, 5b, 3}第一轮把5a和3交换，5b就跑到5a前面了，所以不稳定。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`unsigned int x = 0; x - 1;` 的结果是一个非常大的正数（发生了无符号整数下溢）。",
+          "answer": true,
+          "explanation": "unsigned int的0减1发生下溢，按模2^32运算，结果为4294967295（即UINT_MAX），是一个非常大的正数。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`(char)256` 的结果是字符 '1'。",
+          "answer": false,
+          "explanation": "(char)256：256超出了char范围（-128~127或0~255）。对于signed char，256 mod 256 = 0，即'\\0'（空字符），不是'1'。即使对unsigned char，256 mod 256 = 0。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对于32位int，`1 << 31` 的结果是负数（即INT_MIN）。",
+          "answer": true,
+          "explanation": "对于32位int，1<<31将1移到符号位，结果是10000000 00000000 00000000 00000000，即-2147483648（INT_MIN）。注意：C++17起这是未定义行为，但在大多数实现中结果为INT_MIN。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "表达式 `~0` 的值等于0（对0取反得到0）。",
+          "answer": false,
+          "explanation": "~0是对0的所有位取反，0的二进制全是0，取反后全是1，即11111111...11111111。对于int类型，这是-1（补码表示）。不是0。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "表达式求值",
+          "knowledge": [],
+          "stem": "输入一个含 +、-、*、/ 和非负整数的表达式字符串（无括号、无空格），按运算符优先级计算结果。整除向零取整。",
+          "input_format": "一行一个合法的表达式字符串（长度不超过1000，中间结果和最终结果保证在int范围内，不会出现除以0的情况）。",
+          "output_format": "一个整数，表示表达式的计算结果。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3+2*4-6/3",
+              "output": "9"
+            },
+            {
+              "input": "100-50*2+25",
+              "output": "25"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    string expr;\n    cin >> expr;\n\n    // 解析数字和运算符\n    vector<int> nums;\n    vector<char> ops;\n    int num = 0;\n    for (int i = 0; i <= expr.size(); i++) {\n        if (i == expr.size() || expr[i] == '+' || expr[i] == '-' ||\n            expr[i] == '*' || expr[i] == '/') {\n            nums.push_back(num);\n            if (i < expr.size()) ops.push_back(expr[i]);\n            num = 0;\n        } else {\n            num = num * 10 + (expr[i] - '0');\n        }\n    }\n\n    // 先处理乘除\n    vector<int> nums2;\n    vector<char> ops2;\n    nums2.push_back(nums[0]);\n    for (int i = 0; i < ops.size(); i++) {\n        if (ops[i] == '*') {\n            nums2.back() *= nums[i+1];\n        } else if (ops[i] == '/') {\n            nums2.back() /= nums[i+1];\n        } else {\n            ops2.push_back(ops[i]);\n            nums2.push_back(nums[i+1]);\n        }\n    }\n\n    // 再处理加减\n    int result = nums2[0];\n    for (int i = 0; i < ops2.size(); i++) {\n        if (ops2[i] == '+') result += nums2[i+1];\n        else result -= nums2[i+1];\n    }\n\n    cout << result << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <sstream>\n\nusing namespace std;\n\n// Reference solution for expression evaluation (no parentheses, + - * / with precedence)\nint referenceEval(const string& expr) {\n    vector<int> nums;\n    vector<char> ops;\n    int num = 0;\n    for (int i = 0; i <= (int)expr.size(); i++) {\n        if (i == (int)expr.size() || expr[i] == '+' || expr[i] == '-' ||\n            expr[i] == '*' || expr[i] == '/') {\n            nums.push_back(num);\n            if (i < (int)expr.size()) ops.push_back(expr[i]);\n            num = 0;\n        } else {\n            num = num * 10 + (expr[i] - '0');\n        }\n    }\n\n    // Process * and /\n    vector<int> nums2;\n    vector<char> ops2;\n    nums2.push_back(nums[0]);\n    for (int i = 0; i < (int)ops.size(); i++) {\n        if (ops[i] == '*') {\n            nums2.back() *= nums[i+1];\n        } else if (ops[i] == '/') {\n            nums2.back() /= nums[i+1];\n        } else {\n            ops2.push_back(ops[i]);\n            nums2.push_back(nums[i+1]);\n        }\n    }\n\n    // Process + and -\n    int result = nums2[0];\n    for (int i = 0; i < (int)ops2.size(); i++) {\n        if (ops2[i] == '+') result += nums2[i+1];\n        else result -= nums2[i+1];\n    }\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    // Test cases\n    string testInputs[] = {\n        \"3+2*4-6/3\",\n        \"100-50*2+25\",\n        \"1+1\",\n        \"10\",\n        \"2*3*4\",\n        \"100/10/2\",\n        \"1+2+3+4+5\",\n        \"10-3-2-1\",\n        \"2*3+4*5\",\n        \"100-99*1\",\n        \"7+3*6-2/1\",\n        \"1000/10*2+500-100\",\n        \"9*9*9\",\n        \"1+2*3-4+5*6-7\",\n        \"99/3+1*2-10\"\n    };\n\n    int numTests = 15;\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        int expected = referenceEval(testInputs[i]);\n\n        string inputFile = \"/tmp/test_09_prog1_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_09_prog1_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << testInputs[i] << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \" << testInputs[i] << endl;\n            cout << \"  Expected: \" << expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        int actual = -999999;\n        fout >> actual;\n        fout.close();\n\n        if (actual == expected) {\n            cout << \"[PASS] Test \" << (i+1) << \": \" << testInputs[i] << \" = \" << expected << endl;\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: \" << testInputs[i] << endl;\n            cout << \"  Expected: \" << expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "迷宫最短路径",
+          "knowledge": [],
+          "stem": "给定一个N×M的迷宫，0表示通路，1表示墙壁。从左上角(0,0)出发到达右下角(N-1,M-1)，每次可以上下左右移动一格。求最短路径的步数，如果不可达则输出-1。",
+          "input_format": "第一行两个正整数 N 和 M（1 ≤ N, M ≤ 100）\n接下来 N 行，每行 M 个整数（0或1），表示迷宫。\n保证起点(0,0)和终点(N-1,M-1)都是0。",
+          "output_format": "一个整数，表示最短路径长度（步数）。不可达输出-1。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3 3\n0 0 0\n0 1 0\n0 0 0",
+              "output": "4"
+            },
+            {
+              "input": "3 3\n0 1 0\n1 1 0\n0 0 0",
+              "output": "-1"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <queue>\nusing namespace std;\n\nint maze[105][105];\nint vis[105][105];\nint dx[] = {0, 0, 1, -1};\nint dy[] = {1, -1, 0, 0};\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < m; j++)\n            cin >> maze[i][j];\n\n    if (n == 1 && m == 1) { cout << 0; return 0; }\n\n    queue<pair<int,int>> q;\n    q.push({0, 0});\n    vis[0][0] = 1;\n    int steps = 0;\n\n    while (!q.empty()) {\n        steps++;\n        int sz = q.size();\n        for (int k = 0; k < sz; k++) {\n            int x = q.front().first, y = q.front().second; q.pop();\n            for (int d = 0; d < 4; d++) {\n                int nx = x + dx[d], ny = y + dy[d];\n                if (nx >= 0 && nx < n && ny >= 0 && ny < m\n                    && !vis[nx][ny] && maze[nx][ny] == 0) {\n                    if (nx == n-1 && ny == m-1) {\n                        cout << steps;\n                        return 0;\n                    }\n                    vis[nx][ny] = 1;\n                    q.push({nx, ny});\n                }\n            }\n        }\n    }\n    cout << -1;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <queue>\n#include <sstream>\n\nusing namespace std;\n\n// Reference BFS solution for maze shortest path\nint referenceBFS(int maze[][105], int n, int m) {\n    if (n == 1 && m == 1) return 0;\n    int vis[105][105] = {};\n    int dx[] = {0, 0, 1, -1};\n    int dy[] = {1, -1, 0, 0};\n    queue<pair<int,int>> q;\n    q.push({0, 0});\n    vis[0][0] = 1;\n    int steps = 0;\n    while (!q.empty()) {\n        steps++;\n        int sz = q.size();\n        for (int k = 0; k < sz; k++) {\n            auto pr = q.front(); q.pop();\n            int x = pr.first, y = pr.second;\n            for (int d = 0; d < 4; d++) {\n                int nx = x + dx[d], ny = y + dy[d];\n                if (nx >= 0 && nx < n && ny >= 0 && ny < m\n                    && !vis[nx][ny] && maze[nx][ny] == 0) {\n                    if (nx == n-1 && ny == m-1) return steps;\n                    vis[nx][ny] = 1;\n                    q.push({nx, ny});\n                }\n            }\n        }\n    }\n    return -1;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    // Test cases: {n, m, maze_data[], expected}\n    struct TestCase {\n        string input;\n        int expected;\n    };\n\n    TestCase tests[] = {\n        // Test 1: simple 3x3\n        {\"3 3\\n0 0 0\\n0 1 0\\n0 0 0\\n\", 4},\n        // Test 2: blocked\n        {\"3 3\\n0 1 0\\n1 1 0\\n0 0 0\\n\", -1},\n        // Test 3: 1x1\n        {\"1 1\\n0\\n\", 0},\n        // Test 4: straight path\n        {\"1 5\\n0 0 0 0 0\\n\", 4},\n        // Test 5: vertical path\n        {\"5 1\\n0\\n0\\n0\\n0\\n0\\n\", 4},\n        // Test 6: 4x4 with path\n        {\"4 4\\n0 0 1 0\\n1 0 1 0\\n1 0 0 0\\n1 1 1 0\\n\", 6},\n        // Test 7: 4x4 blocked\n        {\"4 4\\n0 0 1 0\\n1 0 1 0\\n1 0 0 1\\n1 1 1 0\\n\", -1},\n        // Test 8: 5x5 zigzag\n        {\"5 5\\n0 1 0 0 0\\n0 1 0 1 0\\n0 0 0 1 0\\n0 1 1 1 0\\n0 0 0 0 0\\n\", 8},\n        // Test 9: 2x2\n        {\"2 2\\n0 0\\n0 0\\n\", 2},\n        // Test 10: 2x2 blocked\n        {\"2 2\\n0 1\\n1 0\\n\", -1},\n        // Test 11: large open 5x5\n        {\"5 5\\n0 0 0 0 0\\n0 0 0 0 0\\n0 0 0 0 0\\n0 0 0 0 0\\n0 0 0 0 0\\n\", 8},\n        // Test 12: 3x4\n        {\"3 4\\n0 0 0 0\\n1 1 1 0\\n0 0 0 0\\n\", 5},\n    };\n\n    int numTests = 12;\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        string inputFile = \"/tmp/test_09_prog2_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_09_prog2_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].input;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Expected: \" << tests[i].expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        int actual = -999;\n        fout >> actual;\n        fout.close();\n\n        if (actual == tests[i].expected) {\n            cout << \"[PASS] Test \" << (i+1) << \": expected \" << tests[i].expected << \", got \" << actual << endl;\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Expected: \" << tests[i].expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

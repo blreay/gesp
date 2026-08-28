@@ -1,0 +1,75 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<div class="prog-topbar">
+  <a class="btn btn-ghost" href="<%= backHref %>">← 返回</a>
+  <span class="pt-title"><%= meta.title %> · 编程题：<%= question.title %></span>
+  <div class="pt-countdown" id="countdown"></div>
+</div>
+
+<div class="prog-layout">
+  <div class="prog-left">
+    <div class="tabs">
+      <button class="tab active" data-tab="problem">题目信息</button>
+      <button class="tab" data-tab="solution">题解信息</button>
+      <button class="tab" data-tab="history">提交记录</button>
+    </div>
+
+    <div class="tab-pane active" id="tab-problem">
+      <h2><%= question.title %></h2>
+      <div class="q-body"><%- renderStem(question.stem) %></div>
+      <h4>输入格式</h4><div class="q-body"><%- renderStem(question.input_format || '') %></div>
+      <h4>输出格式</h4><div class="q-body"><%- renderStem(question.output_format || '') %></div>
+      <% (question.samples || []).forEach(function(sm, i){ %>
+      <div class="sample-box">
+        <div class="sample"><h5>样例输入 <%= i + 1 %></h5><pre><%= sm.input %></pre></div>
+        <div class="sample"><h5>样例输出 <%= i + 1 %></h5><pre><%= sm.output %></pre></div>
+      </div>
+      <% }); %>
+      <% if (question.constraints) { %><h4>数据范围</h4><div class="q-body"><%- renderStem(question.constraints) %></div><% } %>
+    </div>
+
+    <div class="tab-pane" id="tab-solution">
+      <h4>题解</h4>
+      <div class="q-body"><%- renderStem((question.answer && question.answer.solution) || '（暂无题解）') %></div>
+      <h4 id="solutionCodeTitle">测试程序源码（判题依据）</h4>
+      <div class="solution-code-wrap">
+        <button class="code-copy-btn" id="solutionCodeCopy" title="复制全部代码">📋 复制代码</button>
+        <pre class="ref-code" id="solutionCodeBlock"><%= (question.answer && question.answer.test_program) || '（无）' %></pre>
+      </div>
+      <template id="refCodeTpl"><%= (question.answer && question.answer.reference_code) || '' %></template>
+    </div>
+
+    <div class="tab-pane" id="tab-history">
+      <div id="subList"></div>
+      <% if (!page.submissions.length) { %><div class="empty-tip">暂无提交记录</div><% } %>
+    </div>
+  </div>
+
+  <div class="prog-splitter" id="progSplitter" title="拖动调整左右宽度"></div>
+
+  <div class="prog-right">
+    <iframe id="editorFrame" class="editor" src="/editor-frame" title="代码编辑器"></iframe>
+    <div class="submit-bar">
+      <button class="btn btn-primary" id="btnSubmit">提交代码</button>
+      <span id="judgeState" class="judge-state"></span>
+    </div>
+    <div id="resultPanel" class="result-panel" style="display:none">
+      <button class="result-close" id="resultPanelClose" title="关闭">✕</button>
+      <pre class="result-content" id="resultPanelContent"></pre>
+    </div>
+    <div id="judgeLogPanel" class="judge-log-panel" style="display:none">
+      <div class="judge-log-handle" id="judgeLogHandle" title="上下拖动调整高度"></div>
+      <div class="judge-log-head">
+        <span>🔍 评测执行日志</span>
+        <button class="judge-log-close" id="judgeLogClose" title="关闭">✕</button>
+      </div>
+      <pre class="judge-log-content" id="judgeLogContent"></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+window.PAGE = <%- JSON.stringify(page).replace(/<\//g, '<\\/') %>;
+</script>
+<%- include('partials/foot', { extraJs: extraJs }) %>

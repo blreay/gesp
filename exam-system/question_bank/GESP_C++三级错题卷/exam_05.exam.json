@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_05",
+    "title": "模拟卷 五：排序算法专题",
+    "subtitle": "错题强化卷 五",
+    "category": "GESP C++ 三级错题卷",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对数组 `arr[] = {5, 3, 8, 1};` 进行升序冒泡排序，执行第一轮（从头到尾比较相邻元素，逆序则交换）后，数组内容为（ ）。",
+          "options": {
+            "A": "1,3,5,8",
+            "B": "3,5,1,8",
+            "C": "3,5,8,1",
+            "D": "5,3,8,1"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对数组 `arr[] = {4, 7, 2, 9, 1};` 执行第一趟选择排序（在未排序区间找最小值放到最前面）后，数组变为（ ）。",
+          "options": {
+            "A": "1,7,2,9,4",
+            "B": "1,2,4,7,9",
+            "C": "4,7,2,9,1",
+            "D": "1,4,2,9,7"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面代码是插入排序的核心部分，横线处应填入（ ）。\n```\nfor (int i = 1; i < n; i++) {\n    int key = a[i];\n    int j = i - 1;\n    while (j >= 0 && __________) {\n        a[j + 1] = a[j];\n        j--;\n    }\n    a[j + 1] = key;\n}\n```",
+          "options": {
+            "A": "a[j] < key",
+            "B": "a[j] > key",
+            "C": "a[j+1] > key",
+            "D": "a[j] == key"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面代码通过找最小值下标并交换实现排序，这段代码使用的排序算法是（ ）。\n```\nfor (int i = 0; i < n - 1; i++) {\n    int minIdx = i;\n    for (int j = i + 1; j < n; j++)\n        if (a[j] < a[minIdx]) minIdx = j;\n    swap(a[i], a[minIdx]);\n}\n```",
+          "options": {
+            "A": "冒泡排序",
+            "B": "插入排序",
+            "C": "选择排序",
+            "D": "快速排序"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`sort(v.begin(), v.end(), greater<int>());` 对 `vector<int> v = {88, 60, 95, 72};` 排序后的结果是（ ）。",
+          "options": {
+            "A": "60, 72, 88, 95",
+            "B": "无法编译",
+            "C": "顺序不变",
+            "D": "95, 88, 72, 60"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "使用 `sort(v.begin(), v.end(), cmp)` 时，如果 `cmp` 定义为 `bool cmp(int a, int b) { return a < b; }`，调用过程中 sort 内部反复把哪两个值传给 a、b（ ）。",
+          "options": {
+            "A": "a 和 b 是我们自己手动传进去的两个固定值",
+            "B": "a 和 b 永远是 v 的第一个和最后一个元素",
+            "C": "sort 内部会反复从 v 中挑出两个真实元素，分别塞进形参 a 和 b",
+            "D": "a 和 b 只在第一次调用时有意义，之后失效"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "与 C++ 的 `sort` 相比，C 语言的 `qsort` 的说法，正确的是（ ）。",
+          "options": {
+            "A": "qsort 的比较函数直接用具体类型的参数，写起来更简单",
+            "B": "qsort 的比较函数使用 `const void*` 参数，需要手动强制类型转换，容易出错",
+            "C": "qsort 的运行速度一定比 sort 快",
+            "D": "qsort 只能给 int 数组排序"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "只想找出数组中最小的 3 个数（不要求它们之间及以外元素完全有序），效率最高的做法是（ ）。",
+          "options": {
+            "A": "partial_sort(v.begin(), v.begin() + 3, v.end())",
+            "B": "sort(v.begin(), v.end())，再取前 3 个",
+            "C": "手写冒泡排序整个数组",
+            "D": "二者效率完全一样，没有区别"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于 lambda 表达式作为 sort 的比较器，下列写法正确的是（ ）。",
+          "options": {
+            "A": "sort(v.begin(), v.end(), lambda(a, b){ return a < b; });",
+            "B": "sort(v.begin(), v.end(), [](int a, int b){ return a < b; });",
+            "C": "sort(v.begin(), v.end(), function(a, b) return a < b;);",
+            "D": "sort(v.begin(), v.end(), {a, b return a < b});"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "`vector<int> 分数 = {88, 60, 95, 72};` 执行 `sort(分数.begin(), 分数.end(), greater<int>());` 后的顺序是（ ）。",
+          "options": {
+            "A": "95, 88, 72, 60",
+            "B": "60, 72, 88, 95",
+            "C": "88, 60, 95, 72（不变）",
+            "D": "编译错误，greater 需要用 less 代替"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "结构体数组 `vector<Student>` 想按 score 字段从高到低排序，正确的自定义比较函数应该是（ ）。",
+          "options": {
+            "A": "bool cmp(Student a, Student b) { return a.score == b.score; }",
+            "B": "bool cmp(Student a, Student b) { return a.score < b.score; }",
+            "C": "void cmp(Student a, Student b) { return a.score > b.score; }",
+            "D": "bool cmp(Student a, Student b) { return a.score > b.score; }"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "关于排序算法的时间复杂度，下列说法正确的是（ ）。",
+          "options": {
+            "A": "冒泡排序（无优化）最好情况的时间复杂度是 O(1)",
+            "B": "插入排序最好情况（数组已经有序）的时间复杂度是 O(n)",
+            "C": "选择排序无论输入如何，时间复杂度都是 O(n)",
+            "D": "C++ 的 sort 函数底层一定是冒泡排序"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "使用带 flag（标记本轮是否发生交换）优化的冒泡排序，如果待排序数组一开始就是有序的，那么这个算法的时间复杂度是（ ）。",
+          "options": {
+            "A": "O(n)",
+            "B": "O(n²)",
+            "C": "O(n log n)",
+            "D": "O(1)"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "待排序的数据总量太大，无法一次全部装入内存，这时应该使用（ ）。",
+          "options": {
+            "A": "内排序算法（如冒泡、插入、选择）",
+            "B": "任何排序算法都可以，不受内存限制",
+            "C": "外排序算法",
+            "D": "不需要排序，直接输出"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "想对 `vector<string> 水果 = {\"banana\", \"apple\", \"peach\"};` 按字符串长度从短到长排序，正确的写法是（ ）。",
+          "options": {
+            "A": "sort(水果.begin(), 水果.end());",
+            "B": "sort(水果.begin(), 水果.end(), greater<string>());",
+            "C": "sort(水果.begin(), 水果.end(), [](string a, string b){ return a > b; });",
+            "D": "sort(水果.begin(), 水果.end(), [](string a, string b){ return a.length() < b.length(); });"
+          },
+          "answer": "D",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "选择排序算法在寻找每一轮最小值时，如果遇到相等的元素不进行交换，则选择排序就变成了一种稳定的排序算法。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "插入排序在最好情况（数组本身已经有序）下的时间复杂度是 O(n²)。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "如果待排序数据量太大，不能一次都装进内存，这时应该使用外排序算法。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`sort` 函数传入自定义比较函数 `cmp(a, b)` 时，a 和 b 是 sort 内部反复从容器里取出的两个真实元素，而不是调用者手动传入的固定值。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C 语言的 `qsort` 和 C++ 的 `sort` 在写比较函数时语法和安全性完全一样，没有任何区别。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`partial_sort(v.begin(), v.begin()+3, v.end())` 执行后，整个 v 都会变成完全有序的。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`stable_sort` 与 `sort` 的主要区别是：当两个元素比较\"相等\"时，`stable_sort` 能保证它们在排序后的相对顺序与排序前一致，而 `sort` 不保证。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`vector<int> 分数 = {88, 60, 95, 72};` 若想按分数从高到低排序，写法 `sort(分数.begin(), 分数.end(), greater<int>());` 是对的，排序结果为 95,88,72,60。（ ）",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "冒泡排序每一轮都会把当前未排序区间中的最大值直接放到最终位置，无论是否加 flag 优化，总的比较次数都相同。（ ）",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`sort` 不加第三个参数时默认按降序（从大到小）排列。（ ）",
+          "answer": false,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "按成绩排名",
+          "knowledge": [],
+          "stem": "给定 n 名学生的姓名和成绩，请按成绩从高到低排序输出姓名；若成绩相同，按输入顺序在前的姓名排在前面（即要求排序稳定）。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；接下来 n 行，每行一个不含空格的姓名字符串和一个整数成绩，用空格分隔。",
+          "output_format": "输出 n 行，每行一个姓名，按题目要求的顺序排列。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "4\nAlice 88\nBob 95\nCathy 88\nDavid 72",
+              "output": "Bob\nAlice\nCathy\nDavid"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"按成绩排名\"(mock5 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock5_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock5_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"4\\nAlice 88\\nBob 95\\nCathy 88\\nDavid 72\\n\", \"Bob\\nAlice\\nCathy\\nDavid\"},\n        {\"1\\nZoe 100\\n\", \"Zoe\"},\n        {\"3\\nA 50\\nB 50\\nC 50\\n\", \"A\\nB\\nC\"},\n        {\"5\\nA 10\\nB 20\\nC 30\\nD 40\\nE 50\\n\", \"E\\nD\\nC\\nB\\nA\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 按成绩排名 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-30s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"-----------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-30s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "手写冒泡排序（升序）",
+          "knowledge": [],
+          "stem": "输入 n 个整数，请手写冒泡排序算法（不允许直接调用 sort/stable_sort/qsort 等库函数）将其按升序排列后输出，以巩固对冒泡排序过程的理解。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 1000）；第二行 n 个整数。",
+          "output_format": "输出一行，排序后的 n 个整数，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "6\n5 3 8 1 9 2",
+              "output": "1 2 3 5 8 9"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"手写冒泡排序\"(mock5 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock5_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock5_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"6\\n5 3 8 1 9 2\\n\", \"1 2 3 5 8 9\"},\n        {\"1\\n42\\n\", \"42\"},\n        {\"5\\n5 4 3 2 1\\n\", \"1 2 3 4 5\"},\n        {\"5\\n1 1 1 1 1\\n\", \"1 1 1 1 1\"},\n        {\"8\\n-3 5 0 -8 2 9 -1 4\\n\", \"-8 -3 -1 0 2 4 5 9\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 手写冒泡排序 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

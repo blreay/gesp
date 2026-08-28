@@ -1,0 +1,19 @@
+{
+  "name": "exam-system",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "LOG_LEVEL=debug node server.js",
+    "test": "node --test test/",
+    "migrate": "node scripts/migrate_legacy.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.11.1",
+    "chart.js": "^4.5.1",
+    "cheerio": "^1.1.0",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "monaco-editor": "^0.56.0"
+  }
+}

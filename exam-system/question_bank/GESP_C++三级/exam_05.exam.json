@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_05",
+    "title": "模拟试卷（五）",
+    "subtitle": "指针与数组 · 位掩码 · 递归深度",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "小数转二进制",
+      "位掩码提取",
+      "指针算术",
+      "插入排序",
+      "递归计数"
+    ],
+    "prog_brief": "进制转换器（任意进制）；矩阵乘法"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十进制小数0.6875转换为二进制是（）",
+          "options": {
+            "A": "0.1010",
+            "B": "0.1011",
+            "C": "0.1101",
+            "D": "0.1100"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十六进制数 FF + 1 的结果是（）",
+          "options": {
+            "A": "100₁₆",
+            "B": "1FF₁₆",
+            "C": "00₁₆",
+            "D": "FG₁₆"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用位运算判断正整数n是否为2的幂，正确的表达式是（）",
+          "options": {
+            "A": "n&(n+1)==0",
+            "B": "n|(n-1)==0",
+            "C": "(n>0)&&(n&(n-1))==0",
+            "D": "n^(n-1)==n-1"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "要提取整数x的第8~15位（第二字节），正确的表达式是（）",
+          "options": {
+            "A": "(x>>8)&0xFF",
+            "B": "x&0xFF00",
+            "C": "(x<<8)&0xFF",
+            "D": "x>>8"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "表达式 (a^b)&c | a&(b^c) 当a=5,b=3,c=6时的值是（）",
+          "options": {
+            "A": "4",
+            "B": "6",
+            "C": "5",
+            "D": "7"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "-128的8位补码是10000000，对它进行算术右移1位的结果是（）",
+          "options": {
+            "A": "01000000即64",
+            "B": "11000000即-64",
+            "C": "10000000即-128",
+            "D": "00000000即0"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a[]={10,20,30,40,50}; int *p=a+2; p[-1]的值是（）",
+          "options": {
+            "A": "10",
+            "B": "20",
+            "C": "30",
+            "D": "40"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对数组a，表达式*(a+i)等价于（）",
+          "options": {
+            "A": "a[i]",
+            "B": "&a[i]",
+            "C": "a+i",
+            "D": "*a+i"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a[3][4]; 表达式*(*(a+1)+2)等价于（）",
+          "options": {
+            "A": "a[0][2]",
+            "B": "a[2][1]",
+            "C": "a[1][2]",
+            "D": "a[1][0]"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "递归函数f(n)=f(n-1)+f(n-2), f(0)=0, f(1)=1，则f(6)=（）",
+          "options": {
+            "A": "5",
+            "B": "8",
+            "C": "13",
+            "D": "6"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int f(int &a){a*=2; return a+1;} int x=3; int y=f(x); 则x和y的值分别是（）",
+          "options": {
+            "A": "x=6, y=7",
+            "B": "x=3, y=7",
+            "C": "x=6, y=6",
+            "D": "x=3, y=6"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对数组{5,2,4,6,1,3}进行插入排序，完成第三步（前4个元素有序）后数组为（）",
+          "options": {
+            "A": "{2,4,5,1,6,3}",
+            "B": "{2,5,4,6,1,3}",
+            "C": "{2,4,5,6,1,3}",
+            "D": "{2,4,6,5,1,3}"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int s=0; for(int i=1;i<=100;i++) if(i%3==0&&i%5!=0) s+=i; s的值是（）",
+          "options": {
+            "A": "1683",
+            "B": "1368",
+            "C": "1530",
+            "D": "1200"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "递归函数 int f(int n){if(n<2)return n; return f(n/2)+1;} 则f(16)=（）",
+          "options": {
+            "A": "4",
+            "B": "3",
+            "C": "16",
+            "D": "5"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a[5]={1,2,3,4,5}; int *p=&a[4]; cout<<p-a; 输出（）",
+          "options": {
+            "A": "5",
+            "B": "16",
+            "C": "4",
+            "D": "20"
+          },
+          "answer": "C",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "指针变量p指向数组a的首元素时，p+1指向的是a[1]。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "int *p=NULL; *p=5; 这段代码会导致未定义行为。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "数组名是一个常量指针，不能对数组名进行赋值操作。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "按位取反运算符~的优先级高于算术运算符+。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对任意整数x，x^x的结果一定为0。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "函数的形参是实参的拷贝（值传递时），修改形参不影响实参。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "递归函数的时间复杂度一定比循环高。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "稳定排序算法能保证相等元素的相对顺序不变，插入排序是稳定的。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "选择排序是稳定的排序算法。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "double类型可以精确表示所有的小数。",
+          "answer": false,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "进制转换器",
+          "knowledge": [],
+          "stem": "将十进制正整数N转换为B进制表示（2≤B≤16）。对于大于9的数字使用大写字母A-F表示。",
+          "input_format": "一行两个整数N和B(0≤N≤10^9, 2≤B≤16)，空格分隔。",
+          "output_format": "一行，N的B进制表示。若N为0则输出0。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "255 16",
+              "output": "FF"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    string result = \"\";\n    char digits[] = \"0123456789ABCDEF\";\n    while (n > 0) {\n        result += digits[n % b];\n        n /= b;\n    }\n    reverse(result.begin(), result.end());\n    cout << result << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <string>\n\nusing namespace std;\n\n// Reference solution: convert decimal integer N to base B (2<=B<=16)\n// Hex uses uppercase A-F.\nstring referenceSolution(long long N, int B) {\n    if (N == 0) return \"0\";\n    string result = \"\";\n    while (N > 0) {\n        int rem = N % B;\n        if (rem < 10)\n            result = char('0' + rem) + result;\n        else\n            result = char('A' + rem - 10) + result;\n        N /= B;\n    }\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        long long N;\n        int B;\n        string expected;\n    };\n\n    TestCase tests[] = {\n        {10, 2, \"\"},\n        {255, 16, \"\"},\n        {0, 2, \"\"},\n        {0, 16, \"\"},\n        {100, 8, \"\"},\n        {1024, 2, \"\"},\n        {65535, 16, \"\"},\n        {7, 7, \"\"},\n        {15, 16, \"\"},\n        {123456, 16, \"\"},\n        {2147483647LL, 16, \"\"},\n        {1000000000LL, 2, \"\"},\n        {999999999LL, 8, \"\"},\n        {1, 2, \"\"},\n        {16, 16, \"\"},\n    };\n\n    int numTests = sizeof(tests) / sizeof(tests[0]);\n\n    // Compute expected answers\n    for (int i = 0; i < numTests; i++) {\n        tests[i].expected = referenceSolution(tests[i].N, tests[i].B);\n    }\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        string inputFile = \"/tmp/test_05_prog1_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_05_prog1_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].N << \" \" << tests[i].B << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: N=\" << tests[i].N << \" B=\" << tests[i].B << endl;\n            cout << \"  Expected: \" << tests[i].expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        string actual;\n        fout >> actual;\n        fout.close();\n\n        if (actual == tests[i].expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: N=\" << tests[i].N << \" B=\" << tests[i].B << endl;\n            cout << \"  Expected: \" << tests[i].expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "矩阵乘法",
+          "knowledge": [],
+          "stem": "给定一个M×K的矩阵A和一个K×N的矩阵B，计算它们的乘积C=A×B。C是M×N的矩阵，其中C[i][j]=Σ(A[i][k]*B[k][j])，k从0到K-1。",
+          "input_format": "第一行三个整数M, K, N(1≤M,K,N≤100)。\n接下来M行，每行K个整数，表示矩阵A。\n接下来K行，每行N个整数，表示矩阵B。\n所有矩阵元素的绝对值不超过100。",
+          "output_format": "M行，每行N个整数，空格分隔，表示矩阵C。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "2 3 2\n1 2 3\n4 5 6\n1 4\n2 5\n3 6",
+              "output": "14 32\n32 77"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int m, k, n;\n    cin >> m >> k >> n;\n    int a[100][100], b[100][100], c[100][100];\n    for (int i = 0; i < m; i++)\n        for (int j = 0; j < k; j++)\n            cin >> a[i][j];\n    for (int i = 0; i < k; i++)\n        for (int j = 0; j < n; j++)\n            cin >> b[i][j];\n    for (int i = 0; i < m; i++)\n        for (int j = 0; j < n; j++) {\n            c[i][j] = 0;\n            for (int p = 0; p < k; p++)\n                c[i][j] += a[i][p] * b[p][j];\n        }\n    for (int i = 0; i < m; i++) {\n        for (int j = 0; j < n; j++)\n            cout << c[i][j] << (j < n-1 ? \" \" : \"\");\n        cout << endl;\n    }\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution: Matrix multiplication A(M x K) * B(K x N) = C(M x N)\nvector<vector<long long>> matMul(const vector<vector<long long>>& A, const vector<vector<long long>>& B, int M, int K, int N) {\n    vector<vector<long long>> C(M, vector<long long>(N, 0));\n    for (int i = 0; i < M; i++)\n        for (int j = 0; j < N; j++)\n            for (int p = 0; p < K; p++)\n                C[i][j] += A[i][p] * B[p][j];\n    return C;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        int M, K, N;\n        vector<vector<long long>> A;\n        vector<vector<long long>> B;\n    };\n\n    vector<TestCase> tests = {\n        // Test 1: 1x1 * 1x1\n        {1, 1, 1, {{3}}, {{4}}},\n        // Test 2: 2x2 * 2x2\n        {2, 2, 2, {{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}},\n        // Test 3: 2x3 * 3x2\n        {2, 3, 2, {{1, 2, 3}, {4, 5, 6}}, {{7, 8}, {9, 10}, {11, 12}}},\n        // Test 4: 1x3 * 3x1\n        {1, 3, 1, {{1, 2, 3}}, {{4}, {5}, {6}}},\n        // Test 5: 3x1 * 1x3\n        {3, 1, 3, {{1}, {2}, {3}}, {{4, 5, 6}}},\n        // Test 6: Identity 3x3 * 3x3\n        {3, 3, 3, {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}, {{5, 6, 7}, {8, 9, 10}, {11, 12, 13}}},\n        // Test 7: Zero matrix\n        {2, 2, 2, {{0, 0}, {0, 0}}, {{1, 2}, {3, 4}}},\n        // Test 8: Negative values\n        {2, 2, 2, {{-1, 2}, {3, -4}}, {{5, -6}, {-7, 8}}},\n        // Test 9: 3x2 * 2x4\n        {3, 2, 4, {{1, 2}, {3, 4}, {5, 6}}, {{1, 2, 3, 4}, {5, 6, 7, 8}}},\n        // Test 10: Larger values\n        {2, 2, 2, {{100, 200}, {300, 400}}, {{500, 600}, {700, 800}}},\n        // Test 11: 4x3 * 3x2\n        {4, 3, 2, {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}}, {{1, 2}, {3, 4}, {5, 6}}},\n        // Test 12: Single row * single col yields 1x1\n        {1, 4, 1, {{1, 2, 3, 4}}, {{1}, {1}, {1}, {1}}},\n    };\n\n    int passed = 0, failed = 0;\n    int numTests = tests.size();\n\n    for (int t = 0; t < numTests; t++) {\n        string inputFile = \"/tmp/test_05_prog2_input_\" + to_string(t) + \".txt\";\n        string outputFile = \"/tmp/test_05_prog2_output_\" + to_string(t) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[t].M << \" \" << tests[t].K << \" \" << tests[t].N << endl;\n        for (int i = 0; i < tests[t].M; i++) {\n            for (int j = 0; j < tests[t].K; j++) {\n                if (j) fin << \" \";\n                fin << tests[t].A[i][j];\n            }\n            fin << endl;\n        }\n        for (int i = 0; i < tests[t].K; i++) {\n            for (int j = 0; j < tests[t].N; j++) {\n                if (j) fin << \" \";\n                fin << tests[t].B[i][j];\n            }\n            fin << endl;\n        }\n        fin.close();\n\n        // Compute expected\n        vector<vector<long long>> expected = matMul(tests[t].A, tests[t].B, tests[t].M, tests[t].K, tests[t].N);\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (t+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: M=\" << tests[t].M << \" K=\" << tests[t].K << \" N=\" << tests[t].N << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        bool ok = true;\n        for (int i = 0; i < tests[t].M && ok; i++) {\n            for (int j = 0; j < tests[t].N && ok; j++) {\n                long long val;\n                if (!(fout >> val)) { ok = false; break; }\n                if (val != expected[i][j]) ok = false;\n            }\n        }\n        fout.close();\n\n        if (ok) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (t+1) << \":\" << endl;\n            cout << \"  Input: M=\" << tests[t].M << \" K=\" << tests[t].K << \" N=\" << tests[t].N << endl;\n            cout << \"  Expected output:\" << endl;\n            for (int i = 0; i < tests[t].M; i++) {\n                cout << \"    \";\n                for (int j = 0; j < tests[t].N; j++) {\n                    if (j) cout << \" \";\n                    cout << expected[i][j];\n                }\n                cout << endl;\n            }\n            // Show actual\n            ifstream fout2(outputFile);\n            string line;\n            cout << \"  Actual output:\" << endl;\n            while (getline(fout2, line)) {\n                cout << \"    \" << line << endl;\n            }\n            fout2.close();\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

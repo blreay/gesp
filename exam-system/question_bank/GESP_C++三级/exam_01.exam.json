@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_01",
+    "title": "模拟试卷（一）",
+    "subtitle": "进制转换 · 位运算基础 · 函数传参",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "二进制小数",
+      "位运算交换",
+      "补码",
+      "引用传递",
+      "指针基础"
+    ],
+    "prog_brief": "数位之和（递归求和）；矩阵对角线（二维数组）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十进制数 156 转换为二进制是：",
+          "options": {
+            "A": "10011100",
+            "B": "10011110",
+            "C": "10011000",
+            "D": "10011010"
+          },
+          "answer": "A",
+          "explanation": "156转二进制：156÷2=78...0, 78÷2=39...0, 39÷2=19...1, 19÷2=9...1, 9÷2=4...1, 4÷2=2...0, 2÷2=1...0, 1÷2=0...1。从下往上读：10011100。验证：128+16+8+4=156。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "二进制数 0.1101 转换为十进制是：",
+          "options": {
+            "A": "0.75",
+            "B": "0.8125",
+            "C": "0.625",
+            "D": "0.875"
+          },
+          "answer": "B",
+          "explanation": "二进制小数 0.1101 转十进制：1×2^(-1) + 1×2^(-2) + 0×2^(-3) + 1×2^(-4) = 0.5 + 0.25 + 0 + 0.0625 = 0.8125。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下表达式的值是多少？\n```\nint a = 12, b = 10;\nint c = a & b;\n```",
+          "options": {
+            "A": "2",
+            "B": "14",
+            "C": "10",
+            "D": "8"
+          },
+          "answer": "D",
+          "explanation": "12的二进制：1100，10的二进制：1010。按位与：1100 & 1010 = 1000 = 8。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "用位运算实现交换两个变量的值，下列代码正确的是：",
+          "options": {
+            "A": "a^=b; b^=a; a^=b;",
+            "B": "a&=b; b&=a; a&=b;",
+            "C": "a|=b; b|=a; a|=b;",
+            "D": "a^=b; a^=b; b^=a;"
+          },
+          "answer": "A",
+          "explanation": "异或交换是经典算法：a^=b使a=a^b；b^=a使b=b^(a^b)=a；a^=b使a=(a^b)^a=b。三步完成交换。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "表达式 `5 << 3` 的结果是：",
+          "options": {
+            "A": "15",
+            "B": "20",
+            "C": "40",
+            "D": "80"
+          },
+          "answer": "C",
+          "explanation": "左移n位相当于乘以2^n。5 << 3 = 5 × 2^3 = 5 × 8 = 40。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在8位补码表示中，-128的补码是：",
+          "options": {
+            "A": "01111111",
+            "B": "10000000",
+            "C": "11111111",
+            "D": "10000001"
+          },
+          "answer": "B",
+          "explanation": "8位补码范围是-128~127。-128的补码是10000000。这是一个特殊值，它没有对应的原码（因为+128超出了8位有符号数范围）。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "定义 `int a[5] = {1, 2, 3, 4, 5};`，则 `sizeof(a)` 在32位系统上的值为：",
+          "options": {
+            "A": "5",
+            "B": "10",
+            "C": "20",
+            "D": "40"
+          },
+          "answer": "C",
+          "explanation": "int类型在32位系统占4字节，数组有5个元素，sizeof(a) = 5 × 4 = 20。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "定义 `int a[3][4];`，则 `a[2][3]` 是第几个元素（从第1个开始计）？",
+          "options": {
+            "A": "9",
+            "B": "10",
+            "C": "11",
+            "D": "12"
+          },
+          "answer": "D",
+          "explanation": "a[3][4]意味着3行4列。a[2][3]位于第3行第4列（从0开始），即第 2×4+3+1 = 12 个元素。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\n```\nstring s = \"Hello\";\ncout << s.length() << \" \" << s[1];\n```",
+          "options": {
+            "A": "5 H",
+            "B": "5 e",
+            "C": "4 e",
+            "D": "5 l"
+          },
+          "answer": "B",
+          "explanation": "\"Hello\"长度为5，s[1]是第2个字符'e'（下标从0开始，s[0]='H', s[1]='e'）。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，x的值是？\n```\nvoid func(int a) {\n    a = a + 10;\n}\nint main() {\n    int x = 5;\n    func(x);\n    cout << x;\n}\n```",
+          "options": {
+            "A": "5",
+            "B": "15",
+            "C": "10",
+            "D": "0"
+          },
+          "answer": "A",
+          "explanation": "func使用值传递，形参a是x的副本。在函数内修改a不影响main中的x，所以x仍为5。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，x的值是？\n```\nvoid func(int &a) {\n    a = a * 2;\n}\nint main() {\n    int x = 7;\n    func(x);\n    cout << x;\n}\n```",
+          "options": {
+            "A": "7",
+            "B": "14",
+            "C": "0",
+            "D": "21"
+          },
+          "answer": "B",
+          "explanation": "func使用引用传递（int &a），形参a是x的别名。修改a就是修改x本身。7×2=14。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码中，`p` 的含义是：\n```\nint x = 10;\nint *p = &x;\n```",
+          "options": {
+            "A": "p 是一个整数，值为10",
+            "B": "p 是 x 的引用",
+            "C": "p 是一个指针，存储 x 的地址",
+            "D": "p 是 x 的副本"
+          },
+          "answer": "C",
+          "explanation": "int *p = &x; 表示p是一个int类型的指针，&x取x的地址赋给p，所以p存储的是x的内存地址。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，result 的值是？\n```\nint result = 0;\nfor (int i = 0; i < 8; i++) {\n    result += (15 >> i) & 1;\n}\n```",
+          "options": {
+            "A": "15",
+            "B": "3",
+            "C": "8",
+            "D": "4"
+          },
+          "answer": "D",
+          "explanation": "这段代码统计15的二进制中1的个数。15的二进制是1111，有4个1。循环中(15>>i)&1依次取出每一位：i=0得1, i=1得1, i=2得1, i=3得1, i=4~7得0。result=4。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\n```\nint arr[] = {3, 7, 1, 9, 4, 6};\nint maxVal = arr[0];\nfor (int i = 1; i < 6; i++) {\n    if (arr[i] > maxVal) maxVal = arr[i];\n}\ncout << maxVal;\n```",
+          "options": {
+            "A": "9",
+            "B": "6",
+            "C": "7",
+            "D": "3"
+          },
+          "answer": "A",
+          "explanation": "遍历数组找最大值。数组为{3,7,1,9,4,6}，最大值显然是9。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码执行后，a 和 b 的值分别是？\n```\nint a = 5, b = 9;\na = a ^ b;\nb = a ^ b;\na = a ^ b;\n```",
+          "options": {
+            "A": "a=5, b=9",
+            "B": "a=9, b=5",
+            "C": "a=12, b=12",
+            "D": "a=0, b=0"
+          },
+          "answer": "B",
+          "explanation": "异或交换：a=5^9=12, b=12^9=5, a=12^5=9。最终a=9, b=5，完成了交换。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "十进制数 255 的十六进制表示是 FF。",
+          "answer": true,
+          "explanation": "255 = 15×16+15 = F×16+F = FF(十六进制)。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "八进制数 19 是一个合法的八进制数。",
+          "answer": false,
+          "explanation": "八进制只能使用0-7这8个数字，数字9不是合法的八进制数字，所以\"19\"不是合法的八进制数。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "对任意整数 n，`n & 1` 的结果等于 `n % 2`（当n为非负数时）。",
+          "answer": true,
+          "explanation": "n&1取n的最低位，对于非负整数等价于n%2。当n为奇数时结果为1，偶数时为0。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "`a ^ a` 对任意整数 a 的结果都是 0。",
+          "answer": true,
+          "explanation": "异或运算的性质：任何数与自身异或结果为0。因为相同位异或得0。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在C++中，数组定义时大小可以用变量指定，如 `int n=5; int a[n];` 是标准C++语法。",
+          "answer": false,
+          "explanation": "C++标准不支持变长数组(VLA)。虽然某些编译器（如GCC）作为扩展支持，但这不是标准C++语法。应使用常量或动态分配。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "定义 `int a[5];` 后，访问 `a[5]` 会导致编译错误。",
+          "answer": false,
+          "explanation": "数组越界访问不会导致编译错误，而是运行时的未定义行为。编译器不会检查数组下标是否越界。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "函数内部定义的局部变量，在函数返回后就被销毁了。",
+          "answer": true,
+          "explanation": "局部变量存储在栈上，函数调用结束时栈帧被释放，局部变量随之销毁。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "引用传递和值传递的效果完全相同，都不会修改实参的值。",
+          "answer": false,
+          "explanation": "引用传递传递的是变量的别名，函数内对形参的修改会直接影响实参。值传递则是副本，不影响实参。两者效果不同。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "字符 '0' 的 ASCII 值是 48，字符 'A' 的 ASCII 值是 65。",
+          "answer": true,
+          "explanation": "标准ASCII码表中，'0'=48, 'A'=65, 'a'=97。这是需要记住的基础知识。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中 `string s = \"abc\"; char c = s[3];` 会得到字符 'c'。",
+          "answer": false,
+          "explanation": "字符串\"abc\"长度为3，有效下标为0,1,2。s[3]访问的是字符串结束符'\\0'，不是'c'。s[2]才是'c'。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "数位之和",
+          "knowledge": [],
+          "stem": "给定一个正整数N，求N各数位之和。如果和大于等于10，则继续对和求数位之和，直到结果为一位数。输出这个一位数以及经过了几次求和操作。",
+          "input_format": "一行一个正整数 N（1 ≤ N ≤ 10^18）",
+          "output_format": "一行两个整数，用空格隔开：最终的一位数结果，和求和操作的次数。\n注意：如果N本身就是一位数（0-9），则操作次数为0。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "38",
+              "output": "2 2"
+            },
+            {
+              "input": "5",
+              "output": "5 0"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    int steps = 0;\n    while (n >= 10) {\n        long long sum = 0;\n        while (n > 0) {\n            sum += n % 10;\n            n /= 10;\n        }\n        n = sum;\n        steps++;\n    }\n    cout << n << \" \" << steps << endl;\n    return 0;\n}",
+            "solution": "反复对数字求各位数字之和，直到结果小于10为止。注意使用long long处理大数。",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n\nusing namespace std;\n\n// Reference solution for \"数位之和\"\n// Given N, repeatedly sum digits until single digit. Output the digit and number of operations.\nvoid referenceSolution(long long N, int &result, int &steps) {\n    steps = 0;\n    long long cur = N;\n    while (cur >= 10) {\n        long long sum = 0;\n        while (cur > 0) {\n            sum += cur % 10;\n            cur /= 10;\n        }\n        cur = sum;\n        steps++;\n    }\n    result = (int)cur;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    struct TestCase {\n        long long input;\n        int expectedResult;\n        int expectedSteps;\n    };\n\n    // Generate test cases\n    TestCase tests[15];\n    long long inputs[] = {5, 10, 19, 99, 100, 12345, 999999, 1, 38, 199, 86, 7654321, 11111111, 9999999999LL, 123456789};\n    for (int i = 0; i < 15; i++) {\n        tests[i].input = inputs[i];\n        referenceSolution(inputs[i], tests[i].expectedResult, tests[i].expectedSteps);\n    }\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < 15; i++) {\n        // Write input to temp file\n        string inputFile = \"/tmp/test_prog1_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_prog1_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].input << endl;\n        fin.close();\n\n        // Run student program\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \" << tests[i].input << endl;\n            cout << \"  Expected: \" << tests[i].expectedResult << \" \" << tests[i].expectedSteps << endl;\n            failed++;\n            continue;\n        }\n\n        // Read output\n        ifstream fout(outputFile);\n        int actualResult = -1, actualSteps = -1;\n        fout >> actualResult >> actualSteps;\n        fout.close();\n\n        if (actualResult == tests[i].expectedResult && actualSteps == tests[i].expectedSteps) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: \" << tests[i].input << endl;\n            cout << \"  Expected: \" << tests[i].expectedResult << \" \" << tests[i].expectedSteps << endl;\n            cout << \"  Actual:   \" << actualResult << \" \" << actualSteps << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of 15 tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "矩阵对角线",
+          "knowledge": [],
+          "stem": "给定一个N×N的整数矩阵，输出主对角线和副对角线上所有元素的和。如果某个元素同时在主对角线和副对角线上（即矩阵中心元素，当N为奇数时），只计算一次。",
+          "input_format": "第一行一个正整数 N（1 ≤ N ≤ 100）\n接下来 N 行，每行 N 个整数，表示矩阵元素（元素绝对值不超过1000）。",
+          "output_format": "一个整数，表示两条对角线元素之和。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3\n1 2 3\n4 5 6\n7 8 9",
+              "output": "25"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int a[100][100];\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < n; j++)\n            cin >> a[i][j];\n\n    long long sum = 0;\n    for (int i = 0; i < n; i++) {\n        sum += a[i][i];           // 主对角线\n        if (i != n - 1 - i)\n            sum += a[i][n-1-i];   // 副对角线（避免重复）\n    }\n    cout << sum << endl;\n    return 0;\n}",
+            "solution": "遍历行号i，a[i][i]是主对角线元素，a[i][n-1-i]是副对角线元素。当i==n-1-i时（N为奇数的中心位置），只加一次。",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <sstream>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution for \"矩阵对角线\"\n// Given N×N matrix, output sum of main diagonal + anti-diagonal (overlap counted once)\nlong long referenceSolution(int N, vector<vector<int>>& matrix) {\n    long long sum = 0;\n    for (int i = 0; i < N; i++) {\n        sum += matrix[i][i]; // main diagonal\n        if (i != N - 1 - i) {\n            sum += matrix[i][N - 1 - i]; // anti-diagonal (skip if same as main)\n        }\n    }\n    return sum;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    // Test cases\n    struct TestCase {\n        int N;\n        vector<vector<int>> matrix;\n        long long expected;\n    };\n\n    vector<TestCase> tests;\n\n    // Test 1: 1x1\n    tests.push_back({1, {{5}}, 5});\n\n    // Test 2: 2x2\n    tests.push_back({2, {{1,2},{3,4}}, 1+4+2+3}); // 10\n\n    // Test 3: 3x3\n    tests.push_back({3, {{1,2,3},{4,5,6},{7,8,9}}, 1+5+9+3+7}); // 25 (center 5 counted once)\n\n    // Test 4: 4x4\n    tests.push_back({4, {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}}, 1+6+11+16+4+7+10+13}); // 68\n\n    // Test 5: 3x3 with negatives\n    tests.push_back({3, {{-1,0,1},{0,0,0},{1,0,-1}}, -1+0+(-1)+1+1}); // 0\n\n    // Test 6: 5x5\n    tests.push_back({5, {\n        {1,2,3,4,5},\n        {6,7,8,9,10},\n        {11,12,13,14,15},\n        {16,17,18,19,20},\n        {21,22,23,24,25}\n    }, 0}); // will compute below\n\n    // Compute test 6 expected\n    tests[5].expected = referenceSolution(5, tests[5].matrix);\n\n    // Test 7: 2x2 all same\n    tests.push_back({2, {{7,7},{7,7}}, 28});\n\n    // Test 8: 3x3 large values\n    tests.push_back({3, {{1000,2000,3000},{4000,5000,6000},{7000,8000,9000}}, 1000+5000+9000+3000+7000}); // 25000\n\n    // Test 9: 4x4 zeros\n    tests.push_back({4, {{0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0}}, 0});\n\n    // Test 10: 1x1 negative\n    tests.push_back({1, {{-99}}, -99});\n\n    // Test 11: 5x5 identity-like\n    vector<vector<int>> identity5(5, vector<int>(5, 0));\n    for (int i = 0; i < 5; i++) identity5[i][i] = 1;\n    tests.push_back({5, identity5, 0});\n    tests[10].expected = referenceSolution(5, tests[10].matrix);\n\n    // Test 12: 3x3\n    tests.push_back({3, {{9,8,7},{6,5,4},{3,2,1}}, 9+5+1+7+3}); // 25\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string inputFile = \"/tmp/test_prog2_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_prog2_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << tests[i].N << endl;\n        for (int r = 0; r < tests[i].N; r++) {\n            for (int c = 0; c < tests[i].N; c++) {\n                fin << tests[i].matrix[r][c];\n                if (c < tests[i].N - 1) fin << \" \";\n            }\n            fin << endl;\n        }\n        fin.close();\n\n        // Recompute expected with reference\n        long long expected = referenceSolution(tests[i].N, tests[i].matrix);\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  N=\" << tests[i].N << endl;\n            cout << \"  Expected: \" << expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        long long actual;\n        fout >> actual;\n        fout.close();\n\n        if (actual == expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  N=\" << tests[i].N << endl;\n            cout << \"  Expected: \" << expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << tests.size() << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<main class="page-main">
+  <div class="page-head"><h1>📊 数据统计</h1></div>
+
+  <div class="ov-grid">
+    <div class="ov-card"><div class="ov-num"><%= o.attempts %></div><div class="ov-label">累计考试</div></div>
+    <div class="ov-card"><div class="ov-num"><%= o.avgScore %></div><div class="ov-label">平均分</div></div>
+    <div class="ov-card"><div class="ov-num"><%= o.maxScore %></div><div class="ov-label">最高分</div></div>
+    <div class="ov-card"><div class="ov-num"><%= o.activeWrong %></div><div class="ov-label">活跃错题</div></div>
+    <div class="ov-card"><div class="ov-num"><%= o.mastered %></div><div class="ov-label">已掌握</div></div>
+    <div class="ov-card"><div class="ov-num"><%= o.submissionPassRate %>%</div><div class="ov-label">编程全过率</div></div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card wide"><h3>成绩趋势</h3><canvas id="chartTrend" height="90"></canvas></div>
+    <div class="chart-card"><h3>知识点正确率（%）</h3><canvas id="chartKnowledge"></canvas></div>
+    <div class="chart-card"><h3>题型对错</h3><canvas id="chartTypes"></canvas></div>
+    <div class="chart-card"><h3>错题级别分布</h3><canvas id="chartLevels"></canvas></div>
+    <div class="chart-card">
+      <h3>编程题提交</h3>
+      <table class="mini-table">
+        <tr><td>总提交</td><td><%= data.prog.total %></td></tr>
+        <tr><td>编译成功</td><td><%= data.prog.compiled %></td></tr>
+        <tr><td>全部通过</td><td><%= data.prog.passed %></td></tr>
+      </table>
+      <% data.prog.perQuestion.forEach(function(p){ %>
+      <div class="pq-line"><%= p.exam_id %>/<%= p.question_id %>：提交 <%= p.n %> 次，全过 <%= p.passed || 0 %> 次</div>
+      <% }); %>
+    </div>
+  </div>
+</main>
+
+<script>window.STATS = <%- JSON.stringify(data).replace(/<\//g, '<\\/') %>;</script>
+<%- include('partials/foot', { extraJs: extraJs }) %>

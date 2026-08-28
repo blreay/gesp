@@ -1,0 +1,86 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<main class="page-main">
+  <div class="page-head">
+    <h1>🎯 错题复习</h1>
+    <button class="btn btn-primary" id="btnPractice">开始练习（按当前筛选）</button>
+  </div>
+
+  <form class="filter-bar" method="GET" action="/review">
+    <select name="level">
+      <option value="all" <%= filter.level === 'all' ? 'selected' : '' %>>全部级别</option>
+      <% [1, 2, 3, 4, 5].forEach(function(l){ %>
+      <option value="<%= l %>" <%= filter.level === String(l) ? 'selected' : '' %>><%= l %> 级</option>
+      <% }); %>
+      <option value="3+" <%= filter.level === '3+' ? 'selected' : '' %>>3 级及以上</option>
+    </select>
+    <select name="type">
+      <option value="all" <%= filter.type === 'all' ? 'selected' : '' %>>全部题型</option>
+      <option value="choice" <%= filter.type === 'choice' ? 'selected' : '' %>>选择题</option>
+      <option value="tf" <%= filter.type === 'tf' ? 'selected' : '' %>>判断题</option>
+      <option value="programming" <%= filter.type === 'programming' ? 'selected' : '' %>>编程题</option>
+    </select>
+    <select name="category">
+      <option value="">全部分类</option>
+      <% categories.forEach(function(c){ %>
+      <option value="<%= c %>" <%= filter.category === c ? 'selected' : '' %>><%= c %></option>
+      <% }); %>
+    </select>
+    <select name="status">
+      <option value="active" <%= filter.status === 'active' ? 'selected' : '' %>>未掌握</option>
+      <option value="mastered" <%= filter.status === 'mastered' ? 'selected' : '' %>>已掌握</option>
+      <option value="all" <%= filter.status === 'all' ? 'selected' : '' %>>全部</option>
+    </select>
+    <input type="text" name="keyword" placeholder="搜索备注…" value="<%= filter.keyword %>">
+  </form>
+
+  <div class="wrong-list" id="wrongList" data-filter='<%= JSON.stringify(filter) %>'>
+    <% if (!rows.length) { %>
+    <div class="empty-tip">当前筛选条件下没有错题 🎉</div>
+    <% } %>
+    <% rows.forEach(function(w){ %>
+    <div class="wrong-card" data-id="<%= w.id %>" data-note="<%= w.note %>" data-knowledge="<%= w.note_knowledge %>">
+      <div class="wc-left">
+        <span class="lv-badge lv-<%= Math.min(w.level, 5) %>">L<%= w.level %></span>
+        <span class="type-badge"><%= w.type === 'choice' ? '选择' : w.type === 'tf' ? '判断' : '编程' %></span>
+      </div>
+      <div class="wc-body">
+        <div class="wc-stem"><%= w.excerpt %></div>
+        <% if (w.type === 'choice' && w.options) { %>
+        <div class="wc-options">
+          <% Object.keys(w.options).forEach(function(k){ %>
+          <div class="wc-opt"><b><%= k %>.</b> <%- renderStem(w.options[k]) %></div>
+          <% }); %>
+        </div>
+        <% } else if (w.type === 'tf') { %>
+        <div class="wc-options"><div class="wc-opt">&#10004; 正确</div><div class="wc-opt">&#10008; 错误</div></div>
+        <% } %>
+        <div class="wc-meta">来自 <%= w.exam_title || w.exam_id %> · 错 <%= w.times_wrong %> 次 ·
+          <% if (w.note) { %>📝 <%= w.note.slice(0, 40) %><% } else { %>（无备注）<% } %>
+          <% if (w.status === 'mastered') { %><span class="mastered-tag">已掌握</span><% } %>
+        </div>
+      </div>
+      <div class="wc-actions">
+        <button class="btn btn-ghost btn-note">添加备注</button>
+        <% if (w.status === 'active') { %><button class="btn btn-ghost btn-master">标记掌握</button><% } %>
+        <button class="btn btn-ghost btn-del">删除</button>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+</main>
+
+<div class="modal-overlay" id="noteModal">
+  <div class="modal-box">
+    <h3>📝 错题备注</h3>
+    <input class="note-input" id="noteKnowledge" placeholder="知识点（逗号分隔，如：循环,取余）">
+    <textarea class="note-textarea" id="noteText" placeholder="写下你的笔记、易错点、解题思路…"></textarea>
+    <div style="margin-top:14px">
+      <button class="btn btn-primary" id="btnSaveNote">保存</button>
+      <button class="btn btn-ghost" id="btnCancelNote" style="margin-left:10px">取消</button>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/foot', { extraJs: extraJs }) %>

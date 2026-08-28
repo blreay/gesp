@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_mock_04",
+    "title": "模拟试卷（四）",
+    "subtitle": "整数溢出 · 函数重载 · 选择排序",
+    "category": "GESP C++ 三级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "unsigned溢出",
+      "函数重载",
+      "默认参数",
+      "选择排序",
+      "二进制乘法"
+    ],
+    "prog_brief": "质因数分解；蛇形矩阵（螺旋填充）"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "十六进制数 3F - 1A 的结果是（）",
+          "options": {
+            "A": "25₁₆",
+            "B": "15₁₆",
+            "C": "35₁₆",
+            "D": "1F₁₆"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "二进制数 1100₂ × 11₂ 的结果是（）",
+          "options": {
+            "A": "11000₂",
+            "B": "10010₂",
+            "C": "100100₂",
+            "D": "11100₂"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "lowbit(12) 即 12 & (-12) 的结果是（）",
+          "options": {
+            "A": "2",
+            "B": "4",
+            "C": "8",
+            "D": "12"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "unsigned char a=200; a+=100; cout<<(int)a; 输出的结果是（）",
+          "options": {
+            "A": "44",
+            "B": "300",
+            "C": "200",
+            "D": "56"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "int a=-5; unsigned int b=a; b的值约为（）",
+          "options": {
+            "A": "-5",
+            "B": "5",
+            "C": "2147483643",
+            "D": "4294967291"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "char s[]=\"GESP\"; sizeof(s)的值是（）",
+          "options": {
+            "A": "4",
+            "B": "5",
+            "C": "8",
+            "D": "编译错误"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "二维数组int a[2][3]作为函数参数时，正确的形式是（）",
+          "options": {
+            "A": "void f(int a[][])",
+            "B": "void f(int a[2][])",
+            "C": "void f(int a[][3])",
+            "D": "void f(int *a[3])"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "string s=\"Hello\"; s.find(\"ll\")的返回值是（）",
+          "options": {
+            "A": "1",
+            "B": "2",
+            "C": "3",
+            "D": "string::npos"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "C++中函数重载要求的必要条件是（）",
+          "options": {
+            "A": "参数列表不同",
+            "B": "返回类型不同",
+            "C": "函数名不同",
+            "D": "调用方式不同"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下哪个默认参数的用法是正确的？（）",
+          "options": {
+            "A": "void f(int a=5, int b)",
+            "B": "void f(int a, int b=5)",
+            "C": "void f(int a=5, int b, int c=3)",
+            "D": "void f(int a, int b=5, int c)"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "选择排序对数组{4,2,5,1,3}第一轮排序后，数组变为（）",
+          "options": {
+            "A": "{2,4,5,1,3}",
+            "B": "{4,2,5,1,3}",
+            "C": "{1,2,5,4,3}",
+            "D": "{1,4,5,2,3}"
+          },
+          "answer": "C",
+          "explanation": ""
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出的结果是？\nint cnt=0; string s=\"Hello World Cup!\";\nfor(int i=0;i<s.length();i++)\n  if(s[i]>='A'&&s[i]<='Z') cnt++;\ncout<<cnt;",
+          "options": {
+            "A": "3",
+            "B": "2",
+            "C": "1",
+            "D": "4"
+          },
+          "answer": "A",
+          "explanation": ""
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\nint n=100, cnt=0;\nwhile(n>0){ if((n&1)==0) cnt++; n>>=1; }\ncout<<cnt;",
+          "options": {
+            "A": "3",
+            "B": "4",
+            "C": "5",
+            "D": "6"
+          },
+          "answer": "B",
+          "explanation": ""
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下代码输出什么？\nint& f(){static int x=0; x++; return x;}\nint main(){ f(); f()=10; cout<<f(); }",
+          "options": {
+            "A": "3",
+            "B": "10",
+            "C": "12",
+            "D": "11"
+          },
+          "answer": "D",
+          "explanation": ""
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对数组{5,1,4,2,8}进行冒泡排序（升序，每轮将最大值冒泡到末尾），第二轮结束后数组为（）",
+          "options": {
+            "A": "{1,2,4,5,8}",
+            "B": "{1,4,2,5,8}",
+            "C": "{1,2,5,4,8}",
+            "D": "{1,5,2,4,8}"
+          },
+          "answer": "A",
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在大多数64位系统中，int类型占4字节，long long类型占8字节。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "逻辑运算符&&的优先级高于||。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++标准要求数组的大小必须是编译期常量。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "递归函数如果没有终止条件，会导致栈溢出。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "位运算符&的优先级高于比较运算符==。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "int a[5]; a和&a在数值上相同。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "char类型的变量可以存储小整数并进行算术运算。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++中函数可以返回一个数组。",
+          "answer": false,
+          "explanation": ""
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "位运算 a|0 的结果总是等于a。",
+          "answer": true,
+          "explanation": ""
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "选择排序和冒泡排序在最坏情况下的时间复杂度都是O(n²)。",
+          "answer": true,
+          "explanation": ""
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "质因数分解",
+          "knowledge": [],
+          "stem": "给定一个正整数N(2≤N≤10^6)，将其分解为质因数的乘积形式。例如12=2*2*3。质因数从小到大排列。",
+          "input_format": "一行一个正整数N(2≤N≤10^6)。",
+          "output_format": "一行，格式为 N=p1*p2*...*pk，其中p1≤p2≤...≤pk都是质因数。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "12",
+              "output": "12=2*2*3"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    cout << n << \"=\";\n    bool first = true;\n    for (long long i = 2; i * i <= n; i++) {\n        while (n % i == 0) {\n            if (!first) cout << \"*\";\n            cout << i;\n            first = false;\n            n /= i;\n        }\n    }\n    if (n > 1) {\n        if (!first) cout << \"*\";\n        cout << n;\n    }\n    cout << endl;\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <sstream>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution for \"质因数分解\"\n// Input N, output N=p1*p2*...*pk (prime factors in ascending order)\nstring referenceSolution(long long n) {\n    ostringstream oss;\n    oss << n << \"=\";\n    bool first = true;\n    for (long long i = 2; i * i <= n; i++) {\n        while (n % i == 0) {\n            if (!first) oss << \"*\";\n            oss << i;\n            first = false;\n            n /= i;\n        }\n    }\n    if (n > 1) {\n        if (!first) oss << \"*\";\n        oss << n;\n    }\n    return oss.str();\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    long long inputs[] = {2, 3, 4, 6, 12, 100, 97, 1000000, 999983, 360, 65536, 2310};\n    int numTests = 12;\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        string expected = referenceSolution(inputs[i]);\n\n        string inputFile = \"/tmp/test_04_prog1_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_04_prog1_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << inputs[i] << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error\" << endl;\n            cout << \"  Input: \" << inputs[i] << endl;\n            cout << \"  Expected: \" << expected << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        string actual;\n        getline(fout, actual);\n        fout.close();\n\n        // Trim trailing whitespace\n        while (!actual.empty() && (actual.back() == '\\n' || actual.back() == '\\r' || actual.back() == ' '))\n            actual.pop_back();\n\n        if (actual == expected) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \":\" << endl;\n            cout << \"  Input: \" << inputs[i] << endl;\n            cout << \"  Expected: \" << expected << endl;\n            cout << \"  Actual:   \" << actual << endl;\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "蛇形矩阵",
+          "knowledge": [],
+          "stem": "输入正整数N(1≤N≤20)，输出一个N×N的蛇形矩阵（螺旋矩阵）。从左上角开始，按顺时针螺旋方向依次填入1到N²。",
+          "input_format": "一行一个正整数N(1≤N≤20)。",
+          "output_format": "N行N列的矩阵，每个数字占4位宽度（右对齐）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3",
+              "output": "   1   2   3\n   8   9   4\n   7   6   5"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int a[20][20] = {};\n    int dx[] = {0, 1, 0, -1};\n    int dy[] = {1, 0, -1, 0};\n    int x = 0, y = 0, dir = 0;\n    for (int i = 1; i <= n * n; i++) {\n        a[x][y] = i;\n        int nx = x + dx[dir], ny = y + dy[dir];\n        if (nx < 0 || nx >= n || ny < 0 || ny >= n || a[nx][ny] != 0) {\n            dir = (dir + 1) % 4;\n            nx = x + dx[dir];\n            ny = y + dy[dir];\n        }\n        x = nx; y = ny;\n    }\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++)\n            cout << setw(4) << a[i][j];\n        cout << endl;\n    }\n    return 0;\n}",
+            "solution": "",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <sstream>\n#include <vector>\n\nusing namespace std;\n\n// Reference solution for \"蛇形矩阵\"\n// Fill NxN matrix in spiral order (right->down->left->up) with 1..N*N\nvoid referenceSolution(int n, vector<vector<int>> &mat) {\n    mat.assign(n, vector<int>(n, 0));\n    int top = 0, bottom = n-1, left = 0, right = n-1;\n    int num = 1;\n    while (num <= n*n) {\n        // go right\n        for (int j = left; j <= right && num <= n*n; j++)\n            mat[top][j] = num++;\n        top++;\n        // go down\n        for (int i = top; i <= bottom && num <= n*n; i++)\n            mat[i][right] = num++;\n        right--;\n        // go left\n        for (int j = right; j >= left && num <= n*n; j--)\n            mat[bottom][j] = num++;\n        bottom--;\n        // go up\n        for (int i = bottom; i >= top && num <= n*n; i--)\n            mat[i][left] = num++;\n        left++;\n    }\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cerr << \"Usage: \" << argv[0] << \" <executable_path>\" << endl;\n        return 1;\n    }\n    string exePath = argv[1];\n\n    int inputs[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};\n    int numTests = 10;\n\n    int passed = 0, failed = 0;\n\n    for (int i = 0; i < numTests; i++) {\n        int n = inputs[i];\n        vector<vector<int>> expected;\n        referenceSolution(n, expected);\n\n        string inputFile = \"/tmp/test_04_prog2_input_\" + to_string(i) + \".txt\";\n        string outputFile = \"/tmp/test_04_prog2_output_\" + to_string(i) + \".txt\";\n\n        ofstream fin(inputFile);\n        fin << n << endl;\n        fin.close();\n\n        string cmd = exePath + \" < \" + inputFile + \" > \" + outputFile + \" 2>/dev/null\";\n        int ret = system(cmd.c_str());\n\n        if (ret != 0) {\n            cout << \"[FAIL] Test \" << (i+1) << \": Program exited with error (N=\" << n << \")\" << endl;\n            failed++;\n            continue;\n        }\n\n        ifstream fout(outputFile);\n        bool match = true;\n        for (int r = 0; r < n && match; r++) {\n            for (int c = 0; c < n && match; c++) {\n                int val;\n                if (!(fout >> val)) { match = false; break; }\n                if (val != expected[r][c]) match = false;\n            }\n        }\n        fout.close();\n\n        if (match) {\n            passed++;\n        } else {\n            cout << \"[FAIL] Test \" << (i+1) << \" (N=\" << n << \"):\" << endl;\n            cout << \"  Expected matrix:\" << endl;\n            for (int r = 0; r < n; r++) {\n                cout << \"    \";\n                for (int c = 0; c < n; c++) cout << expected[r][c] << \" \";\n                cout << endl;\n            }\n            // Show actual\n            ifstream fout2(outputFile);\n            string line;\n            cout << \"  Actual output:\" << endl;\n            while (getline(fout2, line)) cout << \"    \" << line << endl;\n            fout2.close();\n            failed++;\n        }\n    }\n\n    cout << \"\\n===== Results: \" << passed << \" passed, \" << failed << \" failed out of \" << numTests << \" tests =====\" << endl;\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

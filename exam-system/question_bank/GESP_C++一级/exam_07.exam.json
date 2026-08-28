@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l1_mock_07",
+    "title": "模拟试卷（七）",
+    "subtitle": "交换变量与printf宽度",
+    "category": "GESP C++ 一级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "变量交换",
+      "%02d补零",
+      "短路求值",
+      "冯·诺依曼"
+    ],
+    "prog_brief": "买书 · 数字三角形"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "\"冯·诺依曼体系结构\"的计算机由五大部件组成，以下不属于五大部件的是（ ）。",
+          "options": {
+            "A": "运算器",
+            "B": "存储器",
+            "C": "编译器",
+            "D": "控制器"
+          },
+          "answer": "C",
+          "explanation": "冯·诺依曼体系结构的五大部件是：运算器、控制器、存储器、输入设备、输出设备。编译器是软件，不属于五大部件。选 C。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "以下关于编译型语言和解释型语言的说法，正确的是（ ）。",
+          "options": {
+            "A": "C++ 是解释型语言，Python 是编译型语言",
+            "B": "编译型语言需要先将源代码全部翻译成机器码再执行",
+            "C": "解释型语言运行速度通常比编译型语言快",
+            "D": "编译型语言不需要编译器就能运行"
+          },
+          "answer": "B",
+          "explanation": "C++ 是编译型语言（A错）；编译型语言确实需要先将源代码全部编译成机器码再执行（B对）；解释型语言通常比编译型慢（C错）；编译型语言需要编译器（D错）。选 B。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在 C++ 中，字符常量 `'A'` 的 ASCII 码值为 65，则表达式 `'A' + 3` 的值是（ ）。",
+          "options": {
+            "A": "'D'",
+            "B": "68",
+            "C": "'C'",
+            "D": "编译错误"
+          },
+          "answer": "B",
+          "explanation": "'A' 的 ASCII 码为 65，'A' + 3 = 65 + 3 = 68。注意这里是 int 类型的运算，结果是整数 68（而非字符 'D'）。虽然 68 对应字符 D，但表达式的值是整数 68。选 B。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 3, b = 5, temp;\ntemp = a;\na = b;\nb = temp;\nprintf(\"%d %d\", a, b);\n```",
+          "options": {
+            "A": "3 5",
+            "B": "5 3",
+            "C": "3 3",
+            "D": "5 5"
+          },
+          "answer": "B",
+          "explanation": "经典的三变量交换：temp=3, a=5, b=3。输出 5 3。选 B。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nprintf(\"%2d|%02d|%-5d|\", 8, 3, 42);\n```",
+          "options": {
+            "A": "8|03|42   |",
+            "B": "08|03|   42|",
+            "C": "8 |03|42   |",
+            "D": "8|3 |42   |"
+          },
+          "answer": "A",
+          "explanation": "%2d：宽度2，右对齐，8 输出为  8（前面补空格）；%02d：宽度2，补零，3 输出为 03；%-5d：宽度5，左对齐，42 输出为 42   （后面补空格）。完整输出为  8|03|42   |。选 A。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint x = 1, y = 0;\nint r = (x || y) + (x && y);\nprintf(\"%d\", r);\n```",
+          "options": {
+            "A": "0",
+            "B": "1",
+            "C": "2",
+            "D": "编译错误"
+          },
+          "answer": "B",
+          "explanation": "x=1, y=0。(x||y) = (1||0) = 1；(x&&y) = (1&&0) = 0。1 + 0 = 1。选 B。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 0, b = 0;\nint r = (a++ || ++b);\nprintf(\"%d %d %d\", a, b, r);\n```",
+          "options": {
+            "A": "1 1 1",
+            "B": "1 0 0",
+            "C": "0 1 1",
+            "D": "1 1 0"
+          },
+          "answer": "A",
+          "explanation": "短路求值：a++ 先使用 a 的值 0（假），然后 a 变为 1。因为左操作数为假，|| 需要继续计算右操作数 ++b，b 先变为 1 再使用，值为 1（真）。整个表达式 r = 1。最终 a=1, b=1, r=1。选 A。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 1; i <= 10; i += 2) {\n    s += i;\n}\nprintf(\"%d\", s);\n```",
+          "options": {
+            "A": "25",
+            "B": "30",
+            "C": "55",
+            "D": "20"
+          },
+          "answer": "A",
+          "explanation": "i 依次取 1, 3, 5, 7, 9（步长为2，到10结束）。s = 1+3+5+7+9 = 25。选 A。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 1; i <= 20; i++) {\n    s += i;\n    i += 2;\n}\nprintf(\"%d\", s);\n```",
+          "options": {
+            "A": "70",
+            "B": "210",
+            "C": "100",
+            "D": "55"
+          },
+          "answer": "A",
+          "explanation": "关键在于循环体内有 i += 2，加上 for 的 i++，每轮实际步长为 3。\n\n        i 进入循环体时的值依次为：1, 4, 7, 10, 13, 16, 19（下一轮 i=22 > 20 退出）。\n\n        s = 1+4+7+10+13+16+19 = 70。选 A。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint arr[] = {5, 2, 8, 1, 9};\nint n = 5;\n// 一轮冒泡排序（升序）\nfor (int j = 0; j < n - 1; j++) {\n    if (arr[j] > arr[j+1]) {\n        int t = arr[j];\n        arr[j] = arr[j+1];\n        arr[j+1] = t;\n    }\n}\nfor (int i = 0; i < n; i++)\n    printf(\"%d \", arr[i]);\n```",
+          "options": {
+            "A": "1 2 5 8 9",
+            "B": "2 5 1 8 9",
+            "C": "2 5 8 1 9",
+            "D": "2 5 1 9 8"
+          },
+          "answer": "B",
+          "explanation": "一轮冒泡排序（升序）对数组 {5,2,8,1,9} 执行相邻比较交换：\n\n        j=0: 5>2 → 交换 → {2,5,8,1,9}\n\n        j=1: 5<8 → 不换 → {2,5,8,1,9}\n\n        j=2: 8>1 → 交换 → {2,5,1,8,9}\n\n        j=3: 8<9 → 不换 → {2,5,1,8,9}\n\n        输出 2 5 1 8 9 。选 B。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint cnt = 0;\nfor (int i = 100; i < 200; i++) {\n    if (i % 7 == 0 && i % 5 == 0)\n        cnt++;\n}\nprintf(\"%d\", cnt);\n```",
+          "options": {
+            "A": "2",
+            "B": "3",
+            "C": "4",
+            "D": "5"
+          },
+          "answer": "B",
+          "explanation": "在 [100, 200) 中找同时能被 7 和 5 整除的数，即 35 的倍数：105, 140, 175。共 3 个。选 B。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint n = 7;\nfor (int i = 0; i < 3; i++) {\n    n = n * 10 + 7;\n}\nprintf(\"%d\", n);\n```",
+          "options": {
+            "A": "777",
+            "B": "7777",
+            "C": "77",
+            "D": "7007"
+          },
+          "answer": "B",
+          "explanation": "n 初始为 7。循环 3 次：n=7*10+7=77 → n=77*10+7=777 → n=777*10+7=7777。输出 7777。选 B。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nchar ch = 'a';\nfor (int i = 0; i < 5; i++) {\n    printf(\"%c\", ch + i * 2);\n}\n```",
+          "options": {
+            "A": "abcde",
+            "B": "acegi",
+            "C": "aeiou",
+            "D": "acegh"
+          },
+          "answer": "B",
+          "explanation": "'a' 的 ASCII 码为 97。依次输出 ch+0='a', ch+2='c', ch+4='e', ch+6='g', ch+8='i'。输出 acegi。选 B。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码在横线处填入（ ），可以计算 1-2+3-4+5-...-100 的值。\n```\nint s = 0;\nfor (int i = 1; i <= 100; i++) {\n    if (__________)\n        s += i;\n    else\n        s -= i;\n}\nprintf(\"%d\", s);\n```",
+          "options": {
+            "A": "i % 2 == 0",
+            "B": "i % 2 != 0",
+            "C": "i > 0",
+            "D": "i / 2 == 0"
+          },
+          "answer": "B",
+          "explanation": "要计算 1-2+3-4+...-100，奇数项为正、偶数项为负。因此条件是\"i为奇数时加\"，即 i%2 != 0。\n\n        A (i%2==0) 是偶数时加，符号反了；C (i>0) 恒为真，全加；D (i/2==0) 仅 i=0,1 时为真，不对。选 B。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint a = 10, b = 20;\nif (a > 5)\n    if (b < 15)\n        printf(\"X\");\n    else\n        printf(\"Y\");\nelse\n    printf(\"Z\");\n```",
+          "options": {
+            "A": "X",
+            "B": "Y",
+            "C": "Z",
+            "D": "XY"
+          },
+          "answer": "B",
+          "explanation": "经典的\"悬挂 else\"问题。C++ 中 else 与最近的未匹配的 if 配对。\n\n        a=10 > 5 为真，进入内层 if；b=20 < 15 为假，执行 else 分支，输出 Y。选 B。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "冯·诺依曼体系结构的核心思想之一是\"存储程序\"，即程序和数据都存放在存储器中。（ ）",
+          "answer": true,
+          "explanation": "\"存储程序\"是冯·诺依曼体系的核心思想，程序指令和数据都存放在同一个存储器中。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`char` 类型变量可以参与算术运算，例如 `'A' + 1` 的结果为 66。（ ）",
+          "answer": true,
+          "explanation": "char 类型在运算时自动提升为 int。'A'=65，'A'+1=66。结果为整数 66。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中 `printf(\"%05d\", 42)` 的输出是 `00042`。（ ）",
+          "answer": true,
+          "explanation": "%05d 表示宽度为 5，不足部分补零。42 输出为 00042。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，表达式 `0 && (1/0)` 会导致程序运行时除零错误。（ ）",
+          "answer": false,
+          "explanation": "逻辑与 && 具有短路求值特性。左操作数 0 为假，右操作数 (1/0) 不会被求值，不会发生除零错误。整个表达式的值为 0。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后将输出 `2 5 8`。（ ）\n```\nfor (int i = 2; i < 10; i += 3)\n    printf(\"%d \", i);\n```",
+          "answer": true,
+          "explanation": "i 依次取 2, 5, 8（下一个 11 ≥ 10 退出）。输出 2 5 8 （注意每个数后有一个空格，但题目说的是 2 5 8，语义一致）。正确。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中，用三个变量交换两个变量的值（`temp=a; a=b; b=temp;`）中，三条语句的顺序可以任意调换。（ ）",
+          "answer": false,
+          "explanation": "三条语句的顺序不能调换。必须先保存 a 的值到 temp，再用 b 覆盖 a，最后用 temp 恢复 b。顺序错误会导致值丢失。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后，变量 `k` 的值为 2。（ ）\n```\nint k = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 4 == 0)\n        k++;\n}\n```",
+          "answer": true,
+          "explanation": "i 从 1 到 10 中，能被 4 整除的有 4 和 8，k = 2。题目说 k=2，正确。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`printf(\"%d\", 'B' - 'A')` 的输出是 1。（ ）",
+          "answer": true,
+          "explanation": "'B'=66，'A'=65，'B'-'A'=1。输出 1。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中 `for(int i=0; i<10; i++)` 和 `for(int i=0; i<10; ++i)` 的循环执行次数不同。（ ）",
+          "answer": false,
+          "explanation": "在 for 循环的递增部分，i++ 和 ++i 效果相同（都将 i 加 1，且返回值不被使用），循环执行次数完全相同，都是 10 次。题目说\"不同\"是错误的。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 源代码文件（如 `hello.cpp`）必须经过编译和链接两个步骤才能生成可执行文件。（ ）",
+          "answer": true,
+          "explanation": "C++ 源代码需要经过编译（将 .cpp 编译为 .o 目标文件）和链接（将目标文件和库函数链接为可执行文件）两个步骤。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "小杨买书",
+          "knowledge": [],
+          "stem": "书店有 A、B 两种书，单价分别为 a 元和 b 元。小杨有 n 元，他想买尽可能多的书（A 和 B 都至少买 1 本），输出最多能买多少本书。",
+          "input_format": "输入一行，包含三个正整数 a、b、n，用空格分隔。",
+          "output_format": "输出一行，一个整数，表示最多能买的书的总数。如果无法同时各买至少 1 本（即 a+b > n），则输出 0。",
+          "constraints": "对于所有测试数据，保证 1 ≤ a, b ≤ 1000，1 ≤ n ≤ 100000。",
+          "samples": [
+            {
+              "input": "3 5 20",
+              "output": "6"
+            },
+            {
+              "input": "10 10 15",
+              "output": "0"
+            },
+            {
+              "input": "1 1 100",
+              "output": "100"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\nusing namespace std;\n\nint main() {\n    int a, b, n;\n    scanf(\"%d %d %d\", &a, &b, &n);\n    if (a + b > n) {\n        printf(\"0\\n\");\n        return 0;\n    }\n    int remain = n - a - b;\n    int cheaper = a < b ? a : b;\n    int total = 2 + remain / cheaper;\n    printf(\"%d\\n\", total);\n    return 0;\n}",
+            "solution": "思路：先各买 1 本，花费 a+b，剩余 n-a-b 元。然后用剩余的钱尽可能多买便宜的那种书。总数 = 2 + 剩余钱 / min(a,b)。如果 a+b > n 则输出 0。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(七) - 编程题1「小杨买书」测试程序\n *\n * 用法: g++ -o test_07_prog1 test_07_prog1.cpp && ./test_07_prog1 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference solution\nstring solve(int a, int b, int n) {\n    if (a + b > n) return \"0\";\n    int remain = n - a - b;\n    int cheaper = a < b ? a : b;\n    int total = 2 + remain / cheaper;\n    return to_string(total);\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests = {\n        // 样例\n        {\"3 5 20\\n\",    \"\"},\n        {\"10 10 15\\n\",  \"\"},\n        {\"1 1 100\\n\",   \"\"},\n        // 边界: a+b == n, 刚好只能各买1本\n        {\"5 5 10\\n\",    \"\"},\n        // a+b > n\n        {\"50 60 100\\n\", \"\"},\n        // a远小于b，尽量多买a\n        {\"1 100 200\\n\", \"\"},\n        // b远小于a，尽量多买b\n        {\"100 1 200\\n\", \"\"},\n        // 两者相同价格\n        {\"3 3 30\\n\",    \"\"},\n        // 大数据\n        {\"1 1 100000\\n\", \"\"},\n        // a=1, b=1000\n        {\"1 1000 2000\\n\", \"\"},\n        // 刚好不够\n        {\"500 501 1000\\n\", \"\"},\n        // 刚好够各买1本\n        {\"500 500 1000\\n\", \"\"},\n        // n很大\n        {\"7 3 99999\\n\", \"\"},\n        // a==b\n        {\"10 10 100\\n\", \"\"},\n    };\n\n    // Calculate expected values using reference solution\n    int testParams[][3] = {\n        {3,5,20}, {10,10,15}, {1,1,100}, {5,5,10}, {50,60,100},\n        {1,100,200}, {100,1,200}, {3,3,30}, {1,1,100000}, {1,1000,2000},\n        {500,501,1000}, {500,500,1000}, {7,3,99999}, {10,10,100}\n    };\n    for (int i = 0; i < (int)tests.size(); i++) {\n        tests[i].expected = solve(testParams[i][0], testParams[i][1], testParams[i][2]);\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题1「小杨买书」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-18s | %-10s | %-10s\\n\", \"编号\", \"输入(a b n)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+--------------------+------------+-----------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-18s | %-10s | %-10s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "数字三角形",
+          "knowledge": [],
+          "stem": "输入一个正整数 n，输出一个 n 行的数字三角形。第 i 行（从 1 开始计数）输出 i 个数字 i，数字之间用一个空格分隔。",
+          "input_format": "输入一行，包含一个正整数 n。",
+          "output_format": "输出 n 行，第 i 行包含 i 个数字 i，数字之间用一个空格分隔。每行末尾无多余空格。",
+          "constraints": "对于所有测试数据，保证 1 ≤ n ≤ 20。",
+          "samples": [
+            {
+              "input": "4",
+              "output": "1\n2 2\n3 3 3\n4 4 4 4"
+            },
+            {
+              "input": "1",
+              "output": "1"
+            },
+            {
+              "input": "6",
+              "output": "1\n2 2\n3 3 3\n4 4 4 4\n5 5 5 5 5\n6 6 6 6 6 6"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\nusing namespace std;\n\nint main() {\n    int n;\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++) {\n            if (j > 1) printf(\" \");\n            printf(\"%d\", i);\n        }\n        printf(\"\\n\");\n    }\n    return 0;\n}",
+            "solution": "思路：双重循环，外层 i 从 1 到 n 控制行，内层 j 从 1 到 i 输出数字 i。注意数字之间用空格分隔，行末无多余空格。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(七) - 编程题2「数字三角形」测试程序\n *\n * 用法: g++ -o test_07_prog2 test_07_prog2.cpp && ./test_07_prog2 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference solution\nstring solve(int n) {\n    string result;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= i; j++) {\n            if (j > 1) result += \" \";\n            result += to_string(i);\n        }\n        if (i < n) result += \"\\n\";\n    }\n    return result;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests;\n    // Test n = 1 to 10 + some larger values\n    int testValues[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20};\n    for (int v : testValues) {\n        tests.push_back({to_string(v) + \"\\n\", solve(v)});\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题2「数字三角形」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过 (n=\" << trim(tests[i].input) << \")\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            // Show first line of expected vs actual for readability\n            failExp.push_back(tests[i].expected.substr(0, 40) + (tests[i].expected.size() > 40 ? \"...\" : \"\"));\n            failAct.push_back(actual.substr(0, 40) + (actual.size() > 40 ? \"...\" : \"\"));\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过 (n=\" << trim(tests[i].input) << \")\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-5s | %-42s | %-42s\\n\", \"编号\", \"输入n\", \"期望输出(截断)\", \"实际输出(截断)\");\n        printf(\"  %s\\n\", \"-------+-------+--------------------------------------------+-------------------------------------------\");\n        for (int i = 0; i < failed; i++) {\n            string expShow = failExp[i], actShow = failAct[i];\n            for (char& c : expShow) if (c == '\\n') c = '|';\n            for (char& c : actShow) if (c == '\\n') c = '|';\n            printf(\"  #%-5d | %-5s | %-42s | %-42s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   expShow.c_str(), actShow.c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

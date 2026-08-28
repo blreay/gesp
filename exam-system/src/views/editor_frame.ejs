@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1e1e1e; }
+  #container { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+/* 必须在 Monaco 加载前执行：禁用 EditContext，强制 Monaco 使用经典 textarea 输入模式。
+   原因（已在 Chrome 149 实证）：
+   - EditContext 模式下 Monaco 把焦点放在 div.native-edit-context 上，
+     Vimium C 等键盘扩展判定它"不可编辑"，会拦截编辑器内的按键；
+   - textarea 模式下焦点落在真实 <textarea> 上，扩展识别为可编辑元素，
+     自动进入插入模式透传按键（与有道 OJ 等站点的行为一致）。 */
+try { delete window.EditContext; window.EditContext = undefined; } catch (e) {}
+window.require = { paths: { vs: '/vendor/monaco/vs' } };
+</script>
+<script src="/vendor/monaco/vs/loader.js"></script>
+<script>
+'use strict';
+var editor = null;
+var latest = '';
+require(['vs/editor/editor.main'], function () {
+  editor = monaco.editor.create(document.getElementById('container'), {
+    value: '', language: 'cpp', theme: 'vs-dark', automaticLayout: true,
+    fontSize: 14, minimap: { enabled: false }, scrollBeyondLastLine: false
+  });
+  var ta = document.querySelector('textarea.inputarea')
+        || document.querySelector('textarea.ime-text-area')
+        || document.querySelector('.native-edit-context')
+        || null;
+  function armEditable() {
+    if (ta) ta.setAttribute('contenteditable', 'true');
+  }
+  function disarmEditable() {
+    if (ta) ta.removeAttribute('contenteditable');
+  }
+  armEditable();
+  editor.onDidChangeModelContent(function () {
+    latest = editor.getValue();
+    if (window.parent !== window) window.parent.postMessage({ type: 'monaco-code', code: latest }, '*');
+  });
+  window.addEventListener('message', function (e) {
+    var d = e.data || {};
+    if (d.type === 'monaco-init') {
+      latest = String(d.code || '');
+      editor.setValue(latest);
+      armEditable();
+      editor.focus();
+    } else if (d.type === 'monaco-focus') {
+      armEditable();
+      editor.focus();
+    } else if (d.type === 'monaco-get') {
+      if (window.parent !== window) window.parent.postMessage({ type: 'monaco-code', code: editor.getValue() }, '*');
+    }
+  });
+  window.addEventListener('keyup', function (e) {
+    if (e.key === 'Escape') { disarmEditable(); if (ta) ta.blur(); }
+  });
+  document.addEventListener('mousedown', function () {
+    armEditable();
+    setTimeout(function () { if (editor) editor.focus(); }, 0);
+  }, true);
+  if (window.parent !== window) window.parent.postMessage({ type: 'monaco-ready' }, '*');
+});
+</script>
+</body>
+</html>

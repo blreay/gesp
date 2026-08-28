@@ -1,0 +1,49 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<main class="page-main">
+  <div class="page-head"><h1>⚙️ 系统配置</h1></div>
+
+  <div class="settings-card">
+    <h3>考试与倒计时</h3>
+    <div class="set-row"><label>默认考试时长（分钟，试卷未指定时使用）</label>
+      <input type="number" id="default_duration_minutes" value="<%= settings.default_duration_minutes %>" min="1"></div>
+    <div class="set-row"><label>倒计时提醒：结束前多少分钟开始提醒</label>
+      <input type="number" id="remind_before_minutes" value="<%= settings.remind_before_minutes %>" min="0"></div>
+    <div class="set-row"><label>提醒间隔（分钟）</label>
+      <input type="number" id="remind_interval_minutes" value="<%= settings.remind_interval_minutes %>" min="1"></div>
+    <h3>判题引擎</h3>
+    <div class="set-row"><label>编译超时（秒）</label>
+      <input type="number" id="judge_compile_timeout_sec" value="<%= settings.judge_compile_timeout_sec %>" min="5"></div>
+    <div class="set-row"><label>评测运行超时（秒）</label>
+      <input type="number" id="judge_run_timeout_sec" value="<%= settings.judge_run_timeout_sec %>" min="5"></div>
+    <div style="margin-top:16px">
+      <button class="btn btn-primary" id="btnSave">保存配置</button>
+      <button class="btn btn-ghost" id="btnReset" style="margin-left:10px">恢复默认</button>
+    </div>
+  </div>
+
+  <div class="settings-card">
+    <div class="bank-head">
+      <h3>题库健康（<%= health.bankDir || '未扫描' %>）</h3>
+      <button class="btn btn-primary" id="btnRescan">重新扫描题库</button>
+    </div>
+    <table class="mini-table bank-table">
+      <tr><th>分类</th><th>试卷</th><th>ID</th><th>时长(分)</th><th>满分</th></tr>
+      <% examRows.forEach(function(e){ %>
+      <tr><td><%= e.category %></td><td><%= e.title %></td><td><%= e.id %></td>
+        <td><%= e.duration_minutes || '默认' %></td><td><%= e.total_score %></td></tr>
+      <% }); %>
+    </table>
+    <% if (health.failed && health.failed.length) { %>
+    <div class="bank-errors">
+      <h4>⚠️ 以下文件校验失败，未加载：</h4>
+      <% health.failed.forEach(function(f){ %>
+      <div class="bank-err-file"><%= f.file %><ul><% f.errors.forEach(function(er){ %><li><%= er %></li><% }); %></ul></div>
+      <% }); %>
+    </div>
+    <% } %>
+  </div>
+</main>
+
+<%- include('partials/foot', { extraJs: extraJs }) %>

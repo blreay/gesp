@@ -1,0 +1,99 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<div class="exam-topbar">
+  <div class="et-left">
+    <span class="et-title"><%= exam.exam.title %></span>
+    <span class="et-cat"><%= meta.category %></span>
+  </div>
+  <div class="et-countdown" id="countdown">--:--:--</div>
+  <button class="btn btn-danger" id="btnHandin">交卷</button>
+  <button class="btn btn-primary" id="btnRetake" style="display:none">重新考试</button>
+</div>
+
+<main class="exam-main">
+  <div class="paper" id="paper">
+    <div class="paper-header">
+      <div class="badge-line"><span class="badge">GESP</span><span class="badge-sub">CCF 编程能力等级认证 · 模拟测试</span></div>
+      <h1><%= exam.exam.title %></h1>
+      <div class="exam-info-row">
+        <span class="exam-info">满分：<%= meta.total_score %> 分 · 时长：<%= Math.round(page.durationMs / 60000) %> 分钟 · 共 <%= totalQuestions %> 题</span>
+        <button class="btn btn-danger btn-grade" id="btnGrade">判 卷</button>
+      </div>
+      <div class="score-display" id="scoreDisplay"></div>
+    </div>
+
+    <table class="score-table">
+      <tr><th>题型</th><% exam.sections.forEach(function(sec){ %><th><%= sec.question_type === 'choice' ? '单选题' : sec.question_type === 'tf' ? '判断题' : '编程题' %></th><% }); %><th>总分</th></tr>
+      <tr><td>满分</td><% exam.sections.forEach(function(sec){ %><td><%= sec.score_per_question * sec.questions.length %></td><% }); %><td><%= meta.total_score %></td></tr>
+      <tr><td>得分</td><% exam.sections.forEach(function(sec, i){ %><td class="scored" id="scoreSec<%= i %>">—</td><% }); %><td class="scored" id="scoreTotal">—</td></tr>
+    </table>
+
+    <% exam.sections.forEach(function(sec, si){ %>
+      <div class="section-title"><span><%= sec.title %></span></div>
+      <% sec.questions.forEach(function(q, qi){ %>
+        <% if (q.type === 'choice') { %>
+          <div class="question" data-qid="<%= q.id %>" data-type="choice">
+            <button class="btn-copy" data-qid="<%= q.id %>">📋 复制</button>
+            <div class="q-text"><%= qi + 1 %>. <%- renderStem(q.stem) %></div>
+            <div class="options">
+              <% Object.keys(q.options).forEach(function(k){ %>
+              <div class="opt" data-val="<%= k %>"><span class="radio-dot"></span><span><%= k %>. <%= q.options[k] %></span></div>
+              <% }); %>
+            </div>
+            <div class="correct-answer-tag"></div>
+          </div>
+        <% } else if (q.type === 'tf') { %>
+          <div class="question tf-item" data-qid="<%= q.id %>" data-type="tf">
+            <button class="btn-copy" data-qid="<%= q.id %>">📋 复制</button>
+            <div class="q-text"><%= qi + 1 %>. <%- renderStem(q.stem) %></div>
+            <div class="tf-options">
+              <div class="tf-opt" data-val="true">✔ 正确</div>
+              <div class="tf-opt" data-val="false">✘ 错误</div>
+            </div>
+            <div class="correct-answer-tag"></div>
+          </div>
+        <% } else { %>
+          <div class="question prog-card" data-qid="<%= q.id %>" data-type="programming">
+            <div class="q-text">💻 编程题 <%= qi + 1 %>：<%= q.title %>（<%= sec.score_per_question %> 分）</div>
+            <div class="prog-brief"><%= (q.stem || '').replace(/```[\s\S]*?```/g, '').split('\n')[0].slice(0, 80) %>…</div>
+            <div class="prog-status" id="progStatus_<%= q.id %>"></div>
+            <a class="btn btn-primary" href="/exam/<%= meta.id %>/prog/<%= q.id %>">打开编程题 →</a>
+          </div>
+        <% } %>
+      <% }); %>
+    <% }); %>
+  </div>
+</main>
+
+<div class="modal-overlay" id="missingModal">
+  <div class="modal-box">
+    <h3>⚠️ 有题目未完成</h3>
+    <div class="missing-list" id="missingList"></div>
+    <div class="modal-note">未作答的题目将不计分，仅对已完成的题目判分。</div>
+    <div style="margin-top:18px">
+      <button class="btn btn-danger" id="btnGradeAnyway">继续判卷</button>
+      <button class="btn btn-ghost" id="btnBackToAnswer" style="margin-left:10px">返回答题</button>
+    </div>
+  </div>
+</div>
+
+<% if (mode === 'fresh') { %>
+<div class="modal-overlay show" id="startModal">
+  <div class="modal-box">
+    <h3>📝 即将开始：<%= exam.exam.title %></h3>
+    <div class="modal-note">
+      · 考试时长 <%= Math.round(page.durationMs / 60000) %> 分钟，点击开始后立即倒计时<br>
+      · 中途关闭页面不暂停计时，可重新进入续答<br>
+      · 倒计时结束将自动交卷判分
+    </div>
+    <div style="margin-top:18px"><button class="btn btn-primary" id="btnStart">开始答题</button></div>
+  </div>
+</div>
+<% } %>
+
+<script>
+window.EXAM = <%- JSON.stringify(exam).replace(/<\//g, '<\\/') %>;
+window.PAGE = <%- JSON.stringify(page).replace(/<\//g, '<\\/') %>;
+</script>
+<%- include('partials/foot', { extraJs: extraJs }) %>

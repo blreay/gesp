@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l1_mock_05",
+    "title": "模拟试卷（五）",
+    "subtitle": "嵌套循环与数位分解",
+    "category": "GESP C++ 一级",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "嵌套for",
+      "do-while",
+      "百位十位个位",
+      "计算机史"
+    ],
+    "prog_brief": "闰年统计 · 数字排列"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后，`count` 的值是（ ）。\n```\nint count = 0;\nfor (int i = 0; i < 3; i++)\n    for (int j = 0; j < 4; j++)\n        count++;\n```",
+          "options": {
+            "A": "7",
+            "B": "4",
+            "C": "12",
+            "D": "16"
+          },
+          "answer": "C",
+          "explanation": "外层循环 i=0,1,2（3次），内层循环 j=0,1,2,3（4次）。总共 3×4=12 次。选 C。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint n = 1, s = 0;\ndo {\n    s += n;\n    n += 2;\n} while (n <= 9);\ncout << s << \" \" << n;\n```",
+          "options": {
+            "A": "25 9",
+            "B": "25 11",
+            "C": "16 9",
+            "D": "20 11"
+          },
+          "answer": "B",
+          "explanation": "do-while 先执行后判断。\n\n        n=1: s=1, n=3; n=3: s=4, n=5; n=5: s=9, n=7; n=7: s=16, n=9; n=9: s=25, n=11; 此时 n=11>9，退出循环。\n\n        s=1+3+5+7+9=25, n=11。输出 25 11。选 B。"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "对于整数 `n = 528`，以下哪个表达式能正确提取出它的十位数字 2？（ ）",
+          "options": {
+            "A": "n % 10",
+            "B": "n / 10",
+            "C": "n / 10 % 10",
+            "D": "n / 100 % 10"
+          },
+          "answer": "C",
+          "explanation": "n=528。\n\n        A: n%10=8（个位）。\n\n        B: n/10=52（不是十位数字）。\n\n        C: n/10%10=52%10=2（十位数字）。正确。\n\n        D: n/100%10=5%10=5（百位数字）。\n\n        选 C。"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后，`a` 的值是（ ）。\n```\nint a = 10;\na += 5;\na -= 3;\na *= 2;\na %= 7;\n```",
+          "options": {
+            "A": "5",
+            "B": "3",
+            "C": "24",
+            "D": "1"
+          },
+          "answer": "B",
+          "explanation": "逐步计算：a=10 → a+=5 得 15 → a-=3 得 12 → a*=2 得 24 → a%=7 得 24%7=3。选 B。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "C++ 语句 `printf(\"Pass rate: %d%%\\n\", 80);` 执行后的输出是（ ）。",
+          "options": {
+            "A": "Pass rate: 80%",
+            "B": "Pass rate: 80%%",
+            "C": "Pass rate: %d%%",
+            "D": "编译错误"
+          },
+          "answer": "A",
+          "explanation": "printf 中 %% 是转义序列，输出一个 % 字符。%d 被 80 替换。输出 Pass rate: 80%。选 A。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 1; i <= 4; i++)\n    for (int j = 1; j <= i; j++)\n        s += i * j;\ncout << s;\n```",
+          "options": {
+            "A": "30",
+            "B": "50",
+            "C": "65",
+            "D": "100"
+          },
+          "answer": "C",
+          "explanation": "分步计算：\n\n        i=1: j=1: s+=1×1=1, s=1\n\n        i=2: j=1: s+=2, s=3; j=2: s+=4, s=7\n\n        i=3: j=1: s+=3, s=10; j=2: s+=6, s=16; j=3: s+=9, s=25\n\n        i=4: j=1: s+=4, s=29; j=2: s+=8, s=37; j=3: s+=12, s=49; j=4: s+=16, s=65\n\n        输出 65。选 C。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint n = 3456, product = 1;\nwhile (n > 0) {\n    product *= n % 10;\n    n /= 10;\n}\ncout << product;\n```",
+          "options": {
+            "A": "18",
+            "B": "120",
+            "C": "360",
+            "D": "720"
+          },
+          "answer": "C",
+          "explanation": "求 3456 各位数字之积。6×5×4×3=360。选 C。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint i = 0, s = 0;\ndo {\n    i++;\n    if (i % 3 == 0) continue;\n    s += i;\n} while (i < 10);\ncout << s;\n```",
+          "options": {
+            "A": "55",
+            "B": "37",
+            "C": "33",
+            "D": "40"
+          },
+          "answer": "B",
+          "explanation": "do-while 循环，i 从 0 开始，先 i++ 再判断。跳过 3 的倍数。\n\n        i=1: s=1; i=2: s=3; i=3: skip; i=4: s=7; i=5: s=12; i=6: skip; i=7: s=19; i=8: s=27; i=9: skip; i=10: s=37（i=10<10 为假，退出）。\n\n        s = 1+2+4+5+7+8+10 = 37。选 B。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint s = 0;\nfor (int i = 1; i <= 100; i += 2)\n    s += i;\ncout << s;\n```",
+          "options": {
+            "A": "5050",
+            "B": "2550",
+            "C": "2500",
+            "D": "4950"
+          },
+          "answer": "C",
+          "explanation": "i 取值 1,3,5,...,99（共50个奇数）。奇数求和公式：n² = 50² = 2500。选 C。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint cnt = 0;\nfor (int i = 1; i <= 5; i++) {\n    for (int j = 1; j <= 5; j++) {\n        if (i + j > 6) break;\n        cnt++;\n    }\n}\ncout << cnt;\n```",
+          "options": {
+            "A": "25",
+            "B": "15",
+            "C": "10",
+            "D": "20"
+          },
+          "answer": "B",
+          "explanation": "双重循环，当 i+j>6 时内层 break。\n\n        i=1: j 可取 1~5（1+5=6≤6），cnt+=5\n\n        i=2: j 可取 1~4（2+5=7>6），cnt+=4\n\n        i=3: j 可取 1~3，cnt+=3\n\n        i=4: j 可取 1~2，cnt+=2\n\n        i=5: j 可取 1（5+2=7>6），cnt+=1\n\n        总计 5+4+3+2+1=15。选 B。"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后的输出是（ ）。\n```\nint n = 987, s = 0;\nwhile (n) {\n    int d = n % 10;\n    if (d % 2 == 0)\n        s += d;\n    n /= 10;\n}\ncout << s;\n```",
+          "options": {
+            "A": "24",
+            "B": "16",
+            "C": "8",
+            "D": "0"
+          },
+          "answer": "C",
+          "explanation": "n=987，从低位到高位提取偶数数字求和。\n\n        d=7（奇数，不加），d=8（偶数，s=8），d=9（奇数，不加）。s=8。选 C。"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "世界上第一台电子计算机 ENIAC 诞生于（ ）年。",
+          "options": {
+            "A": "1936",
+            "B": "1946",
+            "C": "1956",
+            "D": "1969"
+          },
+          "answer": "B",
+          "explanation": "ENIAC 于 1946 年在美国宾夕法尼亚大学诞生，是世界上第一台通用电子计算机。选 B。"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "中国自主研发的超级计算机\"神威·太湖之光\"使用的处理器是（ ）。",
+          "options": {
+            "A": "Intel Xeon",
+            "B": "AMD EPYC",
+            "C": "申威 SW26010",
+            "D": "ARM Cortex"
+          },
+          "answer": "C",
+          "explanation": "\"神威·太湖之光\"使用中国自主研发的\"申威 SW26010\"处理器。选 C。"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "在下面 C++ 代码的横线处填写（ ），可以使程序输出一个三位数 N 的百位与个位之和。\n```\nint N;\ncin >> N;\ncout << __________;\n```",
+          "options": {
+            "A": "N / 100 + N % 10",
+            "B": "N / 100 + N / 10",
+            "C": "N % 100 + N % 10",
+            "D": "N / 10 + N % 10"
+          },
+          "answer": "A",
+          "explanation": "百位 = N/100，个位 = N%10，百位与个位之和 = N/100 + N%10。选 A。"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [],
+          "stem": "下面 C++ 代码用于统计正整数 N 中偶数数字的个数。在横线处应填入代码是（ ）。\n```\nint N, cnt = 0;\ncin >> N;\nwhile (N > 0) {\n    if (__________)\n        cnt++;\n    N /= 10;\n}\ncout << cnt;\n```",
+          "options": {
+            "A": "N % 2 == 0",
+            "B": "N % 10 % 2 == 0",
+            "C": "N / 10 % 2 == 0",
+            "D": "N % 10 == 0"
+          },
+          "answer": "B",
+          "explanation": "每次需要判断当前最低位数字是否为偶数。当前最低位 = N%10，判断偶数 = N%10%2==0。\n\n        选项 A 判断的是 N 本身是否为偶数（不是当前位的数字）。选 B。"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "ENIAC 是世界上第一台电子计算机，它使用的是晶体管元件。（ ）",
+          "answer": false,
+          "explanation": "ENIAC 使用的是电子管（真空管）元件，不是晶体管。晶体管是第二代计算机的元件。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 表达式 `17 / 5 * 5 + 17 % 5` 的值等于 17。（ ）",
+          "answer": true,
+          "explanation": "17/5=3（整数除法），3*5=15，17%5=2，15+2=17。这是整数除法的恒等式：(a/b)*b + a%b == a。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`do { ... } while(条件);` 循环体至少会执行一次。（ ）",
+          "answer": true,
+          "explanation": "do-while 循环先执行循环体再判断条件，所以至少执行一次，即使条件一开始就为假。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 语句 `printf(\"100%%\");` 的输出是 `100%`。（ ）",
+          "answer": true,
+          "explanation": "在 printf 格式字符串中，%% 表示输出一个 % 字符。所以 printf(\"100%%\") 输出 100%。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后将输出 `1 3 6 10 15`。（ ）\n```\nint s = 0;\nfor (int i = 1; i <= 5; i++)\n    s += i;\n    cout << s << \" \";\n```",
+          "answer": false,
+          "explanation": "for 循环没有大括号，只有 s += i; 是循环体。cout << s << \" \"; 虽然看起来有缩进，但它不在循环体内，只在循环结束后执行一次。此时 s=1+2+3+4+5=15，输出 15 （只输出一个数），而不是 1 3 6 10 15（每轮都输出）。考点：没有花括号时 for 只控制紧跟的一条语句。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "整数 `n = 4050`，表达式 `n / 10 % 10` 的值是 0。（ ）",
+          "answer": false,
+          "explanation": "n=4050，n/10=405，405%10=5。结果是 5 而不是 0。n/10%10 提取的是十位数字，4050 的十位是 5。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "C++ 中运算符 `+=` 和 `+` 的优先级相同。（ ）",
+          "answer": false,
+          "explanation": "赋值运算符（如 +=）的优先级非常低，远低于算术运算符 +。在 C++ 运算符优先级表中，赋值运算符优先级几乎是最低的（仅高于逗号运算符）。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "下面 C++ 代码执行后将输出 `1 2 3 4 5`。（ ）\n```\nfor (int i = 1; i <= 5; i++)\n    cout << i << \" \";\n```",
+          "answer": false,
+          "explanation": "输出是 1 2 3 4 5 （注意末尾有一个多余的空格），而不是 1 2 3 4 5（末尾无空格）。严格来说输出不完全相同，因为 5 后面还有一个空格。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "在 C++ 中，`int x = 2.9;` 执行后 `x` 的值为 3。（ ）",
+          "answer": false,
+          "explanation": "double 类型 2.9 赋值给 int 变量时会截断（不是四舍五入），所以 x 的值是 2，不是 3。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [],
+          "stem": "\"天河二号\"曾连续多次获得世界超级计算机 TOP500 排行榜冠军。（ ）",
+          "answer": true,
+          "explanation": "\"天河二号\"由中国国防科技大学研制，曾在2013年6月至2015年11月连续6次获得 TOP500 排行榜冠军。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "闰年统计",
+          "knowledge": [],
+          "stem": "闰年的判定规则如下：能被 4 整除但不能被 100 整除的年份是闰年；或者能被 400 整除的年份也是闰年。\n给定两个年份 Y1 和 Y2（Y1 ≤ Y2），请你统计 Y1 到 Y2 之间（含 Y1 和 Y2）有多少个闰年。",
+          "input_format": "输入一行，包含两个正整数 Y1 和 Y2，用空格分隔。",
+          "output_format": "输出一行，一个整数，表示 Y1 到 Y2 之间闰年的个数。",
+          "constraints": "对于所有测试数据，保证 1 ≤ Y1 ≤ Y2 ≤ 10000。",
+          "samples": [
+            {
+              "input": "2000 2020",
+              "output": "6"
+            },
+            {
+              "input": "1900 1900",
+              "output": "0"
+            },
+            {
+              "input": "1 10",
+              "output": "2"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int Y1, Y2;\n    cin >> Y1 >> Y2;\n    int count = 0;\n    for (int y = Y1; y <= Y2; y++) {\n        if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n            count++;\n    }\n    cout << count << endl;\n    return 0;\n}",
+            "solution": "思路：遍历 Y1 到 Y2 的每个年份，判断是否满足闰年条件（能被4整除但不能被100整除，或能被400整除）。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(五) - 编程题1「闰年统计」测试程序\n *\n * 用法: g++ -o test_05_prog1 test_05_prog1.cpp && ./test_05_prog1 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference implementation\nint countLeapYears(int y1, int y2) {\n    int cnt = 0;\n    for (int y = y1; y <= y2; y++) {\n        if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)\n            cnt++;\n    }\n    return cnt;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    vector<TestCase> tests = {\n        // 样例\n        {\"2000 2020\\n\",   \"\"},\n        {\"1900 1900\\n\",   \"\"},\n        {\"1 10\\n\",        \"\"},\n        // 单个年份\n        {\"2024 2024\\n\",   \"\"},   // 2024 is leap\n        {\"2023 2023\\n\",   \"\"},   // 2023 is not leap\n        {\"2100 2100\\n\",   \"\"},   // divisible by 100 but not 400\n        {\"2000 2000\\n\",   \"\"},   // divisible by 400\n        {\"400 400\\n\",     \"\"},\n        // 小范围\n        {\"1 100\\n\",       \"\"},\n        {\"1 400\\n\",       \"\"},\n        // 边界：全是闰年\n        {\"4 8\\n\",         \"\"},   // 4, 8 both leap\n        // 没有闰年\n        {\"1 3\\n\",         \"\"},   // 1,2,3 none leap\n        {\"1901 1903\\n\",   \"\"},\n        // 大范围\n        {\"1 1000\\n\",      \"\"},\n        {\"1 10000\\n\",     \"\"},\n        // 世纪年特殊\n        {\"100 300\\n\",     \"\"},\n        {\"1600 2000\\n\",   \"\"},\n    };\n\n    // Calculate expected values using reference implementation\n    int testInputs[][2] = {\n        {2000,2020}, {1900,1900}, {1,10},\n        {2024,2024}, {2023,2023}, {2100,2100}, {2000,2000}, {400,400},\n        {1,100}, {1,400},\n        {4,8}, {1,3}, {1901,1903},\n        {1,1000}, {1,10000},\n        {100,300}, {1600,2000}\n    };\n    for (int i = 0; i < (int)tests.size(); i++) {\n        tests[i].expected = to_string(countLeapYears(testInputs[i][0], testInputs[i][1]));\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题1「闰年统计」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-15s | %-10s | %-10s\\n\", \"编号\", \"输入(Y1 Y2)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+-----------------+------------+-----------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-15s | %-10s | %-10s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "数字排列",
+          "knowledge": [],
+          "stem": "给定一个三位正整数 N，请将它的三个数字（百位、十位、个位）从小到大排列后输出组成的新数。\n注意：如果排列后最高位为 0，则直接输出对应的数值（不含前导零）。例如输入 502，三个数字为 5、0、2，排序后为 0、2、5，输出 25。",
+          "input_format": "输入一行，包含一个三位正整数 N。",
+          "output_format": "输出一行，一个整数，表示三个数字从小到大排列后组成的数。",
+          "constraints": "对于所有测试数据，保证 100 ≤ N ≤ 999。",
+          "samples": [
+            {
+              "input": "321",
+              "output": "123"
+            },
+            {
+              "input": "502",
+              "output": "25"
+            },
+            {
+              "input": "111",
+              "output": "111"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int N;\n    cin >> N;\n    int a = N / 100;\n    int b = N / 10 % 10;\n    int c = N % 10;\n    // 冒泡排序三个数\n    if (a > b) { int t = a; a = b; b = t; }\n    if (b > c) { int t = b; b = c; c = t; }\n    if (a > b) { int t = a; a = b; b = t; }\n    cout << a * 100 + b * 10 + c << endl;\n    return 0;\n}",
+            "solution": "思路：提取三位数的百位 a、十位 b、个位 c，然后对 a、b、c 三个数字进行排序（从小到大），\n\n        组成新数 = 最小值×100 + 中间值×10 + 最大值。由于用整数输出，前导零自动省略。",
+            "test_program": "/*\n * GESP C++一级 模拟试卷(五) - 编程题2「数字排列」测试程序\n *\n * 用法: g++ -o test_05_prog2 test_05_prog2.cpp && ./test_05_prog2 <考生程序路径>\n */\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <iostream>\n#include <sstream>\n#include <fstream>\n#include <algorithm>\n\nusing namespace std;\n\nstruct TestCase {\n    string input;\n    string expected;\n};\n\nstring trim(const string& s) {\n    size_t start = s.find_first_not_of(\" \\t\\r\\n\");\n    if (start == string::npos) return \"\";\n    size_t end = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(start, end - start + 1);\n}\n\nstring runProgram(const string& progPath, const string& input) {\n    string tmpIn = \"/tmp/gesp_test_in.txt\";\n    string tmpOut = \"/tmp/gesp_test_out.txt\";\n    ofstream fin(tmpIn);\n    fin << input;\n    fin.close();\n    string cmd = progPath + \" < \" + tmpIn + \" > \" + tmpOut + \" 2>&1\";\n    int ret = system(cmd.c_str());\n    (void)ret;\n    ifstream fout(tmpOut);\n    string output((istreambuf_iterator<char>(fout)), istreambuf_iterator<char>());\n    fout.close();\n    return trim(output);\n}\n\n// Reference implementation\nstring sortDigits(int n) {\n    int a = n / 100;\n    int b = n / 10 % 10;\n    int c = n % 10;\n    int d[3] = {a, b, c};\n    sort(d, d + 3);\n    int result = d[0] * 100 + d[1] * 10 + d[2];\n    return to_string(result);\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) {\n        cout << \"用法: \" << argv[0] << \" <考生程序路径>\" << endl;\n        return 1;\n    }\n    string progPath = argv[1];\n\n    // Test inputs\n    int inputs[] = {\n        321,    // 样例1: -> 123\n        502,    // 样例2: -> 025 -> 25\n        111,    // 样例3: -> 111\n        987,    // -> 789\n        100,    // -> 001 -> 1\n        201,    // -> 012 -> 12\n        999,    // -> 999\n        120,    // -> 012 -> 12\n        531,    // -> 135\n        909,    // -> 099 -> 99\n        333,    // -> 333\n        190,    // -> 019 -> 19\n        248,    // -> 248\n        862,    // -> 268\n        510,    // -> 015 -> 15\n        700,    // -> 007 -> 7\n        101,    // -> 011 -> 11\n    };\n\n    vector<TestCase> tests;\n    for (int i = 0; i < (int)(sizeof(inputs)/sizeof(inputs[0])); i++) {\n        TestCase tc;\n        tc.input = to_string(inputs[i]) + \"\\n\";\n        tc.expected = sortDigits(inputs[i]);\n        tests.push_back(tc);\n    }\n\n    int passed = 0, failed = 0;\n    vector<int> failIdx;\n    vector<string> failIn, failExp, failAct;\n\n    cout << \"========================================\" << endl;\n    cout << \"  编程题2「数字排列」自动测试\" << endl;\n    cout << \"  考生程序: \" << progPath << endl;\n    cout << \"========================================\" << endl;\n    cout << endl;\n\n    for (int i = 0; i < (int)tests.size(); i++) {\n        string actual = runProgram(progPath, tests[i].input);\n        if (actual == tests[i].expected) {\n            passed++;\n            cout << \"  测试 #\" << (i+1) << \": ✅ 通过\" << endl;\n        } else {\n            failed++;\n            failIdx.push_back(i+1);\n            failIn.push_back(trim(tests[i].input));\n            failExp.push_back(tests[i].expected);\n            failAct.push_back(actual);\n            cout << \"  测试 #\" << (i+1) << \": ❌ 未通过\" << endl;\n        }\n    }\n\n    cout << endl;\n    cout << \"----------------------------------------\" << endl;\n    cout << \"  总计: \" << (int)tests.size() << \" 个测试\" << endl;\n    cout << \"  通过: \" << passed << \"  |  未通过: \" << failed << endl;\n    cout << \"----------------------------------------\" << endl;\n\n    if (failed > 0) {\n        cout << endl;\n        cout << \"  ❌ 未通过的测试用例详情:\" << endl;\n        cout << endl;\n        printf(\"  %-6s | %-10s | %-10s | %-10s\\n\", \"编号\", \"输入(N)\", \"期望输出\", \"实际输出\");\n        printf(\"  %s\\n\", \"-------+------------+------------+-----------\");\n        for (int i = 0; i < failed; i++) {\n            printf(\"  #%-5d | %-10s | %-10s | %-10s\\n\",\n                   failIdx[i], failIn[i].c_str(),\n                   failExp[i].c_str(), failAct[i].c_str());\n        }\n        cout << endl;\n    } else {\n        cout << endl << \"  🎉 全部测试通过！\" << endl << endl;\n    }\n\n    return failed > 0 ? 1 : 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}
