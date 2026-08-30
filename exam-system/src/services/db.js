@@ -98,6 +98,48 @@ const DEFAULT_SETTINGS = {
   ai_model: 'qwen-local'
 };
 
+// 数据库结构版本号。仅当未来需要"改表结构"时才 +1 并往 MIGRATIONS 加迁移函数。
+// 本次 AI 功能是纯增量（只加 settings 键），不改表结构，故保持 1。
+const CURRENT_SCHEMA_VERSION = 1;
+
+// 迁移钩子：key=目标版本号，value=(db)=>{...}。当前为空。
+const MIGRATIONS = {
+  // 2: (db) => { /* 未来改表结构的迁移写这里 */ },
+};
+
+// 升级前备份：落盘 WAL 后复制主库为带时间戳快照。返回备份文件路径。
+function backupDb(db) {
+  const file = db.name;
+  db.pragma('wal_checkpoint(TRUNCATE)');
+  const ts = new Date().toISOString().replace(/[:.]/g, '-');
+  const bak = file + '.bak-' + ts;
+  fs.copyFileSync(file, bak);
+  return bak;
+}
+
+// 幂等迁移。返回 { migrated, backup }。
+//   stored 缺失(=0) → 首次版本化，直接写为 current，不迁移不备份；
+//   stored===current → 无需处理；
+//   0<stored<current → 先备份，再按序跑 migrations[stored+1..current]，最后升版本。
+function ensureMigrated(db, migrations, current) {
+  migrations = migrations || MIGRATIONS;
+  current = current || CURRENT_SCHEMA_VERSION;
+  const row = db.prepare('SELECT value FROM settings WHERE key=?').get('schema_version');
+  const stored = row ? parseInt(row.value, 10) : 0;
+  if (stored === current) return { migrated: false, backup: null };
+  if (stored === 0) {
+    db.prepare('INSERT OR REPLACE INTO settings(key,value) VALUES(?,?)').run('schema_version', String(current));
+    return { migrated: false, backup: null };
+  }
+  const backup = backupDb(db);
+  for (let v = stored + 1; v <= current; v++) {
+    const fn = migrations[v];
+    if (fn) fn(db);
+  }
+  db.prepare('INSERT OR REPLACE INTO settings(key,value) VALUES(?,?)').run('schema_version', String(current));
+  return { migrated: true, backup };
+}
+
 let _db = null;
 
 function open(dbFile) {
@@ -111,6 +153,7 @@ function open(dbFile) {
   // SQLITE_CONSTRAINT_FOREIGNKEY。数据完整性由各服务逻辑保证，这里显式关闭。
   db.pragma('foreign_keys = OFF');
   db.exec(SCHEMA);
+  ensureMigrated(db, MIGRATIONS, CURRENT_SCHEMA_VERSION);
   const ins = db.prepare('INSERT OR IGNORE INTO settings(key, value) VALUES (?, ?)');
   for (const [k, v] of Object.entries(DEFAULT_SETTINGS)) ins.run(k, v);
   return db;
@@ -135,4 +178,4 @@ function allSettings() {
   return Object.fromEntries(get().prepare('SELECT key, value FROM settings').all().map(r => [r.key, r.value]));
 }
 
-module.exports = { init, get, close, getSetting, getSettingInt, setSetting, allSettings, DEFAULT_SETTINGS };
+module.exports = { init, get, close, getSetting, getSettingInt, setSetting, allSettings, DEFAULT_SETTINGS, CURRENT_SCHEMA_VERSION, MIGRATIONS, ensureMigrated };
