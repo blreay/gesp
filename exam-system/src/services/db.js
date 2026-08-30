@@ -107,36 +107,44 @@ const MIGRATIONS = {
   // 2: (db) => { /* 未来改表结构的迁移写这里 */ },
 };
 
-// 升级前备份：落盘 WAL 后复制主库为带时间戳快照。返回备份文件路径。
+// 升级前备份：用 SQLite VACUUM INTO 生成原子一致快照（3.27+）。返回备份路径。
 function backupDb(db) {
-  const file = db.name;
-  db.pragma('wal_checkpoint(TRUNCATE)');
   const ts = new Date().toISOString().replace(/[:.]/g, '-');
-  const bak = file + '.bak-' + ts;
-  fs.copyFileSync(file, bak);
+  const bak = db.name + '.bak-' + ts;
+  db.prepare('VACUUM INTO ?').run(bak);
   return bak;
 }
 
 // 幂等迁移。返回 { migrated, backup }。
 //   stored 缺失(=0) → 首次版本化，直接写为 current，不迁移不备份；
 //   stored===current → 无需处理；
-//   0<stored<current → 先备份，再按序跑 migrations[stored+1..current]，最后升版本。
+//   0<stored<current → 先备份，再在事务里按序跑 migrations[stored+1..current]，最后升版本；
+//   stored>current → 拒绝降级；损坏值 → 抛错。
 function ensureMigrated(db, migrations, current) {
   migrations = migrations || MIGRATIONS;
   current = current || CURRENT_SCHEMA_VERSION;
   const row = db.prepare('SELECT value FROM settings WHERE key=?').get('schema_version');
   const stored = row ? parseInt(row.value, 10) : 0;
+  if (Number.isNaN(stored) || stored < 0) {
+    throw new Error('settings 中 schema_version 损坏: ' + (row ? row.value : ''));
+  }
   if (stored === current) return { migrated: false, backup: null };
   if (stored === 0) {
     db.prepare('INSERT OR REPLACE INTO settings(key,value) VALUES(?,?)').run('schema_version', String(current));
     return { migrated: false, backup: null };
   }
-  const backup = backupDb(db);
-  for (let v = stored + 1; v <= current; v++) {
-    const fn = migrations[v];
-    if (fn) fn(db);
+  if (stored > current) {
+    throw new Error('数据库 schema_version(' + stored + ') 高于当前应用版本(' + current + ')，拒绝降级');
   }
-  db.prepare('INSERT OR REPLACE INTO settings(key,value) VALUES(?,?)').run('schema_version', String(current));
+  const backup = backupDb(db);
+  const runMigrations = db.transaction(() => {
+    for (let v = stored + 1; v <= current; v++) {
+      const fn = migrations[v];
+      if (fn) fn(db);
+    }
+    db.prepare('INSERT OR REPLACE INTO settings(key,value) VALUES(?,?)').run('schema_version', String(current));
+  });
+  runMigrations();
   return { migrated: true, backup };
 }
 

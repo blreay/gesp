@@ -40,3 +40,31 @@ test('迁移: 旧版本升级 → 先备份、跑迁移、升版本', () => {
   assert.strictEqual(dbmod.get().prepare("SELECT value FROM settings WHERE key='schema_version'").get().value, '2');
   dbmod.close(); rmrf(dir);
 });
+
+test('迁移: 迁移函数抛错时事务回滚, 版本不升级', () => {
+  const dir = tmpDir('mig-');
+  const dbmod = require('../src/services/db');
+  dbmod.init(path.join(dir, 't.db'));
+  dbmod.get().prepare("INSERT OR REPLACE INTO settings(key,value) VALUES('schema_version','1')").run();
+  assert.throws(() => dbmod.ensureMigrated(dbmod.get(), { 2: () => { throw new Error('boom'); } }, 2), /boom/);
+  assert.strictEqual(dbmod.get().prepare("SELECT value FROM settings WHERE key='schema_version'").get().value, '1');
+  dbmod.close(); rmrf(dir);
+});
+
+test('迁移: 拒绝降级', () => {
+  const dir = tmpDir('mig-');
+  const dbmod = require('../src/services/db');
+  dbmod.init(path.join(dir, 't.db'));
+  dbmod.get().prepare("INSERT OR REPLACE INTO settings(key,value) VALUES('schema_version','5')").run();
+  assert.throws(() => dbmod.ensureMigrated(dbmod.get(), {}, 1), /拒绝降级/);
+  dbmod.close(); rmrf(dir);
+});
+
+test('迁移: 损坏的 schema_version 抛错', () => {
+  const dir = tmpDir('mig-');
+  const dbmod = require('../src/services/db');
+  dbmod.init(path.join(dir, 't.db'));
+  dbmod.get().prepare("INSERT OR REPLACE INTO settings(key,value) VALUES('schema_version','garbage')").run();
+  assert.throws(() => dbmod.ensureMigrated(dbmod.get(), {}, 1), /损坏/);
+  dbmod.close(); rmrf(dir);
+});
