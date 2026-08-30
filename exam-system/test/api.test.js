@@ -257,6 +257,7 @@ test('api 配置: 含 4 个 AI 键且可保存', async () => {
   assert.strictEqual(r.body.settings.ai_webui_url, 'http://121.40.190.90:3000/');
   assert.strictEqual(r.body.settings.ai_base_url, 'http://121.40.190.90:4000');
   assert.strictEqual(r.body.settings.ai_model, 'qwen-local');
+  assert.strictEqual(r.body.settings.ai_api_key, 'sk-vllm-aaa-bbb');
 
   r = await post(base, '/api/settings', { ai_base_url: 'http://example:9999' });
   assert.strictEqual(r.status, 200);
