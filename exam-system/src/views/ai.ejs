@@ -1,0 +1,20 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<div class="ai-frame-wrap">
+  <iframe id="aiFrame" src="<%= webuiUrl %>" title="AI问答"></iframe>
+  <div class="ai-frame-fallback" id="aiFallback" style="display:none">
+    若此处长时间空白，可能是目标站点不允许被嵌入（设置了 X-Frame-Options）。
+    请 <a id="aiOpenNew" href="<%= webuiUrl %>" target="_blank" rel="noopener">在新标签页打开</a>。
+  </div>
+</div>
+<script>
+(function () {
+  var fb = document.getElementById('aiFallback');
+  var frame = document.getElementById('aiFrame');
+  var t = setTimeout(function () { fb.style.display = 'block'; }, 4000);
+  frame.addEventListener('load', function () { clearTimeout(t); });
+  frame.addEventListener('error', function () { fb.style.display = 'block'; });
+})();
+</script>
+<%- include('partials/foot', { extraJs: extraJs }) %>

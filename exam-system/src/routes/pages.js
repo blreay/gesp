@@ -198,6 +198,15 @@ router.get('/stats', (req, res) => {
   });
 });
 
+router.get('/ai', (req, res) => {
+  const settings = db.allSettings();
+  res.render('ai', {
+    title: 'AI问答', activeNav: 'ai',
+    extraCss: ['/css/app.css'], extraJs: [],
+    webuiUrl: settings.ai_webui_url
+  });
+});
+
 router.get('/settings', (req, res) => {
   res.render('settings', {
     title: '系统配置', activeNav: 'settings',

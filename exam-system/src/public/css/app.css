@@ -311,3 +311,11 @@ body { background: var(--neutral-25); }
   .wrong-card { flex-direction: column; gap: 10px; }
   .wc-actions { flex-direction: row; }
 }
+
+/* AI问答 整页 iframe */
+.ai-frame-wrap { position: relative; height: calc(100vh - 60px); }
+.ai-frame-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+.ai-frame-fallback { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  background: #fff; border: 1px solid var(--neutral-150); border-radius: var(--r-md);
+  padding: 18px 24px; font-size: 14px; color: var(--neutral-500); box-shadow: var(--shadow-md); max-width: 480px; }
+.ai-frame-fallback a { color: var(--brand-500); }
