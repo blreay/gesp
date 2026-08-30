@@ -91,7 +91,11 @@ const DEFAULT_SETTINGS = {
   remind_before_minutes: '30',
   remind_interval_minutes: '10',
   judge_compile_timeout_sec: '30',
-  judge_run_timeout_sec: '60'
+  judge_run_timeout_sec: '60',
+  ai_webui_url: 'http://121.40.190.90:3000/',
+  ai_base_url: 'http://121.40.190.90:4000',
+  ai_api_key: 'sk-vllm-aaa-bbb',
+  ai_model: 'qwen-local'
 };
 
 let _db = null;

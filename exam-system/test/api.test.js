@@ -246,3 +246,20 @@ test('api: 试卷详情返回完整卷面（含各题型）', async () => {
   assert.strictEqual(detail404.status, 404);
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api 配置: 含 4 个 AI 键且可保存', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  let r = await get(base, '/api/settings');
+  assert.strictEqual(r.status, 200);
+  for (const k of ['ai_webui_url', 'ai_base_url', 'ai_api_key', 'ai_model']) {
+    assert.ok(k in r.body.settings, '应有 ' + k);
+  }
+  assert.strictEqual(r.body.settings.ai_webui_url, 'http://121.40.190.90:3000/');
+  assert.strictEqual(r.body.settings.ai_base_url, 'http://121.40.190.90:4000');
+  assert.strictEqual(r.body.settings.ai_model, 'qwen-local');
+
+  r = await post(base, '/api/settings', { ai_base_url: 'http://example:9999' });
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(db.getSetting('ai_base_url'), 'http://example:9999');
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
