@@ -63,6 +63,7 @@
       </div>
       <div class="wc-actions">
         <button class="btn btn-ghost btn-note">添加备注</button>
+        <button class="btn btn-ghost btn-ai">AI解析</button>
         <% if (w.status === 'active') { %><button class="btn btn-ghost btn-master">标记掌握</button><% } %>
         <button class="btn btn-ghost btn-del">删除</button>
       </div>
@@ -79,6 +80,22 @@
     <div style="margin-top:14px">
       <button class="btn btn-primary" id="btnSaveNote">保存</button>
       <button class="btn btn-ghost" id="btnCancelNote" style="margin-left:10px">取消</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="aiModal">
+  <div class="modal-box ai-modal-box">
+    <div class="ai-modal-head">
+      <h3>🤖 AI解析 · 错题 <span id="aiWrongId"></span></h3>
+      <button class="ai-x" id="btnAiCloseX" title="关闭">✕</button>
+    </div>
+    <div class="ai-history" id="aiHistory"></div>
+    <textarea class="ai-input" id="aiInput" placeholder="输入追问…（Enter 发送）"></textarea>
+    <div class="ai-actions">
+      <button class="btn btn-primary" id="btnAiSend">发送</button>
+      <button class="btn btn-ghost" id="btnAiCopy" disabled>📋 复制到备注</button>
+      <button class="btn btn-ghost" id="btnAiClose">关闭</button>
     </div>
   </div>
 </div>
