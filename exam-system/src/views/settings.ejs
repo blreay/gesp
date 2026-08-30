@@ -17,6 +17,18 @@
       <input type="number" id="judge_compile_timeout_sec" value="<%= settings.judge_compile_timeout_sec %>" min="5"></div>
     <div class="set-row"><label>评测运行超时（秒）</label>
       <input type="number" id="judge_run_timeout_sec" value="<%= settings.judge_run_timeout_sec %>" min="5"></div>
+  </div>
+
+  <div class="settings-card">
+    <h3>AI 服务</h3>
+    <div class="set-row"><label>AI问答（Open WebUI）地址</label>
+      <input type="text" id="ai_webui_url" value="<%= settings.ai_webui_url %>"></div>
+    <div class="set-row"><label>liteLLM 基础地址（AI解析）</label>
+      <input type="text" id="ai_base_url" value="<%= settings.ai_base_url %>"></div>
+    <div class="set-row"><label>liteLLM API Key</label>
+      <input type="text" id="ai_api_key" value="<%= settings.ai_api_key %>"></div>
+    <div class="set-row"><label>模型名</label>
+      <input type="text" id="ai_model" value="<%= settings.ai_model %>"></div>
     <div style="margin-top:16px">
       <button class="btn btn-primary" id="btnSave">保存配置</button>
       <button class="btn btn-ghost" id="btnReset" style="margin-left:10px">恢复默认</button>
