@@ -65,8 +65,10 @@
   let aiBusy = false;
   let aiTarget = null;          // 当前错题 id
   let aiConfig = null;          // 首次 openAi 拿到的 config，供追问复用
+  let aiAbort = null;           // AbortController，用于取消进行中的流
+  let aiRun = 0;                // 代际守卫：防止旧流的回调污染新会话
 
-  function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   // 把 ``` 围栏转成 <pre>，其余转义
   function renderAiText(s) {
     return String(s).split('```').map((part, i) =>
@@ -83,6 +85,9 @@
   }
 
   async function openAi(wrongId) {
+    if (aiAbort) { try { aiAbort.abort(); } catch (e) {} }
+    aiRun++;
+    aiBusy = false; btnAiSend.disabled = false; btnAiSend.textContent = '发送';
     aiTarget = wrongId;
     document.getElementById('aiWrongId').textContent = '#' + wrongId;
     aiHistory.innerHTML = '';
@@ -103,7 +108,10 @@
   }
 
   async function streamAi(config) {
+    const myRun = aiRun;
     aiBusy = true; btnAiSend.disabled = true; btnAiSend.textContent = 'AI 正在回答…';
+    const controller = new AbortController();
+    aiAbort = controller;
     const bubble = addBubble('ai', '', true);
     let acc = '';
     try {
@@ -114,7 +122,8 @@
           'x-api-key': config.apiKey,
           'anthropic-version': '2023-06-01'
         },
-        body: JSON.stringify({ model: config.model, max_tokens: 2048, messages: aiMessages, stream: true })
+        body: JSON.stringify({ model: config.model, max_tokens: 2048, messages: aiMessages, stream: true }),
+        signal: controller.signal
       });
       if (!resp.ok) throw new Error('AI 服务返回 HTTP ' + resp.status);
       const reader = resp.body.getReader();
@@ -140,13 +149,18 @@
         }
       }
       if (!acc) throw new Error('AI 未返回内容');
+      if (myRun !== aiRun) return;   // 已有更新的会话，丢弃本次结果
       aiMessages.push({ role: 'assistant', content: acc });
       btnAiCopy.disabled = false;
     } catch (e) {
+      if (e.name === 'AbortError') return;
       bubble.remove();
-      addBubble('err', '无法连接 AI 服务：' + e.message + '。请检查系统配置里的 AI 设置或稍后再试。', false);
+      if (myRun === aiRun) addBubble('err', '无法连接 AI 服务：' + e.message + '。请检查系统配置里的 AI 设置或稍后再试。', false);
     } finally {
-      aiBusy = false; btnAiSend.disabled = false; btnAiSend.textContent = '发送';
+      if (myRun === aiRun) {
+        aiAbort = null;
+        aiBusy = false; btnAiSend.disabled = false; btnAiSend.textContent = '发送';
+      }
     }
   }
 
@@ -180,12 +194,17 @@
     const merged = (existing ? existing + '\n' : '') + '---\n【AI解析】\n' + content;
     try {
       await App.patchJSON('/api/wrong/' + aiTarget, { note: merged });
+      if (card) card.dataset.note = merged;   // 同步 DOM，防止快速连续复制时丢失
       App.toast('AI 解析已追加到备注');
       setTimeout(() => location.reload(), 400);
     } catch (e) { App.toast('保存失败：' + e.message, true); }
   });
 
-  function closeAi() { aiModal.classList.remove('show'); aiMessages = []; aiTarget = null; aiConfig = null; }
+  function closeAi() {
+    if (aiAbort) { try { aiAbort.abort(); } catch (e) {} }
+    aiRun++;
+    aiModal.classList.remove('show'); aiMessages = []; aiTarget = null; aiConfig = null;
+  }
   document.getElementById('btnAiClose').addEventListener('click', closeAi);
   document.getElementById('btnAiCloseX').addEventListener('click', closeAi);
   aiModal.addEventListener('click', (e) => { if (e.target === aiModal) closeAi(); });
