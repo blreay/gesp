@@ -321,9 +321,9 @@ body { background: var(--neutral-25); }
 .ai-frame-fallback a { color: var(--brand-500); }
 
 /* AI解析 对话窗 */
-.ai-modal-box { max-width: 720px; width: 94%; display: flex; flex-direction: column; max-height: 86vh; }
+.modal-box.ai-modal-box { max-width: 720px; width: 94%; display: flex; flex-direction: column; max-height: 86vh; }
 .ai-modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
-.ai-modal-head h3 { margin: 0; font-size: 18px; color: var(--brand-800); }
+.ai-modal-box .ai-modal-head h3 { margin: 0; font-size: 18px; color: var(--brand-800); }
 .ai-x { background: transparent; border: none; font-size: 18px; color: var(--neutral-400); cursor: pointer; }
 .ai-x:hover { color: var(--danger-600); }
 .ai-history { flex: 1; overflow-y: auto; min-height: 40vh; max-height: 50vh; display: flex; flex-direction: column; gap: 10px;
