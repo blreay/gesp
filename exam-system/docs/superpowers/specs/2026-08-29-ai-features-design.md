@@ -120,7 +120,7 @@
 
 | 文件 | 改动 |
 |---|---|
-| `src/services/db.js` | `DEFAULT_SETTINGS` 增 4 键 |
+| `src/services/db.js` | `DEFAULT_SETTINGS` 增 4 键；新增 `schema_version` 版本标记 + `MIGRATIONS` 迁移钩子 + `backupDb()` 升级前备份（见 §8） |
 | `src/routes/api.js` | 新增 `GET /api/wrong/:id/ai-context` |
 | `src/routes/pages.js` | 新增 `GET /ai` |
 | `src/views/nav.ejs` | 插【AI问答】导航项 |
@@ -133,9 +133,43 @@
 ## 7. 测试
 
 - 后端可单测：`GET /api/wrong/:id/ai-context` 结构正确（含固定前缀、题干、"你的答案"反查）；`GET /api/settings` 含 4 新键；`ai-context` 对不存在错题返回 404。
+- 迁移机制单测：全新库启动后 `schema_version=1`；预置 `schema_version=0/1` 的库再开不重复迁移；注入一条假 `MIGRATIONS[2]` 验证"先备份再迁移再升版"链路（备份文件生成、版本递增）。
 - 流式/真实 AI 调用无法离线单测 → 归入手工验收清单（含 CORS 失败的错误气泡）。
 
-## 8. 非目标 / 限制
+## 8. 数据库兼容性与升级安全
+
+本次 AI 功能对库是**纯增量**（只往 `settings` 加 4 键，不建/不改表），**已有数据 100% 保留**。为长远计，再引入**版本化迁移机制 + 升级前自动备份**，确保今后任何改表结构的升级都不丢数据。
+
+### 8.1 版本标记 `schema_version`
+- `db.js` 增常量 `CURRENT_SCHEMA_VERSION = 1`。
+- `schema_version` 存于 `settings` 表，但**不进 `DEFAULT_SETTINGS`**（避免出现在配置页被误改），由迁移逻辑独占管理。
+- 启动时 `db.exec(SCHEMA)`（幂等建表）后执行 `ensureMigrated()`：
+  - 读已存 `schema_version`；
+  - **缺失（=0，旧库升级或全新库）** → 直接写为 `CURRENT`（表已由幂等 SCHEMA 建好，无需迁移、无需备份）；
+  - **已存 < CURRENT** → **先备份**，再按序执行 `MIGRATIONS[stored+1 .. CURRENT]`，最后更新版本号。
+
+### 8.2 迁移钩子 `MIGRATIONS`
+```js
+const MIGRATIONS = {
+  // 2: (db) => { /* 未来改表结构的迁移写这里 */ },
+  // 3: ...
+};
+```
+当前为空（v1 无结构变更）。以后真要改表结构时，新增对应版本的迁移函数并把 `CURRENT_SCHEMA_VERSION` +1，机制自动接管。
+
+### 8.3 升级前自动备份 `backupDb()`
+- 触发时机：仅当"已存版本 > 0 且 < 当前版本"（即真正要跑结构迁移）时。
+- 动作：`PRAGMA wal_checkpoint(TRUNCATE)` 落盘 WAL → 复制 `exam.db` 为 `exam.db.bak-<时间戳>`。
+- 任何一次结构性升级前自动留快照，可回滚。
+
+### 8.4 本次 AI 升级的实际影响（对线上库）
+- 现有库无 `schema_version` 键 → 首次启动被写为 1，**不触发迁移、不触发备份**（无结构变更）。
+- `settings` 经 `INSERT OR IGNORE` 追加 4 个 AI 键；你已改过的 5 个旧配置**原样保留**。
+- 97 作答 / 32 错题 / 36 提交 / 8 场考试等用户数据不受影响。
+- 启动时 `scan()` 的 `DELETE FROM exams` 只重建题库元数据索引（非用户数据），`foreign_keys=OFF` 不级联、exam_id 不变，既有行为不变。
+- **部署建议**：虽为纯增量，仍建议上线前手动留一份快照（`PRAGMA wal_checkpoint(TRUNCATE); cp exam.db exam.db.bak-$(date +%F)`）。
+
+## 9. 非目标 / 限制
 
 - 不做多用户、鉴权（单用户系统）。
 - AI 对话历史不持久化（关窗即弃）。
