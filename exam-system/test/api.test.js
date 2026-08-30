@@ -264,3 +264,31 @@ test('api 配置: 含 4 个 AI 键且可保存', async () => {
   assert.strictEqual(db.getSetting('ai_base_url'), 'http://example:9999');
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api ai-context: 选择题返回固定前缀+题干+你的答案/正确答案', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  // 造一场已答错的考试：q1 正确答案 B，故意答 A
+  await post(base, '/api/exams/test_paper_01/start');
+  await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'A' });
+  await post(base, '/api/attempts/1/grade', {});   // q1 答错 → 进错题本
+  const list = db.get().prepare("SELECT * FROM wrong_questions WHERE question_id='q1'").get();
+  assert.ok(list, 'q1 应在错题本');
+
+  const r = await get(base, '/api/wrong/' + list.id + '/ai-context');
+  assert.strictEqual(r.status, 200);
+  assert.ok(r.body.message.includes('这是考试错误的一个C++考试题'));
+  assert.ok(r.body.message.includes('【题目】'));
+  assert.ok(r.body.message.includes('你的答案：A'));
+  assert.ok(r.body.message.includes('正确答案：B'));
+  assert.strictEqual(r.body.config.baseUrl, 'http://121.40.190.90:4000');
+  assert.strictEqual(r.body.config.model, 'qwen-local');
+  assert.ok(r.body.config.apiKey);
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
+test('api ai-context: 不存在的错题返回 404', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  const r = await get(base, '/api/wrong/99999/ai-context');
+  assert.strictEqual(r.status, 404);
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});

@@ -266,6 +266,61 @@ router.delete('/wrong/:id', asyncH(async (req, res) => {
   res.json({ ok: true });
 }));
 
+// ---- AI解析：组装首条提示词 ----
+const AI_PREFIX = '这是考试错误的一个C++考试题，请详细解析相关的知识点，并给出防止再次出错的改进办法';
+
+function tfText(v) { return v === true || v === 'true' ? '正确' : '错误'; }
+
+router.get('/wrong/:id/ai-context', asyncH(async (req, res) => {
+  if (!Number.isInteger(Number(req.params.id))) return res.status(400).json({ error: '非法的 ID' });
+  const w = wrongbook.get(Number(req.params.id));
+  if (!w) return res.status(404).json({ error: '错题不存在' });
+  const hit = qb.getQuestion(w.exam_id, w.question_id);
+  if (!hit) return res.status(404).json({ error: '题目已不在题库' });
+  const q = hit.question;
+
+  // 题目块
+  let qBlock = q.stem || q.title || '';
+  if (q.type === 'choice' && q.options) {
+    for (const k of Object.keys(q.options)) qBlock += '\n' + k + '. ' + q.options[k];
+  } else if (q.type === 'programming') {
+    if (q.input_format) qBlock += '\n输入格式：' + q.input_format;
+    if (q.output_format) qBlock += '\n输出格式：' + q.output_format;
+  }
+
+  // 出错信息块：反查用户最近一次作答
+  let errBlock = '';
+  const att = sessions.latestAttempt(w.exam_id);
+  let userAns = null;
+  if (att) {
+    const row = db.get().prepare('SELECT answer FROM exam_answers WHERE attempt_id=? AND question_id=?')
+      .get(att.id, w.question_id);
+    userAns = row ? row.answer : null;
+  }
+  if (q.type === 'programming') {
+    if (userAns) {
+      const sub = db.get().prepare('SELECT code, result_summary FROM prog_submissions WHERE id=?').get(Number(userAns));
+      if (sub) errBlock = '你最近的提交代码：\n```\n' + sub.code + '\n```\n判题结果：\n' + (sub.result_summary || '');
+    }
+    if (!errBlock) errBlock = '（未找到提交记录）';
+  } else {
+    if (userAns !== null && userAns !== undefined && userAns !== '') {
+      const shown = q.type === 'tf' ? tfText(userAns) : userAns;
+      errBlock += '你的答案：' + shown + '（错误）\n';
+    }
+    const correctShown = q.type === 'tf' ? tfText(q.answer) : q.answer;
+    errBlock += '正确答案：' + correctShown;
+    if (q.explanation) errBlock += '\n解析：' + q.explanation;
+  }
+
+  const message = AI_PREFIX + '\n\n【题目】\n' + qBlock + '\n\n【出错信息】\n' + errBlock;
+  const s = db.allSettings();
+  res.json({
+    message,
+    config: { baseUrl: s.ai_base_url, apiKey: s.ai_api_key, model: s.ai_model }
+  });
+}));
+
 // ---- 配置 ----
 const SETTING_KEYS = Object.keys(db.DEFAULT_SETTINGS);
 
