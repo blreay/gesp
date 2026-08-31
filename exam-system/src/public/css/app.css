@@ -384,6 +384,7 @@ body { background: var(--neutral-25); }
 .ai-actions .btn[disabled] { opacity: .5; cursor: not-allowed; }
 
 /* ===== Stats: 每日模拟考试日志 ===== */
+.examlog-card h3 { margin: 0; padding-bottom: 0; border-bottom: none; }
 .examlog-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .examlog-filters select {
   padding: 8px 12px; border: 1px solid var(--neutral-100); border-radius: var(--r-md);
