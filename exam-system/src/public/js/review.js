@@ -102,13 +102,27 @@
 
     btnAiCopy.disabled = true;
     aiInput.value = '';
+    aiInput.placeholder = '';
     aiModal.classList.add('show');
+    // 若该错题已有备注：不再自动请求 AI，只把备注展示出来，等用户输入新问题再手动发送
+    const card = document.querySelector('.wrong-card[data-id="' + wrongId + '"]');
+    const existingNote = card ? (card.dataset.note || '').trim() : '';
     try {
       const ctx = await App.getJSON('/api/wrong/' + wrongId + '/ai-context');
       aiShowThinking = !!(ctx.config && ctx.config.showThinking);
-      aiMessages.push({ role: 'user', content: ctx.message });
-      addBubble('user', ctx.message, false);
-      await streamAi();
+      if (existingNote) {
+        // 把"题目上下文 + 已有备注"作为会话种子（不显示成用户气泡），让追问有上下文
+        aiMessages.push({ role: 'user', content: ctx.message + '\n\n该题已有如下备注：\n' + existingNote });
+        addBubble('note',
+          '<div class="note-ref-title">\u{1F4DD} 该题已有备注，未自动请求 AI；可在下方输入新问题：</div>' +
+          '<div class="note-ref-body">' + renderAiText(existingNote) + '</div>', true);
+        aiInput.placeholder = '输入新问题后点"发送"';
+        aiInput.focus();
+      } else {
+        aiMessages.push({ role: 'user', content: ctx.message });
+        addBubble('user', ctx.message, false);
+        await streamAi();
+      }
     } catch (e) {
       addBubble('err', '无法获取题目上下文：' + e.message, false);
     }
@@ -236,15 +250,28 @@
   document.getElementById('btnAiCloseX').addEventListener('click', closeAi);
   aiModal.addEventListener('click', (e) => { if (e.target === aiModal) closeAi(); });
 
-  // --- Issue 3: floating note popover ---
+  // --- Issue 3: floating note popover（可交互：鼠标移到弹窗上可复制/滚动，不自动消失）---
   const notePreview = document.createElement('div');
   notePreview.className = 'note-preview';
   notePreview.style.display = 'none';
   document.body.appendChild(notePreview);
+  let noteHideTimer = null;
+  const scheduleHidePreview = (delay) => {
+    clearTimeout(noteHideTimer);
+    noteHideTimer = setTimeout(() => { notePreview.style.display = 'none'; }, delay);
+  };
+  const cancelHidePreview = () => clearTimeout(noteHideTimer);
+  // 指针是否落在当前已显示弹窗的矩形范围内（即便 DOM 目标是其下方的其它卡片）
+  const overPreview = (x, y) => {
+    if (notePreview.style.display === 'none') return false;
+    const r = notePreview.getBoundingClientRect();
+    return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+  };
+  // 鼠标在弹窗上时保持显示；移开延时隐藏（留出跨越间隙的时间）
+  notePreview.addEventListener('mouseenter', cancelHidePreview);
+  notePreview.addEventListener('mouseleave', () => scheduleHidePreview(250));
 
-  listEl.addEventListener('mouseover', (e) => {
-    const card = e.target.closest('.wrong-card');
-    if (!card) return;
+  const showNotePreview = (card) => {
     const note = card.dataset.note || '';
     if (!note.trim()) { notePreview.style.display = 'none'; return; }
     notePreview.innerHTML = '';
@@ -263,8 +290,17 @@
     if (top + ph > window.innerHeight - 8) top = Math.max(8, rect.top - ph - 8);
     notePreview.style.left = Math.max(8, left) + 'px';
     notePreview.style.top = top + 'px';
+  };
+
+  listEl.addEventListener('mouseover', (e) => {
+    // 指针仍在当前弹窗范围内：保持弹窗（供复制/滚动），不切换到其它题的备注
+    if (overPreview(e.clientX, e.clientY)) return;
+    const card = e.target.closest('.wrong-card');
+    if (!card) return;
+    cancelHidePreview();
+    showNotePreview(card);
   });
-  listEl.addEventListener('mouseleave', () => { notePreview.style.display = 'none'; });
+  listEl.addEventListener('mouseleave', () => scheduleHidePreview(250));
 
   // --- Issue 4: auto-apply filters on change ---
   const filterForm = document.querySelector('.filter-bar');

@@ -340,6 +340,12 @@ body { background: var(--neutral-25); }
 .ai-thinking summary:hover { color: #666; }
 .ai-thinking-body { color: #999; font-size: 13px; margin-top: 6px; padding-left: 10px;
   border-left: 3px solid #ddd; white-space: pre-wrap; }
+/* AI解析：已有备注的参考气泡（有备注时不自动请求，只展示备注等用户追问） */
+.ai-bubble.note { align-self: flex-start; background: #fffdf2; border: 1px solid #e6d9a8;
+  color: #3d3a2a; max-width: 92%; border-bottom-left-radius: 3px; }
+.note-ref-title { font-size: 13px; color: #8a6d1a; font-weight: 600; margin-bottom: 8px; }
+.note-ref-body { font-size: 13px; line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+  max-height: 220px; overflow-y: auto; }
 .ai-input { margin-top: 10px; min-height: 52px; resize: vertical; padding: 10px 12px; border: 1px solid var(--neutral-150);
   border-radius: var(--r-md); font-size: 14px; font-family: inherit; }
 .ai-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
