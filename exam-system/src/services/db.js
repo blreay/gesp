@@ -80,6 +80,24 @@ CREATE TABLE IF NOT EXISTS prog_submissions (
   created_at INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_progsub_q ON prog_submissions(exam_id, question_id);
+CREATE TABLE IF NOT EXISTS exam_log (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  exam_id TEXT NOT NULL,
+  exam_title TEXT NOT NULL DEFAULT '',
+  nth INTEGER NOT NULL DEFAULT 1,
+  day TEXT NOT NULL,
+  started_at INTEGER NOT NULL,
+  submitted_at INTEGER NOT NULL,
+  auto_submitted INTEGER NOT NULL DEFAULT 0,
+  total_score INTEGER NOT NULL DEFAULT 0,
+  prog_total INTEGER NOT NULL DEFAULT 0,
+  prog_submitted INTEGER NOT NULL DEFAULT 0,
+  prog_passed INTEGER NOT NULL DEFAULT 0,
+  all_done INTEGER NOT NULL DEFAULT 0,
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_examlog_day ON exam_log(day);
+CREATE INDEX IF NOT EXISTS idx_examlog_exam ON exam_log(exam_id);
 CREATE TABLE IF NOT EXISTS settings (
   key TEXT PRIMARY KEY,
   value TEXT NOT NULL
@@ -100,13 +118,31 @@ const DEFAULT_SETTINGS = {
   ai_max_tokens: '8192'
 };
 
-// 数据库结构版本号。仅当未来需要"改表结构"时才 +1 并往 MIGRATIONS 加迁移函数。
-// 本次 AI 功能是纯增量（只加 settings 键），不改表结构，故保持 1。
-const CURRENT_SCHEMA_VERSION = 1;
+// 数据库结构版本号。版本2：新增 exam_log 表。
+const CURRENT_SCHEMA_VERSION = 2;
 
-// 迁移钩子：key=目标版本号，value=(db)=>{...}。当前为空。
+// 迁移钩子：key=目标版本号，value=(db)=>{...}。
 const MIGRATIONS = {
-  // 2: (db) => { /* 未来改表结构的迁移写这里 */ },
+  2: (db) => {
+    db.exec(`CREATE TABLE IF NOT EXISTS exam_log (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      exam_id TEXT NOT NULL,
+      exam_title TEXT NOT NULL DEFAULT '',
+      nth INTEGER NOT NULL DEFAULT 1,
+      day TEXT NOT NULL,
+      started_at INTEGER NOT NULL,
+      submitted_at INTEGER NOT NULL,
+      auto_submitted INTEGER NOT NULL DEFAULT 0,
+      total_score INTEGER NOT NULL DEFAULT 0,
+      prog_total INTEGER NOT NULL DEFAULT 0,
+      prog_submitted INTEGER NOT NULL DEFAULT 0,
+      prog_passed INTEGER NOT NULL DEFAULT 0,
+      all_done INTEGER NOT NULL DEFAULT 0,
+      created_at INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_examlog_day ON exam_log(day);
+    CREATE INDEX IF NOT EXISTS idx_examlog_exam ON exam_log(exam_id);`);
+  },
 };
 
 // 升级前备份：用 SQLite VACUUM INTO 生成原子一致快照（3.27+）。返回备份路径。
