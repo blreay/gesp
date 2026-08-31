@@ -5,6 +5,7 @@ const db = require('../services/db');
 const qb = require('../services/questionbank');
 const countdown = require('../services/countdown');
 const statsService = require('../services/stats');
+const examlog = require('../services/examlog');
 const sessions = require('../services/examsessions');
 
 function esc(s) {
@@ -189,7 +190,8 @@ router.get('/stats', (req, res) => {
     knowledge: statsService.knowledgeAccuracy(),
     types: statsService.typeBreakdown(),
     levels: statsService.levelDistribution(),
-    prog: statsService.progStats()
+    prog: statsService.progStats(),
+    examLog: examlog.list()
   };
   res.render('stats', {
     title: '数据统计', activeNav: 'stats',

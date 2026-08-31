@@ -30,6 +30,22 @@
       <% }); %>
     </div>
   </div>
+
+  <div class="settings-card examlog-card">
+    <div class="examlog-head">
+      <h3>🗓️ 每日模拟考试日志</h3>
+      <div class="examlog-filters">
+        <select id="logGranularity" aria-label="日志粒度">
+          <option value="all">全部</option>
+          <option value="day">按日</option>
+          <option value="week">按周</option>
+          <option value="month">按月</option>
+        </select>
+        <select id="logPeriod" aria-label="日志周期" style="display:none"></select>
+      </div>
+    </div>
+    <div id="logList"></div>
+  </div>
 </main>
 
 <script>window.STATS = <%- JSON.stringify(data).replace(/<\//g, '<\\/') %>;</script>

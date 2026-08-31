@@ -333,3 +333,16 @@ test('api exam-log: 判卷写日志；预览不写；retake 后 nth 递增；自
 
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api exam-log: 统计页包含考试日志区', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  await post(base, '/api/exams/test_paper_01/start');
+  await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
+  await post(base, '/api/attempts/1/grade', {});
+  const r = await fetch(base + '/stats');
+  const html = await r.text();
+  assert.strictEqual(r.status, 200);
+  assert.ok(html.includes('每日模拟考试日志'));
+  assert.ok(html.includes('logGranularity'));
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});

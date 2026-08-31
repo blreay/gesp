@@ -382,3 +382,22 @@ body { background: var(--neutral-25); }
   border-radius: var(--r-md); font-size: 14px; font-family: inherit; }
 .ai-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
 .ai-actions .btn[disabled] { opacity: .5; cursor: not-allowed; }
+
+/* ===== Stats: 每日模拟考试日志 ===== */
+.examlog-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.examlog-filters select {
+  padding: 8px 12px; border: 1px solid var(--neutral-100); border-radius: var(--r-md);
+  font-size: 13px; margin-left: 8px; min-height: 38px; background: #fff; }
+.examlog-day { font-weight: 700; color: var(--brand-800); margin: 14px 0 4px;
+  padding-bottom: 4px; border-bottom: 1px solid var(--neutral-75); }
+.examlog-row { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center;
+  padding: 7px 4px; font-size: 13px; border-bottom: 1px dashed var(--neutral-50); }
+.examlog-title { font-weight: 600; color: var(--neutral-700); }
+.examlog-nth { color: var(--neutral-300); }
+.examlog-time { color: var(--neutral-400); font-family: var(--font-code); }
+.examlog-score { font-weight: 700; color: var(--danger-600); }
+.examlog-prog { color: var(--neutral-500); }
+.examlog-done.ok { color: var(--success-500); font-weight: 600; }
+.examlog-done.bad { color: var(--neutral-300); }
+.examlog-auto { color: var(--warning-500); font-size: 12px; border: 1px solid var(--warning-400);
+  border-radius: var(--r-pill); padding: 1px 8px; }
