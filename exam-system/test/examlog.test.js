@@ -143,3 +143,23 @@ test('examlog.backfill: 题库缺失的卷兜底为标题=exam_id、计数=0', (
   assert.strictEqual(row.total_score, 60);
   db.close(); rmrf(dir);
 });
+
+test('examlog.backfill: 事务回滚——中途失败不写入任何行、闸门不设置', () => {
+  const dir = tmpDir('examlog-bf-tx-');
+  const db = require('../src/services/db');
+  db.init(path.join(dir, 't.db'));
+  const d = db.get();
+  const start = Date.parse('2026-08-28T09:00:00'), end = Date.parse('2026-08-28T10:00:00');
+  d.prepare(`INSERT INTO exam_attempts(exam_id, status, started_at, submitted_at, auto_submitted, total_score)
+    VALUES ('ghost','graded',?,?,0,50)`).run(start, end);
+  // 把 exam_log 表改名，使事务内的 INSERT 失败
+  d.exec('ALTER TABLE exam_log RENAME TO exam_log_hidden');
+  const examlog = require('../src/services/examlog');
+  assert.throws(() => examlog.backfillIfNeeded(), /no such table/);
+  // 事务回滚：闸门不应被设置
+  assert.notStrictEqual(db.getSetting('exam_log_backfilled'), '1', '闸门不应设置');
+  // 恢复表名，验证无残留行
+  d.exec('ALTER TABLE exam_log_hidden RENAME TO exam_log');
+  assert.strictEqual(d.prepare('SELECT COUNT(*) c FROM exam_log').get().c, 0, '不应有残留日志行');
+  db.close(); rmrf(dir);
+});
