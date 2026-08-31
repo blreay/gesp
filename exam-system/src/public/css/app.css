@@ -297,7 +297,39 @@ body { background: var(--neutral-25); }
   background: #fff; border: 1px solid #e3e9f0; border-radius: 10px; box-shadow: 0 12px 34px rgba(20,40,60,.2);
   padding: 12px 16px; font-size: 13px; color: #444; }
 .note-preview-title { font-weight: bold; color: #1a5276; margin-bottom: 8px; font-size: 13px; }
-.note-preview div:last-child { white-space: pre-wrap; line-height: 1.8; }
+.note-preview-body { line-height: 1.7; word-break: break-word; }
+
+/* ===== 简单 markdown 渲染（备注悬浮窗 / AI解析中的已有备注） ===== */
+.note-preview-body h1, .note-preview-body h2, .note-preview-body h3,
+.note-preview-body h4, .note-preview-body h5, .note-preview-body h6,
+.note-ref-body h1, .note-ref-body h2, .note-ref-body h3,
+.note-ref-body h4, .note-ref-body h5, .note-ref-body h6 {
+  font-weight: 700; color: #1a5276; margin: 10px 0 4px; line-height: 1.4; }
+.note-preview-body h1, .note-ref-body h1 { font-size: 16px; }
+.note-preview-body h2, .note-ref-body h2 { font-size: 15px; }
+.note-preview-body h3, .note-ref-body h3 { font-size: 14px; }
+.note-preview-body h4, .note-ref-body h4,
+.note-preview-body h5, .note-ref-body h5,
+.note-preview-body h6, .note-ref-body h6 { font-size: 13px; }
+.note-preview-body h1:first-child, .note-preview-body h2:first-child, .note-preview-body h3:first-child,
+.note-ref-body h1:first-child, .note-ref-body h2:first-child, .note-ref-body h3:first-child { margin-top: 0; }
+.note-preview-body p, .note-ref-body p { margin: 5px 0; }
+.note-preview-body ul, .note-preview-body ol, .note-ref-body ul, .note-ref-body ol { margin: 5px 0; padding-left: 22px; }
+.note-preview-body li, .note-ref-body li { margin: 2px 0; }
+.note-preview-body code, .note-ref-body code {
+  background: #f0f3f6; border: 1px solid #e0e5ea; border-radius: 4px;
+  padding: 0 4px; font-family: var(--font-code); font-size: 12px; color: #c0392b; }
+.note-preview-body pre, .note-ref-body pre {
+  background: #282c34; color: #abb2bf; padding: 8px 10px; border-radius: 6px;
+  overflow-x: auto; margin: 6px 0; }
+.note-preview-body pre code, .note-ref-body pre code {
+  background: none; border: none; padding: 0; color: inherit; font-size: 12px; white-space: pre; }
+.note-preview-body blockquote, .note-ref-body blockquote {
+  margin: 6px 0; padding: 2px 10px; color: #777; border-left: 3px solid #ccd6e0; background: #f7f9fb; }
+.note-preview-body hr, .note-ref-body hr { border: none; border-top: 1px solid #dfe5ec; margin: 8px 0; }
+.note-preview-body a, .note-ref-body a { color: #2471a3; text-decoration: none; }
+.note-preview-body a:hover, .note-ref-body a:hover { text-decoration: underline; }
+.note-preview-body strong, .note-ref-body strong { font-weight: 700; }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
@@ -344,7 +376,7 @@ body { background: var(--neutral-25); }
 .ai-bubble.note { align-self: flex-start; background: #fffdf2; border: 1px solid #e6d9a8;
   color: #3d3a2a; max-width: 92%; border-bottom-left-radius: 3px; }
 .note-ref-title { font-size: 13px; color: #8a6d1a; font-weight: 600; margin-bottom: 8px; }
-.note-ref-body { font-size: 13px; line-height: 1.7; white-space: pre-wrap; word-break: break-word;
+.note-ref-body { font-size: 13px; line-height: 1.7; word-break: break-word;
   max-height: 220px; overflow-y: auto; }
 .ai-input { margin-top: 10px; min-height: 52px; resize: vertical; padding: 10px 12px; border: 1px solid var(--neutral-150);
   border-radius: var(--r-md); font-size: 14px; font-family: inherit; }
