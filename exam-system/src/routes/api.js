@@ -321,6 +321,59 @@ router.get('/wrong/:id/ai-context', asyncH(async (req, res) => {
   });
 }));
 
+// ---- AI对话代理（避免前端直连 HTTP 的 liteLLM 触发混合内容拦截）----
+// 前端把对话 messages 发给本端点（同源），由后端转发到 liteLLM 并以 SSE 流式回传。
+router.post('/ai/chat', asyncH(async (req, res) => {
+  const messages = req.body && req.body.messages;
+  if (!Array.isArray(messages) || messages.length === 0) return res.status(400).json({ error: 'messages 不能为空' });
+  const s = db.allSettings();
+  const baseUrl = String(s.ai_base_url || '').replace(/\/$/, '');
+  if (!baseUrl) return res.status(400).json({ error: '未配置 ai_base_url' });
+
+  let upstream;
+  try {
+    upstream = await fetch(baseUrl + '/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': s.ai_api_key || '',
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({ model: s.ai_model, max_tokens: 2048, messages, stream: true })
+    });
+  } catch (e) {
+    return res.status(502).json({ error: '无法连接 AI 服务：' + e.message });
+  }
+
+  // 以 SSE 流式把上游响应转发给前端
+  res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.setHeader('X-Accel-Buffering', 'no');
+
+  if (!upstream.ok || !upstream.body) {
+    const txt = await upstream.text().catch(() => '');
+    res.write('data: ' + JSON.stringify({ type: 'error', error: 'AI 服务返回 HTTP ' + upstream.status + (txt ? '：' + txt.slice(0, 300) : '') }) + '\n\n');
+    res.end();
+    return;
+  }
+  const reader = upstream.body.getReader();
+  const dec = new TextDecoder();
+  req.on('close', () => { try { reader.cancel(); } catch (e) {} });
+  (async () => {
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        res.write(dec.decode(value, { stream: true }));
+      }
+      res.end();
+    } catch (e) {
+      try { res.end(); } catch (e2) {}
+    }
+  })();
+}));
+
 // ---- 配置 ----
 const SETTING_KEYS = Object.keys(db.DEFAULT_SETTINGS);
 

@@ -64,7 +64,6 @@
   let aiMessages = [];          // [{role, content}]
   let aiBusy = false;
   let aiTarget = null;          // 当前错题 id
-  let aiConfig = null;          // 首次 openAi 拿到的 config，供追问复用
   let aiAbort = null;           // AbortController，用于取消进行中的流
   let aiRun = 0;                // 代际守卫：防止旧流的回调污染新会话
 
@@ -92,22 +91,21 @@
     document.getElementById('aiWrongId').textContent = '#' + wrongId;
     aiHistory.innerHTML = '';
     aiMessages = [];
-    aiConfig = null;
+
     btnAiCopy.disabled = true;
     aiInput.value = '';
     aiModal.classList.add('show');
     try {
       const ctx = await App.getJSON('/api/wrong/' + wrongId + '/ai-context');
-      aiConfig = ctx.config;
       aiMessages.push({ role: 'user', content: ctx.message });
       addBubble('user', ctx.message, false);
-      await streamAi(aiConfig);
+      await streamAi();
     } catch (e) {
       addBubble('err', '无法获取题目上下文：' + e.message, false);
     }
   }
 
-  async function streamAi(config) {
+  async function streamAi() {
     const myRun = aiRun;
     aiBusy = true; btnAiSend.disabled = true; btnAiSend.textContent = 'AI 正在回答…';
     const controller = new AbortController();
@@ -115,17 +113,18 @@
     const bubble = addBubble('ai', '', true);
     let acc = '';
     try {
-      const resp = await fetch(config.baseUrl.replace(/\/$/, '') + '/v1/messages', {
+      // 走同源后端代理，由后端转发到 liteLLM，避免 HTTPS 页面直连 HTTP 的混合内容拦截
+      const resp = await fetch('/api/ai/chat', {
         method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'x-api-key': config.apiKey,
-          'anthropic-version': '2023-06-01'
-        },
-        body: JSON.stringify({ model: config.model, max_tokens: 2048, messages: aiMessages, stream: true }),
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: aiMessages }),
         signal: controller.signal
       });
-      if (!resp.ok) throw new Error('AI 服务返回 HTTP ' + resp.status);
+      if (!resp.ok) {
+        let msg = 'AI 服务返回 HTTP ' + resp.status;
+        try { const j = await resp.json(); if (j && j.error) msg = j.error; } catch (e) {}
+        throw new Error(msg);
+      }
       const reader = resp.body.getReader();
       const dec = new TextDecoder();
       let buf = '';
@@ -141,6 +140,7 @@
           const payload = t.slice(5).trim();
           if (payload === '[DONE]') continue;
           let ev; try { ev = JSON.parse(payload); } catch (e) { continue; }
+          if (ev.type === 'error') throw new Error(ev.error || 'AI 服务返回错误');
           if (ev.type === 'content_block_delta' && ev.delta && ev.delta.text) {
             acc += ev.delta.text;
             bubble.innerHTML = renderAiText(acc);
@@ -172,11 +172,7 @@
     aiMessages.push({ role: 'user', content: text });
     addBubble('user', text, false);
     try {
-      if (!aiConfig) {
-        const ctx = await App.getJSON('/api/wrong/' + aiTarget + '/ai-context');
-        aiConfig = ctx.config;
-      }
-      await streamAi(aiConfig);
+      await streamAi();
     } catch (e) {
       addBubble('err', '无法连接 AI 服务：' + e.message, false);
     }
@@ -203,7 +199,7 @@
   function closeAi() {
     if (aiAbort) { try { aiAbort.abort(); } catch (e) {} }
     aiRun++;
-    aiModal.classList.remove('show'); aiMessages = []; aiTarget = null; aiConfig = null;
+    aiModal.classList.remove('show'); aiMessages = []; aiTarget = null;
   }
   document.getElementById('btnAiClose').addEventListener('click', closeAi);
   document.getElementById('btnAiCloseX').addEventListener('click', closeAi);

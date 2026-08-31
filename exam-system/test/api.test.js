@@ -292,3 +292,12 @@ test('api ai-context: 不存在的错题返回 404', async () => {
   assert.strictEqual(r.status, 404);
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api ai/chat: 空 messages 返回 400（同源代理端点参数校验）', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  const r = await post(base, '/api/ai/chat', { messages: [] });
+  assert.strictEqual(r.status, 400);
+  const r2 = await post(base, '/api/ai/chat', {});
+  assert.strictEqual(r2.status, 400);
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
