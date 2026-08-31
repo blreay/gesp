@@ -95,7 +95,9 @@ const DEFAULT_SETTINGS = {
   ai_webui_url: 'http://121.40.190.90:3000/',
   ai_base_url: 'http://121.40.190.90:4000',
   ai_api_key: 'sk-vllm-aaa-bbb',
-  ai_model: 'qwen-local'
+  ai_model: 'qwen-local',
+  ai_show_thinking: '0',
+  ai_max_tokens: '8192'
 };
 
 // 数据库结构版本号。仅当未来需要"改表结构"时才 +1 并往 MIGRATIONS 加迁移函数。

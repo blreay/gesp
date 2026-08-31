@@ -66,6 +66,7 @@
   let aiTarget = null;          // 当前错题 id
   let aiAbort = null;           // AbortController，用于取消进行中的流
   let aiRun = 0;                // 代际守卫：防止旧流的回调污染新会话
+  let aiShowThinking = true;    // 是否显示思考过程（来自配置，默认显示为折叠）
 
   function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
   // 把 ``` 围栏转成 <pre>，其余转义
@@ -73,6 +74,13 @@
     return String(s).split('```').map((part, i) =>
       i % 2 === 1 ? '<pre>' + escHtml(part.replace(/^\n/, '')) + '</pre>' : escHtml(part)
     ).join('');
+  }
+  // 拆分"思考过程"与"最终答案"：模型的推理在开头，正式解析从第一个标题/分隔线开始。
+  // 返回 { thinking, answer }；找不到分界则 thinking 为空、answer=全文。
+  function splitThinking(text) {
+    const m = String(text).match(/\n(---+|\s*#{1,6}\s)/);
+    if (m) return { thinking: text.slice(0, m.index), answer: text.slice(m.index + 1) };
+    return { thinking: '', answer: text };
   }
   function addBubble(role, html, isHtml) {
     const b = document.createElement('div');
@@ -97,6 +105,7 @@
     aiModal.classList.add('show');
     try {
       const ctx = await App.getJSON('/api/wrong/' + wrongId + '/ai-context');
+      aiShowThinking = !!(ctx.config && ctx.config.showThinking);
       aiMessages.push({ role: 'user', content: ctx.message });
       addBubble('user', ctx.message, false);
       await streamAi();
@@ -105,12 +114,26 @@
     }
   }
 
+  // 在 AI 气泡里创建"思考(可折叠) + 答案"结构，返回各子节点
+  function buildAiBubble(bubble) {
+    bubble.innerHTML =
+      '<details class="ai-thinking"><summary>💭 思考过程</summary><div class="ai-thinking-body"></div></details>' +
+      '<div class="ai-answer"></div>';
+    return {
+      details: bubble.querySelector('.ai-thinking'),
+      thinkingBody: bubble.querySelector('.ai-thinking-body'),
+      answerEl: bubble.querySelector('.ai-answer')
+    };
+  }
+
   async function streamAi() {
     const myRun = aiRun;
     aiBusy = true; btnAiSend.disabled = true; btnAiSend.textContent = 'AI 正在回答…';
     const controller = new AbortController();
     aiAbort = controller;
     const bubble = addBubble('ai', '', true);
+    const parts = buildAiBubble(bubble);
+    parts.details.open = false;   // 思考块默认折叠（"思考折叠"），用户可手动展开
     let acc = '';
     try {
       // 走同源后端代理，由后端转发到 liteLLM，避免 HTTPS 页面直连 HTTP 的混合内容拦截
@@ -140,10 +163,17 @@
           const payload = t.slice(5).trim();
           if (payload === '[DONE]') continue;
           let ev; try { ev = JSON.parse(payload); } catch (e) { continue; }
+          // 后端把上游错误统一包成 {type:'error'}；OpenAI 正常流为 {choices:[{delta:{content}}]}
           if (ev.type === 'error') throw new Error(ev.error || 'AI 服务返回错误');
-          if (ev.type === 'content_block_delta' && ev.delta && ev.delta.text) {
-            acc += ev.delta.text;
-            bubble.innerHTML = renderAiText(acc);
+          const delta = ev.choices && ev.choices[0] && ev.choices[0].delta;
+          if (delta && delta.content) {
+            acc += delta.content;
+            // 仅在"显示思考"模式下拆分推理链并折叠；隐藏模式下模型已关闭思考，
+            // 直接把全部内容作为最终答案展示（不出现思考块）。
+            const split = aiShowThinking ? splitThinking(acc) : { thinking: '', answer: acc };
+            parts.thinkingBody.innerHTML = renderAiText(split.thinking);
+            parts.answerEl.innerHTML = renderAiText(split.answer);
+            parts.details.style.display = (aiShowThinking && split.thinking.trim()) ? '' : 'none';
             aiHistory.scrollTop = aiHistory.scrollHeight;
           }
         }
@@ -184,14 +214,15 @@
   btnAiCopy.addEventListener('click', async () => {
     const last = [...aiMessages].reverse().find(m => m.role === 'assistant');
     if (!last) return;
-    const content = last.content.replace(/\n{3,}/g, '\n\n').trim();
+    // 只复制最终答案（不含思考过程）
+    const content = splitThinking(last.content).answer.replace(/\n{3,}/g, '\n\n').trim();
     const card = document.querySelector('.wrong-card[data-id="' + aiTarget + '"]');
     const existing = card ? (card.dataset.note || '') : '';
     const merged = (existing ? existing + '\n' : '') + '---\n【AI解析】\n' + content;
     try {
       await App.patchJSON('/api/wrong/' + aiTarget, { note: merged });
       if (card) card.dataset.note = merged;   // 同步 DOM，防止快速连续复制时丢失
-      App.toast('AI 解析已追加到备注');
+      App.toast('AI 解析已追加到备注（仅最终答案）');
       setTimeout(() => location.reload(), 400);
     } catch (e) { App.toast('保存失败：' + e.message, true); }
   });

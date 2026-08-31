@@ -283,6 +283,7 @@ test('api ai-context: 选择题返回固定前缀+题干+你的答案/正确答�
   assert.strictEqual(r.body.config.baseUrl, 'http://121.40.190.90:4000');
   assert.strictEqual(r.body.config.model, 'qwen-local');
   assert.ok(r.body.config.apiKey);
+  assert.strictEqual(r.body.config.showThinking, false);   // 默认 ai_show_thinking='0' → 关闭思考
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
 

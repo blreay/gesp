@@ -29,6 +29,13 @@
       <input type="text" id="ai_api_key" value="<%= settings.ai_api_key %>"></div>
     <div class="set-row"><label>模型名</label>
       <input type="text" id="ai_model" value="<%= settings.ai_model %>"></div>
+    <div class="set-row"><label>AI 最大输出长度（max_tokens，越大越不易截断）</label>
+      <input type="number" id="ai_max_tokens" value="<%= settings.ai_max_tokens %>" min="256"></div>
+    <div class="set-row"><label>AI 解析显示"思考过程"（关闭则只显示最终答案）</label>
+      <select id="ai_show_thinking">
+        <option value="1" <%= settings.ai_show_thinking === '1' ? 'selected' : '' %>>显示（折叠，可展开）</option>
+        <option value="0" <%= settings.ai_show_thinking === '0' ? 'selected' : '' %>>隐藏（只显示最终答案）</option>
+      </select></div>
     <div style="margin-top:16px">
       <button class="btn btn-primary" id="btnSave">保存配置</button>
       <button class="btn btn-ghost" id="btnReset" style="margin-left:10px">恢复默认</button>

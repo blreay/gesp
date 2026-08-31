@@ -317,7 +317,7 @@ router.get('/wrong/:id/ai-context', asyncH(async (req, res) => {
   const s = db.allSettings();
   res.json({
     message,
-    config: { baseUrl: s.ai_base_url, apiKey: s.ai_api_key, model: s.ai_model }
+    config: { baseUrl: s.ai_base_url, apiKey: s.ai_api_key, model: s.ai_model, showThinking: s.ai_show_thinking === '1' }
   });
 }));
 
@@ -329,17 +329,26 @@ router.post('/ai/chat', asyncH(async (req, res) => {
   const s = db.allSettings();
   const baseUrl = String(s.ai_base_url || '').replace(/\/$/, '');
   if (!baseUrl) return res.status(400).json({ error: '未配置 ai_base_url' });
+  const showThinking = s.ai_show_thinking === '1';
 
+  // 走 OpenAI 兼容端点（liteLLM/vLLM）。关键：用 chat_template_kwargs.enable_thinking
+  // 控制 Qwen3 的思考过程——关闭则模型直接给出最终答案（不输出推理链、不截断、无冗余），
+  // 开启则输出完整推理链（前端再折叠）。这是同源后端代理，避免前端直连 HTTP 的混合内容拦截。
   let upstream;
   try {
-    upstream = await fetch(baseUrl + '/v1/messages', {
+    upstream = await fetch(baseUrl + '/v1/chat/completions', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'x-api-key': s.ai_api_key || '',
-        'anthropic-version': '2023-06-01'
+        authorization: 'Bearer ' + (s.ai_api_key || '')
       },
-      body: JSON.stringify({ model: s.ai_model, max_tokens: 2048, messages, stream: true })
+      body: JSON.stringify({
+        model: s.ai_model,
+        max_tokens: parseInt(s.ai_max_tokens, 10) || 8192,
+        messages,
+        stream: true,
+        chat_template_kwargs: { enable_thinking: showThinking }
+      })
     });
   } catch (e) {
     return res.status(502).json({ error: '无法连接 AI 服务：' + e.message });

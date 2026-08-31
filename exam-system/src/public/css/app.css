@@ -334,6 +334,12 @@ body { background: var(--neutral-25); }
 .ai-bubble.err { align-self: flex-start; background: #fdecea; color: var(--danger-600); border: 1px solid #f5b7b1; }
 .ai-bubble pre { background: #282c34; color: #abb2bf; padding: 8px 10px; border-radius: 6px; overflow-x: auto;
   font-family: var(--font-code); font-size: 12px; margin: 6px 0; white-space: pre; }
+/* AI 思考过程（可折叠，默认折叠） */
+.ai-thinking { margin-bottom: 8px; }
+.ai-thinking summary { cursor: pointer; color: #999; font-size: 13px; user-select: none; }
+.ai-thinking summary:hover { color: #666; }
+.ai-thinking-body { color: #999; font-size: 13px; margin-top: 6px; padding-left: 10px;
+  border-left: 3px solid #ddd; white-space: pre-wrap; }
 .ai-input { margin-top: 10px; min-height: 52px; resize: vertical; padding: 10px 12px; border: 1px solid var(--neutral-150);
   border-radius: var(--r-md); font-size: 14px; font-family: inherit; }
 .ai-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
