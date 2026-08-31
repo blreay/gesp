@@ -60,6 +60,7 @@
 
 | # | 问题 | 修复 |
 |---|---|---|
+| 0 | **AI解析报"无法连接 AI 服务：Failed to fetch"（URL/key 都对）** | **根因=混合内容拦截**：页面走 HTTPS（公网代理），前端直连 `http://...:4000` 的 liteLLM 被浏览器按 Mixed Content 拦截（无头浏览器控制台复现：`Mixed Content ... blocked`）。**修复**：前端改调同源 `POST /api/ai/chat`，后端转发 liteLLM 并以 SSE 流式回传。已验证：前端调 `/api/ai/chat`（1 次）、直连 liteLLM 0 次 |
 | 1 | AI 对话窗：流式进行中关窗/切换题目会污染状态 | 加 `AbortController` 取消 + 代际守卫（`aiRun`），旧流回调丢弃 |
 | 2 | AI问答 iframe 晚加载时兜底提示不消失 | `load` 事件里同时隐藏兜底 |
 | 3 | AI 弹窗 CSS 特异性依赖源码顺序 | 提升选择器特异性 + 追问输入加 `aria-label` |
@@ -124,7 +125,7 @@ sqlite3 data/exam.db "SELECT value FROM settings WHERE key='schema_version';"  #
 1. **AI 模型响应慢**：`ai_base_url`（qwen-local）实测首 token 约 **150–200 秒**（`message_start` 1s 内返回，之后长时间仅 `ping` 保活）。前端流式逻辑正确、会持续等待并显示打字机效果，但用户需等待较久。这是 AI 后端性能问题，非本系统代码问题。建议：换更快的模型，或在前端增加"预计耗时较长"提示。
 2. **单用户、无鉴权**：本系统为单用户本地工具，无登录/多租户。
 3. **判题非完全沙箱**：仅做超时 + 资源限制（`ulimit`），非完整沙箱。
-4. **前端直连 liteLLM**：`ai_api_key` 会出现在浏览器请求中（前端直连方案的固有特性；单用户场景可接受）。
+4. **AI 请求走同源后端代理**：前端不再直连 liteLLM（避免 HTTPS→HTTP 混合内容拦截），改为 `POST /api/ai/chat` 由后端转发；`ai_api_key` 留在服务端，不再暴露给浏览器。
 
 ---
 
