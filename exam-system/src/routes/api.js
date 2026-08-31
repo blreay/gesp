@@ -9,6 +9,7 @@ const grading = require('../services/grading');
 const wrongbook = require('../services/wrongbook');
 const judge = require('../services/judge');
 const sessions = require('../services/examsessions');
+const examlog = require('../services/examlog');
 
 const BANK_DIR = path.join(__dirname, '..', '..', 'question_bank');
 const asyncH = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -113,11 +114,16 @@ router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
   for (const r of payload.results) {
     if (!r.skipped && !r.correct) { wrongbook.recordWrong(att.exam_id, r.qid, now); wrongAdded.push(r.qid); }
   }
-  d.prepare(`UPDATE exam_attempts SET status = 'graded', submitted_at = ?, auto_submitted = ?,
-    score_choice = ?, score_tf = ?, score_prog = ?, total_score = ? WHERE id = ?`)
-    .run(now, req.body && req.body.auto ? 1 : 0,
-      payload.scored.choice, payload.scored.tf, payload.scored.prog, payload.scored.total, att.id);
-  res.json({ ...payload, wrongAdded, autoSubmitted: !!(req.body && req.body.auto) });
+  const autoSubmitted = !!(req.body && req.body.auto);
+  const finalize = d.transaction(() => {
+    d.prepare(`UPDATE exam_attempts SET status = 'graded', submitted_at = ?, auto_submitted = ?,
+      score_choice = ?, score_tf = ?, score_prog = ?, total_score = ? WHERE id = ?`)
+      .run(now, autoSubmitted ? 1 : 0,
+        payload.scored.choice, payload.scored.tf, payload.scored.prog, payload.scored.total, att.id);
+    examlog.record(att, exam, payload, now, autoSubmitted);
+  });
+  finalize();
+  res.json({ ...payload, wrongAdded, autoSubmitted });
 }));
 
 // ---- 预览判卷（不终局） ----

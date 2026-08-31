@@ -302,3 +302,34 @@ test('api ai/chat: 空 messages 返回 400（同源代理端点参数校验）',
   assert.strictEqual(r2.status, 400);
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api exam-log: 判卷写日志；预览不写；retake 后 nth 递增；自动交卷标记', async () => {
+  const { dir, bank, db, server, base } = await setup();
+
+  // 第 1 场：q1 答对（B），其余未答 → 预览不记、判卷记
+  await post(base, '/api/exams/test_paper_01/start');
+  await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
+  await post(base, '/api/attempts/1/preview', {});
+  assert.strictEqual(db.get().prepare('SELECT COUNT(*) c FROM exam_log').get().c, 0); // 预览不写
+  await post(base, '/api/attempts/1/grade', {});
+  let logs = db.get().prepare('SELECT * FROM exam_log').all();
+  assert.strictEqual(logs.length, 1);
+  assert.strictEqual(logs[0].nth, 1);
+  assert.strictEqual(logs[0].exam_title, '测试卷');
+  assert.strictEqual(logs[0].total_score, 20);
+  assert.strictEqual(logs[0].all_done, 0);      // q2/q3 未答
+  assert.strictEqual(logs[0].prog_total, 1);
+  assert.strictEqual(logs[0].prog_submitted, 0);
+  assert.strictEqual(logs[0].auto_submitted, 0);
+
+  // 第 2 场：retake 后自动交卷判分 → nth=2、auto_submitted=1
+  await post(base, '/api/exams/test_paper_01/retake', {});
+  await post(base, '/api/attempts/2/grade', { auto: true });
+  logs = db.get().prepare('SELECT * FROM exam_log ORDER BY id').all();
+  assert.strictEqual(logs.length, 2);
+  assert.strictEqual(logs[1].nth, 2);
+  assert.strictEqual(logs[1].auto_submitted, 1);
+  assert.strictEqual(logs[1].total_score, 0);   // 全未答
+
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
