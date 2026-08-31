@@ -2,6 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert');
 const path = require('path');
+const fs = require('fs');
 const { tmpDir, rmrf } = require('./helpers');
 
 function setup() {
@@ -78,5 +79,67 @@ test('examlog.record: nth 随同卷递增、跨卷独立；list 按开始时间�
   assert.strictEqual(rows[1].auto_submitted, 1);
   const list = examlog.list();
   assert.deepStrictEqual(list.map(r => r.exam_id), ['e2', 'e1', 'e1']); // started_at 倒序
+  db.close(); rmrf(dir);
+});
+
+// 造一份可用的题库夹具（替换 tester 占位符）
+function makeBank(dir) {
+  const bank = path.join(dir, 'bank');
+  fs.mkdirSync(path.join(bank, '测试分类'), { recursive: true });
+  const src = path.join(__dirname, 'fixtures', 'bank', '测试分类', '测试卷.exam.json');
+  const tester = fs.readFileSync(path.join(__dirname, 'fixtures', 'cpp', 'tester.cpp'), 'utf8');
+  let raw = fs.readFileSync(src, 'utf8');
+  raw = raw.replace('TESTER_PLACEHOLDER_SOURCE', JSON.stringify(tester).slice(1, -1));
+  fs.writeFileSync(path.join(bank, '测试分类', '测试卷.exam.json'), raw);
+  return bank;
+}
+
+test('examlog.backfill: 回填已判卷记录且只跑一次', () => {
+  const dir = tmpDir('examlog-bf-');
+  const db = require('../src/services/db');
+  db.init(path.join(dir, 't.db'));
+  const bank = makeBank(dir);
+  require('../src/services/questionbank').scan(bank);
+
+  const d = db.get();
+  const start = Date.parse('2026-08-30T09:00:00'), end = Date.parse('2026-08-30T10:00:00');
+  d.prepare(`INSERT INTO exam_attempts(exam_id, status, started_at, submitted_at, auto_submitted, score_choice, score_tf, score_prog, total_score)
+    VALUES ('test_paper_01','graded',?,?,0,20,0,0,20)`).run(start, end);
+  d.prepare(`INSERT INTO exam_answers(attempt_id, question_id, answer) VALUES (1,'q1','B')`).run();
+
+  const examlog = require('../src/services/examlog');
+  let r = examlog.backfillIfNeeded();
+  assert.deepStrictEqual(r, { backfilled: true, count: 1 });
+  const rows = d.prepare('SELECT * FROM exam_log').all();
+  assert.strictEqual(rows.length, 1);
+  assert.strictEqual(rows[0].exam_title, '测试卷');
+  assert.strictEqual(rows[0].nth, 1);
+  assert.strictEqual(rows[0].prog_total, 1);
+  assert.strictEqual(rows[0].prog_submitted, 0);
+  assert.strictEqual(rows[0].all_done, 0);          // q2/q3 未答
+  assert.strictEqual(db.getSetting('exam_log_backfilled'), '1');
+
+  r = examlog.backfillIfNeeded();                    // 第二次：闸门生效
+  assert.deepStrictEqual(r, { backfilled: false, count: 0 });
+  assert.strictEqual(d.prepare('SELECT COUNT(*) c FROM exam_log').get().c, 1);
+  db.close(); rmrf(dir);
+});
+
+test('examlog.backfill: 题库缺失的卷兜底为标题=exam_id、计数=0', () => {
+  const dir = tmpDir('examlog-bf2-');
+  const db = require('../src/services/db');
+  db.init(path.join(dir, 't.db'));
+  const d = db.get();
+  const start = Date.parse('2026-08-29T09:00:00'), end = Date.parse('2026-08-29T10:00:00');
+  d.prepare(`INSERT INTO exam_attempts(exam_id, status, started_at, submitted_at, auto_submitted, total_score)
+    VALUES ('ghost_exam','graded',?,?,1,60)`).run(start, end);
+  const examlog = require('../src/services/examlog');
+  examlog.backfillIfNeeded();
+  const row = d.prepare('SELECT * FROM exam_log').get();
+  assert.strictEqual(row.exam_title, 'ghost_exam');
+  assert.strictEqual(row.prog_total, 0);
+  assert.strictEqual(row.all_done, 0);
+  assert.strictEqual(row.auto_submitted, 1);
+  assert.strictEqual(row.total_score, 60);
   db.close(); rmrf(dir);
 });
