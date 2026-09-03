@@ -408,3 +408,11 @@ body { background: var(--neutral-25); }
   background: var(--warning-100); border: 1px solid var(--warning-400); color: var(--neutral-700);
   padding: 10px 16px; border-radius: var(--r-md); margin-bottom: 16px; font-size: 14px; }
 .aiparse-banner .aiparse-abort { min-height: 32px; padding: 4px 14px; font-size: 13px; }
+
+/* ===== Settings: 块状配置行（多行文本域）===== */
+.set-block { padding: 10px 0; border-bottom: 1px dashed var(--neutral-50); }
+.set-block label { display: block; font-size: 14px; color: var(--neutral-600); margin-bottom: 6px; }
+.set-block textarea { width: 100%; min-height: 64px; padding: 8px 12px; border: 1px solid var(--neutral-100);
+  border-radius: var(--r-md); font-size: 13px; font-family: inherit; resize: vertical; }
+.set-row select { padding: 8px 12px; border: 1px solid var(--neutral-100); border-radius: var(--r-md);
+  font-size: 14px; background: #fff; min-height: 38px; }

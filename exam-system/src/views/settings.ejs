@@ -36,9 +36,19 @@
         <option value="1" <%= settings.ai_show_thinking === '1' ? 'selected' : '' %>>显示（折叠，可展开）</option>
         <option value="0" <%= settings.ai_show_thinking === '0' ? 'selected' : '' %>>隐藏（只显示最终答案）</option>
       </select></div>
+    <div class="set-block"><label>AI 解析系统提示词（留空用内置默认）</label>
+      <textarea id="ai_system_prompt"><%= settings.ai_system_prompt %></textarea></div>
+    <div class="set-row"><label>自动 AI 解析（判卷后自动解析本次错题写入备注）</label>
+      <select id="ai_auto_parse">
+        <option value="0" <%= settings.ai_auto_parse === '0' ? 'selected' : '' %>>关闭</option>
+        <option value="1" <%= settings.ai_auto_parse === '1' ? 'selected' : '' %>>开启</option>
+      </select></div>
+    <div class="set-row"><label>AI 解析后台任务并发数</label>
+      <input type="number" id="ai_parse_concurrency" value="<%= settings.ai_parse_concurrency %>" min="1"></div>
     <div style="margin-top:16px">
       <button class="btn btn-primary" id="btnSave">保存配置</button>
       <button class="btn btn-ghost" id="btnReset" style="margin-left:10px">恢复默认</button>
+      <button class="btn btn-primary" id="btnFullParse" style="margin-left:10px">🤖 全量AI解析</button>
     </div>
   </div>
 
