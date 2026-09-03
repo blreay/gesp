@@ -2,6 +2,10 @@
 <%- include('partials/nav', { activeNav: activeNav }) %>
 
 <main class="page-main">
+  <div class="aiparse-banner" id="aiParseBanner" style="display:none">
+    <span id="aiParseText"></span>
+    <button class="btn btn-danger aiparse-abort" id="btnAiParseAbort">终止</button>
+  </div>
   <div class="page-head">
     <h1>🎯 错题复习</h1>
     <button class="btn btn-primary" id="btnPractice">开始练习（按当前筛选）</button>

@@ -348,4 +348,29 @@
     clearTimeout(kwTimer);
     kwTimer = setTimeout(() => filterForm.requestSubmit(), 400);
   });
+
+  // --- AI 自动解析进度提示条（轮询 /api/ai-parse/status）---
+  const aiParseBanner = document.getElementById('aiParseBanner');
+  const aiParseText = document.getElementById('aiParseText');
+  const btnAiParseAbort = document.getElementById('btnAiParseAbort');
+  let aiParseTimer = null;
+  async function pollAiParse() {
+    clearTimeout(aiParseTimer);
+    let st = null;
+    try { st = await App.getJSON('/api/ai-parse/status'); } catch (e) { st = null; }
+    if (st && st.active) {
+      let txt = '自动AI解析任务进行中（' + st.done + '/' + st.total + '）';
+      if (st.failed > 0) txt += '，' + st.failed + ' 个失败';
+      aiParseText.textContent = txt;
+      aiParseBanner.style.display = '';
+      aiParseTimer = setTimeout(pollAiParse, 1500);
+    } else {
+      aiParseBanner.style.display = 'none';
+    }
+  }
+  btnAiParseAbort.addEventListener('click', async () => {
+    try { await App.postJSON('/api/ai-parse/abort', {}); } catch (e) {}
+    pollAiParse();
+  });
+  pollAiParse();
 })();
