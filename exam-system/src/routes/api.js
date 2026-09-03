@@ -379,7 +379,10 @@ router.post('/settings', asyncH(async (req, res) => {
   const b = req.body || {};
   let changed = 0;
   for (const k of SETTING_KEYS) {
-    if (k in b && String(b[k]).trim() !== '') { db.setSetting(k, String(b[k]).trim()); changed++; }
+    if (!(k in b)) continue;
+    const v = String(b[k]).trim();
+    // ai_system_prompt 允许置空（空则由 aicontext 回退内置默认提示词）；其余键仍跳过空值
+    if (v !== '' || k === 'ai_system_prompt') { db.setSetting(k, v); changed++; }
   }
   res.json({ ok: true, changed });
 }));

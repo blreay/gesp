@@ -388,3 +388,14 @@ test('api ai-parse: ai_auto_parse 开启时判卷自动入队', async () => {
   aiparse._resetAiCall();
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api 配置: ai_system_prompt 可置空（回退内置默认）', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  const aictx = require('../src/services/aicontext');
+  await post(base, '/api/settings', { ai_system_prompt: '自定义提示词' });
+  assert.strictEqual(db.getSetting('ai_system_prompt'), '自定义提示词');
+  await post(base, '/api/settings', { ai_system_prompt: '' });
+  assert.strictEqual(db.getSetting('ai_system_prompt'), '');
+  assert.strictEqual(aictx.getSystemPrompt(), aictx.DEFAULT_AI_PROMPT); // 空 → 回退默认
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
