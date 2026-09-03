@@ -11,6 +11,7 @@ const judge = require('../services/judge');
 const sessions = require('../services/examsessions');
 const examlog = require('../services/examlog');
 const aicontext = require('../services/aicontext');
+const aiparse = require('../services/aiparse');
 
 const BANK_DIR = path.join(__dirname, '..', '..', 'question_bank');
 const asyncH = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
@@ -124,6 +125,11 @@ router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
     examlog.record(att, exam, payload, now, autoSubmitted);
   });
   finalize();
+  const s = settingsObj();
+  if (s.ai_auto_parse === '1' && wrongAdded.length) {
+    const ids = wrongAdded.map(qid => wrongbook.getByQuestion(att.exam_id, qid)).filter(Boolean).map(w => w.id);
+    aiparse.enqueue(ids);
+  }
   res.json({ ...payload, wrongAdded, autoSubmitted });
 }));
 
@@ -346,6 +352,20 @@ router.post('/ai/chat', asyncH(async (req, res) => {
       try { res.end(); } catch (e2) {}
     }
   })();
+}));
+
+// ---- AI 自动解析后台任务 ----
+router.get('/ai-parse/status', asyncH(async (req, res) => {
+  res.json(aiparse.status());
+}));
+router.post('/ai-parse/abort', asyncH(async (req, res) => {
+  aiparse.abort();
+  res.json({ ok: true });
+}));
+router.post('/ai-parse/full', asyncH(async (req, res) => {
+  const rows = db.get().prepare("SELECT id FROM wrong_questions WHERE TRIM(COALESCE(note,'')) = ''").all();
+  const queued = aiparse.enqueue(rows.map(r => r.id));
+  res.json({ queued });
 }));
 
 // ---- 配置 ----

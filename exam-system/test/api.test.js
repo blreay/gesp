@@ -346,3 +346,45 @@ test('api exam-log: 统计页包含考试日志区', async () => {
   assert.ok(html.includes('logGranularity'));
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('api ai-parse: full 只入队空备注错题；status/abort 可用', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  const wb = require('../src/services/wrongbook');
+  const aiparse = require('../src/services/aiparse');
+  aiparse._reset();
+  aiparse._setAiCall(async () => 'x');     // 避免真实 AI 调用
+  wb.recordWrong('test_paper_01', 'q1', Date.now());
+  wb.recordWrong('test_paper_01', 'q3', Date.now());
+  const w1 = wb.getByQuestion('test_paper_01', 'q1');
+  wb.setNote(w1.id, '已有备注', '');         // q1 有备注，不应被全量解析
+
+  const full = await post(base, '/api/ai-parse/full', {});
+  assert.strictEqual(full.status, 200);
+  assert.strictEqual(full.body.queued, 1);   // 只有 q3 空备注
+  for (let i = 0; i < 100 && aiparse.status().active; i++) await new Promise(r => setTimeout(r, 20));
+  assert.strictEqual(wb.get(w1.id).note, '已有备注');   // 未被改动
+
+  const st = await get(base, '/api/ai-parse/status');
+  assert.strictEqual(st.status, 200);
+  assert.ok(typeof st.body.total === 'number');
+  const ab = await post(base, '/api/ai-parse/abort', {});
+  assert.strictEqual(ab.body.ok, true);
+  aiparse._resetAiCall();
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
+test('api ai-parse: ai_auto_parse 开启时判卷自动入队', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  const aiparse = require('../src/services/aiparse');
+  aiparse._reset();
+  aiparse._setAiCall(async () => 'x');
+  await post(base, '/api/settings', { ai_auto_parse: '1' });
+  await post(base, '/api/exams/test_paper_01/start');
+  await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'A' });  // 错
+  await post(base, '/api/attempts/1/grade', {});
+  const st = aiparse.status();
+  assert.ok(st.total >= 1 || st.active, '应已入队');
+  for (let i = 0; i < 100 && aiparse.status().active; i++) await new Promise(r => setTimeout(r, 20));
+  aiparse._resetAiCall();
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
