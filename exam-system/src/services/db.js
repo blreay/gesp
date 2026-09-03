@@ -115,7 +115,10 @@ const DEFAULT_SETTINGS = {
   ai_api_key: 'sk-vllm-aaa-bbb',
   ai_model: 'qwen-local',
   ai_show_thinking: '0',
-  ai_max_tokens: '8192'
+  ai_max_tokens: '8192',
+  ai_system_prompt: '这是考试错误的一个C++考试题，请详细解析相关的知识点，并给出防止再次出错的改进办法。尽量精简回答，把结果控制到2000字以内（代码除外）',
+  ai_auto_parse: '0',
+  ai_parse_concurrency: '4'
 };
 
 // 数据库结构版本号。版本2：新增 exam_log 表。
