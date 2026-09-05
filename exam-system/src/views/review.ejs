@@ -50,7 +50,7 @@
         <span class="type-badge"><%= w.type === 'choice' ? '选择' : w.type === 'tf' ? '判断' : '编程' %></span>
       </div>
       <div class="wc-body">
-        <div class="wc-stem"><%= w.excerpt %></div>
+        <div class="wc-stem"><%- renderStem(w.stem) %></div>
         <% if (w.type === 'choice' && w.options) { %>
         <div class="wc-options">
           <% Object.keys(w.options).forEach(function(k){ %>

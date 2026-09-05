@@ -142,13 +142,14 @@ router.get('/review', (req, res) => {
   };
   let rows = wrongbook.list(filter).map(w => {
     const hit = qb.getQuestion(w.exam_id, w.question_id);
-    let type = 'unknown', excerpt = '（题目已不存在于题库）', options = null;
+    let type = 'unknown', stem = '（题目已不存在于题库）', options = null;
     if (hit) {
       type = hit.question.type;
-      excerpt = String(hit.question.stem || hit.question.title || '').replace(/```[\s\S]*?```/g, '[代码]').split('\n')[0].slice(0, 90);
+      // 完整题干（含代码围栏），由模板经 renderStem 渲染为 <pre>/<code>，与考试页一致
+      stem = String(hit.question.stem || hit.question.title || '');
       options = hit.question.type === 'choice' ? hit.question.options : null;
     }
-    return { ...w, type, excerpt, options };
+    return { ...w, type, stem, options };
   });
   if (filter.type !== 'all') rows = rows.filter(w => w.type === filter.type);
   const categories = [...new Set(qb.listExams().map(e => e.category))];

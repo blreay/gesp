@@ -399,3 +399,31 @@ test('api 配置: ai_system_prompt 可置空（回退内置默认）', async () 
   assert.strictEqual(aictx.getSystemPrompt(), aictx.DEFAULT_AI_PROMPT); // 空 → 回退默认
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('review 页: 题干代码块用 <pre> 完整渲染（不再被摘要截掉）', async () => {
+  const dir = tmpDir('exam-db-');
+  const bank = tmpDir('exam-bank-');
+  fs.mkdirSync(path.join(bank, '测试分类'), { recursive: true });
+  // 基于夹具造一份 q1 题干带代码围栏的试卷
+  let raw = fs.readFileSync(path.join(__dirname, 'fixtures', 'bank', '测试分类', '测试卷.exam.json'), 'utf8');
+  raw = raw.replace('TESTER_PLACEHOLDER_SOURCE', 'int main(){}');
+  const paper = JSON.parse(raw);
+  paper.sections[0].questions[0].stem = '以下代码输出什么？\n```\nint a = 3;\ncout << a + 1;\n```';
+  fs.writeFileSync(path.join(bank, '测试分类', '测试卷.exam.json'), JSON.stringify(paper));
+  const db = require('../src/services/db');
+  db.init(path.join(dir, 't.db'));
+  require('../src/services/questionbank').scan(bank);
+  require('../src/services/wrongbook').recordWrong('test_paper_01', 'q1', Date.now());
+  const { server, base } = await startApp();
+  try {
+    const r = await fetch(base + '/review');
+    const html = await r.text();
+    assert.strictEqual(r.status, 200);
+    assert.ok(html.includes('以下代码输出什么？'), '题干首行应在');
+    assert.ok(html.includes('<pre>int a = 3;'), '代码块应渲染为 <pre>');
+    assert.ok(html.includes('cout &lt;&lt; a + 1;'), '代码内容应转义后完整呈现');
+    assert.ok(!html.includes('[代码]'), '不应再出现 [代码] 占位符');
+  } finally {
+    server.close(); db.close(); rmrf(dir); rmrf(bank);
+  }
+});

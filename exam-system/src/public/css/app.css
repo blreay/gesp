@@ -208,6 +208,10 @@ body { background: var(--neutral-25); }
 }
 .wc-body { flex: 1; min-width: 0; }
 .wc-stem { font-size: 14px; font-weight: 600; color: var(--neutral-700); margin-bottom: 6px; line-height: 1.6; }
+.wc-stem pre { background: #f4f6f8; border: 1px solid #e0e4e8; border-radius: 6px; padding: 8px 10px;
+  font-family: Consolas, monospace; font-size: 12px; overflow-x: auto; margin: 4px 0; font-weight: normal; white-space: pre; }
+.wc-stem code { background: #f0f3f6; border: 1px solid #e0e5ea; border-radius: 4px; padding: 0 4px;
+  font-family: Consolas, monospace; font-size: 12px; color: #c0392b; font-weight: normal; }
 .wc-meta { font-size: 12px; color: var(--neutral-300); line-height: 1.7; }
 .mastered-tag { color: var(--success-500); font-weight: bold; margin-left: 8px; }
 .wc-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
