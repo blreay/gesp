@@ -164,6 +164,7 @@ for p in / /stats /review /settings /ai; do
   printf "%s -> " "$p"; curl -s -o /dev/null -w "%{http_code}\n" "http://localhost:8730$p"
 done
 curl -s http://localhost:8730/ | grep -c card-title    # 应 = 试卷套数（当前 31）
+curl -s http://localhost:8730/api/ai-parse/status       # 2026-09-05 版本新增：应返回 {"active":false,"total":0,...}
 
 # 7.3 老数据核对：与 1.3 基线逐行一致
 cd /opt/exam-system && node -e '
@@ -176,11 +177,11 @@ db.close();'
 
 # 7.4 全量测试 + 题库验收（⚠️ 必须用 www-data 跑，原因见第 11 节）
 cd /opt/exam-system
-sudo -u www-data npm test                     # 期望 # fail 0（用例数随版本增长，当前 58）
+sudo -u www-data npm test                     # 期望 # fail 0（用例数随版本增长，当前 71）
 sudo -u www-data node scripts/verify_bank.js  # 期望全部 OK，无参考代码/占位测试程序的 ⏭️ 跳过
 ```
 
-7.5 浏览器人工过一遍：首页卡片 → /stats（历史成绩 + 每日模拟考试日志）→ /review（错题本与备注）→ 任做一套卷确认判分正常。
+7.5 浏览器人工过一遍：首页卡片 → /stats（历史成绩 + 每日模拟考试日志）→ /review（错题本与备注）→ /settings（确认新增 AI 配置项：系统提示词 / 自动 AI 解析 / 并发数 / 【全量AI解析】按钮）→ 任做一套卷确认判分正常。
 
 7.6 `systemctl restart exam-system` 确认重启后干净恢复（无重复回填、无报错）。
 
