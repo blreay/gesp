@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_11",
+    "title": "模拟卷 十一：盲区强化（补码运算 · 排序追踪 · 矩阵鞍点）",
+    "subtitle": "错题强化卷 十一",
+    "category": "GESP C++ 三级错题卷",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "补码与进制",
+      "位运算",
+      "排序追踪",
+      "结构体",
+      "指针与数组",
+      "表达式求值",
+      "STL",
+      "异常",
+      "浮点精度"
+    ],
+    "prog_brief": "矩阵鞍点 · 插入排序移动次数"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [
+            "补码与进制",
+            "类型回绕"
+          ],
+          "difficulty": "medium",
+          "stem": "在 16 位补码表示系统中，有符号整数 x 的位模式为 0x7FFF（十进制 32767），则 x + 1 的结果在该系统中用十进制表示是（ ）",
+          "options": {
+            "A": "32768",
+            "B": "-32768",
+            "C": "-1",
+            "D": "0"
+          },
+          "answer": "B",
+          "explanation": "0x7FFF = 0111111111111111，是 16 位补码能表示的最大值 32767；加 1 后得到 1000000000000000，这正是 16 位补码的最小值 -32768（发生回绕）。A 超出 16 位有符号范围无法表示；C、D 与补码加法规则不符。（已用 int16_t 实测：x+1 = -32768）"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [
+            "补码与进制"
+          ],
+          "difficulty": "medium",
+          "stem": "十进制数 -25 的 8 位二进制补码表示是（ ）",
+          "options": {
+            "A": "11100110",
+            "B": "10011001",
+            "C": "11100111",
+            "D": "11011001"
+          },
+          "answer": "C",
+          "explanation": "求负数补码：先写 |−25| = 25 = 00011001，按位取反得 11100110，再加 1 得 11100111。A 是\"取反未加 1\"的中间结果；B 是 25 的原码（符号位为 1 的错误写法）；D 是计算错误。（已用 bitset<8> 实测）"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [
+            "补码与进制"
+          ],
+          "difficulty": "hard",
+          "stem": "两个 8 位补码数 01100100 与 10110000 相加，结果截断为 8 位。其位模式与按补码解释的十进制值分别是（ ）",
+          "options": {
+            "A": "10010100，即 -108",
+            "B": "00010100，即 20",
+            "C": "00100100，即 36",
+            "D": "11010100，即 -44"
+          },
+          "answer": "B",
+          "explanation": "按补码解释：011100100 的前者 = +100，10110000 = -80（取反加一得 01010000 = 80）。100 + (-80) = 20，20 的 8 位二进制是 00010100。直接二进制相加：01100100 + 10110000 = 1 00010100，丢弃第 9 位进位后得 00010100，两种方法一致。（已用 int8_t 实测）"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [
+            "排序算法"
+          ],
+          "difficulty": "medium",
+          "stem": "对数组 {7, 3, 9, 1, 5} 进行冒泡排序（升序，每趟从左到右比较相邻两个元素，逆序则交换，把本趟最大值移到末尾）。第一趟结束后数组的内容是（ ）",
+          "options": {
+            "A": "{3, 7, 9, 1, 5}",
+            "B": "{7, 3, 1, 5, 9}",
+            "C": "{3, 7, 1, 5, 9}",
+            "D": "{1, 3, 5, 7, 9}"
+          },
+          "answer": "C",
+          "explanation": "逐次比较：(7,3) 逆序交换 → {3,7,9,1,5}；(7,9) 不换；(9,1) 交换 → {3,7,1,9,5}；(9,5) 交换 → {3,7,1,5,9}。A 只做了第一次比较就停止；B 漏掉第一次交换；D 是整个排序完成后的结果。（已逐次打印实测）"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [
+            "排序算法"
+          ],
+          "difficulty": "hard",
+          "stem": "对数组 {6, 2, 8, 4, 1} 进行直接插入排序（升序）。第 1 趟把 a[1] 插入左侧有序区，第 2 趟把 a[2] 插入左侧有序区，依此类推。第 2 趟结束后数组的内容是（ ）",
+          "options": {
+            "A": "{2, 6, 4, 8, 1}",
+            "B": "{2, 6, 8, 4, 1}",
+            "C": "{6, 2, 8, 4, 1}",
+            "D": "{2, 4, 6, 8, 1}"
+          },
+          "answer": "B",
+          "explanation": "第 1 趟：key=a[1]=2，6>2 右移，2 放到 a[0] → {2,6,8,4,1}。第 2 趟：key=a[2]=8，与 a[1]=6 比较 6<8 无需移动，数组不变 → {2,6,8,4,1}。A 是第 3 趟结束后的状态；C 是一趟都没做；D 是排序完成的最终结果。（已逐趟打印实测）"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [
+            "结构体"
+          ],
+          "difficulty": "medium",
+          "stem": "已知定义：\n```\nstruct Point { int x; int y; };\n```\n下列定义并初始化 Point 变量 p 的方式中，**不合法**的是（ ）",
+          "options": {
+            "A": "Point p = {3, 5};",
+            "B": "Point p{3, 5};",
+            "C": "Point p(3, 5);",
+            "D": "Point p; p.x = 3; p.y = 5;"
+          },
+          "answer": "C",
+          "explanation": "Point 是没有构造函数的聚合类型。圆括号初始化 p(3,5) 要求存在接受 (int,int) 的构造函数，聚合类型没有，编译失败（已实测报错）。A 是传统聚合初始化，B 是 C++11 列表初始化，D 是先定义再逐个成员赋值，三者都合法。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [
+            "结构体",
+            "指针与数组"
+          ],
+          "difficulty": "medium",
+          "stem": "已知定义：\n```\nstruct Student { int id; double score; };\nStudent s = {101, 85.5};\nStudent *p = &s;\n```\n下列访问结构体成员的写法中，**错误**的是（ ）",
+          "options": {
+            "A": "p->score",
+            "B": "p.score",
+            "C": "(*p).id",
+            "D": "s.id"
+          },
+          "answer": "B",
+          "explanation": "p 是指针类型，成员访问必须用 -> 或先解引用 (*p).；点运算符 . 只能用于结构体变量或引用。p.score 编译失败。A、C 等价且合法，D 直接用变量访问合法。（A/C/D 已实测输出正确值）"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [
+            "指针与数组",
+            "二维数组"
+          ],
+          "difficulty": "medium",
+          "stem": "已定义 `int a[3][4];`，则表达式 `&a[2][1] - &a[0][0]` 的值是（ ）",
+          "options": {
+            "A": "7",
+            "B": "21",
+            "C": "8",
+            "D": "9"
+          },
+          "answer": "D",
+          "explanation": "二维数组按行优先连续存储，每行 4 个 int。a[2][1] 之前共有 2×4 + 1 = 9 个元素，指针相减的结果以 int 为单位，等于 9。A 误用每行 3 个元素计算（2×3+1）；C 少数了一个；B 是无关联的数字。（已实测输出 9）"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [
+            "指针与数组"
+          ],
+          "difficulty": "hard",
+          "stem": "以下代码执行后，数组 a 的内容是（ ）\n```\nint a[] = {4, 7, 2, 9, 6};\nint *p = a + 1;\n*(p + 2) = *p - *(p - 1);\n```",
+          "options": {
+            "A": "{4, 7, 2, 9, 6}",
+            "B": "{4, 3, 2, 9, 6}",
+            "C": "{4, 7, 2, 11, 6}",
+            "D": "{4, 7, 2, 3, 6}"
+          },
+          "answer": "D",
+          "explanation": "p 指向 a[1]。*(p+2) 即 a[3]；*p = a[1] = 7；*(p-1) = a[0] = 4。所以 a[3] = 7 - 4 = 3，数组变为 {4,7,2,3,6}。A 以为赋值不生效；B 把修改位置搞成了 a[1]；C 把减法看成了加法（7+4=11）。（已实测）"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [
+            "表达式求值"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码输出什么？\n```\nint a = 3, b = 5;\nint c = a++;\nb = ++b + c;\ncout << a << \" \" << b << \" \" << c;\n```",
+          "options": {
+            "A": "4 9 4",
+            "B": "3 9 3",
+            "C": "4 8 3",
+            "D": "4 9 3"
+          },
+          "answer": "D",
+          "explanation": "第一条：c = a++ 先取旧值，c=3，之后 a=4。第二条：++b 先把 b 自增为 6，再计算 6 + c(3) = 9 赋给 b。输出 4 9 3。A 误以为 c 也变成 4；B 忘了 a 已自增；C 用 b 的旧值 5 参与加法。（已实测输出 4 9 3）"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [
+            "表达式求值"
+          ],
+          "difficulty": "medium",
+          "stem": "下列**不是**合法 C++ 表达式的是（ ）",
+          "options": {
+            "A": "[1, 2] * 3",
+            "B": "(3, 5) * 2",
+            "C": "3 + (int)2.7",
+            "D": "sizeof(int) + 1"
+          },
+          "answer": "A",
+          "explanation": "方括号 [] 在 C++ 中只用于数组下标等，不能像圆括号那样给表达式分组，[1,2]*3 无法编译。B 是逗号运算符：(3,5) 的值为最后一个子表达式 5，结果 10；C 是显式类型转换：3+2=5；D 是 sizeof 运算：4+1=5（三者已实测编译运行）。（对应原错题 [(1,2)*2]*3 的变式）"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [
+            "STL"
+          ],
+          "difficulty": "hard",
+          "stem": "以下代码输出什么？\n```\nmap<string, int> m;\nm[\"apple\"] = 3;\nm[\"banana\"] = 5;\nm[\"apple\"] += 2;\ncout << m[\"apple\"] << \" \" << m.size() << \" \" << m[\"cherry\"];\n```",
+          "options": {
+            "A": "5 2 0",
+            "B": "3 3 0",
+            "C": "5 3 0",
+            "D": "5 3 和一个不确定的值"
+          },
+          "answer": "C",
+          "explanation": "apple 先存 3，+= 2 后为 5。输出 m[\"cherry\"] 时键 cherry 不存在，map 的下标运算符会**自动插入**该键并将值初始化为 0，同时 size 从 2 变为 3。因此输出 5 3 0。A 漏掉了自动插入使 size 变 3；B 漏掉了 +=；D 不知道 map 对新键做值初始化（int 为 0）。（已实测输出 5 3 0）"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [
+            "STL"
+          ],
+          "difficulty": "easy",
+          "stem": "以下代码输出什么？\n```\nstring s = \"Programming\";\ncout << s.substr(3, 4) << \" \" << s.length();\n```",
+          "options": {
+            "A": "gram 11",
+            "B": "prog 11",
+            "C": "gram 10",
+            "D": "gra 11"
+          },
+          "answer": "A",
+          "explanation": "substr(3, 4) 表示从下标 3 开始取 4 个字符：\"Programming\" 的下标 3 是第二个 g，取 4 个字符得 \"gram\"；length() 返回 11。B 从下标 0 开始取了；C 数错长度；D 把第二个参数当成了结束下标。（已实测输出 gram 11）"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [
+            "异常处理"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码输出什么？\n```\ntry {\n    throw 3.14;\n} catch (int e) {\n    cout << \"int\";\n} catch (...) {\n    cout << \"other\";\n}\n```",
+          "options": {
+            "A": "程序崩溃，异常未被捕获",
+            "B": "int",
+            "C": "编译错误",
+            "D": "other"
+          },
+          "answer": "D",
+          "explanation": "throw 抛出的是 double 类型，catch(int) 类型不匹配跳过；catch(...) 是通配捕获，能接住任何类型的异常，输出 other。A 只有在**没有任何** catch 能匹配时才会发生（调用 terminate 终止程序）——这正是原错题的考点，本题加了 catch(...) 兜底，注意区分。（已实测输出 other）"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [
+            "函数声明与参数传递",
+            "引用"
+          ],
+          "difficulty": "easy",
+          "stem": "以下代码输出什么？\n```\nvoid inc(int &x) { x += 10; }\nvoid inc2(int x) { x += 10; }\nint main() {\n    int a = 5, b = 5;\n    inc(a);\n    inc2(b);\n    cout << a << \" \" << b;\n}\n```",
+          "options": {
+            "A": "15 5",
+            "B": "5 5",
+            "C": "15 15",
+            "D": "5 15"
+          },
+          "answer": "A",
+          "explanation": "inc 的参数是引用（int &x），x 就是 a 本身的别名，加 10 后 a=15；inc2 是值传递，函数内修改的是 b 的副本，b 仍是 5。输出 15 5。（已实测：引用版 15，传值版 5）"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [
+            "表达式求值"
+          ],
+          "difficulty": "medium",
+          "stem": "C++ 表达式 `5 > 3 > 1` 的值为真（1）。（ ）",
+          "answer": false,
+          "explanation": "关系运算符从左向右结合：先算 5>3 得 true（转换为整数 1），再算 1>1 得 false（0）。实测输出 0。若想表达\"5 大于 3 且 3 大于 1\"必须写成 `5>3 && 3>1`。数学上的连不等式在 C++ 里不能直接照写。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [
+            "类型回绕",
+            "补码与进制"
+          ],
+          "difficulty": "medium",
+          "stem": "已知 `unsigned char c = 255;`，执行 `c = c + 2;` 后，`cout << (int)c;` 输出 1。（ ）",
+          "answer": true,
+          "explanation": "计算 c + 2 时 c 先整型提升为 int：255+2=257；赋回 unsigned char 时只保留低 8 位：257 mod 256 = 1。无符号类型溢出按模 2^n 回绕，是标准定义良好的行为。实测输出 c = 1。"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [
+            "排序算法"
+          ],
+          "difficulty": "medium",
+          "stem": "冒泡排序（升序）每一趟排序中，最多只会发生一次元素交换。（ ）",
+          "answer": false,
+          "explanation": "错误。冒泡排序每比较一对逆序的相邻元素就交换一次，一趟最多可发生 n-1 次交换，例如 {7,3,9,1,5} 第一趟就交换了 3 次（已实测）。\"每趟最多交换一次\"是**选择排序**的特点：一趟只把找到的最小值交换到位。"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [
+            "指针与数组",
+            "函数声明与参数传递"
+          ],
+          "difficulty": "medium",
+          "stem": "把数组名作为实参传给函数后，在函数内修改数组元素的值，会影响调用处的原数组。（ ）",
+          "answer": true,
+          "explanation": "正确。数组名作实参时\"退化\"为指向首元素的指针，形参与实参指向同一段内存，函数内 arr[0]=999 直接改的就是原数组（已实测：调用后 a[0] 变为 999）。C++ 中不存在把整个数组按值拷贝传参的方式。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [
+            "指针与数组"
+          ],
+          "difficulty": "hard",
+          "stem": "ISO C++ 标准允许定义变长数组，即先用变量 n 存大小，再写 `int a[n];`。（ ）",
+          "answer": false,
+          "explanation": "错误。ISO C++ 标准要求数组大小必须是编译期常量；变长数组（VLA）是 C99 的特性，g++ 只是作为**编译器扩展**才接受它——用 `g++ -pedantic` 编译会警告 \"ISO C++ forbids variable length array\"（已实测），MSVC 等编译器则直接报错。（对应原错题\"C++标准要求数组大小必须是编译期常量\"的反向变式）"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [
+            "结构体"
+          ],
+          "difficulty": "medium",
+          "stem": "两个相同结构体类型的变量可以整体赋值（如 `b = a;`），赋值后 b 拥有 a 的全部成员副本。（ ）",
+          "answer": true,
+          "explanation": "正确。结构体是聚合类型，支持整体赋值，所有成员被逐一拷贝（已实测：Point a={1,2}; Point b; b=a; 后 b 为 {1,2}）。注意与数组对比：数组**不能**整体赋值，只能逐元素拷贝或用 memcpy。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [
+            "位运算",
+            "补码与进制"
+          ],
+          "difficulty": "hard",
+          "stem": "对任意 int 型变量 a，表达式 `a >> 1` 的结果总是与 `a / 2` 相等。（ ）",
+          "answer": false,
+          "explanation": "错误。对非负整数两者相等；但对负数，常见补码机器上的算术右移向下取整，而除法向零取整：实测 -5>>1 = -3，而 -5/2 = -2，并不相等。\"总是相等\"不成立。（对应原错题\"左移1位等价乘2、右移总是等价除2\"的强化变式）"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [
+            "函数声明与参数传递"
+          ],
+          "difficulty": "medium",
+          "stem": "C++ 中，函数声明和函数定义都可以省略参数名、只写参数类型，例如 `int add(int, int);`。（ ）",
+          "answer": false,
+          "explanation": "错误。**声明**可以省略参数名（`int add(int, int);` 合法，只表明签名）；但**定义**不行——`int add(int, int) { return 1; }` 无法编译（已实测报错），函数体需要参数名来使用参数。题目把声明的规则错误地推广到了定义。（对应原错题的正向问法，这次考反向辨析）"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [
+            "STL"
+          ],
+          "difficulty": "medium",
+          "stem": "对 `vector<int> v` 使用下标 `v[i]` 访问时会进行越界检查，i 越界时抛出 out_of_range 异常。（ ）",
+          "answer": false,
+          "explanation": "错误。operator[] **不做**任何越界检查，越界访问是未定义行为（可能读到垃圾值甚至崩溃，但不抛异常）；做越界检查并抛出 std::out_of_range 的是成员函数 `v.at(i)`（已实测 at(99) 抛异常）。这是 [] 与 at() 的核心区别。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [
+            "浮点精度"
+          ],
+          "difficulty": "medium",
+          "stem": "执行 `double a = 0.1 + 0.2;` 后，表达式 `a == 0.3` 的结果在大多数情况下为 false。（ ）",
+          "answer": true,
+          "explanation": "正确。0.1、0.2、0.3 都无法用二进制浮点数精确表示，0.1+0.2 的实际值约为 0.30000000000000004，与 0.3 的位模式不同，== 比较为 false（已实测输出 not equal）。判断浮点数相等应使用 fabs(a-b) < 1e-9 这类误差容忍写法。"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "矩阵鞍点",
+          "knowledge": [
+            "二维数组",
+            "嵌套循环"
+          ],
+          "difficulty": "hard",
+          "stem": "输入一个 N 行 M 列的整数矩阵。若某个元素**同时**是它所在行的最大值、又是它所在列的最小值，则称它是该矩阵的一个**鞍点**。注意：当一行（或一列）中有多个并列的最大值（最小值）时，这些元素都算作该行（列）的最大值（最小值）——即判断标准为\"行内没有比它更大的元素，且列内没有比它更小的元素\"。\n请找出矩阵的所有鞍点，按行优先顺序（先行号从小到大，同行再按列号从小到大）输出。若不存在鞍点，输出 NONE。",
+          "input_format": "第一行两个整数 N、M（1 ≤ N, M ≤ 100），表示矩阵的行数和列数。\n接下来 N 行，每行 M 个整数（绝对值不超过 10^6），用空格分隔。",
+          "output_format": "按行优先顺序，每个鞍点输出一行：r c v（r、c 为从 1 开始的行号、列号，v 为该元素的值），用一个空格分隔。\n若没有鞍点，输出一行 NONE。",
+          "samples": [
+            {
+              "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n",
+              "output": "1 3 3"
+            },
+            {
+              "input": "2 2\n1 4\n3 2\n",
+              "output": "NONE"
+            }
+          ],
+          "constraints": "1 ≤ N, M ≤ 100；矩阵元素绝对值 ≤ 10^6。鞍点可能不止一个，也可能没有。",
+          "answer": {
+            "reference_code": "// prog1: Matrix Saddle Point\n// A saddle point: max in its row AND min in its column\n// When equal elements tie for max/min, they all count\n#include <iostream>\nusing namespace std;\nint main(){\n    int n, m;\n    cin >> n >> m;\n    int a[100][100];\n    for(int i=0;i<n;i++)\n        for(int j=0;j<m;j++)\n            cin >> a[i][j];\n\n    bool found = false;\n    for(int i=0;i<n;i++){\n        for(int j=0;j<m;j++){\n            // Check if a[i][j] is max in row i\n            bool rowMax = true;\n            for(int k=0;k<m;k++){\n                if(a[i][k] > a[i][j]){\n                    rowMax = false;\n                    break;\n                }\n            }\n            if(!rowMax) continue;\n\n            // Check if a[i][j] is min in column j\n            bool colMin = true;\n            for(int k=0;k<n;k++){\n                if(a[k][j] < a[i][j]){\n                    colMin = false;\n                    break;\n                }\n            }\n            if(colMin){\n                cout << i+1 << \" \" << j+1 << \" \" << a[i][j] << endl;\n                found = true;\n            }\n        }\n    }\n    if(!found) cout << \"NONE\" << endl;\n    return 0;\n}\n",
+            "solution": "对每个位置 (i,j) 做两次扫描：检查第 i 行是否存在比 a[i][j] 更大的元素、第 j 列是否存在比 a[i][j] 更小的元素；两者都不存在则 (i,j) 是鞍点，按行优先顺序输出即可。时间复杂度 O(N·M·(N+M))，对 N,M≤100 绰绰有余。要点：①\"并列最大/最小也算\"——比较用严格 > 和 <，而不是 >=/<=；②全部元素相等的矩阵每个元素都是鞍点；③1×1 矩阵的唯一元素必是鞍点；④记得无鞍点时输出 NONE。",
+            "test_program": "// 测试程序：验证「矩阵鞍点」考生程序的正确性\n// 用法： g++ -O2 -std=c++14 -o tester tester.cpp\n//        ./tester <考生二进制程序路径>\n// 原理：把每组用例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（忽略首尾空白）。\n// 全部通过时退出码为 0；存在失败用例时退出码为 1，并用表格打印 输入/期望/实际。\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string flat(std::string s) { for (auto& c : s) if (c == '\\n') c = ' '; return s; }\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/e11p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/e11p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str()); (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str()); std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        { \"3 3\\n1 2 3\\n4 5 6\\n7 8 9\\n\", \"1 3 3\" },  // 3x3唯一鞍点\n        { \"2 2\\n1 4\\n3 2\\n\", \"NONE\" },  // 2x2无鞍点\n        { \"2 2\\n5 5\\n5 5\\n\", \"1 1 5\\n1 2 5\\n2 1 5\\n2 2 5\" },  // 全相等4鞍点\n        { \"1 1\\n42\\n\", \"1 1 42\" },  // 1x1\n        { \"1 5\\n3 7 2 7 1\\n\", \"1 2 7\\n1 4 7\" },  // 单行并列最大\n        { \"5 1\\n3\\n7\\n2\\n9\\n1\\n\", \"5 1 1\" },  // 单列\n        { \"3 3\\n9 9 1\\n9 9 2\\n9 9 3\\n\", \"1 1 9\\n1 2 9\\n2 1 9\\n2 2 9\\n3 1 9\\n3 2 9\" },  // 多鞍点6个\n        { \"3 3\\n-5 -2 -9\\n-1 -3 -7\\n-8 -6 -4\\n\", \"NONE\" },  // 负数无鞍点\n        { \"2 3\\n1000000 -1000000 0\\n0 0 1000000\\n\", \"NONE\" },  // 边界值无鞍点\n        { \"4 4\\n1 2 3 4\\n5 6 7 8\\n9 10 11 12\\n13 14 15 16\\n\", \"1 4 4\" },  // 4x4角鞍点\n        { \"3 4\\n3 3 3 3\\n3 3 3 3\\n3 3 3 3\\n\", \"1 1 3\\n1 2 3\\n1 3 3\\n1 4 3\\n2 1 3\\n2 2 3\\n2 3 3\\n2 4 3\\n3 1 3\\n3 2 3\\n3 3 3\\n3 4 3\" },  // 全相等12鞍点\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 矩阵鞍点 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下用例不符合预期：\\n\");\n        printf(\"%-4s | %-32s | %-32s | %-32s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"------------------------------------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            printf(\"%-4d | %-32.32s | %-32.32s | %-32.32s\\n\", idx + 1,\n                flat(cases[idx].input).c_str(), flat(cases[idx].expected).c_str(), flat(actualOutputs[idx]).c_str());\n        }\n        return 1;\n    }\n    printf(\"全部通过\\n\");\n    return 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "插入排序移动次数",
+          "knowledge": [
+            "排序算法",
+            "数组"
+          ],
+          "difficulty": "medium",
+          "stem": "对 n 个整数用**直接插入排序**升序排序（不允许调用 sort 等库函数），并统计排序过程中的\"移动次数\"。\n移动次数的定义（务必严格按此统计）：\n- 排序中每执行一次\"把元素向右挪一格\"的操作（即 `a[j+1] = a[j]`）计 1 次移动；\n- 把暂存的待插入值写回最终位置（即 `a[j+1] = key`）**不计**入移动次数；\n- 比较时使用\"严格大于\"（`a[j] > key` 才右移），**相等的元素不移动**。\n输出排序后的数组和总移动次数。",
+          "input_format": "第一行一个正整数 n（1 ≤ n ≤ 1000）。\n第二行 n 个整数（每个的绝对值不超过 10^9），用空格分隔。",
+          "output_format": "共两行：第一行是升序排序后的 n 个整数，用一个空格分隔；第二行一个整数，表示总移动次数。",
+          "samples": [
+            {
+              "input": "5\n3 1 4 1 5\n",
+              "output": "1 1 3 4 5\n3"
+            },
+            {
+              "input": "3\n3 2 1\n",
+              "output": "1 2 3\n3"
+            }
+          ],
+          "constraints": "1 ≤ n ≤ 1000；|元素| ≤ 10^9（移动次数最大为 n(n-1)/2，用 int 即可存下，但元素值本身接近 int 边界，比较与存储无需 long long 也可，稳妥可用 long long）。已有序数组移动 0 次；完全逆序数组移动 n(n-1)/2 次。",
+          "answer": {
+            "reference_code": "// prog2: Insertion Sort Move Count\n// Count moves = number of a[j+1]=a[j] shifts\n// Write-back of key does NOT count\n// Use strict > for comparison (equal elements don't move)\n#include <iostream>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    long long a[1000];\n    for(int i=0;i<n;i++) cin >> a[i];\n\n    long long moves = 0;\n    for(int i=1;i<n;i++){\n        long long key = a[i];\n        int j = i-1;\n        while(j>=0 && a[j] > key){\n            a[j+1] = a[j];\n            j--;\n            moves++;\n        }\n        a[j+1] = key;\n    }\n\n    for(int i=0;i<n;i++){\n        if(i>0) cout << \" \";\n        cout << a[i];\n    }\n    cout << endl;\n    cout << moves << endl;\n    return 0;\n}\n",
+            "solution": "标准直接插入排序：外层 i 从 1 到 n-1，key=a[i]，内层 j 从 i-1 向左，只要 a[j] > key（严格大于）就执行 a[j+1]=a[j] 并令移动计数加一；最后把 key 写回 a[j+1]（不计数）。要点：①比较必须是严格大于，相等不移动（这正是插入排序稳定性的来源）；②只统计右移，不统计 key 的回写；③逆序输入是移动次数的最坏情况 n(n-1)/2。",
+            "test_program": "// 测试程序：验证「插入排序移动次数」考生程序的正确性\n// 用法： g++ -O2 -std=c++14 -o tester tester.cpp\n//        ./tester <考生二进制程序路径>\n// 原理：把每组用例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（忽略首尾空白）。\n// 全部通过时退出码为 0；存在失败用例时退出码为 1，并用表格打印 输入/期望/实际。\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string flat(std::string s) { for (auto& c : s) if (c == '\\n') c = ' '; return s; }\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/e11p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/e11p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str()); (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str()); std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        { \"5\\n3 1 4 1 5\\n\", \"1 1 3 4 5\\n3\" },  // 含重复\n        { \"3\\n1 2 3\\n\", \"1 2 3\\n0\" },  // 已有序0次\n        { \"3\\n3 2 1\\n\", \"1 2 3\\n3\" },  // 逆序3次\n        { \"4\\n7 7 7 7\\n\", \"7 7 7 7\\n0\" },  // 全相等0次(相等不移动)\n        { \"1\\n5\\n\", \"5\\n0\" },  // n=1\n        { \"6\\n-5 3 -1 0 2 -3\\n\", \"-5 -3 -1 0 2 3\\n7\" },  // 含负数\n        { \"4\\n1000000000 -1000000000 0 999999999\\n\", \"-1000000000 0 999999999 1000000000\\n3\" },  // 大数值\n        { \"10\\n10 9 8 7 6 5 4 3 2 1\\n\", \"1 2 3 4 5 6 7 8 9 10\\n45\" },  // n=10逆序45次\n        { \"8\\n2 1 4 3 6 5 8 7\\n\", \"1 2 3 4 5 6 7 8\\n4\" },  // 相邻交换\n        { \"6\\n0 0 -1 -1 5 5\\n\", \"-1 -1 0 0 5 5\\n4\" },  // 重复+负数+零\n        { \"2\\n2 1\\n\", \"1 2\\n1\" },  // 最小逆序\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 插入排序移动次数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下用例不符合预期：\\n\");\n        printf(\"%-4s | %-32s | %-32s | %-32s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"------------------------------------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            printf(\"%-4d | %-32.32s | %-32.32s | %-32.32s\\n\", idx + 1,\n                flat(cases[idx].input).c_str(), flat(cases[idx].expected).c_str(), flat(actualOutputs[idx]).c_str());\n        }\n        return 1;\n    }\n    printf(\"全部通过\\n\");\n    return 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}
