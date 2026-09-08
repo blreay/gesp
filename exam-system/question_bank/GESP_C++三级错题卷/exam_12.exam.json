@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_12",
+    "title": "模拟卷 十二：盲区强化（位表达式求值 · 类型回绕 · 分数求和）",
+    "subtitle": "错题强化卷 十二",
+    "category": "GESP C++ 三级错题卷",
+    "duration_minutes": 120,
+    "total_score": 100,
+    "tags": [
+      "位运算",
+      "类型回绕",
+      "补码与进制",
+      "指针与数组",
+      "函数与引用",
+      "STL",
+      "排序",
+      "异常",
+      "浮点精度"
+    ],
+    "prog_brief": "分数求和 · 位掩码集合"
+  },
+  "sections": [
+    {
+      "title": "一、单选题（每题 2 分，共 30 分）",
+      "question_type": "choice",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q1",
+          "type": "choice",
+          "knowledge": [
+            "位运算"
+          ],
+          "difficulty": "medium",
+          "stem": "已知 `int x = 13, y = 6, z = 9;`，表达式 `(x | y) ^ z` 的值是（ ）",
+          "options": {
+            "A": "9",
+            "B": "6",
+            "C": "15",
+            "D": "7"
+          },
+          "answer": "B",
+          "explanation": "x=13=1101₂，y=6=0110₂，x|y=1111₂=15；z=9=1001₂；15^9：1111⊕1001=0110₂=6。（已实测输出 6）错因分析：A 直接取了 z；C 只算了 x|y 忘了异或；D 是误把 ^ 当成 & 之类。"
+        },
+        {
+          "id": "q2",
+          "type": "choice",
+          "knowledge": [
+            "位运算",
+            "补码与进制"
+          ],
+          "difficulty": "medium",
+          "stem": "表达式 `40 & (-40)` 的值是（ ）",
+          "options": {
+            "A": "4",
+            "B": "2",
+            "C": "8",
+            "D": "40"
+          },
+          "answer": "C",
+          "explanation": "n & (-n) 是经典的 lowbit 操作：取出 n 二进制中最低位的 1。40 = 101000₂，-40 的补码是各位取反加一 = …101111 + 1 = …011000，两者相与得 001000₂ = 8。（已实测输出 8。原错题是 12&(-12)=4，本题换成 40 强化同一方法）"
+        },
+        {
+          "id": "q3",
+          "type": "choice",
+          "knowledge": [
+            "类型回绕"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码输出什么？\n```\nunsigned char a = 250;\na += 20;\ncout << (int)a;\n```",
+          "options": {
+            "A": "270",
+            "B": "250",
+            "C": "14",
+            "D": "-6"
+          },
+          "answer": "C",
+          "explanation": "a += 20 计算时 a 先整型提升为 int：250+20=270；赋回 unsigned char 只保留低 8 位：270 mod 256 = 14。（已实测输出 14）A 是忘了回绕；B 以为没加上；D 是按有符号 char 误算。（原错题是 200+=100，本题换数字变式）"
+        },
+        {
+          "id": "q4",
+          "type": "choice",
+          "knowledge": [
+            "排序算法"
+          ],
+          "difficulty": "medium",
+          "stem": "对数组 {4, 9, 2, 7, 3} 进行选择排序（升序，每一轮在未排序区间找出最小值，与未排序区间的第一个元素交换）。第一轮结束后数组的内容是（ ）",
+          "options": {
+            "A": "{2, 9, 4, 7, 3}",
+            "B": "{2, 3, 4, 7, 9}",
+            "C": "{4, 9, 2, 7, 3}",
+            "D": "{3, 9, 2, 7, 4}"
+          },
+          "answer": "A",
+          "explanation": "第一轮在全部 5 个元素中找最小值 2（下标 2），与 a[0]=4 交换 → {2,9,4,7,3}。（已实测）B 是排序完成的最终结果；C 以为没交换；D 把最小值与末尾交换了（冒泡的思路混进来了）。（原错题考冒泡逐轮，本题换选择排序变式）"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "knowledge": [
+            "排序算法"
+          ],
+          "difficulty": "hard",
+          "stem": "数组中有三个元素 {5a, 5b, 3}，其中 5a 和 5b 的值都是 5，a、b 只是用来区分它们的输入先后（5a 在前）。对该数组做选择排序（升序，每轮找最小值与未排序区间第一个元素交换），第一轮结束后数组是（ ）",
+          "options": {
+            "A": "{3, 5a, 5b}",
+            "B": "{3, 5b, 5a}",
+            "C": "{5a, 5b, 3}",
+            "D": "{5b, 5a, 3}"
+          },
+          "answer": "B",
+          "explanation": "第一轮最小值是 3（下标 2），与 a[0]=5a 交换：3 到位置 0，5a 被换到位置 2 → {3, 5b, 5a}。两个相等元素 5a、5b 的相对顺序被交换颠倒了——这正是**选择排序不稳定**的经典反例。A 以为交换是稳定的；C/D 没做交换或换错位置。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "knowledge": [
+            "结构体"
+          ],
+          "difficulty": "medium",
+          "stem": "要定义一个 Book 结构体（含 string title 和 double price 两个成员）并初始化变量 b 为 {\"C++ Primer\", 89.5}，下列写法**正确**的是（ ）",
+          "options": {
+            "A": "struct Book { string title; double price; } Book b = {\"C++ Primer\", 89.5};",
+            "B": "struct Book { string title; double price; }; Book b(\"C++ Primer\", 89.5);",
+            "C": "struct Book { string title; double price; }; Book b = {\"C++ Primer\", 89.5};",
+            "D": "struct Book { string title; double price; }; Book b = {89.5, \"C++ Primer\"};"
+          },
+          "answer": "C",
+          "explanation": "C 正确：结构体定义以分号结束，然后用花括号聚合初始化，成员顺序一致（已实测输出 C++ Primer 89.5）。A 结构体定义末尾缺分号，语法错误；B 用圆括号初始化需要匹配的构造函数，聚合类型没有（已实测编译报错）；D 成员顺序颠倒，double 位置给了字符串，类型不符。"
+        },
+        {
+          "id": "q7",
+          "type": "choice",
+          "knowledge": [
+            "结构体",
+            "函数声明与参数传递"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码输出什么？\n```\nstruct Student { string name; int score; };\nvoid addBonus(Student s[], int n, int bonus) {\n    for (int i = 0; i < n; i++) s[i].score += bonus;\n}\nint main() {\n    Student st[2] = {{\"Zhang\", 80}, {\"Li\", 90}};\n    addBonus(st, 2, 5);\n    cout << st[0].score;\n}\n```",
+          "options": {
+            "A": "80",
+            "B": "85",
+            "C": "编译错误",
+            "D": "90"
+          },
+          "answer": "B",
+          "explanation": "结构体数组作实参时退化为指向首元素的指针，函数内修改的就是原数组：st[0].score = 80+5 = 85。（已实测输出 85）A 误以为结构体数组是值传递整体拷贝；C 不存在语法问题。（原错题 id=56 考\"如何让函数修改结构体数组\"，本题以代码输出形式变式强化）"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "knowledge": [
+            "指针与数组",
+            "二维数组"
+          ],
+          "difficulty": "medium",
+          "stem": "已定义 `int a[4][5];`，则表达式 `&a[3][2] - &a[0][0]` 的值是（ ）",
+          "options": {
+            "A": "13",
+            "B": "22",
+            "C": "15",
+            "D": "17"
+          },
+          "answer": "D",
+          "explanation": "二维数组按行优先存储，每行 5 个 int。a[3][2] 前面共有 3×5 + 2 = 17 个元素，指针差以 int 为单位等于 17。（已实测输出 17）A 误按每行 4 个算（3×4+2=14 也不对，13=3×4+1）；B 是 4×5+2；C 少数了。（原错题是 a[3][4] 的 &a[1][2]，本题换维度与位置变式）"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "knowledge": [
+            "指针与数组",
+            "二维数组"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码中 `*(b[1] + 2)` 的值是（ ）\n```\nint b[2][3] = {{10, 20, 30}, {40, 50, 60}};\n```",
+          "options": {
+            "A": "50",
+            "B": "30",
+            "C": "一个地址，不是整数",
+            "D": "60"
+          },
+          "answer": "D",
+          "explanation": "b[1] 是第 2 行（{40,50,60}）的首地址，b[1]+2 指向该行第 3 个元素，*(b[1]+2) = b[1][2] = 60。（已实测输出 60）A 取成了 b[1][1]；B 取成了第 1 行的元素；C 混淆了\"指针+整数仍是指针、解引用后是值\"。"
+        },
+        {
+          "id": "q10",
+          "type": "choice",
+          "knowledge": [
+            "表达式求值"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码输出什么？\n```\nint a = 5, b = 3, c = 0;\nc = ++a + b++;\ncout << a << \" \" << b << \" \" << c;\n```",
+          "options": {
+            "A": "6 3 9",
+            "B": "5 4 9",
+            "C": "6 4 9",
+            "D": "6 4 10"
+          },
+          "answer": "C",
+          "explanation": "++a 先把 a 变 6 再以 6 参与运算；b++ 先以旧值 3 参与运算、之后 b 变 4；c = 6+3 = 9。输出 6 4 9。（已实测）A 忘了 b 会自增；B 用了 a 的旧值；D 把 c 算成 6+4。（原错题是 c=a+++ ++b，本题换成 ++a+b++ 变式，考同一语义）"
+        },
+        {
+          "id": "q11",
+          "type": "choice",
+          "knowledge": [
+            "表达式求值"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码执行后 sum 的值是（ ）\n```\nint sum = 0;\nfor (int i = 1; i <= 50; i++) {\n    if (i % 4 == 0 && i % 6 == 0)\n        sum += i;\n}\n```",
+          "options": {
+            "A": "120",
+            "B": "96",
+            "C": "108",
+            "D": "144"
+          },
+          "answer": "A",
+          "explanation": "同时被 4 和 6 整除 = 被 lcm(4,6)=12 整除：12、24、36、48，和为 120。（已实测输出 120）B 漏加了 24；C 漏加了 12；D 把 60 也算进去了（60 > 50）。（原错题是 1..100 中被 3 且被 5 整除，本题换范围与除数变式）"
+        },
+        {
+          "id": "q12",
+          "type": "choice",
+          "knowledge": [
+            "STL"
+          ],
+          "difficulty": "medium",
+          "stem": "已知 `map<string, int> m;`，执行语句 `m[1001] = 500;` 会发生什么？（ ）",
+          "options": {
+            "A": "编译失败：下标类型与键类型 string 不匹配",
+            "B": "正常存入：键 1001，值 500",
+            "C": "自动把 1001 转成字符串 \"1001\" 存入",
+            "D": "运行时抛出类型异常"
+          },
+          "answer": "A",
+          "explanation": "map<string,int> 的 operator[] 只接受 string（或能构造 string 的实参）作键；整数 1001 不能隐式转换成 string，编译报错 \"no match for operator[]\"（已实测编译失败）。C++ 容器不会做这种跨类型自动转换，错误在编译期就暴露，不会到运行时。（原错题是 map<int,int> 存字符串值，本题把不匹配放到键上变式）"
+        },
+        {
+          "id": "q13",
+          "type": "choice",
+          "knowledge": [
+            "STL"
+          ],
+          "difficulty": "medium",
+          "stem": "以下代码输出什么？\n```\nstring s = \"Hello World\";\ncout << s.find(\"World\") << \" \"\n     << s.substr(6, 5) << \" \"\n     << s.substr(0, s.find(' '));\n```",
+          "options": {
+            "A": "5 World Hello",
+            "B": "6 World Hello",
+            "C": "6 Hello World",
+            "D": "6 World World"
+          },
+          "answer": "B",
+          "explanation": "find(\"World\") 返回子串首字符下标 6（\"Hello␣\" 占 0..5）；substr(6,5) 从下标 6 取 5 个字符 = \"World\"；find(' ') 返回空格下标 5，substr(0,5) = \"Hello\"。（已实测输出 6 World Hello）A 把 find 的返回值数成了 5；C/D 取错了子串。（原错题只考 substr(1,3)，本题组合 find+两次 substr 加大难度）"
+        },
+        {
+          "id": "q14",
+          "type": "choice",
+          "knowledge": [
+            "异常处理"
+          ],
+          "difficulty": "medium",
+          "stem": "以下程序的运行结果是（ ）\n```\ntry {\n    throw 'A';\n} catch (int e) {\n    cout << \"caught\";\n}\ncout << \"end\";\n```",
+          "options": {
+            "A": "编译错误：throw 的类型必须与 catch 一致",
+            "B": "输出 end（异常被忽略）",
+            "C": "没有匹配的 catch，调用 std::terminate，程序异常中止",
+            "D": "输出 caughtend（char 自动转成 int 被捕获）"
+          },
+          "answer": "C",
+          "explanation": "throw 抛出 char 类型，唯一的 catch(int) 不匹配（char 不会为异常匹配做整型提升转换），异常无人接管 → 运行时调用 std::terminate，程序以 abort 中止，\"end\" 不会输出。（已实测：exit=134 即 SIGABRT）A 错在编译合法；D 错在异常匹配规则比普通赋值严格得多。（原错题考概念\"无匹配 catch 会怎样\"，本题落成具体代码变式）"
+        },
+        {
+          "id": "q15",
+          "type": "choice",
+          "knowledge": [
+            "函数声明与参数传递"
+          ],
+          "difficulty": "medium",
+          "stem": "下列函数声明中，**合法**的是（ ）",
+          "options": {
+            "A": "void f(int a, b);",
+            "B": "void f(int, double);",
+            "C": "void f(int; double);",
+            "D": "f(int, double);"
+          },
+          "answer": "B",
+          "explanation": "声明可以省略参数名，但**每个**参数都必须有自己的类型：void f(int, double); 合法（已实测编译通过）。A 的 b 缺类型（int a, b 只在定义变量时合法，参数列表不行，已实测报错 \"b has not been declared\"）；C 用了分号；D 缺返回类型。（原错题考\"int add(int,int); 是否合法\"判断，本题换成四选一辨析变式）"
+        }
+      ]
+    },
+    {
+      "title": "二、判断题（每题 2 分，共 20 分）",
+      "question_type": "tf",
+      "score_per_question": 2,
+      "questions": [
+        {
+          "id": "q16",
+          "type": "tf",
+          "knowledge": [
+            "位运算",
+            "补码与进制"
+          ],
+          "difficulty": "easy",
+          "stem": "假设 int 为 32 位补码表示，表达式 `~0` 的值等于 -1。（ ）",
+          "answer": true,
+          "explanation": "正确。0 的 32 位是全 0，按位取反后全 1；补码中全 1 恰好表示 -1（已实测输出 -1）。由此可得恒等式 ~x == -x-1 对任意 int 成立。注意与\"~0 等于 1\"的常见误区区分。"
+        },
+        {
+          "id": "q17",
+          "type": "tf",
+          "knowledge": [
+            "类型回绕"
+          ],
+          "difficulty": "hard",
+          "stem": "已知 `unsigned int a = 0;`，表达式 `(a - 1) > 0` 的值为 true。（ ）",
+          "answer": true,
+          "explanation": "正确。无符号数 0-1 按模 2^32 回绕为 UINT_MAX = 4294967295，大于 0（已实测为 true）。这就是著名的无符号陷阱：`for (unsigned i = n; i >= 0; i--)` 永远为真死循环——无符号数与 0 比较 \">=\" 恒成立。（原错题考\"0-1 结果为 -1\"是 false，本题从比较角度正向变式）"
+        },
+        {
+          "id": "q18",
+          "type": "tf",
+          "knowledge": [
+            "排序算法"
+          ],
+          "difficulty": "medium",
+          "stem": "对 n 个元素进行选择排序（升序），恰好需要进行 n 轮才能完成排序。（ ）",
+          "answer": false,
+          "explanation": "错误。只需要 **n-1** 轮：前 n-1 轮每轮把一个最小值放到正确位置后，最后一个元素自然就位，无需第 n 轮。（与原错题\"比较次数恒为 n(n-1)/2\"互补：比较次数确实是 n(n-1)/2，但轮数是 n-1）"
+        },
+        {
+          "id": "q19",
+          "type": "tf",
+          "knowledge": [
+            "结构体"
+          ],
+          "difficulty": "hard",
+          "stem": "定义 `struct Node { int val; Node next; };` 是合法的，即结构体可以包含一个自身类型的成员。（ ）",
+          "answer": false,
+          "explanation": "错误。若允许包含自身类型的**值成员**，Node 的大小将无穷递归无法确定，编译器直接报错（incomplete type）。合法写法是包含指向自身类型的**指针**：`struct Node { int val; Node* next; };`——声明指针时 Node 是不完整类型也允许，这正是链表的定义基础。"
+        },
+        {
+          "id": "q20",
+          "type": "tf",
+          "knowledge": [
+            "指针与数组"
+          ],
+          "difficulty": "easy",
+          "stem": "对 `int a[5]` 和 `int *p = a;`，表达式 `*(p + 2)`、`a[2]`、`p[2]` 三者的值相同。（ ）",
+          "answer": true,
+          "explanation": "正确。下标运算符就是指针偏移的语法糖：x[i] ≡ *(x+i)，对数组名和指针一视同仁（已实测三者都等于 30）。因此数组名能用的下标写法，指向数组的指针同样能用。"
+        },
+        {
+          "id": "q21",
+          "type": "tf",
+          "knowledge": [
+            "指针与数组",
+            "二维数组"
+          ],
+          "difficulty": "medium",
+          "stem": "对二维数组 `int a[3][4];`，`a[i]` 与 `*(a + i)` 等价，都表示第 i 行的首地址。（ ）",
+          "answer": true,
+          "explanation": "正确。二维数组名 a 可视为\"行数组\"的首地址，a+i 跳过 i 行，*(a+i) = a[i] 是第 i 行（一个含 4 个 int 的一维数组）的首地址（已实测 a[1] == *(a+1) 为真）。于是 a[i][j] ≡ *(*(a+i)+j)。"
+        },
+        {
+          "id": "q22",
+          "type": "tf",
+          "knowledge": [
+            "表达式求值"
+          ],
+          "difficulty": "medium",
+          "stem": "C++ 中表达式 `(2, 3) * 4` 是合法的，其值为 12。（ ）",
+          "answer": true,
+          "explanation": "正确。(2, 3) 是逗号表达式：先算 2（丢弃），再算 3，整个括号表达式的值为最后一个子表达式 3；3*4 = 12（已实测输出 12）。注意与原题的 `[(1,2)*2]*3` 区分：**圆括号**里可以用逗号表达式，**方括号**不能用于分组（那是下标语法），后者不合法。"
+        },
+        {
+          "id": "q23",
+          "type": "tf",
+          "knowledge": [
+            "函数声明与参数传递"
+          ],
+          "difficulty": "hard",
+          "stem": "在同一程序中先后声明 `void foo(int a[]);` 和 `void foo(int* a);`，构成了函数重载（它们是签名不同的两个函数）。（ ）",
+          "answer": false,
+          "explanation": "错误。数组形参会**退化**为指针：`int a[]` 作为参数类型与 `int* a` 完全相同，两条声明是**同一个函数签名**的重复声明，不构成重载（若都给出定义会报重定义错误）。函数重载要求参数类型列表实质不同。"
+        },
+        {
+          "id": "q24",
+          "type": "tf",
+          "knowledge": [
+            "STL"
+          ],
+          "difficulty": "medium",
+          "stem": "`vector<int> v(5);` 创建了一个空的 vector：容量（capacity）为 5，大小（size）为 0。（ ）",
+          "answer": false,
+          "explanation": "错误。v(5) 创建的是**大小为 5** 的 vector，5 个元素全部值初始化为 0，size()=5（capacity 至少为 5）。想要\"空 vector 只预留容量 5\"应写 `vector<int> v; v.reserve(5);`，此时 size()=0。size 与 capacity 的区别是常考易混点。"
+        },
+        {
+          "id": "q25",
+          "type": "tf",
+          "knowledge": [
+            "浮点精度"
+          ],
+          "difficulty": "hard",
+          "stem": "已知 `float x = 1e20f;`，表达式 `x == x + 1.0f` 的值为 true。（ ）",
+          "answer": true,
+          "explanation": "正确。float 只有约 7 位十进制有效数字，1e20 与 1.0 数量级相差悬殊，x + 1.0f 的结果舍入回 1e20f，与原值相等（已实测为 true）——小数被\"吸收\"了。这与原错题 0.1+0.2≠0.3 同属浮点精度盲区：一个考舍入误差，一个考吸收误差。（原错题考 double 相等比较，本题换 float 吸收现象变式）"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "分数求和（最简形式）",
+          "knowledge": [
+            "最大公约数应用",
+            "整数溢出防范",
+            "循环"
+          ],
+          "difficulty": "hard",
+          "stem": "输入 n 个正分数，求它们的和，并把结果化为最简分数输出。\n提示：必须使用 long long；通分时先除后乘（设当前和为 num/den，加入 a/b 时先求 g = gcd(den, b)，新分母 = den / g * b），可以避免中间结果溢出。",
+          "input_format": "第一行一个正整数 n（1 ≤ n ≤ 10）。\n接下来 n 行，每行两个正整数 a_i、b_i（1 ≤ a_i, b_i ≤ 10^9），表示分数 a_i / b_i。",
+          "output_format": "一行，表示最简形式的和：若分母为 1，只输出分子；否则输出 p/q（p、q 互质且 q > 0）。",
+          "samples": [
+            {
+              "input": "2\n1 2\n1 3\n",
+              "output": "5/6"
+            },
+            {
+              "input": "2\n1 2\n1 2\n",
+              "output": "1"
+            }
+          ],
+          "constraints": "1 ≤ n ≤ 10；1 ≤ a_i, b_i ≤ 10^9；保证求和过程中的中间结果与最终结果的分子、分母都不超过 10^18（用 int 会溢出，必须 long long）。",
+          "answer": {
+            "reference_code": "// prog1: Fraction Sum\n// Input: n fractions a_i/b_i, output their sum in simplest form\n#include <iostream>\nusing namespace std;\n\ntypedef long long ll;\n\nll gcd(ll a, ll b) {\n    while (b) { ll t = a % b; a = b; b = t; }\n    return a;\n}\n\nint main(){\n    int n;\n    cin >> n;\n    ll num = 0, den = 1; // running sum = num/den\n    for(int i = 0; i < n; i++){\n        ll a, b;\n        cin >> a >> b;\n        // num/den + a/b = (num*(b/g) + a*(den/g)) / lcm(den,b)\n        // where g = gcd(den, b), lcm = den/g*b\n        ll g = gcd(den, b);\n        ll new_den = den / g * b;\n        ll new_num = num * (b / g) + a * (den / g);\n        ll g2 = gcd((new_num < 0 ? -new_num : new_num), new_den);\n        num = new_num / g2;\n        den = new_den / g2;\n    }\n    if(den == 1)\n        cout << num << endl;\n    else\n        cout << num << \"/\" << den << endl;\n    return 0;\n}\n",
+            "solution": "累加法：当前和记为 num/den（初始 0/1）。每读入 a/b：g = gcd(den, b)；新分母 den' = den/g*b（先除后乘防溢出）；新分子 num' = num*(b/g) + a*(den/g)；再用 gcd(|num'|, den') 约分。最终 den==1 只输出分子，否则输出 num/den。要点：①全程 long long——这正是原错题\"N 个数 GCD/LCM\"用 int 溢出的教训；②gcd 用辗转相除；③先除后乘的顺序不能反，否则 den*b 可能先溢出。",
+            "test_program": "// 测试程序：验证「分数求和」考生程序的正确性\n// 用法： g++ -O2 -std=c++14 -o tester tester.cpp\n//        ./tester <考生二进制程序路径>\n// 原理：把每组用例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（忽略首尾空白）。\n// 全部通过时退出码为 0；存在失败用例时退出码为 1，并用表格打印 输入/期望/实际。\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string flat(std::string s) { for (auto& c : s) if (c == '\\n') c = ' '; return s; }\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/e12p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/e12p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str()); (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str()); std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        { \"2\\n1 2\\n1 3\\n\", \"5/6\" },  // 基础异分母\n        { \"1\\n4 8\\n\", \"1/2\" },  // n=1需约分\n        { \"2\\n1 2\\n1 2\\n\", \"1\" },  // 结果为整数\n        { \"3\\n1 6\\n1 3\\n1 2\\n\", \"1\" },  // 三分数恰为1\n        { \"2\\n1 999999937\\n1 999999938\\n\", \"1999999875/999999875000003906\" },  // 大分母lcm近1e18\n        { \"4\\n1 4\\n1 4\\n1 4\\n1 4\\n\", \"1\" },  // 四个1/4\n        { \"2\\n3 4\\n5 6\\n\", \"19/12\" },  // 19/12\n        { \"2\\n1000000000 999999937\\n1 999999937\\n\", \"1000000001/999999937\" },  // 同分母大分子\n        { \"3\\n2 3\\n4 6\\n1 9\\n\", \"13/9\" },  // 含可约分输入\n        { \"10\\n1 2\\n1 2\\n1 2\\n1 2\\n1 2\\n1 2\\n1 2\\n1 2\\n1 2\\n1 2\\n\", \"5\" },  // 十个1/2\n        { \"1\\n1000000000 1000000000\\n\", \"1\" },  // 1e9/1e9=1\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 分数求和 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下用例不符合预期：\\n\");\n        printf(\"%-4s | %-32s | %-32s | %-32s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"------------------------------------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            printf(\"%-4d | %-32.32s | %-32.32s | %-32.32s\\n\", idx + 1,\n                flat(cases[idx].input).c_str(), flat(cases[idx].expected).c_str(), flat(actualOutputs[idx]).c_str());\n        }\n        return 1;\n    }\n    printf(\"全部通过\\n\");\n    return 0;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "位掩码集合运算",
+          "knowledge": [
+            "位运算",
+            "lowbit",
+            "集合"
+          ],
+          "difficulty": "medium",
+          "stem": "用无符号 32 位整数的**位掩码**表示全集 U = {0, 1, 2, ..., 30} 的子集：第 i 位（从低位起，0 开始）为 1 表示元素 i 在集合中。\n输入两个集合 A 和 B，请借助位运算（|、&、^、~、x&(x-1) 等）求：|A|（A 的元素个数）、|B|、|A∪B|，以及 A∪B 的全部元素（升序）。\n数掩码中 1 的个数可用技巧：`while (x) { x &= (x - 1); cnt++; }`（每次消去最低位的 1），或逐位检查 `U & (1u << i)`。",
+          "input_format": "第一行：整数 k（0 ≤ k ≤ 31），随后 k 个互不相同的 0..30 的整数（可能乱序，空白分隔），表示集合 A；k=0 表示空集（该行只有 0）。\n第二行：同样格式，表示集合 B。",
+          "output_format": "共四行：第一行 |A|；第二行 |B|；第三行 |A∪B|；第四行 A∪B 的全部元素按升序、用单个空格分隔——若 A∪B 为空集，第四行输出 EMPTY。",
+          "samples": [
+            {
+              "input": "3\n1 2 3\n3\n3 4 5\n",
+              "output": "3\n3\n5\n1 2 3 4 5"
+            },
+            {
+              "input": "0\n0\n",
+              "output": "0\n0\n0\nEMPTY"
+            }
+          ],
+          "constraints": "0 ≤ k ≤ 31；元素互不相同且在 0..30 内；输入可能乱序。必须能正确处理空集。",
+          "answer": {
+            "reference_code": "// prog2: Bitmask Set Operations\n// Input: two sets A and B (subsets of {0..30})\n// Output: |A|, |B|, |A∪B|, elements of A∪B sorted ascending (or EMPTY)\n#include <iostream>\n#include <cstdint>\nusing namespace std;\n\nint popcount32(unsigned int x) {\n    int cnt = 0;\n    while (x) { x &= (x - 1); cnt++; }\n    return cnt;\n}\n\nint main(){\n    unsigned int A = 0, B = 0;\n    int k;\n    cin >> k;\n    for(int i = 0; i < k; i++){\n        int v; cin >> v;\n        A |= (1u << v);\n    }\n    cin >> k;\n    for(int i = 0; i < k; i++){\n        int v; cin >> v;\n        B |= (1u << v);\n    }\n    unsigned int U = A | B;\n    cout << popcount32(A) << endl;\n    cout << popcount32(B) << endl;\n    cout << popcount32(U) << endl;\n    if (U == 0) {\n        cout << \"EMPTY\" << endl;\n    } else {\n        bool first = true;\n        for(int i = 0; i <= 30; i++){\n            if (U & (1u << i)){\n                if (!first) cout << \" \";\n                cout << i;\n                first = false;\n            }\n        }\n        cout << endl;\n    }\n    return 0;\n}\n",
+            "solution": "读入时逐个 `A |= (1u << v)` 建掩码（乱序、重复天然免疫）。U = A | B。数 1 的个数用 lowbit 消除法 `x &= (x-1)`（每消一个 1 计数一次）或逐位扫描。输出元素升序：i 从 0 到 30 检查 `U & (1u << i)`。U==0 时第四行输出 EMPTY。本题是原错题 lowbit(12)=12&(-12) 与位表达式求值的综合应用：把\"会算单个位运算\"升级为\"用位运算解决集合问题\"。",
+            "test_program": "// 测试程序：验证「位掩码集合运算」考生程序的正确性\n// 用法： g++ -O2 -std=c++14 -o tester tester.cpp\n//        ./tester <考生二进制程序路径>\n// 原理：把每组用例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（忽略首尾空白）。\n// 全部通过时退出码为 0；存在失败用例时退出码为 1，并用表格打印 输入/期望/实际。\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string flat(std::string s) { for (auto& c : s) if (c == '\\n') c = ' '; return s; }\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/e12p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/e12p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str()); (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str()); std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        { \"3\\n1 2 3\\n3\\n3 4 5\\n\", \"3\\n3\\n5\\n1 2 3 4 5\" },  // 交叠集合\n        { \"0\\n0\\n\", \"0\\n0\\n0\\nEMPTY\" },  // 双空集EMPTY\n        { \"2\\n0 30\\n1\\n15\\n\", \"2\\n1\\n3\\n0 15 30\" },  // 边界元素0和30\n        { \"2\\n7 8\\n2\\n8 7\\n\", \"2\\n2\\n2\\n7 8\" },  // A=B乱序\n        { \"1\\n0\\n1\\n30\\n\", \"1\\n1\\n2\\n0 30\" },  // 不相交\n        { \"4\\n1 2 3 4\\n2\\n2 3\\n\", \"4\\n2\\n4\\n1 2 3 4\" },  // B是A子集\n        { \"31\\n0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30\\n0\\n\", \"31\\n0\\n31\\n0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30\" },  // A全集B空\n        { \"0\\n31\\n30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0\\n\", \"0\\n31\\n31\\n0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30\" },  // A空B全集乱序\n        { \"5\\n2 4 6 8 10\\n5\\n1 3 5 7 9\\n\", \"5\\n5\\n10\\n1 2 3 4 5 6 7 8 9 10\" },  // 奇偶互补\n        { \"1\\n0\\n1\\n0\\n\", \"1\\n1\\n1\\n0\" },  // 单元素相同\n        { \"0\\n1\\n30\\n\", \"0\\n1\\n1\\n30\" },  // A空B单元素\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 位掩码集合运算 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下用例不符合预期：\\n\");\n        printf(\"%-4s | %-32s | %-32s | %-32s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"------------------------------------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            printf(\"%-4d | %-32.32s | %-32.32s | %-32.32s\\n\", idx + 1,\n                flat(cases[idx].input).c_str(), flat(cases[idx].expected).c_str(), flat(actualOutputs[idx]).c_str());\n        }\n        return 1;\n    }\n    printf(\"全部通过\\n\");\n    return 0;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}
