@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>睿美达环保 - 公众号菜单栏视觉概念</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #312D72;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .page-sub {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 40px;
+  }
+
+  /* ── iPhone frame ── */
+  .phone-frame {
+    width: 375px;
+    background: white;
+    border-radius: 36px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 2px rgba(0,0,0,0.05);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* status bar */
+  .status-bar {
+    height: 44px;
+    background: #F7F7F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1A2E;
+  }
+
+  /* WeChat header */
+  .wx-header {
+    height: 50px;
+    background: #EDEDED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-bottom: 0.5px solid #D9D9D9;
+  }
+  .wx-header .back {
+    position: absolute;
+    left: 16px;
+    font-size: 18px;
+    color: #333;
+  }
+  .wx-header .name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1A1A2E;
+  }
+
+  /* chat area */
+  .chat-area {
+    background: #F0F0F0;
+    padding: 20px 16px;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* welcome message card */
+  .welcome-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .welcome-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .welcome-avatar {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .welcome-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .welcome-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1A1A2E;
+  }
+  .welcome-tag {
+    font-size: 10px;
+    color: #E8880C;
+    background: rgba(232,136,12,0.08);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 2px;
+    display: inline-block;
+  }
+  .welcome-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .welcome-text strong {
+    color: #312D72;
+  }
+  .welcome-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .welcome-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #F8F9FA;
+    border-radius: 8px;
+    border-left: 3px solid #312D72;
+    text-decoration: none;
+  }
+  .welcome-link .link-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .welcome-link .link-icon.gold { background: linear-gradient(135deg, #E8880C, #F5A623); }
+  .welcome-link .link-icon.purp { background: linear-gradient(135deg, #312D72, #5A54A4); }
+  .welcome-link .link-icon.cyan { background: linear-gradient(135deg, #00ACC1, #26C6DA); }
+  .welcome-link .link-text {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+  }
+  .welcome-link .link-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: #CCC;
+  }
+
+  /* ── bottom menu bar ── */
+  .menu-bar {
+    background: #FAFAFA;
+    border-top: 0.5px solid #D9D9D9;
+    display: flex;
+    position: relative;
+  }
+  .menu-group {
+    flex: 1;
+    position: relative;
+  }
+  .menu-group + .menu-group {
+    border-left: 0.5px solid #E0E0E0;
+  }
+  .menu-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .menu-main .menu-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: 0.5px;
+  }
+  .menu-main .menu-arrow {
+    font-size: 8px;
+    color: #999;
+    transform: rotate(-90deg);
+  }
+
+  /* expanded submenu */
+  .submenu {
+    position: absolute;
+    bottom: 52px;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    z-index: 20;
+  }
+  .submenu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 0.5px solid #F0F0F0;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+  }
+  .submenu-item:last-child {
+    border-bottom: none;
+  }
+  .submenu-item .sub-icon {
+    width: 24px; height: 24px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  /* ── design spec panel ── */
+  .spec-panel {
+    width: 375px;
+    margin-top: 40px;
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .spec-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #312D72;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #E8880C;
+    display: inline-block;
+  }
+
+  .spec-section {
+    margin-bottom: 20px;
+  }
+  .spec-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* color swatches */
+  .color-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .swatch-color {
+    width: 44px; height: 44px;
+    border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .swatch-label {
+    font-size: 9px;
+    color: #999;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* menu structure table */
+  .menu-table {
+    width: 100%;
+    font-size: 12px;
+    border-collapse: collapse;
+  }
+  .menu-table th {
+    text-align: left;
+    font-weight: 600;
+    color: #312D72;
+    padding: 8px 8px;
+    border-bottom: 1px solid #E8E8E8;
+    font-size: 11px;
+  }
+  .menu-table td {
+    padding: 6px 8px;
+    color: #555;
+    border-bottom: 1px solid #F5F5F5;
+    vertical-align: top;
+  }
+  .menu-table .group-name {
+    font-weight: 600;
+    color: #1A1A2E;
+  }
+  .menu-table .sub-list {
+    list-style: none;
+    padding: 0;
+  }
+  .menu-table .sub-list li {
+    padding: 2px 0;
+  }
+  .menu-table .sub-list li::before {
+    content: '›';
+    color: #E8880C;
+    margin-right: 6px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="page-title">菜单栏视觉概念</div>
+  <div class="page-sub">微信公众号底部菜单 · 含子菜单展开效果</div>
+
+  <!-- Phone mockup -->
+  <div class="phone-frame">
+    <!-- Status bar -->
+    <div class="status-bar">9:41</div>
+
+    <!-- WeChat header -->
+    <div class="wx-header">
+      <span class="back">‹</span>
+      <span class="name">睿美达环保</span>
+    </div>
+
+    <!-- Chat area with welcome message -->
+    <div class="chat-area">
+      <div class="welcome-card">
+        <div class="welcome-header">
+          <div class="welcome-avatar">
+            <img src="../logo.jpg" alt="睿美达">
+          </div>
+          <div>
+            <div class="welcome-name">睿美达环保</div>
+            <div class="welcome-tag">环保科技企业</div>
+          </div>
+        </div>
+        <div class="welcome-text">
+          欢迎关注<strong>北京睿美达环保新材料科技</strong>！我们专注超微纳米曝气+臭氧催化氧化一体化水处理技术，为您提供高效、节能、智能的水处理解决方案。
+        </div>
+        <div class="welcome-links">
+          <div class="welcome-link">
+            <div class="link-icon gold">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="link-text">了解核心技术</span>
+            <span class="link-arrow">›</span>
+          </div>
+          <div class="welcome-link">
+            <div class="link-icon purp">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <span class="link-text">查看工程案例</span>
+            <span class="link-arrow">›</span>
+          </div>
+          <div class="welcome-link">
+            <div class="link-icon cyan">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"/></svg>
+            </div>
+            <span class="link-text">联系技术顾问</span>
+            <span class="link-arrow">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Expanded submenu preview (on middle group) -->
+    <div style="position:relative;">
+      <div class="submenu" style="position:relative; bottom:auto; border-radius:0;">
+        <div class="submenu-item">
+          <div class="sub-icon" style="background:linear-gradient(135deg,#312D72,#5A54A4);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </div>
+          公司介绍
+        </div>
+        <div class="submenu-item">
+          <div class="sub-icon" style="background:linear-gradient(135deg,#E8880C,#F5A623);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          核心技术
+        </div>
+        <div class="submenu-item">
+          <div class="sub-icon" style="background:linear-gradient(135deg,#00ACC1,#26C6DA);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+          </div>
+          产品中心
+        </div>
+        <div class="submenu-item">
+          <div class="sub-icon" style="background:linear-gradient(135deg,#66BB6A,#81C784);">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          工程案例
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu bar -->
+    <div class="menu-bar">
+      <div class="menu-group">
+        <div class="menu-main">
+          <span class="menu-label">技术方案</span>
+          <span class="menu-arrow">▾</span>
+        </div>
+      </div>
+      <div class="menu-group">
+        <div class="menu-main">
+          <span class="menu-label">走进睿美达</span>
+          <span class="menu-arrow">▾</span>
+        </div>
+      </div>
+      <div class="menu-group">
+        <div class="menu-main">
+          <span class="menu-label">联系我们</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Spec Panel -->
+  <div class="spec-panel">
+    <div class="spec-title">视觉设计规范</div>
+
+    <!-- Colors -->
+    <div class="spec-section">
+      <div class="spec-section-title">品牌色板 COLOR PALETTE</div>
+      <div class="color-row">
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E8880C;"></div>
+          <div class="swatch-label">达标金<br>#E8880C</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#312D72;"></div>
+          <div class="swatch-label">皇家紫<br>#312D72</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E0F7FA;"></div>
+          <div class="swatch-label">浅青蓝<br>#E0F7FA</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#E8F5E9;"></div>
+          <div class="swatch-label">浅环保绿<br>#E8F5E9</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#ECEFF1;"></div>
+          <div class="swatch-label">银灰<br>#ECEFF1</div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color" style="background:#FFFFFF; border:1px solid #E0E0E0;"></div>
+          <div class="swatch-label">白色<br>#FFFFFF</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu structure -->
+    <div class="spec-section">
+      <div class="spec-section-title">菜单结构 MENU STRUCTURE</div>
+      <table class="menu-table">
+        <tr>
+          <th>一级菜单</th>
+          <th>子菜单</th>
+          <th>链接类型</th>
+        </tr>
+        <tr>
+          <td class="group-name">技术方案</td>
+          <td>
+            <ul class="sub-list">
+              <li>核心技术</li>
+              <li>产品中心</li>
+              <li>工程案例</li>
+            </ul>
+          </td>
+          <td>图文链接</td>
+        </tr>
+        <tr>
+          <td class="group-name">走进睿美达</td>
+          <td>
+            <ul class="sub-list">
+              <li>公司介绍</li>
+              <li>生产基地</li>
+              <li>资质荣誉</li>
+              <li>新闻动态</li>
+            </ul>
+          </td>
+          <td>图文链接</td>
+        </tr>
+        <tr>
+          <td class="group-name">联系我们</td>
+          <td>
+            <ul class="sub-list">
+              <li>技术咨询</li>
+              <li>商务合作</li>
+            </ul>
+          </td>
+          <td>页面 / 电话</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</body>
+</html>

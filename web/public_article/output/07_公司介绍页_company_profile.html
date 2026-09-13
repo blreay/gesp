@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>北京睿美达环保新材料科技有限公司 — 科技赋能环保 · 创新守护碧水</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --gold:#E8880C;
+  --gold-2:#F5A623;
+  --purple:#312D72;
+  --purple-2:#4A4494;
+  --purple-deep:#221F52;
+  --ink:#1A1A2E;
+  --gray:#6B6B8A;
+  --gray-2:#9A97B8;
+  --cyan:#E0F7FA;
+  --green:#E8F5E9;
+  --silver:#ECEFF1;
+  --paper:#FBFBFD;
+  --line:rgba(49,45,114,.10);
+  --serif:"Noto Serif SC","Songti SC",serif;
+  --sans:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"IBM Plex Mono","SF Mono",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:56px 56px;
+  background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+
+/* ─────────── reveal on scroll ─────────── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ─────────── nav ─────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 40px;
+  transition:background .35s,box-shadow .35s,padding .35s;
+}
+.nav .brand{display:flex;align-items:center;gap:12px}
+.nav .logo-chip{
+  background:#fff;border-radius:6px;padding:4px 6px;
+  box-shadow:0 2px 10px rgba(0,0,0,.18);
+}
+.nav .logo-chip img{height:26px;width:auto}
+.nav .brand-name{
+  font-family:var(--serif);font-weight:700;font-size:17px;
+  color:#fff;letter-spacing:2px;transition:color .35s;
+}
+.nav ul{display:flex;gap:34px;list-style:none}
+.nav ul a{
+  font-size:13.5px;letter-spacing:1.5px;color:rgba(255,255,255,.85);
+  position:relative;padding:4px 0;transition:color .35s;
+}
+.nav ul a::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;
+  background:var(--gold);transition:width .3s;
+}
+.nav ul a:hover::after{width:100%}
+.nav.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(49,45,114,.08);padding:10px 40px}
+.nav.scrolled .brand-name{color:var(--purple)}
+.nav.scrolled ul a{color:var(--gray)}
+.nav.scrolled ul a:hover{color:var(--purple)}
+/* hamburger (mobile) */
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px 4px}
+.nav-toggle span{width:22px;height:2px;background:#fff;border-radius:1px;transition:background .3s,transform .3s,opacity .3s}
+.nav.scrolled .nav-toggle span,.nav.open .nav-toggle span{background:var(--purple)}
+.nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .nav-toggle span:nth-child(2){opacity:0}
+.nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ─────────── hero ─────────── */
+.hero{position:relative;height:100vh;min-height:700px;overflow:hidden;background:var(--purple-deep)}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 62%;
+  animation:kenburns 26s ease-in-out infinite alternate;
+  transform-origin:center 60%;
+}
+@keyframes kenburns{
+  from{transform:scale(1) translateY(0)}
+  to{transform:scale(1.09) translateY(-14px)}
+}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    rgba(24,21,56,.66) 0%,
+    rgba(24,21,56,.22) 34%,
+    rgba(24,21,56,.10) 52%,
+    rgba(24,21,56,.55) 82%,
+    rgba(24,21,56,.90) 100%);
+}
+.hero-scrim::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg, rgba(49,45,114,.42) 0%, rgba(49,45,114,0) 55%);
+}
+.hero-inner{
+  position:relative;z-index:2;height:100%;
+  display:flex;flex-direction:column;justify-content:center;
+  max-width:1160px;margin:0 auto;padding:0 32px;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:4px;
+  color:var(--gold-2);margin-bottom:22px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-eyebrow::before{content:'';width:44px;height:1px;background:var(--gold-2)}
+.hero h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(38px,5.4vw,66px);
+  line-height:1.28;letter-spacing:6px;color:#fff;
+  text-shadow:0 4px 30px rgba(0,0,0,.35);
+}
+.hero h1 .l2{display:block}
+.hero h1 .accent{
+  background:linear-gradient(transparent 68%, rgba(232,136,12,.55) 68%);
+}
+.hero-sub{
+  margin-top:26px;max-width:640px;
+  font-size:15.5px;font-weight:300;line-height:2;
+  color:rgba(255,255,255,.82);letter-spacing:1px;
+}
+.hero-sub b{color:#fff;font-weight:500}
+/* vertical side tagline */
+.hero-vertical{
+  position:absolute;right:56px;top:0;bottom:0;
+  z-index:2;writing-mode:vertical-rl;
+  font-family:var(--serif);font-size:15px;letter-spacing:8px;
+  color:rgba(255,255,255,.66);
+  display:flex;align-items:center;justify-content:center;gap:18px;
+}
+.hero-vertical::before,.hero-vertical::after{
+  content:'';width:1px;height:56px;background:rgba(232,136,12,.7);
+  writing-mode:horizontal-tb;
+}
+/* scroll cue */
+.hero-cue{
+  position:absolute;left:50%;bottom:118px;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.55);
+}
+.hero-cue .stick{width:1px;height:44px;background:rgba(255,255,255,.25);position:relative;overflow:hidden}
+.hero-cue .stick::after{content:'';position:absolute;top:-40%;left:0;width:1px;height:40%;background:var(--gold-2);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%{top:-40%}70%{top:110%}100%{top:110%}}
+
+/* ─────────── stats strip (overlaps hero) ─────────── */
+.stats{position:relative;z-index:5;margin-top:-72px}
+.stats-card{
+  background:#fff;border-radius:4px;
+  box-shadow:0 18px 50px rgba(24,21,56,.14);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:3px solid var(--gold);
+}
+.stat{padding:30px 20px 26px;text-align:center;position:relative}
+.stat + .stat::before{content:'';position:absolute;left:0;top:24%;bottom:24%;width:1px;background:var(--line)}
+.stat .num{
+  font-family:var(--mono);font-weight:500;
+  font-size:34px;color:var(--purple);line-height:1;
+}
+.stat .num .u{font-size:16px;color:var(--gold);margin-left:2px}
+.stat .num .rng{color:var(--gray-2);font-size:22px;padding:0 2px}
+.stat .lbl{margin-top:10px;font-size:12px;letter-spacing:2.5px;color:var(--gray)}
+
+/* ─────────── section head ─────────── */
+section{padding:110px 0}
+.sec-head{display:flex;align-items:flex-end;gap:22px;margin-bottom:64px}
+.sec-num{
+  font-family:var(--mono);font-size:52px;line-height:.9;font-weight:500;
+  color:transparent;-webkit-text-stroke:1.2px rgba(49,45,114,.28);
+}
+.sec-title h2{
+  font-family:var(--serif);font-weight:900;font-size:34px;
+  letter-spacing:4px;color:var(--ink);
+}
+.sec-title .en{
+  font-family:var(--mono);font-size:11px;letter-spacing:4px;
+  color:var(--gold);margin-top:8px;text-transform:uppercase;
+}
+.sec-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);margin-bottom:12px}
+.sec-tag{
+  font-size:12px;letter-spacing:2px;color:var(--gray);
+  border:1px solid var(--line);padding:6px 14px;border-radius:2px;
+  margin-bottom:6px;background:#fff;
+}
+
+/* ─────────── 02 about ─────────── */
+.about{background:#fff}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:start}
+.about-lede{
+  font-family:var(--serif);font-size:21px;font-weight:700;
+  line-height:1.9;letter-spacing:1px;color:var(--purple);
+  margin-bottom:28px;position:relative;padding-left:22px;
+}
+.about-lede::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--gold)}
+.about p{font-size:14.5px;line-height:2.15;color:var(--gray);letter-spacing:.5px;margin-bottom:18px;text-align:justify}
+.about p b{color:var(--ink);font-weight:500}
+/* pain-point chips */
+.pains{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0 30px}
+.pain{
+  font-size:12.5px;letter-spacing:1px;color:var(--purple);
+  background:rgba(49,45,114,.05);border:1px dashed rgba(49,45,114,.25);
+  padding:8px 16px;border-radius:2px;position:relative;
+}
+.pain::before{content:'×';color:var(--gold);margin-right:7px;font-family:var(--mono)}
+/* service steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);margin-top:38px}
+.step{padding:24px 22px 6px;position:relative}
+.step + .step{border-left:1px solid var(--line)}
+.step .idx{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--gold)}
+.step h4{font-family:var(--serif);font-size:17px;letter-spacing:2px;margin:8px 0 8px;color:var(--ink)}
+.step p{font-size:12.5px;line-height:1.9;color:var(--gray-2);margin:0}
+/* about image column */
+.about-visual{position:relative}
+.about-visual .frame{
+  position:relative;border-radius:4px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(24,21,56,.16);
+}
+.about-visual .frame img{width:100%;height:460px;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.about-visual .frame:hover img{transform:scale(1.05)}
+.about-visual .frame::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(24,21,56,.55));
+}
+.about-visual .cap{
+  position:absolute;left:24px;bottom:20px;z-index:2;color:#fff;
+}
+.about-visual .cap .t{font-family:var(--serif);font-size:16px;letter-spacing:3px}
+.about-visual .cap .s{font-family:var(--mono);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.7);margin-top:5px}
+/* offset outline frame */
+.about-visual::before{
+  content:'';position:absolute;top:22px;left:22px;right:-22px;bottom:-22px;
+  border:1px solid rgba(232,136,12,.45);border-radius:4px;z-index:-1;
+}
+/* quote card */
+.quote-card{
+  margin-top:44px;background:var(--purple);border-radius:4px;
+  padding:26px 28px;color:#fff;position:relative;overflow:hidden;
+}
+.quote-card::after{
+  content:'睿';position:absolute;right:-10px;bottom:-34px;
+  font-family:var(--serif);font-size:130px;font-weight:900;
+  color:rgba(255,255,255,.06);line-height:1;
+}
+.quote-card .q{
+  font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:3px;line-height:1.8;
+}
+.quote-card .q em{font-style:normal;color:var(--gold-2)}
+.quote-card .src{margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.5)}
+
+/* ─────────── 03 technology ─────────── */
+.tech{background:linear-gradient(180deg,#F6F7FB 0%,#FBFBFD 100%)}
+.couple{display:grid;grid-template-columns:1fr 168px 1fr;gap:0;align-items:stretch;margin-bottom:70px}
+.tcard{
+  background:#fff;border:1px solid var(--line);border-radius:4px;
+  padding:36px 34px;position:relative;overflow:hidden;
+  transition:transform .4s,box-shadow .4s;
+}
+.tcard:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(24,21,56,.10)}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.tcard.a::before{background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+.tcard.b::before{background:linear-gradient(90deg,var(--purple),var(--purple-2))}
+.tcard .ic{
+  width:52px;height:52px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+}
+.tcard.a .ic{background:rgba(232,136,12,.10)}
+.tcard.b .ic{background:rgba(49,45,114,.08)}
+.tcard h3{font-family:var(--serif);font-size:23px;letter-spacing:3px;color:var(--ink)}
+.tcard .en{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;color:var(--gray-2);margin:8px 0 18px;text-transform:uppercase}
+.tcard p{font-size:13.5px;line-height:2;color:var(--gray);margin-bottom:18px;text-align:justify}
+.tcard ul{list-style:none}
+.tcard li{
+  font-family:var(--mono);font-size:12px;color:var(--purple);
+  padding:9px 0;border-top:1px dashed var(--line);
+  display:flex;justify-content:space-between;letter-spacing:.5px;
+}
+.tcard li span:last-child{color:var(--gold)}
+/* coupling node */
+.couple-node{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+.couple-node .link{
+  position:absolute;top:50%;width:100%;height:2px;z-index:0;
+  background:repeating-linear-gradient(90deg,var(--gold) 0 7px,transparent 7px 14px);
+  animation:march 1.1s linear infinite;
+}
+@keyframes march{to{background-position:14px 0}}
+.couple-node .core{
+  position:relative;z-index:1;width:132px;height:132px;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,var(--purple-2),var(--purple) 68%);
+  color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  box-shadow:0 14px 40px rgba(49,45,114,.35);
+}
+.couple-node .core::before,.couple-node .core::after{
+  content:'';position:absolute;inset:-1px;border-radius:50%;
+  border:1px solid rgba(232,136,12,.55);animation:ring 3s ease-out infinite;
+}
+.couple-node .core::after{animation-delay:1.5s}
+@keyframes ring{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.55);opacity:0}}
+.couple-node .core .t1{font-family:var(--serif);font-size:17px;font-weight:900;letter-spacing:3px}
+.couple-node .core .t2{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--gold-2)}
+/* process flow */
+.flow{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#fff;border:1px solid var(--line);border-radius:4px;
+  padding:26px 34px;margin-bottom:64px;position:relative;
+}
+.flow-step{display:flex;align-items:center;gap:14px}
+.flow-step .n{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  border:1px solid rgba(49,45,114,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;color:var(--purple);
+  background:#fff;transition:background .3s,color .3s;
+}
+.flow-step:hover .n{background:var(--purple);color:#fff}
+.flow-step .tt{font-size:14.5px;font-weight:500;letter-spacing:1.5px;color:var(--ink)}
+.flow-step .ss{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--gray-2);margin-top:3px}
+.flow-arrow{
+  flex:1;height:2px;margin:0 18px;position:relative;
+  background:repeating-linear-gradient(90deg,rgba(49,45,114,.35) 0 6px,transparent 6px 12px);
+  animation:march 1.1s linear infinite;
+}
+.flow-arrow::after{
+  content:'';position:absolute;right:-1px;top:-4px;
+  border-left:8px solid rgba(49,45,114,.45);
+  border-top:5px solid transparent;border-bottom:5px solid transparent;
+}
+.flow-step.final .n{background:var(--gold);border-color:var(--gold);color:#fff}
+/* annotated visual */
+.annot{position:relative;border-radius:4px;overflow:hidden;box-shadow:0 24px 60px rgba(24,21,56,.14)}
+.annot img{width:100%;height:440px;object-fit:cover}
+.annot .chip{
+  position:absolute;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);
+  border-radius:3px;padding:9px 14px;box-shadow:0 6px 20px rgba(0,0,0,.18);
+  display:flex;align-items:center;gap:9px;
+}
+.annot .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(232,136,12,.2);flex-shrink:0}
+.annot .chip .txt{font-family:var(--mono);font-size:11.5px;letter-spacing:.5px;color:var(--purple)}
+.annot .chip .txt b{color:var(--gold);font-weight:500}
+.annot .c1{top:34px;left:38px}
+.annot .c2{top:44%;right:44px}
+.annot .c3{bottom:38px;left:22%}
+.annot .tagline{
+  position:absolute;left:0;bottom:0;background:var(--purple);
+  color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  padding:10px 20px;
+}
+
+/* ─────────── 04 data band ─────────── */
+.band{
+  background:linear-gradient(120deg,var(--purple-deep) 0%,var(--purple) 55%,var(--purple-2) 100%);
+  padding:84px 0;position:relative;overflow:hidden;
+}
+.band::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.band .wrap{position:relative}
+.band-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:52px}
+.band-head h2{font-family:var(--serif);font-size:30px;font-weight:900;letter-spacing:5px;color:#fff}
+.band-head .en{font-family:var(--mono);font-size:11px;letter-spacing:4px;color:var(--gold-2)}
+.band-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.bstat{padding:0 34px;position:relative}
+.bstat + .bstat::before{content:'';position:absolute;left:0;top:8%;bottom:8%;width:1px;background:rgba(255,255,255,.14)}
+.bstat .v{font-family:var(--mono);font-weight:500;font-size:46px;color:#fff;line-height:1}
+.bstat .v .u{font-size:20px;color:var(--gold-2);margin-left:3px}
+.bstat .v .rng{color:rgba(255,255,255,.4);font-size:30px;padding:0 3px}
+.bstat .k{margin-top:14px;font-size:13px;letter-spacing:2.5px;color:rgba(255,255,255,.72)}
+.bstat .d{margin-top:6px;font-family:var(--mono);font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.38)}
+
+/* ─────────── 05 equipment ─────────── */
+.equip{background:#fff}
+.equip-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:70px;align-items:center}
+.equip-visual{position:relative}
+.equip-visual .frame{border-radius:4px;overflow:hidden;box-shadow:0 24px 60px rgba(24,21,56,.16)}
+.equip-visual img{width:100%;height:520px;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.equip-visual .frame:hover img{transform:scale(1.05)}
+.equip-visual .badge{
+  position:absolute;top:26px;left:-16px;z-index:2;
+  background:var(--gold);color:#fff;border-radius:3px;
+  font-family:var(--mono);font-size:11px;letter-spacing:2px;
+  padding:9px 18px;box-shadow:0 8px 24px rgba(232,136,12,.4);
+}
+.equip-text h3{
+  font-family:var(--serif);font-size:27px;font-weight:900;
+  letter-spacing:3px;line-height:1.6;color:var(--ink);margin-bottom:14px;
+}
+.equip-text h3 em{font-style:normal;color:var(--purple);background:linear-gradient(transparent 70%,rgba(232,136,12,.28) 70%)}
+.equip-text > p{font-size:14px;line-height:2.1;color:var(--gray);margin-bottom:32px;text-align:justify}
+.bom{border-top:2px solid var(--purple)}
+.bom-row{
+  display:grid;grid-template-columns:56px 1fr auto;gap:18px;align-items:center;
+  padding:17px 6px;border-bottom:1px solid var(--line);
+  transition:background .3s,padding .3s;
+}
+.bom-row:hover{background:rgba(49,45,114,.03);padding-left:14px}
+.bom-row .i{font-family:var(--mono);font-size:12px;color:var(--gold)}
+.bom-row .n{font-size:15px;font-weight:500;letter-spacing:1.5px;color:var(--ink)}
+.bom-row .n small{display:block;font-size:11.5px;font-weight:300;color:var(--gray-2);letter-spacing:.5px;margin-top:3px}
+.bom-row .s{
+  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--purple);
+  border:1px solid rgba(49,45,114,.2);border-radius:2px;padding:4px 10px;white-space:nowrap;
+}
+.equip-note{
+  margin-top:28px;display:flex;gap:14px;align-items:flex-start;
+  background:var(--green);border-radius:4px;padding:16px 20px;
+}
+.equip-note .ic{flex-shrink:0;margin-top:2px}
+.equip-note p{font-size:12.5px;line-height:1.9;color:#2E7D32;letter-spacing:.5px;margin:0}
+
+/* ─────────── 06 scenarios ─────────── */
+.scene{background:linear-gradient(180deg,#FBFBFD 0%,#F6F7FB 100%)}
+.scene-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.scard{
+  border-radius:4px;padding:34px 26px 30px;position:relative;overflow:hidden;
+  border:1px solid var(--line);background:#fff;
+  transition:transform .4s,box-shadow .4s;
+}
+.scard::before{content:'';position:absolute;top:0;left:0;height:3px;width:0;background:var(--gold);transition:width .45s}
+.scard:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(24,21,56,.10)}
+.scard:hover::before{width:100%}
+.scard .tint{position:absolute;inset:0;opacity:.5;z-index:0}
+.scard:nth-child(1) .tint{background:linear-gradient(160deg,var(--cyan),transparent 55%)}
+.scard:nth-child(2) .tint{background:linear-gradient(160deg,var(--green),transparent 55%)}
+.scard:nth-child(3) .tint{background:linear-gradient(160deg,rgba(232,136,12,.10),transparent 55%)}
+.scard:nth-child(4) .tint{background:linear-gradient(160deg,var(--silver),transparent 55%)}
+.scard > *{position:relative;z-index:1}
+.scard .ic{
+  width:48px;height:48px;border-radius:8px;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 18px rgba(24,21,56,.10);margin-bottom:22px;
+}
+.scard h4{font-family:var(--serif);font-size:18px;letter-spacing:2px;color:var(--ink);margin-bottom:12px}
+.scard p{font-size:12.5px;line-height:1.95;color:var(--gray)}
+.scard .tag{
+  display:inline-block;margin-top:18px;font-family:var(--mono);
+  font-size:10px;letter-spacing:1.5px;color:var(--purple);
+  border-bottom:1px solid rgba(232,136,12,.6);padding-bottom:3px;
+}
+
+/* ─────────── 07 smart ─────────── */
+.smart{background:#fff}
+.smart-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:70px;align-items:center}
+.smart-lede{
+  font-family:var(--serif);font-size:24px;font-weight:900;
+  letter-spacing:2px;line-height:1.75;color:var(--ink);margin-bottom:16px;
+}
+.smart-lede em{font-style:normal;color:var(--purple)}
+.smart > .wrap > .smart-grid p.intro{font-size:14px;line-height:2.1;color:var(--gray);margin-bottom:36px;text-align:justify}
+.feat{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.feat:last-of-type{border-bottom:1px solid var(--line)}
+.feat .ic{
+  flex-shrink:0;width:44px;height:44px;border-radius:50%;
+  background:rgba(49,45,114,.06);display:flex;align-items:center;justify-content:center;
+}
+.feat h5{font-size:15.5px;font-weight:700;letter-spacing:2px;color:var(--ink);margin-bottom:6px}
+.feat p{font-size:12.5px;line-height:1.9;color:var(--gray-2);margin:0}
+/* dashboard mock */
+.dash{
+  background:#fff;border:1px solid var(--line);border-radius:6px;
+  box-shadow:0 30px 70px rgba(24,21,56,.14);overflow:hidden;
+}
+.dash-bar{
+  display:flex;align-items:center;gap:8px;
+  background:var(--purple);padding:12px 18px;
+}
+.dash-bar .d{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)}
+.dash-bar .d:first-child{background:var(--gold)}
+.dash-bar .t{margin-left:10px;font-family:var(--mono);font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.85)}
+.dash-bar .live{
+  margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:1.5px;
+  color:#7BE495;display:flex;align-items:center;gap:6px;
+}
+.dash-bar .live::before{content:'';width:6px;height:6px;border-radius:50%;background:#7BE495;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.dash-body{padding:24px 24px 20px}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.kpi{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:14px 16px}
+.kpi .k{font-family:var(--mono);font-size:9.5px;letter-spacing:1.5px;color:var(--gray-2)}
+.kpi .v{margin-top:6px;font-family:var(--mono);font-size:21px;color:var(--purple)}
+.kpi .v .u{font-size:11px;color:var(--gray-2)}
+.kpi .v.down{color:#2E7D32}
+.chart{border:1px solid var(--line);border-radius:4px;padding:16px 16px 8px;background:var(--paper)}
+.chart .ct{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;letter-spacing:1.5px;color:var(--gray-2);margin-bottom:10px}
+.chart svg{width:100%;height:96px;display:block}
+.chart .spark{stroke:var(--gold);stroke-width:2;fill:none;stroke-dasharray:600;stroke-dashoffset:600;transition:stroke-dashoffset 2s ease .3s}
+.chart .area{fill:rgba(232,136,12,.10);opacity:0;transition:opacity 1s ease 1.4s}
+.chart .grid-l{stroke:rgba(49,45,114,.10);stroke-width:1}
+.dash.in .spark{stroke-dashoffset:0}
+.dash.in .area{opacity:1}
+.bars{display:flex;align-items:flex-end;gap:10px;height:74px;margin-top:16px;padding:0 4px}
+.bars .b{
+  flex:1;border-radius:2px 2px 0 0;
+  background:linear-gradient(180deg,var(--purple-2),var(--purple));
+  transform:scaleY(0);transform-origin:bottom;transition:transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.bars .b:nth-child(3n){background:linear-gradient(180deg,var(--gold-2),var(--gold))}
+.dash.in .bars .b{transform:scaleY(1)}
+.dash-foot{
+  display:flex;justify-content:space-between;
+  border-top:1px solid var(--line);margin-top:18px;padding-top:12px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:1.5px;color:var(--gray-2);
+}
+
+/* ─────────── 08 closing ─────────── */
+.closing{position:relative;overflow:hidden;padding:130px 0 120px;background:linear-gradient(180deg,#F6F7FB,#FBFBFD)}
+.closing .wm{
+  position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+  font-family:var(--serif);font-weight:900;font-size:400px;line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(49,45,114,.07);
+  user-select:none;pointer-events:none;
+}
+.closing .wrap{position:relative;text-align:center}
+.closing .rule{width:52px;height:3px;background:var(--gold);margin:0 auto 34px}
+.closing blockquote{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(26px,3.4vw,40px);letter-spacing:6px;line-height:1.8;
+  color:var(--purple);
+}
+.closing blockquote span{color:var(--gold)}
+.closing p{
+  max-width:620px;margin:28px auto 0;
+  font-size:14px;line-height:2.2;color:var(--gray);letter-spacing:1px;
+}
+.cta-row{margin-top:44px;display:flex;gap:18px;justify-content:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:14px;letter-spacing:3px;padding:15px 38px;border-radius:2px;
+  transition:transform .3s,box-shadow .3s,background .3s,color .3s;
+}
+.btn.solid{background:var(--purple);color:#fff;box-shadow:0 12px 30px rgba(49,45,114,.3)}
+.btn.solid:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(49,45,114,.4)}
+.btn.ghost{border:1px solid var(--gold);color:var(--gold)}
+.btn.ghost:hover{background:var(--gold);color:#fff;transform:translateY(-3px)}
+
+/* ─────────── footer ─────────── */
+footer{background:var(--purple-deep);color:#fff;padding:70px 0 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.2fr;gap:60px;padding-bottom:56px}
+.foot-brand .logo-chip{display:inline-block;background:#fff;border-radius:6px;padding:6px 8px}
+.foot-brand .logo-chip img{height:34px}
+.foot-brand .nm{margin-top:18px;font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:3px}
+.foot-brand .en{margin-top:8px;font-family:var(--mono);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.45)}
+.foot-brand p{margin-top:18px;font-size:12.5px;line-height:2;color:rgba(255,255,255,.55)}
+footer h6{font-family:var(--mono);font-size:11px;letter-spacing:3px;color:var(--gold-2);margin-bottom:22px;text-transform:uppercase}
+.foot-nav{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}
+.foot-nav a{font-size:13px;letter-spacing:1.5px;color:rgba(255,255,255,.65);transition:color .3s,padding-left .3s}
+.foot-nav a:hover{color:var(--gold-2);padding-left:6px}
+.foot-contact div{display:flex;gap:12px;margin-bottom:16px;font-size:13px;color:rgba(255,255,255,.7);letter-spacing:.5px;line-height:1.7}
+.foot-contact .k{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--gold-2);flex-shrink:0;padding-top:3px}
+.foot-bottom{
+  border-top:1px solid rgba(255,255,255,.10);
+  padding:22px 0;display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:1.5px;color:rgba(255,255,255,.38);
+}
+
+/* ─────────── responsive ─────────── */
+@media (max-width:1024px){
+  .about-grid,.equip-grid,.smart-grid{grid-template-columns:1fr;gap:52px}
+  .scene-grid{grid-template-columns:repeat(2,1fr)}
+  .couple{grid-template-columns:1fr;gap:26px}
+  .couple-node{padding:8px 0}
+  .couple-node .link{display:none}
+  .flow{flex-direction:column;gap:16px;align-items:flex-start}
+  .flow-arrow{width:2px;height:26px;margin:0 0 0 18px;background:repeating-linear-gradient(180deg,rgba(49,45,114,.35) 0 6px,transparent 6px 12px)}
+  .flow-arrow::after{right:auto;top:auto;left:-4px;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid rgba(49,45,114,.45);border-bottom:none}
+}
+@media (max-width:760px){
+  /* mobile nav: hamburger + dropdown */
+  .nav{padding:12px 22px}
+  .nav.scrolled,.nav.open{padding:10px 22px}
+  .nav-toggle{display:flex}
+  .nav ul{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;gap:0;background:rgba(255,255,255,.98);
+    backdrop-filter:blur(10px);
+    padding:6px 32px 14px;box-shadow:0 16px 40px rgba(24,21,56,.12);
+  }
+  .nav.open ul{display:flex}
+  .nav.open{background:rgba(255,255,255,.98)}
+  .nav.open .brand-name{color:var(--purple)}
+  .nav ul a{color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .nav ul a::after{display:none}
+  .nav ul li:last-child a{border-bottom:none}
+
+  section{padding:72px 0}
+  .wrap{padding:0 22px}
+  .stats{margin-top:-56px}
+  .stats-card{grid-template-columns:repeat(2,1fr)}
+  .stat{padding:22px 12px 20px}
+  .stat .num{font-size:26px}
+  .stat:nth-child(3)::before{display:none}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .stat .lbl{letter-spacing:1.5px;font-size:11px}
+
+  .sec-head{flex-wrap:wrap;gap:14px;margin-bottom:44px}
+  .sec-num{font-size:36px}
+  .sec-title h2{font-size:25px;letter-spacing:3px}
+  .sec-rule{display:none}
+  .sec-tag{margin-bottom:0}
+
+  .hero{min-height:640px}
+  .hero-eyebrow{font-size:10px;letter-spacing:3px;margin-bottom:16px}
+  .hero h1{letter-spacing:3px;line-height:1.35}
+  .hero-sub{font-size:13.5px;line-height:1.95;margin-top:18px}
+  .hero-vertical{display:none}
+  .hero-cue{bottom:96px}
+
+  .about-lede{font-size:17.5px}
+  .about-visual::before{top:14px;left:14px;right:0;bottom:-14px}
+  .about-visual .frame img{height:340px}
+  .steps{grid-template-columns:1fr}
+  .step + .step{border-left:none;border-top:1px solid var(--line)}
+
+  .couple-node .core{width:112px;height:112px}
+  .flow{padding:20px 22px}
+  .flow-step .tt{font-size:13.5px}
+  .annot img{height:300px}
+  .annot .chip{padding:7px 10px}
+  .annot .chip .txt{font-size:10px}
+  .annot .c1{top:16px;left:16px}
+  .annot .c2{top:auto;bottom:52px;right:12px}
+  .annot .c3{display:none}
+
+  .band{padding:64px 0}
+  .band-head h2{font-size:24px;letter-spacing:3px}
+  .band-grid{grid-template-columns:repeat(2,1fr);gap:36px 0}
+  .bstat{padding:0 22px}
+  .bstat .v{font-size:32px}
+  .bstat:nth-child(3)::before{display:none}
+
+  .equip-visual .badge{left:12px;top:16px;font-size:10px}
+  .equip-visual img{height:340px}
+  .equip-text h3{font-size:21px}
+
+  .scene-grid{grid-template-columns:1fr}
+
+  .smart-lede{font-size:20px}
+  .dash-body{padding:16px 14px 14px}
+  .kpi .v{font-size:17px}
+
+  .closing{padding:90px 0}
+  .closing blockquote{letter-spacing:3px;line-height:1.9}
+  .closing p{font-size:13px}
+  .cta-row{flex-wrap:wrap}
+  .btn{padding:14px 30px;font-size:13px}
+
+  .foot-grid{grid-template-columns:1fr;gap:40px}
+  .foot-bottom{flex-direction:column;gap:8px;text-align:center;padding:18px 0}
+}
+@media (max-width:420px){
+  .hero h1{font-size:31px;letter-spacing:2px}
+  .hero-sub{font-size:12.5px}
+  .stat .num{font-size:23px}
+  .sec-title h2{font-size:22px;letter-spacing:2px}
+  .bstat .v{font-size:27px}
+  .bstat .v .dash{font-size:20px}
+  .bom-row{grid-template-columns:40px 1fr}
+  .bom-row .s{grid-column:2;justify-self:start;margin-top:6px}
+  .kpis{gap:8px}
+  .kpi{padding:10px 10px}
+  .kpi .v{font-size:15px}
+  .flow-step .ss{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<header class="nav" id="nav">
+  <div class="brand">
+    <span class="logo-chip"><img src="../logo.jpg" alt="睿美达环保"></span>
+    <span class="brand-name">睿美达环保</span>
+  </div>
+  <ul>
+    <li><a href="#about">公司概况</a></li>
+    <li><a href="#tech">核心技术</a></li>
+    <li><a href="#equip">成套装备</a></li>
+    <li><a href="#scene">应用场景</a></li>
+    <li><a href="#smart">智慧运维</a></li>
+    <li><a href="#contact">联系我们</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="打开菜单"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <div class="hero-bg"><img src="../rmd01.jpg" alt="睿美达环保生产基地"></div>
+  <div class="hero-scrim"></div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">RUIMEIDA ENVIRONMENT&nbsp;&nbsp;·&nbsp;&nbsp;SINCE 2020</div>
+    <h1>
+      科技赋能环保
+      <span class="l2"><span class="accent">创新守护碧水</span></span>
+    </h1>
+    <p class="hero-sub">
+      北京睿美达环保新材料科技有限公司 —— 专注<b>曝气技术</b>与<b>臭氧催化氧化</b>水处理领域，
+      以超微纳米曝气 + 臭氧催化氧化一体化工艺包，为市政污水提标改造与工业高难度废水治理，
+      提供高效、节能、稳定的一体化高级氧化水处理解决方案。
+    </p>
+  </div>
+
+  <div class="hero-vertical">市政提标 · 工业治理 · 智慧运维</div>
+
+  <div class="hero-cue">
+    <span>SCROLL</span>
+    <span class="stick"></span>
+  </div>
+</div>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-card reveal">
+      <div class="stat">
+        <div class="num"><span data-count="30">0</span><span class="rng">-</span><span data-count="50">0</span><span class="u">%</span></div>
+        <div class="lbl">节 能 降 耗</div>
+      </div>
+      <div class="stat">
+        <div class="num"><span data-count="100">0</span><span class="u">%</span></div>
+        <div class="lbl">出 水 达 标</div>
+      </div>
+      <div class="stat">
+        <div class="num">≥<span data-count="95">0</span><span class="u">%</span></div>
+        <div class="lbl">臭 氧 利 用 率</div>
+      </div>
+      <div class="stat">
+        <div class="num">≥<span data-count="99">0</span><span class="u">%</span></div>
+        <div class="lbl">系 统 可 用 率</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ 02 ABOUT ══════════ -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <div class="sec-title">
+        <h2>公司概况</h2>
+        <div class="en">About Ruimeida</div>
+      </div>
+      <span class="sec-rule"></span>
+      <span class="sec-tag">成立于 2020 · 北京</span>
+    </div>
+
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-lede">
+          一家专注于曝气技术与臭氧催化氧化水处理领域的科技型企业。
+        </div>
+        <p>
+          北京睿美达环保新材料科技有限公司成立于 <b>2020 年</b>，面向<b>市政污水提标改造、工业高难度废水治理</b>等核心场景，聚焦传统曝气能耗高、难降解污染物去除效率低、系统运维成本高等行业痛点，引入成熟的超微纳米曝气技术，并融合臭氧催化氧化工艺，构建高效、节能、稳定的一体化高级氧化水处理解决方案。
+        </p>
+        <div class="pains">
+          <span class="pain">传统曝气能耗高</span>
+          <span class="pain">难降解污染物去除效率低</span>
+          <span class="pain">系统运维成本高</span>
+        </div>
+        <p>
+          依托超微纳米气泡<b>高传质效率、强氧化协同反应及系统集成能力</b>，睿美达致力于提升污染物降解效率，降低系统运行能耗，保障出水水质长期稳定达标，为客户提供从工艺设计、装备集成到运行优化的全流程技术服务。
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="idx">STEP 01</div>
+            <h4>工艺设计</h4>
+            <p>水质诊断 · 小试验证 · 方案定制</p>
+          </div>
+          <div class="step">
+            <div class="idx">STEP 02</div>
+            <h4>装备集成</h4>
+            <p>成套制造 · 橇装交付 · 即装即用</p>
+          </div>
+          <div class="step">
+            <div class="idx">STEP 03</div>
+            <h4>运行优化</h4>
+            <p>智能调控 · 远程运维 · 持续达标</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual reveal" style="--d:.15s">
+        <div class="frame">
+          <img src="../rmd04.jpg" alt="睿美达一体化成套装备展厅">
+          <div class="cap">
+            <div class="t">铸造绿色产业 · 成套装备基地</div>
+            <div class="s">RUIMEIDA MANUFACTURING BASE</div>
+          </div>
+        </div>
+        <div class="quote-card">
+          <div class="q">“科技赋能环保，<em>创新守护碧水</em>。”</div>
+          <div class="src">—— 睿美达发展理念</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 03 TECHNOLOGY ══════════ -->
+<section class="tech" id="tech">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <div class="sec-title">
+        <h2>核心技术</h2>
+        <div class="en">Core Technology</div>
+      </div>
+      <span class="sec-rule"></span>
+      <span class="sec-tag">双工艺深度耦合 · 不可割裂</span>
+    </div>
+
+    <!-- coupling diagram -->
+    <div class="couple reveal">
+      <div class="tcard a">
+        <div class="ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E8880C" stroke-width="1.8">
+            <circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="7" r="2.4"/>
+            <circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="17" r="1.6"/>
+          </svg>
+        </div>
+        <h3>超微纳米曝气</h3>
+        <div class="en">Ultra-micro Nano Aeration</div>
+        <p>纳米级气泡直径小于 1 微米，比表面积可达传统曝气的 2000 倍以上，气液传质效率提升 3-5 倍，从根本上降低曝气能耗。</p>
+        <ul>
+          <li><span>气泡直径</span><span>&lt; 1 μm</span></li>
+          <li><span>比表面积</span><span>2000× ↑</span></li>
+          <li><span>传质效率</span><span>3-5× ↑</span></li>
+        </ul>
+      </div>
+
+      <div class="couple-node">
+        <span class="link"></span>
+        <div class="core">
+          <span class="t1">一体化</span>
+          <span class="t2">COUPLING</span>
+        </div>
+      </div>
+
+      <div class="tcard b">
+        <div class="ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#312D72" stroke-width="1.8">
+            <path d="M13 2L4.5 13.5h6L11 22l8.5-11.5h-6L13 2z"/>
+          </svg>
+        </div>
+        <h3>臭氧催化氧化</h3>
+        <div class="en">Ozone Catalytic Oxidation</div>
+        <p>自研高效催化填料将臭氧利用率提升至 95% 以上，深度氧化降解 COD、色度、抗生素等难处理有机污染物，突破传统生化工艺极限。</p>
+        <ul>
+          <li><span>臭氧利用率</span><span>≥ 95%</span></li>
+          <li><span>难降解去除</span><span>&gt; 98%</span></li>
+          <li><span>催化填料</span><span>自研</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- process flow -->
+    <div class="flow reveal">
+      <div class="flow-step">
+        <span class="n">01</span>
+        <span><span class="tt">进水预处理</span><span class="ss" style="display:block">PRE-TREATMENT</span></span>
+      </div>
+      <span class="flow-arrow"></span>
+      <div class="flow-step">
+        <span class="n">02</span>
+        <span><span class="tt">超微纳米曝气</span><span class="ss" style="display:block">NANO AERATION</span></span>
+      </div>
+      <span class="flow-arrow"></span>
+      <div class="flow-step">
+        <span class="n">03</span>
+        <span><span class="tt">臭氧催化氧化</span><span class="ss" style="display:block">CATALYTIC OXIDATION</span></span>
+      </div>
+      <span class="flow-arrow"></span>
+      <div class="flow-step final">
+        <span class="n">04</span>
+        <span><span class="tt">达标出水 / 回用</span><span class="ss" style="display:block">DISCHARGE / REUSE</span></span>
+      </div>
+    </div>
+
+    <!-- annotated photo -->
+    <div class="annot reveal">
+      <img src="../rmd02.jpg" alt="一体化工艺包成套设备细节">
+      <div class="chip c1"><span class="dot"></span><span class="txt">纳米气泡直径 <b>&lt; 1 μm</b> · 高传质</span></div>
+      <div class="chip c2"><span class="dot"></span><span class="txt">臭氧利用率 <b>≥ 95%</b> · 深度氧化</span></div>
+      <div class="chip c3"><span class="dot"></span><span class="txt">PLC 智能控制柜 · <b>24h</b> 在线监测</span></div>
+      <div class="tagline">INTEGRATED AOP PROCESS PACKAGE · 一体化高级氧化工艺包</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 04 DATA BAND ══════════ -->
+<div class="band">
+  <div class="wrap">
+    <div class="band-head reveal">
+      <h2>用数据说话</h2>
+      <span class="en">PERFORMANCE DATA</span>
+    </div>
+    <div class="band-grid reveal">
+      <div class="bstat">
+        <div class="v"><span data-count="30">0</span><span class="rng">-</span><span data-count="50">0</span><span class="u">%</span></div>
+        <div class="k">节能降耗</div>
+        <div class="d">ENERGY SAVING</div>
+      </div>
+      <div class="bstat">
+        <div class="v"><span data-count="100">0</span><span class="u">%</span></div>
+        <div class="k">出水稳定达标</div>
+        <div class="d">COMPLIANT DISCHARGE</div>
+      </div>
+      <div class="bstat">
+        <div class="v">≥<span data-count="95">0</span><span class="u">%</span></div>
+        <div class="k">臭氧利用率</div>
+        <div class="d">OZONE UTILIZATION</div>
+      </div>
+      <div class="bstat">
+        <div class="v">≥<span data-count="99">0</span><span class="u">%</span></div>
+        <div class="k">系统可用率</div>
+        <div class="d">SYSTEM AVAILABILITY</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ 05 EQUIPMENT ══════════ -->
+<section class="equip" id="equip">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <div class="sec-title">
+        <h2>成套装备</h2>
+        <div class="en">Integrated Equipment</div>
+      </div>
+      <span class="sec-rule"></span>
+      <span class="sec-tag">整体交付 · 即装即用</span>
+    </div>
+
+    <div class="equip-grid">
+      <div class="equip-visual reveal">
+        <span class="badge">SKID-MOUNTED · 橇装成套</span>
+        <div class="frame">
+          <img src="../rmd03.jpg" alt="臭氧催化氧化反应器单元">
+        </div>
+      </div>
+
+      <div class="equip-text reveal" style="--d:.12s">
+        <h3>超微纳米曝气 + 臭氧催化氧化<br><em>一体化工艺包</em></h3>
+        <p>
+          两大核心技术深度耦合，以模块化成套设备形式整体交付。全不锈钢材质、耐腐蚀、占地集约，配套智能控制系统，支持远程运维与数据化管理——二者不可割裂，组合方显优势。
+        </p>
+        <div class="bom">
+          <div class="bom-row">
+            <span class="i">EQ-01</span>
+            <span class="n">超微纳米曝气单元<small>高效溶气 · 纳米级气泡发生</small></span>
+            <span class="s">CORE</span>
+          </div>
+          <div class="bom-row">
+            <span class="i">EQ-02</span>
+            <span class="n">臭氧催化氧化反应器<small>自研催化填料 · 深度氧化降解</small></span>
+            <span class="s">CORE</span>
+          </div>
+          <div class="bom-row">
+            <span class="i">EQ-03</span>
+            <span class="n">工艺管路与阀组系统<small>全不锈钢 · 法兰标准化接口</small></span>
+            <span class="s">SUS304/316</span>
+          </div>
+          <div class="bom-row">
+            <span class="i">EQ-04</span>
+            <span class="n">智能控制柜 · 在线监测<small>PLC + 物联上传 · 无人化运维</small></span>
+            <span class="s">IoT</span>
+          </div>
+        </div>
+        <div class="equip-note">
+          <svg class="ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <p>模块化橇装设计，工厂预制、现场即装即用，大幅缩短建设周期；可按处理规模灵活扩展并联单元。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 06 SCENARIOS ══════════ -->
+<section class="scene" id="scene">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <div class="sec-title">
+        <h2>应用场景</h2>
+        <div class="en">Applications</div>
+      </div>
+      <span class="sec-rule"></span>
+      <span class="sec-tag">市政 · 工业 · 回用</span>
+    </div>
+
+    <div class="scene-grid">
+      <div class="scard reveal">
+        <span class="tint"></span>
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00838F" stroke-width="1.8">
+            <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M15 10h.01M12 13h.01"/>
+          </svg>
+        </div>
+        <h4>市政污水提标改造</h4>
+        <p>面向污水处理厂提标至准 IV 类及再生水标准，低成本改造、不停产施工，出水长期稳定达标。</p>
+        <span class="tag">MUNICIPAL UPGRADE</span>
+      </div>
+
+      <div class="scard reveal" style="--d:.1s">
+        <span class="tint"></span>
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="1.8">
+            <path d="M2 20h20M4 20V8l6 4V8l6 4V4h4v16"/>
+          </svg>
+        </div>
+        <h4>工业高难度废水治理</h4>
+        <p>园区高浓度有机废水、化工母液等场景，抗冲击负荷强，COD 深度削减、稳定排放。</p>
+        <span class="tag">INDUSTRIAL WWTP</span>
+      </div>
+
+      <div class="scard reveal" style="--d:.2s">
+        <span class="tint"></span>
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8880C" stroke-width="1.8">
+            <path d="M12 2.7s6.5 7 6.5 11.3a6.5 6.5 0 0 1-13 0C5.5 9.7 12 2.7 12 2.7z"/>
+            <path d="M9.5 14a2.5 2.5 0 0 0 2.5 2.5"/>
+          </svg>
+        </div>
+        <h4>难降解废水处理</h4>
+        <p>制药、化工、印染等行业抗生素与难降解有机物，去除率 &gt; 98%，突破生化工艺瓶颈。</p>
+        <span class="tag">REFRACTORY WASTEWATER</span>
+      </div>
+
+      <div class="scard reveal" style="--d:.3s">
+        <span class="tint"></span>
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#546E7A" stroke-width="1.8">
+            <path d="M21 12a9 9 0 1 1-3-6.7M21 3v5h-5"/>
+          </svg>
+        </div>
+        <h4>中水回用深度处理</h4>
+        <p>深度氧化保障回用水质，色度与嗅味同步去除，助力企业水资源循环利用。</p>
+        <span class="tag">WATER REUSE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 07 SMART ══════════ -->
+<section class="smart" id="smart">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <div class="sec-title">
+        <h2>智慧水务</h2>
+        <div class="en">Smart Water Platform</div>
+      </div>
+      <span class="sec-rule"></span>
+      <span class="sec-tag">IoT + AI · 无人化运维</span>
+    </div>
+
+    <div class="smart-grid">
+      <div class="reveal">
+        <div class="smart-lede">物联网 × AI 算法<br>与水处理装备<em>深度融合</em></div>
+        <p class="intro">
+          面向水处理行业数字化、智能化发展趋势，睿美达打造具备在线监测、智能调控、远程运维和数据化管理能力的新一代智慧水处理系统，推动环保装备由传统运行模式向数字化管控、无人化运维、智能化决策全面升级。
+        </p>
+        <div class="feat">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#312D72" stroke-width="1.8"><path d="M2 12h4l3-8 4 16 3-8h6"/></svg></div>
+          <div><h5>在线监测</h5><p>溶解氧、臭氧投加、流量水质全参数实时采集，秒级上传云端。</p></div>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#312D72" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h0a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v0a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <div><h5>智能调控</h5><p>AI 算法依据水质波动自动优化曝气量与臭氧投加，节能再进一步。</p></div>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#312D72" stroke-width="1.8"><path d="M12 2a7 7 0 0 1 7 7c0 5 3 6 3 6H2s3-1 3-6a7 7 0 0 1 7-7z"/><path d="M10 21h4"/></svg></div>
+          <div><h5>远程运维</h5><p>故障预警、工单派发、专家远程诊断，运维响应由天级降至小时级。</p></div>
+        </div>
+        <div class="feat">
+          <div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#312D72" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <div><h5>数据化管理</h5><p>运行数据沉淀为资产，报表自动生成，为管理决策提供数据支撑。</p></div>
+        </div>
+      </div>
+
+      <!-- dashboard mock -->
+      <div class="reveal" style="--d:.15s">
+        <div class="dash" id="dash">
+          <div class="dash-bar">
+            <span class="d"></span><span class="d"></span><span class="d"></span>
+            <span class="t">RMCLOUD · 智慧水务云平台</span>
+            <span class="live">LIVE</span>
+          </div>
+          <div class="dash-body">
+            <div class="kpis">
+              <div class="kpi"><div class="k">溶解氧 DO</div><div class="v">6.8<span class="u"> mg/L</span></div></div>
+              <div class="kpi"><div class="k">臭氧投加量</div><div class="v">42<span class="u"> mg/L</span></div></div>
+              <div class="kpi"><div class="k">综合能耗指数</div><div class="v down">↓38<span class="u"> %</span></div></div>
+            </div>
+            <div class="chart">
+              <div class="ct"><span>出水 COD 趋势 (mg/L)</span><span>LAST 24H</span></div>
+              <svg viewBox="0 0 300 96" preserveAspectRatio="none">
+                <line class="grid-l" x1="0" y1="24" x2="300" y2="24"/>
+                <line class="grid-l" x1="0" y1="48" x2="300" y2="48"/>
+                <line class="grid-l" x1="0" y1="72" x2="300" y2="72"/>
+                <path class="area" d="M0,60 L30,52 L60,58 L90,40 L120,46 L150,32 L180,38 L210,26 L240,30 L270,22 L300,26 L300,96 L0,96 Z"/>
+                <path class="spark" d="M0,60 L30,52 L60,58 L90,40 L120,46 L150,32 L180,38 L210,26 L240,30 L270,22 L300,26"/>
+              </svg>
+              <div class="bars">
+                <span class="b" style="height:52%;transition-delay:.1s"></span>
+                <span class="b" style="height:70%;transition-delay:.2s"></span>
+                <span class="b" style="height:44%;transition-delay:.3s"></span>
+                <span class="b" style="height:82%;transition-delay:.4s"></span>
+                <span class="b" style="height:60%;transition-delay:.5s"></span>
+                <span class="b" style="height:90%;transition-delay:.6s"></span>
+                <span class="b" style="height:66%;transition-delay:.7s"></span>
+                <span class="b" style="height:78%;transition-delay:.8s"></span>
+                <span class="b" style="height:55%;transition-delay:.9s"></span>
+                <span class="b" style="height:86%;transition-delay:1s"></span>
+              </div>
+              <div class="dash-foot"><span>UNIT-01 … UNIT-10 · 曝气/臭氧单元负荷</span><span>UPDATED 5s AGO</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 08 CLOSING ══════════ -->
+<div class="closing" id="contact">
+  <span class="wm">睿</span>
+  <div class="wrap">
+    <div class="rule reveal"></div>
+    <blockquote class="reveal">
+      科技赋能环保<span>，</span>创新守护碧水<span>。</span>
+    </blockquote>
+    <p class="reveal" style="--d:.1s">
+      睿美达始终秉持发展理念，以更高效的技术、更可靠的装备和更智慧的系统，
+      为城市水环境治理与工业绿色发展提供持续动力。
+    </p>
+    <div class="cta-row reveal" style="--d:.2s">
+      <a class="btn solid" href="#contact">技术咨询</a>
+      <a class="btn ghost" href="#contact">商务合作</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo-chip"><img src="../logo.jpg" alt="睿美达环保"></span>
+        <div class="nm">北京睿美达环保新材料科技有限公司</div>
+        <div class="en">BEIJING RUIMEIDA ENVIRONMENTAL NEW MATERIAL TECHNOLOGY CO., LTD.</div>
+        <p>专注曝气技术与臭氧催化氧化水处理领域，提供从工艺设计、装备集成到运行优化的全流程技术服务。</p>
+      </div>
+      <div>
+        <h6>Sitemap</h6>
+        <ul class="foot-nav">
+          <li><a href="#about">公司概况</a></li>
+          <li><a href="#tech">核心技术</a></li>
+          <li><a href="#equip">成套装备</a></li>
+          <li><a href="#scene">应用场景</a></li>
+          <li><a href="#smart">智慧运维</a></li>
+          <li><a href="#contact">联系我们</a></li>
+        </ul>
+      </div>
+      <div class="foot-contact">
+        <h6>Contact</h6>
+        <div><span class="k">TEL</span><span>[ 填写技术咨询热线 ]</span></div>
+        <div><span class="k">MAIL</span><span>[ 填写商务合作邮箱 ]</span></div>
+        <div><span class="k">ADDR</span><span>北京市 [ 填写详细地址 ]</span></div>
+        <div><span class="k">BASE</span><span>生产基地 [ 填写基地地址 ]</span></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> RUIMEIDA ENVIRONMENT. ALL RIGHTS RESERVED.</span>
+      <span>科技赋能环保 · 创新守护碧水</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// nav state
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', scrollY > 60);
+  if (scrollY > 60) nav.classList.remove('open');
+}, {passive:true});
+
+// hamburger toggle (mobile)
+const navToggle = document.getElementById('navToggle');
+if (navToggle) {
+  navToggle.addEventListener('click', e => {
+    e.stopPropagation();
+    nav.classList.toggle('open');
+  });
+  // close menu after choosing a section
+  nav.querySelectorAll('ul a').forEach(a =>
+    a.addEventListener('click', () => nav.classList.remove('open')));
+  document.addEventListener('click', e => {
+    if (nav.classList.contains('open') && !nav.contains(e.target)) nav.classList.remove('open');
+  });
+}
+
+// reveal + counters + dashboard
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(runCount);
+  if (e.target.matches('[data-count]')) runCount(e.target);
+  io.unobserve(e.target);
+}), {threshold:.18});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+function runCount(el){
+  if (el.dataset.done) return;
+  el.dataset.done = 1;
+  const target = +el.dataset.count, dur = 1400, t0 = performance.now();
+  (function tick(t){
+    const p = Math.min((t - t0) / dur, 1);
+    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+// year
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

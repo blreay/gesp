@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>睿美达环保 - 推文封面模板B 案例行业类 900×383</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 900px;
+    height: 383px;
+    overflow: hidden;
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #F8F9FA;
+    position: relative;
+  }
+
+  /* ── split layout ── */
+  .left-section {
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 380px;
+    background: linear-gradient(165deg, #312D72 0%, #3E3A92 40%, #4A4494 100%);
+    z-index: 2;
+    padding: 32px 28px 24px 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* diagonal edge on left section */
+  .left-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -60px;
+    bottom: 0;
+    width: 120px;
+    background: linear-gradient(165deg, #312D72 0%, #3E3A92 40%, #4A4494 100%);
+    clip-path: polygon(50% 0, 0 0, 0 100%, 50% 100%);
+  }
+
+  /* subtle pattern on purple section */
+  .left-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+    z-index: 0;
+  }
+
+  .left-section > * { position: relative; z-index: 1; }
+
+  /* ── right photo section ── */
+  .right-section {
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 580px;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .right-photo {
+    position: absolute;
+    inset: 0;
+    background: url('../rmd03.jpg') center center / cover no-repeat;
+  }
+  .right-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(248,249,250,0.5) 0%,
+      rgba(248,249,250,0.15) 15%,
+      rgba(248,249,250,0) 30%
+    );
+  }
+  /* light tint */
+  .right-tint {
+    position: absolute;
+    inset: 0;
+    background: rgba(49,45,114,0.04);
+  }
+
+  /* ── gold accent bar at top ── */
+  .gold-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: #E8880C;
+    z-index: 10;
+  }
+
+  /* ── left content ── */
+  .tag-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tag {
+    background: rgba(232,136,12,0.9);
+    color: white;
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 3px 12px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+  }
+  .tag-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .title-block {
+    margin-top: 12px;
+  }
+  .title-main {
+    font-size: 26px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1.35;
+    letter-spacing: 1.5px;
+  }
+  .title-main .gold {
+    color: #F5C842;
+  }
+  .title-divider {
+    width: 40px;
+    height: 3px;
+    background: #E8880C;
+    border-radius: 2px;
+    margin: 12px 0;
+  }
+  .title-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+  }
+
+  /* feature pills */
+  .feature-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.5px;
+  }
+  .pill .dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: #E8880C;
+  }
+
+  /* bottom brand */
+  .bottom-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand-logo-mark {
+    width: 28px; height: 28px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-logo-mark img {
+    height: 22px;
+    width: auto;
+  }
+  .brand-info .name {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.5px;
+  }
+  .brand-info .en {
+    font-size: 8px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── right side data callouts ── */
+  .data-callout {
+    position: absolute;
+    z-index: 8;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    padding: 10px 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .data-callout-1 {
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .data-callout-2 {
+    top: 30px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .callout-icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .callout-icon.gold {
+    background: linear-gradient(135deg, #E8880C, #F5A623);
+  }
+  .callout-icon.purp {
+    background: linear-gradient(135deg, #312D72, #5A54A4);
+  }
+  .callout-icon svg {
+    width: 18px; height: 18px;
+  }
+  .callout-text .val {
+    font-size: 18px;
+    font-weight: 900;
+    color: #1A1A2E;
+    line-height: 1.1;
+  }
+  .callout-text .lbl {
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+
+  /* template hint */
+  .template-hint {
+    position: absolute;
+    bottom: 8px;
+    left: 390px;
+    background: rgba(49,45,114,0.08);
+    color: #312D72;
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Gold accent bar -->
+  <div class="gold-bar"></div>
+
+  <!-- Right photo section -->
+  <div class="right-section">
+    <div class="right-photo"></div>
+    <div class="right-overlay"></div>
+    <div class="right-tint"></div>
+  </div>
+
+  <!-- Right data callouts -->
+  <div class="data-callout data-callout-1">
+    <div class="callout-icon gold">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+        <polyline points="17 6 23 6 23 12"></polyline>
+      </svg>
+    </div>
+    <div class="callout-text">
+      <div class="val">节能 30%‑50%</div>
+      <div class="lbl">超微纳米高效传质</div>
+    </div>
+  </div>
+  <div class="data-callout data-callout-2">
+    <div class="callout-icon purp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <div class="callout-text">
+      <div class="val">出水 100% 达标</div>
+      <div class="lbl">深度氧化 · 稳定可靠</div>
+    </div>
+  </div>
+
+  <!-- Left content section -->
+  <div class="left-section">
+
+    <div>
+      <div class="tag-row">
+        <span class="tag">案例实践</span>
+        <span class="tag-line"></span>
+      </div>
+
+      <div class="title-block">
+        <div class="title-main">
+          市政污水提标改造<br>
+          <span class="gold">一体化工艺</span>解决方案
+        </div>
+        <div class="title-divider"></div>
+        <div class="title-desc">
+          聚焦难降解污染物去除，构建高效、节能、<br>
+          稳定的成套高级氧化水处理系统
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="feature-pills">
+        <span class="pill"><span class="dot"></span>市政提标</span>
+        <span class="pill"><span class="dot"></span>工业废水</span>
+        <span class="pill"><span class="dot"></span>难降解去除</span>
+        <span class="pill"><span class="dot"></span>智慧运维</span>
+      </div>
+    </div>
+
+    <div class="bottom-brand">
+      <div class="brand-logo-mark">
+        <img src="../logo.jpg" alt="睿美达">
+      </div>
+      <div class="brand-info">
+        <div class="name">睿美达环保</div>
+        <div class="en">Ruimeida Environment</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Template hint -->
+  <div class="template-hint">模板B · 案例行业类</div>
+
+</body>
+</html>

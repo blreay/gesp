@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>睿美达环保 - 公众号视觉设计总览</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #F5F5F7;
+    color: #1A1A2E;
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* header */
+  .page-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .page-header .logo {
+    height: 60px;
+    margin-bottom: 16px;
+  }
+  .page-header h1 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #312D72;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .page-header .sub {
+    font-size: 14px;
+    color: #8A87B0;
+    letter-spacing: 1px;
+  }
+  .page-header .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #E8880C, #312D72);
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  /* section */
+  .section {
+    margin-bottom: 60px;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-title .num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #312D72, #4A4494);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-title h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A2E;
+  }
+  .section-title .tag {
+    font-size: 11px;
+    color: #E8880C;
+    background: rgba(232,136,12,0.08);
+    padding: 3px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+  }
+
+  /* design frame */
+  .design-frame {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .design-frame .frame-header {
+    padding: 12px 20px;
+    background: #FAFAFA;
+    border-bottom: 1px solid #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .design-frame .frame-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.5px;
+  }
+  .design-frame .frame-size {
+    font-size: 11px;
+    color: #999;
+    font-family: "SF Mono", "Fira Code", monospace;
+  }
+  .design-frame iframe {
+    width: 900px;
+    height: 383px;
+    border: none;
+    display: block;
+    transform-origin: top left;
+  }
+  .iframe-container {
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* color palette */
+  .palette {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  }
+  .palette-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .palette-color {
+    width: 64px; height: 64px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .palette-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+  }
+  .palette-hex {
+    font-size: 10px;
+    color: #999;
+    font-family: "SF Mono", "Fira Code", monospace;
+  }
+
+  /* file list */
+  .file-list {
+    list-style: none;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+  .file-list li {
+    padding: 14px 24px;
+    border-bottom: 1px solid #F5F5F5;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+  }
+  .file-list li:last-child { border-bottom: none; }
+  .file-list .file-icon {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    flex-shrink: 0;
+  }
+  .file-list .file-name {
+    font-weight: 500;
+    color: #1A1A2E;
+  }
+  .file-list .file-desc {
+    font-size: 12px;
+    color: #999;
+    margin-left: auto;
+  }
+
+  .note {
+    font-size: 13px;
+    color: #8A87B0;
+    line-height: 1.7;
+    padding: 16px 20px;
+    background: rgba(49,45,114,0.04);
+    border-radius: 8px;
+    border-left: 3px solid #312D72;
+    margin-top: 16px;
+  }
+  .note strong {
+    color: #312D72;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <img class="logo" src="../logo.jpg" alt="睿美达环保">
+    <h1>公众号视觉设计方案</h1>
+    <div class="sub">北京睿美达环保新材料科技有限公司</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- Section 0: Color Palette -->
+  <div class="section">
+    <div class="section-title">
+      <div class="num">0</div>
+      <h2>品牌色板</h2>
+      <span class="tag">COLOR PALETTE</span>
+    </div>
+    <div class="palette">
+      <div class="palette-item">
+        <div class="palette-color" style="background:#E8880C;"></div>
+        <div class="palette-name">达标金</div>
+        <div class="palette-hex">#E8880C</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#312D72;"></div>
+        <div class="palette-name">皇家紫</div>
+        <div class="palette-hex">#312D72</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#E0F7FA;"></div>
+        <div class="palette-name">浅青蓝</div>
+        <div class="palette-hex">#E0F7FA</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#E8F5E9;"></div>
+        <div class="palette-name">浅环保绿</div>
+        <div class="palette-hex">#E8F5E9</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#ECEFF1;"></div>
+        <div class="palette-name">银灰</div>
+        <div class="palette-hex">#ECEFF1</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#FFFFFF; border:1px solid #DDD;"></div>
+        <div class="palette-name">白色底</div>
+        <div class="palette-hex">#FFFFFF</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#1A1A2E;"></div>
+        <div class="palette-name">正文黑</div>
+        <div class="palette-hex">#1A1A2E</div>
+      </div>
+      <div class="palette-item">
+        <div class="palette-color" style="background:#6B6B8A;"></div>
+        <div class="palette-name">辅助灰</div>
+        <div class="palette-hex">#6B6B8A</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 1: Header Banner -->
+  <div class="section">
+    <div class="section-title">
+      <div class="num">1</div>
+      <h2>公众号头图</h2>
+      <span class="tag">900 × 383 px</span>
+    </div>
+    <div class="design-frame">
+      <div class="frame-header">
+        <span class="frame-label">01_头图_header_banner.html</span>
+        <span class="frame-size">900 × 383 px</span>
+      </div>
+      <div class="iframe-container" style="width:900px;height:383px;">
+        <iframe src="01_头图_header_banner.html" scrolling="no"></iframe>
+      </div>
+    </div>
+    <div class="note">
+      <strong>设计说明：</strong>白色基底 + 浅灰科技网格纹理。左侧品牌标识 + 产品名称 + 核心数据卡片，右侧设备实拍（rmd04 多台设备并列）通过白色渐变融入画面。底部皇家紫条带标注三大应用场景。顶部金紫双色条带呼应LOGO配色。
+    </div>
+  </div>
+
+  <!-- Section 2: Cover A -->
+  <div class="section">
+    <div class="section-title">
+      <div class="num">2</div>
+      <h2>推文封面模板 A · 技术产品类</h2>
+      <span class="tag">900 × 383 px</span>
+    </div>
+    <div class="design-frame">
+      <div class="frame-header">
+        <span class="frame-label">02_封面A_技术产品类.html</span>
+        <span class="frame-size">900 × 383 px</span>
+      </div>
+      <div class="iframe-container" style="width:900px;height:383px;">
+        <iframe src="02_封面A_技术产品类.html" scrolling="no"></iframe>
+      </div>
+    </div>
+    <div class="note">
+      <strong>设计说明：</strong>白色从左向右渐变覆盖设备实拍（rmd02 设备细节）。左侧大字标题 + 品类标签 + 三组核心数据。右侧保留设备金属质感。管线图形装饰呼应工艺主题。适用于技术解读、产品发布、工艺原理类推文。
+    </div>
+  </div>
+
+  <!-- Section 3: Cover B -->
+  <div class="section">
+    <div class="section-title">
+      <div class="num">3</div>
+      <h2>推文封面模板 B · 案例行业类</h2>
+      <span class="tag">900 × 383 px</span>
+    </div>
+    <div class="design-frame">
+      <div class="frame-header">
+        <span class="frame-label">03_封面B_案例行业类.html</span>
+        <span class="frame-size">900 × 383 px</span>
+      </div>
+      <div class="iframe-container" style="width:900px;height:383px;">
+        <iframe src="03_封面B_案例行业类.html" scrolling="no"></iframe>
+      </div>
+    </div>
+    <div class="note">
+      <strong>设计说明：</strong>左侧皇家紫背景区 + 斜切过渡，承载标题、描述、场景标签和品牌标识。右侧设备实拍（rmd03 展厅单体）配合半透明数据浮层。分屏设计营造正式商务感。适用于项目案例、行业分析、应用场景类推文。
+    </div>
+  </div>
+
+  <!-- Section 4: Menu Concept -->
+  <div class="section">
+    <div class="section-title">
+      <div class="num">4</div>
+      <h2>菜单栏视觉概念</h2>
+      <span class="tag">含手机预览</span>
+    </div>
+    <div class="note">
+      <strong>查看方式：</strong>请在浏览器中单独打开 <code>04_菜单栏视觉概念.html</code> 查看完整手机模拟效果，包含关注后欢迎消息、底部三级菜单、子菜单展开样式和完整的色板规范。
+    </div>
+  </div>
+
+  <!-- Section 5: Deliverables -->
+  <div class="section">
+    <div class="section-title">
+      <div class="num">5</div>
+      <h2>交付文件</h2>
+    </div>
+    <ul class="file-list">
+      <li>
+        <div class="file-icon" style="background:linear-gradient(135deg,#E8880C,#F5A623);">H</div>
+        <span class="file-name">01_头图_header_banner.html</span>
+        <span class="file-desc">公众号头图 · 900×383</span>
+      </li>
+      <li>
+        <div class="file-icon" style="background:linear-gradient(135deg,#312D72,#5A54A4);">A</div>
+        <span class="file-name">02_封面A_技术产品类.html</span>
+        <span class="file-desc">技术/产品推文封面 · 900×383</span>
+      </li>
+      <li>
+        <div class="file-icon" style="background:linear-gradient(135deg,#312D72,#5A54A4);">B</div>
+        <span class="file-name">03_封面B_案例行业类.html</span>
+        <span class="file-desc">案例/行业推文封面 · 900×383</span>
+      </li>
+      <li>
+        <div class="file-icon" style="background:linear-gradient(135deg,#00ACC1,#26C6DA);">M</div>
+        <span class="file-name">04_菜单栏视觉概念.html</span>
+        <span class="file-desc">底部菜单结构 + 视觉规范</span>
+      </li>
+      <li>
+        <div class="file-icon" style="background:linear-gradient(135deg,#66BB6A,#81C784);">T</div>
+        <span class="file-name">05_全套文案.md</span>
+        <span class="file-desc">公众号文案合集</span>
+      </li>
+      <li>
+        <div class="file-icon" style="background:#B0BEC5;">G</div>
+        <span class="file-name">06_上传使用说明.md</span>
+        <span class="file-desc">微信上传操作指引</span>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>

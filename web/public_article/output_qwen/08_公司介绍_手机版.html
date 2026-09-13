@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>睿美达环保 · 公司介绍</title>
+<style>
+:root{
+  --purple:#4A3F9C; --purple-d:#342B70;
+  --gold:#F57F2F; --gold-l:#FAC778;
+  --teal:#2E86AB; --teal-l:#B2DDEF;
+  --green:#62A864;
+  --ink:#282C3C; --gray:#6E7486; --gray-l:#A6ACB8;
+  --line:#E3E8F0; --bg:#F5F7FA; --card:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.75;font-size:16px;
+  /* 微信内置浏览器底部安全区 */
+  padding-bottom:env(safe-area-inset-bottom)}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.pad{padding:0 20px}
+
+/* ---------- 顶栏 ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line)}
+.topbar .in{display:flex;align-items:center;justify-content:space-between;height:52px}
+.topbar .logo{display:flex;align-items:center;gap:8px}
+.topbar .logo img{width:30px;height:30px;object-fit:contain}
+.topbar .logo b{font-size:15px;color:var(--purple-d);letter-spacing:.5px}
+.topbar .slogan{font-size:11px;color:var(--gray);letter-spacing:1px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:520px;display:flex;align-items:flex-end;
+  padding:90px 20px 34px;overflow:hidden;background:#1c1a2e}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(28,26,46,.35) 0%,rgba(52,43,112,.55) 45%,rgba(28,26,46,.92) 100%)}
+.hero .in{position:relative;z-index:2;width:100%}
+.hero .tag{display:inline-block;background:rgba(245,127,47,.18);border:1px solid var(--gold);
+  color:var(--gold-l);font-size:12px;letter-spacing:1px;padding:5px 12px;border-radius:20px;margin-bottom:16px}
+.hero h1{font-size:34px;line-height:1.3;color:#fff;font-weight:800;letter-spacing:1px}
+.hero h1 em{font-style:normal;color:var(--gold-l)}
+.hero .sub{font-size:14px;color:rgba(255,255,255,.85);margin-top:12px;font-weight:300;line-height:1.8}
+.hero .slogan{margin-top:14px;font-size:13px;color:var(--gold-l);letter-spacing:3px}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.26);
+  border-radius:12px;padding:12px 14px}
+.chip b{display:block;font-size:24px;color:#fff;line-height:1.15}
+.chip b i{font-style:normal;color:var(--gold-l);font-size:17px}
+.chip span{font-size:12px;color:rgba(255,255,255,.75)}
+
+/* ---------- 通用节 ---------- */
+.sec{padding:48px 0}
+.head{padding:0 20px;margin-bottom:26px}
+.head .en{font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:700}
+.head h2{font-size:24px;color:var(--purple-d);letter-spacing:1px;margin-top:4px;line-height:1.35}
+.head .bar{width:44px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--purple));margin-top:12px}
+.head p{font-size:13.5px;color:var(--gray);margin-top:10px;line-height:1.8}
+
+/* ---------- 关于 ---------- */
+.about p{font-size:15px;color:#454b60;margin-bottom:14px}
+.about .hi{color:var(--purple-d);font-weight:600}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.meta div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.meta b{display:block;font-size:14px;color:var(--purple-d)}
+.meta span{font-size:12px;color:var(--gray)}
+.photo{margin:22px 20px 0;border-radius:14px;overflow:hidden;position:relative;
+  box-shadow:0 12px 28px rgba(52,43,112,.14)}
+.photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.photo .cap{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;font-size:12px;color:#fff;
+  background:linear-gradient(0deg,rgba(28,26,46,.85),transparent)}
+
+/* ---------- 工艺流 ---------- */
+.tech{background:linear-gradient(180deg,#fff,#F1F5F9)}
+.flowv{padding:0 24px}
+.fstep{display:flex;gap:16px;position:relative;padding-bottom:22px}
+.fstep:not(:last-child)::before{content:"";position:absolute;left:27px;top:56px;bottom:0;width:2px;
+  background:repeating-linear-gradient(180deg,var(--purple-l) 0 6px,transparent 6px 12px)}
+.fstep .node{flex:none;width:56px;height:56px;border-radius:50%;background:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:24px;position:relative;z-index:2}
+.fstep:nth-child(1) .node{border:3px solid var(--purple);color:var(--purple)}
+.fstep:nth-child(2) .node{border:3px solid var(--gold);color:var(--gold)}
+.fstep:nth-child(3) .node{border:3px solid var(--teal);color:var(--teal)}
+.fstep:nth-child(4) .node{border:3px solid var(--green);color:var(--green)}
+.fstep .t{font-size:16px;font-weight:700;color:var(--ink);padding-top:4px}
+.fstep .d{font-size:13px;color:var(--gray);margin-top:2px}
+.pc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;margin:0 20px 14px;
+  position:relative;overflow:hidden}
+.pc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.pc.p1::before{background:var(--purple)}
+.pc.p2::before{background:var(--teal)}
+.pc .en{font-size:10px;letter-spacing:2px;color:var(--gray-l);text-transform:uppercase}
+.pc h3{font-size:17px;color:var(--purple-d);margin:4px 0 8px}
+.pc p{font-size:13.5px;color:#454b60}
+.pc li{font-size:13.5px;color:#454b60;padding:8px 0 8px 20px;position:relative;
+  border-top:1px dashed #EEF1F6;list-style:none}
+.pc li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.set{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;padding:14px 20px 0}
+.set .pill{background:var(--purple);color:#fff;padding:10px 18px;border-radius:24px;font-size:14px;font-weight:600}
+.set .pill.g{background:var(--gold);box-shadow:0 8px 20px rgba(245,127,47,.35)}
+.set .x{font-size:20px;color:var(--gold);font-weight:800}
+
+/* ---------- 数据 ---------- */
+.data{background:linear-gradient(150deg,#342B70,#4A3F9C 65%,#3f4a94);color:#fff;padding:48px 0}
+.data .head h2{color:#fff}
+.data .head .en{color:var(--gold-l)}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+.kpi{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;
+  padding:20px 14px;text-align:center}
+.kpi .num{font-size:38px;font-weight:800;line-height:1.1;
+  background:linear-gradient(180deg,#fff,#FAC778);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kpi .num small{font-size:22px}
+.kpi .lb{font-size:13.5px;color:rgba(255,255,255,.85);margin-top:8px}
+.kpi .en{font-size:10px;letter-spacing:2px;color:var(--gold-l);text-transform:uppercase;margin-top:3px}
+
+/* ---------- 场景 ---------- */
+.scard{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:0 20px 14px}
+.scard .im{height:170px;overflow:hidden}
+.scard .im img{width:100%;height:100%;object-fit:cover}
+.scard .bd{padding:16px 16px 18px}
+.scard .ic{display:inline-flex;width:38px;height:38px;border-radius:10px;align-items:center;
+  justify-content:center;font-size:19px;margin-bottom:10px}
+.scard.c1 .ic{background:#EFEAFB;color:var(--purple)}
+.scard.c2 .ic{background:#FBEEDF;color:var(--gold)}
+.scard.c3 .ic{background:#E3F2F8;color:var(--teal)}
+.scard h3{font-size:16.5px;color:var(--purple-d)}
+.scard p{font-size:13.5px;color:var(--gray);margin-top:6px}
+
+/* ---------- 智慧 ---------- */
+.smart{background:#fff}
+.slist{padding:0 20px}
+.sli{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #EEF1F6}
+.sli:last-child{border-bottom:0}
+.sli .n{flex:none;width:42px;height:42px;border-radius:11px;font-size:18px;font-weight:800;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--purple),var(--teal))}
+.sli h4{font-size:15.5px;color:var(--ink)}
+.sli p{font-size:13px;color:var(--gray);margin-top:3px}
+
+/* ---------- 实拍 ---------- */
+.gitem{margin:0 20px 14px;border-radius:14px;overflow:hidden;position:relative;
+  box-shadow:0 8px 20px rgba(52,43,112,.1)}
+.gitem img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.gitem .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;color:#fff;font-size:13.5px;
+  background:linear-gradient(0deg,rgba(28,26,46,.88),transparent)}
+.gitem .cap small{display:block;color:var(--gold-l);font-size:10px;letter-spacing:2px;margin-bottom:2px}
+
+/* ---------- 服务 ---------- */
+.service{background:linear-gradient(180deg,var(--bg),#fff)}
+.step{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 18px 20px;margin:0 20px 14px;
+  position:relative}
+.step .no{font-size:34px;font-weight:800;line-height:1;
+  background:linear-gradient(135deg,var(--gold),var(--purple));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.step h4{font-size:16.5px;color:var(--purple-d);margin:8px 0 6px}
+.step p{font-size:13.5px;color:var(--gray)}
+
+/* ---------- 联系 / 页脚 ---------- */
+.cta{background:linear-gradient(150deg,#342B70,#4A3F9C);color:#fff;text-align:center;padding:44px 24px 40px}
+.cta h2{font-size:22px;letter-spacing:2px}
+.cta p{color:rgba(255,255,255,.85);font-size:13.5px;margin-top:10px}
+.cta .rows{margin-top:20px;text-align:left;max-width:340px;margin-left:auto;margin-right:auto}
+.cta .row{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:14px}
+.cta .row:last-child{border-bottom:0}
+.cta .row .k{flex:none;color:var(--gold-l);min-width:56px}
+.btn{display:block;background:var(--gold);color:#fff;font-size:16px;font-weight:600;text-align:center;
+  padding:14px;border-radius:28px;letter-spacing:1px;margin-top:22px;
+  box-shadow:0 10px 24px rgba(245,127,47,.4)}
+footer{background:#1c1a2e;color:#a9a4c4;padding:28px 20px 90px;font-size:12.5px;line-height:2}
+footer .nm{color:#fff;font-size:16px;font-weight:700;margin-bottom:6px}
+footer .fine{margin-top:14px;color:#77739a;font-size:11.5px;line-height:1.8}
+
+/* ---------- 底部悬浮 CTA ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:10px;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.96);border-top:1px solid var(--line);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dock a{flex:1;text-align:center;padding:12px 0;border-radius:24px;font-size:14.5px;font-weight:600}
+.dock .ghost{background:#EFEAFB;color:var(--purple)}
+.dock .solid{background:var(--gold);color:#fff;box-shadow:0 6px 16px rgba(245,127,47,.35)}
+
+/* 微信文章内嵌时限制宽度居中（可选） */
+@media (min-width:640px){
+  body{max-width:560px;margin:0 auto;box-shadow:0 0 40px rgba(60,80,120,.12);background:var(--bg)}
+  .topbar{position:fixed;left:50%;transform:translateX(-50%);width:100%;max-width:560px}
+  .dock{left:50%;transform:translateX(-50%);width:100%;max-width:560px}
+  .hero h1{font-size:40px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="in pad">
+    <div class="logo">
+      <img src="assets/logo_mark.png" alt="睿美达">
+      <b>睿美达环保</b>
+    </div>
+    <div class="slogan">科技赋能环保 · 创新守护碧水</div>
+  </div>
+</div>
+
+<!-- Hero：大楼/机柜设备房 -->
+<header class="hero">
+  <img class="bg" src="assets/photos/rmd01.jpg" alt="睿美达成套水处理设备">
+  <div class="shade"></div>
+  <div class="in">
+    <span class="tag">超微纳米曝气 × 臭氧催化氧化 · 一体化工艺包</span>
+    <h1>科技赋能环保<br>创新守护<em>碧水</em></h1>
+    <p class="sub">北京睿美达环保新材料科技有限公司 —— 专注曝气技术与臭氧催化氧化水处理，为市政提标改造与工业高难度废水提供一体化高级氧化解决方案。</p>
+    <div class="slogan">高效 · 节能 · 稳定 · 智慧</div>
+    <div class="chips">
+      <div class="chip"><b>2020<i> 年</i></b><span>公司成立</span></div>
+      <div class="chip"><b>30–50<i>%</i></b><span>节能降耗</span></div>
+      <div class="chip"><b>100<i>%</i></b><span>出水达标</span></div>
+      <div class="chip"><b>2合1<i> </i></b><span>成套一体化</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- 关于 -->
+<section class="sec about">
+  <div class="head">
+    <div class="en">About Us</div>
+    <h2>关于睿美达</h2>
+    <div class="bar"></div>
+  </div>
+  <div class="pad">
+    <p>北京睿美达环保新材料科技有限公司成立于 <span class="hi">2020 年</span>，是一家专注于
+      <span class="hi">曝气技术</span>与<span class="hi">臭氧催化氧化水处理</span>领域的科技型企业。
+      公司面向市政污水提标改造、工业高难度废水治理等核心场景，聚焦传统曝气能耗高、
+      难降解污染物去除效率低、系统运维成本高等行业痛点。</p>
+    <p>我们引入成熟的<span class="hi">超微纳米曝气技术</span>，并融合<span class="hi">臭氧催化氧化工艺</span>，
+      构建高效、节能、稳定的一体化高级氧化水处理解决方案，致力于提升污染物降解效率、
+      降低运行能耗、保障出水水质长期稳定达标。</p>
+  </div>
+  <div class="photo">
+    <img src="assets/photos/rmd01.jpg" alt="成套设备">
+    <div class="cap">超微纳米曝气 × 臭氧催化氧化 · 一体化成套设备现场</div>
+  </div>
+  <div class="pad" style="padding-top:0">
+    <div class="meta">
+      <div><b>超微纳米曝气</b><span>高传质 · 强氧化协同</span></div>
+      <div><b>臭氧催化氧化</b><span>难降解污染物靶向降解</span></div>
+      <div><b>系统集成</b><span>成套一体化 · 不割裂</span></div>
+      <div><b>智慧管控</b><span>数字化 · 无人化运维</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 核心工艺 -->
+<section class="sec tech">
+  <div class="head">
+    <div class="en">Core Process</div>
+    <h2>核心工艺<br>一体化成套工艺包</h2>
+    <div class="bar"></div>
+    <p>超微纳米曝气与臭氧催化氧化作为<b style="color:var(--purple-d)">一套成套设备</b>协同运行，二者不可分割——这是睿美达方案的核心。</p>
+  </div>
+
+  <div class="flowv">
+    <div class="fstep"><div class="node">⚙</div><div><div class="t">进水</div><div class="d">原水 / 提标改造来水</div></div></div>
+    <div class="fstep"><div class="node">〰</div><div><div class="t">超微纳米曝气</div><div class="d">高传质供氧 · 微纳气泡</div></div></div>
+    <div class="fstep"><div class="node">◉</div><div><div class="t">臭氧催化氧化</div><div class="d">强氧化 · 协同降解</div></div></div>
+    <div class="fstep"><div class="node">✓</div><div><div class="t">达标出水</div><div class="d">稳定达标 · 可回用</div></div></div>
+  </div>
+
+  <div style="height:16px"></div>
+  <div class="pc p1">
+    <div class="en">Micro-nano Aeration</div>
+    <h3>超微纳米曝气</h3>
+    <p>微纳气泡比表面积大、水中停留时间长，氧传质效率远高于常规曝气，为反应提供充足溶解氧，同时显著降低单位能耗。</p>
+    <li>微纳气泡高比表面积，传质效率高</li>
+    <li>氧利用率高，能耗大幅下降</li>
+    <li>兼具剪切、脱附与强化作用</li>
+  </div>
+  <div class="pc p2">
+    <div class="en">Ozone Catalytic Oxidation</div>
+    <h3>臭氧催化氧化</h3>
+    <p>臭氧在催化体系下产生强氧化性自由基，靶向降解难降解、高稳定性污染物，与曝气供氧协同，避免"只曝气不降解"。</p>
+    <li>强氧化自由基，靶向降解难降解物</li>
+    <li>与曝气供氧协同，避免单点失效</li>
+    <li>出水长期稳定，抗波动能力强</li>
+  </div>
+
+  <div class="set">
+    <span class="pill">超微纳米曝气</span>
+    <span class="x">×</span>
+    <span class="pill">臭氧催化氧化</span>
+    <span class="x">=</span>
+    <span class="pill g">一体化成套工艺包</span>
+  </div>
+</section>
+
+<!-- 数据 -->
+<section class="sec data">
+  <div class="head">
+    <div class="en">Performance</div>
+    <h2>核心成效</h2>
+    <div class="bar"></div>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="num">30–50<small>%</small></div><div class="lb">运行能耗降低</div><div class="en">Energy Saving</div></div>
+    <div class="kpi"><div class="num">100<small>%</small></div><div class="lb">出水达标率</div><div class="en">Compliance</div></div>
+    <div class="kpi"><div class="num">2<small>合1</small></div><div class="lb">成套一体化集成</div><div class="en">Integrated</div></div>
+    <div class="kpi"><div class="num">AI</div><div class="lb">智能调控 · 远程运维</div><div class="en">Smart Control</div></div>
+  </div>
+</section>
+
+<!-- 场景 -->
+<section class="sec">
+  <div class="head">
+    <div class="en">Applications</div>
+    <h2>核心应用场景</h2>
+    <div class="bar"></div>
+    <p>围绕市政提标改造与工业废水治理，聚焦难降解废水处理与成套设备工艺系统。</p>
+  </div>
+  <div class="scard c1">
+    <div class="im"><img src="assets/photos/rmd03.jpg" alt="市政提标"></div>
+    <div class="bd"><div class="ic">🏙</div><h3>市政污水提标改造</h3>
+      <p>一级 B/A 提升至更高标准，扩容受限场景下的节能提标，出水长期稳定达标。</p></div>
+  </div>
+  <div class="scard c2">
+    <div class="im"><img src="assets/photos/rmd04.jpg" alt="工业废水"></div>
+    <div class="bd"><div class="ic">🏭</div><h3>工业高难度废水</h3>
+      <p>电子、制药、印染、化工等行业特征污染物的深度处理与达标排放。</p></div>
+  </div>
+  <div class="scard c3">
+    <div class="im"><img src="assets/photos/rmd02.jpg" alt="难降解"></div>
+    <div class="bd"><div class="ic">🧪</div><h3>难降解废水处理</h3>
+      <p>低浓度、高稳定性 COD 与特征污染物的定向降解，破解"去除难"痛点。</p></div>
+  </div>
+</section>
+
+<!-- 智慧水务 -->
+<section class="sec smart">
+  <div class="head">
+    <div class="en">Smart Water</div>
+    <h2>新一代智慧水处理系统</h2>
+    <div class="bar"></div>
+    <p>物联网、AI 智能算法与装备深度融合，推动环保装备向数字化管控、无人化运维、智能化决策全面升级。</p>
+  </div>
+  <div class="slist">
+    <div class="sli"><div class="n">1</div><div><h4>在线监测</h4><p>水质、溶解氧、臭氧浓度、能耗实时采集，全状态可视。</p></div></div>
+    <div class="sli"><div class="n">2</div><div><h4>智能调控</h4><p>AI 根据水质负荷自动调节曝气量与臭氧投加，动态寻优、精准节能。</p></div></div>
+    <div class="sli"><div class="n">3</div><div><h4>远程运维</h4><p>异常预警、远程诊断与数据化管理，支撑少人化 / 无人化值守。</p></div></div>
+    <div class="sli"><div class="n">4</div><div><h4>数据化决策</h4><p>运行数据沉淀与模型迭代，为工艺优化与长期稳定运行提供依据。</p></div></div>
+  </div>
+</section>
+
+<!-- 实拍 -->
+<section class="sec">
+  <div class="head">
+    <div class="en">Equipment</div>
+    <h2>成套设备实拍</h2>
+    <div class="bar"></div>
+    <p>从罐体到管线的工程细节，体现整套组合工艺的系统性与工程质感。</p>
+  </div>
+  <div class="gitem"><img src="assets/photos/rmd01.jpg" alt=""><div class="cap"><small>SYSTEM 01</small>一体化成套设备 · 控制与工艺主区</div></div>
+  <div class="gitem"><img src="assets/photos/rmd02.jpg" alt=""><div class="cap"><small>SYSTEM 02</small>臭氧催化氧化单元</div></div>
+  <div class="gitem"><img src="assets/photos/rmd03.jpg" alt=""><div class="cap"><small>SYSTEM 03</small>超微纳米曝气 · 反应罐列阵</div></div>
+  <div class="gitem"><img src="assets/photos/rmd04.jpg" alt=""><div class="cap"><small>SYSTEM 04</small>曝气罐组 · 大型成套系统</div></div>
+</section>
+
+<!-- 服务 -->
+<section class="sec service">
+  <div class="head">
+    <div class="en">Service</div>
+    <h2>全流程技术服务</h2>
+    <div class="bar"></div>
+    <p>从工艺设计、装备集成到运行优化，一站式服务，保障出水长期稳定达标。</p>
+  </div>
+  <div class="step"><div class="no">01</div><h4>工艺设计</h4><p>依据水质、水量与提标目标，定制化设计一体化高级氧化工艺方案与参数。</p></div>
+  <div class="step"><div class="no">02</div><h4>装备集成</h4><p>成套设备一体化集成，曝气与催化氧化单元联动设计，占地小、启动快。</p></div>
+  <div class="step"><div class="no">03</div><h4>运行优化</h4><p>在线监测 + 智能调控 + 远程运维，持续优化，保障长期稳定达标。</p></div>
+</section>
+
+<!-- 联系 -->
+<section class="cta" id="contact">
+  <h2>科技赋能环保 · 创新守护碧水</h2>
+  <p>以更高效的技术、更可靠的装备和更智慧的系统，为城市水环境治理与工业绿色发展提供持续动力。</p>
+  <div class="rows">
+    <div class="row"><span class="k">电话</span><span>010-XXXX-XXXX（工作日 9:00–18:00）</span></div>
+    <div class="row"><span class="k">邮箱</span><span>reimeda@reimeda.cn</span></div>
+    <div class="row"><span class="k">地址</span><span>北京市朝阳区 XXX</span></div>
+  </div>
+  <a class="btn" href="tel:010-00000000">立即咨询 · 获取工艺包测算</a>
+</section>
+
+<footer>
+  <div class="nm">睿美达环保新材料科技</div>
+  <p>专注超微纳米曝气与臭氧催化氧化水处理，提供一体化高级氧化解决方案。节能降耗 30–50%，出水 100% 达标。</p>
+  <p class="fine">© 2026 北京睿美达环保新材料科技有限公司<br>本页数据为工艺包典型设计指标，具体以项目实测为准</p>
+</footer>
+
+<!-- 底部悬浮按钮 -->
+<div class="dock">
+  <a class="ghost" href="#contact">联系我们</a>
+  <a class="solid" href="tel:010-00000000">电话咨询</a>
+</div>
+
+</body>
+</html>

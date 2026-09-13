@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>睿美达环保 - 公众号头图 900×383</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 900px;
+    height: 383px;
+    overflow: hidden;
+    font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #ffffff;
+    position: relative;
+  }
+
+  /* ── subtle tech grid background ── */
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(49,45,114,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(49,45,114,0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+    z-index: 0;
+  }
+
+  /* ── top accent stripe ── */
+  .top-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #E8880C 0%, #E8880C 40%, #312D72 40%, #312D72 100%);
+    z-index: 10;
+  }
+
+  /* ── bottom brand bar ── */
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 44px;
+    background: linear-gradient(135deg, #312D72 0%, #3D3890 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 36px;
+    z-index: 10;
+  }
+  .bottom-bar .bar-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .bottom-bar .bar-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.95);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  .bottom-bar .bar-tag .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #E8880C;
+  }
+  .bottom-bar .bar-right {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── main content area ── */
+  .main {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    right: 0;
+    bottom: 44px;
+    display: flex;
+    z-index: 5;
+  }
+
+  /* ── left content panel ── */
+  .left-panel {
+    width: 430px;
+    padding: 28px 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 6;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-area img {
+    height: 36px;
+    width: auto;
+  }
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .logo-text .zh {
+    font-size: 16px;
+    font-weight: 700;
+    color: #312D72;
+    letter-spacing: 3px;
+    line-height: 1.2;
+  }
+  .logo-text .en {
+    font-size: 8.5px;
+    font-weight: 400;
+    color: #8A87B0;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .headline-area {
+    margin-top: 2px;
+  }
+  .slogan {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: #E8880C;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .product-name {
+    font-size: 22px;
+    font-weight: 900;
+    color: #1A1A2E;
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+  }
+  .product-name .highlight {
+    color: #312D72;
+  }
+  .product-name .plus {
+    color: #E8880C;
+    font-weight: 700;
+    margin: 0 2px;
+  }
+  .product-sub {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4A4A6A;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+
+  /* ── metric cards ── */
+  .metrics {
+    display: flex;
+    gap: 14px;
+    margin-top: 2px;
+  }
+  .metric-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(232,136,12,0.06);
+    border: 1px solid rgba(232,136,12,0.15);
+  }
+  .metric-card.purple {
+    background: rgba(49,45,114,0.05);
+    border-color: rgba(49,45,114,0.12);
+  }
+  .metric-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .metric-icon.gold {
+    background: linear-gradient(135deg, #E8880C, #F5A623);
+    color: white;
+  }
+  .metric-icon.purp {
+    background: linear-gradient(135deg, #312D72, #4A4494);
+    color: white;
+  }
+  .metric-text .label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.5px;
+  }
+  .metric-text .value {
+    font-size: 17px;
+    font-weight: 900;
+    color: #1A1A2E;
+    line-height: 1.2;
+  }
+  .metric-text .value .unit {
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  /* ── right equipment photo area ── */
+  .right-panel {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .right-panel .photo {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    bottom: -30px;
+    left: -40px;
+    background: url('../rmd04.jpg') center center / cover no-repeat;
+  }
+  /* fade from white on left */
+  .right-panel .fade-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,0.95) 8%,
+      rgba(255,255,255,0.6) 20%,
+      rgba(255,255,255,0.1) 35%,
+      rgba(255,255,255,0) 50%
+    );
+    z-index: 1;
+  }
+  /* subtle purple tint overlay */
+  .right-panel .tint-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(49,45,114,0.03) 0%,
+      rgba(49,45,114,0.08) 100%
+    );
+    z-index: 2;
+  }
+
+  /* ── decorative elements ── */
+  .deco-circle {
+    position: absolute;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,136,12,0.1);
+    top: -40px; right: 60px;
+    z-index: 3;
+  }
+  .deco-circle-2 {
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1px dashed rgba(49,45,114,0.08);
+    bottom: 10px; right: 140px;
+    z-index: 3;
+  }
+  .deco-line {
+    position: absolute;
+    width: 60px; height: 2px;
+    background: #E8880C;
+    opacity: 0.3;
+    top: 50%; right: 40px;
+    z-index: 3;
+  }
+
+  /* ── flow arrows decoration ── */
+  .flow-arrows {
+    position: absolute;
+    bottom: 60px;
+    left: 420px;
+    display: flex;
+    gap: 3px;
+    z-index: 4;
+    opacity: 0.2;
+  }
+  .flow-arrows .arrow {
+    width: 0; height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid #312D72;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top accent stripe -->
+  <div class="top-stripe"></div>
+
+  <!-- Main content -->
+  <div class="main">
+
+    <!-- Left: Brand & content -->
+    <div class="left-panel">
+      <div class="logo-area">
+        <img src="../logo.jpg" alt="睿美达环保">
+      </div>
+
+      <div class="headline-area">
+        <div class="slogan">科技赋能环保 · 创新守护碧水</div>
+        <div class="product-name">
+          <span class="highlight">超微纳米曝气</span><span class="plus">+</span><br>
+          <span class="highlight">臭氧催化氧化</span>
+        </div>
+        <div class="product-sub">一体化高级氧化水处理解决方案</div>
+      </div>
+
+      <div class="metrics">
+        <div class="metric-card">
+          <div class="metric-icon gold">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div class="metric-text">
+            <div class="label">节能降耗</div>
+            <div class="value">30%‑50%</div>
+          </div>
+        </div>
+        <div class="metric-card purple">
+          <div class="metric-icon purp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="metric-text">
+            <div class="label">出水达标</div>
+            <div class="value">100%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Equipment photo -->
+    <div class="right-panel">
+      <div class="photo"></div>
+      <div class="fade-overlay"></div>
+      <div class="tint-overlay"></div>
+      <div class="deco-circle"></div>
+      <div class="deco-circle-2"></div>
+      <div class="deco-line"></div>
+    </div>
+
+    <!-- Flow arrows -->
+    <div class="flow-arrows">
+      <div class="arrow"></div>
+      <div class="arrow"></div>
+      <div class="arrow"></div>
+    </div>
+
+  </div>
+
+  <!-- Bottom brand bar -->
+  <div class="bottom-bar">
+    <div class="bar-left">
+      <span class="bar-tag"><span class="dot"></span>市政污水提标改造</span>
+      <span class="bar-tag"><span class="dot"></span>工业废水深度处理</span>
+      <span class="bar-tag"><span class="dot"></span>难降解污染物去除</span>
+    </div>
+    <div class="bar-right">北京睿美达环保新材料科技有限公司</div>
+  </div>
+
+</body>
+</html>
