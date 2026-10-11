@@ -1,0 +1,9 @@
+# ScreenWatch 敏感配置(含邮件账号/授权码、收件人、scp 目标), 不提交
+screenmonitor.conf
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 本地备份文件
+*.bk

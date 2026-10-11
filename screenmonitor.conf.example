@@ -1,0 +1,30 @@
+# ScreenWatch 配置文件模板 — 复制为 screenmonitor.conf 并填入真实值。
+# screenmonitor.conf 已加入 .gitignore, 不会提交; 本模板可以提交。
+# 用法: copy screenmonitor.conf.example screenmonitor.conf  (Windows)
+
+[mail]
+# QQ: smtp.qq.com / 163: smtp.163.com / Gmail: smtp.gmail.com
+host = smtp.qq.com
+port = 465
+ssl = true
+user = your_email@example.com
+# QQ/163 用 SMTP 授权码, 不是登录密码
+password = your_smtp_authorization_code
+# 多个收件人用英文逗号分隔
+to = recipient@example.com
+
+[scp]
+# 优先传输: 成功则不发邮件, 失败回落 SMTP
+enabled = true
+dest = user@host:/path/to/backup/
+# SYSTEM 可读的私钥与主机指纹(自包含目录, 不依赖具体用户)
+key = C:\ProgramData\screenwatch\ssh\id_rsa
+known_hosts = C:\ProgramData\screenwatch\ssh\known_hosts
+staging_dir = C:\ProgramData\screenwatch\scp_out
+timeout = 60
+
+[run]
+interval = 180
+max_jpeg_bytes = 102400
+queue_max = 3000
+flush_per_cycle = 30
