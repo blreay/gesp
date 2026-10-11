@@ -41,3 +41,5 @@ queue_max = 3000
 flush_per_cycle = 30
 # 发送方式优先级: 逗号分隔, 可选值 http/scp/smtp, 按顺序尝试, 前面的失败再试后面的
 send_priority = http, scp, smtp
+# 纯色画面检测阈值: 锁屏/黑屏/纯色桌面时标准差低于此值则跳过不截不发; 设 0 关闭
+blank_std_threshold = 12

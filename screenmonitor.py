@@ -67,6 +67,9 @@ def _conf_int(sec, key, default):
 def _conf_str(sec, key, default):
     v = _cfg.get(sec, key, fallback=None)
     return (v.strip() if v is not None else default)
+def _conf_float(sec, key, default):
+    v = _cfg.getfloat(sec, key, fallback=None)
+    return default if v is None else v
 
 # 优先传输方式: scp 到备份服务器; scp 成功则不再发邮件, scp 失败再回落 SMTP 邮件。
 # 注意: 发送在服务主进程(SYSTEM)里执行, 与"谁登录"无关; 故 SSH 密钥须 SYSTEM 可读
@@ -101,6 +104,12 @@ QUEUE_MAX       = _conf_int("run", "queue_max", 3000)
 FLUSH_PER_CYCLE = _conf_int("run", "flush_per_cycle", 30)
 # 发送方式优先级: 逗号分隔, 可选值 http/scp/smtp, 按顺序尝试, 前面的失败再试后面的
 SEND_PRIORITY = _conf_str("run", "send_priority", "http, scp, smtp")
+# 纯色画面检测: 锁屏/黑屏时 Default 桌面呈近似纯色, 标准差低于阈值则跳过不截不发。
+# std 阈值(0~255): 锁屏纯色画面通常 <5, 正常桌面 >15; 默认 12。
+# 设为 0 可关闭该检测(仅依赖 LogonUI 前台判据)。
+BLANK_STD_THRESHOLD = _conf_float("run", "blank_std_threshold", 12.0)
+BLANK_CHECK_W = 64
+BLANK_CHECK_H = 36
 # ==================== 配置结束 ====================
 
 HOSTNAME   = socket.gethostname()
@@ -168,6 +177,10 @@ advapi32 = ctypes.WinDLL("advapi32.dll", use_last_error=True)
 wtsapi32.WTSQueryUserToken.argtypes = [wintypes.DWORD,
                                        ctypes.POINTER(wintypes.HANDLE)]
 wtsapi32.WTSQueryUserToken.restype = wintypes.BOOL
+# 注: 本机 wtsapi32.dll 被裁剪, WTSGetState / WTSGetSessionInfoW /
+#     FreeConsoleBuffer 等均缺失, WTSEnumerateSessionsW 调用返回 false,
+#     故无法用"会话状态"判断锁屏(且本地 Win+L 锁屏时控制台会话仍是
+#     WTSActive, 该途径本就不可靠)。改用纯色画面检测判断锁屏, 见 is_blank_screen()。
 # 按进程ID取会话号(kernel32 标准API, WTSGetProcessId 在本机缺失)
 kernel32.GetCurrentProcessId.argtypes = []
 kernel32.GetCurrentProcessId.restype = wintypes.DWORD
@@ -328,6 +341,24 @@ def is_locked():
         kernel32.CloseHandle(h)
 
 
+def is_blank_screen(img):
+    """检测画面是否"近似纯色"(锁屏/黑屏/纯色壁纸且无窗口内容时)。
+    锁屏时 Default 桌面通常呈现为单一纯色或纯色+少量固定元素, 像素方差极低;
+    正常桌面有窗口/任务栏/文字, 方差明显更高。
+    采用"方差法": 把图缩小到固定小尺寸, 计算各通道像素值的标准差,
+    全部低于阈值即判定为纯色。返回 True 表示纯色(应跳过)。"""
+    small = img.convert("L").resize((BLANK_CHECK_W, BLANK_CHECK_H), Image.BILINEAR)
+    px = small.load()
+    n = BLANK_CHECK_W * BLANK_CHECK_H
+    mean = sum(px[x, y] for x in range(BLANK_CHECK_W)
+               for y in range(BLANK_CHECK_H)) / n
+    var = sum((px[x, y] - mean) ** 2
+              for x in range(BLANK_CHECK_W) for y in range(BLANK_CHECK_H)) / n
+    std = var ** 0.5
+    # 标准差阈值: 锁屏纯色画面 std 通常 < 5; 正常桌面 > 15。取 12 兼顾两者。
+    return std < BLANK_STD_THRESHOLD
+
+
 def capture_screen():
     """返回 (img, reason)。成功时 reason 为 None; 否则 img 为 None, reason 是原因。"""
     sid = kernel32.WTSGetActiveConsoleSessionId()
@@ -342,6 +373,7 @@ def capture_screen():
         return None, "附加用户桌面失败"
     img, why = None, "BitBlt/GetDIBits 失败"
     try:
+        # 判据1: 登录/注销界面前台为 LogonUI.exe(登录/注销场景)
         if is_locked():
             return None, "锁屏/登录界面, 跳过"
         w, h = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
@@ -367,6 +399,9 @@ def capture_screen():
     finally:
         user32.SetThreadDesktop(horig)
         user32.CloseDesktop(hdesk)
+    if img is not None and is_blank_screen(img):
+        # 锁屏/黑屏/纯色桌面: 不截不发, 避免产生纯色图片
+        return None, "画面近似纯色(锁屏/黑屏), 跳过"
     return img, why
 
 
