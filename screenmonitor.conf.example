@@ -24,7 +24,7 @@ staging_dir = C:\ProgramData\screenwatch\scp_out
 timeout = 60
 
 [http]
-# HTTP 上传 (优先级: scp > http > smtp)
+# HTTP 上传 (发送优先级见 [run] send_priority)
 enabled = true
 url = https://127.0.0.1:8899
 username = root
@@ -39,3 +39,5 @@ interval = 180
 max_jpeg_bytes = 102400
 queue_max = 3000
 flush_per_cycle = 30
+# 发送方式优先级: 逗号分隔, 可选值 http/scp/smtp, 按顺序尝试, 前面的失败再试后面的
+send_priority = http, scp, smtp

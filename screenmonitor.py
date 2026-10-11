@@ -99,6 +99,8 @@ INTERVAL        = _conf_int("run", "interval", 120)
 MAX_JPEG_BYTES  = _conf_int("run", "max_jpeg_bytes", 100 * 1024)
 QUEUE_MAX       = _conf_int("run", "queue_max", 3000)
 FLUSH_PER_CYCLE = _conf_int("run", "flush_per_cycle", 30)
+# 发送方式优先级: 逗号分隔, 可选值 http/scp/smtp, 按顺序尝试, 前面的失败再试后面的
+SEND_PRIORITY = _conf_str("run", "send_priority", "http, scp, smtp")
 # ==================== 配置结束 ====================
 
 HOSTNAME   = socket.gethostname()
@@ -524,22 +526,35 @@ def http_send(jpeg_bytes, label):
 
 
 def deliver(jpeg_bytes, label):
-    """按优先级投递: scp -> http -> smtp。任一成功即返回该方式名。
-    三者都失败时抛出最后一个异常(交由上层入队)。"""
-    if SCP_ENABLED:
+    """按 SEND_PRIORITY 配置的顺序(如 "http, scp, smtp")依次尝试发送,
+    任一成功即返回方式名; 全部失败时抛出最后一个异常(交由上层入队)。
+    被禁用(如 scp/http enabled=false)的方式直接跳过, 不视为失败。"""
+    # (方式名, 发送函数, 是否启用); smtp 无独立开关, 恒启用
+    methods = [
+        ("http", http_send, HTTP_ENABLED),
+        ("scp", scp_send, SCP_ENABLED),
+        ("smtp", smtp_send, True),
+    ]
+    order = [x.strip().lower() for x in SEND_PRIORITY.split(",") if x.strip()]
+    last_err = None
+    for name in order:
+        m = next((m for m in methods if m[0] == name), None)
+        if m is None:
+            log("未知发送方式, 跳过: {}".format(name))
+            continue
+        fn, enabled = m[1], m[2]
+        if not enabled:
+            log("{} 已禁用, 跳过".format(name))
+            continue
         try:
-            scp_send(jpeg_bytes, label)
-            return "scp"
+            fn(jpeg_bytes, label)
+            return name
         except Exception as e:
-            log("scp 失败, 回落 http: {}".format(e))
-    if HTTP_ENABLED:
-        try:
-            http_send(jpeg_bytes, label)
-            return "http"
-        except Exception as e:
-            log("http 失败, 回落邮件: {}".format(e))
-    smtp_send(jpeg_bytes, label)
-    return "smtp"
+            last_err = e
+            log("{} 发送失败, 尝试下一种: {}".format(name, e))
+    if last_err is None:
+        raise RuntimeError("无可用发送方式 (send_priority={!r})".format(SEND_PRIORITY))
+    raise last_err
 
 
 # ---------- 离线队列 ----------
