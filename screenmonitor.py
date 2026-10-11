@@ -110,6 +110,11 @@ SEND_PRIORITY = _conf_str("run", "send_priority", "http, scp, smtp")
 BLANK_STD_THRESHOLD = _conf_float("run", "blank_std_threshold", 12.0)
 BLANK_CHECK_W = 64
 BLANK_CHECK_H = 36
+# 日志外发: 每隔 LOG_SEND_INTERVAL 秒把日志文件按截图同样的外发渠道
+# (http/scp/smtp 优先级)发一份, 文件名带时间戳。设为 0 关闭。
+LOG_SEND_INTERVAL = _conf_int("run", "log_send_interval", 1800)
+# 日志外发时只取文件末尾的字节数(避免日志过大), 0 表示整文件
+LOG_SEND_MAX_BYTES = _conf_int("run", "log_send_max_bytes", 256 * 1024)
 # ==================== 配置结束 ====================
 
 HOSTNAME   = socket.gethostname()
@@ -422,15 +427,23 @@ def compress(img):
 
 
 # ---------- 邮件 ----------
-def smtp_send(jpeg_bytes, label):
+def smtp_send(jpeg_bytes, label, filename=None):
+    if filename is None:
+        filename = "screenwatch_{}.jpg".format(label)
     msg = MIMEMultipart()
     msg["From"], msg["To"] = SMTP_USER, MAIL_TO
     msg["Subject"] = "[ScreenWatch] {} {}".format(HOSTNAME, label)
     msg.attach(MIMEText("Host: {}\nTime: {}\n".format(HOSTNAME, label),
                         "plain", "utf-8"))
-    part = MIMEImage(jpeg_bytes, _subtype="jpeg")
+    if filename.lower().endswith(".jpg"):
+        part = MIMEImage(jpeg_bytes, _subtype="jpeg")
+    else:
+        # 日志等文本文件: 作为普通附件(非图片)
+        part = MIMEText(jpeg_bytes.decode("utf-8", "replace"),
+                        "plain", "utf-8")
+        part.add_header("Content-Type", "text/plain; charset=utf-8")
     part.add_header("Content-Disposition", "attachment",
-                    filename="screenwatch_{}.jpg".format(label))
+                    filename=filename)
     msg.attach(part)
     if SMTP_SSL:
         s = smtplib.SMTP_SSL(SMTP_HOST, SMTP_PORT, timeout=30)
@@ -446,16 +459,18 @@ def smtp_send(jpeg_bytes, label):
 
 
 # ---------- scp (优先传输) ----------
-def scp_send(jpeg_bytes, label):
-    """把 JPEG scp 到备份服务器。成功返回 None; 失败抛出异常(交由上层回落邮件)。
+def scp_send(jpeg_bytes, label, filename=None):
+    """把文件 scp 到备份服务器。成功返回 None; 失败抛出异常(交由上层回落邮件)。
 
     用 subprocess 参数列表(不经 shell)调用 OpenSSH 的 scp.exe, 以 SYSTEM 身份执行。
     SSH 密钥/known_hosts 用自包含路径, 不依赖任何具体登录用户, 故换用户登录也有效。
     """
+    if filename is None:
+        filename = "screenwatch_{}.jpg".format(label)
     if not SCP_ENABLED:
         raise RuntimeError("scp 已禁用")
     os.makedirs(SCP_STAGING_DIR, exist_ok=True)
-    src = os.path.join(SCP_STAGING_DIR, "screenwatch_{}.jpg".format(label))
+    src = os.path.join(SCP_STAGING_DIR, filename)
     with open(src, "wb") as f:
         f.write(jpeg_bytes)
     scp_exe = os.path.join(os.environ.get("SystemRoot", r"C:\Windows"),
@@ -463,7 +478,7 @@ def scp_send(jpeg_bytes, label):
     if not os.path.exists(scp_exe):
         scp_exe = "scp"  # 回退到 PATH
     # 远端文件名: 与邮件附件同名, 便于对账
-    remote = SCP_DEST + "screenwatch_{}.jpg".format(label)
+    remote = SCP_DEST + filename
     args = [scp_exe,
             "-i", SCP_KEY,
             "-o", "BatchMode=yes",                 # 无密钥时不卡密码提示
@@ -543,12 +558,14 @@ def _http_multipart(data_bytes, filename, field="file"):
     return head + data_bytes + tail, "multipart/form-data; boundary=" + boundary
 
 
-def http_send(jpeg_bytes, label):
-    """通过远端 web server 上传 JPEG (raw octet-stream)。成功返回 None; 失败抛出异常。"""
+def http_send(jpeg_bytes, label, filename=None):
+    """通过远端 web server 上传文件 (raw octet-stream)。成功返回 None; 失败抛出异常。"""
+    if filename is None:
+        filename = "screenwatch_{}.jpg".format(label)
     if not HTTP_ENABLED:
         raise RuntimeError("http 已禁用")
     _http_ensure_login()
-    fname = "screenwatch_{}.jpg".format(label)
+    fname = filename
     rdir = HTTP_REMOTE_DIR.rstrip("/")
     q = "/api/upload?path={}&filename={}".format(
         urllib.parse.quote(rdir, safe=""), urllib.parse.quote(fname, safe=""))
@@ -560,10 +577,11 @@ def http_send(jpeg_bytes, label):
             code, body[:200].decode("utf-8", "replace")))
 
 
-def deliver(jpeg_bytes, label):
+def deliver(jpeg_bytes, label, filename=None):
     """按 SEND_PRIORITY 配置的顺序(如 "http, scp, smtp")依次尝试发送,
     任一成功即返回方式名; 全部失败时抛出最后一个异常(交由上层入队)。
-    被禁用(如 scp/http enabled=false)的方式直接跳过, 不视为失败。"""
+    被禁用(如 scp/http enabled=false)的方式直接跳过, 不视为失败。
+    filename 可选: 自定义远端/附件文件名(默认 screenwatch_<label>.jpg)。"""
     # (方式名, 发送函数, 是否启用); smtp 无独立开关, 恒启用
     methods = [
         ("http", http_send, HTTP_ENABLED),
@@ -582,7 +600,7 @@ def deliver(jpeg_bytes, label):
             log("{} 已禁用, 跳过".format(name))
             continue
         try:
-            fn(jpeg_bytes, label)
+            fn(jpeg_bytes, label, filename)
             return name
         except Exception as e:
             last_err = e
@@ -590,6 +608,39 @@ def deliver(jpeg_bytes, label):
     if last_err is None:
         raise RuntimeError("无可用发送方式 (send_priority={!r})".format(SEND_PRIORITY))
     raise last_err
+
+
+# ---------- 日志外发 ----------
+def _read_log_tail(max_bytes):
+    """读取日志(含轮转出的 .old 文件)的末尾 max_bytes 字节, 按时间顺序拼接。
+    日志超 512KB 时 log() 会把 LOG_FILE 替换成 .old, 故两者都要读, 避免轮转丢近期记录。"""
+    old_file = LOG_FILE + ".old"
+    parts = []
+    if os.path.exists(old_file) and os.path.getsize(old_file) > 0:
+        with open(old_file, "rb") as f:
+            parts.append(f.read())
+    if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > 0:
+        with open(LOG_FILE, "rb") as f:
+            parts.append(f.read())
+    data = b"".join(parts)
+    if max_bytes > 0 and len(data) > max_bytes:
+        data = data[-max_bytes:]
+    return data
+
+
+def send_log():
+    """把日志文件(LOG_FILE)按截图同样的外发渠道(优先级链)发一份。
+    文件名带时间戳: screenwatch_<hostname>_<YYYYmmdd_HHMMSS>.log。
+    只取末尾 LOG_SEND_MAX_BYTES(避免过大)。成功返回方式名; 失败抛异常。"""
+    data = _read_log_tail(LOG_SEND_MAX_BYTES)
+    if not data:
+        raise RuntimeError("日志为空: {}".format(LOG_FILE))
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    label = "log_{}".format(ts)
+    fname = "screenwatch_{}_{}.log".format(HOSTNAME, ts)
+    via = deliver(data, label, fname)
+    log("日志已外发[{}] {} ({}KB)".format(via, label, len(data) // 1024))
+    return via
 
 
 # ---------- 离线队列 ----------
@@ -692,13 +743,22 @@ def cycle():
 
 
 def run_loop():
-    log("启动: 间隔{}s, 队列目录 {}".format(INTERVAL, QUEUE_DIR))
+    log("启动: 截屏间隔{}s, 日志外发间隔{}s, 队列目录 {}".format(
+        INTERVAL, LOG_SEND_INTERVAL, QUEUE_DIR))
+    last_log_send = 0.0  # 上次日志外发的时间戳, 启动后首次满间隔才发
     while not stop_event.is_set():
         t0 = time.time()
         try:
             cycle()
         except Exception as e:
             log("cycle 异常: {!r}".format(e))
+        # 定时外发日志: 与截屏周期解耦, 独立按 LOG_SEND_INTERVAL 计时
+        if LOG_SEND_INTERVAL > 0 and (t0 - last_log_send) >= LOG_SEND_INTERVAL:
+            last_log_send = t0
+            try:
+                send_log()
+            except Exception as e:
+                log("日志外发失败: {}".format(e))
         stop_event.wait(max(5.0, INTERVAL - (time.time() - t0)))
     log("已停止")
 

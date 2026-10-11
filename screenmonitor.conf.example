@@ -43,3 +43,7 @@ flush_per_cycle = 30
 send_priority = http, scp, smtp
 # 纯色画面检测阈值: 锁屏/黑屏/纯色桌面时标准差低于此值则跳过不截不发; 设 0 关闭
 blank_std_threshold = 12
+# 日志外发间隔(秒): 每隔此时长把日志文件按截图同样的外发渠道发一份, 文件名带时间戳; 设 0 关闭
+log_send_interval = 1800
+# 日志外发只取文件末尾的字节数(避免日志过大), 0 表示整文件
+log_send_max_bytes = 262144
