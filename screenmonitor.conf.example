@@ -14,7 +14,7 @@ password = your_smtp_authorization_code
 to = recipient@example.com
 
 [scp]
-# 优先传输: 成功则不发邮件, 失败回落 SMTP
+# 优先传输: 成功则不发邮件, 失败回落 HTTP/SMTP
 enabled = true
 dest = user@host:/path/to/backup/
 # SYSTEM 可读的私钥与主机指纹(自包含目录, 不依赖具体用户)
@@ -22,6 +22,17 @@ key = C:\ProgramData\screenwatch\ssh\id_rsa
 known_hosts = C:\ProgramData\screenwatch\ssh\known_hosts
 staging_dir = C:\ProgramData\screenwatch\scp_out
 timeout = 60
+
+[http]
+# HTTP 上传 (优先级: scp > http > smtp)
+enabled = true
+url = https://127.0.0.1:8899
+username = root
+password = your_password
+# 远端保存目录 (绝对路径, 尾斜杠可选)
+remote_dir = /data/gesp/backup
+# 请求超时(秒)
+timeout = 30
 
 [run]
 interval = 180

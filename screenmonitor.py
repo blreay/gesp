@@ -25,15 +25,21 @@ screenwatch.py — 极简「截屏 → 邮件」监控 (Windows)
 import configparser
 import ctypes
 import io
+import json
 import os
 import smtplib
 import socket
+import ssl
 import sys
 import subprocess
 import tempfile
 import threading
 import time
+import urllib.error
+import urllib.parse
+import urllib.request
 import win32security
+from http.cookiejar import CookieJar
 from ctypes import wintypes
 from datetime import datetime
 from email.mime.image import MIMEImage
@@ -73,6 +79,14 @@ SCP_KNOWN_HOSTS = _conf_str("scp", "known_hosts",
 SCP_STAGING_DIR = _conf_str("scp", "staging_dir",
                             r"C:\ProgramData\screenwatch\scp_out")
 SCP_TIMEOUT   = _conf_int("scp", "timeout", 60)
+
+# HTTP 上传: 第二优先传输; scp 失败时尝试, 成功则不再发邮件, 失败再回落 SMTP
+HTTP_ENABLED  = _conf_bool("http", "enabled", True)
+HTTP_URL      = _conf_str("http", "url", "https://121.40.190.90:8899").rstrip("/")
+HTTP_USER     = _conf_str("http", "username", "")
+HTTP_PASS     = _conf_str("http", "password", "")
+HTTP_REMOTE_DIR = _conf_str("http", "remote_dir", "/data/gesp/backup")
+HTTP_TIMEOUT  = _conf_int("http", "timeout", 30)
 
 SMTP_HOST = _conf_str("mail", "host", "smtp.sina.com")
 SMTP_PORT = _conf_int("mail", "port", 465)
@@ -439,15 +453,91 @@ def scp_send(jpeg_bytes, label):
             r.returncode, (r.stderr or "").strip()[:300]))
 
 
+# ---------- HTTP 上传 (次优先传输) ----------
+# 远端 Node.js web server: 登录取会话 cookie, 再用 multipart 上传。
+# 自签证书 -> 跳过 SSL 验证(等价 curl -k)。会话缓存到进程级, 失效时自动重登。
+_http_jar   = CookieJar()
+_http_opener = urllib.request.build_opener(
+    urllib.request.HTTPSHandler(context=ssl._create_unverified_context()),
+    urllib.request.HTTPCookieProcessor(_http_jar))
+
+
+def _http_request(method, path, data=None, headers=None):
+    req = urllib.request.Request(HTTP_URL + path, data=data,
+                                 method=method, headers=headers or {})
+    try:
+        resp = _http_opener.open(req, timeout=HTTP_TIMEOUT)
+        code, body = resp.getcode(), resp.read()
+    except urllib.error.HTTPError as e:
+        code, body = e.code, e.read()
+    except Exception as e:
+        raise RuntimeError("HTTP 连接失败: {}".format(e))
+    finally:
+        try:
+            resp.close()
+        except Exception:
+            pass
+    return code, body
+
+
+def _http_login():
+    body = json.dumps({"user": HTTP_USER, "pass": HTTP_PASS}).encode()
+    code, _ = _http_request("POST", "/api/login", data=body,
+                            headers={"Content-Type": "application/json"})
+    if code != 200:
+        raise RuntimeError("HTTP 登录失败 (HTTP {})".format(code))
+
+
+def _http_ensure_login():
+    """探测会话有效性, 失效则登录。GET /api/fs?path=%2Fdata 返回 200 视为已登录。"""
+    code, _ = _http_request("GET", "/api/fs?path=%2Fdata")
+    if code != 200:
+        _http_login()
+
+
+def _http_multipart(data_bytes, filename, field="file"):
+    """构造 multipart/form-data 请求体(纯标准库, 不依赖 requests)。"""
+    boundary = "----screenwatch{}".format(int(time.time() * 1000))
+    head = ("--{}\r\n"
+            'Content-Disposition: form-data; name="{}"; filename="{}"\r\n'
+            "Content-Type: application/octet-stream\r\n\r\n").format(
+                boundary, field, filename).encode()
+    tail = ("\r\n--{}--\r\n".format(boundary)).encode()
+    return head + data_bytes + tail, "multipart/form-data; boundary=" + boundary
+
+
+def http_send(jpeg_bytes, label):
+    """通过远端 web server 上传 JPEG (raw octet-stream)。成功返回 None; 失败抛出异常。"""
+    if not HTTP_ENABLED:
+        raise RuntimeError("http 已禁用")
+    _http_ensure_login()
+    fname = "screenwatch_{}.jpg".format(label)
+    rdir = HTTP_REMOTE_DIR.rstrip("/")
+    q = "/api/upload?path={}&filename={}".format(
+        urllib.parse.quote(rdir, safe=""), urllib.parse.quote(fname, safe=""))
+    code, body = _http_request("POST", q, data=jpeg_bytes, headers={
+        "Content-Type": "application/octet-stream",
+        "Content-Length": str(len(jpeg_bytes))})
+    if code != 200:
+        raise RuntimeError("HTTP 上传失败 (HTTP {} body={})".format(
+            code, body[:200].decode("utf-8", "replace")))
+
+
 def deliver(jpeg_bytes, label):
-    """按优先级投递: 先 scp, 成功即返回 'scp'; 否则回落邮件返回 'smtp'。
-    两者都失败时抛出邮件的异常(交由上层入队)。"""
+    """按优先级投递: scp -> http -> smtp。任一成功即返回该方式名。
+    三者都失败时抛出最后一个异常(交由上层入队)。"""
     if SCP_ENABLED:
         try:
             scp_send(jpeg_bytes, label)
             return "scp"
         except Exception as e:
-            log("scp 失败, 回落邮件: {}".format(e))
+            log("scp 失败, 回落 http: {}".format(e))
+    if HTTP_ENABLED:
+        try:
+            http_send(jpeg_bytes, label)
+            return "http"
+        except Exception as e:
+            log("http 失败, 回落邮件: {}".format(e))
     smtp_send(jpeg_bytes, label)
     return "smtp"
 
