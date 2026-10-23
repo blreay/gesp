@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 考前突击复习（写给学过 C++ 的你）</title>
+<style>
+  :root{
+    --fg:#1f2937; --muted:#6b7280; --bg:#fbfaf7; --card:#ffffff;
+    --accent:#2563eb; --accent-soft:#e8f0fe;
+    --warn:#c2410c; --warn-bg:#fff4ec; --warn-bd:#fdba74;
+    --tip:#047857; --tip-bg:#ecfdf5; --tip-bd:#6ee7b7;
+    --cpp:#7c3aed; --cpp-bg:#f5f0ff; --cpp-bd:#c4b5fd;
+    --code-bg:#f6f8fa; --code-bd:#d8dee4;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
+    font-size:18px; line-height:1.8;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:24px 22px 80px}
+  header.hero{
+    background:linear-gradient(135deg,#1e3a8a,#2563eb 60%,#0ea5e9);
+    color:#fff; border-radius:18px; padding:28px 30px; margin-bottom:26px;
+  }
+  header.hero h1{margin:0 0 6px; font-size:32px; line-height:1.3}
+  header.hero p{margin:6px 0; opacity:.95}
+  .badge{display:inline-block; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+    border-radius:999px; padding:2px 12px; font-size:15px; margin:4px 6px 0 0}
+  h2{
+    font-size:26px; margin:46px 0 14px; padding:10px 16px; border-radius:12px;
+    background:var(--accent-soft); border-left:8px solid var(--accent); line-height:1.4;
+  }
+  h2 .time{float:right; font-size:16px; font-weight:normal; color:var(--accent); margin-top:5px}
+  h3{font-size:21px; margin:30px 0 8px; padding-bottom:4px; border-bottom:2px dashed #d1d5db}
+  h3 input.ck{width:20px; height:20px; vertical-align:-3px; margin-right:8px; accent-color:#16a34a; cursor:pointer}
+  h3.done{color:#15803d}
+  h4{font-size:18px; margin:18px 0 6px; color:#374151}
+  p{margin:8px 0}
+  a{color:var(--accent)}
+  code{font-family:Consolas,"Courier New","Menlo",monospace; font-size:.92em}
+  :not(pre)>code{background:#eef2f7; border:1px solid #dde3ea; border-radius:5px; padding:0 5px; color:#be185d}
+  pre{
+    background:var(--code-bg); border:1px solid var(--code-bd); border-radius:10px;
+    padding:12px 16px; margin:10px 0 4px; overflow-x:auto; line-height:1.6; font-size:16.5px;
+  }
+  pre code{color:#24292f; background:none; border:0; padding:0; font-size:inherit}
+  pre.out{background:#111827; color:#e5e7eb; border-color:#111827; margin-top:0; position:relative; padding-top:26px}
+  pre.out::before{content:"运行结果"; position:absolute; top:4px; left:12px; font-size:12px; color:#9ca3af;
+    font-family:"Microsoft YaHei",sans-serif}
+  pre.out.rand::before{content:"运行结果（随机，每次可能不同）"}
+  pre.out.err::before{content:"运行结果（报错）"; color:#fca5a5}
+  .k{color:#cf222e; font-weight:bold}
+  .b{color:#8250df}
+  .s{color:#0a7d32}
+  .c{color:#8b949e; font-style:italic}
+  .n{color:#0550ae}
+  .ex{margin:12px 0 16px}
+  .ex .lbl{font-size:15px; color:var(--muted); margin-bottom:-4px}
+  .box{border-radius:10px; padding:10px 16px; margin:12px 0; border:1.5px solid; border-left-width:7px}
+  .box b.t{display:block; margin-bottom:2px}
+  .warn{background:var(--warn-bg); border-color:var(--warn-bd); border-left-color:var(--warn)}
+  .warn b.t{color:var(--warn)}
+  .tip{background:var(--tip-bg); border-color:var(--tip-bd); border-left-color:var(--tip)}
+  .tip b.t{color:var(--tip)}
+  .cpp{background:var(--cpp-bg); border-color:var(--cpp-bd); border-left-color:var(--cpp)}
+  .cpp b.t{color:var(--cpp)}
+  .box ul{margin:4px 0; padding-left:22px}
+  table{border-collapse:collapse; width:100%; margin:12px 0; background:#fff; font-size:16.5px}
+  th,td{border:1px solid #d1d5db; padding:6px 10px; vertical-align:top; text-align:left}
+  th{background:#f3f4f6}
+  tr:nth-child(even) td{background:#fafafa}
+  td code{white-space:nowrap}
+  .toc{background:var(--card); border:1px solid #e5e7eb; border-radius:14px; padding:16px 22px; margin:0 0 20px}
+  .toc h2{margin:0 0 8px; background:none; border:0; padding:0; font-size:22px}
+  .toc ol{margin:0; padding-left:26px}
+  .toc li{margin:3px 0}
+  .toc .m{color:var(--muted); font-size:15px; margin-left:6px}
+  .toc .sum{margin-top:10px; font-weight:bold; color:var(--accent)}
+  .progress{background:var(--card); border:1px solid #e5e7eb; border-radius:12px; padding:10px 16px; margin-bottom:20px}
+  .bar{height:12px; background:#e5e7eb; border-radius:99px; overflow:hidden; margin-top:6px}
+  .bar i{display:block; height:100%; width:0; background:linear-gradient(90deg,#22c55e,#16a34a); transition:width .3s}
+  .cmp td:first-child{width:24%; font-weight:bold}
+  .cmp td:nth-child(2){color:#991b1b}
+  .cmp td:nth-child(3){color:#065f46}
+  .cpp-zone{border:3px solid var(--cpp); border-radius:16px; padding:4px 18px 14px; background:#fdfbff}
+  .cpp-zone h2{background:var(--cpp-bg); border-left-color:var(--cpp)}
+  .cpp-zone h2 .time{color:var(--cpp)}
+  details{background:#fff; border:1px solid #d1d5db; border-radius:10px; padding:6px 14px; margin:8px 0 14px}
+  details summary{cursor:pointer; font-weight:bold; color:var(--accent)}
+  details[open] summary{margin-bottom:6px}
+  .q{background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:10px 16px; margin:14px 0}
+  .q .qt{font-weight:bold}
+  .final{border:3px solid #dc2626; border-radius:16px; padding:4px 18px 14px; background:#fffdfd}
+  .final h2{background:#fee2e2; border-left-color:#dc2626}
+  .final h2 .time{color:#dc2626}
+  .checklist{list-style:none; padding-left:4px}
+  .checklist li::before{content:"☐ "; color:#dc2626; font-weight:bold}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  @media (max-width:760px){ .two{grid-template-columns:1fr} body{font-size:17px} h2 .time{float:none; display:block} }
+  #totop{position:fixed; right:18px; bottom:18px; background:var(--accent); color:#fff; text-decoration:none;
+    border-radius:99px; padding:8px 14px; font-size:15px; box-shadow:0 4px 12px rgba(0,0,0,.2)}
+  footer{color:var(--muted); font-size:14px; text-align:center; margin-top:40px}
+  @media print{
+    body{background:#fff; font-size:13pt}
+    .wrap{max-width:none; padding:0}
+    #totop,.progress{display:none}
+    header.hero{background:#fff; color:#000; border:2px solid #000}
+    header.hero .badge{border-color:#000}
+    pre{white-space:pre-wrap; word-break:break-all; page-break-inside:avoid; font-size:11pt}
+    pre.out{background:#f3f4f6; color:#000; border-color:#999}
+    pre.out::before{color:#555}
+    h2,h3{page-break-after:avoid}
+    .box,.q,table{page-break-inside:avoid}
+    .final,.cpp-zone{page-break-before:always}
+    a{color:#000; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap" id="top">
+
+<header class="hero">
+  <h1>🐍 Python 考前突击复习</h1>
+  <p>写给<b>学过 Python、现在主力用 C++</b>的你：用约 <b>2 小时</b>把语法“唤醒”，排查易错点，熟悉常见题型。</p>
+  <span class="badge">⏱ 总计约 120 分钟</span>
+  <span class="badge">✅ 每节前有复选框，复习完就打勾</span>
+  <span class="badge">💡 例子边看边敲</span>
+  <p style="font-size:15px;opacity:.9;margin-top:12px">说明：本教程只做语法和常见练习题型的复习。比赛的具体规则、题型、Python 版本、能否使用 turtle 等，<b>一律以主办方的正式通知为准</b>。</p>
+</header>
+
+<div class="progress">
+  复习进度：<b id="ptxt">0 / 0</b>
+  <div class="bar"><i id="pbar"></i></div>
+</div>
+
+<nav class="toc" id="toc">
+  <h2>📑 目录与建议用时</h2>
+  <ol start="0">
+    <li><a href="#s0">C++ → Python 易错对照（先看！）</a><span class="m">10 分钟</span></li>
+    <li><a href="#s1">输入输出与类型转换</a><span class="m">15 分钟</span></li>
+    <li><a href="#s2">数据类型与运算符</a><span class="m">10 分钟</span></li>
+    <li><a href="#s3">分支与循环</a><span class="m">15 分钟</span></li>
+    <li><a href="#s4">字符串</a><span class="m">15 分钟</span></li>
+    <li><a href="#s5">列表、元组与字典</a><span class="m">15 分钟</span></li>
+    <li><a href="#s6">常用内置函数与函数定义</a><span class="m">10 分钟</span></li>
+    <li><a href="#s7">竞赛常见题型</a><span class="m">20 分钟</span></li>
+    <li><a href="#s8">补充速览：random / math（turtle 可选）</a><span class="m">5 分钟（turtle 另加 10 分钟，可跳过）</span></li>
+    <li><a href="#s9">考前必看：速查 + 易错清单 + 自测</a><span class="m">5 分钟（自测做题时间另算）</span></li>
+  </ol>
+  <div class="sum">合计：10+15+10+15+15+15+10+20+5+5 = 120 分钟</div>
+  <p style="font-size:15px;color:#6b7280;margin:6px 0 0">学习顺序：<b>高频必会（0～6）→ 常见题型（7～8）→ 考前速查（9）</b>。时间不够时，0、1、3、7、9 优先。</p>
+</nav>
+
+<!-- ============ 第0部分 ============ -->
+<section class="cpp-zone" id="s0">
+<h2>0. 「C++ → Python 易错对照」<span class="time">⏱ 10 分钟</span></h2>
+<p>你的编程思维没问题，最容易丢分的是<b>手比脑子快，写出了 C++</b>。先把这张表过一遍，后面每节还会就地提醒。</p>
+
+<h3><input type="checkbox" class="ck">0.1 对照总表（必看）</h3>
+<table class="cmp">
+<tr><th>知识点</th><th>❌ C++ 习惯</th><th>✅ Python 写法</th></tr>
+<tr><td>代码块</td><td><code>if (x &gt; 0) { ... }</code></td><td><code>if x &gt; 0:</code> 换行后<b>缩进 4 个空格</b>；冒号不能丢</td></tr>
+<tr><td>分号</td><td>每句末尾 <code>;</code></td><td>通常不写分号（写了虽不报错，但不是 Python 风格）</td></tr>
+<tr><td>读入</td><td><code>cin &gt;&gt; a &gt;&gt; b;</code></td><td><code>a, b = map(int, input().split())</code></td></tr>
+<tr><td>input 的类型</td><td><code>cin</code> 按变量类型读</td><td><code>input()</code> <b>永远返回字符串</b>，要算数先 <code>int()</code></td></tr>
+<tr><td>循环范围</td><td><code>for(int i=1;i&lt;=n;i++)</code></td><td><code>for i in range(1, n + 1):</code> —— <b>range 左闭右开</b>，不含右端</td></tr>
+<tr><td>逻辑运算</td><td><code>&amp;&amp;</code>　<code>||</code>　<code>!</code></td><td><code>and</code>　<code>or</code>　<code>not</code></td></tr>
+<tr><td>变量声明</td><td><code>int a = 5;</code></td><td><code>a = 5</code>（不写类型，直接赋值）</td></tr>
+<tr><td>自增</td><td><code>i++</code>　<code>++i</code></td><td><code>i += 1</code>（<code>i++</code> 直接语法错误；<code>++i</code> 不报错但<b>什么也不做</b>！）</td></tr>
+<tr><td>整数除法</td><td><code>7 / 2</code> 得 3</td><td><code>7 / 2</code> 得 <b>3.5</b>；整除要写 <code>7 // 2</code></td></tr>
+<tr><td>负数整除/取余</td><td><code>-7/2</code> 得 -3，<code>-7%2</code> 得 -1</td><td><code>-7//2</code> 得 <b>-4</b>，<code>-7%2</code> 得 <b>1</b>（向下取整）</td></tr>
+<tr><td>乘方</td><td><code>pow(2,10)</code>（<code>^</code> 是异或）</td><td><code>2 ** 10</code>（<code>^</code> 在 Python 里也是异或！）</td></tr>
+<tr><td>else if</td><td><code>else if</code></td><td><code>elif</code></td></tr>
+<tr><td>真假与空</td><td><code>true / false / NULL</code></td><td><code>True / False / None</code>（首字母大写）</td></tr>
+<tr><td>注释</td><td><code>// ...</code>　<code>/* */</code></td><td><code># ...</code></td></tr>
+<tr><td>输出换行</td><td><code>cout &lt;&lt; x &lt;&lt; endl;</code></td><td><code>print(x)</code> 默认自动换行</td></tr>
+<tr><td>三目运算</td><td><code>c ? a : b</code></td><td><code>a if c else b</code></td></tr>
+<tr><td>交换</td><td><code>swap(a, b);</code></td><td><code>a, b = b, a</code></td></tr>
+<tr><td>字符类型</td><td><code>char c = 'a';</code></td><td>没有 char，单个字符就是长度为 1 的字符串；<code>ord('a')</code>→97，<code>chr(97)</code>→<code>'a'</code></td></tr>
+<tr><td>整数溢出</td><td><code>int</code> 会溢出，要 <code>long long</code></td><td>整数<b>不会溢出</b>，可以放心算大数</td></tr>
+<tr><td>长度</td><td><code>s.size()</code>　<code>strlen(s)</code></td><td><code>len(s)</code></td></tr>
+<tr><td>连续比较</td><td><code>1 &lt; x &lt; 10</code> 是错的</td><td><code>1 &lt; x &lt; 10</code> 在 Python 中<b>合法且正确</b></td></tr>
+</table>
+
+<h3><input type="checkbox" class="ck">0.2 一题两写：直观感受区别</h3>
+<p>题目：读入 n，输出 1～n 中所有偶数的和。</p>
+<div class="two">
+<div class="ex"><div class="lbl">C++ 写法</div>
+<pre><code>int n, s = 0;
+cin &gt;&gt; n;
+for (int i = 1; i &lt;= n; i++) {
+    if (i % 2 == 0) s += i;
+}
+cout &lt;&lt; s &lt;&lt; endl;</code></pre></div>
+<div class="ex"><div class="lbl">Python 写法（示例输入：10）</div>
+<pre><code class="py">n = int(input())
+s = 0
+for i in range(1, n + 1):
+    if i % 2 == 0:
+        s += i
+print(s)</code></pre>
+<pre class="out">30</pre></div>
+</div>
+<div class="warn box"><b class="t">⚠ 缩进错误是头号杀手</b>
+同一个代码块内缩进必须一致。建议<b>统一用 4 个空格</b>，不要 Tab 和空格混用，否则会报 <code>IndentationError</code>。</div>
+</section>
+
+<!-- ============ 第1部分 ============ -->
+<section id="s1">
+<h2>1. 输入输出与类型转换<span class="time">⏱ 15 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">1.1 input()：读进来的永远是字符串</h3>
+<p><code>input()</code> 读取<b>一整行</b>，返回<b>字符串</b>（不含末尾换行）。要做数学计算，必须先转换类型。</p>
+<div class="ex"><div class="lbl">例 1　示例输入：第一行 3，第二行 4</div>
+<pre><code class="py">a = input()
+b = input()
+print(a + b)            # 字符串拼接！
+print(int(a) + int(b))  # 转成整数再相加</code></pre>
+<pre class="out">34
+7</pre></div>
+<div class="ex"><div class="lbl">例 2　读一个整数、一个小数（示例输入：第一行 5，第二行 2.5）</div>
+<pre><code class="py">n = int(input())
+x = float(input())
+print(n * x)</code></pre>
+<pre class="out">12.5</pre></div>
+<div class="warn box"><b class="t">⚠ 常见错误</b>
+<ul>
+<li>忘记 <code>int()</code>：<code>input() + 1</code> 会报 <code>TypeError</code>（字符串不能加整数）。</li>
+<li><code>int("3.5")</code> 会报 <code>ValueError</code>，要写 <code>int(float("3.5"))</code>，结果是 3。</li>
+<li>如果是<b>自动判题</b>，一般<b>不要</b>写 <code>input("请输入：")</code> 这种提示文字——提示也会被当成输出，可能导致判错。具体以题目要求为准。</li>
+</ul></div>
+
+<h3><input type="checkbox" class="ck">1.2 一行读入多个数：split() + map()</h3>
+<p><code>input().split()</code> 按空白把一行切成若干字符串；<code>map(int, ...)</code> 把每一个都转成整数。</p>
+<div class="ex"><div class="lbl">例 1　示例输入：<code>3 5</code></div>
+<pre><code class="py">a, b = map(int, input().split())
+print(a + b, a * b)</code></pre>
+<pre class="out">8 15</pre></div>
+<div class="ex"><div class="lbl">例 2　个数不定，存进列表（示例输入：<code>1 2 3 4</code>）</div>
+<pre><code class="py">nums = list(map(int, input().split()))
+print(nums)
+print(sum(nums))</code></pre>
+<pre class="out">[1, 2, 3, 4]
+10</pre></div>
+<div class="ex"><div class="lbl">例 3　第一行是 n，第二行是 n 个数（示例输入：第一行 <code>3</code>，第二行 <code>10 20 30</code>）</div>
+<pre><code class="py">n = int(input())
+a = list(map(int, input().split()))
+print(max(a) - min(a))</code></pre>
+<pre class="out">20</pre></div>
+<div class="ex"><div class="lbl">例 4　n 个数分在 n 行（示例输入：<code>3</code> / <code>7</code> / <code>8</code> / <code>9</code>，各占一行）</div>
+<pre><code class="py">n = int(input())
+total = 0
+for i in range(n):
+    total += int(input())   # 每行读一次
+print(total)</code></pre>
+<pre class="out">24</pre></div>
+<div class="warn box"><b class="t">⚠ 看清输入格式！</b>
+<code>a, b = map(int, input().split())</code> 要求<b>同一行恰好两个数</b>。如果两个数分在两行，就要调用两次 <code>input()</code>，否则会报 <code>ValueError</code>。</div>
+
+<h3><input type="checkbox" class="ck">1.3 print()：sep、end 与格式</h3>
+<p><code>print</code> 多个值时默认用<b>空格</b>分隔（<code>sep=" "</code>），末尾默认<b>换行</b>（<code>end="\n"</code>）。</p>
+<div class="ex">
+<pre><code class="py">print(1, 2, 3)
+print(1, 2, 3, sep=",")
+print("A", end="")
+print("B")
+for i in range(5):
+    print(i, end=" ")</code></pre>
+<pre class="out">1 2 3
+1,2,3
+AB
+0 1 2 3 4 </pre></div>
+<div class="ex"><div class="lbl">保留小数（常考）</div>
+<pre><code class="py">x = 10 / 3
+print(x)
+print(f"{x:.2f}")        # 保留 2 位，推荐
+print("%.2f" % x)        # 老写法，同样有效
+print(round(x, 2))</code></pre>
+<pre class="out">3.3333333333333335
+3.33
+3.33
+3.33</pre></div>
+<div class="tip box"><b class="t">💡 小贴士</b>
+<ul>
+<li>题目要求“保留两位小数”时，用 <code>f"{x:.2f}"</code> 最稳：<code>round(2.5)</code> 结果是 <b>2</b>（不是 3），<code>round(3.0, 2)</code> 显示 <code>3.0</code> 而不是 <code>3.00</code>。</li>
+<li>一个列表要空格分隔输出：<code>print(*a)</code> 或 <code>print(" ".join(map(str, a)))</code>。</li>
+</ul></div>
+
+<h3><input type="checkbox" class="ck">1.4 类型转换：int() / float() / str()</h3>
+<table>
+<tr><th>写法</th><th>结果</th><th>说明</th></tr>
+<tr><td><code>int("42")</code></td><td><code>42</code></td><td>字符串 → 整数</td></tr>
+<tr><td><code>int(3.9)</code></td><td><code>3</code></td><td>小数 → 整数：直接<b>截掉</b>小数部分（不是四舍五入）</td></tr>
+<tr><td><code>int(-3.9)</code></td><td><code>-3</code></td><td>向 0 截断</td></tr>
+<tr><td><code>float("2.5")</code></td><td><code>2.5</code></td><td>字符串 → 小数</td></tr>
+<tr><td><code>str(123)</code></td><td><code>'123'</code></td><td>整数 → 字符串（拼接、逐位处理时常用）</td></tr>
+<tr><td><code>"年龄" + str(12)</code></td><td><code>'年龄12'</code></td><td>不转换会报 <code>TypeError</code></td></tr>
+</table>
+</section>
+
+<!-- ============ 第2部分 ============ -->
+<section id="s2">
+<h2>2. 数据类型与运算符<span class="time">⏱ 10 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">2.1 动态类型</h3>
+<p>Python 变量<b>不需要声明类型</b>，赋什么值就是什么类型，还可以重新赋成别的类型。常用类型：<code>int</code>、<code>float</code>、<code>str</code>、<code>bool</code>、<code>list</code>、<code>tuple</code>、<code>dict</code>。</p>
+<div class="ex">
+<pre><code class="py">x = 5
+print(type(x))
+x = "five"
+print(type(x))
+print(type(3.0), type(True))</code></pre>
+<pre class="out">&lt;class 'int'&gt;
+&lt;class 'str'&gt;
+&lt;class 'float'&gt; &lt;class 'bool'&gt;</pre></div>
+<div class="ex"><div class="lbl">整数不会溢出</div>
+<pre><code class="py">print(2 ** 100)</code></pre>
+<pre class="out">1267650600228229401496703205376</pre></div>
+
+<h3><input type="checkbox" class="ck">2.2 算术运算符：/ // % **</h3>
+<div class="ex">
+<pre><code class="py">print(7 / 2, 6 / 2)     # / 结果总是小数
+print(7 // 2, 7 % 2)    # 整除、取余
+print(2 ** 10)          # 乘方
+print(-7 // 2, -7 % 2)  # 注意负数！
+print(divmod(17, 5))    # 同时得到商和余数</code></pre>
+<pre class="out">3.5 3.0
+3 1
+1024
+-4 1
+(3, 2)</pre></div>
+<div class="cpp box"><b class="t">🔁 C++ 习惯提醒</b>
+<ul>
+<li><code>6 / 2</code> 得到 <code>3.0</code> 而不是 <code>3</code>。题目要输出整数时，用 <code>//</code> 或 <code>int()</code>。</li>
+<li>拆数位一定用 <code>//</code>：<code>n // 10</code>。如果写成 <code>n / 10</code>，结果会变成小数，程序可能出错甚至停不下来。</li>
+<li><code>x ^ 2</code> 不是平方！平方写 <code>x ** 2</code> 或 <code>x * x</code>。</li>
+</ul></div>
+
+<h3><input type="checkbox" class="ck">2.3 比较、逻辑、成员运算符</h3>
+<table>
+<tr><th>类别</th><th>运算符</th><th>例子 → 结果</th></tr>
+<tr><td>比较</td><td><code>== != &gt; &lt; &gt;= &lt;=</code></td><td><code>3 == 3.0</code> → <code>True</code></td></tr>
+<tr><td>连续比较</td><td><code>a &lt; x &lt; b</code></td><td><code>x = 5</code> 时 <code>1 &lt; x &lt; 10</code> → <code>True</code></td></tr>
+<tr><td>逻辑</td><td><code>and or not</code></td><td><code>not (3 &gt; 2 and 1 &gt; 2)</code> → <code>True</code></td></tr>
+<tr><td>成员</td><td><code>in</code>　<code>not in</code></td><td><code>'a' in 'apple'</code> → <code>True</code>；<code>4 not in [1, 2, 3]</code> → <code>True</code></td></tr>
+<tr><td>复合赋值</td><td><code>+= -= *= //= %=</code></td><td><code>s += i</code>；<b>没有</b> <code>i++</code></td></tr>
+</table>
+<div class="ex"><div class="lbl">例　三目表达式（示例输入：7）</div>
+<pre><code class="py">n = int(input())
+print("偶数" if n % 2 == 0 else "奇数")
+print(n % 3 == 0 or n % 7 == 0)</code></pre>
+<pre class="out">奇数
+True</pre></div>
+<div class="warn box"><b class="t">⚠ 常见错误</b>
+判断相等要写 <code>==</code>。<code>if x = 5:</code> 在 Python 中直接报语法错误。另外，<code>True</code> 和 <code>False</code> 首字母必须大写。</div>
+</section>
+
+<!-- ============ 第3部分 ============ -->
+<section id="s3">
+<h2>3. 分支与循环<span class="time">⏱ 15 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">3.1 if / elif / else</h3>
+<p>条件后面加<b>冒号</b>，条件不用加括号，下一行缩进。</p>
+<div class="ex"><div class="lbl">例 1　示例输入：85</div>
+<pre><code class="py">score = int(input())
+if score &gt;= 90:
+    print("优秀")
+elif score &gt;= 60:
+    print("及格")
+else:
+    print("不及格")</code></pre>
+<pre class="out">及格</pre></div>
+<div class="ex"><div class="lbl">例 2　三个数的最大值（示例输入：<code>4 9 2</code>）</div>
+<pre><code class="py">a, b, c = map(int, input().split())
+m = a
+if b &gt; m:
+    m = b
+if c &gt; m:
+    m = c
+print(m)          # 其实也可以直接写 max(a, b, c)</code></pre>
+<pre class="out">9</pre></div>
+<div class="warn box"><b class="t">⚠ 常见错误</b>
+<code>else if</code> → 应写 <code>elif</code>；条件后漏冒号 → <code>SyntaxError</code>；<code>&amp;&amp;</code> → 应写 <code>and</code>。</div>
+
+<h3><input type="checkbox" class="ck">3.2 for 与 range()（左闭右开！）</h3>
+<table>
+<tr><th>写法</th><th>产生的数</th></tr>
+<tr><td><code>range(5)</code></td><td>0 1 2 3 4（<b>不含 5</b>）</td></tr>
+<tr><td><code>range(1, 6)</code></td><td>1 2 3 4 5</td></tr>
+<tr><td><code>range(1, n + 1)</code></td><td>1 ～ n（最常用！）</td></tr>
+<tr><td><code>range(1, 10, 2)</code></td><td>1 3 5 7 9</td></tr>
+<tr><td><code>range(10, 0, -2)</code></td><td>10 8 6 4 2（倒序，步长为负）</td></tr>
+</table>
+<div class="ex"><div class="lbl">例 1　1+2+…+100</div>
+<pre><code class="py">s = 0
+for i in range(1, 101):
+    s += i
+print(s)</code></pre>
+<pre class="out">5050</pre></div>
+<div class="ex"><div class="lbl">例 2　直接遍历字符串或列表中的元素</div>
+<pre><code class="py">for ch in "abc":
+    print(ch, end=" ")
+print()
+for x in [3, 1, 4]:
+    print(x * 10, end=" ")</code></pre>
+<pre class="out">a b c
+30 10 40 </pre></div>
+<div class="cpp box"><b class="t">🔁 C++ 习惯提醒</b>
+<ul>
+<li>要循环到 n，必须写 <code>range(1, n + 1)</code>。写成 <code>range(1, n)</code> 就会少算最后一个——这是最常见的错误！</li>
+<li>在 for 循环体内修改 <code>i</code>，<b>不会</b>影响下一轮（下一轮 <code>i</code> 照样取 range 里的下一个数），和 C++ 不同：</li>
+</ul>
+<pre><code class="py">for i in range(3):
+    print(i, end=" ")
+    i += 10        # 没用！</code></pre>
+<pre class="out">0 1 2 </pre>
+需要跳着走或者条件复杂时，用 <code>while</code>。</div>
+
+<h3><input type="checkbox" class="ck">3.3 while、break、continue</h3>
+<div class="ex"><div class="lbl">例 1　各位数字之和（示例输入：1234）</div>
+<pre><code class="py">n = int(input())
+s = 0
+while n &gt; 0:
+    s += n % 10
+    n //= 10        # 一定是 //
+print(s)</code></pre>
+<pre class="out">10</pre></div>
+<div class="ex"><div class="lbl">例 2　break：找出大于 50 的第一个 7 的倍数</div>
+<pre><code class="py">i = 51
+while True:
+    if i % 7 == 0:
+        break
+    i += 1
+print(i)</code></pre>
+<pre class="out">56</pre></div>
+<div class="ex"><div class="lbl">例 3　continue：跳过 3 的倍数</div>
+<pre><code class="py">for i in range(1, 11):
+    if i % 3 == 0:
+        continue
+    print(i, end=" ")</code></pre>
+<pre class="out">1 2 4 5 7 8 10 </pre></div>
+<div class="warn box"><b class="t">⚠ 常见错误</b>
+while 循环里忘了写 <code>i += 1</code>，程序就会陷入<b>死循环</b>。程序卡住不动时，按 <code>Ctrl + C</code> 可以强制停止。</div>
+
+<h3><input type="checkbox" class="ck">3.4 嵌套循环</h3>
+<div class="ex"><div class="lbl">例 1　乘法表前 3 行</div>
+<pre><code class="py">for i in range(1, 4):
+    for j in range(1, i + 1):
+        print(f"{j}*{i}={i*j}", end=" ")
+    print()          # 每行结束换行</code></pre>
+<pre class="out">1*1=1
+1*2=2 2*2=4
+1*3=3 2*3=6 3*3=9 </pre></div>
+<div class="ex"><div class="lbl">例 2　打印三角形（字符串乘法很方便）（示例输入：4）</div>
+<pre><code class="py">n = int(input())
+for i in range(1, n + 1):
+    print(" " * (n - i) + "*" * (2 * i - 1))</code></pre>
+<pre class="out">   *
+  ***
+ *****
+*******</pre></div>
+<div class="tip box"><b class="t">💡 小贴士</b>
+<code>break</code> 只跳出<b>最内层</b>循环。想一次跳出两层循环，可以把代码写进函数，再用 <code>return</code> 返回；也可以用一个标记变量（flag）配合判断。</div>
+</section>
+
+<!-- ============ 第4部分 ============ -->
+<section id="s4">
+<h2>4. 字符串<span class="time">⏱ 15 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">4.1 索引、切片、拼接、重复</h3>
+<p>索引从 0 开始，<b>负数索引从末尾数</b>（-1 是最后一个字符）。切片 <code>s[a:b]</code> 同样<b>左闭右开</b>。</p>
+<div class="ex">
+<pre><code class="py">s = "Python"
+print(s[0], s[-1], len(s))
+print(s[1:4], s[:2], s[2:])
+print(s[::-1])          # 反转
+print("ab" + "cd", "ha" * 3)</code></pre>
+<pre class="out">P n 6
+yth Py thon
+nohtyP
+abcd hahaha</pre></div>
+<div class="warn box"><b class="t">⚠ 字符串不能原地修改</b>
+<pre><code class="py">s = "cat"
+s[0] = "b"</code></pre>
+<pre class="out err">TypeError: 'str' object does not support item assignment</pre>
+正确写法：<code>s = "b" + s[1:]</code>，或者先转成列表 <code>list(s)</code>，修改后再用 <code>"".join()</code> 拼回去。</div>
+
+<h3><input type="checkbox" class="ck">4.2 常用方法</h3>
+<table>
+<tr><th>方法</th><th>例子</th><th>结果</th></tr>
+<tr><td><code>split()</code></td><td><code>"a b  c".split()</code></td><td><code>['a', 'b', 'c']</code>（按任意空白切）</td></tr>
+<tr><td><code>split(",")</code></td><td><code>"1,2,3".split(",")</code></td><td><code>['1', '2', '3']</code></td></tr>
+<tr><td><code>join()</code></td><td><code>"-".join(["a", "b", "c"])</code></td><td><code>'a-b-c'</code></td></tr>
+<tr><td><code>upper() / lower()</code></td><td><code>"Hi".upper()</code></td><td><code>'HI'</code></td></tr>
+<tr><td><code>replace()</code></td><td><code>"Hello".replace("l", "L")</code></td><td><code>'HeLLo'</code></td></tr>
+<tr><td><code>strip()</code></td><td><code>"  hi  ".strip()</code></td><td><code>'hi'</code>（去两端空白）</td></tr>
+<tr><td><code>count()</code></td><td><code>"banana".count("a")</code></td><td><code>3</code></td></tr>
+<tr><td><code>find()</code></td><td><code>"banana".find("n")</code></td><td><code>2</code>（找不到返回 <code>-1</code>）</td></tr>
+<tr><td><code>isdigit() / isalpha()</code></td><td><code>"123".isdigit()</code></td><td><code>True</code></td></tr>
+<tr><td><code>isupper() / islower()</code></td><td><code>"A".isupper()</code></td><td><code>True</code></td></tr>
+<tr><td><code>ord() / chr()</code></td><td><code>ord("A")</code>，<code>chr(97)</code></td><td><code>65</code>，<code>'a'</code></td></tr>
+</table>
+<div class="ex"><div class="lbl">例 1　方法返回<b>新字符串</b>，原字符串不变</div>
+<pre><code class="py">s = "hello"
+s.upper()           # 白写了，结果没保存
+print(s)
+s = s.upper()       # 要重新赋值
+print(s)</code></pre>
+<pre class="out">hello
+HELLO</pre></div>
+<div class="ex"><div class="lbl">例 2　join 只能连接字符串</div>
+<pre><code class="py">a = [1, 2, 3]
+print("".join(map(str, a)))
+print("+".join(map(str, a)), "=", sum(a))</code></pre>
+<pre class="out">123
+1+2+3 = 6</pre></div>
+<div class="ex"><div class="lbl">例 3　大小写互换 + 字母后移一位（简易加密）（示例输入：<code>abZ</code>）</div>
+<pre><code class="py">s = input()
+print(s.swapcase())
+res = ""
+for c in s.lower():
+    res += chr((ord(c) - ord('a') + 1) % 26 + ord('a'))
+print(res)</code></pre>
+<pre class="out">ABz
+bca</pre></div>
+
+<h3><input type="checkbox" class="ck">4.3 格式化输出</h3>
+<div class="ex">
+<pre><code class="py">name, age = "小明", 12
+print(f"{name}今年{age}岁")
+print(f"{3.14159:.2f}")      # 保留两位小数
+print(f"{7:03d}")            # 补零到 3 位
+print(f"[{42:5d}]")          # 宽度 5，右对齐
+print("{}+{}={}".format(1, 2, 3))</code></pre>
+<pre class="out">小明今年12岁
+3.14
+007
+[   42]
+1+2=3</pre></div>
+<div class="tip box"><b class="t">💡 小贴士</b>
+f-string（<code>f"..."</code>）需要 Python 3.6 及以上版本。如果比赛环境的版本较老、f-string 报错，就改用 <code>"%.2f" % x</code> 或 <code>"{:.2f}".format(x)</code>。</div>
+</section>
+
+<!-- ============ 第5部分 ============ -->
+<section id="s5">
+<h2>5. 列表、元组与字典<span class="time">⏱ 15 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">5.1 列表：增删改查</h3>
+<p>列表 ≈ C++ 的 <code>vector</code>，可以随意增删，元素类型也可以不同。</p>
+<table>
+<tr><th>操作</th><th>写法</th><th>说明</th></tr>
+<tr><td>创建</td><td><code>a = []</code>　<code>a = [0] * 10</code></td><td>空列表；10 个 0</td></tr>
+<tr><td>末尾添加</td><td><code>a.append(x)</code></td><td>≈ <code>push_back</code></td></tr>
+<tr><td>插入</td><td><code>a.insert(i, x)</code></td><td>在下标 i 处插入</td></tr>
+<tr><td>按下标删</td><td><code>a.pop()</code>　<code>a.pop(i)</code>　<code>del a[i]</code></td><td><code>pop</code> 会返回被删除的值</td></tr>
+<tr><td>按值删</td><td><code>a.remove(x)</code></td><td>只删除<b>第一个</b> x；x 不存在时报错</td></tr>
+<tr><td>修改</td><td><code>a[i] = x</code></td><td></td></tr>
+<tr><td>查找</td><td><code>x in a</code>　<code>a.index(x)</code>　<code>a.count(x)</code></td><td></td></tr>
+</table>
+<div class="ex"><div class="lbl">例 1</div>
+<pre><code class="py">a = [3, 1, 2]
+a.append(5)
+a.insert(0, 9)
+print(a)
+print(a.pop(), a)
+a.remove(1)
+print(a, 2 in a, len(a))</code></pre>
+<pre class="out">[9, 3, 1, 2, 5]
+5 [9, 3, 1, 2]
+[9, 3, 2] True 3</pre></div>
+<div class="ex"><div class="lbl">例 2　三种遍历方式</div>
+<pre><code class="py">a = ["苹果", "香蕉"]
+for x in a:
+    print(x)
+for i in range(len(a)):
+    print(i, a[i])
+for i, x in enumerate(a):
+    print(i, x)</code></pre>
+<pre class="out">苹果
+香蕉
+0 苹果
+1 香蕉
+0 苹果
+1 香蕉</pre></div>
+<div class="ex"><div class="lbl">例 3　列表推导式（一行生成列表）</div>
+<pre><code class="py">sq = [x * x for x in range(1, 6)]
+print(sq)
+print([x for x in sq if x % 2 == 0])</code></pre>
+<pre class="out">[1, 4, 9, 16, 25]
+[4, 16]</pre></div>
+<div class="warn box"><b class="t">⚠ 二维列表的陷阱</b>
+<pre><code class="py">g = [[0] * 3] * 3          # ❌ 3 行其实是同一个列表
+g[0][0] = 1
+print(g)
+g = [[0] * 3 for _ in range(3)]   # ✅ 正确写法</code></pre>
+<pre class="out">[[1, 0, 0], [1, 0, 0], [1, 0, 0]]</pre>
+另外，下标越界会报 <code>IndexError</code>，不像 C++ 那样悄悄读到一个乱值。</div>
+
+<h3><input type="checkbox" class="ck">5.2 排序、反转、去重</h3>
+<div class="ex">
+<pre><code class="py">a = [3, 1, 2]
+b = sorted(a)             # 返回新列表，a 不变
+print(a, b)
+a.sort(reverse=True)      # 原地排序（从大到小）
+print(a)
+print(a[::-1])            # 反转（新列表）
+a.reverse()               # 原地反转
+print(a)</code></pre>
+<pre class="out">[3, 1, 2] [1, 2, 3]
+[3, 2, 1]
+[1, 2, 3]
+[1, 2, 3]</pre></div>
+<div class="ex"><div class="lbl">去重</div>
+<pre><code class="py">a = [3, 1, 3, 2, 1]
+print(sorted(set(a)))     # 去重并排序
+res = []
+for x in a:               # 去重并保持原顺序
+    if x not in res:
+        res.append(x)
+print(res)</code></pre>
+<pre class="out">[1, 2, 3]
+[3, 1, 2]</pre></div>
+<div class="warn box"><b class="t">⚠ 高频错误：a = a.sort()</b>
+<code>a.sort()</code> 的返回值是 <code>None</code>。写成 <code>a = a.sort()</code> 后，a 就变成 <code>None</code> 了！要么只写 <code>a.sort()</code>，要么写 <code>a = sorted(a)</code>。<br>
+另外，<code>set</code> 是<b>无序</b>的，直接 <code>list(set(a))</code> 时元素顺序不保证。</div>
+
+<h3><input type="checkbox" class="ck">5.3 元组</h3>
+<p>元组用圆括号，<b>创建后不能修改</b>。常用于交换变量、函数返回多个值，或者存放坐标。</p>
+<div class="ex">
+<pre><code class="py">p = (3, 4)
+x, y = p                 # 拆包
+print(x, y, p[0])
+a, b = 1, 2
+a, b = b, a              # 交换
+print(a, b)</code></pre>
+<pre class="out">3 4 3
+2 1</pre></div>
+
+<h3><input type="checkbox" class="ck">5.4 字典（键 → 值）</h3>
+<p>字典 ≈ C++ 的 <code>map</code>。计数、按名字查成绩这类题目最常用。</p>
+<div class="ex"><div class="lbl">例 1　增删改查</div>
+<pre><code class="py">d = {"apple": 3, "pear": 5}
+d["apple"] += 1          # 改
+d["peach"] = 2           # 增
+del d["pear"]            # 删
+print(d, "apple" in d)
+print(d.get("kiwi", 0))  # 键不存在时返回默认值</code></pre>
+<pre class="out">{'apple': 4, 'peach': 2} True
+0</pre></div>
+<div class="ex"><div class="lbl">例 2　统计字符出现次数（示例输入：<code>hello</code>）</div>
+<pre><code class="py">s = input()
+cnt = {}
+for c in s:
+    cnt[c] = cnt.get(c, 0) + 1
+print(cnt)
+for k, v in cnt.items():
+    print(k, v, end="; ")</code></pre>
+<pre class="out">{'h': 1, 'e': 1, 'l': 2, 'o': 1}
+h 1; e 1; l 2; o 1; </pre></div>
+<div class="warn box"><b class="t">⚠ 常见错误</b>
+访问不存在的键 <code>d["kiwi"]</code> 会报 <code>KeyError</code>。计数时用 <code>d.get(k, 0) + 1</code>，或者先用 <code>if k in d</code> 判断。</div>
+</section>
+
+<!-- ============ 第6部分 ============ -->
+<section id="s6">
+<h2>6. 常用内置函数与函数定义<span class="time">⏱ 10 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">6.1 内置函数速查</h3>
+<table>
+<tr><th>函数</th><th>例子（<code>a = [5, 2, 8, 1]</code>）</th><th>结果</th></tr>
+<tr><td><code>len</code></td><td><code>len(a)</code>　<code>len("abc")</code></td><td><code>4</code>　<code>3</code></td></tr>
+<tr><td><code>max / min</code></td><td><code>max(a)</code>　<code>min(3, 7, 2)</code></td><td><code>8</code>　<code>2</code></td></tr>
+<tr><td><code>sum</code></td><td><code>sum(a)</code></td><td><code>16</code></td></tr>
+<tr><td><code>abs</code></td><td><code>abs(-5)</code></td><td><code>5</code></td></tr>
+<tr><td><code>sorted</code></td><td><code>sorted(a)</code>　<code>sorted(a, reverse=True)</code></td><td><code>[1, 2, 5, 8]</code>　<code>[8, 5, 2, 1]</code></td></tr>
+<tr><td><code>enumerate</code></td><td><code>for i, x in enumerate(a, 1):</code></td><td>i 从 1 开始编号</td></tr>
+<tr><td><code>round</code></td><td><code>round(3.14159, 2)</code></td><td><code>3.14</code></td></tr>
+<tr><td><code>max(…, key=)</code></td><td><code>max(["hi", "hello"], key=len)</code></td><td><code>'hello'</code>（按长度比较）</td></tr>
+<tr><td><code>sorted(…, key=)</code></td><td><code>sorted(d.items(), key=lambda t: t[1])</code></td><td>字典按值排序</td></tr>
+</table>
+<div class="ex"><div class="lbl">例　enumerate 给名次编号</div>
+<pre><code class="py">names = ["小红", "小明", "小刚"]
+for i, name in enumerate(names, 1):
+    print(f"第{i}名：{name}")</code></pre>
+<pre class="out">第1名：小红
+第2名：小明
+第3名：小刚</pre></div>
+<div class="warn box"><b class="t">⚠ 不要用内置函数名当变量名</b>
+写了 <code>max = 0</code> 或 <code>sum = 0</code> 之后，再调用 <code>max(a)</code> 就会报 <code>TypeError: 'int' object is not callable</code>。变量名请用 <code>best</code>、<code>total</code>、<code>s</code> 这类名字。同理，也不要把变量命名为 <code>list</code>、<code>str</code>、<code>input</code>。</div>
+
+<h3><input type="checkbox" class="ck">6.2 def、参数、return</h3>
+<div class="ex"><div class="lbl">例 1　基本函数</div>
+<pre><code class="py">def area(w, h):
+    return w * h
+
+print(area(3, 4))</code></pre>
+<pre class="out">12</pre></div>
+<div class="ex"><div class="lbl">例 2　默认参数 + 返回多个值</div>
+<pre><code class="py">def power(x, n=2):
+    return x ** n
+
+def min_max(a):
+    return min(a), max(a)
+
+print(power(3), power(2, 5))
+lo, hi = min_max([3, 9, 1])
+print(lo, hi)</code></pre>
+<pre class="out">9 32
+1 9</pre></div>
+<div class="warn box"><b class="t">⚠ 常见错误</b>
+<ul>
+<li>函数中没写 <code>return</code>，返回的就是 <code>None</code>：<code>print(f())</code> 会打印出 <code>None</code>。</li>
+<li>函数必须<b>先定义（def）再调用</b>，在 def 之前调用会报 <code>NameError</code>。</li>
+<li>不需要写返回值类型和参数类型，<code>def int f(int x)</code> 是 C++ 写法。</li>
+</ul></div>
+
+<h3><input type="checkbox" class="ck">6.3 局部变量与全局变量</h3>
+<p>函数里<b>赋值</b>的变量默认是局部变量。如果要在函数里修改外面的全局变量，需要先声明 <code>global</code>。</p>
+<div class="ex">
+<pre><code class="py">count = 0
+def add():
+    global count      # 没有这一行会报 UnboundLocalError
+    count += 1
+
+add()
+add()
+print(count)</code></pre>
+<pre class="out">2</pre></div>
+<div class="tip box"><b class="t">💡 小贴士</b>
+只是<b>读取</b>全局变量，或者调用 <code>a.append(x)</code> 这类方法修改全局列表，不需要写 <code>global</code>；只有对变量<b>重新赋值</b>（包括 <code>+=</code>）时才需要。</div>
+</section>
+
+<!-- ============ 第7部分 ============ -->
+<section id="s7">
+<h2>7. 竞赛常见题型<span class="time">⏱ 20 分钟</span></h2>
+<p>下面是编程练习和比赛中<b>经常出现的经典题型</b>。它们不一定就是本次比赛的题目，但思路一定要熟。建议<b>遮住代码先自己写</b>，写完再对照。</p>
+
+<h3><input type="checkbox" class="ck">7.1 计数、求和、最值</h3>
+<div class="ex"><div class="lbl">例 1　统计偶数个数和偶数之和（示例输入：<code>3 8 5 6 10</code>）</div>
+<pre><code class="py">nums = list(map(int, input().split()))
+cnt = total = 0
+for x in nums:
+    if x % 2 == 0:
+        cnt += 1
+        total += x
+print(cnt, total)</code></pre>
+<pre class="out">3 24</pre></div>
+<div class="ex"><div class="lbl">例 2　手写最大值及其位置（第一次出现的位置，从 1 开始）</div>
+<pre><code class="py">a = [3, 8, 5, 8, 2]
+best, pos = a[0], 1
+for i in range(len(a)):
+    if a[i] &gt; best:          # 用 &gt; 保留第一次出现的位置
+        best, pos = a[i], i + 1
+print(best, pos)</code></pre>
+<pre class="out">8 2</pre></div>
+<div class="tip box"><b class="t">💡 思路提醒</b>
+最值变量的初值一定要用<b>第一个元素</b>，或者设成足够大／足够小的数（如 <code>float('inf')</code>），不要随手写 0——全是负数时会出错。</div>
+
+<h3><input type="checkbox" class="ck">7.2 枚举（穷举）</h3>
+<div class="ex"><div class="lbl">例　鸡兔同笼：35 个头，94 只脚</div>
+<pre><code class="py">for c in range(36):        # 鸡的数量 0～35
+    r = 35 - c             # 兔的数量
+    if 2 * c + 4 * r == 94:
+        print("鸡", c, "兔", r)</code></pre>
+<pre class="out">鸡 23 兔 12</pre></div>
+<div class="ex"><div class="lbl">例　水仙花数（三位数，各位数字立方和等于它本身）</div>
+<pre><code class="py">for n in range(100, 1000):
+    a, b, c = n // 100, n // 10 % 10, n % 10
+    if a ** 3 + b ** 3 + c ** 3 == n:
+        print(n, end=" ")</code></pre>
+<pre class="out">153 370 371 407 </pre></div>
+<p style="font-size:16px">也可以用字符串拆位：<code>sum(int(d) ** 3 for d in str(n)) == n</code>。</p>
+
+<h3><input type="checkbox" class="ck">7.3 简单模拟</h3>
+<div class="ex"><div class="lbl">例　猴子吃桃：每天吃掉一半再多吃一个，第 10 天早上只剩 1 个，第 1 天有多少个？</div>
+<pre><code class="py">x = 1                 # 第 10 天
+for day in range(9):  # 倒推 9 天
+    x = (x + 1) * 2
+print(x)</code></pre>
+<pre class="out">1534</pre></div>
+<div class="ex"><div class="lbl">例　数字反转（示例输入：1230）</div>
+<pre><code class="py">n = int(input())
+print(int(str(n)[::-1]))   # 方法一：字符串
+r = 0
+while n &gt; 0:               # 方法二：数学
+    r = r * 10 + n % 10
+    n //= 10
+print(r)</code></pre>
+<pre class="out">321
+321</pre></div>
+
+<h3><input type="checkbox" class="ck">7.4 闰年、质数</h3>
+<div class="ex"><div class="lbl">闰年：能被 4 整除但不能被 100 整除，或者能被 400 整除（示例输入：1900）</div>
+<pre><code class="py">y = int(input())
+if (y % 4 == 0 and y % 100 != 0) or y % 400 == 0:
+    print("闰年")
+else:
+    print("平年")</code></pre>
+<pre class="out">平年</pre></div>
+<div class="ex"><div class="lbl">质数判断（只需试除到 √n）</div>
+<pre><code class="py">def is_prime(n):
+    if n &lt; 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+print([x for x in range(1, 20) if is_prime(x)])</code></pre>
+<pre class="out">[2, 3, 5, 7, 11, 13, 17, 19]</pre></div>
+<div class="warn box"><b class="t">⚠ 易错</b>
+1 不是质数（要单独判断 <code>n &lt; 2</code>）；<code>range</code> 的上界要 <code>+ 1</code>，否则 4、9、25 这种完全平方数会被误判成质数。</div>
+
+<h3><input type="checkbox" class="ck">7.5 最大公约数、回文、字符统计</h3>
+<div class="ex"><div class="lbl">辗转相除法求最大公约数（GCD）和最小公倍数（LCM）</div>
+<pre><code class="py">def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+
+print(gcd(24, 36))
+print(24 * 36 // gcd(24, 36))   # 最小公倍数</code></pre>
+<pre class="out">12
+72</pre></div>
+<p style="font-size:16px">也可以用 <code>import math</code> 之后的 <code>math.gcd(24, 36)</code>。<code>math.lcm</code> 需要 Python 3.9+，不确定版本时自己写。</p>
+<div class="ex"><div class="lbl">回文判断</div>
+<pre><code class="py">def is_pal(s):
+    return s == s[::-1]
+
+print(is_pal("level"), is_pal("abc"))
+print(is_pal(str(12321)))      # 数字先转成字符串</code></pre>
+<pre class="out">True False
+True</pre></div>
+<div class="ex"><div class="lbl">字符分类统计（示例输入：<code>Hello World 123</code>）</div>
+<pre><code class="py">s = input()
+letters = digits = spaces = 0
+for c in s:
+    if c.isalpha(): letters += 1
+    elif c.isdigit(): digits += 1
+    elif c == " ": spaces += 1
+print(letters, digits, spaces)</code></pre>
+<pre class="out">10 3 2</pre></div>
+
+<h3><input type="checkbox" class="ck">7.6 简单递归（了解即可）</h3>
+<p>递归 = 函数自己调用自己，必须有<b>结束条件</b>。</p>
+<div class="ex">
+<pre><code class="py">def fact(n):
+    if n &lt;= 1:
+        return 1
+    return n * fact(n - 1)
+
+def fib(n):          # 1 1 2 3 5 8 ...
+    if n &lt;= 2:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+print(fact(5), fib(10))</code></pre>
+<pre class="out">120 55</pre></div>
+<div class="warn box"><b class="t">⚠ 注意</b>
+Python 默认递归深度上限约为 1000 层，太深会报 <code>RecursionError</code>。<code>fib</code> 递归在 n 较大（比如 40）时非常慢，这时改用循环：
+<pre><code class="py">a, b = 1, 1
+for i in range(8):     # 求第 10 项
+    a, b = b, a + b
+print(b)</code></pre>
+<pre class="out">55</pre></div>
+</section>
+
+<!-- ============ 第8部分 ============ -->
+<section id="s8">
+<h2>8. 补充速览：random / math / turtle<span class="time">⏱ 5 分钟（+可选 10 分钟）</span></h2>
+
+<h3><input type="checkbox" class="ck">8.1 random 随机数</h3>
+<p>先写 <code>import random</code>。</p>
+<table>
+<tr><th>函数</th><th>作用</th></tr>
+<tr><td><code>random.randint(1, 6)</code></td><td>1～6 的随机整数，<b>两端都包含</b>（和 range 不同！）</td></tr>
+<tr><td><code>random.random()</code></td><td>[0, 1) 之间的随机小数</td></tr>
+<tr><td><code>random.uniform(1, 5)</code></td><td>1～5 之间的随机小数</td></tr>
+<tr><td><code>random.choice(a)</code></td><td>从列表或字符串中随机选一个</td></tr>
+<tr><td><code>random.shuffle(a)</code></td><td>原地打乱列表（返回 None）</td></tr>
+<tr><td><code>random.sample(a, k)</code></td><td>随机选出 k 个不重复的元素</td></tr>
+</table>
+<div class="ex">
+<pre><code class="py">import random
+print(random.randint(1, 6))
+print(random.choice(["石头", "剪刀", "布"]))
+a = [1, 2, 3, 4, 5]
+random.shuffle(a)
+print(a)</code></pre>
+<pre class="out rand">4
+剪刀
+[3, 5, 1, 4, 2]</pre></div>
+
+<h3><input type="checkbox" class="ck">8.2 math 数学函数</h3>
+<p>先写 <code>import math</code>。</p>
+<table>
+<tr><th>写法</th><th>结果</th><th>写法</th><th>结果</th></tr>
+<tr><td><code>math.sqrt(16)</code></td><td><code>4.0</code>（小数）</td><td><code>math.pi</code></td><td><code>3.141592653589793</code></td></tr>
+<tr><td><code>math.floor(3.7)</code></td><td><code>3</code>（向下取整）</td><td><code>math.ceil(3.2)</code></td><td><code>4</code>（向上取整）</td></tr>
+<tr><td><code>math.gcd(12, 18)</code></td><td><code>6</code></td><td><code>math.factorial(5)</code></td><td><code>120</code></td></tr>
+<tr><td><code>math.pow(2, 3)</code></td><td><code>8.0</code>（小数）</td><td><code>2 ** 3</code></td><td><code>8</code>（整数，更常用）</td></tr>
+</table>
+<div class="ex"><div class="lbl">例　圆面积（示例输入：2）</div>
+<pre><code class="py">import math
+r = float(input())
+print(f"{math.pi * r * r:.2f}")
+print(int(math.sqrt(17)))</code></pre>
+<pre class="out">12.57
+4</pre></div>
+<div class="warn box"><b class="t">⚠ 易错</b>
+忘写 <code>import math</code> 会报 <code>NameError: name 'math' is not defined</code>；<code>math.sqrt</code> 返回的是小数，需要整数时用 <code>int()</code> 转换。</div>
+
+<h3><input type="checkbox" class="ck">8.3（可选 · 10 分钟）turtle 海龟画图速览</h3>
+<div class="tip box"><b class="t">ℹ 说明</b>
+turtle 用于画图，需要能弹出图形窗口的环境。本次比赛是否涉及 turtle <b>并不确定</b>，请以比赛通知为准。时间紧张可以直接跳过本小节。</div>
+<table>
+<tr><th>命令</th><th>作用</th><th>命令</th><th>作用</th></tr>
+<tr><td><code>forward(d)</code> / <code>backward(d)</code></td><td>前进／后退 d 像素</td><td><code>left(a)</code> / <code>right(a)</code></td><td>左转／右转 a 度</td></tr>
+<tr><td><code>penup()</code> / <code>pendown()</code></td><td>抬笔／落笔</td><td><code>goto(x, y)</code></td><td>移动到坐标</td></tr>
+<tr><td><code>color("red")</code></td><td>设置颜色</td><td><code>pensize(3)</code></td><td>设置笔粗</td></tr>
+<tr><td><code>circle(r)</code></td><td>画半径为 r 的圆</td><td><code>speed(0)</code></td><td>最快速度</td></tr>
+<tr><td><code>begin_fill()</code> / <code>end_fill()</code></td><td>开始／结束填充</td><td><code>turtle.done()</code></td><td>保持窗口不关闭</td></tr>
+</table>
+<div class="ex"><div class="lbl">例　正方形和五角星（外角 144°）</div>
+<pre><code class="py">import turtle
+t = turtle.Turtle()
+for i in range(4):
+    t.forward(100)
+    t.left(90)
+for i in range(5):
+    t.forward(150)
+    t.right(144)
+turtle.done()</code></pre>
+<pre class="out">（弹出窗口：画出一个正方形和一个五角星）</pre></div>
+<p style="font-size:16px">规律：画正 n 边形，每次转 <code>360 / n</code> 度。</p>
+</section>
+
+<!-- ============ 第9部分 ============ -->
+<section class="final" id="s9">
+<h2>9. 考前必看（一页速查）<span class="time">⏱ 5 分钟</span></h2>
+
+<h3><input type="checkbox" class="ck">9.1 高频语法速查</h3>
+<table>
+<tr><th>要做的事</th><th>写法</th></tr>
+<tr><td>读一个整数</td><td><code>n = int(input())</code></td></tr>
+<tr><td>一行读两个整数</td><td><code>a, b = map(int, input().split())</code></td></tr>
+<tr><td>一行读一串整数</td><td><code>a = list(map(int, input().split()))</code></td></tr>
+<tr><td>读一行字符串</td><td><code>s = input()</code>（需要时 <code>.strip()</code>）</td></tr>
+<tr><td>不换行输出</td><td><code>print(x, end=" ")</code></td></tr>
+<tr><td>列表空格输出</td><td><code>print(*a)</code></td></tr>
+<tr><td>保留 2 位小数</td><td><code>print(f"{x:.2f}")</code></td></tr>
+<tr><td>1～n 循环</td><td><code>for i in range(1, n + 1):</code></td></tr>
+<tr><td>倒序循环</td><td><code>for i in range(n, 0, -1):</code></td></tr>
+<tr><td>整除 / 取余 / 乘方</td><td><code>a // b</code>　<code>a % b</code>　<code>a ** b</code></td></tr>
+<tr><td>反转字符串／列表</td><td><code>s[::-1]</code></td></tr>
+<tr><td>排序</td><td><code>a.sort()</code>（原地）　<code>sorted(a, reverse=True)</code>（新列表）</td></tr>
+<tr><td>计数字典</td><td><code>d[k] = d.get(k, 0) + 1</code></td></tr>
+<tr><td>交换</td><td><code>a, b = b, a</code></td></tr>
+<tr><td>字符与编码</td><td><code>ord('a')</code> → 97，<code>chr(65)</code> → <code>'A'</code></td></tr>
+<tr><td>判断数字／字母</td><td><code>c.isdigit()</code>　<code>c.isalpha()</code></td></tr>
+<tr><td>读到文件结束（行数不定）</td><td><code>import sys</code>，<code>data = sys.stdin.read().split()</code></td></tr>
+</table>
+
+<h3><input type="checkbox" class="ck">9.2 看懂报错信息</h3>
+<table>
+<tr><th>报错</th><th>常见原因</th></tr>
+<tr><td><code>IndentationError</code></td><td>缩进不一致，或者 Tab 和空格混用</td></tr>
+<tr><td><code>SyntaxError</code></td><td>漏了冒号、写了 <code>&amp;&amp;</code>／<code>i++</code>、括号或引号不配对</td></tr>
+<tr><td><code>TypeError</code></td><td>字符串和数字相加（忘了 <code>int()</code> 或 <code>str()</code>）；把内置函数名当成了变量名</td></tr>
+<tr><td><code>ValueError</code></td><td><code>int("3.5")</code>、<code>int("")</code>；一行里数字的个数和变量个数不匹配</td></tr>
+<tr><td><code>NameError</code></td><td>变量名拼错、写成 <code>true</code>、忘了 <code>import</code>、函数还没定义就调用</td></tr>
+<tr><td><code>IndexError</code></td><td>下标越界（比如 <code>a[len(a)]</code>）</td></tr>
+<tr><td><code>KeyError</code></td><td>字典里没有这个键</td></tr>
+<tr><td><code>ZeroDivisionError</code></td><td>除数为 0</td></tr>
+</table>
+
+<h3><input type="checkbox" class="ck">9.3 易错点清单（逐条过一遍）</h3>
+<ul class="checklist">
+<li><code>input()</code> 读进来的是字符串，算数前先 <code>int()</code></li>
+<li><code>range(a, b)</code> 不包含 b；1～n 要写 <code>range(1, n + 1)</code></li>
+<li><code>/</code> 结果是小数，整除用 <code>//</code>；拆数位用 <code>n //= 10</code></li>
+<li>负数：<code>-7 // 2 == -4</code>，<code>-7 % 2 == 1</code></li>
+<li><code>and / or / not</code>，不是 <code>&amp;&amp; / || / !</code></li>
+<li><code>i += 1</code>，没有 <code>i++</code>（<code>++i</code> 不报错，但什么也不做）</li>
+<li><code>if / elif / else / for / while / def</code> 末尾都要加冒号，下一行要缩进</li>
+<li><code>True / False / None</code> 首字母大写</li>
+<li><code>a.sort()</code> 返回 None，不要写 <code>a = a.sort()</code></li>
+<li>字符串方法返回新字符串，记得重新赋值：<code>s = s.upper()</code></li>
+<li><code>random.randint(a, b)</code> 两端<b>都包含</b></li>
+<li>二维列表用 <code>[[0] * m for _ in range(n)]</code></li>
+<li>不要用 <code>max / sum / list / str</code> 当变量名</li>
+<li>函数里修改全局变量要写 <code>global</code></li>
+<li>输出格式严格照题目来：空格、换行、小数位数、不要多余的提示文字</li>
+<li>提交前用样例测一遍，再试试边界情况：0、1、最大值、负数</li>
+</ul>
+
+<h3><input type="checkbox" class="ck">9.4 综合自测（先做再看答案）</h3>
+
+<div class="q"><div class="qt">自测 1（读程序写结果）</div>
+<pre><code class="py">a = [3, 1, 2]
+b = a.sort()
+print(a, b)
+print(7 / 2, 7 // 2, -7 // 2, -7 % 2)
+print("3" * 2 + "1")</code></pre>
+<details><summary>点击查看答案</summary>
+<pre class="out">[1, 2, 3] None
+3.5 3 -4 1
+331</pre>
+要点：<code>sort()</code> 返回 None；<code>/</code> 结果是小数；负数整除向下取整；字符串乘法是重复拼接。
+</details></div>
+
+<div class="q"><div class="qt">自测 2（找错改错）下面这段代码想输出 1～n 中所有 6 的倍数，有 4 处错误，请找出来：</div>
+<pre><code class="py">n = input()
+for i in range(1, n):
+    if i % 2 == 0 &amp;&amp; i % 3 == 0
+        print(i)</code></pre>
+<details><summary>点击查看答案</summary>
+<ol>
+<li><code>input()</code> 返回字符串 → <code>n = int(input())</code></li>
+<li><code>range(1, n)</code> 漏掉了 n → <code>range(1, n + 1)</code></li>
+<li><code>&amp;&amp;</code> → <code>and</code></li>
+<li>if 行末尾漏了冒号 <code>:</code></li>
+</ol>
+<pre><code class="py">n = int(input())
+for i in range(1, n + 1):
+    if i % 2 == 0 and i % 3 == 0:
+        print(i)</code></pre>
+</details></div>
+
+<div class="q"><div class="qt">自测 3（编程）输入正整数 n，输出 1～n 中所有<b>是 3 的倍数且数字里含有 5</b> 的数，用空格隔开。<br>示例输入：<code>60</code>　示例输出：<code>15 45 51 54 57</code></div>
+<details><summary>点击查看思路与参考代码</summary>
+思路：枚举 + 判断。“含有 5”可以先把数转成字符串，再用 <code>in</code> 判断。
+<pre><code class="py">n = int(input())
+res = []
+for i in range(1, n + 1):
+    if i % 3 == 0 and "5" in str(i):
+        res.append(i)
+print(*res)</code></pre>
+</details></div>
+
+<div class="q"><div class="qt">自测 4（编程）输入一行英文句子（单词之间用空格分隔），输出最长的单词；如果有多个同样长的，输出最先出现的那个。<br>示例输入：<code>I love python programming</code>　示例输出：<code>programming</code></div>
+<details><summary>点击查看思路与参考代码</summary>
+思路：先 <code>split()</code> 成单词列表，再求“最值”。注意比较时用 <code>&gt;</code> 而不是 <code>&gt;=</code>，这样才能保留第一个。
+<pre><code class="py">words = input().split()
+best = ""
+for w in words:
+    if len(w) &gt; len(best):
+        best = w
+print(best)
+# 一行写法：print(max(words, key=len))，max 遇到并列时也返回第一个</code></pre>
+</details></div>
+
+<div class="q"><div class="qt">自测 5（编程）输入正整数 n，第一行输出它的各位数字之和，第二行输出反转后的数（去掉前导 0），第三行输出它是不是回文数（Yes/No）。<br>示例输入：<code>1230</code>　示例输出：<code>6</code> / <code>321</code> / <code>No</code></div>
+<details><summary>点击查看思路与参考代码</summary>
+思路：字符串处理最省事——<code>str(n)</code> 逐位求和，<code>[::-1]</code> 反转，<code>int()</code> 自动去掉前导 0。
+<pre><code class="py">n = int(input())
+s = str(n)
+print(sum(int(c) for c in s))
+print(int(s[::-1]))
+print("Yes" if s == s[::-1] else "No")</code></pre>
+</details></div>
+
+<div class="tip box"><b class="t">🍀 比赛当天小提醒</b>
+<ul>
+<li>先通读所有题目，从最有把握的题开始做。</li>
+<li>认真读题，看清<b>输入格式</b>（几行？每行几个数？）和<b>输出格式</b>。</li>
+<li>每写完一题，先用题目给的样例运行一遍；能想到的特殊情况也试一试。</li>
+<li>报错时先看最后一行的错误类型，再看提示的行号，对照 9.2 节的表查原因。</li>
+<li>保持心态平稳——你的编程思维早就具备了，这次只是换一种语法来写。加油！💪</li>
+</ul></div>
+</section>
+
+<footer>Python 考前突击复习 · 单文件离线版 · 勾选的进度会尽量保存在本机浏览器中 · 打印时会自动展开全部答案</footer>
+</div>
+
+<a id="totop" href="#toc">↑ 目录</a>
+
+<script>
+(function () {
+  // —— 简易 Python 语法高亮：关键字 / 内置函数 / 字符串 / 注释 / 数字 ——
+  var KW = {}, BI = {};
+  ("False None True and as assert break class continue def del elif else except finally for from " +
+   "global if import in is lambda nonlocal not or pass return try while with yield").split(" ")
+    .forEach(function (w) { KW[w] = 1; });
+  ("print input int float str list dict set tuple len range sum max min abs sorted enumerate map " +
+   "round type bool ord chr zip reversed divmod pow any all").split(" ")
+    .forEach(function (w) { BI[w] = 1; });
+  var re = /(#[^\n]*)|([fFrRbB]{0,2}"(?:\\.|[^"\\\n])*"|[fFrRbB]{0,2}'(?:\\.|[^'\\\n])*')|(\b\d+(?:\.\d+)?\b)|([A-Za-z_]\w*)/g;
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+  var blocks = document.querySelectorAll("pre code.py");
+  for (var i = 0; i < blocks.length; i++) {
+    var el = blocks[i], src = el.textContent, out = "", last = 0, m;
+    re.lastIndex = 0;
+    while ((m = re.exec(src)) !== null) {
+      out += esc(src.slice(last, m.index));
+      if (m[1]) out += '<span class="c">' + esc(m[1]) + '</span>';
+      else if (m[2]) out += '<span class="s">' + esc(m[2]) + '</span>';
+      else if (m[3]) out += '<span class="n">' + m[3] + '</span>';
+      else {
+        var w = m[4];
+        out += KW[w] ? '<span class="k">' + w + '</span>' : (BI[w] ? '<span class="b">' + w + '</span>' : w);
+      }
+      last = re.lastIndex;
+    }
+    out += esc(src.slice(last));
+    el.innerHTML = out;
+  }
+
+  // —— 复选框进度（尽量保存在本机，失败也不影响使用）——
+  var boxes = document.querySelectorAll("input.ck");
+  var KEY = "py_review_progress_v1", saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { saved = {}; }
+  function update() {
+    var n = 0, state = {};
+    for (var j = 0; j < boxes.length; j++) {
+      if (boxes[j].checked) { n++; state[j] = 1; }
+      var h = boxes[j].parentNode;
+      if (h) h.className = boxes[j].checked ? "done" : "";
+    }
+    document.getElementById("ptxt").textContent = n + " / " + boxes.length + (n === boxes.length ? "　🎉 全部完成！" : "");
+    document.getElementById("pbar").style.width = (boxes.length ? n * 100 / boxes.length : 0) + "%";
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+  for (var k = 0; k < boxes.length; k++) {
+    if (saved[k]) boxes[k].checked = true;
+    boxes[k].addEventListener("change", update);
+  }
+  update();
+
+  // —— 打印时展开全部答案，打印后恢复 ——
+  var opened = [];
+  window.addEventListener("beforeprint", function () {
+    opened = [];
+    var ds = document.querySelectorAll("details");
+    for (var d = 0; d < ds.length; d++) { if (!ds[d].open) { ds[d].open = true; opened.push(ds[d]); } }
+  });
+  window.addEventListener("afterprint", function () {
+    for (var d = 0; d < opened.length; d++) opened[d].open = false;
+  });
+})();
+</script>
+</body>
+</html>
