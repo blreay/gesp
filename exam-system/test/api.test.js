@@ -400,6 +400,35 @@ test('api 配置: ai_system_prompt 可置空（回退内置默认）', async () 
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
 
+test('考试页和错题页: 多行选择题选项保留代码排版并转义 HTML', async () => {
+  const dir = tmpDir('exam-db-');
+  const bank = tmpDir('exam-bank-');
+  fs.mkdirSync(path.join(bank, '测试分类'), { recursive: true });
+  const paper = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'bank', '测试分类', '测试卷.exam.json'), 'utf8')
+    .replace('TESTER_PLACEHOLDER_SOURCE', 'int main(){}'));
+  paper.sections[0].questions[0].options.A = '```\nif (x < 2) cout << x;\n<script>alert(1)</script>\n```';
+  fs.writeFileSync(path.join(bank, '测试分类', '测试卷.exam.json'), JSON.stringify(paper));
+  const db = require('../src/services/db');
+  db.init(path.join(dir, 't.db'));
+  require('../src/services/questionbank').scan(bank);
+  require('../src/services/wrongbook').recordWrong('test_paper_01', 'q1', Date.now());
+  const { server, base } = await startApp();
+  try {
+    const session = await post(base, '/api/review/sessions', { filter: { status: 'active' } });
+    assert.strictEqual(session.status, 200);
+    for (const route of ['/exam/test_paper_01', `/review/session/${session.body.sessionId}`]) {
+      const res = await fetch(base + route);
+      const html = await res.text();
+      assert.strictEqual(res.status, 200);
+      assert.ok(html.includes('<div class="opt-text">A. <pre>if (x &lt; 2) cout &lt;&lt; x;'), route);
+      assert.ok(html.includes('&lt;script&gt;alert(1)&lt;/script&gt;'));
+      assert.ok(!html.includes('<script>alert(1)</script>'));
+    }
+  } finally {
+    server.closeAllConnections(); server.close(); db.close(); rmrf(dir); rmrf(bank);
+  }
+});
+
 test('review 页: 题干代码块用 <pre> 完整渲染（不再被摘要截掉）', async () => {
   const dir = tmpDir('exam-db-');
   const bank = tmpDir('exam-bank-');

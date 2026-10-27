@@ -38,7 +38,7 @@
             <div class="q-text"><%= qi + 1 %>. <%- renderStem(q.stem) %></div>
             <div class="options">
               <% Object.keys(q.options).forEach(function(k){ %>
-              <div class="opt" data-val="<%= k %>"><span class="radio-dot"></span><span><%= k %>. <%= q.options[k] %></span></div>
+              <div class="opt" data-val="<%= k %>"><span class="radio-dot"></span><div class="opt-text"><%= k %>. <%- renderStem(q.options[k]) %></div></div>
               <% }); %>
             </div>
             <div class="correct-answer-tag"></div>

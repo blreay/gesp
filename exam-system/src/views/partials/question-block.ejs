@@ -3,7 +3,7 @@
   <div class="q-text"><%= qnum %>. <%- renderStem(q.stem) %> <span class="from-tag">（来自 <%= examTitle || '未知试卷' %>）</span></div>
   <div class="options">
     <% Object.keys(q.options).forEach(function(k){ %>
-    <div class="opt" data-val="<%= k %>"><span class="radio-dot"></span><span><%= k %>. <%= q.options[k] %></span></div>
+    <div class="opt" data-val="<%= k %>"><span class="radio-dot"></span><div class="opt-text"><%= k %>. <%- renderStem(q.options[k]) %></div></div>
     <% }); %>
   </div>
   <div class="correct-answer-tag"></div>

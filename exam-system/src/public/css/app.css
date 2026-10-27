@@ -85,6 +85,7 @@ body { background: var(--neutral-25); }
   border: 2px solid transparent; user-select: none;
   display: flex; align-items: center; gap: 10px;
 }
+.opt > .opt-text { min-width: 0; overflow-wrap: anywhere; }
 .opt:hover { background: var(--brand-200); border-color: var(--brand-300); }
 .radio-dot {
   width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--neutral-200);
