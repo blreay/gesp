@@ -22,6 +22,7 @@ router.renderStem = renderStem;
 
 // 角色视图过滤：普通用户拿不到参考答案（前端"正确答案"展示依赖这些数据，剥掉即自然不显示）。
 // 客观题删 answer；编程题删参考代码/测试程序/题解（样例输入输出保留，属于题面）。
+// 例外：编程题页（renderProg）的【题解信息】栏对所有登录用户可见，该页不走此剥离。
 function stripQuestionForRole(q, user) {
   if (user && user.role === 'admin') return q;
   const copy = JSON.parse(JSON.stringify(q));
@@ -155,12 +156,13 @@ function renderProg(req, res, mode) {
     page.submissions = d.prepare('SELECT * FROM prog_submissions WHERE exam_id = ? AND question_id = ? ORDER BY id DESC LIMIT 50').all(examId, qid);
   }
   if (page.submissions.length) page.initialCode = page.submissions[0].code;
-  const canSeeSolution = !!(req.user && req.user.role === 'admin');
+  // 【题解信息】栏（题解/参考代码/测试程序）对所有登录用户可见：编程题学习需要看题解。
+  // 因此这里下发完整题目，不走 stripQuestionForRole（考试页/复习页的剥离逻辑不变）。
   res.render('prog', {
     title: hit.question.title, activeNav: 'exam',
     extraCss: ['/css/prog.css'], extraJs: ['/js/common.js', '/js/prog.js'],
-    exam: stripExamForRole(exam, req.user), meta, question: stripQuestionForRole(hit.question, req.user),
-    canSeeSolution, page, renderStem,
+    exam: stripExamForRole(exam, req.user), meta, question: hit.question,
+    canSeeSolution: true, page, renderStem,
     backHref: mode === 'exam' ? '/exam/' + examId : '/review' + (page.sessionId ? '/session/' + page.sessionId : '')
   });
 }

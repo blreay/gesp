@@ -6,13 +6,16 @@ const path = require('path');
 const { tmpDir, rmrf, startApp } = require('./helpers');
 
 // 带登录能力的测试环境：题库用填空测试卷（含答案 '1101'，用于验证答案剥离）
+// 和测试卷（含编程题 prog1，题解 '直接相加'，用于验证编程题页题解可见性）
 async function setup(opts) {
   const dir = tmpDir('auth-');
   const bank = path.join(dir, 'bank');
   fs.mkdirSync(path.join(bank, '测试分类'), { recursive: true });
-  fs.copyFileSync(
-    path.join(__dirname, 'fixtures', 'bank', '测试分类', '填空测试卷.exam.json'),
-    path.join(bank, '测试分类', '填空测试卷.exam.json'));
+  for (const f of ['填空测试卷.exam.json', '测试卷.exam.json']) {
+    fs.copyFileSync(
+      path.join(__dirname, 'fixtures', 'bank', '测试分类', f),
+      path.join(bank, '测试分类', f));
+  }
   const db = require('../src/services/db');
   db.init(path.join(dir, 't.db'));
   require('../src/services/questionbank').scan(bank);
@@ -204,6 +207,32 @@ test('auth: 预览判卷仅管理员；普通用户交卷需客观题全答且�
     assert.strictEqual(r.status, 200);
     assert.strictEqual(r.body.scored.fill, 2);
     assert.ok(!JSON.stringify(r.body.results).includes('1101'), '判分结果不应含正确答案');
+  } finally {
+    server.close(); db.close(); rmrf(dir);
+  }
+});
+
+test('auth: 编程题页【题解信息】栏对所有登录用户可见（含普通用户）', async () => {
+  const { dir, db, server, base, cookie } = await setup();
+  try {
+    await postJ(base, '/api/users', { username: 'kid', password: 'kid12345', role: 'user' }, cookie);
+    const kid = await login(base, 'kid', 'kid12345');
+    // 考试模式与练习模式的编程题页都应显示题解栏及其内容
+    for (const url of ['/exam/test_paper_01/prog/prog1', '/prog/practice/test_paper_01/prog1']) {
+      const r = await fetch(base + url, withCookie(kid.cookie));
+      assert.strictEqual(r.status, 200, url + ' 应可访问');
+      const html = await r.text();
+      assert.ok(html.includes('题解信息'), '普通用户应有题解信息 tab: ' + url);
+      assert.ok(html.includes('直接相加'), '题解内容应下发: ' + url);
+      assert.ok(html.includes('测试程序源码'), '判题依据栏应显示: ' + url);
+      assert.ok(html.includes('refCodeTpl'), '参考代码模板应下发: ' + url);
+    }
+    // 管理员同样可见（回归）
+    const html = await (await fetch(base + '/exam/test_paper_01/prog/prog1', withCookie(cookie))).text();
+    assert.ok(html.includes('题解信息') && html.includes('直接相加'), '管理员题解栏应可见');
+    // 考试页（客观题卷面）的答案剥离不受影响
+    const kidExam = await (await fetch(base + '/exam/test_fill_01', withCookie(kid.cookie))).text();
+    assert.ok(!kidExam.includes('1101'), '普通用户卷面仍不应包含答案');
   } finally {
     server.close(); db.close(); rmrf(dir);
   }
