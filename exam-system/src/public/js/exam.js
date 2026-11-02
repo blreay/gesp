@@ -4,6 +4,7 @@
 (function () {
   const PAGE = window.PAGE;
   const EXAM = window.EXAM;
+  const IS_ADMIN = !!(window.USER && window.USER.role === 'admin');
   const qEls = () => document.querySelectorAll('.question[data-qid]');
   const answers = Object.assign({}, PAGE.savedAnswers || {});
   let graded = false;
@@ -31,13 +32,14 @@
       return;
     }
     if (PAGE.mode === 'timeup') {
+      // 时间到不自动交卷：仍可继续作答，客观题全部完成后手动交卷
       const el = document.getElementById('countdown');
       el.textContent = '时间已到';
       el.classList.add('danger');
-      App.toast('⏰ 考试时间已到，请交卷查看结果', true);
-      document.getElementById('btnHandin').style.display = 'none';
-      document.getElementById('btnGrade').addEventListener('click', () => autoHandin());
+      App.toast('⏰ 考试时间已到，不会自动交卷；完成全部客观题后请手动交卷', true);
       renderProgStatus();
+      bindActions();
+      updateHandinState();
       return;
     }
     document.getElementById('countdown').textContent = App.fmtCountdown(PAGE.durationMs);
@@ -47,10 +49,38 @@
       startTick();
       renderProgStatus();
     }
-    document.getElementById('btnGrade').addEventListener('click', () => previewGrade(false));
-    document.getElementById('btnHandin').addEventListener('click', () => handin(false));
+    bindActions();
+    updateHandinState();
+  }
+
+  function bindActions() {
+    // 预览判卷仅管理员可用（普通用户按钮已在服务端渲染为 disabled，接口也会 403）
+    if (IS_ADMIN) document.getElementById('btnGrade').addEventListener('click', () => previewGrade(false));
+    document.getElementById('btnHandin').addEventListener('click', () => handin());
     document.getElementById('btnGradeAnyway').addEventListener('click', () => { hideModal('missingModal'); previewGrade(true); });
     document.getElementById('btnBackToAnswer').addEventListener('click', () => hideModal('missingModal'));
+  }
+
+  // ---- 交卷门槛：客观题（选择/判断/填空）全部作答后才允许交卷，编程题不计入 ----
+  function objectiveTotal() {
+    let n = 0;
+    for (const sec of EXAM.sections) for (const q of sec.questions) if (q.type !== 'programming') n++;
+    return n;
+  }
+  function updateHandinState() {
+    if (graded) return;
+    const btn = document.getElementById('btnHandin');
+    const pill = document.getElementById('objProgress');
+    const missing = collectUnanswered();
+    const total = objectiveTotal();
+    if (pill) {
+      pill.textContent = '客观题 ' + (total - missing.length) + ' / ' + total;
+      pill.classList.toggle('done', missing.length === 0);
+    }
+    btn.disabled = !PAGE.attemptId || missing.length > 0;
+    btn.title = !PAGE.attemptId ? '请先开始答题'
+      : missing.length ? '还有 ' + missing.length + ' 道客观题未作答，不能交卷'
+      : '交卷（最终判分）';
   }
 
   async function startExam() {
@@ -60,6 +90,7 @@
       PAGE.deadlineAt = r.deadlineAt;
       hideModal('startModal');
       startTick();
+      updateHandinState();
       App.toast('考试开始，倒计时已启动');
     } catch (e) { App.toast('启动失败：' + e.message, true); }
   }
@@ -114,6 +145,7 @@
   }
   function saveAnswer(qid, val) {
     answers[qid] = val;
+    updateHandinState();
     // Re-answer clears preview marks
     const q = document.querySelector(`.question[data-qid="${qid}"]`);
     if (q && (q.classList.contains('wrong') || q.classList.contains('correct-graded'))) {
@@ -150,7 +182,15 @@
         }
       }
     }
-    if (remain <= 0) { clearInterval(timer); timer = null; if (!graded) autoHandin(); }
+    if (remain <= 0) {
+      clearInterval(timer); timer = null;
+      // 时间到不自动交卷：仍可继续作答，客观题全部完成后手动交卷
+      if (!graded) {
+        el.textContent = '时间已到';
+        el.classList.add('danger');
+        App.toast('⏰ 时间已到，不会自动交卷；可继续作答，完成全部客观题后手动交卷', true);
+      }
+    }
   }
 
   // ---- 预览判卷（不终局） ----
@@ -194,10 +234,13 @@
     }
   }
 
-  // ---- 交卷（终局） ----
-  async function handin(auto) {
+  // ---- 交卷（终局）----
+  async function handin() {
     if (graded || handing) return;
-    if (!auto && !confirm('交卷后将最终判分，不能再作答。确定交卷吗？')) return;
+    // 客观题未全部作答不允许交卷（按钮已置灰，这里再兜底一次；服务端同样校验）
+    const missing = collectUnanswered();
+    if (missing.length) { App.toast('还有 ' + missing.length + ' 道客观题未作答，不能交卷', true); return; }
+    if (!confirm('交卷后将最终判分，不能再作答。确定交卷吗？')) return;
     if (!PAGE.attemptId) { App.toast('请先开始答题', true); return; }
     if (pendingSaves.size) await Promise.allSettled([...pendingSaves]);
     handing = true;
@@ -207,13 +250,14 @@
     btnH.disabled = true;
     btnG.disabled = true;
     try {
-      const r = await App.postJSON(`/api/attempts/${PAGE.attemptId}/grade`, { auto: !!auto });
+      const r = await App.postJSON(`/api/attempts/${PAGE.attemptId}/grade`, { auto: false });
       graded = true;
       lockAll();
       applyGradeView(r, false);
-      App.toast(auto ? '已自动交卷判分' : '已交卷');
+      App.toast('已交卷');
       btnH.style.display = 'none';
       btnG.style.display = 'none';
+      document.getElementById('objProgress').style.display = 'none';
       document.getElementById('btnRetake').style.display = '';
       const el = document.getElementById('countdown');
       el.textContent = '已交卷';
@@ -225,15 +269,10 @@
       handing = false;
       if (!graded) {
         btnH.textContent = '交卷';
-        btnH.disabled = false;
-        btnG.disabled = false;
+        btnG.disabled = !IS_ADMIN;
+        updateHandinState();
       }
     }
-  }
-  async function autoHandin() {
-    if (graded || handing) return;
-    App.toast('⏰ 时间到，正在自动交卷…', true);
-    await handin(true);
   }
 
   // ---- 判卷结果展示 ----

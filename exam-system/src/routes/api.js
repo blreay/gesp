@@ -161,12 +161,37 @@ router.post('/attempts/:attemptId/answers', asyncH(async (req, res) => {
   res.json({ ok: true });
 }));
 
+// 客观题（选择/判断/填空）未作答清单；编程题不计入交卷门槛
+function unansweredObjective(exam, answers) {
+  const missing = [];
+  for (const sec of exam.sections) {
+    (sec.questions || []).forEach((q, qi) => {
+      if (q.type === 'programming') return;
+      const a = answers[q.id];
+      if (a === undefined || a === null || a === '') {
+        const label = (q.type === 'choice' ? '选择题' : q.type === 'fill' ? '填空题' : '判断题') + ' 第 ' + (qi + 1) + ' 题';
+        missing.push({ qid: q.id, label });
+      }
+    });
+  }
+  return missing;
+}
+
 router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
   const att = db.get().prepare('SELECT * FROM exam_attempts WHERE id = ?').get(req.params.attemptId);
   if (!att) return res.status(404).json({ error: '考试不存在' });
   if (att.status === 'graded') return res.status(400).json({ error: '该考试已判分，不能重复判卷' });
   const exam = qb.getExam(att.exam_id);
   if (!exam) return res.status(404).json({ error: '试卷不存在' });
+
+  // 交卷门槛：客观题必须全部作答（编程题除外）；时间到后不自动交卷，补答完仍可交
+  const missing = unansweredObjective(exam, sessions.answersOf(att.id));
+  if (missing.length) {
+    return res.status(400).json({
+      error: '还有 ' + missing.length + ' 道客观题未作答，不能交卷',
+      missing: missing.map(m => m.label)
+    });
+  }
 
   // 编程题：用该 attempt 每题最新提交再评一次
   // 注意：串行重判可能耗时较长（每题编译+运行上限约 1 分多钟）。
@@ -203,8 +228,9 @@ router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
   res.json({ ...payload, wrongAdded, autoSubmitted });
 }));
 
-// ---- 预览判卷（不终局） ----
+// ---- 预览判卷（不终局，仅管理员：预览的对错标记可被反复试错利用）----
 router.post('/attempts/:attemptId/preview', asyncH(async (req, res) => {
+  if (!isAdmin(req)) return res.status(403).json({ error: '预览判卷仅管理员可用' });
   const att = db.get().prepare('SELECT * FROM exam_attempts WHERE id = ?').get(req.params.attemptId);
   if (!att) return res.status(404).json({ error: '考试不存在' });
   if (att.status === 'graded') return res.status(400).json({ error: '已交卷，无需预览判分' });

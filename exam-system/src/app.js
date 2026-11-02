@@ -49,10 +49,10 @@ function createApp() {
     return res.redirect('/login?next=' + encodeURIComponent(req.originalUrl));
   });
 
-  // 授权：系统配置页 / 配置与用户管理 API / 卷面源数据 / AI 解析 → 仅管理员
+  // 授权：系统配置页 / AI问答页 / 配置与用户管理 API / 卷面源数据 / AI 解析 → 仅管理员
   app.use((req, res, next) => {
     const p = req.path;
-    const needAdmin = p === '/settings' || isAdminApi(p);
+    const needAdmin = p === '/settings' || p === '/ai' || isAdminApi(p);
     if (needAdmin && req.user && req.user.role !== 'admin') {
       if (p.startsWith('/api/')) return res.status(403).json({ error: '需要管理员权限' });
       return res.status(403).send('需要管理员权限');

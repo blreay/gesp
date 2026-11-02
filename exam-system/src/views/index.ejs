@@ -47,8 +47,8 @@
           <span class="state st-progress">⏳ 考试中 <span class="remain" data-deadline="<%= e.state.deadlineAt %>"></span></span>
           <span class="start-btn">继续答题 →</span>
         <% } else if (e.state.status === 'timeup') { %>
-          <span class="state st-timeup">⌛ 时间已到 · 待判卷</span>
-          <span class="start-btn">去判卷 →</span>
+          <span class="state st-timeup">⌛ 时间已到 · 未交卷</span>
+          <span class="start-btn">继续考试 →</span>
         <% } else { %>
           <span class="state st-none">未考试</span>
           <span class="start-btn">开始答题 →</span>

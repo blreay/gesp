@@ -7,7 +7,8 @@
     <span class="et-cat"><%= meta.category %></span>
   </div>
   <div class="et-countdown" id="countdown">--:--:--</div>
-  <button class="btn btn-danger" id="btnHandin">交卷</button>
+  <span class="obj-progress" id="objProgress"></span>
+  <button class="btn btn-danger" id="btnHandin" disabled>交卷</button>
   <button class="btn btn-primary" id="btnRetake" style="display:none">重新考试</button>
 </div>
 
@@ -18,7 +19,8 @@
       <h1><%= exam.exam.title %></h1>
       <div class="exam-info-row">
         <span class="exam-info">满分：<%= meta.total_score %> 分 · 时长：<%= Math.round(page.durationMs / 60000) %> 分钟 · 共 <%= totalQuestions %> 题</span>
-        <button class="btn btn-danger btn-grade" id="btnGrade">判 卷</button>
+        <button class="btn btn-danger btn-grade" id="btnGrade"<% if (typeof user === 'undefined' || !user || user.role !== 'admin') { %> disabled title="预览判卷仅管理员可用"<% } %>>判 卷</button>
+        <% if (typeof user === 'undefined' || !user || user.role !== 'admin') { %><span class="grade-hint">交卷需完成全部客观题；时间到不会自动交卷</span><% } %>
       </div>
       <div class="score-display" id="scoreDisplay"></div>
     </div>
@@ -92,7 +94,7 @@
     <div class="modal-note">
       · 考试时长 <%= Math.round(page.durationMs / 60000) %> 分钟，点击开始后立即倒计时<br>
       · 中途关闭页面不暂停计时，可重新进入续答<br>
-      · 倒计时结束将自动交卷判分
+      · 倒计时结束不会自动交卷；完成全部客观题（编程题除外）后方可交卷
     </div>
     <div style="margin-top:18px"><button class="btn btn-primary" id="btnStart">开始答题</button></div>
   </div>

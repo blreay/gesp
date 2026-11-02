@@ -109,15 +109,25 @@ test('auth: 普通用户被系统配置/用户管理/卷面源数据 403 拦截�
   assert.strictEqual((await postJ(base, '/api/settings', { default_duration_minutes: '90' }, kid.cookie)).status, 403);
   let page = await fetch(base + '/settings', withCookie(kid.cookie));
   assert.strictEqual(page.status, 403);
+  page = await fetch(base + '/ai', withCookie(kid.cookie));
+  assert.strictEqual(page.status, 403, '/ai 页应仅管理员可访问');
   // 普通用户仍可用考试功能
   assert.strictEqual((await getJ(base, '/api/exams', kid.cookie)).status, 200);
+  // 普通用户导航不显示 AI问答 / 系统配置
+  const kidHome = await (await fetch(base + '/', withCookie(kid.cookie))).text();
+  assert.ok(!kidHome.includes('AI问答'), '普通用户导航不应有 AI问答');
+  assert.ok(!kidHome.includes('系统配置'), '普通用户导航不应有 系统配置');
   // 管理员放行
   assert.strictEqual((await getJ(base, '/api/settings', cookie)).status, 200);
   assert.strictEqual((await getJ(base, '/api/users', cookie)).status, 200);
   assert.strictEqual((await getJ(base, '/api/exams/test_fill_01/detail', cookie)).status, 200);
+  assert.strictEqual((await fetch(base + '/ai', withCookie(cookie))).status, 200);
   page = await fetch(base + '/settings', withCookie(cookie));
   assert.strictEqual(page.status, 200);
   assert.ok((await page.text()).includes('用户管理'));
+  // 管理员导航显示 AI问答
+  const adminHome = await (await fetch(base + '/', withCookie(cookie))).text();
+  assert.ok(adminHome.includes('AI问答'), '管理员导航应有 AI问答');
   server.close(); db.close(); rmrf(dir);
 });
 
@@ -160,6 +170,43 @@ test('auth: 复习会话 API 的 correctAnswer 仅管理员可见', async () => 
   assert.strictEqual(g.status, 200);
   assert.strictEqual(g.body.correctCount, 1);
   server.close(); db.close(); rmrf(dir);
+});
+
+test('auth: 预览判卷仅管理员；普通用户交卷需客观题全答且结果不含答案', async () => {
+  const { dir, db, server, base, cookie } = await setup();
+  try {
+    await postJ(base, '/api/users', { username: 'kid', password: 'kid12345', role: 'user' }, cookie);
+    const kid = await login(base, 'kid', 'kid12345');
+    // kid 开考并只答 1 题（故意答错：正确答案 1101 不应出现在任何返回里）
+    let r = await postJ(base, '/api/exams/test_fill_01/start', {}, kid.cookie);
+    assert.strictEqual(r.status, 200);
+    const attId = r.body.attemptId;
+    await postJ(base, `/api/attempts/${attId}/answers`, { questionId: 'f1', answer: '1102' }, kid.cookie);
+    // 普通用户预览判卷 403；管理员放行
+    r = await postJ(base, `/api/attempts/${attId}/preview`, {}, kid.cookie);
+    assert.strictEqual(r.status, 403);
+    r = await postJ(base, `/api/attempts/${attId}/preview`, {}, cookie);
+    assert.strictEqual(r.status, 200);
+    // 考试页：普通用户判卷按钮置灰并提示，管理员不置灰
+    let html = await (await fetch(base + '/exam/test_fill_01', withCookie(kid.cookie))).text();
+    assert.ok(html.includes('id="btnGrade" disabled'), '普通用户判卷按钮应置灰');
+    assert.ok(html.includes('预览判卷仅管理员可用'));
+    html = await (await fetch(base + '/exam/test_fill_01', withCookie(cookie))).text();
+    assert.ok(html.includes('id="btnGrade">判 卷'), '管理员判卷按钮应可用');
+    // 客观题未完成 → 交卷 400
+    r = await postJ(base, `/api/attempts/${attId}/grade`, {}, kid.cookie);
+    assert.strictEqual(r.status, 400);
+    assert.ok(r.body.error.includes('未作答'));
+    // 补答完成后交卷成功（f1 错、f2/f3 对），判分结果只含对错与考生自己的答案
+    await postJ(base, `/api/attempts/${attId}/answers`, { questionId: 'f2', answer: 'E5' }, kid.cookie);
+    await postJ(base, `/api/attempts/${attId}/answers`, { questionId: 'f3', answer: '2,1' }, kid.cookie);
+    r = await postJ(base, `/api/attempts/${attId}/grade`, {}, kid.cookie);
+    assert.strictEqual(r.status, 200);
+    assert.strictEqual(r.body.scored.fill, 2);
+    assert.ok(!JSON.stringify(r.body.results).includes('1101'), '判分结果不应含正确答案');
+  } finally {
+    server.close(); db.close(); rmrf(dir);
+  }
 });
 
 test('auth: 用户 CRUD 校验——重名/弱密码/非法角色/非法用户名 400', async () => {

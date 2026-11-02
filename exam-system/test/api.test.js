@@ -28,7 +28,7 @@ const post = (base, url, body) =>
   authFetch(base + url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) }).then(r => r.json().then(d => ({ status: r.status, body: d })));
 const get = (base, url) => authFetch(base + url).then(r => r.json().then(d => ({ status: r.status, body: d })));
 
-test('api 考试流: start → 存答案 → 判卷（未答题列出、只计已答）', async () => {
+test('api 考试流: start → 存答案 → 交卷门槛（客观题须全答）→ 判卷', async () => {
   const { dir, bank, db, server, base } = await setup();
 
   let r = await post(base, '/api/exams/test_paper_01/start');
@@ -44,19 +44,54 @@ test('api 考试流: start → 存答案 → 判卷（未答题列出、只计�
   r = await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
   assert.strictEqual(r.body.ok, true);
 
+  // 客观题未完成 → 拒绝交卷，返回缺失清单
   r = await post(base, '/api/attempts/1/grade', { auto: false });
+  assert.strictEqual(r.status, 400);
+  assert.ok(r.body.error.includes('未作答'));
+  assert.deepStrictEqual(r.body.missing, ['选择题 第 2 题', '判断题 第 1 题']);
+
+  // 管理员预览判卷不受完成度限制，可列出未答题
+  r = await post(base, '/api/attempts/1/preview', {});
   assert.strictEqual(r.status, 200);
   assert.deepStrictEqual(r.body.unanswered, ['q2', 'q3']);
   assert.strictEqual(r.body.scored.choice, 20);
-  assert.strictEqual(r.body.scored.tf, 0);
+
+  // 补全全部客观题后才能交卷
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
+  r = await post(base, '/api/attempts/1/grade', { auto: false });
+  assert.strictEqual(r.status, 200);
+  assert.deepStrictEqual(r.body.unanswered, []);
+  assert.strictEqual(r.body.scored.choice, 40);
+  assert.strictEqual(r.body.scored.tf, 10);
   assert.strictEqual(r.body.scored.prog, 0);   // 编程未提交
-  assert.strictEqual(r.body.scored.total, 20);
-  assert.deepStrictEqual(r.body.wrongAdded, []); // q2/q3 未答不算错题
+  assert.strictEqual(r.body.scored.total, 50);
+  assert.deepStrictEqual(r.body.wrongAdded, []);
 
   r = await get(base, '/api/exams/test_paper_01/state');
   assert.strictEqual(r.body.attempt.status, 'graded');
-  assert.strictEqual(r.body.lastGrade.scored.total, 20);
+  assert.strictEqual(r.body.lastGrade.scored.total, 50);
 
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
+test('api: 时间已到不自动交卷，仍可继续作答并交卷', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  await post(base, '/api/exams/test_paper_01/start');
+  // 把开始时间拨回 2 小时前（夹具卷时长 60 分钟）→ 已超时
+  db.get().prepare('UPDATE exam_attempts SET started_at = ? WHERE id = 1').run(Date.now() - 2 * 3600 * 1000);
+  // 超时后仍可存答案
+  let r = await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
+  assert.strictEqual(r.status, 200);
+  // 客观题未答完 → 交卷仍被拒
+  r = await post(base, '/api/attempts/1/grade', {});
+  assert.strictEqual(r.status, 400);
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
+  r = await post(base, '/api/attempts/1/grade', {});
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.scored.total, 50);
+  assert.strictEqual(r.body.autoSubmitted, false); // 超时交卷不算自动交卷
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
 
@@ -89,6 +124,8 @@ test('api: 已判卷的 attempt 不能重复判卷', async () => {
   const { dir, bank, db, server, base } = await setup();
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   const g1 = await post(base, '/api/attempts/1/grade', {});
   assert.strictEqual(g1.status, 200);
   const g2 = await post(base, '/api/attempts/1/grade', {});
@@ -202,6 +239,8 @@ test('api: 预览判卷不终局、可重复，交卷后不能预览', async () 
   assert.strictEqual(st.body.attempt.status, 'in_progress'); // 未终局
   p = await post(base, '/api/attempts/1/preview', {});       // 可重复
   assert.strictEqual(p.status, 200);
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   await post(base, '/api/attempts/1/grade', {});              // 终局
   p = await post(base, '/api/attempts/1/preview', {});
   assert.strictEqual(p.status, 400);
@@ -212,6 +251,8 @@ test('api: 重新考试清空上一次结果', async () => {
   const { dir, bank, db, server, base } = await setup();
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'A' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   db.get().prepare(`INSERT INTO prog_submissions(exam_id, question_id, attempt_id, code, compile_ok, all_passed, result_summary, created_at) VALUES ('test_paper_01', 'prog1', 1, 'x', 1, 1, 's', ?)`).run(Date.now());
   await post(base, '/api/attempts/1/grade', {});
   const r = await post(base, '/api/exams/test_paper_01/retake', {});
@@ -273,9 +314,11 @@ test('api 配置: 含 4 个 AI 键且可保存', async () => {
 
 test('api ai-context: 选择题返回固定前缀+题干+你的答案/正确答案', async () => {
   const { dir, bank, db, server, base } = await setup();
-  // 造一场已答错的考试：q1 正确答案 B，故意答 A
+  // 造一场已答错的考试：q1 正确答案 B，故意答 A（其余答对，满足交卷门槛）
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'A' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   await post(base, '/api/attempts/1/grade', {});   // q1 答错 → 进错题本
   const list = db.get().prepare("SELECT * FROM wrong_questions WHERE question_id='q1'").get();
   assert.ok(list, 'q1 应在错题本');
@@ -312,30 +355,35 @@ test('api ai/chat: 空 messages 返回 400（同源代理端点参数校验）',
 test('api exam-log: 判卷写日志；预览不写；retake 后 nth 递增；自动交卷标记', async () => {
   const { dir, bank, db, server, base } = await setup();
 
-  // 第 1 场：q1 答对（B），其余未答 → 预览不记、判卷记
+  // 第 1 场：客观题全答对 → 预览不记、判卷记
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
   await post(base, '/api/attempts/1/preview', {});
   assert.strictEqual(db.get().prepare('SELECT COUNT(*) c FROM exam_log').get().c, 0); // 预览不写
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   await post(base, '/api/attempts/1/grade', {});
   let logs = db.get().prepare('SELECT * FROM exam_log').all();
   assert.strictEqual(logs.length, 1);
   assert.strictEqual(logs[0].nth, 1);
   assert.strictEqual(logs[0].exam_title, '测试卷');
-  assert.strictEqual(logs[0].total_score, 20);
-  assert.strictEqual(logs[0].all_done, 0);      // q2/q3 未答
+  assert.strictEqual(logs[0].total_score, 50);
+  assert.strictEqual(logs[0].all_done, 0);      // 编程题未提交 → 不算全部完成
   assert.strictEqual(logs[0].prog_total, 1);
   assert.strictEqual(logs[0].prog_submitted, 0);
   assert.strictEqual(logs[0].auto_submitted, 0);
 
-  // 第 2 场：retake 后自动交卷判分 → nth=2、auto_submitted=1
+  // 第 2 场：retake 后带 auto 标记交卷 → nth=2、auto_submitted=1（兼容历史数据）
   await post(base, '/api/exams/test_paper_01/retake', {});
+  await post(base, '/api/attempts/2/answers', { questionId: 'q1', answer: 'B' });
+  await post(base, '/api/attempts/2/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/2/answers', { questionId: 'q3', answer: 'true' });
   await post(base, '/api/attempts/2/grade', { auto: true });
   logs = db.get().prepare('SELECT * FROM exam_log ORDER BY id').all();
   assert.strictEqual(logs.length, 2);
   assert.strictEqual(logs[1].nth, 2);
   assert.strictEqual(logs[1].auto_submitted, 1);
-  assert.strictEqual(logs[1].total_score, 0);   // 全未答
+  assert.strictEqual(logs[1].total_score, 50);
 
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
@@ -344,6 +392,8 @@ test('api exam-log: 统计页包含考试日志区', async () => {
   const { dir, bank, db, server, base } = await setup();
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   await post(base, '/api/attempts/1/grade', {});
   const r = await authFetch(base + '/stats');
   const html = await r.text();
@@ -387,6 +437,8 @@ test('api ai-parse: ai_auto_parse 开启时判卷自动入队', async () => {
   await post(base, '/api/settings', { ai_auto_parse: '1' });
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'A' });  // 错
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
   await post(base, '/api/attempts/1/grade', {});
   const st = aiparse.status();
   assert.ok(st.total >= 1 || st.active, '应已入队');
@@ -482,7 +534,7 @@ async function setupFill() {
   return { dir, bank, db, server, base };
 }
 
-test('api 填空题流: 存答案 → 预览 → 判卷 → score_fill 落库；空串视为未答', async () => {
+test('api 填空题流: 存答案 → 预览 → 交卷门槛 → score_fill 落库；空串视为未答', async () => {
   const { dir, bank, db, server, base } = await setupFill();
 
   let r = await post(base, '/api/exams/test_fill_01/start');
@@ -493,6 +545,7 @@ test('api 填空题流: 存答案 → 预览 → 判卷 → score_fill 落库；
   await post(base, `/api/attempts/${attId}/answers`, { questionId: 'f2', answer: '　ｅ５　' }); // 全角+空白，归一化后应判对
   await post(base, `/api/attempts/${attId}/answers`, { questionId: 'f3', answer: '' });          // 空串=未答
 
+  // 管理员预览不受完成度限制
   r = await post(base, `/api/attempts/${attId}/preview`, {});
   assert.strictEqual(r.status, 200);
   assert.strictEqual(r.body.scored.fill, 2);
@@ -500,18 +553,26 @@ test('api 填空题流: 存答案 → 预览 → 判卷 → score_fill 落库；
   assert.strictEqual(r.body.scored.total, 2);
   assert.deepStrictEqual(r.body.unanswered, ['f3']);
 
+  // f3 空串=未答 → 交卷被拒
+  r = await post(base, `/api/attempts/${attId}/grade`, { auto: false });
+  assert.strictEqual(r.status, 400);
+  assert.ok(r.body.error.includes('未作答'));
+  assert.deepStrictEqual(r.body.missing, ['填空题 第 3 题']);
+
+  // 补答 f3 后交卷成功
+  await post(base, `/api/attempts/${attId}/answers`, { questionId: 'f3', answer: '2, 1' });
   r = await post(base, `/api/attempts/${attId}/grade`, { auto: false });
   assert.strictEqual(r.status, 200);
-  assert.strictEqual(r.body.scored.fill, 2);
-  assert.strictEqual(r.body.scored.total, 2);
-  assert.deepStrictEqual(r.body.wrongAdded, []); // 未答不算错题
+  assert.strictEqual(r.body.scored.fill, 3);
+  assert.strictEqual(r.body.scored.total, 3);
+  assert.deepStrictEqual(r.body.wrongAdded, []);
   const f2 = r.body.results.find(x => x.qid === 'f2');
   assert.ok(f2.correct);
 
   const row = db.get().prepare('SELECT score_choice, score_tf, score_fill, score_prog, total_score FROM exam_attempts WHERE id = ?').get(attId);
-  assert.strictEqual(row.score_fill, 2);
+  assert.strictEqual(row.score_fill, 3);
   assert.strictEqual(row.score_choice, 0);
-  assert.strictEqual(row.total_score, 2);
+  assert.strictEqual(row.total_score, 3);
 
   // 考试页应渲染填空输入框
   const res = await authFetch(base + '/exam/test_fill_01');

@@ -121,9 +121,10 @@ a { text-decoration: none; color: inherit; }
 .topnav .brand {
   color: #fff; font-size: 17px; font-weight: bold; letter-spacing: 1px;
   transition: opacity var(--duration-fast) var(--ease-out);
+  flex-shrink: 0; white-space: nowrap; /* 标题不参与挤压，避免导航项盖住标题 */
 }
 .topnav .brand:hover { opacity: .85; }
-.topnav .nav-links { display: flex; gap: 4px; }
+.topnav .nav-links { display: flex; gap: 4px; margin-left: var(--sp-8); }
 .topnav .nav-links a {
   color: rgba(255,255,255,.65); font-size: 14px; padding: 8px 16px;
   border-radius: var(--r-md); transition: all var(--duration-fast) var(--ease-out);
@@ -190,11 +191,14 @@ a { text-decoration: none; color: inherit; }
 }
 .btn-ghost:hover { background: var(--neutral-25); border-color: var(--neutral-150); color: var(--neutral-700); }
 .btn-ghost:active { background: var(--neutral-75); }
+/* 禁用态统一置灰（如：普通用户的判卷按钮、客观题未答完时的交卷按钮） */
+.btn:disabled { opacity: .45; pointer-events: none; }
 
 /* ===== Responsive helpers ===== */
 @media (max-width: 768px) {
   .topnav-inner { padding: 0 var(--sp-3); height: 48px; }
   .topnav .brand { font-size: 15px; }
+  .topnav .nav-links { margin-left: var(--sp-4); }
   .topnav .nav-links a { padding: 6px 10px; font-size: 13px; min-height: 36px; }
 }
 
