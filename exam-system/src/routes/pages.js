@@ -20,6 +20,39 @@ function renderStem(stem) {
 }
 router.renderStem = renderStem;
 
+// 角色视图过滤：普通用户拿不到参考答案（前端"正确答案"展示依赖这些数据，剥掉即自然不显示）。
+// 客观题删 answer；编程题删参考代码/测试程序/题解（样例输入输出保留，属于题面）。
+function stripQuestionForRole(q, user) {
+  if (user && user.role === 'admin') return q;
+  const copy = JSON.parse(JSON.stringify(q));
+  delete copy.explanation; // 解析会透露正确答案，一并不下发
+  if (copy.type === 'programming') {
+    if (copy.answer) {
+      delete copy.answer.reference_code;
+      delete copy.answer.test_program;
+      delete copy.answer.solution;
+    }
+  } else {
+    delete copy.answer;
+  }
+  return copy;
+}
+function stripExamForRole(exam, user) {
+  if (user && user.role === 'admin') return exam;
+  const copy = JSON.parse(JSON.stringify(exam));
+  for (const sec of copy.sections) {
+    sec.questions = (sec.questions || []).map(q => stripQuestionForRole(q, user));
+  }
+  return copy;
+}
+
+// ---- 登录页 ----
+router.get('/login', (req, res) => {
+  if (req.user) return res.redirect('/');
+  const next = req.query.next && String(req.query.next).startsWith('/') ? String(req.query.next) : '/';
+  res.render('login', { title: '登录', next });
+});
+
 router.get('/', (req, res) => {
   const s = db.allSettings();
   const exams = qb.listExams();
@@ -88,7 +121,7 @@ router.get('/exam/:id', (req, res) => {
   res.render('exam', {
     title: exam.exam.title, activeNav: 'exam',
     extraCss: ['/css/app.css'], extraJs: ['/js/common.js', '/js/exam.js'],
-    exam, meta, page, mode, totalQuestions, renderStem
+    exam: stripExamForRole(exam, req.user), meta, page, mode, totalQuestions, renderStem
   });
 });
 
@@ -110,17 +143,24 @@ function renderProg(req, res, mode) {
       const durMs = countdown.durationMs(exam.exam, s);
       page.deadlineAt = countdown.deadlineAt(att, durMs);
     }
-    page.submissions = d.prepare('SELECT * FROM prog_submissions WHERE exam_id = ? AND question_id = ? ORDER BY id DESC LIMIT 100').all(examId, qid);
+    // 只看本次 attempt 的提交，避免多用户/多次考试之间互相泄露代码
+    if (att) {
+      page.submissions = d.prepare('SELECT * FROM prog_submissions WHERE exam_id = ? AND question_id = ? AND attempt_id = ? ORDER BY id DESC LIMIT 100').all(examId, qid, att.id);
+    } else {
+      page.submissions = [];
+    }
   } else {
     page.sessionId = req.query.session ? Number(req.query.session) : null;
     page.wrongId = req.query.wrong ? Number(req.query.wrong) : null;
     page.submissions = d.prepare('SELECT * FROM prog_submissions WHERE exam_id = ? AND question_id = ? ORDER BY id DESC LIMIT 50').all(examId, qid);
   }
   if (page.submissions.length) page.initialCode = page.submissions[0].code;
+  const canSeeSolution = !!(req.user && req.user.role === 'admin');
   res.render('prog', {
     title: hit.question.title, activeNav: 'exam',
     extraCss: ['/css/prog.css'], extraJs: ['/js/common.js', '/js/prog.js'],
-    exam, meta, question: hit.question, page, renderStem,
+    exam: stripExamForRole(exam, req.user), meta, question: stripQuestionForRole(hit.question, req.user),
+    canSeeSolution, page, renderStem,
     backHref: mode === 'exam' ? '/exam/' + examId : '/review' + (page.sessionId ? '/session/' + page.sessionId : '')
   });
 }
@@ -173,7 +213,7 @@ router.get('/review/session/:id', (req, res) => {
   for (const it of items) {
     const hit = qb.getQuestion(it.exam_id, it.question_id);
     if (!hit) continue;
-    const enriched = { ...it, question: hit.question };
+    const enriched = { ...it, question: stripQuestionForRole(hit.question, req.user) };
     if (hit.question.type === 'programming') prog.push(enriched);
     else objective.push(enriched);
   }
@@ -205,7 +245,7 @@ router.get('/ai', (req, res) => {
   const settings = db.allSettings();
   res.render('ai', {
     title: 'AI问答', activeNav: 'ai',
-    extraCss: ['/css/app.css'], extraJs: [],
+    extraCss: ['/css/app.css'], extraJs: ['/js/common.js'],
     webuiUrl: settings.ai_webui_url
   });
 });

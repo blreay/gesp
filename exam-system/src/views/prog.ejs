@@ -11,7 +11,9 @@
   <div class="prog-left">
     <div class="tabs">
       <button class="tab active" data-tab="problem">题目信息</button>
+      <% if (typeof canSeeSolution !== 'undefined' && canSeeSolution) { %>
       <button class="tab" data-tab="solution">题解信息</button>
+      <% } %>
       <button class="tab" data-tab="history">提交记录</button>
     </div>
 
@@ -29,6 +31,7 @@
       <% if (question.constraints) { %><h4>数据范围</h4><div class="q-body"><%- renderStem(question.constraints) %></div><% } %>
     </div>
 
+    <% if (typeof canSeeSolution !== 'undefined' && canSeeSolution) { %>
     <div class="tab-pane" id="tab-solution">
       <h4>题解</h4>
       <div class="q-body"><%- renderStem((question.answer && question.answer.solution) || '（暂无题解）') %></div>
@@ -39,6 +42,7 @@
       </div>
       <template id="refCodeTpl"><%= (question.answer && question.answer.reference_code) || '' %></template>
     </div>
+    <% } %>
 
     <div class="tab-pane" id="tab-history">
       <div id="subList"></div>

@@ -6,7 +6,24 @@
       <a href="/review" class="<%= activeNav==='review'?'active':'' %>">错题复习</a>
       <a href="/stats" class="<%= activeNav==='stats'?'active':'' %>">数据统计</a>
       <a href="/ai" class="<%= activeNav==='ai'?'active':'' %>">AI问答</a>
+      <% if (typeof user !== 'undefined' && user && user.role === 'admin') { %>
       <a href="/settings" class="<%= activeNav==='settings'?'active':'' %>">系统配置</a>
+      <% } %>
     </div>
+    <% if (typeof user !== 'undefined' && user) { %>
+    <div class="user-menu" id="userMenu">
+      <button class="user-menu-btn" id="userMenuBtn" type="button" title="当前登录用户">
+        👤 <%= user.username %>
+        <span class="role-badge role-<%= user.role %>"><%= user.role === 'admin' ? '管理员' : '用户' %></span>
+        <span class="ud-caret">▾</span>
+      </button>
+      <div class="user-dropdown" id="userDropdown">
+        <div class="ud-header">当前登录：<b><%= user.username %></b></div>
+        <button type="button" class="ud-item" id="udChangePw">🔑 修改密码</button>
+        <button type="button" class="ud-item ud-danger" id="udLogout">🚪 退出登录</button>
+      </div>
+    </div>
+    <script>window.USER = <%- JSON.stringify({ username: user.username, role: user.role }).replace(/</g, '\\u003c') %>;</script>
+    <% } %>
   </div>
 </nav>

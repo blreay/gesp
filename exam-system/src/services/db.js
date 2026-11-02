@@ -103,6 +103,22 @@ CREATE TABLE IF NOT EXISTS settings (
   key TEXT PRIMARY KEY,
   value TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'user' CHECK (role IN ('admin','user')),
+  note TEXT DEFAULT '',
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS auth_sessions (
+  token TEXT PRIMARY KEY,
+  username TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  expires_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_authsess_user ON auth_sessions(username);
 `;
 
 const DEFAULT_SETTINGS = {
@@ -123,10 +139,33 @@ const DEFAULT_SETTINGS = {
 };
 
 // 数据库结构版本号。版本2：新增 exam_log 表。版本3：exam_attempts 新增 score_fill 列（填空题得分）。
-const CURRENT_SCHEMA_VERSION = 3;
+// 版本4：新增 users / auth_sessions 表（登录与用户管理），并播种默认管理员 admin/admin123。
+const CURRENT_SCHEMA_VERSION = 4;
+
+const USERS_DDL = `
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'user' CHECK (role IN ('admin','user')),
+  note TEXT DEFAULT '',
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS auth_sessions (
+  token TEXT PRIMARY KEY,
+  username TEXT NOT NULL,
+  created_at INTEGER NOT NULL,
+  expires_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_authsess_user ON auth_sessions(username);
+`;
 
 // 迁移钩子：key=目标版本号，value=(db)=>{...}。
 const MIGRATIONS = {
+  4: (db) => {
+    db.exec(USERS_DDL);
+  },
   3: (db) => {
     db.exec(`ALTER TABLE exam_attempts ADD COLUMN score_fill INTEGER DEFAULT 0`);
   },
@@ -209,6 +248,14 @@ function open(dbFile) {
   ensureMigrated(db, MIGRATIONS, CURRENT_SCHEMA_VERSION);
   const ins = db.prepare('INSERT OR IGNORE INTO settings(key, value) VALUES (?, ?)');
   for (const [k, v] of Object.entries(DEFAULT_SETTINGS)) ins.run(k, v);
+  // 播种默认管理员（仅当 users 表为空时），首次登录后应尽快修改密码
+  const userCount = db.prepare('SELECT COUNT(*) c FROM users').get().c;
+  if (userCount === 0) {
+    const { hashPassword } = require('./password');
+    const now = Date.now();
+    db.prepare('INSERT INTO users(username, password_hash, role, note, created_at, updated_at) VALUES (?,?,?,?,?,?)')
+      .run('admin', hashPassword('admin123'), 'admin', '默认管理员', now, now);
+  }
   return db;
 }
 

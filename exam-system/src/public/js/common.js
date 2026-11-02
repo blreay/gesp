@@ -48,3 +48,72 @@ window.App = (function () {
   }
   return { toast, beep, fmtCountdown, postJSON, getJSON, patchJSON };
 })();
+
+// ===== 顶部用户菜单：下拉、修改密码、退出登录 =====
+(function () {
+  const btn = document.getElementById('userMenuBtn');
+  if (!btn) return; // 登录页等无用户菜单的页面
+  const dd = document.getElementById('userDropdown');
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  });
+  document.addEventListener('click', () => dd.classList.remove('open'));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dd.classList.remove('open'); });
+
+  document.getElementById('udLogout').addEventListener('click', async () => {
+    try { await fetch('/api/auth/logout', { method: 'POST' }); } catch (e) { /* 忽略 */ }
+    location.href = '/login';
+  });
+
+  document.getElementById('udChangePw').addEventListener('click', () => {
+    dd.classList.remove('open');
+    openPwModal();
+  });
+
+  function openPwModal() {
+    if (document.getElementById('pwModalMask')) return;
+    const mask = document.createElement('div');
+    mask.className = 'modal-mask';
+    mask.id = 'pwModalMask';
+    mask.innerHTML =
+      '<div class="modal-card">' +
+      '  <h3>🔑 修改密码</h3>' +
+      '  <div class="login-field"><label>旧密码</label><input type="password" id="pwOld" autocomplete="current-password"></div>' +
+      '  <div class="login-field"><label>新密码（至少 6 位）</label><input type="password" id="pwNew" autocomplete="new-password"></div>' +
+      '  <div class="login-field"><label>确认新密码</label><input type="password" id="pwNew2" autocomplete="new-password"></div>' +
+      '  <div class="login-err" id="pwErr"></div>' +
+      '  <div class="modal-actions">' +
+      '    <button class="btn btn-ghost" id="pwCancel" type="button">取消</button>' +
+      '    <button class="btn btn-primary" id="pwOk" type="button">确认修改</button>' +
+      '  </div>' +
+      '</div>';
+    document.body.appendChild(mask);
+    const close = () => mask.remove();
+    mask.addEventListener('click', (e) => { if (e.target === mask) close(); });
+    document.getElementById('pwCancel').addEventListener('click', close);
+    document.getElementById('pwErr').textContent = '';
+    setTimeout(() => document.getElementById('pwOld').focus(), 50);
+
+    const submit = async () => {
+      const errEl = document.getElementById('pwErr');
+      const oldPassword = document.getElementById('pwOld').value;
+      const newPassword = document.getElementById('pwNew').value;
+      const newPassword2 = document.getElementById('pwNew2').value;
+      errEl.textContent = '';
+      if (!oldPassword || !newPassword) { errEl.textContent = '请填写完整'; return; }
+      if (newPassword.length < 6) { errEl.textContent = '新密码至少 6 位'; return; }
+      if (newPassword !== newPassword2) { errEl.textContent = '两次输入的新密码不一致'; return; }
+      try {
+        await App.postJSON('/api/auth/password', { oldPassword, newPassword });
+        close();
+        App.toast('密码已修改，其他设备的登录已失效');
+      } catch (e) {
+        errEl.textContent = e.message || '修改失败';
+      }
+    };
+    document.getElementById('pwOk').addEventListener('click', submit);
+    mask.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } });
+  }
+})();

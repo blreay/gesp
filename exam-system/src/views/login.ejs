@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录 · GESP 模拟考试系统</title>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="login-body">
+  <div class="login-card">
+    <div class="login-logo">🎓</div>
+    <h1>GESP 模拟考试系统</h1>
+    <p class="login-sub">请登录后继续</p>
+    <form id="loginForm" autocomplete="on">
+      <div class="login-field">
+        <label for="loginUser">用户名</label>
+        <input id="loginUser" name="username" type="text" autocomplete="username" autofocus required>
+      </div>
+      <div class="login-field">
+        <label for="loginPw">密码</label>
+        <input id="loginPw" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <div class="login-err" id="loginErr"></div>
+      <button class="btn btn-primary login-btn" id="loginBtn" type="submit">登 录</button>
+    </form>
+  </div>
+<script>
+(function () {
+  var NEXT = <%- JSON.stringify(next || '/') %>;
+  var form = document.getElementById('loginForm');
+  var err = document.getElementById('loginErr');
+  var btn = document.getElementById('loginBtn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    btn.disabled = true; btn.textContent = '登录中…';
+    fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: document.getElementById('loginUser').value,
+        password: document.getElementById('loginPw').value
+      })
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; });
+    }).then(function (res) {
+      if (res.ok) { location.href = NEXT || '/'; }
+      else {
+        err.textContent = res.d.error || '登录失败';
+        btn.disabled = false; btn.textContent = '登 录';
+      }
+    }).catch(function () {
+      err.textContent = '网络错误，请重试';
+      btn.disabled = false; btn.textContent = '登 录';
+    });
+  });
+})();
+</script>
+</body>
+</html>

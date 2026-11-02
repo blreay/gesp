@@ -12,10 +12,80 @@ const sessions = require('../services/examsessions');
 const examlog = require('../services/examlog');
 const aicontext = require('../services/aicontext');
 const aiparse = require('../services/aiparse');
+const auth = require('../services/auth');
 
 const BANK_DIR = path.join(__dirname, '..', '..', 'question_bank');
 const asyncH = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 function settingsObj() { return db.allSettings(); }
+const COOKIE_NAME = 'exam_sid';
+function sessionCookie(token, maxAgeSec) {
+  return COOKIE_NAME + '=' + token + '; Path=/; HttpOnly; SameSite=Lax; Max-Age=' + maxAgeSec;
+}
+const isAdmin = req => !!(req.user && req.user.role === 'admin');
+
+// ---- 认证 ----
+router.post('/auth/login', asyncH(async (req, res) => {
+  const { username, password } = req.body || {};
+  if (!username || !password) return res.status(400).json({ error: '请输入用户名和密码' });
+  const r = auth.login(username, password);
+  if (!r.ok) return res.status(401).json({ error: r.error });
+  res.setHeader('Set-Cookie', sessionCookie(r.token, Math.floor(auth.SESSION_TTL_MS / 1000)));
+  res.json({ ok: true, username: r.user.username, role: r.user.role });
+}));
+
+router.post('/auth/logout', asyncH(async (req, res) => {
+  auth.destroySession(req.sessionToken);
+  res.setHeader('Set-Cookie', sessionCookie('', 0));
+  res.json({ ok: true });
+}));
+
+router.get('/auth/me', asyncH(async (req, res) => {
+  res.json({ username: req.user.username, role: req.user.role, note: req.user.note });
+}));
+
+// 本人修改密码（需旧密码）
+router.post('/auth/password', asyncH(async (req, res) => {
+  const { oldPassword, newPassword } = req.body || {};
+  const r = auth.changePassword(req.user.username, oldPassword, newPassword, req.sessionToken);
+  if (!r.ok) return res.status(400).json({ error: r.error });
+  res.json({ ok: true });
+}));
+
+// ---- 用户管理（仅管理员，app.js 已做角色门禁）----
+router.get('/users', asyncH(async (req, res) => {
+  res.json({ users: auth.listUsers() });
+}));
+
+router.post('/users', asyncH(async (req, res) => {
+  const b = req.body || {};
+  try {
+    const user = auth.createUser({ username: b.username, password: b.password, role: b.role, note: b.note });
+    res.json({ ok: true, user });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}));
+
+router.patch('/users/:id', asyncH(async (req, res) => {
+  if (!Number.isInteger(Number(req.params.id))) return res.status(400).json({ error: '非法的 ID' });
+  const b = req.body || {};
+  try {
+    const user = auth.updateUser(Number(req.params.id), { password: b.password, role: b.role, note: b.note }, req.user.username);
+    res.json({ ok: true, user });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}));
+
+router.delete('/users/:id', asyncH(async (req, res) => {
+  if (!Number.isInteger(Number(req.params.id))) return res.status(400).json({ error: '非法的 ID' });
+  try {
+    auth.deleteUser(Number(req.params.id), req.user.username);
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
+}));
 
 // ---- 试卷列表（供自动化代理按标题检索试卷）----
 router.get('/exams', asyncH(async (req, res) => {
@@ -188,9 +258,12 @@ router.post('/review/sessions', asyncH(async (req, res) => {
     let type = 'unknown', correctAnswer = null;
     if (q) {
       type = q.type;
-      if (q.type === 'choice') correctAnswer = q.answer;
-      else if (q.type === 'tf') correctAnswer = String(q.answer);
-      else if (q.type === 'fill') correctAnswer = Array.isArray(q.answer) ? q.answer.join(' 或 ') : String(q.answer);
+      // 普通用户不下发正确答案（判卷/练习页面均不显示）
+      if (isAdmin(req)) {
+        if (q.type === 'choice') correctAnswer = q.answer;
+        else if (q.type === 'tf') correctAnswer = String(q.answer);
+        else if (q.type === 'fill') correctAnswer = Array.isArray(q.answer) ? q.answer.join(' 或 ') : String(q.answer);
+      }
     }
     return { wrongId: w.id, examId: w.exam_id, questionId: w.question_id, type, level: w.level, correctAnswer };
   });

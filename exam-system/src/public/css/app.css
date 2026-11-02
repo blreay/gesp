@@ -433,3 +433,44 @@ body { background: var(--neutral-25); }
   border-radius: var(--r-md); font-size: 13px; font-family: inherit; resize: vertical; }
 .set-row select { padding: 8px 12px; border: 1px solid var(--neutral-100); border-radius: var(--r-md);
   font-size: 14px; background: #fff; min-height: 38px; }
+
+/* ===== 登录页 ===== */
+.login-body { display: flex; align-items: center; justify-content: center;
+  min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 16px; }
+.login-card { background: #fff; border-radius: 14px; box-shadow: 0 16px 48px rgba(0,0,0,.25);
+  padding: 36px 32px; width: min(380px, 100%); }
+.login-logo { font-size: 42px; text-align: center; }
+.login-card h1 { font-size: 20px; text-align: center; margin: 8px 0 4px; color: var(--neutral-800, #2c3e50); }
+.login-sub { text-align: center; color: #888; font-size: 13px; margin-bottom: 22px; }
+.login-field { margin-bottom: 14px; }
+.login-field label { display: block; font-size: 13px; color: #555; margin-bottom: 5px; }
+.login-field input, .login-field select { width: 100%; padding: 10px 12px; border: 1px solid #ccc;
+  border-radius: 8px; font-size: 14px; box-sizing: border-box; background: #fff; }
+.login-field input:focus, .login-field select:focus { outline: none; border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102,126,234,.15); }
+.login-err { color: #c0392b; font-size: 13px; min-height: 18px; margin-bottom: 6px; }
+.login-btn { width: 100%; padding: 11px; font-size: 15px; }
+
+/* ===== 用户管理（系统配置页）===== */
+.user-mgmt-tip { font-size: 13px; color: #888; margin: 4px 0 12px; }
+.user-table td, .user-table th { vertical-align: middle; }
+.user-note-cell { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.user-ops { white-space: nowrap; }
+.user-ops .btn { margin-right: 6px; }
+.user-loading { color: #888; text-align: center; }
+.user-add-title { margin: 16px 0 8px; font-size: 14px; color: #444; }
+.user-add-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.user-add-row input[type="text"], .user-add-row input[type="password"] {
+  padding: 8px 12px; border: 1px solid #d5dde5; border-radius: 8px; font-size: 14px; min-height: 38px; }
+.user-add-row input#nuUsername { width: 180px; }
+.user-add-row input#nuPassword { width: 160px; }
+.user-add-row input#nuNote { flex: 1; min-width: 160px; }
+.user-add-row select { padding: 8px 12px; border: 1px solid #d5dde5; border-radius: 8px;
+  font-size: 14px; background: #fff; min-height: 38px; }
+.btn-xs { font-size: 12px; padding: 4px 10px; min-height: 28px; }
+/* 淡红删除按钮仅用于用户管理表格，不覆盖全局 .btn-danger（判卷/交卷等保持红底白字） */
+.user-ops .btn-danger { background: transparent; color: #c0392b; border: 1px solid #f0c4bd; box-shadow: none; }
+.user-ops .btn-danger:hover { background: #fdecea; border-color: #e6b0aa; transform: none; box-shadow: none; }
+.user-ops .btn-danger:disabled { opacity: .45; cursor: not-allowed; }
+.settings-card .role-badge.role-admin { background: #fff5d6; color: #b8860b; }
+.settings-card .role-badge.role-user { background: #eef2f6; color: #555; }

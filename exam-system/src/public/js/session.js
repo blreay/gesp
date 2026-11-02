@@ -43,8 +43,11 @@
             if (tag) {
               try {
                 const alts = JSON.parse(q.dataset.answer || '[]');
-                tag.textContent = '✅ 正确答案：' + alts.join(' 或 ');
-                tag.style.display = '';
+                // 普通用户无 data-answer（服务端已剥离），只显示对错不显示正确答案
+                if (alts.length) {
+                  tag.textContent = '✅ 正确答案：' + alts.join(' 或 ');
+                  tag.style.display = '';
+                }
               } catch (e) { /* data-answer 异常时不展示 */ }
             }
           }

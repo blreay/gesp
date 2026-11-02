@@ -267,7 +267,8 @@
       if (!item.correct && item.type !== 'programming') {
         const tag = q.querySelector('.correct-answer-tag');
         const qData = findQuestion(item.qid);
-        if (tag && qData) {
+        // 普通用户卷面数据不含 answer（服务端已剥离），只显示对错不显示正确答案
+        if (tag && qData && qData.answer !== undefined && qData.answer !== null) {
           tag.style.display = '';
           if (item.type === 'choice') {
             const optText = qData.options[qData.answer] || '';
@@ -322,16 +323,17 @@
     const typeLabel = q.type === 'choice' ? '单选题' : q.type === 'fill' ? '填空题' : '判断题';
     const lines = ['【' + EXAM.exam.title + ' · ' + typeLabel + '】'];
     q.stem.split('\n').forEach(l => lines.push(l));
+    const hasAns = q.answer !== undefined && q.answer !== null; // 普通用户卷面无 answer
     if (q.type === 'choice') {
       for (const [k, v] of Object.entries(q.options)) lines.push(k + '. ' + v);
       lines.push('我的答案：' + (answers[qid] || '未作答') + ' ✗');
-      lines.push('正确答案：' + q.answer + ' ✓');
+      if (hasAns) lines.push('正确答案：' + q.answer + ' ✓');
     } else if (q.type === 'fill') {
       lines.push('我的答案：' + (answers[qid] || '未作答') + ' ✗');
-      lines.push('正确答案：' + (Array.isArray(q.answer) ? q.answer.join(' 或 ') : q.answer) + ' ✓');
+      if (hasAns) lines.push('正确答案：' + (Array.isArray(q.answer) ? q.answer.join(' 或 ') : q.answer) + ' ✓');
     } else {
       lines.push('我的答案：' + (answers[qid] === 'true' ? '正确 ✔' : answers[qid] === 'false' ? '错误 ✘' : '未作答') + ' ✗');
-      lines.push('正确答案：' + (q.answer ? '正确 ✔' : '错误 ✘') + ' ✓');
+      if (hasAns) lines.push('正确答案：' + (q.answer ? '正确 ✔' : '错误 ✘') + ' ✓');
     }
     if (q.explanation) lines.push('解析：' + q.explanation);
     const text = lines.join('\n');

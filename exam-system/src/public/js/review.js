@@ -372,5 +372,6 @@
     try { await App.postJSON('/api/ai-parse/abort', {}); } catch (e) {}
     pollAiParse();
   });
-  pollAiParse();
+  // AI 解析为管理员功能，普通用户不轮询（接口也会 403）
+  if (window.USER && window.USER.role === 'admin') pollAiParse();
 })();

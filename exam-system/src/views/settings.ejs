@@ -5,6 +5,26 @@
   <div class="page-head"><h1>⚙️ 系统配置</h1></div>
 
   <div class="settings-card">
+    <h3>👥 用户管理</h3>
+    <p class="user-mgmt-tip">管理员可见系统配置、判卷后显示正确答案与题解；普通用户判卷后只显示对错，不显示正确答案。</p>
+    <table class="mini-table user-table">
+      <thead><tr><th>ID</th><th>用户名</th><th>角色</th><th>备注</th><th>创建时间</th><th>操作</th></tr></thead>
+      <tbody id="userTbody"><tr><td colspan="6" class="user-loading">加载中…</td></tr></tbody>
+    </table>
+    <h4 class="user-add-title">添加用户</h4>
+    <div class="user-add-row">
+      <input type="text" id="nuUsername" placeholder="用户名（2-32 字符）" maxlength="32" autocomplete="off">
+      <input type="password" id="nuPassword" placeholder="密码（至少 6 位）" autocomplete="new-password">
+      <select id="nuRole">
+        <option value="user">普通用户</option>
+        <option value="admin">管理员</option>
+      </select>
+      <input type="text" id="nuNote" placeholder="备注（可选）" maxlength="100">
+      <button class="btn btn-primary" id="btnAddUser">＋ 添加</button>
+    </div>
+  </div>
+
+  <div class="settings-card">
     <h3>考试与倒计时</h3>
     <div class="set-row"><label>默认考试时长（分钟，试卷未指定时使用）</label>
       <input type="number" id="default_duration_minutes" value="<%= settings.default_duration_minutes %>" min="1"></div>

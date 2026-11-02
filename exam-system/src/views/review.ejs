@@ -68,7 +68,7 @@
       </div>
       <div class="wc-actions">
         <button class="btn btn-ghost btn-note">添加备注</button>
-        <button class="btn btn-ghost btn-ai">AI解析</button>
+        <% if (typeof user !== 'undefined' && user && user.role === 'admin') { %><button class="btn btn-ghost btn-ai">AI解析</button><% } %>
         <% if (w.status === 'active') { %><button class="btn btn-ghost btn-master">标记掌握</button><% } %>
         <button class="btn btn-ghost btn-del">删除</button>
       </div>

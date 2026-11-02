@@ -15,12 +15,18 @@ async function setup() {
   const db = require('../src/services/db');
   db.init(path.join(dir, 't.db'));
   require('../src/services/questionbank').scan(bank);
-  const { server, base } = await startApp();
+  const { server, base, cookie } = await startApp();
+  COOKIE = cookie;
   return { dir, bank, db, server, base };
 }
+// 全站启用登录后，测试统一携带管理员会话 cookie
+let COOKIE = '';
+const authFetch = (url, opts) => fetch(url, Object.assign({}, opts, {
+  headers: Object.assign({}, opts && opts.headers, COOKIE ? { Cookie: COOKIE } : {})
+}));
 const post = (base, url, body) =>
-  fetch(base + url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) }).then(r => r.json().then(d => ({ status: r.status, body: d })));
-const get = (base, url) => fetch(base + url).then(r => r.json().then(d => ({ status: r.status, body: d })));
+  authFetch(base + url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) }).then(r => r.json().then(d => ({ status: r.status, body: d })));
+const get = (base, url) => authFetch(base + url).then(r => r.json().then(d => ({ status: r.status, body: d })));
 
 test('api 考试流: start → 存答案 → 判卷（未答题列出、只计已答）', async () => {
   const { dir, bank, db, server, base } = await setup();
@@ -138,14 +144,14 @@ test('api 错题管理: 备注、手动掌握、删除', async () => {
   wb.recordWrong('test_paper_01', 'q1', Date.now());
   const id = wb.getByQuestion('test_paper_01', 'q1').id;
 
-  let r = await fetch(base + '/api/wrong/' + id, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ note: '笔记内容', note_knowledge: '循环' }) });
+  let r = await authFetch(base + '/api/wrong/' + id, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ note: '笔记内容', note_knowledge: '循环' }) });
   assert.strictEqual(r.status, 200);
   assert.strictEqual(wb.get(id).note, '笔记内容');
 
-  r = await fetch(base + '/api/wrong/' + id, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'mastered' }) });
+  r = await authFetch(base + '/api/wrong/' + id, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'mastered' }) });
   assert.strictEqual(wb.get(id).status, 'mastered');
 
-  r = await fetch(base + '/api/wrong/' + id, { method: 'DELETE' });
+  r = await authFetch(base + '/api/wrong/' + id, { method: 'DELETE' });
   assert.strictEqual(r.status, 200);
   assert.strictEqual(wb.get(id), null);
   server.close(); db.close(); rmrf(dir); rmrf(bank);
@@ -339,7 +345,7 @@ test('api exam-log: 统计页包含考试日志区', async () => {
   await post(base, '/api/exams/test_paper_01/start');
   await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
   await post(base, '/api/attempts/1/grade', {});
-  const r = await fetch(base + '/stats');
+  const r = await authFetch(base + '/stats');
   const html = await r.text();
   assert.strictEqual(r.status, 200);
   assert.ok(html.includes('每日模拟考试日志'));
@@ -412,12 +418,13 @@ test('考试页和错题页: 多行选择题选项保留代码排版并转义 HT
   db.init(path.join(dir, 't.db'));
   require('../src/services/questionbank').scan(bank);
   require('../src/services/wrongbook').recordWrong('test_paper_01', 'q1', Date.now());
-  const { server, base } = await startApp();
+  const { server, base, cookie } = await startApp();
+  COOKIE = cookie;
   try {
     const session = await post(base, '/api/review/sessions', { filter: { status: 'active' } });
     assert.strictEqual(session.status, 200);
     for (const route of ['/exam/test_paper_01', `/review/session/${session.body.sessionId}`]) {
-      const res = await fetch(base + route);
+      const res = await authFetch(base + route);
       const html = await res.text();
       assert.strictEqual(res.status, 200);
       assert.ok(html.includes('<div class="opt-text">A. <pre>if (x &lt; 2) cout &lt;&lt; x;'), route);
@@ -443,9 +450,10 @@ test('review 页: 题干代码块用 <pre> 完整渲染（不再被摘要截掉�
   db.init(path.join(dir, 't.db'));
   require('../src/services/questionbank').scan(bank);
   require('../src/services/wrongbook').recordWrong('test_paper_01', 'q1', Date.now());
-  const { server, base } = await startApp();
+  const { server, base, cookie } = await startApp();
+  COOKIE = cookie;
   try {
-    const r = await fetch(base + '/review');
+    const r = await authFetch(base + '/review');
     const html = await r.text();
     assert.strictEqual(r.status, 200);
     assert.ok(html.includes('以下代码输出什么？'), '题干首行应在');
@@ -469,7 +477,8 @@ async function setupFill() {
   const db = require('../src/services/db');
   db.init(path.join(dir, 't.db'));
   require('../src/services/questionbank').scan(bank);
-  const { server, base } = await startApp();
+  const { server, base, cookie } = await startApp();
+  COOKIE = cookie;
   return { dir, bank, db, server, base };
 }
 
@@ -505,7 +514,7 @@ test('api 填空题流: 存答案 → 预览 → 判卷 → score_fill 落库；
   assert.strictEqual(row.total_score, 2);
 
   // 考试页应渲染填空输入框
-  const res = await fetch(base + '/exam/test_fill_01');
+  const res = await authFetch(base + '/exam/test_fill_01');
   const html = await res.text();
   assert.ok(html.includes('data-type="fill"'));
   assert.ok(html.includes('class="fill-input"'));
@@ -533,7 +542,7 @@ test('api 填空题判卷: 答错入错题本；复习会话重做判对后降�
   const sid = r.body.sessionId, wid = r.body.items[0].wrongId;
 
   // 练习页应渲染填空输入框（带可接受答案，用于判分后展示）
-  const res = await fetch(base + `/review/session/${sid}`);
+  const res = await authFetch(base + `/review/session/${sid}`);
   const html = await res.text();
   assert.ok(html.includes('data-type="fill"'));
   assert.ok(html.includes('class="fill-input"'));
@@ -547,7 +556,7 @@ test('api 填空题判卷: 答错入错题本；复习会话重做判对后降�
   assert.ok(r.body.results[0].newLevel < 2 || r.body.results[0].newStatus === 'mastered');
 
   // 复习页错题卡片应显示"填空"徽标
-  const rv = await fetch(base + '/review?type=fill');
+  const rv = await authFetch(base + '/review?type=fill');
   const rvHtml = await rv.text();
   assert.ok(rvHtml.includes('填空'));
 
