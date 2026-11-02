@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS exam_attempts (
   auto_submitted INTEGER DEFAULT 0,
   score_choice INTEGER DEFAULT 0,
   score_tf INTEGER DEFAULT 0,
+  score_fill INTEGER DEFAULT 0,
   score_prog INTEGER DEFAULT 0,
   total_score INTEGER DEFAULT 0
 );
@@ -121,11 +122,14 @@ const DEFAULT_SETTINGS = {
   ai_parse_concurrency: '4'
 };
 
-// 数据库结构版本号。版本2：新增 exam_log 表。
-const CURRENT_SCHEMA_VERSION = 2;
+// 数据库结构版本号。版本2：新增 exam_log 表。版本3：exam_attempts 新增 score_fill 列（填空题得分）。
+const CURRENT_SCHEMA_VERSION = 3;
 
 // 迁移钩子：key=目标版本号，value=(db)=>{...}。
 const MIGRATIONS = {
+  3: (db) => {
+    db.exec(`ALTER TABLE exam_attempts ADD COLUMN score_fill INTEGER DEFAULT 0`);
+  },
   2: (db) => {
     db.exec(`CREATE TABLE IF NOT EXISTS exam_log (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

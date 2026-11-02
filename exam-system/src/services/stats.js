@@ -77,7 +77,7 @@ function knowledgeAccuracy() {
 function typeBreakdown() {
   const d = db.get();
   const attempts = d.prepare("SELECT * FROM exam_attempts WHERE status = 'graded'").all();
-  const stat = { choice: { total: 0, correct: 0 }, tf: { total: 0, correct: 0 }, programming: { total: 0, correct: 0 } };
+  const stat = { choice: { total: 0, correct: 0 }, tf: { total: 0, correct: 0 }, fill: { total: 0, correct: 0 }, programming: { total: 0, correct: 0 } };
   for (const att of attempts) {
     const exam = questionbank.getExam(att.exam_id);
     if (!exam) continue;

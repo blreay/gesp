@@ -68,3 +68,54 @@ test('normalizeTf 边界', () => {
   assert.strictEqual(g.normalizeTf(undefined), null);
   assert.strictEqual(g.normalizeTf('x'), null);
 });
+
+function fillFixtureExam() {
+  return JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'bank', '测试分类', '填空测试卷.exam.json'), 'utf8'));
+}
+
+test('normalizeFill/matchFill: 归一化、多可接受答案与大小写敏感', () => {
+  const g = require('../src/services/grading');
+  // 去首尾空白、折叠连续空白、全角→半角
+  assert.strictEqual(g.normalizeFill('  E5  '), 'E5');
+  assert.strictEqual(g.normalizeFill('2,   1'), '2, 1');
+  assert.strictEqual(g.normalizeFill('Ｅ５'), 'E5');
+  assert.strictEqual(g.normalizeFill('２，１'), '2,1');
+  // 单个字符串答案
+  assert.strictEqual(g.matchFill('1101', '1101'), true);
+  assert.strictEqual(g.matchFill(' 1101 ', '1101'), true);
+  assert.strictEqual(g.matchFill('1102', '1101'), false);
+  // 可接受答案数组
+  assert.strictEqual(g.matchFill('e5', ['E5', 'e5']), true);
+  assert.strictEqual(g.matchFill('E6', ['E5', 'e5']), false);
+  // 大小写敏感：answer 未列小写变体时不匹配
+  assert.strictEqual(g.matchFill('e5', 'E5'), false);
+  // 空/纯空白一律不判对
+  assert.strictEqual(g.matchFill('', 'x'), false);
+  assert.strictEqual(g.matchFill('   ', 'x'), false);
+  assert.strictEqual(g.matchFill('　', ['x']), false);
+});
+
+test('gradeObjective: 填空题按 fill 桶计分，空串视为未答', () => {
+  const g = require('../src/services/grading');
+  const r = g.gradeObjective(fillFixtureExam(), { f1: '1101', f2: ' ｅ５ ', f3: '' });
+  assert.strictEqual(r.fillScore, 2);
+  assert.strictEqual(r.fillFull, 3);
+  assert.strictEqual(r.choiceScore, 0);
+  assert.strictEqual(r.tfScore, 0);
+  assert.deepStrictEqual(r.unanswered, ['f3']);
+  assert.ok(r.results.find(x => x.qid === 'f2').correct);
+  assert.ok(r.results.find(x => x.qid === 'f3').skipped);
+});
+
+test('gradeAttempt: 填空题计入总分', () => {
+  const g = require('../src/services/grading');
+  const r = g.gradeAttempt(fillFixtureExam(), { f1: '1101', f2: 'E5', f3: '2,1' }, {});
+  assert.strictEqual(r.fill, 3);
+  assert.strictEqual(r.fillFull, 3);
+  assert.strictEqual(r.total, 3);
+  assert.strictEqual(r.full, 3);
+  const r2 = g.gradeAttempt(fillFixtureExam(), { f1: '0000' }, {});
+  assert.strictEqual(r2.fill, 0);
+  assert.strictEqual(r2.total, 0);
+  assert.deepStrictEqual(r2.unanswered, ['f2', 'f3']);
+});

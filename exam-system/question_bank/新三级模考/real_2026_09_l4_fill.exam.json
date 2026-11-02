@@ -1,0 +1,725 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l4_real_2026_09_fill",
+    "title": "2026 年 09 月 GESP C++ 四级真题（填空改造卷）",
+    "subtitle": "客观题全部改造为 50 个填空（每题 1 分），杜绝蒙猜；编程题与 2026 年 9 月四级真题原卷一致",
+    "total_score": 100,
+    "tags": [
+      "2026年09月真题",
+      "GESP四级",
+      "填空改造",
+      "指针",
+      "排序",
+      "递推",
+      "文件操作",
+      "异常处理"
+    ],
+    "prog_brief": "新汉诺塔 · 有序网格"
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "指针与解引用"
+          ],
+          "stem": "执行下面程序后，count 的值是 ____。\n```\nint count = 8;\nint *p = &count;\n*p += 4;\n```",
+          "answer": "12",
+          "explanation": "p 指向 count，*p += 4 等价于 count += 4，8 + 4 = 12。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "指针与解引用"
+          ],
+          "stem": "在上面的程序后继续执行 cout << count << \" \" << *p;，输出结果是 ____（两个数用一个空格隔开）。",
+          "answer": "12 12",
+          "explanation": "*p 和 count 是同一个存储单元的两种访问方式，都是 12。（原卷单选第 1 题，答案 C）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "const指针"
+          ],
+          "stem": "声明 int a = 10; int b = 20; const int *p = &a; 后，执行 *p = 20; 是 ____ 的（填：合法 / 非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "不允许",
+            "错误"
+          ],
+          "explanation": "const int *p 表示不能通过 p 修改所指向的值。（原卷单选第 2 题）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "const指针"
+          ],
+          "stem": "声明 int a = 10; int b = 20; const int *p = &a; 后，执行 p = &b; 是 ____ 的（填：合法 / 非法）。",
+          "answer": [
+            "合法",
+            "允许",
+            "正确"
+          ],
+          "explanation": "const 修饰的是所指向的 int 而非指针本身，p 的指向可以改变。（原卷单选第 2 题，答案 B）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "二维数组与指针"
+          ],
+          "stem": "执行下面代码后，变量 x 的值是 ____。\n```\nint goods[3][4] = {{2, 4, 6, 8}, {10, 12, 14, 16}, {18, 20, 22, 24}};\nint (*p)[4] = goods;\nint x = *(*(p + 1) + 2);\n```",
+          "answer": "14",
+          "explanation": "p + 1 指向第 1 行（下标从 0 起），再 + 2 取该行第 2 列，即 goods[1][2] = 14。（原卷单选第 3 题，答案 B）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "二维数组与指针"
+          ],
+          "stem": "上面的代码中，*(*(p + 1) + 2) 等价的数组元素是 ____（写成 goods[i][j] 的形式）。",
+          "answer": [
+            "goods[1][2]",
+            "goods[1] [2]"
+          ],
+          "explanation": "int (*p)[4] 是\"指向含 4 个 int 的一整行\"的指针，p+1 跨一行，+2 跨两列。"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "二维数组形参"
+          ],
+          "stem": "下面的函数把一个 3 行 5 列二维数组的第 r 行元素全部加 1，横线处正确的形参写法是 ____（写成 int arr[][3] 这种形式）。\n```\nvoid addOne(________, int r) {\n    for (int j = 0; j < 5; j++) {\n        arr[r][j]++;\n    }\n}\n```",
+          "answer": [
+            "int arr[][5]",
+            "arr[][5]",
+            "int arr[ ][5]"
+          ],
+          "explanation": "二维数组作形参必须指明第二维（列数）；int **arr 与二维数组内存布局不兼容，int arr[][] 和 int arr[5][] 都不合法。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "二维数组形参"
+          ],
+          "stem": "二维数组作为函数形参时（如 int arr[][5]），可以省略长度的是第 ____ 维（填：一 / 二）。",
+          "answer": [
+            "第一",
+            "1",
+            "一",
+            "first"
+          ],
+          "explanation": "行数可省略；列数必须给出，否则编译器无法计算元素地址。"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "引用传参",
+            "作用域"
+          ],
+          "stem": "执行下面程序后，main 中局部变量 score 的值是 ____。\n```\nint score = 60;\n\nvoid update(int &score) {\n    score += 5;\n}\n\nint main() {\n    int score = 80;\n    update(score);\n    cout << score << \" \" << ::score;\n    return 0;\n}\n```",
+          "answer": "85",
+          "explanation": "update 的形参是引用，直接把 main 的局部 score 从 80 加到 85。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "引用传参",
+            "作用域"
+          ],
+          "stem": "上面程序中 cout << score << \" \" << ::score; 的输出结果是 ____（两个数用一个空格隔开）。",
+          "answer": "85 60",
+          "explanation": "::score 指全局变量 score（60），update 修改的是传入的局部变量，全局不受影响。（原卷单选第 5 题，答案 A）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "结构体",
+            "值传递与引用传递"
+          ],
+          "stem": "下面程序中，reset(Device d) 的参数传递方式是 ____ 传递（填：值 / 引用）。\n```\nstruct Device {\n    int id;\n    int state;\n};\n\nvoid reset(Device d) {\n    d.state = 0;\n}\n\nvoid start(Device &d) {\n    d.state += 1;\n}\n\nint main() {\n    Device d{7, 2};\n    reset(d);\n    start(d);\n    cout << d.id << \" \" << d.state;\n    return 0;\n}\n```",
+          "answer": [
+            "值",
+            "值传递"
+          ],
+          "explanation": "reset 形参是副本，d.state = 0 不影响原对象。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "结构体",
+            "值传递与引用传递"
+          ],
+          "stem": "上面程序的输出结果是 ____（两个数用一个空格隔开）。",
+          "answer": "7 3",
+          "explanation": "reset 值传递无效；start 引用传递使 state 从 2 加到 3；id 一直是 7。（原卷单选第 6 题，答案 D）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "结构体指针"
+          ],
+          "stem": "下面代码中，books + 1 指向数组 books 中下标为 ____ 的元素。\n```\nstruct Book {\n    string name;\n    int pages;\n};\n\nBook books[2] = {{\"C++\", 120}, {\"Math\", 150}};\nBook *p = books + 1;\np->pages += 10;\n```",
+          "answer": [
+            "1",
+            "一"
+          ],
+          "explanation": "指针加 1 移动到下一个元素，即 books[1]。（原卷单选第 7 题）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "结构体指针"
+          ],
+          "stem": "执行上面代码后，cout << books[1].name << \" \" << books[1].pages; 输出的结果是 ____（格式：名字 空格 页数）。",
+          "answer": "Math 160",
+          "explanation": "p 指向 books[1]（Math, 150），p->pages += 10 使页数变为 160。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "基础排序"
+          ],
+          "stem": "冒泡排序、插入排序、选择排序的最坏时间复杂度都是 O(____)（写成含 n 的式子，如 n^3）。",
+          "answer": [
+            "n²",
+            "n^2",
+            "n2",
+            "n*n",
+            "n的平方",
+            "n平方"
+          ],
+          "explanation": "三种排序最坏情况下都是双层循环，O(n²)。（原卷单选第 8 题 A 肢说 O(n) 是错误的）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "基础排序"
+          ],
+          "stem": "插入排序每轮将一个待排序元素插入到前面已经 ____ 的序列中的正确位置。",
+          "answer": [
+            "有序",
+            "排好序",
+            "排好顺序"
+          ],
+          "explanation": "插入排序维护一个有序前缀，把新元素插入其中。（原卷单选第 8 题，答案 C）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "动态规划",
+            "递推"
+          ],
+          "stem": "下面的函数计算机器人每次向前移动 1 格或 2 格、到达第 n 格的方法数：\n```\nint ways(int n) {\n    if (n <= 2)\n        return n;\n    int a = 1, b = 2, c = 0;\n    for (int i = 3; i <= n; i++) {\n        c = a + b;\n        a = b;\n        b = c;\n    }\n    return b;\n}\n```\nways(4) 的返回值是 ____。",
+          "answer": "5",
+          "explanation": "ways 序列：1, 2, 3, 5, 8, 13…（斐波那契式递推），ways(4) = 5。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "动态规划",
+            "递推"
+          ],
+          "stem": "上面的函数中，ways(6) 的返回值是 ____。",
+          "answer": "13",
+          "explanation": "ways(5) = 8，ways(6) = ways(5) + ways(4) = 8 + 5 = 13。（原卷单选第 9 题，答案 C）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "排序稳定性"
+          ],
+          "stem": "按成绩升序排序前：(90, 'A'), (80, 'B'), (90, 'C'), (80, 'D')；排序后：(80, 'B'), (80, 'D'), (90, 'C'), (90, 'A')。该排序是 ____ 的（填：稳定 / 不稳定）。",
+          "answer": "不稳定",
+          "explanation": "成绩相同的记录相对顺序发生了改变，说明排序不稳定。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "排序稳定性"
+          ],
+          "stem": "上面判断的依据是：成绩为 ____ 的两条记录，排序前后的相对顺序发生了改变。",
+          "answer": [
+            "90",
+            "90分",
+            "90 分"
+          ],
+          "explanation": "(90,'A') 原来在 (90,'C') 之前，排序后 (90,'C') 跑到了 (90,'A') 之前。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "插入排序"
+          ],
+          "stem": "下面的插入排序把数组按升序排列：\n```\nvoid insertionSort(int a[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = a[i];\n        int j = i - 1;\n        while (j >= 0 && __________) {\n            a[j + 1] = a[j];\n            j--;\n        }\n        a[j + 1] = key;\n    }\n}\n```\nwhile 循环中 a[j + 1] = a[j]; 的作用是：条件成立时把 a[j] 向 ____ 移动一个位置。",
+          "answer": [
+            "右",
+            "右边",
+            "右侧",
+            "后",
+            "后面"
+          ],
+          "explanation": "比 key 大的元素逐个后移，为 key 腾出插入位置。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "插入排序"
+          ],
+          "stem": "上面插入排序代码中，横线处应填写的条件是 a[j] ____ key（填比较运算符）。",
+          "answer": [
+            ">",
+            "大于"
+          ],
+          "explanation": "只有 a[j] > key 才需要把 a[j] 后移；a[j] < key 或相等时停止。（原卷单选第 11 题，答案 B）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度"
+          ],
+          "stem": "下面函数的时间复杂度是 O(____)（写成含 n 的式子，如 n^3）。\n```\nint countPairs(int a[], int n) {\n    int cnt = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = i + 1; j < n; j++) {\n            if (a[i] + a[j] == 100) {\n                cnt++;\n            }\n        }\n    }\n    return cnt;\n}\n```",
+          "answer": [
+            "n²",
+            "n^2",
+            "n2",
+            "n*n",
+            "n的平方",
+            "n平方"
+          ],
+          "explanation": "双层循环共遍历约 n(n−1)/2 个下标对，O(n²)。（原卷单选第 12 题，答案 D）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度"
+          ],
+          "stem": "当 n = 6 时，上面 countPairs 函数内层循环的 if 语句一共执行 ____ 次。",
+          "answer": "15",
+          "explanation": "i < j 的下标对共 C(6,2) = 6×5/2 = 15 个。"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "文件输入输出"
+          ],
+          "stem": "文件 data.txt 的内容为一行 \"Blue Sky\"。执行下面程序后，字符串 a 的值是 ____。\n```\nifstream fin(\"data.txt\");\nstring a, b;\nfin >> a >> b;\n```",
+          "answer": "Blue",
+          "explanation": ">> 按空白分割读取，a 读到第一个单词 Blue，b 读到 Sky。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "文件输入输出"
+          ],
+          "stem": "上面程序继续执行 cout << b << \"-\" << a; 后，输出结果是 ____。",
+          "answer": "Sky-Blue",
+          "explanation": "b = \"Sky\"、a = \"Blue\"，输出 b-a 即 Sky-Blue。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "下面程序中 throw age 抛出的异常类型是 ____。\n```\nint main() {\n    try {\n        int age = -1;\n        if (age < 0)\n            throw age;\n        cout << \"A\";\n    } catch (const char *msg) {\n        cout << \"B\";\n    } catch (int value) {\n        cout << \"C\" << value;\n    }\n    return 0;\n}\n```",
+          "answer": [
+            "int",
+            "整型",
+            "int 型",
+            "int型"
+          ],
+          "explanation": "age 是 int 变量，throw age 抛出 int 类型异常。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "上面程序的输出结果是 ____（按屏幕原样输出，例如 A、B 或 C5）。",
+          "answer": "C-1",
+          "explanation": "throw 后跳过 cout << \"A\"；catch (int value) 匹配成功，输出 \"C\" 和 value = −1，即 C-1。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序"
+          ],
+          "stem": "下面的冒泡排序希望在数组已经有序时提前结束：\n```\nvoid bubbleSort(int a[], int n) {\n    for (int i = n - 1; i > 0; i--) {\n        bool changed = __________;\n        for (int j = 0; j < i; j++) {\n            if (a[j] > a[j + 1]) {\n                int t = a[j]; a[j] = a[j + 1]; a[j + 1] = t;\n                changed = __________;\n            }\n        }\n        if (!changed)\n            break;\n    }\n}\n```\n第一处横线 bool changed = ____; 应填的初始值是 ____。",
+          "answer": "false",
+          "explanation": "每轮开始先假设没有发生交换。（原卷单选第 15 题，答案 A：false，true）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序"
+          ],
+          "stem": "上面冒泡排序代码中，一旦发生了两个元素的交换，changed = ____; 应被赋值为 ____。",
+          "answer": "true",
+          "explanation": "发生交换说明本轮数组可能仍无序，置 true 让下一轮继续；整轮无交换才 break。"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "指针与解引用"
+          ],
+          "stem": "执行 int a = 10; int *p = &a; *p += 5; 后，a 的值是 ____。",
+          "answer": "15",
+          "explanation": "*p 就是 a 本身，*p += 5 即 a += 5。（原判断题答案为\"正确\"）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "指针与解引用"
+          ],
+          "stem": "语句 int *p = &a; 是把变量 a 的 ____ 存放到指针 p 中。",
+          "answer": [
+            "地址",
+            "内存地址"
+          ],
+          "explanation": "指针保存的是地址；解引用 *p 才能访问该地址上的值。"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "函数声明与定义"
+          ],
+          "stem": "C++ 中，调用一个函数之前，必须有该函数可见的函数 ____（填：声明 / 定义）。",
+          "answer": [
+            "声明",
+            "函数声明",
+            "原型",
+            "函数原型"
+          ],
+          "explanation": "调用前只需要声明（函数原型），让编译器知道签名即可。"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "函数声明与定义"
+          ],
+          "stem": "函数的 ____ 可以出现在调用点之后，链接时才被真正用到（填：声明 / 定义）。",
+          "answer": [
+            "定义",
+            "函数定义"
+          ],
+          "explanation": "原判断题说\"必须既声明又定义\"是错误的：定义只要在链接时可见即可。"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "二维数组与指针"
+          ],
+          "stem": "int a[2][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}}; 在内存中按行优先连续存储，*(*(a + 1) + 0) 的值是 ____。",
+          "answer": "5",
+          "explanation": "a + 1 指向第 1 行行首，*(*(a+1)+0) = a[1][0] = 5。（原判断题答案为\"正确\"）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "二维数组与指针"
+          ],
+          "stem": "二维数组在内存中按 ____ 优先连续存储（填：行 / 列）。",
+          "answer": [
+            "行",
+            "row"
+          ],
+          "explanation": "C++ 二维数组按行优先存储：先存完整一行，再存下一行。"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "值传递"
+          ],
+          "stem": "下面程序执行后的实际输出是 ____。\n```\nvoid change(int x) {\n    x = 20;\n}\n\nint main() {\n    int x = 10;\n    change(x);\n    cout << x;\n    return 0;\n}\n```",
+          "answer": "10",
+          "explanation": "值传递只修改形参副本，实参不变。原判断题说输出 20 是错误的。"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "值传递"
+          ],
+          "stem": "上面程序中 change(int x) 的形参采用的是 ____ 传递（填：值 / 引用），所以函数内修改 x 不影响 main 中的实参。",
+          "answer": [
+            "值",
+            "值传递"
+          ],
+          "explanation": "要影响实参应使用引用 int &x 或指针。"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "结构体初始化"
+          ],
+          "stem": "struct Point { int x; int y; }; Point p{3, 4}; 执行后，p.x 的值是 ____。",
+          "answer": "3",
+          "explanation": "花括号聚合初始化按成员顺序依次赋值，合法。（原判断题答案为\"正确\"）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "结构体初始化"
+          ],
+          "stem": "Point p{3, 4}; 这样的聚合初始化，是按成员在结构体中的 ____ 顺序依次初始化各成员的。",
+          "answer": [
+            "声明",
+            "定义"
+          ],
+          "explanation": "初始化列表按成员声明顺序对应赋值。"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "插入排序稳定性"
+          ],
+          "stem": "升序插入排序中，若把移动元素的条件误写成 a[j] >= key，等于 key 的元素也会被后移，相同元素的相对顺序可能改变，排序会失去 ____。",
+          "answer": [
+            "稳定性",
+            "稳定"
+          ],
+          "explanation": "用 >= 时，后出现的 key 会越过相等元素插到它们前面，排序不稳定。原判断题说 >= 能保证稳定是错误的。"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "插入排序稳定性"
+          ],
+          "stem": "要保证插入排序稳定，当 a[j] 与 key 相等时应当 ____（填：继续移动 / 停止移动），让 key 插入到 j+1 位置。",
+          "answer": [
+            "停止移动",
+            "不再移动",
+            "停止",
+            "不移动"
+          ],
+          "explanation": "相等即停，后出现的 key 落在相等元素之后，相对顺序保持不变。"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "阶乘",
+            "递推"
+          ],
+          "stem": "下面函数用递推计算 n!：\n```\nint factorial(int n) {\n    int result = 1;\n    for (int i = 1; i <= n; i++) {\n        result *= i;\n    }\n    return result;\n}\n```\nfactorial(4) 返回 ____。",
+          "answer": "24",
+          "explanation": "4! = 1×2×3×4 = 24。（原判断题答案为\"正确\"）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "阶乘",
+            "递推"
+          ],
+          "stem": "上面函数中，factorial(5) 返回 ____。",
+          "answer": "120",
+          "explanation": "5! = 120。"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度"
+          ],
+          "stem": "下面双层循环：\n```\nfor (int i = 0; i < n; i++) {\n    for (int j = 1; j < n; j *= 2) {\n        cout << i + j;\n    }\n}\n```\n内层循环每轮约执行 log₂n 次，整体时间复杂度是 O(____)（写成含 n 的式子，如 n^3）。",
+          "answer": [
+            "nlogn",
+            "n log n",
+            "n*logn",
+            "n*log n",
+            "nlog₂n",
+            "n log₂n",
+            "n·logn",
+            "nlog2n",
+            "n log2n",
+            "n*log2n"
+          ],
+          "explanation": "总次数约 n·log₂n，即 Θ(n log n)，比 O(n²) 低一个量级。原判断题说是 O(n²) 是错误的（按紧确界判断）。"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度"
+          ],
+          "stem": "内层循环 j = 1; j < n; j *= 2 中，j 从 1 开始不断乘 2，直到不小于 n，执行的次数约等于以 ____ 为底的 n 的对数。",
+          "answer": [
+            "2",
+            "二"
+          ],
+          "explanation": "j 取值 1, 2, 4, 8…，翻倍 log₂n 次后达到 n。"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "文件输入输出"
+          ],
+          "stem": "下面程序中，用于把内容写入文件的流类是 ____。\n```\nint main() {\n    ofstream fout(\"log.txt\");\n    fout << \"Welcome\";\n    fout.close();\n    return 0;\n}\n```",
+          "answer": "ofstream",
+          "explanation": "ofstream 是输出文件流，<< 把数据写入文件。（原判断题答案为\"正确\"）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "文件输入输出"
+          ],
+          "stem": "上面程序正常执行后，log.txt 文件中的内容是 ____。",
+          "answer": "Welcome",
+          "explanation": "fout << \"Welcome\" 把该字符串写入文件。"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "下面程序中 throw \"Error\" 抛出的异常类型是 ____。\n```\nint main() {\n    try {\n        throw \"Error\";\n    } catch (int e) {\n        cout << \"Caught\";\n    }\n    return 0;\n}\n```",
+          "answer": [
+            "const char*",
+            "const char *",
+            "constchar*",
+            "char const*",
+            "字符串",
+            "字符串类型",
+            "const char*类型",
+            "const char* 类型"
+          ],
+          "explanation": "字符串字面量的类型是 const char*。"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "上面程序中，catch (int e) ____ 捕获 throw \"Error\" 抛出的异常（填：能 / 不能），程序将异常终止。",
+          "answer": [
+            "不能",
+            "无法",
+            "捕获不到",
+            "不可以"
+          ],
+          "explanation": "catch 按类型匹配，int 接不住 const char*；没有匹配的 catch 时程序调用 terminate 异常终止，不会输出 Caught。原判断题是错误的。"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "新汉诺塔",
+          "knowledge": [
+            "递推",
+            "汉诺塔",
+            "状态转移"
+          ],
+          "difficulty": "hard",
+          "stem": "汉诺塔问题有三个柱子 A、B、C。开始时 A 柱上有 n 个圆盘，从上到下由小到大排列。要将全部圆盘移至 C 柱，仍保持从上到下由小到大的顺序。移动时必须遵守：①每次仅能取一根柱子顶部的一个圆盘，并放到另一根柱子顶部；②小圆盘始终在大圆盘之上；③只允许 A → B、B → C、C → A 这三个方向的移动，其余方向不允许。给定 n，求最少移动步数。\n\n例如 n=2 的七步最优方案（1 为小盘，2 为大盘）：\n```\n1: 1 A → B\n2: 1 B → C\n3: 2 A → B\n4: 1 C → A\n5: 2 B → C\n6: 1 A → B\n7: 1 B → C\n```",
+          "input_format": "输入一个正整数 n，表示圆盘数量。",
+          "output_format": "输出一个整数，表示在新规则下将 n 个圆盘从 A 移动到 C 所需的最少步数。",
+          "constraints": "1 ≤ n ≤ 20；时间限制 1.0 s；内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "2",
+              "output": "7"
+            },
+            {
+              "input": "3",
+              "output": "21"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    // g(0)=0, g(1)=2; eliminating f gives g(n)=2*g(n-1)+2*g(n-2)+3.\n    long long previousTwo = 0, previousOne = 2;\n    if (n == 1) {\n        cout << previousOne << '\\n';\n        return 0;\n    }\n    for (int disks = 2; disks <= n; ++disks) {\n        long long next = 2 * previousOne + 2 * previousTwo + 3;\n        previousTwo = previousOne;\n        previousOne = next;\n    }\n    cout << previousOne << '\\n';\n    return 0;\n}",
+            "solution": "设 F(n) 为按允许方向顺时针移动一根柱子的最少步数，G(n) 为沿反方向跨两根柱子的最少步数；F(0)=G(0)=0。若最重盘只需移动一次，前后各需 G(n−1)，所以 F(n)=2G(n−1)+1。若最重盘需移动两次，则所需步骤为 G(n−1)、移动最重盘、F(n−1)、移动最重盘、G(n−1)，所以 G(n)=2G(n−1)+F(n−1)+2。答案是从 A 到 C 的 G(n)。消去 F 可得 n≥2 时 G(n)=2G(n−1)+2G(n−2)+3，初值 G(0)=0、G(1)=2。顺推到 n，时间 O(n)、空间 O(1)；G(20)=578272255，int64 可安全容纳。样例 n=2 为 7，n=3 为 21。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <queue>\n#include <string>\n#include <vector>\nusing namespace std;\n\n// Shortest path over legal configurations independently checks all small cases.\nlong long shortestByBfs(int n) {\n    vector<int> powers(n + 1, 1);\n    for (int i = 1; i <= n; ++i) powers[i] = powers[i - 1] * 3;\n    int target = 0;\n    for (int i = 0; i < n; ++i) target += 2 * powers[i];\n    vector<int> distance(powers[n], -1);\n    queue<int> pending;\n    distance[0] = 0;\n    pending.push(0);\n    while (!pending.empty()) {\n        int state = pending.front(); pending.pop();\n        if (state == target) return distance[state];\n        int top[3] = {n, n, n};\n        int digits = state;\n        for (int disk = 0; disk < n; ++disk) {\n            int peg = digits % 3;\n            digits /= 3;\n            if (top[peg] == n) top[peg] = disk;\n        }\n        for (int from = 0; from < 3; ++from) {\n            int to = (from + 1) % 3;\n            int disk = top[from];\n            if (disk == n || top[to] < disk) continue;\n            int next = state + (to - from) * powers[disk];\n            if (distance[next] < 0) {\n                distance[next] = distance[state] + 1;\n                pending.push(next);\n            }\n        }\n    }\n    return -1;\n}\n\nlong long expectedBySubproblems(int n) {\n    long long forward = 0, backward = 0;\n    for (int disks = 1; disks <= n; ++disks) {\n        long long nextForward = 2 * backward + 1;\n        long long nextBackward = 2 * backward + forward + 2;\n        forward = nextForward;\n        backward = nextBackward;\n    }\n    return backward;\n}\n\nint main(int argc, char *argv[]) {\n    if (argc != 2) { cerr << \"Usage: tester <student_executable>\\n\"; return 2; }\n    string exe = argv[1];\n    int failed = 0;\n    for (int n = 1; n <= 20; ++n) {\n        long long expected = expectedBySubproblems(n);\n        if (n <= 7 && shortestByBfs(n) != expected) {\n            cerr << \"Internal oracle disagreement at n=\" << n << '\\n';\n            return 2;\n        }\n        ofstream input(\"hanoi_test.in\");\n        input << n << '\\n'; input.close();\n        int status = system((\"\\\"\" + exe + \"\\\" < hanoi_test.in > hanoi_test.out 2>&1\").c_str());\n        ifstream output(\"hanoi_test.out\");\n        long long actual = -1;\n        string extra;\n        bool valid = bool(output >> actual) && !(output >> extra);\n        if (status != 0 || !valid || actual != expected) {\n            cout << \"[FAIL] n=\" << n << \"\\nInput: \" << n << \"\\nExpected: \"\n                 << expected << \"\\nActual: \";\n            ifstream raw(\"hanoi_test.out\");\n            cout << raw.rdbuf() << '\\n';\n            ++failed;\n        }\n    }\n    cout << \"Hanoi: \" << 20 - failed << \"/20 cases passed\\n\";\n    return failed ? 1 : 0;\n}"
+          },
+          "source": "2026_09_L4.pdf"
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "有序网格",
+          "knowledge": [
+            "二维数组",
+            "按行排序",
+            "按列排序"
+          ],
+          "difficulty": "medium",
+          "stem": "小 A 有一个 n 行 m 列的二维网格，格子 (i,j) 中的数字为 aᵢⱼ。先将每一行从左至右按升序排列，再将每一列从上至下按升序排列。请输出这两步操作之后的网格。注意：必须先完成所有行的排序，后完成所有列的排序；不能将全体数字统一排序后直接重新填入网格。\n\n例如输入样例 2 的三个阶段，等宽文本表示如下：\n```\n原网格        行排序后      列排序后\n1 3 2 5       1 2 3 5       1 2 3 5\n6 2 4 4   →   2 4 4 6   →   1 3 4 5\n5 4 1 3       1 3 4 5       2 4 4 6\n```",
+          "input_format": "第一行两个正整数 n、m，分别表示网格的行数、列数。接下来 n 行，每行 m 个整数 aᵢⱼ。",
+          "output_format": "输出 n 行，每行 m 个整数，表示先按行升序、再按列升序排列后的网格。同行数字用空格隔开。",
+          "constraints": "2 ≤ n,m ≤ 10；1 ≤ aᵢⱼ ≤ 100；时间限制 1.0 s；内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "3 2\n6 5\n4 3\n2 1",
+              "output": "1 2\n3 4\n5 6"
+            },
+            {
+              "input": "3 4\n1 3 2 5\n6 2 4 4\n5 4 1 3",
+              "output": "1 2 3 5\n1 3 4 5\n2 4 4 6"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    if (!(cin >> n >> m)) return 0;\n    vector<vector<int>> a(n, vector<int>(m));\n    for (auto &row : a)\n        for (int &value : row) cin >> value;\n    for (auto &row : a) sort(row.begin(), row.end());\n    for (int col = 0; col < m; ++col) {\n        vector<int> values;\n        for (int row = 0; row < n; ++row) values.push_back(a[row][col]);\n        sort(values.begin(), values.end());\n        for (int row = 0; row < n; ++row) a[row][col] = values[row];\n    }\n    for (const auto &row : a) {\n        for (int j = 0; j < m; ++j)\n            cout << (j ? \" \" : \"\") << row[j];\n        cout << '\\n';\n    }\n    return 0;\n}",
+            "solution": "依次对每行的 m 个元素排序，然后依次取出每列的 n 个元素排序并放回原列。列排序不会破坏此前建立的逐行非降关系；不过题目只要求严格按这两个阶段执行。可使用 std::sort；时间 O(nm log m + nm log n)，额外空间 O(max(n,m))。特别注意列排序只在原列内交换，不能把所有元素整体排序。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\ntypedef vector<vector<int>> Grid;\n\n// Independent insertion-sort oracle: first each row, then each column.\nGrid expectedGrid(Grid a) {\n    int n = a.size(), m = a[0].size();\n    for (int row = 0; row < n; ++row)\n        for (int col = 1; col < m; ++col) {\n            int value = a[row][col], j = col;\n            while (j && a[row][j - 1] > value) {\n                a[row][j] = a[row][j - 1]; --j;\n            }\n            a[row][j] = value;\n        }\n    for (int col = 0; col < m; ++col)\n        for (int row = 1; row < n; ++row) {\n            int value = a[row][col], j = row;\n            while (j && a[j - 1][col] > value) {\n                a[j][col] = a[j - 1][col]; --j;\n            }\n            a[j][col] = value;\n        }\n    return a;\n}\n\nstring format(const Grid &a) {\n    ostringstream text;\n    for (const auto &row : a) {\n        for (size_t col = 0; col < row.size(); ++col)\n            text << (col ? \" \" : \"\") << row[col];\n        text << '\\n';\n    }\n    return text.str();\n}\n\nint main(int argc, char *argv[]) {\n    if (argc != 2) { cerr << \"Usage: tester <student_executable>\\n\"; return 2; }\n    string exe = argv[1];\n    vector<Grid> tests = {\n        {{6,5},{4,3},{2,1}},\n        {{1,3,2,5},{6,2,4,4},{5,4,1,3}},\n        {{4,3},{2,1}},\n        {{5,5,1},{3,3,3}},\n        {{9,1,8},{4,7,2},{6,5,3}},\n        {{1,2,3,4},{9,8,7,6}},\n        {{100,1},{1,100},{50,50}},\n        {{7,7},{7,7}},\n        {{10,1,2,3,4,5,6,7,8,9},{9,8,7,6,5,4,3,2,1,10}},\n    };\n    Grid longGrid(10, vector<int>(2));\n    Grid square(10, vector<int>(10));\n    Grid identical(10, vector<int>(10, 100));\n    for (int i = 0; i < 10; ++i) {\n        for (int j = 0; j < 2; ++j)\n            longGrid[i][j] = 100 - ((i * 29 + j * 47) % 100);\n        for (int j = 0; j < 10; ++j)\n            square[i][j] = 1 + ((i * 73 + j * 29 + i * j * 13) % 100);\n    }\n    tests.push_back(longGrid);\n    tests.push_back(square);\n    tests.push_back(identical);\n    int failed = 0;\n    for (size_t caseNo = 0; caseNo < tests.size(); ++caseNo) {\n        const Grid &original = tests[caseNo];\n        Grid expected = expectedGrid(original);\n        ofstream input(\"grid_test.in\");\n        input << original.size() << \" \" << original[0].size() << '\\n'\n              << format(original); input.close();\n        int status = system((\"\\\"\" + exe + \"\\\" < grid_test.in > grid_test.out 2>&1\").c_str());\n        ifstream output(\"grid_test.out\");\n        Grid actual = original;\n        bool valid = true;\n        for (auto &row : actual)\n            for (int &value : row)\n                if (!(output >> value)) valid = false;\n        string extra;\n        if (output >> extra) valid = false;\n        if (status != 0 || !valid || actual != expected) {\n            cout << \"[FAIL] case \" << caseNo + 1 << \"\\nInput:\\n\"\n                 << original.size() << ' ' << original[0].size() << '\\n' << format(original)\n                 << \"Expected:\\n\" << format(expected) << \"Actual:\\n\";\n            ifstream raw(\"grid_test.out\");\n            cout << raw.rdbuf() << '\\n';\n            ++failed;\n        }\n    }\n    cout << \"Ordered grid: \" << tests.size() - failed << '/' << tests.size()\n         << \" cases passed\\n\";\n    return failed ? 1 : 0;\n}"
+          },
+          "source": "2026_09_L4.pdf"
+        }
+      ]
+    }
+  ]
+}

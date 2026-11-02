@@ -82,11 +82,32 @@
         saveAnswer(q.dataset.qid, o.dataset.val);
       }));
     });
+    // 填空题：输入防抖保存 + 失焦立即保存
+    document.querySelectorAll('.question[data-type="fill"]').forEach(q => {
+      const inp = q.querySelector('.fill-input');
+      if (!inp) return;
+      let t = null;
+      inp.addEventListener('input', () => {
+        if (graded) return;
+        clearTimeout(t);
+        t = setTimeout(() => saveAnswer(q.dataset.qid, inp.value), 400);
+      });
+      inp.addEventListener('blur', () => {
+        if (graded) return;
+        clearTimeout(t);
+        saveAnswer(q.dataset.qid, inp.value);
+      });
+    });
   }
   function restoreSaved() {
     for (const [qid, val] of Object.entries(answers)) {
       const q = document.querySelector(`.question[data-qid="${qid}"]`);
       if (!q) continue;
+      if (q.dataset.type === 'fill') {
+        const inp = q.querySelector('.fill-input');
+        if (inp) inp.value = val;
+        continue;
+      }
       const el = q.querySelector(`[data-val="${val}"]`);
       if (el) el.classList.add('selected');
     }
@@ -138,8 +159,10 @@
     for (const sec of EXAM.sections) {
       sec.questions.forEach((q, qi) => {
         if (q.type === 'programming') return;
-        if (answers[q.id] === undefined) {
-          missing.push((q.type === 'choice' ? '选择题' : '判断题') + ' 第 ' + (qi + 1) + ' 题');
+        const a = answers[q.id];
+        if (a === undefined || a === '') {
+          const label = q.type === 'choice' ? '选择题' : q.type === 'fill' ? '填空题' : '判断题';
+          missing.push(label + ' 第 ' + (qi + 1) + ' 题');
         }
       });
     }
@@ -222,6 +245,7 @@
       if (!el) return;
       if (sec.question_type === 'choice') el.textContent = s.choice + ' / ' + s.choiceFull;
       else if (sec.question_type === 'tf') el.textContent = s.tf + ' / ' + s.tfFull;
+      else if (sec.question_type === 'fill') el.textContent = (s.fill || 0) + ' / ' + (s.fillFull || 0);
       else el.textContent = s.prog + ' / ' + s.progFull;
     });
     document.getElementById('scoreTotal').textContent = s.total + ' / ' + s.full;
@@ -248,6 +272,9 @@
           if (item.type === 'choice') {
             const optText = qData.options[qData.answer] || '';
             tag.textContent = '✅ 正确答案：' + qData.answer + '. ' + optText;
+          } else if (item.type === 'fill') {
+            const alts = Array.isArray(qData.answer) ? qData.answer : [qData.answer];
+            tag.textContent = '✅ 正确答案：' + alts.join(' 或 ');
           } else {
             tag.textContent = '✅ 正确答案：' + (qData.answer ? '正确 ✔' : '错误 ✘');
           }
@@ -272,7 +299,13 @@
     }
     return null;
   }
-  function lockAll() { qEls().forEach(q => q.classList.add('locked')); }
+  function lockAll() {
+    qEls().forEach(q => {
+      q.classList.add('locked');
+      const inp = q.querySelector('.fill-input');
+      if (inp) inp.readOnly = true;
+    });
+  }
 
   // ---- 重新考试 ----
   function doRetake() {
@@ -286,12 +319,16 @@
   function copyQuestion(qid) {
     const q = findQuestion(qid);
     if (!q) return;
-    const lines = ['【' + EXAM.exam.title + ' · ' + (q.type === 'choice' ? '单选题' : '判断题') + '】'];
+    const typeLabel = q.type === 'choice' ? '单选题' : q.type === 'fill' ? '填空题' : '判断题';
+    const lines = ['【' + EXAM.exam.title + ' · ' + typeLabel + '】'];
     q.stem.split('\n').forEach(l => lines.push(l));
     if (q.type === 'choice') {
       for (const [k, v] of Object.entries(q.options)) lines.push(k + '. ' + v);
       lines.push('我的答案：' + (answers[qid] || '未作答') + ' ✗');
       lines.push('正确答案：' + q.answer + ' ✓');
+    } else if (q.type === 'fill') {
+      lines.push('我的答案：' + (answers[qid] || '未作答') + ' ✗');
+      lines.push('正确答案：' + (Array.isArray(q.answer) ? q.answer.join(' 或 ') : q.answer) + ' ✓');
     } else {
       lines.push('我的答案：' + (answers[qid] === 'true' ? '正确 ✔' : answers[qid] === 'false' ? '错误 ✘' : '未作答') + ' ✗');
       lines.push('正确答案：' + (q.answer ? '正确 ✔' : '错误 ✘') + ' ✓');

@@ -8,6 +8,7 @@ const wrongbook = require('./wrongbook');
 const DEFAULT_AI_PROMPT = '这是考试错误的一个C++考试题，请详细解析相关的知识点，并给出防止再次出错的改进办法。尽量精简回答，把结果控制到2000字以内（代码除外）';
 
 function tfText(v) { return v === true || v === 'true' ? '正确' : '错误'; }
+function fillText(a) { return Array.isArray(a) ? a.join(' 或 ') : String(a); }
 
 function getSystemPrompt() {
   const p = db.getSetting('ai_system_prompt');
@@ -51,7 +52,7 @@ function buildMessage(wrongId) {
       const shown = q.type === 'tf' ? tfText(userAns) : userAns;
       errBlock += '你的答案：' + shown + '（错误）\n';
     }
-    const correctShown = q.type === 'tf' ? tfText(q.answer) : q.answer;
+    const correctShown = q.type === 'tf' ? tfText(q.answer) : q.type === 'fill' ? fillText(q.answer) : q.answer;
     errBlock += '正确答案：' + correctShown;
     if (q.explanation) errBlock += '\n解析：' + q.explanation;
   }

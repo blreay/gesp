@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "test_fill_01",
+    "title": "填空测试卷",
+    "subtitle": "单元测试专用",
+    "duration_minutes": 30,
+    "total_score": 3,
+    "tags": ["测试"]
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 3 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1", "type": "fill", "knowledge": ["进制转换"],
+          "stem": "十进制数 13 写成二进制是 ____。",
+          "answer": "1101",
+          "explanation": "13 = 8 + 4 + 1"
+        },
+        {
+          "id": "f2", "type": "fill", "knowledge": ["进制转换"],
+          "stem": "八进制数 345Q 写成十六进制是 ____H。",
+          "answer": ["E5", "e5"],
+          "explanation": "345Q = 229 = E5H"
+        },
+        {
+          "id": "f3", "type": "fill", "knowledge": ["string"],
+          "stem": "只删除字符串 s 中下标 2 这一个字符的语句是 s.erase(____)。",
+          "answer": ["2, 1", "2,1"],
+          "explanation": "erase(2, 1)：从下标 2 起删 1 个字符"
+        }
+      ]
+    }
+  ]
+}

@@ -24,7 +24,7 @@
     </div>
 
     <table class="score-table">
-      <tr><th>题型</th><% exam.sections.forEach(function(sec){ %><th><%= sec.question_type === 'choice' ? '单选题' : sec.question_type === 'tf' ? '判断题' : '编程题' %></th><% }); %><th>总分</th></tr>
+      <tr><th>题型</th><% exam.sections.forEach(function(sec){ %><th><%= sec.question_type === 'choice' ? '单选题' : sec.question_type === 'tf' ? '判断题' : sec.question_type === 'fill' ? '填空题' : '编程题' %></th><% }); %><th>总分</th></tr>
       <tr><td>满分</td><% exam.sections.forEach(function(sec){ %><td><%= sec.score_per_question * sec.questions.length %></td><% }); %><td><%= meta.total_score %></td></tr>
       <tr><td>得分</td><% exam.sections.forEach(function(sec, i){ %><td class="scored" id="scoreSec<%= i %>">—</td><% }); %><td class="scored" id="scoreTotal">—</td></tr>
     </table>
@@ -51,6 +51,13 @@
               <div class="tf-opt" data-val="true">✔ 正确</div>
               <div class="tf-opt" data-val="false">✘ 错误</div>
             </div>
+            <div class="correct-answer-tag"></div>
+          </div>
+        <% } else if (q.type === 'fill') { %>
+          <div class="question fill-item" data-qid="<%= q.id %>" data-type="fill">
+            <button class="btn-copy" data-qid="<%= q.id %>">📋 复制</button>
+            <div class="q-text"><%= qi + 1 %>. <%- renderStem(q.stem) %></div>
+            <div class="fill-area"><input type="text" class="fill-input" placeholder="在此填写答案" autocomplete="off" aria-label="填空答案"></div>
             <div class="correct-answer-tag"></div>
           </div>
         <% } else { %>

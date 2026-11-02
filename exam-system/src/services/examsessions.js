@@ -23,7 +23,7 @@ function makeGradePayload(exam, attempt) {
   const verdicts = progVerdicts(attempt.exam_id, attempt.id);
   const g = grading.gradeAttempt(exam, answers, verdicts);
   return {
-    scored: { choice: g.choice, choiceFull: g.choiceFull, tf: g.tf, tfFull: g.tfFull, prog: g.prog, progFull: g.progFull, total: g.total, full: g.full },
+    scored: { choice: g.choice, choiceFull: g.choiceFull, tf: g.tf, tfFull: g.tfFull, fill: g.fill, fillFull: g.fillFull, prog: g.prog, progFull: g.progFull, total: g.total, full: g.full },
     results: g.results, unanswered: g.unanswered
   };
 }

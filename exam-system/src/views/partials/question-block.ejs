@@ -19,4 +19,11 @@
   <div class="correct-answer-tag"></div>
   <div class="level-result"></div>
 </div>
+<% } else if (q.type === 'fill') { %>
+<div class="question fill-item" data-wrong="<%= wrongId %>" data-qid="<%= q.id %>" data-type="fill" data-answer="<%= JSON.stringify(Array.isArray(q.answer) ? q.answer : [q.answer]) %>">
+  <div class="q-text"><%= qnum %>. <%- renderStem(q.stem) %> <span class="from-tag">（来自 <%= examTitle || '未知试卷' %>）</span></div>
+  <div class="fill-area"><input type="text" class="fill-input" placeholder="在此填写答案" autocomplete="off" aria-label="填空答案"></div>
+  <div class="correct-answer-tag"></div>
+  <div class="level-result"></div>
+</div>
 <% } %>

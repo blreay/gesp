@@ -456,3 +456,100 @@ test('review 页: 题干代码块用 <pre> 完整渲染（不再被摘要截掉�
     server.close(); db.close(); rmrf(dir); rmrf(bank);
   }
 });
+
+async function setupFill() {
+  const dir = tmpDir('exam-db-');
+  const bank = tmpDir('exam-bank-');
+  fs.mkdirSync(path.join(bank, '测试分类'), { recursive: true });
+  let raw = fs.readFileSync(path.join(__dirname, 'fixtures', 'bank', '测试分类', '测试卷.exam.json'), 'utf8');
+  raw = raw.replace('TESTER_PLACEHOLDER_SOURCE', 'int main(){}');
+  fs.writeFileSync(path.join(bank, '测试分类', '测试卷.exam.json'), raw);
+  fs.copyFileSync(path.join(__dirname, 'fixtures', 'bank', '测试分类', '填空测试卷.exam.json'),
+    path.join(bank, '测试分类', '填空测试卷.exam.json'));
+  const db = require('../src/services/db');
+  db.init(path.join(dir, 't.db'));
+  require('../src/services/questionbank').scan(bank);
+  const { server, base } = await startApp();
+  return { dir, bank, db, server, base };
+}
+
+test('api 填空题流: 存答案 → 预览 → 判卷 → score_fill 落库；空串视为未答', async () => {
+  const { dir, bank, db, server, base } = await setupFill();
+
+  let r = await post(base, '/api/exams/test_fill_01/start');
+  assert.strictEqual(r.status, 200);
+  const attId = r.body.attemptId;
+
+  await post(base, `/api/attempts/${attId}/answers`, { questionId: 'f1', answer: '1101' });
+  await post(base, `/api/attempts/${attId}/answers`, { questionId: 'f2', answer: '　ｅ５　' }); // 全角+空白，归一化后应判对
+  await post(base, `/api/attempts/${attId}/answers`, { questionId: 'f3', answer: '' });          // 空串=未答
+
+  r = await post(base, `/api/attempts/${attId}/preview`, {});
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.scored.fill, 2);
+  assert.strictEqual(r.body.scored.fillFull, 3);
+  assert.strictEqual(r.body.scored.total, 2);
+  assert.deepStrictEqual(r.body.unanswered, ['f3']);
+
+  r = await post(base, `/api/attempts/${attId}/grade`, { auto: false });
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.scored.fill, 2);
+  assert.strictEqual(r.body.scored.total, 2);
+  assert.deepStrictEqual(r.body.wrongAdded, []); // 未答不算错题
+  const f2 = r.body.results.find(x => x.qid === 'f2');
+  assert.ok(f2.correct);
+
+  const row = db.get().prepare('SELECT score_choice, score_tf, score_fill, score_prog, total_score FROM exam_attempts WHERE id = ?').get(attId);
+  assert.strictEqual(row.score_fill, 2);
+  assert.strictEqual(row.score_choice, 0);
+  assert.strictEqual(row.total_score, 2);
+
+  // 考试页应渲染填空输入框
+  const res = await fetch(base + '/exam/test_fill_01');
+  const html = await res.text();
+  assert.ok(html.includes('data-type="fill"'));
+  assert.ok(html.includes('class="fill-input"'));
+  assert.ok(html.includes('填空题'));
+
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
+test('api 填空题判卷: 答错入错题本；复习会话重做判对后降级', async () => {
+  const { dir, bank, db, server, base } = await setupFill();
+  await post(base, '/api/exams/test_fill_01/start');
+  await post(base, '/api/attempts/1/answers', { questionId: 'f1', answer: '1102' }); // 错
+  await post(base, '/api/attempts/1/answers', { questionId: 'f2', answer: 'E5' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'f3', answer: '2, 1' });
+  let r = await post(base, '/api/attempts/1/grade', {});
+  assert.deepStrictEqual(r.body.wrongAdded, ['f1']);
+  assert.strictEqual(r.body.scored.fill, 2);
+
+  // 按题型筛选创建复习会话（只含填空题）
+  r = await post(base, '/api/review/sessions', { filter: { status: 'active', type: 'fill' } });
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.total, 1);
+  assert.strictEqual(r.body.items[0].type, 'fill');
+  assert.strictEqual(r.body.items[0].correctAnswer, '1101');
+  const sid = r.body.sessionId, wid = r.body.items[0].wrongId;
+
+  // 练习页应渲染填空输入框（带可接受答案，用于判分后展示）
+  const res = await fetch(base + `/review/session/${sid}`);
+  const html = await res.text();
+  assert.ok(html.includes('data-type="fill"'));
+  assert.ok(html.includes('class="fill-input"'));
+  assert.ok(html.includes('data-answer='));
+
+  // 带首尾空白的正确答案也应判对，级别下降
+  r = await post(base, `/api/review/sessions/${sid}/grade`, { answers: { [String(wid)]: ' 1101 ' } });
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.correctCount, 1);
+  assert.strictEqual(r.body.results[0].correct, true);
+  assert.ok(r.body.results[0].newLevel < 2 || r.body.results[0].newStatus === 'mastered');
+
+  // 复习页错题卡片应显示"填空"徽标
+  const rv = await fetch(base + '/review?type=fill');
+  const rvHtml = await rv.text();
+  assert.ok(rvHtml.includes('填空'));
+
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});

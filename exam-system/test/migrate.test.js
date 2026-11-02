@@ -68,3 +68,21 @@ test('迁移: 损坏的 schema_version 抛错', () => {
   assert.throws(() => dbmod.ensureMigrated(dbmod.get(), {}, 1), /损坏/);
   dbmod.close(); rmrf(dir);
 });
+
+test('迁移: v2 旧库升级到 v3 自动补 score_fill 列并备份', () => {
+  const dir = tmpDir('mig-');
+  const dbmod = require('../src/services/db');
+  const dbPath = path.join(dir, 't.db');
+  dbmod.init(dbPath);
+  // 模拟 v2 旧库：版本压到 2，并去掉 v3 才有的 score_fill 列
+  dbmod.get().prepare("INSERT OR REPLACE INTO settings(key,value) VALUES('schema_version','2')").run();
+  dbmod.get().exec('ALTER TABLE exam_attempts DROP COLUMN score_fill');
+  dbmod.close();
+
+  dbmod.init(dbPath); // 重新打开 → 应自动执行 3 号迁移
+  assert.strictEqual(dbmod.getSetting('schema_version'), '3');
+  const cols = dbmod.get().prepare('PRAGMA table_info(exam_attempts)').all().map(c => c.name);
+  assert.ok(cols.includes('score_fill'), 'score_fill 列应被迁移补上');
+  assert.strictEqual(fs.readdirSync(dir).filter(f => f.includes('.bak-')).length, 1, '升级前应生成备份');
+  dbmod.close(); rmrf(dir);
+});

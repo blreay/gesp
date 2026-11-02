@@ -23,6 +23,7 @@
       <option value="all" <%= filter.type === 'all' ? 'selected' : '' %>>全部题型</option>
       <option value="choice" <%= filter.type === 'choice' ? 'selected' : '' %>>选择题</option>
       <option value="tf" <%= filter.type === 'tf' ? 'selected' : '' %>>判断题</option>
+      <option value="fill" <%= filter.type === 'fill' ? 'selected' : '' %>>填空题</option>
       <option value="programming" <%= filter.type === 'programming' ? 'selected' : '' %>>编程题</option>
     </select>
     <select name="category">
@@ -47,7 +48,7 @@
     <div class="wrong-card" data-id="<%= w.id %>" data-note="<%= w.note %>" data-knowledge="<%= w.note_knowledge %>">
       <div class="wc-left">
         <span class="lv-badge lv-<%= Math.min(w.level, 5) %>">L<%= w.level %></span>
-        <span class="type-badge"><%= w.type === 'choice' ? '选择' : w.type === 'tf' ? '判断' : '编程' %></span>
+        <span class="type-badge"><%= w.type === 'choice' ? '选择' : w.type === 'tf' ? '判断' : w.type === 'fill' ? '填空' : '编程' %></span>
       </div>
       <div class="wc-body">
         <div class="wc-stem"><%- renderStem(w.stem) %></div>

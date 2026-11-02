@@ -108,6 +108,18 @@ body { background: var(--neutral-25); }
 .tf-opt.selected { background: var(--brand-500); border-color: var(--brand-500); color: #fff; font-weight: 600; }
 .question.locked .opt, .question.locked .tf-opt { pointer-events: none; opacity: .7; }
 
+/* ===== Fill-in-the-blank（填空题） ===== */
+.fill-area { padding-left: 8px; }
+.fill-input {
+  width: min(480px, 100%); padding: 9px 14px; font-size: 15px; color: var(--neutral-800);
+  border: 2px solid var(--neutral-100); border-radius: var(--r-md); background: #fff;
+  font-family: var(--font-code); transition: all var(--duration-fast) var(--ease-out);
+}
+.fill-input:focus { outline: none; border-color: var(--brand-500); box-shadow: 0 0 0 3px var(--brand-200); }
+.question.locked .fill-input { pointer-events: none; background: var(--neutral-25); opacity: .8; }
+.question.wrong .fill-input { border-color: var(--danger-600); }
+.question.correct-graded .fill-input { border-color: var(--success-500); }
+
 /* ===== Grading: Wrong (STRONG contrast) & Correct ===== */
 .question.wrong {
   background: var(--danger-50) !important;

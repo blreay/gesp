@@ -16,6 +16,15 @@
       answers[q.dataset.wrong] = o.dataset.val;
     }));
   });
+  document.querySelectorAll('.question[data-type="fill"]').forEach(q => {
+    const inp = q.querySelector('.fill-input');
+    if (!inp) return;
+    inp.addEventListener('input', () => {
+      // 清空视为未作答（与考试判分口径一致），避免提交空串被判错升级
+      if (inp.value.trim() === '') delete answers[q.dataset.wrong];
+      else answers[q.dataset.wrong] = inp.value;
+    });
+  });
 
   document.getElementById('btnGrade').addEventListener('click', async () => {
     if (!Object.keys(answers).length) { App.toast('还没有作答任何客观题', true); return; }
@@ -26,6 +35,20 @@
         const q = document.querySelector('.question[data-wrong="' + item.wrongId + '"]');
         if (!q) continue;
         q.classList.add(item.correct ? 'correct-graded' : 'wrong');
+        if (q.dataset.type === 'fill') {
+          const inp = q.querySelector('.fill-input');
+          if (inp) inp.readOnly = true;
+          if (!item.correct) {
+            const tag = q.querySelector('.correct-answer-tag');
+            if (tag) {
+              try {
+                const alts = JSON.parse(q.dataset.answer || '[]');
+                tag.textContent = '✅ 正确答案：' + alts.join(' 或 ');
+                tag.style.display = '';
+              } catch (e) { /* data-answer 异常时不展示 */ }
+            }
+          }
+        }
         const lr = q.querySelector('.level-result');
         if (lr) {
           lr.textContent = item.correct

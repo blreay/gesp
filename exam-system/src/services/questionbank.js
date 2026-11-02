@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const db = require('./db');
 
-const QUESTION_TYPES = new Set(['choice', 'tf', 'programming']);
+const QUESTION_TYPES = new Set(['choice', 'tf', 'fill', 'programming']);
 let _cache = new Map();       // examId -> 解析后的试卷对象
 let _health = { loaded: [], failed: [], scannedAt: null };
 
@@ -41,6 +41,12 @@ function validateExam(obj) {
         if (!q.answer || !(q.answer in (q.options || {}))) errors.push(`${where}.answer 必须是选项之一`);
       } else if (q.type === 'tf') {
         if (typeof q.answer !== 'boolean') errors.push(`${where}.answer 必须是布尔值`);
+      } else if (q.type === 'fill') {
+        // answer: 单个字符串，或"可接受答案"非空字符串数组（判分前做归一化精确匹配）
+        const okSingle = typeof q.answer === 'string' && q.answer.trim() !== '';
+        const okArray = Array.isArray(q.answer) && q.answer.length > 0 &&
+          q.answer.every(a => typeof a === 'string' && a.trim() !== '');
+        if (!okSingle && !okArray) errors.push(`${where}.answer 必须是非空字符串或非空字符串数组`);
       } else if (q.type === 'programming') {
         const a = q.answer || {};
         if (!a.test_program) errors.push(`${where}.answer.test_program 缺失`);

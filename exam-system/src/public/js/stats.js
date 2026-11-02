@@ -28,10 +28,10 @@
   const t = S.types;
   new Chart(document.getElementById('chartTypes'), {
     type: 'bar',
-    data: { labels: ['单选', '判断', '编程'],
+    data: { labels: ['单选', '判断', '填空', '编程'],
       datasets: [
-        { label: '对', data: [t.choice.correct, t.tf.correct, t.programming.correct], backgroundColor: '#27ae60' },
-        { label: '错', data: [t.choice.total - t.choice.correct, t.tf.total - t.tf.correct, t.programming.total - t.programming.correct], backgroundColor: '#e74c3c' }
+        { label: '对', data: [t.choice.correct, t.tf.correct, (t.fill || {}).correct || 0, t.programming.correct], backgroundColor: '#27ae60' },
+        { label: '错', data: [t.choice.total - t.choice.correct, t.tf.total - t.tf.correct, ((t.fill || {}).total || 0) - ((t.fill || {}).correct || 0), t.programming.total - t.programming.correct], backgroundColor: '#e74c3c' }
       ] },
     options: { scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } } }
   });

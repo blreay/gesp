@@ -119,9 +119,9 @@ router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
   const autoSubmitted = !!(req.body && req.body.auto);
   const finalize = d.transaction(() => {
     d.prepare(`UPDATE exam_attempts SET status = 'graded', submitted_at = ?, auto_submitted = ?,
-      score_choice = ?, score_tf = ?, score_prog = ?, total_score = ? WHERE id = ?`)
+      score_choice = ?, score_tf = ?, score_fill = ?, score_prog = ?, total_score = ? WHERE id = ?`)
       .run(now, autoSubmitted ? 1 : 0,
-        payload.scored.choice, payload.scored.tf, payload.scored.prog, payload.scored.total, att.id);
+        payload.scored.choice, payload.scored.tf, payload.scored.fill || 0, payload.scored.prog, payload.scored.total, att.id);
     examlog.record(att, exam, payload, now, autoSubmitted);
   });
   finalize();
@@ -190,6 +190,7 @@ router.post('/review/sessions', asyncH(async (req, res) => {
       type = q.type;
       if (q.type === 'choice') correctAnswer = q.answer;
       else if (q.type === 'tf') correctAnswer = String(q.answer);
+      else if (q.type === 'fill') correctAnswer = Array.isArray(q.answer) ? q.answer.join(' 或 ') : String(q.answer);
     }
     return { wrongId: w.id, examId: w.exam_id, questionId: w.question_id, type, level: w.level, correctAnswer };
   });
@@ -226,7 +227,9 @@ router.post('/review/sessions/:id/grade', asyncH(async (req, res) => {
     const q = hit.question;
     if (q.type === 'programming') continue; // 编程题走单独端点
     const user = String(answers[String(it.wrong_id)]);
-    const correct = q.type === 'choice' ? user === q.answer : grading.normalizeTf(user) === q.answer;
+    const correct = q.type === 'choice' ? user === q.answer
+      : q.type === 'fill' ? grading.matchFill(user, q.answer)
+      : grading.normalizeTf(user) === q.answer;
     upAns.run(session.id, it.wrong_id, String(user), correct ? 1 : 0);
     const updated = correct ? wrongbook.recordRight(it.wrong_id, now) : wrongbook.recordWrong(it.exam_id, it.question_id, now);
     if (correct) correctCount++;

@@ -107,3 +107,28 @@ test('scan: 缺失 total_score 时自动求和兜底', () => {
 
   db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('validateExam: 填空题 answer 校验', () => {
+  const qb = require('../src/services/questionbank');
+  const base = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'bank', '测试分类', '填空测试卷.exam.json'), 'utf8'));
+  assert.deepStrictEqual(qb.validateExam(base), []);
+
+  let bad = JSON.parse(JSON.stringify(base));
+  delete bad.sections[0].questions[0].answer;
+  assert.ok(qb.validateExam(bad).some(e => e.includes('非空字符串或非空字符串数组')));
+
+  bad = JSON.parse(JSON.stringify(base));
+  bad.sections[0].questions[0].answer = '   ';
+  assert.ok(qb.validateExam(bad).some(e => e.includes('非空字符串或非空字符串数组')));
+
+  bad = JSON.parse(JSON.stringify(base));
+  bad.sections[0].questions[1].answer = [];
+  assert.ok(qb.validateExam(bad).some(e => e.includes('非空字符串或非空字符串数组')));
+
+  bad = JSON.parse(JSON.stringify(base));
+  bad.sections[0].questions[1].answer = ['E5', 5];
+  assert.ok(qb.validateExam(bad).some(e => e.includes('非空字符串或非空字符串数组')));
+
+  // question_type 为 fill 的 section 合法
+  assert.ok(qb.validateExam(base).length === 0);
+});
