@@ -1,0 +1,40 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<div class="hist-wrap">
+  <div class="hist-head">
+    <a class="btn btn-ghost" href="/exam/<%= meta.id %>">← 返回试卷</a>
+    <h2 class="hist-title">📜 提交历史 · <%= meta.title %></h2>
+    <span class="hist-count">共 <%= rows.length %> 条记录</span>
+  </div>
+
+  <% if (!rows.length) { %>
+    <div class="empty-tip">暂无提交历史 · 交卷后自动生成记录与答卷快照</div>
+  <% } else { %>
+  <table class="hist-table">
+    <thead>
+      <tr><th>#</th><th>做题人</th><th>开始时间</th><th>交卷时间</th><th>得分</th><th>快照</th></tr>
+    </thead>
+    <tbody>
+    <% rows.forEach(function(r, i){ var sc = {}; try { sc = JSON.parse(r.score_json || '{}'); } catch(e){} %>
+      <tr>
+        <td class="hist-nth"><%= rows.length - i %></td>
+        <td>
+          <b><%= r.username || '历史记录' %></b>
+          <% if (r.auto_submitted) { %><span class="hist-tag">超时自动</span><% } %>
+        </td>
+        <td><%= fmtTs(r.started_at) %></td>
+        <td><%= fmtTs(r.submitted_at) %></td>
+        <td class="hist-score">
+          <b><%= r.total_score %></b> / <%= r.full_score %> 分
+          <div class="hist-sub">选 <%= sc.choice || 0 %>/<%= sc.choiceFull || 0 %> · 判 <%= sc.tf || 0 %>/<%= sc.tfFull || 0 %> · 填 <%= sc.fill || 0 %>/<%= sc.fillFull || 0 %> · 程 <%= sc.prog || 0 %>/<%= sc.progFull || 0 %></div>
+        </td>
+        <td><a class="btn btn-primary btn-xs" href="/exam/<%= r.exam_id %>/history/<%= r.id %>">查看快照 →</a></td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+  <% } %>
+</div>
+
+<%- include('partials/foot', { extraJs: extraJs }) %>

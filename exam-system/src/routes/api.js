@@ -10,6 +10,7 @@ const wrongbook = require('../services/wrongbook');
 const judge = require('../services/judge');
 const sessions = require('../services/examsessions');
 const examlog = require('../services/examlog');
+const examhistory = require('../services/examhistory');
 const aicontext = require('../services/aicontext');
 const aiparse = require('../services/aiparse');
 const auth = require('../services/auth');
@@ -120,8 +121,8 @@ router.post('/exams/:examId/start', asyncH(async (req, res) => {
     return res.json({ attemptId: existing.id, deadlineAt: countdown.deadlineAt(existing, durMs), durationMs: durMs, resumed: true });
   }
   const now = Date.now();
-  const info = db.get().prepare(`INSERT INTO exam_attempts(exam_id, status, started_at) VALUES (?, 'in_progress', ?)`)
-    .run(req.params.examId, now);
+  const info = db.get().prepare(`INSERT INTO exam_attempts(exam_id, status, started_at, username) VALUES (?, 'in_progress', ?, ?)`)
+    .run(req.params.examId, now, (req.user && req.user.username) || '');
   res.json({ attemptId: Number(info.lastInsertRowid), deadlineAt: now + durMs, durationMs: durMs, resumed: false });
 }));
 
@@ -218,6 +219,8 @@ router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
       .run(now, autoSubmitted ? 1 : 0,
         payload.scored.choice, payload.scored.tf, payload.scored.fill || 0, payload.scored.prog, payload.scored.total, att.id);
     examlog.record(att, exam, payload, now, autoSubmitted);
+    // 交卷快照：固化本次试卷内容、作答与编程题最后一次提交（retake 会删 attempt，事后无法重建）
+    examhistory.record(att, exam, payload, now, autoSubmitted, req.user);
   });
   finalize();
   const s = settingsObj();
@@ -253,8 +256,8 @@ router.post('/exams/:examId/retake', asyncH(async (req, res) => {
   }
   const durMs = countdown.durationMs(exam.exam, settingsObj());
   const now = Date.now();
-  const info = d.prepare(`INSERT INTO exam_attempts(exam_id, status, started_at) VALUES (?, 'in_progress', ?)`)
-    .run(req.params.examId, now);
+  const info = d.prepare(`INSERT INTO exam_attempts(exam_id, status, started_at, username) VALUES (?, 'in_progress', ?, ?)`)
+    .run(req.params.examId, now, (req.user && req.user.username) || '');
   res.json({ attemptId: Number(info.lastInsertRowid), deadlineAt: now + durMs, durationMs: durMs, resumed: false, cleared: !!att });
 }));
 

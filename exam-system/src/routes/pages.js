@@ -172,6 +172,37 @@ router.get('/editor-frame', (req, res) => res.render('editor_frame'));
 router.get('/exam/:examId/prog/:qid', (req, res) => renderProg(req, res, 'exam'));
 router.get('/prog/practice/:examId/:qid', (req, res) => renderProg(req, res, 'practice'));
 
+// ---- 试卷提交历史（做题人/时间/分数/快照）：所有登录用户可见 ----
+const examhistory = require('../services/examhistory');
+function fmtTs(ts) {
+  if (!ts) return '—';
+  const d = new Date(Number(ts));
+  const p = n => String(n).padStart(2, '0');
+  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+
+router.get('/exam/:id/history', (req, res) => {
+  const meta = db.get().prepare('SELECT * FROM exams WHERE id = ?').get(req.params.id);
+  if (!meta) return res.status(404).send('试卷不存在');
+  res.render('exam_history', {
+    title: '历史记录 · ' + meta.title, activeNav: 'exam',
+    extraCss: ['/css/app.css'], extraJs: ['/js/common.js'],
+    meta, rows: examhistory.listForExam(req.params.id), fmtTs
+  });
+});
+
+router.get('/exam/:id/history/:hid', (req, res) => {
+  if (!Number.isInteger(Number(req.params.hid))) return res.status(404).send('记录不存在');
+  const rec = examhistory.get(Number(req.params.hid));
+  if (!rec || rec.exam_id !== req.params.id) return res.status(404).send('记录不存在');
+  const snap = rec.snapshot || {};
+  res.render('history_snapshot', {
+    title: '答卷快照 · ' + rec.exam_title, activeNav: 'exam',
+    extraCss: ['/css/app.css'], extraJs: ['/js/common.js'],
+    rec, snap, results: new Map((snap.results || []).map(r => [r.qid, r])), fmtTs, renderStem
+  });
+});
+
 const wrongbook = require('../services/wrongbook');
 
 router.get('/review', (req, res) => {

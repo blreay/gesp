@@ -4,6 +4,7 @@ const { createApp } = require('./src/app');
 const db = require('./src/services/db');
 const qb = require('./src/services/questionbank');
 const examlog = require('./src/services/examlog');
+const examhistory = require('./src/services/examhistory');
 
 const PORT = parseInt(process.env.PORT || '8730', 10);
 // 可用环境变量覆盖数据库与题库目录（便于测试/部署隔离）
@@ -19,6 +20,13 @@ try {
   if (bf.backfilled) console.log(`考试日志回填完成：${bf.count} 条历史记录`);
 } catch (e) {
   console.error('考试日志回填失败（跳过，不影响使用）:', e.message);
+}
+
+try {
+  const hb = examhistory.backfillIfNeeded();
+  if (hb.backfilled) console.log(`试卷历史回填完成：${hb.count} 条答卷快照`);
+} catch (e) {
+  console.error('试卷历史回填失败（跳过，不影响使用）:', e.message);
 }
 
 createApp().listen(PORT, () => {

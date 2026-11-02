@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS exam_attempts (
   score_tf INTEGER DEFAULT 0,
   score_fill INTEGER DEFAULT 0,
   score_prog INTEGER DEFAULT 0,
-  total_score INTEGER DEFAULT 0
+  total_score INTEGER DEFAULT 0,
+  username TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS idx_attempts_exam ON exam_attempts(exam_id);
 CREATE TABLE IF NOT EXISTS exam_answers (
@@ -99,6 +100,23 @@ CREATE TABLE IF NOT EXISTS exam_log (
 );
 CREATE INDEX IF NOT EXISTS idx_examlog_day ON exam_log(day);
 CREATE INDEX IF NOT EXISTS idx_examlog_exam ON exam_log(exam_id);
+CREATE TABLE IF NOT EXISTS exam_history (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  exam_id TEXT NOT NULL,
+  exam_title TEXT NOT NULL DEFAULT '',
+  attempt_id INTEGER,
+  username TEXT NOT NULL DEFAULT '',
+  started_at INTEGER NOT NULL,
+  submitted_at INTEGER NOT NULL,
+  auto_submitted INTEGER NOT NULL DEFAULT 0,
+  total_score INTEGER NOT NULL DEFAULT 0,
+  full_score INTEGER NOT NULL DEFAULT 0,
+  score_json TEXT NOT NULL DEFAULT '{}',
+  snapshot TEXT NOT NULL DEFAULT '{}',
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_examhist_exam ON exam_history(exam_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_examhist_attempt ON exam_history(attempt_id);
 CREATE TABLE IF NOT EXISTS settings (
   key TEXT PRIMARY KEY,
   value TEXT NOT NULL
@@ -140,7 +158,8 @@ const DEFAULT_SETTINGS = {
 
 // 数据库结构版本号。版本2：新增 exam_log 表。版本3：exam_attempts 新增 score_fill 列（填空题得分）。
 // 版本4：新增 users / auth_sessions 表（登录与用户管理），并播种默认管理员 admin/admin123。
-const CURRENT_SCHEMA_VERSION = 4;
+// 版本5：新增 exam_history 表（交卷快照），exam_attempts 新增 username 列（做题人）。
+const CURRENT_SCHEMA_VERSION = 5;
 
 const USERS_DDL = `
 CREATE TABLE IF NOT EXISTS users (
@@ -163,6 +182,26 @@ CREATE INDEX IF NOT EXISTS idx_authsess_user ON auth_sessions(username);
 
 // 迁移钩子：key=目标版本号，value=(db)=>{...}。
 const MIGRATIONS = {
+  5: (db) => {
+    db.exec(`ALTER TABLE exam_attempts ADD COLUMN username TEXT NOT NULL DEFAULT ''`);
+    db.exec(`CREATE TABLE IF NOT EXISTS exam_history (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      exam_id TEXT NOT NULL,
+      exam_title TEXT NOT NULL DEFAULT '',
+      attempt_id INTEGER,
+      username TEXT NOT NULL DEFAULT '',
+      started_at INTEGER NOT NULL,
+      submitted_at INTEGER NOT NULL,
+      auto_submitted INTEGER NOT NULL DEFAULT 0,
+      total_score INTEGER NOT NULL DEFAULT 0,
+      full_score INTEGER NOT NULL DEFAULT 0,
+      score_json TEXT NOT NULL DEFAULT '{}',
+      snapshot TEXT NOT NULL DEFAULT '{}',
+      created_at INTEGER NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_examhist_exam ON exam_history(exam_id);
+    CREATE UNIQUE INDEX IF NOT EXISTS idx_examhist_attempt ON exam_history(attempt_id);`);
+  },
   4: (db) => {
     db.exec(USERS_DDL);
   },

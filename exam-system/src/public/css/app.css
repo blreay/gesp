@@ -480,3 +480,61 @@ body { background: var(--neutral-25); }
 .user-ops .btn-danger:disabled { opacity: .45; cursor: not-allowed; }
 .settings-card .role-badge.role-admin { background: #fff5d6; color: #b8860b; }
 .settings-card .role-badge.role-user { background: #eef2f6; color: #555; }
+
+/* ===== 试卷提交历史（/exam/:id/history）===== */
+.hist-wrap { max-width: 1000px; margin: 28px auto 80px; padding: 0 20px; }
+.hist-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.hist-title { font-size: 20px; color: var(--brand-800); }
+.hist-count { margin-left: auto; font-size: 13px; color: var(--neutral-300); }
+.hist-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--r-lg);
+  overflow: hidden; box-shadow: var(--shadow-sm); }
+.hist-table th, .hist-table td { padding: 12px 14px; text-align: left; font-size: 14px;
+  border-bottom: 1px solid var(--neutral-50); }
+.hist-table th { background: var(--neutral-25); color: var(--neutral-500); font-size: 13px; font-weight: 600; }
+.hist-table tr:last-child td { border-bottom: none; }
+.hist-table tbody tr:hover td { background: var(--brand-50); }
+.hist-nth { color: var(--neutral-300); font-family: var(--font-code); }
+.hist-score b { color: var(--brand-800); font-size: 16px; }
+.hist-sub { font-size: 12px; color: var(--neutral-300); margin-top: 2px; }
+.hist-tag { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 999px;
+  background: var(--warning-100); color: var(--warning-600); font-weight: 600; margin-left: 6px; }
+
+/* ===== 答卷快照页（/exam/:id/history/:hid）===== */
+.snap-wrap { max-width: 900px; margin: 28px auto 80px; padding: 0 20px; }
+.snap-head { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+.snap-headinfo h2 { font-size: 20px; color: var(--brand-800); margin-bottom: 6px; }
+.snap-meta { font-size: 13px; color: var(--neutral-400); }
+.snap-score { color: var(--brand-800); font-size: 17px; }
+.snap-paper { padding: 32px 40px; }
+.snap-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 10px;
+  border-radius: 999px; margin-left: 10px; vertical-align: middle; white-space: nowrap; }
+.snap-badge.ok { background: var(--success-100); color: var(--success-600); }
+.snap-badge.bad { background: var(--danger-100); color: var(--danger-600); }
+.snap-badge.skip { background: var(--neutral-50); color: var(--neutral-300); }
+.snap-opt { position: relative; cursor: default; }
+.snap-opt.pick-right { border-color: var(--success-500); background: var(--success-50); }
+.snap-opt.pick-wrong { border-color: var(--danger-500); background: var(--danger-50); }
+.snap-opt.is-answer { border-color: var(--success-500); }
+.snap-mark { font-size: 11px; padding: 1px 8px; border-radius: 999px; font-weight: 600;
+  margin-left: 8px; white-space: nowrap; flex-shrink: 0; align-self: center; }
+.mark-pick { background: var(--brand-100); color: var(--brand-800); }
+.mark-answer { background: var(--success-100); color: var(--success-600); }
+.snap-answer-line { margin-top: 10px; font-size: 14px; color: var(--neutral-500); }
+.snap-answer-line .ok-text, .ok-text { color: var(--success-600); }
+.snap-answer-line .bad-text, .bad-text { color: var(--danger-600); }
+.snap-code, .snap-expl { margin-top: 10px; border: 1px solid var(--neutral-75);
+  border-radius: var(--r-md); background: var(--neutral-10); }
+.snap-code summary, .snap-expl summary { cursor: pointer; padding: 8px 14px; font-size: 13px;
+  font-weight: 600; color: var(--neutral-500); user-select: none; }
+.snap-code pre { background: var(--brand-900); color: #d5dde5; padding: 14px; margin: 0 14px 12px;
+  border-radius: var(--r-md); overflow-x: auto; font-family: var(--font-code); font-size: 13px; line-height: 1.55; }
+.snap-summary { background: var(--neutral-25) !important; color: var(--neutral-400) !important;
+  font-size: 12px !important; white-space: pre-wrap; }
+.snap-expl .q-body { padding: 0 14px 12px; font-size: 14px; color: var(--neutral-600); }
+.snap-code .q-body { padding: 0 14px; font-size: 14px; }
+.snap-code .q-body pre, .snap-expl .q-body pre { background: var(--neutral-25); color: var(--neutral-700);
+  padding: 12px; margin: 8px 0 12px; }
+.snap-code h4, .snap-code h5 { padding: 0 14px; color: var(--neutral-500); }
+.snap-code .sample-box { display: flex; gap: 12px; padding: 0 14px 12px; flex-wrap: wrap; }
+.snap-code .sample { flex: 1; min-width: 200px; }
+.snap-code .sample pre { margin: 6px 0 0; }

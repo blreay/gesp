@@ -40,17 +40,26 @@
         <% if (e.prog_brief) { %><div class="prog-brief-line">📝 编程：<%= e.prog_brief %></div><% } %>
       </div>
       <div class="card-footer">
+        <div class="cf-left">
+          <span class="card-hist" title="查看提交历史与答卷快照"
+            onclick="event.stopPropagation();location.href='/exam/<%= e.id %>/history'">📜 历史</span>
+          <% if (e.state.status === 'graded') { %>
+            <span class="state st-graded">✔ 已考试 · <%= e.state.score %> 分</span>
+          <% } else if (e.state.status === 'in_progress') { %>
+            <span class="state st-progress">⏳ 考试中 <span class="remain" data-deadline="<%= e.state.deadlineAt %>"></span></span>
+          <% } else if (e.state.status === 'timeup') { %>
+            <span class="state st-timeup">⌛ 时间已到 · 未交卷</span>
+          <% } else { %>
+            <span class="state st-none">未考试</span>
+          <% } %>
+        </div>
         <% if (e.state.status === 'graded') { %>
-          <span class="state st-graded">✔ 已考试 · <%= e.state.score %> 分</span>
           <span class="start-btn">再次挑战 →</span>
         <% } else if (e.state.status === 'in_progress') { %>
-          <span class="state st-progress">⏳ 考试中 <span class="remain" data-deadline="<%= e.state.deadlineAt %>"></span></span>
           <span class="start-btn">继续答题 →</span>
         <% } else if (e.state.status === 'timeup') { %>
-          <span class="state st-timeup">⌛ 时间已到 · 未交卷</span>
           <span class="start-btn">继续考试 →</span>
         <% } else { %>
-          <span class="state st-none">未考试</span>
           <span class="start-btn">开始答题 →</span>
         <% } %>
       </div>

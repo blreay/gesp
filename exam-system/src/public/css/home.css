@@ -131,3 +131,10 @@ body { background: linear-gradient(135deg, var(--brand-900), var(--brand-700), v
   .wrong-banner { padding: 0 16px; margin-bottom: 32px; }
   .wrong-banner > div:first-child { padding: 20px 22px; }
 }
+
+/* 卡片底部：历史入口 + 状态 */
+.cf-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.card-hist { font-size: 12px; color: var(--neutral-300); cursor: pointer; padding: 3px 10px;
+  border: 1px solid var(--neutral-75); border-radius: var(--r-pill); background: #fff;
+  transition: all var(--duration-fast) var(--ease-out); white-space: nowrap; flex-shrink: 0; }
+.card-hist:hover { color: var(--brand-500); border-color: var(--brand-300); background: var(--brand-50); }

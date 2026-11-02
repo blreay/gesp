@@ -623,3 +623,106 @@ test('api 填空题判卷: 答错入错题本；复习会话重做判对后降�
 
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
+
+test('试卷历史: 交卷生成做题人/得分/快照，重考保留多条，普通用户可见，旧记录回填', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  try {
+    // 第一次考试：客观题全对交卷（编程未提交）
+    let r = await post(base, '/api/exams/test_paper_01/start');
+    const att1 = r.body.attemptId;
+    await post(base, `/api/attempts/${att1}/answers`, { questionId: 'q1', answer: 'B' });
+    await post(base, `/api/attempts/${att1}/answers`, { questionId: 'q2', answer: 'B' });
+    await post(base, `/api/attempts/${att1}/answers`, { questionId: 'q3', answer: 'true' });
+    r = await post(base, `/api/attempts/${att1}/grade`, {});
+    assert.strictEqual(r.status, 200);
+    assert.strictEqual(r.body.scored.total, 50);
+
+    // 历史列表页：做题人 / 时间 / 得分 / 快照入口
+    let page = await authFetch(base + '/exam/test_paper_01/history');
+    assert.strictEqual(page.status, 200);
+    let html = await page.text();
+    assert.ok(html.includes('提交历史'), '应有提交历史标题');
+    assert.ok(html.includes('<b>admin</b>'), '应显示做题人 admin');
+    assert.ok(html.includes('查看快照'), '应有快照入口');
+    const m = html.match(/\/exam\/test_paper_01\/history\/(\d+)/);
+    assert.ok(m, '应有快照链接');
+    const hid1 = m[1];
+
+    // 快照页：完整试卷信息 + 当次作答 + 正确答案 + 解析
+    page = await authFetch(base + `/exam/test_paper_01/history/${hid1}`);
+    assert.strictEqual(page.status, 200);
+    html = await page.text();
+    assert.ok(html.includes('答卷快照'));
+    assert.ok(html.includes('做题人：<b>admin</b>'));
+    assert.ok(html.includes('<b class="snap-score">50</b>'), '应显示得分 50');
+    assert.ok(html.includes('正确答案'), '应标注正确答案');
+    assert.ok(html.includes('考生作答'), '应标注考生作答');
+    assert.ok(html.includes('未提交'), '编程题未提交应显示');
+    assert.ok(html.includes('解析'), '应包含题目解析');
+
+    // 重考再交卷：旧 attempt 被删除，但历史保留两条
+    r = await post(base, '/api/exams/test_paper_01/retake');
+    const att2 = r.body.attemptId;
+    await post(base, `/api/attempts/${att2}/answers`, { questionId: 'q1', answer: 'A' }); // 故意答错
+    await post(base, `/api/attempts/${att2}/answers`, { questionId: 'q2', answer: 'B' });
+    await post(base, `/api/attempts/${att2}/answers`, { questionId: 'q3', answer: 'false' }); // 故意答错
+    r = await post(base, `/api/attempts/${att2}/grade`, {});
+    assert.strictEqual(r.status, 200);
+    assert.strictEqual(r.body.scored.total, 20);
+    html = await (await authFetch(base + '/exam/test_paper_01/history')).text();
+    assert.ok(html.includes('共 2 条记录'), '重考后历史应保留两条');
+    const ids = [...html.matchAll(/\/exam\/test_paper_01\/history\/(\d+)/g)].map(x => x[1]);
+    assert.strictEqual(ids.length, 2);
+    // 最新一条（列表第一条）快照反映第二次的错误作答
+    const snap2 = await (await authFetch(base + `/exam/test_paper_01/history/${ids[0]}`)).text();
+    assert.ok(snap2.includes('pick-wrong'), '第二次快照应标记答错的选择');
+    assert.ok(snap2.includes('<b class="snap-score">20</b>'), '第二次快照得分 20');
+    // 第一条快照仍在，内容不受重考影响
+    const snap1 = await (await authFetch(base + `/exam/test_paper_01/history/${ids[1]}`)).text();
+    assert.ok(snap1.includes('<b class="snap-score">50</b>'), '第一次快照应保持 50 分');
+
+    // 普通用户也可以查看历史与快照
+    r = await post(base, '/api/users', { username: 'kid', password: 'kid12345', role: 'user' });
+    assert.strictEqual(r.status, 200);
+    const lr = await fetch(base + '/api/auth/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: 'kid', password: 'kid12345' })
+    });
+    const sc = lr.headers.getSetCookie ? lr.headers.getSetCookie() : [lr.headers.get('set-cookie')];
+    const kidCookie = String((sc && sc[0]) || '').split(';')[0];
+    page = await fetch(base + '/exam/test_paper_01/history', { headers: { Cookie: kidCookie } });
+    assert.strictEqual(page.status, 200, '普通用户应可查看历史列表');
+    assert.ok((await page.text()).includes('<b>admin</b>'));
+    page = await fetch(base + `/exam/test_paper_01/history/${hid1}`, { headers: { Cookie: kidCookie } });
+    assert.strictEqual(page.status, 200, '普通用户应可查看快照');
+    assert.ok((await page.text()).includes('正确答案'));
+
+    // 入口：考试页顶栏与首页卡片
+    html = await (await authFetch(base + '/exam/test_paper_01')).text();
+    assert.ok(html.includes('历史记录'), '考试页顶栏应有历史记录按钮');
+    html = await (await authFetch(base + '/')).text();
+    assert.ok(html.includes('card-hist'), '首页卡片应有历史入口');
+
+    // 回填：手工造一条旧的 graded attempt（无做题人），启动回填应补出快照且幂等
+    const d = db.get();
+    const now = Date.now();
+    const info = d.prepare(`INSERT INTO exam_attempts(exam_id, status, started_at, submitted_at, total_score, username)
+      VALUES ('test_paper_01', 'graded', ?, ?, 0, '')`).run(now - 86400000, now - 80000000);
+    const legacyId = Number(info.lastInsertRowid);
+    d.prepare('INSERT INTO exam_answers(attempt_id, question_id, answer) VALUES (?, ?, ?)').run(legacyId, 'q1', 'B');
+    const examhistory = require('../src/services/examhistory');
+    let bf = examhistory.backfillIfNeeded();
+    assert.strictEqual(bf.count, 1, '应回填一条旧记录');
+    html = await (await authFetch(base + '/exam/test_paper_01/history')).text();
+    assert.ok(html.includes('共 3 条记录'), '回填后应有三条');
+    assert.ok(html.includes('历史记录'), '无做题人的旧记录应显示为历史记录');
+    bf = examhistory.backfillIfNeeded();
+    assert.strictEqual(bf.count, 0, '回填应幂等');
+
+    // 不存在的试卷/记录 → 404
+    assert.strictEqual((await authFetch(base + '/exam/no_such/history')).status, 404);
+    assert.strictEqual((await authFetch(base + '/exam/test_paper_01/history/99999')).status, 404);
+  } finally {
+    server.close(); db.close(); rmrf(dir); rmrf(bank);
+  }
+});

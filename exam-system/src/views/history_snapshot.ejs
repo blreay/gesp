@@ -1,0 +1,131 @@
+<%- include('partials/head', { title: title, extraCss: extraCss }) %>
+<%- include('partials/nav', { activeNav: activeNav }) %>
+
+<%
+function ansOr(v, empty) { return (v === undefined || v === null || v === '') ? (empty || '（未作答）') : String(v); }
+function tfLabel(v) { return String(v) === 'true' ? '正确 ✔' : String(v) === 'false' ? '错误 ✘' : '（未作答）'; }
+function fillAns(a) { return Array.isArray(a) ? a.join(' 或 ') : String(a); }
+%>
+
+<div class="snap-wrap">
+  <div class="snap-head">
+    <a class="btn btn-ghost" href="/exam/<%= rec.exam_id %>/history">← 返回列表</a>
+    <div class="snap-headinfo">
+      <h2><%= rec.exam_title %> · 答卷快照</h2>
+      <div class="snap-meta">
+        做题人：<b><%= rec.username || '历史记录' %></b>
+        · 开始：<%= fmtTs(rec.started_at) %>
+        · 交卷：<%= fmtTs(rec.submitted_at) %>
+        · 得分：<b class="snap-score"><%= rec.total_score %></b> / <%= rec.full_score %> 分
+        <% if (rec.auto_submitted) { %> · <span class="hist-tag">超时自动交卷</span><% } %>
+      </div>
+    </div>
+  </div>
+
+  <% if (!snap.exam) { %>
+    <div class="empty-tip">该记录缺少试卷快照数据（回填时试卷已不在题库）。</div>
+  <% } else { %>
+  <div class="paper snap-paper">
+    <% (snap.exam.sections || []).forEach(function(sec){ %>
+      <div class="section-title"><span><%= sec.title %></span></div>
+      <% (sec.questions || []).forEach(function(q, qi){
+           var r = results.get(q.id) || {};
+           var ans = snap.answers ? snap.answers[q.id] : undefined;
+           var answered = !(ans === undefined || ans === null || ans === ''); %>
+        <div class="question snap-q">
+          <div class="q-text">
+            <%= qi + 1 %>. <%- renderStem(q.stem || q.title || '') %>
+            <% if (q.type === 'programming') { %>
+              <% if (!snap.prog || !snap.prog[q.id]) { %><span class="snap-badge skip">未提交</span>
+              <% } else if (r.correct) { %><span class="snap-badge ok">✔ 通过 <%= r.score %>/<%= r.full %> 分</span>
+              <% } else { %><span class="snap-badge bad">✘ 未通过 0/<%= r.full %> 分</span><% } %>
+            <% } else if (r.skipped || (!answered && q.type !== 'programming')) { %>
+              <span class="snap-badge skip">未作答</span>
+            <% } else if (r.correct) { %>
+              <span class="snap-badge ok">✔ 正确 <%= r.score %>/<%= r.full %> 分</span>
+            <% } else { %>
+              <span class="snap-badge bad">✘ 错误 <%= r.score || 0 %>/<%= r.full %> 分</span>
+            <% } %>
+          </div>
+
+          <% if (q.type === 'choice') { %>
+            <div class="options snap-options">
+              <% Object.keys(q.options || {}).forEach(function(k){
+                   var picked = answered && String(ans) === k;
+                   var isAnswer = String(q.answer) === k; %>
+              <div class="opt snap-opt<%= picked ? (isAnswer ? ' pick-right' : ' pick-wrong') : '' %><%= isAnswer ? ' is-answer' : '' %>">
+                <span class="radio-dot"></span>
+                <div class="opt-text"><%= k %>. <%- renderStem(q.options[k]) %></div>
+                <% if (picked) { %><span class="snap-mark mark-pick">考生作答</span><% } %>
+                <% if (isAnswer) { %><span class="snap-mark mark-answer">正确答案</span><% } %>
+              </div>
+              <% }); %>
+            </div>
+            <div class="snap-answer-line">作答：<b><%= ansOr(ans) %></b> ｜ 正确答案：<b class="ok-text"><%= q.answer %></b></div>
+
+          <% } else if (q.type === 'tf') { %>
+            <div class="tf-options snap-options">
+              <% ['true', 'false'].forEach(function(v){
+                   var picked = answered && String(ans) === v;
+                   var isAnswer = String(q.answer) === v; %>
+              <div class="tf-opt snap-opt<%= picked ? (isAnswer ? ' pick-right' : ' pick-wrong') : '' %><%= isAnswer ? ' is-answer' : '' %>">
+                <%= v === 'true' ? '✔ 正确' : '✘ 错误' %>
+                <% if (picked) { %><span class="snap-mark mark-pick">考生作答</span><% } %>
+                <% if (isAnswer) { %><span class="snap-mark mark-answer">正确答案</span><% } %>
+              </div>
+              <% }); %>
+            </div>
+            <div class="snap-answer-line">作答：<b><%= tfLabel(ans) %></b> ｜ 正确答案：<b class="ok-text"><%= tfLabel(q.answer) %></b></div>
+
+          <% } else if (q.type === 'fill') { %>
+            <div class="snap-answer-line">作答：<b class="<%= r.correct ? 'ok-text' : 'bad-text' %>"><%= ansOr(ans) %></b> ｜ 参考答案：<b class="ok-text"><%= fillAns(q.answer) %></b></div>
+
+          <% } else { var sub = (snap.prog || {})[q.id]; %>
+            <div class="snap-answer-line">
+              判定：<% if (!sub) { %><b>（未提交代码）</b>
+              <% } else if (sub.allPassed) { %><b class="ok-text">✔ 全部测试通过</b>
+              <% } else if (!sub.compileOk) { %><b class="bad-text">✘ 编译失败</b>
+              <% } else { %><b class="bad-text">✘ 部分测试未通过</b><% } %>
+              <% if (sub) { %> · 最后提交：<%= fmtTs(sub.submittedAt) %><% } %>
+            </div>
+            <% if (sub) { %>
+            <details class="snap-code" open>
+              <summary>考生代码（最后一次提交）</summary>
+              <pre class="ref-code"><%= sub.code %></pre>
+              <% if (sub.resultSummary) { %><pre class="snap-summary"><%= sub.resultSummary %></pre><% } %>
+            </details>
+            <% } %>
+            <% if (q.answer && q.answer.reference_code) { %>
+            <details class="snap-code">
+              <summary>参考代码</summary>
+              <pre class="ref-code"><%= q.answer.reference_code %></pre>
+            </details>
+            <% } %>
+            <details class="snap-code">
+              <summary>题目全文</summary>
+              <div class="q-body"><%- renderStem(q.stem || '') %></div>
+              <% if (q.input_format) { %><h4>输入格式</h4><div class="q-body"><%- renderStem(q.input_format) %></div><% } %>
+              <% if (q.output_format) { %><h4>输出格式</h4><div class="q-body"><%- renderStem(q.output_format) %></div><% } %>
+              <% (q.samples || []).forEach(function(sm, i){ %>
+              <div class="sample-box">
+                <div class="sample"><h5>样例输入 <%= i + 1 %></h5><pre><%= sm.input %></pre></div>
+                <div class="sample"><h5>样例输出 <%= i + 1 %></h5><pre><%= sm.output %></pre></div>
+              </div>
+              <% }); %>
+            </details>
+          <% } %>
+
+          <% if (q.explanation) { %>
+          <details class="snap-expl">
+            <summary>解析</summary>
+            <div class="q-body"><%- renderStem(q.explanation) %></div>
+          </details>
+          <% } %>
+        </div>
+      <% }); %>
+    <% }); %>
+  </div>
+  <% } %>
+</div>
+
+<%- include('partials/foot', { extraJs: extraJs }) %>

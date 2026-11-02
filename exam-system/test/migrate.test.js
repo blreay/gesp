@@ -69,22 +69,28 @@ test('迁移: 损坏的 schema_version 抛错', () => {
   dbmod.close(); rmrf(dir);
 });
 
-test('迁移: v2 旧库升级到当前版本自动补 score_fill 列并备份', () => {
+test('迁移: v2 旧库升级到当前版本自动补 score_fill/username 列、exam_history 表并备份', () => {
   const dir = tmpDir('mig-');
   const dbmod = require('../src/services/db');
   const dbPath = path.join(dir, 't.db');
   dbmod.init(dbPath);
-  // 模拟 v2 旧库：版本压到 2，去掉 v3 才有的 score_fill 列和 v4 才有的 users 表
+  // 模拟 v2 旧库：版本压到 2，去掉 v3 才有的 score_fill 列、v4 才有的 users 表、
+  // v5 才有的 username 列与 exam_history 表
   dbmod.get().prepare("INSERT OR REPLACE INTO settings(key,value) VALUES('schema_version','2')").run();
   dbmod.get().exec('ALTER TABLE exam_attempts DROP COLUMN score_fill');
+  dbmod.get().exec('ALTER TABLE exam_attempts DROP COLUMN username');
   dbmod.get().exec('DROP TABLE auth_sessions');
   dbmod.get().exec('DROP TABLE users');
+  dbmod.get().exec('DROP TABLE exam_history');
   dbmod.close();
 
-  dbmod.init(dbPath); // 重新打开 → 应自动执行 3、4 号迁移
+  dbmod.init(dbPath); // 重新打开 → 应自动执行 3、4、5 号迁移
   assert.strictEqual(dbmod.getSetting('schema_version'), String(dbmod.CURRENT_SCHEMA_VERSION));
   const cols = dbmod.get().prepare('PRAGMA table_info(exam_attempts)').all().map(c => c.name);
   assert.ok(cols.includes('score_fill'), 'score_fill 列应被迁移补上');
+  assert.ok(cols.includes('username'), 'username 列应被迁移补上');
+  const hist = dbmod.get().prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='exam_history'").get();
+  assert.ok(hist, 'exam_history 表应被迁移建出');
   const admin = dbmod.get().prepare("SELECT * FROM users WHERE username='admin'").get();
   assert.ok(admin, '迁移后应播种默认管理员');
   assert.strictEqual(admin.role, 'admin');
