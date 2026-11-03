@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI创业大赛路演全案辅导 · 坤腾数智</title>
+<style>
+:root{
+  --navy:#1c2a55;
+  --navy-deep:#12204a;
+  --ink:#2b3245;
+  --muted:#6b7385;
+  --line:#e4e7ee;
+  --bg:#f3f5f9;
+  --card:#ffffff;
+  --accent:#c08a2e;
+  --accent-soft:#fdf6e7;
+  --rose:#b3423f;
+  --rose-soft:#fcf1f0;
+  --teal:#1d6e68;
+  --teal-soft:#eef6f4;
+  --blue:#2f5fa3;
+  --blue-soft:#eef3fb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+html,body{max-width:100%;overflow-x:hidden}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+  font-size:16px;
+  line-height:1.85;
+  overflow-wrap:anywhere;
+}
+img,video,svg,iframe{max-width:100%;height:auto}
+a{color:var(--blue);text-decoration:none}
+a:hover,a:focus-visible{text-decoration:underline}
+strong{color:var(--navy);font-weight:700}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em;background:#eef0f5;border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--navy-deep)}
+
+/* ===== 顶部横幅 ===== */
+.hero{
+  background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,#2a3c74 100%);
+  color:#fff;
+  padding:56px 24px 48px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"Q&A";
+  position:absolute;
+  right:-20px;
+  bottom:-58px;
+  font-size:200px;
+  font-weight:800;
+  color:rgba(255,255,255,.05);
+  letter-spacing:-8px;
+  user-select:none;
+}
+.hero-inner{max-width:1240px;margin:0 auto;position:relative;z-index:1}
+.hero .kicker{
+  display:inline-block;
+  font-size:13px;
+  letter-spacing:2px;
+  color:#e8c987;
+  border:1px solid rgba(232,201,135,.45);
+  border-radius:999px;
+  padding:3px 14px;
+  margin-bottom:18px;
+}
+.hero h1{margin:0 0 10px;font-size:34px;line-height:1.35;letter-spacing:1px}
+.hero h2{
+  margin:0;
+  font-size:17px;
+  font-weight:400;
+  color:#c9d3ec;
+  line-height:1.7;
+}
+.hero .meta{
+  margin-top:22px;
+  background:rgba(255,255,255,.08);
+  border-left:3px solid #e8c987;
+  border-radius:0 10px 10px 0;
+  padding:12px 18px;
+  font-size:13.5px;
+  color:#c3cde8;
+  line-height:1.9;
+}
+.hero .meta p{margin:0}
+
+/* ===== 布局 ===== */
+.wrap{
+  max-width:1240px;
+  margin:0 auto;
+  padding:32px 20px 72px;
+  display:grid;
+  grid-template-columns:264px minmax(0,1fr);
+  gap:32px;
+  align-items:start;
+}
+.toc{
+  position:sticky;
+  top:20px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:18px 6px 12px;
+  box-shadow:0 4px 18px rgba(28,42,85,.06);
+  max-height:calc(100vh - 48px);
+  overflow:hidden auto;
+}
+.toc h2{
+  font-size:13px;
+  letter-spacing:2px;
+  color:var(--muted);
+  margin:0 0 8px;
+  padding:0 14px;
+  text-transform:uppercase;
+}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc a{
+  display:block;
+  padding:6px 14px;
+  border-radius:8px;
+  color:var(--ink);
+  font-size:14px;
+  line-height:1.5;
+}
+.toc a:hover,.toc a:focus-visible{background:#eef1f7;text-decoration:none}
+.toc li.sub a{padding-left:28px;font-size:13.5px;color:var(--muted)}
+.toc li.sub a:hover{color:var(--ink)}
+.toc a.active{background:var(--navy);color:#fff;font-weight:600}
+.toc li.sub a.active{background:var(--blue);color:#fff}
+main{min-width:0}
+
+/* 移动端目录按钮 */
+.toc-toggle{
+  display:none;
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:60;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:none;
+  background:var(--navy);
+  color:#fff;
+  font-size:18px;
+  box-shadow:0 6px 20px rgba(18,32,74,.4);
+  cursor:pointer;
+}
+.toc-toggle:focus-visible{outline:3px solid var(--accent)}
+
+/* ===== 通用区块 ===== */
+section{margin:0 0 40px}
+.sec-head{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  margin:56px 0 22px;
+  padding-bottom:12px;
+  border-bottom:3px solid var(--navy);
+}
+.sec-head .no{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#fff;
+  background:var(--accent);
+  border-radius:6px;
+  padding:2px 10px;
+  white-space:nowrap;
+}
+.sec-head h2{margin:0;font-size:26px;color:var(--navy-deep);letter-spacing:.5px}
+h2.part{
+  font-size:28px;
+  color:var(--navy-deep);
+  margin:60px 0 6px;
+  letter-spacing:1px;
+  text-align:center;
+}
+.part-sub{
+  text-align:center;
+  color:var(--muted);
+  font-size:14.5px;
+  margin:0 0 28px;
+}
+h3.qtitle{
+  margin:0 0 14px;
+  font-size:17px;
+  color:var(--navy-deep);
+  line-height:1.7;
+}
+h3.qtitle .qnum{
+  display:inline-block;
+  background:var(--navy);
+  color:#fff;
+  font-size:13px;
+  font-weight:700;
+  border-radius:6px;
+  padding:1px 9px;
+  margin-right:8px;
+  vertical-align:2px;
+  white-space:nowrap;
+}
+p{margin:0 0 14px}
+blockquote{
+  margin:16px 0;
+  padding:14px 18px;
+  background:var(--accent-soft);
+  border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0;
+  color:#6a5522;
+}
+blockquote p{margin:0}
+blockquote strong{color:#8a5a10}
+
+/* ===== 判断卡 ===== */
+.verdict{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:4px solid var(--rose);
+  border-radius:14px;
+  padding:26px 28px;
+  box-shadow:0 4px 18px rgba(28,42,85,.06);
+}
+.verdict ol{margin:8px 0 18px;padding-left:1.4em}
+.verdict li{margin:8px 0}
+.verdict .verdict-tag{
+  display:inline-block;
+  font-size:12.5px;
+  color:#fff;
+  background:var(--rose);
+  border-radius:6px;
+  padding:1px 10px;
+  margin-bottom:10px;
+  letter-spacing:1px;
+}
+.stat-strip{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:18px 0 8px;
+}
+.stat{
+  background:linear-gradient(160deg,var(--navy-deep),var(--navy));
+  color:#fff;
+  border-radius:12px;
+  padding:14px 16px;
+  text-align:center;
+}
+.stat .n{font-size:24px;font-weight:800;letter-spacing:1px;color:#e8c987}
+.stat .d{font-size:12.5px;color:#c3cde8;margin-top:2px}
+
+/* ===== 问答卡 ===== */
+.qcard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:24px 26px 20px;
+  margin:0 0 18px;
+  box-shadow:0 3px 14px rgba(28,42,85,.05);
+}
+.motive,.answer{
+  border-radius:10px;
+  padding:14px 18px;
+  margin:12px 0;
+  font-size:15px;
+}
+.motive{background:var(--rose-soft);border:1px solid #eddcda}
+.answer{background:var(--teal-soft);border:1px solid #d7e8e4}
+.motive .tag,.answer .tag{
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
+  border-radius:5px;
+  padding:1px 9px;
+  margin-bottom:8px;
+}
+.motive .tag{background:var(--rose);color:#fff}
+.answer .tag{background:var(--teal);color:#fff}
+.answer ol{margin:4px 0 0;padding-left:1.5em}
+.answer ol li,.answer ul li{margin:9px 0}
+.answer ul{margin:4px 0 0;padding-left:1.4em}
+.motive p{margin:0}
+.answer p{margin:6px 0 2px}
+.key{
+  display:block;
+  background:#fff;
+  border:1px dashed var(--accent);
+  border-radius:8px;
+  padding:8px 14px;
+  margin:10px 0 2px;
+  color:#7a5310;
+}
+.key strong{color:#8a5a10}
+
+/* ===== 改进建议卡 ===== */
+.scard{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:22px 26px 18px;
+  margin:0 0 16px;
+  box-shadow:0 3px 14px rgba(28,42,85,.05);
+}
+.scard h3{
+  margin:0 0 12px;
+  font-size:16.5px;
+  color:var(--navy-deep);
+  line-height:1.7;
+}
+.stars{color:var(--accent);letter-spacing:2px;margin-right:10px;font-size:15px;white-space:nowrap}
+.scard dl{margin:0;display:grid;grid-template-columns:6.5em minmax(0,1fr);row-gap:10px;column-gap:12px;font-size:15px}
+.scard dt{
+  font-weight:700;
+  color:var(--blue);
+  text-align:right;
+  white-space:nowrap;
+}
+.scard dd{margin:0}
+.scard dl > dt, .scard dl > dd{min-width:0}
+
+/* ===== 表格 ===== */
+.tbl-cap{
+  font-size:13.5px;
+  color:var(--muted);
+  margin:0 0 8px;
+}
+table{
+  width:100%;
+  table-layout:fixed;
+  border-collapse:collapse;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  font-size:14.5px;
+  margin:14px 0 20px;
+}
+th,td{
+  padding:10px 12px;
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  vertical-align:top;
+  line-height:1.7;
+  overflow-wrap:anywhere;
+}
+th{background:var(--navy);color:#fff;font-weight:600;font-size:14px}
+tbody tr:nth-child(even){background:#f8f9fc}
+tbody tr:hover{background:#eef1f7}
+tbody tr:last-child td{border-bottom:none}
+
+/* ===== 列表与细节 ===== */
+ul.plain{margin:0 0 14px;padding-left:1.4em}
+ul.plain li{margin:7px 0}
+.callout{
+  background:var(--blue-soft);
+  border:1px solid #d6e0f0;
+  border-left:4px solid var(--blue);
+  border-radius:0 10px 10px 0;
+  padding:12px 18px;
+  margin:14px 0;
+  font-size:14.5px;
+}
+.callout p{margin:4px 0}
+.goldline{
+  background:var(--accent-soft);
+  border:1px solid #ecd9ae;
+  border-radius:10px;
+  padding:10px 16px;
+  margin:12px 0;
+  color:#6a5522;
+  font-size:14.5px;
+}
+.goldline strong{color:#8a5a10}
+.stage-title{
+  font-weight:700;
+  color:var(--navy-deep);
+  margin:22px 0 8px;
+  font-size:16px;
+}
+
+/* ===== 移动端 ===== */
+@media (max-width:920px){
+  .wrap{grid-template-columns:minmax(0,1fr);padding:20px 14px 60px;gap:0}
+  .toc{
+    position:fixed;
+    left:12px;right:12px;top:12px;
+    z-index:70;
+    max-height:75vh;
+    display:none;
+    box-shadow:0 12px 40px rgba(18,32,74,.25);
+  }
+  .toc.open{display:block}
+  .toc-toggle{display:block}
+  .hero{padding:40px 18px 34px}
+  .hero h1{font-size:26px}
+  .sec-head{flex-wrap:wrap;gap:8px}
+  .sec-head h2{font-size:21px}
+  h2.part{font-size:23px}
+  .stat-strip{grid-template-columns:1fr}
+  .qcard,.scard,.verdict{padding:18px 16px 14px}
+  .scard dl{grid-template-columns:minmax(0,1fr)}
+  .scard dt{text-align:left}
+  table,tbody,tr,td{display:block}
+  thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  table{border-radius:12px}
+  tbody tr{border:1px solid var(--line);border-radius:12px;margin:12px 0;background:#fff;padding:4px}
+  tbody tr:nth-child(even){background:#fff}
+  td{
+    display:grid;
+    grid-template-columns:5.2em minmax(0,1fr);
+    gap:0 12px;
+    border-bottom:1px dashed var(--line);
+    padding:8px 12px;
+  }
+  td:last-child{border-bottom:none}
+  td::before{
+    content:attr(data-label);
+    font-weight:700;
+    color:var(--blue);
+    font-size:13px;
+  }
+}
+@media (min-width:921px) and (max-width:1100px){
+  .wrap{grid-template-columns:224px minmax(0,1fr)}
+}
+@media print{
+  .toc,.toc-toggle{display:none}
+  .wrap{grid-template-columns:minmax(0,1fr);padding:0}
+  body{background:#fff}
+  .hero{background:var(--navy) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="kicker">模拟评委 50 问 · 20 条改进建议 · 7 分钟现场指导</span>
+    <h1>AI创业大赛路演全案辅导</h1>
+    <h2>坤腾数智 · AI智能化超微纳米曝气—臭氧催化氧化一体化工艺包</h2>
+    <div class="meta">
+      <p>依据：《AI智能化超微纳米曝气—臭氧催化氧化一体化工艺包-商业路演PPT-v2.pptx》（20页，含旁白）及《坤腾数智-商业计划书-0828.docx》全文。</p>
+      <p>定位：AI＋智能制造赛道，7分钟路演＋评委现场提问。</p>
+    </div>
+  </div>
+</header>
+
+<button class="toc-toggle" id="tocToggle" aria-label="打开目录" aria-expanded="false">☰</button>
+
+<div class="wrap">
+<nav class="toc" id="toc" aria-label="文档目录">
+  <h2>目录</h2>
+  <ul id="tocList">
+    <li><a href="#sec-0">〇 整体判断（先说结论）</a></li>
+    <li><a href="#task1">任务一：模拟评委提问（50个）</a></li>
+    <li class="sub"><a href="#sec-a">A. AI技术含金量（8问）</a></li>
+    <li class="sub"><a href="#sec-b">B. 技术可行性与先进性（8问）</a></li>
+    <li class="sub"><a href="#sec-c">C. 商业模式（7问）</a></li>
+    <li class="sub"><a href="#sec-d">D. 市场与竞争（7问）</a></li>
+    <li class="sub"><a href="#sec-e">E. 财务与融资（7问）</a></li>
+    <li class="sub"><a href="#sec-f">F. 团队（7问）</a></li>
+    <li class="sub"><a href="#sec-g">G. 政策与行业风险（6问）</a></li>
+    <li><a href="#task2">任务二：20条改进建议</a></li>
+    <li><a href="#task3">任务三：7分钟路演现场指导</a></li>
+    <li class="sub"><a href="#sec-time">1. 时间分配方案</a></li>
+    <li class="sub"><a href="#sec-open">2. 开场设计</a></li>
+    <li class="sub"><a href="#sec-core">3. 内容取舍</a></li>
+    <li class="sub"><a href="#sec-skill">4. 演讲技巧</a></li>
+    <li class="sub"><a href="#sec-qa">5. 问答应对策略</a></li>
+    <li class="sub"><a href="#sec-end">6. 结尾设计</a></li>
+    <li><a href="#appendix">附：赛前两周行动清单</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ==================== 〇 整体判断 ==================== -->
+<section id="sec-0">
+  <div class="sec-head">
+    <span class="no">〇</span>
+    <h2>整体判断（先说结论）</h2>
+  </div>
+  <div class="verdict">
+    <span class="verdict-tag">赛前必读</span>
+    <p>你的项目在一众"AI概念"项目里有一个罕见的优点：<strong>PPT和BP的诚实度高</strong>——明确标注了"实验室批次小试、存在放大效应""AI为方案设计、待中试A/B验证""TAM为团队自上而下测算"。这降低了被评委当场戳穿的死亡率，但也带来两个致命暴露面：</p>
+    <ol>
+      <li><strong>AI含金量是全场最大软肋</strong>。项目标题里有"AI"，但目前AI部分的成熟度是"方案设计"——没有一行已运行的闭环代码、没有一秒现场数据。评委中只要有真正的AI技术专家，第一轮火力必然集中在这里。</li>
+      <li><strong>证据链断层</strong>。唯一硬数据是75L批次小试（化工园区模拟废水），而你的滩头市场写的是"存量市政水务技改"——场景和小试水质不匹配，懂行的环保评委一眼就能看出。</li>
+    </ol>
+    <div class="stat-strip">
+      <div class="stat"><div class="n">48–65%</div><div class="d">臭氧投加降幅（实验室小试）</div></div>
+      <div class="stat"><div class="n">5–20 min</div><div class="d">达标停留时间（对照43min）</div></div>
+      <div class="stat"><div class="n">85–99%</div><div class="d">臭氧溶解利用率</div></div>
+    </div>
+    <p>好消息是：这两个软肋都有可准备的、不撒谎的应对路径。以下50问就是围绕这两条主线加财务、团队等常规火力点展开的。<strong>把任务一里每一个"回答思路"内化成你自己的话，你的答辩环节至少能顶住80%的攻击。</strong></p>
+  </div>
+</section>
+
+<!-- ==================== 任务一 ==================== -->
+<h2 class="part" id="task1">任务一：模拟评委提问（50个）</h2>
+<p class="part-sub">七个火力区：A 技术含金量 · B 可行性 · C 商业模式 · D 市场竞争 · E 财务融资 · F 团队 · G 政策风险</p>
+
+<!-- ===== A ===== -->
+<section id="sec-a">
+  <div class="sec-head">
+    <span class="no">A</span>
+    <h2>AI技术含金量（8问）——全场火力最集中的区域</h2>
+  </div>
+
+  <article class="qcard" id="q-a1">
+    <h3 class="qtitle"><span class="qnum">A1</span>"你们PPT第7页自己写着'控制架构与策略已完成方案设计，待中试影子运行'——也就是说AI部分目前一行代码都没跑过、一秒现场数据都没有。请问你们凭什么站在'AI创业大赛'的台上？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>这是全场必问的"开局斩"。评委不是真要否定你，而是看你在被戳穿"AI未验证"时是慌乱辩解、含糊其辞，还是坦然接受并给出可信的验证路径。答砸了，后面所有AI相关问题你都会被连环追击。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>先承认，不绕："您说得对，AI闭环目前是方案设计阶段，我们刻意不做任何夸大。"（一句认怂换来全场信任）</li>
+        <li>再切割赛道归属："我们参赛的逻辑是'AI+智能制造的环保装备升级'——本项目中已经用数据证明的，是硬件与工艺层（臭氧投加↓48–65%）；AI是把这部分收益再放大15–20%的放大器。装备+算法一体才是智能制造，纯算法公司反而做不了这个项目。"</li>
+        <li>最后给路径："AI的验证设计已经完成——中试先做影子运行（只观察不下发），再与固定PID做A/B对比，降级成功率写进验收指标。这是我们敢说'AI价值可核验'的原因。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a2">
+    <h3 class="qtitle"><span class="qnum">A2</span>"你们反复讲'机理模型＋机器学习＋贝叶斯深度学习三层融合'。请具体讲讲：贝叶斯深度学习用的什么网络结构？置信度是怎么算出来的？置信度阈值怎么定？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>辨别"真AI"还是"抄PPT词汇"。AI技术专家问术语细节，答不上"贝叶斯深度学习"这个词就露馅了——这是你PPT第7页自己写上去的词，每一个词都要能展开讲。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>结构上：贝叶斯深度学习=在深度网络权重上引入先验分布，用变分推断（VI）或蒙特卡洛Dropout近似后验，前向多次采样得到预测分布，分布的方差就是不确定性的量化。</li>
+        <li>置信度：用预测区间的宽度/预测方差归一化为置信度评分；阈值初始基于历史数据分位数设定（如P10），中试期间用误报-漏报权衡曲线（类似ROC）标定。</li>
+        <li>收尾要拉回工程语言："对我们来说贝叶斯不是噱头，它是'什么时候该闭嘴'的机制——模型自己知道自己不知道，就降级给PLC。这比模型精度本身更重要。"</li>
+        <li>若团队确实讲不出细节（算法负责人是江海鑫），诚实说："这一层由江博负责，我可以讲机制和验证口径，细节他可以在会后展开。"<strong>——千万不要现场编。</strong></li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a3">
+    <h3 class="qtitle"><span class="qnum">A3</span>"训练数据从哪来？你们连一个运行现场都没有。没有现场数据怎么训练模型？这是先有鸡还是先有蛋的问题。"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>考察你有没有想清楚冷启动路径。这是数据驱动AI项目的经典死循环问题，评委想看你是否已有破局设计。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>数据来源分层：①小试多梯度工况数据（135–226 mg/L进水、75L批次、多组重复）——用于工艺动力学机理模型参数标定；②中试现场历史运行基线（第11页已写明"业主提供历史运行基线"是实施条件）；③影子运行期累积的在线数据。</li>
+        <li>关键：机理模型不是从数据学的，是从物理守恒和反应动力学构造的——<strong>冷启动期靠机理模型，数据飞轮转起来后ML才逐步接管</strong>。这正是三层架构的设计动机。</li>
+        <li>补一句行业事实："我们目标客户是存量水厂，SCADA里躺着3–5年的运行历史——这类数据不是缺，是没人用。这是我们选技改场景而非新建场景的原因之一。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a4">
+    <h3 class="qtitle"><span class="qnum">A4</span>"'较人工经验投加臭氧↓15–20%'——这个数字是怎么算出来的？没有任何AI运行数据，这个百分比是怎么冒出来的？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>抓"预期当结果"的把柄。你PPT第8页表格里这格写的是"预期价值（计划目标）"，但口误说成效果就会被追打。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>明确定位："这是目标值，不是实测值，我们所有场合都这么表述。"</li>
+        <li>给推算逻辑："依据是：①进水COD 135–226 mg/L波动区间下，固定投加必然按最坏工况富余配置，理论节余空间可算；②同类精准曝气/精准加药行业实践的节药率区间（10–25%）；③我们以中试A/B对比作为唯一验收口径。"</li>
+        <li>主动加保险栓："如果中试改善不达预设阈值，我们计划书里写明了止损——AI降级为辅助分析工具，不影响工艺包主体价值。"（把风险页19的内容在口头提前打出，评委反而放心。）</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a5">
+    <h3 class="qtitle"><span class="qnum">A5</span>"污水处理厂用DO仪串级控制、前馈+反馈PID加药已经用了三十年。你们的AI和这些成熟自动控制的本质区别到底是什么？别跟我说是'更智能'。"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>环保+自动化双重背景评委的经典问题。答不出本质区别，"AI包装"的标签就坐实了。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认PID的位置："PID是执行层和安全层，我们不替代它——它始终在线兜底。"</li>
+        <li>讲三个PID做不到的：①<strong>多变量耦合优化</strong>：臭氧投加是流量、COD、pH、碱度、温度多变量强耦合问题，PID单回路只能跟着单一设定值走；②<strong>非线性前馈</strong>：人工经验定参的本质是把进水分布压缩成一个常数，ML学的是整个进水分布到投加策略的映射；③<strong>不确定量化与经济目标</strong>：我们的优化目标不是"控制某设定值"，而是"达标率约束下臭氧单耗最小化"——这是约束优化问题，不是跟踪问题。</li>
+        <li>一句话总结："PID问'怎么到达设定值'，AI问'设定值本身应该定在哪'。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a6">
+    <h3 class="qtitle"><span class="qnum">A6</span>"LSTM＋红外/视觉CNN＋XGBoost＋DS证据理论＋故障树＋知识图谱＋数字孪生……你们把近十年AI教科书目录抄了个遍。这些技术里，哪一个是你们自己的原创？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>抓"算法堆砌感"。你PPT/BP里第8页和4.3.3节确实罗列了大量算法名词，AI评委看到这种全家桶名单的第一反应就是心虚。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>直面："单看每个算法，都是成熟组件，我们不宣称算法原创——我们的创新在<strong>集成方式和安全架构</strong>。"</li>
+        <li>讲两个真正差异化点：①置信度门控降级机制（何时切回PLC）是系统工程创新，我们把'AI不可信时怎么办'做成了可验收的工程指标（降级触发成功率）；②机理模型与ML的融合方式——机理模型划定物理可行域，ML只在域内寻优，这解决了工业界最怕的'黑盒乱来'。</li>
+        <li>删减话术："坦率说，PPT上列的部分模块（数字孪生驾驶舱等）属于二阶段规划，路演时间有限，我们核心只在投加优化和异常预警两件事上。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a7">
+    <h3 class="qtitle"><span class="qnum">A7</span>"你们说机理模型兜底。臭氧氧化反应动力学常数跟水质强相关——每种废水成分不同，你们的机理模型参数标定过几种废水？换个水厂还准吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>技术专家检验你对"机理模型"的理解深度。机理模型不是写个公式就兜底了，参数标定是硬功夫。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认标定成本："机理模型确实需要每厂标定——这正是我们交付流程里'水质分析→小试/中试'两个前置步骤存在的原因。"</li>
+        <li>讲标定方法："目前基于小试多梯度批次数据，已对模拟化工园区废水标定了COD—臭氧响应关系；进厂后用历史运行数据做参数回溯辨识，2–4周可完成。"</li>
+        <li>讲产品化路径："每个项目沉淀一组标定参数，进场景参数库——项目越多，新项目冷启动越快，这就是我们说的数据飞轮。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-a8">
+    <h3 class="qtitle"><span class="qnum">A8</span>"断网回退PLC——那我请问：你们AI平台部署在哪里？边缘还是云？4G/5G备用通道写在BP里，关键水务基础设施允许数据出内网吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>检验工程落地真实性 + 数据合规。国企/关键基础设施的数据不出内网是硬约束，BP 8.4节其实写了本地化部署，你要能接住。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>"推理在边缘网关，本地闭环；云端只做模型迭代和远程运维，且涉内网/关键基础设施客户我们提供纯本地化部署和离线更新。"（BP 8.4原话要背熟）</li>
+        <li>数据权属："客户数据所有权归业主，训练边界写进合同，日志审计留痕。"</li>
+        <li>降级设计本来就是为断网设计的——这个问题正好让你强调安全架构。</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ===== B ===== -->
+<section id="sec-b">
+  <div class="sec-head">
+    <span class="no">B</span>
+    <h2>技术可行性与先进性（8问）</h2>
+  </div>
+
+  <article class="qcard" id="q-b1">
+    <h3 class="qtitle"><span class="qnum">B1</span>"75升批次小试，到2万吨/日的连续流，放大了几百倍。批次反应器里5–20分钟达标，连续流里有返混、短流、沟流，这个停留时间还能兑现吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>放大效应是所有化工/环保评委的第一问。你自己在PPT第10页也标注了"存在放大效应"，评委在验证你有没有具体的放大应对方案，而不是只承认风险。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>区分放大对象："传质强化是单元尺度效应——气泡尺寸分布和传质系数在放大中相对稳定（这正是超微气泡技术相对传统工艺的优势：不依赖整体池型流场）；变化大的是反应器水力学。"</li>
+        <li>中试设计就是为了堵这个洞："中试采用侧线连续流，带示踪剂RTD测试验证实际停留时间分布；小试-中试-工程三级每级做参数修正。"</li>
+        <li>保守承诺："我们对外承诺口径只基于中试实测——小试数据用于证明机理方向正确，不直接进合同。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b2">
+    <h3 class="qtitle"><span class="qnum">B2</span>"臭氧溶解利用率85–99%——接近100%意味着气液传质接近平衡极限。这个数怎么测的？气液质量平衡闭合误差是多少？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>这是物理化学层面的"数字打假"。溶解利用率99%意味着几乎没有尾气——评委想看你的测量方法（进气计量-尾气计量-溶解计量三账对不对得上）。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>讲测量口径："利用率=(进气臭氧量−尾气破坏器进口臭氧量−游离逸失)/进气量，小试中进气、尾气双端碘量法/在线臭氧仪计量。"</li>
+        <li>给出误差区间（提前向杨勇要实测质量平衡误差，如±5%），并说明85–99%是高效区间范围、不是每工况都99%。</li>
+        <li>主动接你PPT第6页的脚注："我们PPT里专门写了'须通过气液质量平衡、尾气臭氧、溶解臭氧现场综合验证'——我们不希望评委把这个数当成已工程兑现的数。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b3">
+    <h3 class="qtitle"><span class="qnum">B3</span>"'气泡溃灭原位生成羟基自由基'——常温水体里微气泡溃灭能产生足以断化学键的局部高温高压吗？你们有·OH的直接证据吗，还是推测？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>微纳米气泡领域一个著名的学术争议点（·OH生成机理学界尚有争论）。评委在测你的技术底色：是文献复读机还是真做过实验。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>定位为"协同假说+部分验证"："羟基自由基的贡献我们定位为协同增强路径之一，不是主力；主力是传质强化本身——这有小试数据直接支撑。"</li>
+        <li>若做过探针实验（如对苯二甲酸捕获·OH产生羟基对苯二甲酸荧光法），讲出来；若没做过，诚实说"机理层面基于文献与团队实验观察，定量贡献比例待中试副产物谱分析验证"。</li>
+        <li>千万不要宣称"我们证明了空化断键"——过度宣称在这类问题上必死。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b4">
+    <h3 class="qtitle"><span class="qnum">B4</span>"铝基固相催化剂——铝基催化剂在高氧化环境下有铝溶出问题吗？铝是污水排放指标（SS/浊度、铝限值）。催化剂寿命实测多长？板结、中毒怎么处理？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>环保行业评委的工艺细节题，顺带考你有没有想过二次污染。铝溶出、催化剂寿命是决定运行成本的真实变量。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>分开答：催化剂是"铝基复合"载体体系，溶出数据要有（小试有没有测出水铝/浊度变化，向杨勇确认后放进Q&amp;A弹药库）。</li>
+        <li>寿命：坦诚小试周期短，催化剂寿命主要靠"三相接触均匀减少局部干烧"的设计逻辑+中试长周期运行验证；商业上催化剂属于持续耗材收入（这其实是好事，可顺势提"催化剂更换是持续性收入来源之一"）。</li>
+        <li>处置：催化剂废弃处置路径要一句话能答（危废/一般固废属性）。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b5">
+    <h3 class="qtitle"><span class="qnum">B5</span>"微纳米气泡臭氧技术国外早就有商业化——日本在超微气泡发生装置上是鼻祖，德国、瑞士的水处理装备商也有类似传质强化方案。你们和国外技术对标过吗？差异在哪？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>检验"先进性"宣称的严谨度。国内项目常被批"把国外成熟技术说成自主创新"。你的PPT目前完全没有国外对标，这是明显缺口。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认国际背景："超微气泡技术日本确实领先（发生装置商品化早），我们尊重这个事实。"</li>
+        <li>差异点要具体：①我们不是卖发生器，是"传质强化+催化氧化+AI投加"的耦合工艺包，国外产品到国内水厂缺的是工艺设计和本地化控制；②针对存量利旧的模块化接口设计（换曝气模块不换主机池体）；③成本——进口发生装置价格数倍于国产。</li>
+        <li>专利对策："FTO（自由实施）检索在融资交割前完成"——你BP 4.6节写了这句，用出来。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b6">
+    <h3 class="qtitle"><span class="qnum">B6</span>"你们最长连续运行记录是多久？批次小试做几批不算连续运行。气泡发生器在真实废水里堵塞、催化剂衰减的长期数据在哪里？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>检验你对"验证"一词的严谨度。批次小试的"多组重复"与工程连续运行是两码事。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>诚实："目前是批次小试，最长连续运行数据将在中试产生——这是我们在时间表上把'连续运行校验'列为中试核心任务的原因。"</li>
+        <li>反守为攻："而且我们把'连续运行时长、设备可用率、非计划停机'写进了验收指标体系（BP 4.5表）——我们不怕这个考验，因为我们把它设计成了交付标准的一部分。"</li>
+        <li>堵塞的工程对策：进水过滤预处理、发生模块快拆设计、定期反冲洗程序（细节向曾亮确认）。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b7">
+    <h3 class="qtitle"><span class="qnum">B7</span>"对照组的43分钟、O3/COD 2.5、40–70%利用率——传统工艺这组数据是文献值还是你们自己平行做的？如果对照不公平（比如对照没配同样好的催化剂），你所有'提升48–65%'都会被质疑。"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>实验设计严谨性质询——对照是不是"稻草人"。这是实验科学评委的必杀题。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>明确口径："平行对照——同水质、同批次、传统射流臭氧催化氧化，PPT第10页写明'与传统射流工艺平行对照'。"（对照侧是否也装催化剂，<strong>务必赛前向杨勇确认到能一句话说清的程度</strong>：对照组是什么工艺配置。）</li>
+        <li>承认传统射流的利用率区间40–70%部分参考行业公开数据（PPT脚注已注明来源含前期小试对照组），属于区间引用而非点值。</li>
+        <li>补强："中试阶段对照对象还会包括业主现有实际运行基线——那是最硬的对照。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-b8">
+    <h3 class="qtitle"><span class="qnum">B8</span>"我注意到一个矛盾：你们小试全部用化工园区综合废水做的，但你们的滩头市场写的是'存量市政水务技改'。市政污水和化工废水COD构成、可生化性完全不同，拿化工数据去打市政市场，说服力在哪里？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>这是全场最"懂行"的一问，环保专家评委大概率会抓（你的BP 1.4和PPT第12页确实存在这个场景-数据错位）。答好了显示你思路清晰，答不好显得市场定位是拍脑袋。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认错位是事实："对，这是有意的顺序安排，不是疏忽。"</li>
+        <li>给逻辑：①小试用水选择高难度场景（难降解杂环/芳香类+还原性干扰+水质波动），是为了在最严苛条件下验证传质强化的下限；化工场景COD难降解度高于市政，下限成立则市政更从容；②市政滩头的理由是商业性的：历史基线全、改造边界清晰、节能量可核验——不是技术适配顺序。</li>
+        <li>关键承诺："中试的两个现场，至少一个放在市政场景，直接用市政水质出数据。"<span class="key"><strong>（如果你们的真实中试计划不是这样，赛前务必把这个答案改成实际计划。）</strong></span></li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ===== C ===== -->
+<section id="sec-c">
+  <div class="sec-head">
+    <span class="no">C</span>
+    <h2>商业模式（7问）</h2>
+  </div>
+
+  <article class="qcard" id="q-c1">
+    <h3 class="qtitle"><span class="qnum">C1</span>"你们最响亮的口号是'按出水效果验收、对处理效果负责'。我问你：出水不达标，你怎么赔？合同里的赔付上限是多少？一个项目赔一次，你500万注册资本够吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>检验"性能担保"是营销话术还是算过账的法律安排。投资人特别清楚效果责任对初创意味着什么风险敞口。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>风险结构化："我们不签无限责任。合同设计是分层的：①水质指标——达标率目标值设阶梯，未达触发整改义务优先于赔付；②赔付上限——封顶在合同额的一定比例（如10–20%区间），且与已收款挂钩；③边界条件——进水水质边界写死，超边界免责。"（具体比例赛前和崔总定好口径）</li>
+        <li>工程兜底："性能责任通过三道闸门前置消解：小试进厂前已证明边界内有效、中试连续运行数据、第三方检测背书。"</li>
+        <li>提风险页："我们风险页写了'不接无预付款或无限责任项目'——这句话就是为这个问题准备的。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-c2">
+    <h3 class="qtitle"><span class="qnum">C2</span>"公司2026年2月成立，到现在不到一年，零工程案例、零供应商入库、零专利授权。一个500万的技改项目，国企业主的招标业绩门槛你们怎么过？凭什么把项目给你？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>冷启动死亡之问。评委要看你有没有现实的破局路径，而不是"我们技术好所以客户会来"。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>绕开正面门槛："这正是我们不直接对业主投标的原因。进入路径是：①EPC/设计院联合投标——用他们的业绩过门槛，我们做设备包+工艺设计分包；②试点性质项目（技改/侧线）不走大标流程；③以中试作为'先服务后商务'的敲门砖——中试本身是付费合同，天然规避业绩门槛。"</li>
+        <li>创始人资产："崔总20年行业积累的设计院/EPC/水务集团渠道，是这条路径能走通的前提——这恰是团队配置的商业逻辑。"</li>
+        <li>阶段定位："阶段一只要1–2个付费示范，不需要大规模过标。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-c3">
+    <h3 class="qtitle"><span class="qnum">C3</span>"'预付款原则上≥30%、尾款及质保金≤10%'——你在环保工程行业里待过，现实中EPC分包和国企结算，你能守得住这个纪律吗？守不住现金流就死了。"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>懂行投资人的灵魂拷问——BP里的回款纪律都是写给别人看的。他想听你讲"守不住怎么办"。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认现实："确实守不全，尤其对国企业主。所以我们的设计是组合拳：①对EPC总包做分包时，用背靠背条款把回款风险传导给总包（BP原文有'背靠背采购'）；②授信额度管理，单一客户占用上限；③13周滚动现金流监控、单项目峰值资金占用超阈值上董事会。"</li>
+        <li>结构选择："这就是为什么收入结构里工程实施占比要逐年压缩、软件运维占比要提升——现金流属性完全不同的收入。"</li>
+        <li>止损："不接无预付款或无限责任项目，宁可少接。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-c4">
+    <h3 class="qtitle"><span class="qnum">C4</span>"你们收入的三分之一是工程实施（第3年1700万）——这是典型的垫资、低毛利、重人力的脏活。为什么不把工程全部外包，聚焦设备和软件这两块高毛利业务？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>商业模式结构题。考你有没有想清楚"一体化工艺包"和"轻资产"之间的张力。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>现阶段必须做："性能责任是全链条的——安装调试环节做不好，装备和算法的价值兑现不了，业主和我们都失败。前期必须自己控制交付质量。"</li>
+        <li>演进路径："工程自有是阶段策略：等标准型号和交付流程成熟（阶段二、三），安装和土建分包出去，我们只做设计+调试+验收管理。所以毛利率从40.5%升到47.4%的模型假设里，有工程占比下降和标准化两重因素。"</li>
+        <li>数据佐证：软件运维收入从70万→700万、占比7%→13.5%的趋势线是关键论据。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-c5">
+    <h3 class="qtitle"><span class="qnum">C5</span>"效果付费/合同能源管理，你们BP里写'待有可复制数据后审慎开展'。可这恰恰是客户最有感觉的模式——不掏钱、分享节能收益。你们现在不做，是不是因为自己也不确定能省那么多？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>激将题，逼你暴露对自身经济性数据的信心不足。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>接住："不是不确定效果，是不确定现金流。EMC模式是厂商垫资换长期分成——对我们这个体量，一个EMC项目的资金占用就能拖死公司。这是财务纪律问题，不是技术信心问题。"</li>
+        <li>给时间表："有了中试A/B数据和2–3个验收项目后，第2年起可以在资金充裕的客户上试单项目EMC。"</li>
+        <li>反向利用："其实我们可以倒过来用价值定价——把节省额算给客户看（年省192–420万/2万吨水厂），按价值定价收一次性合同款，现金流比EMC健康得多。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-c6">
+    <h3 class="qtitle"><span class="qnum">C6</span>"600万融资，12个月要完成：V1.0样机+≥2个现场中试+第三方检测+1–2个付费示范+专利软著申报+2–3家设计院EPC对接。这个里程碑密度是不是过于乐观？哪一项最可能跳票？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>执行力压力测试。评委想听你自己指出最脆弱的环节（能自指弱点=可控）。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>自认最脆弱项："最可能延期的是付费示范的签约时点——国企决策链不是我们能控制速度的。所以设计上中试和示范是并行关系而非串行：中试进行中就开始谈商务，且示范验收是'阶段验收'而非完全验收。"</li>
+        <li>有余量的部分："样机和中试装置有500万注册资本+团队工程能力的底子；专利软著申报不依赖外部进度。"</li>
+        <li>兜底逻辑："里程碑是资金效率的承诺，如果6个月节点时中试一个都落不了地，我们的应对是收缩场景聚焦而不是烧完钱——阶段门机制就是干这个的。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-c7">
+    <h3 class="qtitle"><span class="qnum">C7</span>"'首年软件运维50万/厂/年'——这个定价怎么定的？一个4人核心团队远程运维10个厂，服务半径和响应能力算过吗？客户第二年凭什么续费？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>SaaS式收入的真实性拷问——很多环保公司的"软件运维收入"其实是卖系统送服务。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>定价逻辑："按运维人力替代+故障损失规避价值定价，对标水务集团一个资深工艺工程师的人力成本，50万/年在客户感知里是'半个技术员的钱买24小时值守+预警+工艺优化'。"</li>
+        <li>能力账："远程运维是AI平台的本职——故障预警、健康评分本来就是为少人值守设计的。标准型号化后，单厂运维人力随项目数摊薄，这是毛利率47%假设的来源。"</li>
+        <li>续费钩子："模型持续迭代依赖运行数据、数据留在平台、节能效果逐年复检——续费有内生逻辑，且验收指标里'AI模式改善幅度'写进合同，价值可感知。"</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ===== D ===== -->
+<section id="sec-d">
+  <div class="sec-head">
+    <span class="no">D</span>
+    <h2>市场与竞争（7问）</h2>
+  </div>
+
+  <article class="qcard" id="q-d1">
+    <h3 class="qtitle"><span class="qnum">D1</span>"TAM 50亿=2000个单元×5%年启动率×500万。2000这个数哪来的？2929座污水厂里有臭氧深度处理单元的有多少？5%是你拍的对吧？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>数字打假。你PPT第12页自己标注"团队初步测算，非外部统计"，但评委仍会逼你给分子分母的依据。市政厂有臭氧单元的比例其实不高（臭氧多用于提标/再生水场景），这是你测算里最虚的一环。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>拆解逻辑："2000单元包含市政提标改造+新建深度处理单元+工业园区污水厂+工业废水深度处理，不是2929座市政厂全算。5%启动率参考设备更新政策的年度改造节奏。"</li>
+        <li>亮出校准计划："PPT写明将以20家业主、10家设计院/EPC访谈及10份可比招标文件校准——六个月内这个数会换成实证数字。"（如果赛前能真的访谈到几家，把数字带上场，杀伤力翻倍。）</li>
+        <li>战术退守："即使TAM砍半到25亿，SOM 5200万的第3年目标也只是万分之二的市场份额——这个结论对TAM误差不敏感。"（这是防御性金句，背下来。）</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-d2">
+    <h3 class="qtitle"><span class="qnum">D2</span>"竞争对比表最后一列你们全勾'强/核心/重点设计'——右列标题都写着'目标方案'四个字了。把自己未来想做到的当成现状来比较，这不是自欺欺人吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>诚信拷问，顺带看你的应变情商。表格右列确实是"坤腾数智（目标方案）"，这种设计被专业评委抓到很尴尬。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>笑着认："这个批评我接受，表头应该更醒目。我们想表达的是定位差异——三类对手各有结构性缺陷：设备商止于设备边界、软件商不掌握装备工艺、EPC优化不产品化。'工艺包统一担责'这个定位本身不是目标，是我们公司成立的第一天就写进合同的商业模式。"</li>
+        <li>现状承诺："已具备的是：核心装备设计能力+小试验证+全链条团队；目标状态的是闭环优化产品化——这一点我们从不混淆，PPT第8页每项能力都标了成熟度。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-d3">
+    <h3 class="qtitle"><span class="qnum">D3</span>"如果威立雅、北控、首创这些水务集团自己的技术中心，或者赛莱默这种设备巨头，看到你们的方案直接立项跟进——你们的技术他们挖两个人就能学会。你的护城河到底有多深、窗口期有多长？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>巨头复制风险，投资人的经典问题。考察你对壁垒的真实认知，而非口号。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>窗口期诚实估算："单一技术被模仿的周期约1–2年，我们不指望技术秘密长期独占。"</li>
+        <li>壁垒的真实构成："壁垒是复合的：①场景参数库+标定数据（每个项目沉淀，时间不可压缩）；②设计院/EPC入库与供应商名录（制度性门槛，周期以年计）；③工艺包性能责任的履约记录（业主选供应商第一看同类业绩）；④催化剂+控制算法Know-how组合。单点都能被抄，组合抄不动。"</li>
+        <li>巨头行为逻辑："巨头自己做的动力不足——这个细分市场单厂改造额500万量级，对巨头是项目级非战略级；他们更可能做总包时采购我们的设备包——那也是我们的渠道之一。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-d4">
+    <h3 class="qtitle"><span class="qnum">D4</span>"你们的专利现在一件都没授权、甚至还在'规划申报'。核心的H-UFB发生器结构，如果没有专利，别人测绘仿制怎么办？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>IP保护现状的直球问题，也顺带考察你有没有想过技术秘密vs专利的路线选择。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>现状+计划："当前为专利规划申报阶段，本轮融资的12个月里程碑里明确包含核心专利和软著申报。路线是组合式：装备结构和控制方法走专利（公示威慑），工艺参数库和标定方法走商业秘密（不公示）。"</li>
+        <li>前置动作："融资交割前完成权属确认、员工/顾问IP协议和FTO检索（BP 4.6原文）。"</li>
+        <li>补一个现实逻辑："环保装备行业里，专利防君子不防小人，真正的护城河还是项目业绩+参数库——专利是入场门票，不是城墙。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-d5">
+    <h3 class="qtitle"><span class="qnum">D5</span>"替代方案里的芬顿工艺，近年药剂成本一直在降，工程界用得烂熟。你的成本优势0.5–0.9元/吨是实验室数，投到工程里如果变成1.2元/吨，比芬顿还贵，客户为什么选你？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>替代技术的经济性对比是动态的，考察你的成本敏感度和技术方案的比较维度（芬顿还有污泥量大、铁泥危废的问题——这是你的反击点）。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>成本对冲："中试如果证明吨水成本上浮，上浮幅度主要来自电耗——我们有敏感性分析，边际上相比芬顿的污泥处置费和危废属性，臭氧路线的合规风险成本是下降的。"</li>
+        <li>非价格维度："芬顿的铁泥是危废，处置费用和环保督察风险逐年上升；臭氧+催化不产污泥、无药剂残留。提标场景客户先问的是'污泥量'再问价格。"</li>
+        <li>场合限定："我们不在芬顿便宜好用的场合硬碰，主战场是已经上了臭氧系统、但用得贵用得差的存量客户——那是利旧替换，不是从零竞争。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-d6">
+    <h3 class="qtitle"><span class="qnum">D6</span>"水务市场区域割据极其严重——每个省的水务集团有自己的关系网和采购壁垒。你们在北京，怎么打进江苏、广东的市场？跨区域复制有没有可能？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>地域扩张的现实性。BP里提到"跨区域服务和备件能力"，但没有具体路径。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>短期不跨区："阶段一、二聚焦区域密度而非广度——单区域跑通3个可核验项目比3个区域各1个值钱。"</li>
+        <li>跨区载体："跨区域复制靠两类载体：①设计院是全国性网络（华东院、市政总院的设计图集影响全国选型）；②EPC总包商的项目地域覆盖。我们卖进他们的体系，而不是自己全国铺服务站。"</li>
+        <li>运维半径："远程运维是云的属性，物理半径主要影响现场服务响应——标准型号+关键备件前置+本地服务商合作，三层解决。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-d7">
+    <h3 class="qtitle"><span class="qnum">D7</span>"你们的销售管线现在是什么状态？有没有任何一个已经签了的东西——意向书、中试协议、技术交流纪要？别告诉我都是'计划'。"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>路演最值钱的一问。评委在给你机会把'纸面项目'变成'真实进度'。<span class="key"><strong>这个问题怎么答，取决于你赛前能不能搞到一两个真实锚点——这是本辅导文档最重要的行动项。</strong></span></p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>理想答案（赛前去拿到）："已与X家业主签署中试意向/技术交流进入第X轮/X个EPC出具联合投标意向函"——哪怕只是会议纪要级别的文件，都远胜于零。</li>
+        <li>现状兜底答案（如果真没有）："目前商务动作集中在中试资源锁定阶段：崔总的渠道网络里有N个明确表达中试兴趣的目标厂，我们Q2启动首批20家客户访谈（BP 7.3的12个月行动计划）。诚实说，在拿到中试数据前，签正式商务合同既不现实也不必要——客户和我们都需要那个数据。"</li>
+        <li><strong>绝对不要：现场吹"已经在谈一个几百万的合同"然后被追问细节——撒谎在这个环节是自杀。</strong></li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ===== E ===== -->
+<section id="sec-e">
+  <div class="sec-head">
+    <span class="no">E</span>
+    <h2>财务与融资（7问）</h2>
+  </div>
+
+  <article class="qcard" id="q-e1">
+    <h3 class="qtitle"><span class="qnum">E1</span>"第1年营业收入1000万，但你们12个月里程碑只有'1–2个付费示范项目'。一个示范500万，就算两个都签了也才1000万，还要全部验收确认收入？这账对得上吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>抓财务模型和里程碑的内部矛盾。这是财务评委最容易发现的逻辑裂缝（BP 9.1写了"不将尚未验收的全部合同额一次性确认收入"，那第1年1000万收入的确认基础就更可疑了）。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>给收入构成拆解："第1年1000万里，工艺包200+设备450+工程280+软件70。设备与工程收入按交付节点确认（发货、安装、调试），不需要等性能验收——只有工艺包和软件部分等验收。所以1个500万示范+1–2个中试合同（中试是付费合同）+联合投标设备分包，1000万是够得着的。"</li>
+        <li>主动给弹性："保守情景下第1年800万、净亏144万，我们也活得下去——第一年本就是投入期。"</li>
+        <li>如果被追问中试收费："中试合同按装置+服务报价，典型几十万量级，业主出这笔钱同时是付费意愿的验证。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-e2">
+    <h3 class="qtitle"><span class="qnum">E2</span>"毛利率42–47%——环保工程行业毛利普遍15–25%，EPC能到20%就算健康。你们一个'设备+工程+软件'混合体，凭什么敢按42%建模？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>财务模型合理性。这是投资人对环保赛道的历史经验，答不出结构性理由就是拍脑袋。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>拆开算："42%不是工程毛利。代表性项目里：设备220万成本结构可控（自研模块+双供应商议价）、工程150万中我们只做设计+管理+调试（重活分包）、软件50万边际成本近零、工艺包80万是知识定价。工程占比逐年从28%降到33%再降（数值上第3年1700/5200=32.7%——顺带说这里其实降得不多，口头改为'结构中标准化件占比提升'更稳）。"</li>
+        <li>风险自认："如果中试后成本上行，我们有38%综合毛利率的底线指标，低于就暂缓扩张——这是财务管理指标写死的。"</li>
+        <li>（赛前准备：向财务口径确认设备220万的成本假设，防止被拆BOM时露怯。）</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-e3">
+    <h3 class="qtitle"><span class="qnum">E3</span>"经营费用第1年520万：四个人+样机+两个中试+市场拓展，加600万融资共1120万弹药。第1年收入1000万但回款在后、投入在前——现金最低点在哪个月？你们算过13周滚动现金流吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>从损益表打到现金流量表——环保工程"利润为正、现金流为负"是死于现金流的前车之鉴。BP 9.5写了方法论，评委在验证是不是真算过数。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>直接给数（赛前必须让崔总真算一遍）："现金低点预计在Q3–Q4（中试投入高峰+示范项目预付款未到），测算最低现金余额X万元，安全垫Y个月。"<span class="key"><strong>——这个数答不出来，前面所有回款纪律的话术全部作废。这是财务答辩的第一准备项。</strong></span></li>
+        <li>方法背书："13周滚动现金流每周更新、18个月现金预测月度更新、验收延期3/6个月+2–5%坏账做压力测试——这套机制写在BP 9.5。"</li>
+        <li>弹药结构："600万融资里5%是流动资金，但真正的作用是让我们有底气执行'不接无预付款项目'的纪律——有底气的纪律才守得住。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-e4">
+    <h3 class="qtitle"><span class="qnum">E4</span>"你们BP里从头到尾没有写估值和出让比例。本轮融资600万，投前估值多少？出让多少股权？创始团队四人的股权结构是什么？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>这是BP的<strong>硬伤级缺失</strong>——投资人评委100%会问，而且当面没有答案会显得没准备好融资。PPT第18页同样只讲用途不讲对价。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>赛前必须定好口径（示例，具体由崔总决策）："投前估值2400万/出让20%"或"投前3000万/出让17%"——任何合理数字都好过空白。</li>
+        <li>股权结构必须能当场说清：创始人控股（如崔进60%+技术团队合计30%+预留池10%的结构示意），核心技术人员有股权绑定+期权+竞业协议。</li>
+        <li>结构健康度话术："四人核心全链条、股权与分工对齐、无代持无纠纷——权属协议在融资交割前完成（BP风险表IP条款）。"</li>
+        <li><span class="key"><strong>行动项：在PPT第18页和BP 9.7补上估值/出让比例/股权结构三行字，这一条的得分影响排进任务二前五。</strong></span></li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-e5">
+    <h3 class="qtitle"><span class="qnum">E5</span>"所得税按15%建模——你们申请到高新技术企业了吗？公司成立不到一年，研发费用占比、知识产权数量都还不够认定条件。用15%算第3年净利863万，虚增了多少？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>财务细节题，考财务模型的严谨度。按25%算，第3年净利会少约150万——量级不大，但被抓到'假设挑好看的'会连带怀疑其他数字。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认假设："15%是暂按建模，实际以资质为准——BP原文标了这句。第1–2年亏损期税率无影响，第3年若未取得高新资质按25%，净利润863万变为约700万量级，不改变盈亏结构结论。"</li>
+        <li>路径："12个月里程碑含专利软著申报，正是高新认定的知识产权前置条件；研发费用占比按我们的人员结构天然过线。"</li>
+        <li>收尾："我们所有的预测都做了保守情景——税率只是二阶变量，一阶变量是项目数。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-e6">
+    <h3 class="qtitle"><span class="qnum">E6</span>"600万是不是要得太少了？你12个月要干的这些事，样机+两个中试+第三方检测+市场，600万里还有30%给市场拓展。要么砍里程碑，要么加钱——为什么不直接融1500万把三个中试都做了？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>融资额度合理性——过小显得气魄不足/算不清账，过大显得烧钱。评委也在测你对'稀释vs速度'的权衡有没有想清楚。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>融资节奏逻辑："本轮600万的目标不是跑通全部场景，是拿到'可复制的工程证据'——两个中试+一个付费示范。这是说服下一轮投资人和更大客户的最小充分集。在这个估值阶段多融只会过度稀释。"</li>
+        <li>里程碑对价："600万对应12个月五项里程碑，可核验、可审计——投资人按里程碑付款的风险可控。"</li>
+        <li>后手："中试数据出来后，第2轮按业绩估值融资扩场景——那时每一块钱股权都更值钱。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-e7">
+    <h3 class="qtitle"><span class="qnum">E7</span>"研发投入20%（120万）撑'AI平台+装备+催化'三条线，撒胡椒面了吧？如果砍掉一条，砍哪条？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>资源配置的取舍测试——考验创始人的优先级判断力（比答对答案更重要的是展现你敢于取舍）。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>明确主次："优先级铁三角：①H-UFB装备与传质模块（已验证核心，资金主力）；②AI投加闭环（中试A/B验证，只做投加优化一个场景）；③故障预警（数据到了自然长出来，不提前砸钱）。数字孪生、知识图谱驾驶舱这类二阶段概念本轮零投入。"</li>
+        <li>砍的答案："如果必须砍，砍故障预警模块的独立研发——用最简单的阈值告警顶住，模型等数据攒够了再上。不影响商业承诺。"</li>
+        <li>这题的得分点在于"敢于砍自己PPT上的东西"——评委会记住这个姿态。</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ===== F ===== -->
+<section id="sec-f">
+  <div class="sec-head">
+    <span class="no">F</span>
+    <h2>团队（7问）</h2>
+  </div>
+
+  <article class="qcard" id="q-f1">
+    <h3 class="qtitle"><span class="qnum">F1</span>"四位创始人的股权怎么分？崔总您是市场出身，如果技术团队（江海鑫、曾亮）持股过低，做两年被大公司挖走，项目就塌了。你们的绑定机制是什么？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>初创公司第一死因——股权和关键人。评委要看结构数字和绑定安排，不接受"我们团队很稳定"这种话。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>现场给出结构（同E4，赛前定稿）：技术核心持股与不可替代性匹配、四年成熟期（vesting）、竞业+IP协议、期权池预留后续机械/销售岗位。</li>
+        <li>反向论据："四人能力拼图（市场/工艺/算法/自控）没有一人是冗余的——这种结构本身就降低了'被挖一个就塌'的风险：技术决策从来不是单人拍板，是项目制共同评审（BP 2.5原文）。"</li>
+        <li>若股权真没定好，诚实说"股权结构方案在与投资人共同敲定中，原则是创始人控制+技术核心实质持股+四年成熟"。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-f2">
+    <h3 class="qtitle"><span class="qnum">F2</span>"江海鑫是华自科技-同济联培博士后——他现在在华自科技任职吗？全职在你们公司吗？如果是兼职，用上市公司的在职博士撑'算法负责人'title的，合规吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>核心人员投入度与竞业合规的直球拷问。创始团队"兼职创业"是投资人一票否决级别的问题。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li><span class="key"><strong>赛前必须核实并统一口径（这是赛前行动项）</strong>：全职/离职中/顾问式兼职，答案只能真实。如果全职，一句话终结："江博已全职加入，劳动合同+竞业+IP协议齐备。"</span></li>
+        <li>若未全职，给出转换时点和过渡安排（如"中试样机阶段全职到岗"），并说明过渡期算法工作的替代安排。</li>
+        <li>绝不遮掩——这个问题上被发现说谎，整场路演的信用归零。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-f3">
+    <h3 class="qtitle"><span class="qnum">F3</span>"崔总，您20年在环保行业做的是营销和管理，高分子材料本科。公司最硬的技术判断——比如催化路线选择、工艺边界划定——您能拍板吗？还是技术空心、市场牵头？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>针对非技术创始人的经典质疑。考的不是你的技术深度，而是你有没有<strong>知道自己不知道什么</strong>的元认知和决策机制。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认分工："我的技术深度不及杨总、江博——所以公司技术决策从不由我一个人拍板：重大技术方案、立项、资金由核心团队共同评审（BP原文），外部还有陈洪斌教授的技术把关。"</li>
+        <li>讲我的价值："这个项目的成败变量里，'技术能否验证'和'客户是否买单'各占一半。20年渠道资源决定了我们能把中试落到真实现场——这对公司是和技术同级的稀缺资源。"</li>
+        <li>举例（准备一个真实案例）："我主导的十万吨级市政/煤化工项目里，见过大量'技术好但死在渠道'的环保公司——我们团队的配置正是对这个教训的回答。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-f4">
+    <h3 class="qtitle"><span class="qnum">F4</span>"公司2026年2月成立，8个月了。除了这份BP和小试报告，公司实际做了什么？花了多少钱？团队现在是全职在跑还是副业状态？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>执行力核验——纸上公司vs真实公司的分界线。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>给事实清单（赛前把时间轴列出来）：小试多批次完成、H-UFB样机迭代、工艺包框架设计、AI架构设计、中试选址/商务接触的进度——哪怕每件都是小步，有日期的清单就是执行力证据。</li>
+        <li>资金消耗："以注册资本+自有资金运转至今，月均消耗X万——证明团队的低成本运行能力。"（这个数答得出，比任何形容词都有说服力。）</li>
+        <li>全职状态（与F2呼应，口径必须一致）。</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-f5">
+    <h3 class="qtitle"><span class="qnum">F5</span>"你们缺机械结构工程师和销售——一个连样机都还没造出来的装备公司没有机械工程师？'自主臭氧循环氧化装备'是你们设计还是贴牌集成？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>戳"自研"宣称的水分。环保装备行业的"自研"经常是设计图纸外包+采购集成。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>定义清楚："自研指的是核心模块——H-UFB发生单元的结构设计、催化耦合工艺设计和控制系统是我们的；臭氧发生器本体（放电体、电源）采用成熟供应商部件+我们的选型与集成规范（双供应商策略）。这是行业标准做法，也是控制成本和可靠性的正确做法。"</li>
+        <li>机械岗计划："样机阶段以设计外包+总工把关过渡，12个月内机械结构岗到岗（milestones对齐）。"</li>
+        <li>顺势打差异化："完全自研所有部件反而不可靠——我们自研的是别人抄不走的那层：传质结构与控制逻辑。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-f6">
+    <h3 class="qtitle"><span class="qnum">F6</span>"陈洪斌教授的'外部顾问'是口头关系还是签了协议？他每月实际投入多少时间？他的名字出现在你们材料里，出了技术事故他担责吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>学术站台的真实性检验——用院士/教授名字贴金是环保项目的常见套路，评委见得太多。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>关系定位："顾问角色聚焦工艺优化和技术迭代指导，不参与经营、不承担工程责任——材料里我们写的是'为工艺优化、技术迭代与工程应用提供学术支撑'，没有夸大。"</li>
+        <li>如果有协议，说协议（聘期、频次）；如果没有，说"合作以项目制进行，正式顾问协议列入融资后规范动作"。</li>
+        <li>分寸感加分项："我们特意没把陈教授写成联合创始人——学术资源和商业责任分开，这是对他也是对客户的尊重。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-f7">
+    <h3 class="qtitle"><span class="qnum">F7</span>"杨勇一个人既是工艺总工又是小试中试组织者还要现场把关——他病一个月，项目停不停？你们有没有第二技术负责人？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>关键人风险的具体化。前一秒说"拼图无冗余"，这一秒"无冗余=无备份"——评委在测你的两面话术。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认+缓解："单一工艺总工确实是当前最明显的关键人风险。缓解有三：①工艺知识文档化——工艺设计包、参数库、验收方案本身就是把个人经验产品化的过程；②陈洪斌教授团队是工艺侧的学术备份；③阶段二招聘到位第二工艺工程师（与机械/销售岗一起列入扩编计划）。"</li>
+        <li>话术一致性："上一个问题我说拼图无冗余，指的是能力覆盖面；备份问题是阶段一资金约束下的务实取舍——600万融资本来就是买'最小可验证团队'的。"</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ===== G ===== -->
+<section id="sec-g">
+  <div class="sec-head">
+    <span class="no">G</span>
+    <h2>政策与行业风险（6问）</h2>
+  </div>
+
+  <article class="qcard" id="q-g1">
+    <h3 class="qtitle"><span class="qnum">G1</span>"设备更新政策写的是'2027年完成更新改造节点'。2027年之后呢？你们的市场是不是一波脉冲，吃完政策红利就没了？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>政策依赖度审查。你PPT第4页自己写"政策是催化剂而非订单"——评委在验证你是否想得比口号更深。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认脉冲属性："设备更新窗口确实有脉冲性——但它不是我们唯一的市场基础。"</li>
+        <li>拆分长期驱动："脉冲之后的存量驱动是：①运行成本——臭氧是深度处理最大的电耗单元之一，节能收益与政策无关，永远成立；②提标与再生水回用的持续加码；③数字化运维考核（国企少人值守趋势）。这三项是永续性需求。"</li>
+        <li>战略含义："所以我们的节奏是：2025–2027借设备更新窗口冲装机量（客户有预算理由），2028年后转向运维收入和节能分享——收入结构里软件运维占比提升的设计，就是为政策退坡准备的。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-g2">
+    <h3 class="qtitle"><span class="qnum">G2</span>"地方财政化债背景下，水务技改预算是优先被砍的一类。你们'聚焦有明确资金来源的项目'——现实中你们筛得出来几个？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>宏观现实与微观策略的贯通性。考察你的客户筛选是不是真有方法，而不是一句正确的废话。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>资金来源分型（要具体）："技改资金来源分四类，我们按序聚焦：①中央预算内投资+超长期特别国债支持的更新项目（资金刚性）；②有合同能源管理/节能改造专项的水务集团；③工业园区第三方治理（业主是环保公司，付费能力市场化）；④经营良好的工业直客。地方财政自筹的市政项目，我们主动回避。"</li>
+        <li>数据反证："我们测算市场时的5%年启动率已经隐含了预算收紧的折扣——不是按政策全文的乐观口径。"</li>
+        <li>收尾："这也是为什么第一年收入敢只按1000万建模——我们对市场难度的假设是保守的。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-g3">
+    <h3 class="qtitle"><span class="qnum">G3</span>"我纠正你一个数据问题：2929座城市污水处理厂里，真正配有臭氧深度处理的是少数——臭氧在市政主要用于提标和再生水回用场景。你的'存量臭氧系统'改造基数，可能远小于你PPT暗示的规模。真实基数到底是多少？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>这是环保专家评委的"专业斩首"题——用你的市场基数技术事实直接动摇TAM。这一题答不好，前面所有市场数字连坐。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认口径（绝不硬顶）："您说得对，臭氧深度处理在市政污水厂属于少数配置，主要用于提标改造、再生水回用和出水的难降解问题——我们把市场写为'市政水务/工业园区技改'，工业园区污水厂（臭氧普及率高得多）才是数量主体。"</li>
+        <li>给真实基数逻辑（赛前要真算一遍）："存量臭氧单元的准确规模没有现成统计，这正是我们市场验证计划要访谈20家业主+10家设计院的原因；根据设计院渠道的初步反馈，市政提标+园区+工业直客户的臭氧单元基数在XXX量级。"（哪怕是渠道里的粗数，也比空白强。）</li>
+        <li>结构防御："即便基数是几百个单元，SAM从10亿收缩到3–5亿，我们第3年SOM 5200万依然只是百分之一级别的份额——商业计划对这个变量不敏感，敏感的是单个项目的交付能力。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-g4">
+    <h3 class="qtitle"><span class="qnum">G4</span>"环保工程专业承包资质、安全生产许可、国企合格供应商库的业绩门槛——你们这些都没有。设计院做施工图设计时，你们不在任何标准图集和技术目录里，怎么被选型？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>制度性准入是环保行业真实的墙——初创技术公司最常死在这里而不是死在技术。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>分场景破墙："侧线中试和技改采购不走施工总承包资质线；工程实施由合作EPC持证总包、我们分包设计+设备+调试（这也是收入结构里'联合项目'一类的由来）。"</li>
+        <li>选型路径："设计院选型不需要图集——需要的是：可核验案例+技术协议+厂商标准。我们的路径是技术白皮书+入库（12个月里程碑第5项：对接2–3家设计院/EPC）+行业标准研讨参与。"</li>
+        <li>时间维度："入库和图集确实以年计——所以三年规划里阶段二才提'EPC合作或国企入库'，我们没有幻想第一年就过所有门槛。"</li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-g5">
+    <h3 class="qtitle"><span class="qnum">G5</span>"臭氧是强氧化剂，市政再生水回用还有溴酸盐（2B类致癌物）风险。你们强化传质和延长接触时间后，溴离子的溴酸盐生成路径反而被强化了——这个副产物风险你们评估过吗？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>环保专家的深水炸弹题——传质强化与溴酸盐生成是真实存在的正相关风险（你的工艺特性恰恰放大暴露面）。能答上这题=专业度封神；答不上=被打回"没做过市政"的原形。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>承认机理相关性："对——传质效率和接触时间的提升理论上会提高溴酸盐表观生成速率，这正是我们验收指标体系里明确写'必要时溴酸盐等副产物'的原因（PPT第11页中试验收指标原文有这一项）。"</li>
+        <li>控制手段："控制路径是成熟的：投加前pH调节/氨氮预氧化调控、臭氧投加的分级控制（恰好是AI闭环擅长的多变量优化——AI在这里不仅省臭氧还控副产物）、催化材料对Br⁻氧化的选择性。"</li>
+        <li>边界限定："化工废水场景（我们小试场景）Br⁻浓度高时溴酸盐同样是中试必测项；市政回用场景进入前我们会做副产物专项评估。"</li>
+        <li><span class="key"><strong>赛前务必让杨勇准备这题的技术细节——它是把'专家评委'变成'同盟评委'的最好机会。</strong></span></li>
+      </ol>
+    </div>
+  </article>
+
+  <article class="qcard" id="q-g6">
+    <h3 class="qtitle"><span class="qnum">G6</span>"如果三年后 AI 大模型技术路线又变了（比如现在这种通用大模型进工业控制），你们这套'传统ML+机理'的技术栈会不会被降维打击？"</h3>
+    <div class="motive"><span class="tag">提问动机</span><p>技术迭代风险，AI赛道评委的标准收尾题。</p></div>
+    <div class="answer"><span class="tag">回答思路</span>
+      <ol>
+        <li>场景反驳："工业控制的核心约束不是模型能力而是数据密度和失效代价——水厂几千个测点、分钟级采样、一次失控就是超标事故，这不是通用大模型的主场。大模型改变的是开发效率和知识表达（比如把工艺手册变成知识库辅助决策），不是控制底层。"</li>
+        <li>架构开放性："我们的价值在'装备+工艺+闭环架构'，模型层是可替换组件——真到了大模型可直接做控制的时代，受益的反而是我们：拥有场景、数据和执行机构的平台，换哪个大脑都跑得起来。"</li>
+        <li>收尾金句："我们押注的不是某一版算法，是'臭氧投加必须跟着水质走'这个物理事实——算法会迭代，这个事实不会。"</li>
+      </ol>
+    </div>
+  </article>
+</section>
+
+<!-- ==================== 任务二 ==================== -->
+<h2 class="part" id="task2">任务二：20条改进建议</h2>
+<p class="part-sub">按对比赛得分的影响力排序</p>
+<blockquote>
+  <p><strong>排序原则</strong>：在"AI大赛"这个特定语境下，得分权重最高的是①AI含金量的可信度、②证据链强度、③商业叙事的完整闭环、④临场表达效率。前8条建议直接作用于前两项，务必优先执行。</p>
+</blockquote>
+
+<article class="scard" id="s1">
+  <h3><span class="stars">★★★★★</span>第1条：路演前两周，真的做出一个"AI最小验证"，把'方案设计'变成'离线验证'</h3>
+  <dl>
+    <dt>做什么</dt><dd>用已有的小试多梯度批次数据（进水COD 135–226 mg/L、多组重复）离线训练投加策略模型——哪怕是简单的回归/小型神经网络，做一条"给定进水COD曲线→推荐臭氧投加量 vs 实际人工投加量"的对比曲线图。</dd>
+    <dt>为什么影响最大</dt><dd>这是唯一能把A类问题（AI含金量，8问）从"全盘防御"变成"攻守兼备"的动作。一张离线验证图，就把"AI=方案设计"升级为"AI=已完成离线验证，待现场影子运行"，50问里A1/A3/A4的攻击力直接减半。工作量对算法负责人（江海鑫）约1–2周，性价比全场最高。</dd>
+    <dt>放哪里</dt><dd>PPT第8页表格上方或第7页，新增一张曲线图，标注"离线验证（基于小试数据）"。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s2">
+  <h3><span class="stars">★★★★★</span>第2条：补上估值、出让比例、股权结构——BP和PPT第18页的硬伤级缺失</h3>
+  <dl>
+    <dt>做什么</dt><dd>BP 9.7节和PPT第18页加三行：投前估值/出让比例；四人股权结构（或至少"创始人控股+技术核心实质持股+期权池"的框架表述）；核心人员全职状态声明。</dd>
+    <dt>理由</dt><dd>E4/F1/F2三问合计覆盖了投资人评委的必问题。现在这个空白是当场无解的；填上只需三行字。<strong>这是唯一一个"五分钟工作量、一票级影响"的建议。</strong></dd>
+  </dl>
+</article>
+
+<article class="scard" id="s3">
+  <h3><span class="stars">★★★★★</span>第3条：重排PPT叙事主线——把第10页（小试验证）提到第6页之前，形成"痛点→证据→方案"结构</h3>
+  <dl>
+    <dt>现状问题</dt><dd>你的顺序是痛点(3-4)→方案(5-8)→创新(9)→验证(10)。评委在第5–8页听了4页"方案+AI"之后才见到唯一的硬数据——注意力曲线是前倾的，等你亮证据时评委已经在心里给AI打了问号。</dd>
+    <dt>改法</dt><dd>痛点(3-4) → <strong>小试硬数据提前(现10页)</strong> → 方案概览(现5-6页) → AI闭环(现7-8页) → 其余不变。先亮武器再讲打法："我们已经证明物理层能省48–65%，接下来讲怎么交付和怎么用AI再放大"。</dd>
+    <dt>理由</dt><dd>调整只需改页码顺序（PowerPoint里拖动即可，零设计成本），但把你的全场叙事从"概念驱动"变成"证据驱动"。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s4">
+  <h3><span class="stars">★★★★☆</span>第4条：解决"市政滩头 vs 化工小试"的场景错位——在PPT第12页或新增页明确写一行</h3>
+  <dl>
+    <dt>做什么</dt><dd>在第12页滩头场景块加一句："小试以更高难度的化工园区废水验证下限；中试至少一个落位市政场景，直接用市政水质出数据"。同时赛前内部确认：你们真实的中试计划里到底有没有市政场景——没有的话，把滩头表述改为"工业园区+市政提标技改"双场景，让叙事自洽。</dd>
+    <dt>理由</dt><dd>B8/G3两问都源自这个错位。它不是数据造假问题，是叙事漏洞——一句话补上，最懂行的环保评委失去最锋利的武器。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s5">
+  <h3><span class="stars">★★★★☆</span>第5条：把"48–65%""5–20 min""85–99%"三个数字做成全场最大的视觉锤</h3>
+  <dl>
+    <dt>现状问题</dt><dd>第10页四个对比指标以普通字号和表格密度呈现，硬数据没有获得与身价匹配的视觉重量。</dd>
+    <dt>改法</dt><dd>第10页重做——顶部三张全宽数字卡片（72pt+大字）：<code>臭氧投加 ↓48–65%</code> <code>达标停留时间 43min→5–20min</code> <code>臭氧溶解利用率 85–99%</code>，下注一行小字"实验室批次小试·平行对照·75L·多组重复"。彩色对比条（传统40–70% vs 新工艺85–99%）保留为辅助图。</dd>
+    <dt>理由</dt><dd>7分钟里评委记住的往往就是三个数字。现在是数字找你，改完是数字砸评委。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s6">
+  <h3><span class="stars">★★★★☆</span>第6条：第2页（项目概览）信息过载，砍掉一半</h3>
+  <dl>
+    <dt>现状问题</dt><dd>第2页塞了做什么/AI价值/验证/为什么是我们四个板块加融资里程碑，是全PPT密度最高的页面——作为第2分钟出现的页面，评委处理不过来。</dd>
+    <dt>改法</dt><dd>保留四个板块但每块只留一行结论句（如"实验室小试：臭氧投加↓48–65%""断网/低置信度自动回退PLC兜底"），删掉解释性从句。底部融资条保留。或者干脆考虑：按第3条建议重排后，这页可以和第1页合并省出时间。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s7">
+  <h3><span class="stars">★★★★☆</span>第7条：第8页AI四能力表格——把"成熟度"列做成红黄绿进度点</h3>
+  <dl>
+    <dt>做什么</dt><dd>成熟度列改为可视化的●●○○○（5格进度条）：参数自优化●●○、安全降级●●○、故障预警●○○、预测性维护/数字孪生○○○。</dd>
+    <dt>理由</dt><dd>这个表是你全篇诚实度的最佳代言人，但纯文字的"方案已设计/规划中"淹没在表格里。进度点让评委3秒内看到"我们知道自己在哪"。评委对'诚实的创始人'有强烈的情感加分。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s8">
+  <h3><span class="stars">★★★★☆</span>第8条：删掉/降级第8页和BP 4.3.3里的"全家桶"名单</h3>
+  <dl>
+    <dt>做什么</dt><dd>PPT第8页故障预警行保留（但有第7条的进度点标注）；数字孪生、知识图谱、三维驾驶舱这类二阶段概念从路演PPT里整体删除（BP里可以留），口头表述统一为"AI只聚焦两件事：投加优化和安全降级"。</dd>
+    <dt>理由</dt><dd>A6问的根源就是算法名词堆砌。路演PPT的功能是建立信任，不是展示技术视野——概念罗列的边际收益为负。删内容换可信度，这笔交易稳赚。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s9">
+  <h3><span class="stars">★★★☆☆</span>第9条：新增半页"竞争的诚实版"——竞争表(第13页)右列改名为"坤腾数智·当前/目标对照"</h3>
+  <dl>
+    <dt>做什么</dt><dd>表右列每行拆两格或加脚注标记：▲=当前已具备、△=目标态（如核心装备▲、闭环优化△、性能责任△）。表格底部加一句"当前仅有实验室级证据，目标态以中试验收为准"。</dd>
+    <dt>理由</dt><dd>D2问直指此表"用目标冒充现状"。你的材料整体诚实基调很好，唯独这张表容易给人留下把柄。半格改动，堵住一个全场可见的攻击点。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s10">
+  <h3><span class="stars">★★★☆☆</span>第10条：市场页(第12页)增加"已发生的市场接触"锚点</h3>
+  <dl>
+    <dt>做什么</dt><dd>赛前至少完成3–5家真实接触（崔总渠道里的水厂/设计院技术交流、微信纪要级别即可），在第12页加一行："已与X家业主/设计院完成技术交流，中试意向沟通中（2026-10起）"。没有签约没关系，有真实名字和日期就是"从纸面走向现实"的证据。</dd>
+    <dt>理由</dt><dd>D7问是路演最值钱的一问——纸面公司与真实公司的分水岭。两周时间的电话沟通就能换来，是仅次于第1条的行动项。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s11">
+  <h3><span class="stars">★★★☆☆</span>第11条：新增一页（或半页）国外技术对标</h3>
+  <dl>
+    <dt>做什么</dt><dd>在竞争页附近加"与国际技术对标"块：日本超微气泡发生装置（商业化成熟、进口价格高、不含工艺与控制）、欧美臭氧催化工艺包（工程能力强、本土化服务弱）vs 我们（传质+催化+AI工艺包、存量利旧设计、国产成本）。三行对比即可。</dd>
+    <dt>理由</dt><dd>B5问必被问到（有技术视野的评委会提），PPT里却是空白。提前写出来=评委提问变成给你递话筒。同时这个对标把你的"先进性"从口号变成坐标系。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s12">
+  <h3><span class="stars">★★★☆☆</span>第12条：财务页(第17页)统一"里程碑-收入"口径</h3>
+  <dl>
+    <dt>做什么</dt><dd>第17页表格下加一行注释，把E1问的答案写死："第1年收入以设备/工程交付节点确认为主（预收+发货+安装调试），工艺包与软件部分待性能验收确认；中试合同亦计入收入"。同时确认第1年1000万收入模型里包含几份中试合同——如果包含，把"付费中试"作为收入来源在第14页收入表加一行（现在收入表五类里没有中试这一项）。</dd>
+    <dt>理由</dt><dd>评委对照第11页里程碑和第17页财务表时，"1–2个示范=1000万收入"的算术疑问必然产生。一行注释消除一个连环追问的起点。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s13">
+  <h3><span class="stars">★★★☆☆</span>第13条：第15页（三阶段+12步流程）压缩成一页时间轴</h3>
+  <dl>
+    <dt>现状问题</dt><dd>第15页双信息块（三阶段+12步交付流程）在7分钟路演里根本讲不完，属于"给自己看的页"。</dd>
+    <dt>改法</dt><dd>保留三阶段横向时间轴（5个关键节点），12步流程删掉或缩成一行小字箭头链。省下的时间分给第10页证据页。</dd>
+    <dt>理由</dt><dd>路演PPT的黄金法则——讲不到的内容不要占据视觉空间，它会稀释你真要讲的东西。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s14">
+  <h3><span class="stars">★★★☆☆</span>第14条：风险页(第19页)增加"阶段门"的口头强调而非页面改动</h3>
+  <dl>
+    <dt>做什么</dt><dd>页面本身质量很高（风险+应对+阶段门三列，是全PPT最有投资人缘的页面），不动。改动在于：把它从"可能的弃讲页"名单里挪出来——按任务三的时间分配，这页讲30秒："每项风险都有止损阶段门——两个独立现场无经济性就冻结场景，AI改善不达标就降级为辅助工具。我们用数据决定要不要继续，而不是用信念。"</dd>
+    <dt>理由</dt><dd>这是把你和"PPT创业家"区分开的核心页面。很多团队怕讲风险（显得项目弱），恰恰相反——<strong>敢设止损线的团队在评委眼里是成熟度加分项</strong>。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s15">
+  <h3><span class="stars">★★★☆☆</span>第15条：给"2万吨/日年省192–420万、回收期4–9个月"升级表述</h3>
+  <dl>
+    <dt>做什么</dt><dd>这个数字目前埋在备注旁白里（"计划书中基于小试推算…需中试校验后再对外承诺"——这句自我设限的态度是对的，保留）。改法是：在第10页或第12页给它一个明确位置，标注"客户投资回报测算（基于小试推算，中试后锁定）"，把计算式写出来：年处理水量×单位成本差。</dd>
+    <dt>理由</dt><dd>这是客户视角最有感觉的数字（业主不懂传质系数，懂回本周期）。现在它的曝光量与价值严重不匹配。注意永远带着"小试推算"标签，保持你的诚实人设。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s16">
+  <h3><span class="stars">★★☆☆☆</span>第16条：BP补两处数字口径（配合G3/B2的防御）</h3>
+  <dl>
+    <dt>做什么</dt><dd>①BP 3.4节TAM测算加一段"臭氧单元存量基数"的估计逻辑（渠道反馈来源）；②BP 4.7小试部分加一句质量平衡误差和测量方法（碘量法/在线仪口径）。这两个数字是评委拆数据时的两个抓手，现在都是空白。</dd>
+    <dt>理由</dt><dd>BP通常作为附件发给评委，书面口径的严谨度决定会后印象分。改动量：两段话。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s17">
+  <h3><span class="stars">★★☆☆☆</span>第17条：第16页团队页——每人加一行"本项目分工"标签</h3>
+  <dl>
+    <dt>做什么</dt><dd>四人卡片下方已有一行分工（商务/工艺/算法/自控），再加一行具体到本项目的承诺式表述："崔进：样板项目与EPC渠道对接｜杨勇：中试与工艺包定型｜江海鑫：AI投加模型与影子运行｜曾亮：PLC降级与现场调试"。补一个"全职"状态角标。</dd>
+    <dt>理由</dt><dd>F2/F3问的弹药。评委看团队页时本能地在问"这些人到底干嘛的、是不是真投入"。明确到动作的分工是唯一的答案形式。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s18">
+  <h3><span class="stars">★★☆☆☆</span>第18条：全PPT数据脚注统一格式</h3>
+  <dl>
+    <dt>现状</dt><dd>第3、4、6、10、12页有脚注但格式不统一（有的写来源，有的写边界声明）。</dd>
+    <dt>做法</dt><dd>统一为两类角标：〔来源〕外部统计/政策文件；〔边界〕实验室数据/团队测算/管理层假设。字号统一8pt灰色。</dd>
+    <dt>理由</dt><dd>细节印象分。评委（尤其投资人）会注意到"这个团队连数据来源都管理得井井有条"——这是工程严谨性的无声证词，正好匹配你"可核验"的品牌定位。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s19">
+  <h3><span class="stars">★★☆☆☆</span>第19条：准备一个15秒的"超微纳米气泡"实物/视频钩子</h3>
+  <dl>
+    <dt>做什么</dt><dd>录一段H-UFB发生单元在清水里产生牛奶状超微气泡云的视频（30秒内），嵌入开场或第6页讲传质时播放（注意视频文件要嵌入PPT而非外链，并在比赛机器上提前试放）。</dd>
+    <dt>理由</dt><dd>评委连续听几十场路演，视觉记忆几乎为零——一段"水瞬间变乳白"的视频是极少数能被记住的画面。同时它物理直观地展示了你的核心技术（悬浮数分钟 vs 秒级上浮的对比可以用两段视频剪在一起）。</dd>
+  </dl>
+</article>
+
+<article class="scard" id="s20">
+  <h3><span class="stars">★★☆☆☆</span>第20条：把PPT备注旁白升级为逐字稿并做三次计时排练</h3>
+  <dl>
+    <dt>做什么</dt><dd>现有备注质量很高（逻辑完整、有边界声明），但单页旁白长度不均（第2页读完全文约90秒，第15页约50秒——按20页总读稿时间约9–10分钟，<strong>超时30%以上</strong>）。改法：按任务三的时间分配表重写逐字稿，每页限定秒数，用手机计时做3次完整排练，砍到6分40秒（留20秒缓冲）。</dd>
+    <dt>理由</dt><dd>7分钟路演超时是最常见、也最冤的失分——超时1分钟，评委的印象从"游刃有余"变成"失控"。你的旁白内容本身已经是参赛作品里上游水平，只欠裁剪。</dd>
+  </dl>
+</article>
+
+<!-- ==================== 任务三 ==================== -->
+<h2 class="part" id="task3">任务三：7分钟路演现场指导</h2>
+<p class="part-sub">时间分配 · 开场设计 · 内容取舍 · 演讲技巧 · 问答策略 · 结尾设计</p>
+
+<section id="sec-time">
+  <div class="sec-head">
+    <span class="no">1</span>
+    <h2>时间分配方案</h2>
+  </div>
+  <div class="callout">
+    <p>（基于你的20页PPT，按"任务二第3条重排后"的结构）</p>
+    <p><strong>核心矛盾</strong>：20页PPT ÷ 7分钟 = 每页平均21秒——物理上讲不完。必须做页面取舍。以下方案默认执行任务二第3条（证据页前移）和第13条（流程页压缩）。</p>
+  </div>
+  <table>
+    <thead>
+      <tr><th style="width:13%">时间段</th><th style="width:7%">时长</th><th style="width:12%">页面</th><th style="width:48%">讲什么（要点）</th><th style="width:20%">翻页节奏</th></tr>
+    </thead>
+    <tbody>
+      <tr><td data-label="时间段">0:00–0:30</td><td data-label="时长">30s</td><td data-label="页面">P1</td><td data-label="讲什么">开场钩子（见下节）+一句话定位</td><td data-label="翻页节奏">1页</td></tr>
+      <tr><td data-label="时间段">0:30–1:30</td><td data-label="时长">60s</td><td data-label="页面">P3→P4</td><td data-label="讲什么">痛点四连击（传质低/投加高/停留长/靠经验）+政策窗口一句话带过</td><td data-label="翻页节奏">2页，各30s</td></tr>
+      <tr><td data-label="时间段">1:30–2:15</td><td data-label="时长">45s</td><td data-label="页面">P10（前移）</td><td data-label="讲什么"><strong>小试硬数据三卡片</strong>：48–65%/5–20min/85–99% + 试验边界声明</td><td data-label="翻页节奏">1页，重点放慢</td></tr>
+      <tr><td data-label="时间段">2:15–3:15</td><td data-label="时长">60s</td><td data-label="页面">P5→P6</td><td data-label="讲什么">工艺包三层结构 + H-UFB传质机理（可放气泡视频15s）+ 利旧设计</td><td data-label="翻页节奏">2页</td></tr>
+      <tr><td data-label="时间段">3:15–4:15</td><td data-label="时长">60s</td><td data-label="页面">P7→P8</td><td data-label="讲什么">AI闭环感知-决策-执行-反馈 + 安全降级 + 诚实标注成熟度（含离线验证图，若完成第1条建议）</td><td data-label="翻页节奏">2页</td></tr>
+      <tr><td data-label="时间段">4:15–4:45</td><td data-label="时长">30s</td><td data-label="页面">P9</td><td data-label="讲什么">四项创新一句话各带过 + 壁垒四件套</td><td data-label="翻页节奏">1页</td></tr>
+      <tr><td data-label="时间段">4:45–5:15</td><td data-label="时长">30s</td><td data-label="页面">P11</td><td data-label="讲什么">中试路线图：0-6-9-12月节点 + 验收指标口径</td><td data-label="翻页节奏">1页</td></tr>
+      <tr><td data-label="时间段">5:15–5:45</td><td data-label="时长">30s</td><td data-label="页面">P12→P13</td><td data-label="讲什么">市场TAM/SAM/SOM三个数 + 竞争一句话定位（"三类对手各有结构性缺陷"）</td><td data-label="翻页节奏">2页，各15s</td></tr>
+      <tr><td data-label="时间段">5:45–6:15</td><td data-label="时长">30s</td><td data-label="页面">P14→P17</td><td data-label="讲什么">商业模式五类收入一句话 + 财务只讲三个数（1000/2600/5200万，第二年盈亏平衡）</td><td data-label="翻页节奏">2页，各15s</td></tr>
+      <tr><td data-label="时间段">6:15–6:40</td><td data-label="时长">25s</td><td data-label="页面">P16→P18</td><td data-label="讲什么">团队四拼图一句话 + 融资600万与五里程碑</td><td data-label="翻页节奏">2页</td></tr>
+      <tr><td data-label="时间段">6:40–7:00</td><td data-label="时长">20s</td><td data-label="页面">P20</td><td data-label="讲什么">收尾（见第6节）</td><td data-label="翻页节奏">1页</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <p><strong>被牺牲的页面</strong>：P2（概览，其内容已分散进各页开场句）、P15（三阶段细化，口头一句"样板→复制→规模化"）、P19（风险页，留给问答——但若被问到，此页是现成的弹药，见任务二第14条）。这三个页面在台上<strong>不翻、不停留</strong>，评委翻阅纸质材料/PDF时它们仍然存在——这就是"路演不讲但材料里有"的双层结构。</p>
+  </div>
+  <div class="goldline"><strong>计时锚点</strong>（排练时贴在讲台上）：3:15时必须讲到AI页；5:15时必须讲到市场页。落后超20秒就当场砍P9创新页（那句"创新不在概念叠加"其实在P13竞争页会自然带出）。</div>
+</section>
+
+<section id="sec-open">
+  <div class="sec-head">
+    <span class="no">2</span>
+    <h2>开场设计（30秒抓注意力）</h2>
+  </div>
+
+  <div class="stage-title">方案A：惊人数字 + 烧钱意象（推荐 ★★★★★）</div>
+  <blockquote>
+    <p>"各位评委好，我是坤腾数智的崔进。先请大家看一个数字：<strong>48–65%</strong>——这是我们在实验室平行对照中，同样把污水处理达标，比传统工艺少用的臭氧量。一座2万吨/日的污水厂，臭氧系统一年烧掉几百万电费和氧源成本，其中将近一半，今天变成尾气白白排掉了。我们的项目，就是把这笔钱省下来——用超微纳米气泡把臭氧'用得更省'，用有安全边界的AI让投加'跟着水质走'。"</p>
+  </blockquote>
+  <ul class="plain">
+    <li>为什么最适合你：数字是你全场唯一的硬通货，开场即抛出等于把议程设定权握在手里——后面每一页都在解释这个48–65%怎么来的、怎么交付、怎么放大。评委的注意力结构从"又一个AI概念项目"变成"这个数字是真的吗？"，而你的证据页（前移后第3分钟内出现）正面接住这个悬念。</li>
+    <li>注意：必须说"实验室平行对照"——开场说大话+后面自认小试，是信任崩塌；开场即自我限定，反而显得可信。</li>
+  </ul>
+
+  <div class="stage-title">方案B：视频演示钩子（★★★★☆，可与A合体）</div>
+  <blockquote>
+    <p>开场直接放15秒视频：左侧传统射流曝气——气泡秒级上浮翻腾；右侧H-UFB——水体瞬间变成乳白色、气泡悬浮数分钟不散。"这是同一种气体，两种命运。右边这些1–50微米的超微气泡，让臭氧溶解利用率从最高70%提到85%以上——这就是我们全部生意的物理基础。"</p>
+  </blockquote>
+  <ul class="plain">
+    <li>风险：视频文件在陌生电脑上有播放失败风险（嵌入+提前到场试放+准备静态截图备份）。合体打法：视频15秒+方案A后半段念白。</li>
+  </ul>
+
+  <div class="stage-title">方案C：痛点故事（★★★☆☆）</div>
+  <blockquote>
+    <p>"我做过20年环保市场，见过太多水厂厂长面对同一个窘境：臭氧单元是全厂电费最大的单体，运行参数三年没动过——水质变了参数不敢动，怕超标；想节能不敢降投加，还是怕超标。他们需要一个既敢担保效果、又能动态省钱的方案。这就是我们做的事。"</p>
+  </blockquote>
+  <ul class="plain">
+    <li>优点：建立行业老兵的信任人设；缺点：慢热，30秒内没有数字冲击力，而且故事的主角是你不是项目。<strong>建议把C用作P3痛点页的过渡句</strong>（"我跑了20年市场，这四个问题每个厂长都点头"），而不是开场。</li>
+  </ul>
+
+  <div class="goldline"><strong>最终推荐</strong>：A+B合体——15秒视频（纯画面不解说）→ 48–65%数字钩子 + 一句话定位。总长35秒内。</div>
+</section>
+
+<section id="sec-core">
+  <div class="sec-head">
+    <span class="no">3</span>
+    <h2>内容取舍：三个必须讲透的核心亮点</h2>
+  </div>
+
+  <div class="stage-title">亮点一：物理层已验证的降耗证据（对应P10）</div>
+  <p>这是你与纯AI概念项目的分水岭。必须讲透的三件事：①数据本身（三个大数字）；②试验的严肃性（平行对照、多组重复、进水135–226 mg/L波动区间覆盖）；③边界诚实（批次小试、有放大效应、中试校验——<strong>这半句不能省</strong>，它是你信任资产的利息）。时间预算：45秒，全场最长的一页。</p>
+
+  <div class="stage-title">亮点二：安全型AI闭环的差异化定位（对应P7–8）</div>
+  <p>AI赛道你的胜负手不是"AI多强"，而是"AI多可信"。必须讲透：①三层架构一句话（机理守边界、ML拟合波动、贝叶斯给置信度）；②降级机制（断网/低置信度→PLC兜底）——这是全场评委最可能记住的AI细节，因为它回答了"工业为什么不敢用AI"；③成熟度诚实标注（若完成离线验证则展示曲线图）。时间预算：60秒。</p>
+
+  <div class="stage-title">亮点三：工艺包整体担责 + 利旧改造的商业模式（对应P5、P14）</div>
+  <p>这不是技术亮点是商业亮点：①"设备/软件/工程割裂、无人对效果负责"的痛点（P3已铺垫）在此闭环；②利旧设计让客户决策门槛骤降（不换主机不建池体，改造工程量小）；③按出水效果验收的口径（达标率/臭氧单耗/单位COD去除成本）。时间预算：45秒（跨P5和P14两页）。</p>
+
+  <div class="stage-title">一句话带过/舍弃的内容</div>
+  <ul class="plain">
+    <li><strong>政策</strong>（P4）：一句"设备更新+减污降碳政策窗口与我们路线同向"即可——政策是所有环保项目都会念的经，念多了反而稀释差异化。</li>
+    <li><strong>创新四项</strong>（P9）：每项10秒，重心放在"创新不在概念叠加"这句自我定位上。</li>
+    <li><strong>12步交付流程</strong>（P15）：完全不讲。</li>
+    <li><strong>三情景财务</strong>（P17表格）：只讲基准一行，保守/进取一句"区间4500–6000万"。</li>
+    <li><strong>数字孪生/知识图谱/三维驾驶舱</strong>：一字不提（任务二第8条）。</li>
+    <li><strong>环境与社会效益</strong>（BP第十二章）：一句话也不讲——评委会自己看到BP，路演时间给商业逻辑。</li>
+  </ul>
+</section>
+
+<section id="sec-skill">
+  <div class="sec-head">
+    <span class="no">4</span>
+    <h2>演讲技巧</h2>
+  </div>
+
+  <div class="stage-title">语速与重音</div>
+  <ul class="plain">
+    <li>全场基准语速约220字/分钟（比日常对话略慢）——技术名词（H-UFB、贝叶斯置信度、OPC UA）必须放慢，每个数字前停顿0.5秒。</li>
+    <li>全场设6个"重音锤"，语气骤然加重+放慢：①"48–65%"；②"43分钟到5–20分钟"；③"断网、传感器失效，自动降级PLC"；④"按出水效果验收"；⑤"第二年盈亏平衡"；⑥结尾的"可验证"。</li>
+    <li>数字念法：说"百分之四十八到六十五"不说"48-65%"（汉字数字在中文语流里更重）；"两千万到四千两百万一年"比"192-420万"更有冲击。</li>
+  </ul>
+
+  <div class="stage-title">停顿的结构性使用</div>
+  <ul class="plain">
+    <li>开场数字抛出后停2秒——让评委抬头看你。</li>
+    <li>每翻一页后的第一句之前停1秒——给评委扫视页面的时间。</li>
+    <li>讲完安全降级机制后停顿（这是你AI叙事的情绪顶点，停顿=重要性的标点）。</li>
+  </ul>
+
+  <div class="stage-title">肢体与站位</div>
+  <ul class="plain">
+    <li>讲痛点（P3）时向评委席走近一步；讲数据（P10）时站定，用手掌（不是手指）引导视线到屏幕数字卡片。</li>
+    <li>翻页器拿在手里，手不上半举过胸——小动作是紧张信号。备选：请队友（杨勇或江海鑫）负责翻页，你双手解放——但排练必须配合过，翻页失误比手拿翻页器扣分更多。</li>
+    <li>20页里你只在3个时点与PPT有强交互（P6视频/P10数据卡片/P7闭环图），其余时间身体朝评委不朝屏幕——<strong>对着屏幕讲是最常见的行为失分</strong>。</li>
+  </ul>
+
+  <div class="stage-title">眼神</div>
+  <ul class="plain">
+    <li>评委席扇形扫描，每人停留2–3秒一轮；抛出关键数字后看向评委中你最判断是技术专家的那位——问题的种子要种在会用数字的人心里。</li>
+    <li>提问环节回答时的铁律：<strong>80%时间看着提问者，20%扫全场</strong>，答完最后一句回到提问者点头收尾。</li>
+  </ul>
+</section>
+
+<section id="sec-qa">
+  <div class="sec-head">
+    <span class="no">5</span>
+    <h2>问答应对策略</h2>
+  </div>
+
+  <div class="stage-title">5.1 不会答的刁钻问题——万能应对话术</div>
+  <p><strong>结构</strong>：认 → 限 → 定向 → 承诺。</p>
+  <blockquote>
+    <p>"这个问题我如实回答：〔认——直接承认不知道的维度〕。目前我们能确认的是〔限——把话题拉回你知道的相邻事实〕。就我理解，这个问题的关键在于〔定向——把问题翻译成你熟悉的概念〕，这个我们在中试方案里对应的是X环节，具体数据会由〔团队某人〕在〔时间点〕给出——会后我可以把这部分材料单独发您。"</p>
+  </blockquote>
+  <ul class="plain">
+    <li>示例（被问贝叶斯网络细节，你是市场出身时）："这一层的网络细节由我们的算法负责人江海鑫博士负责，我不现场转述以免传错——我能确认的是它的工程作用：模型自己知道自己什么时候不可信，不可信就降级给PLC。细节材料会后奉上。"</li>
+    <li>铁律三条：<strong>永远不编数字</strong>（一个编造数字被拆穿=全场信用归零）；<strong>永远不猜评委想听什么</strong>（猜错方向比说不知道更糟）；<strong>"会后奉上"必须真的奉上</strong>（评委真的会留联系方式——做到了，这就是赛后加分项）。</li>
+  </ul>
+
+  <div class="stage-title">5.2 质疑型/攻击型问题的化解</div>
+  <p><strong>通用节奏：接 → 认 → 转 → 升</strong>（接住问题本身，承认其中真实的部分，转到你的设计，最后升维回亮点）。</p>
+  <ul class="plain">
+    <li><strong>被指"伪AI包装"（最凶险的一类）</strong>：接："您的质疑我完全理解，这确实是行业现状——不少项目把看板叫AI。"认："坦率说，我们的AI今天也没有现场运行数据。"转："所以我们把它设计成可证伪的——中试影子运行+与固定PID的A/B对比+降级成功率写进验收，改善不达阈值就降级为辅助工具。"升："我们敢给它设止损线，恰恰是因为我们相信它。这就是真AI和包装的区别——包装经不起证伪，我们邀请证伪。"</li>
+    <li><strong>被攻击数字（"85–99%不可能"）</strong>：绝不硬顶。接："您对气液平衡极限的敏感是对的。"认："85–99%是高效区间的范围值，不是每个工况都到99%。"转：给出测量口径（进气-尾气双端计量，任务一B2的准备）。升："这也是我们坚持现场用质量平衡综合验证、而不是拿气泡尺寸说话的原因。"</li>
+    <li><strong>被攻击团队（"成立8个月凭什么"）</strong>：接："对，公司是新的。"转："但四个人加起来是80年行业经验——我们不是从零开始的团队，是各自领域做完了各自的事，来拼最后一块拼图。"升：指向中试资源和渠道（20年人脉变成真实中试现场）。</li>
+    <li><strong>攻击性问题的黄金法则</strong>：评委的攻击越猛烈，你的语速越要放慢、音量越要压低。被激怒的防御姿态=当场失格；冷静的"您说得对，然后……"=成熟度加分。<strong>你的对手不是评委，是下一支答辩失控的团队。</strong></li>
+  </ul>
+
+  <div class="stage-title">5.3 借回答再次强化亮点</div>
+  <p>每个回答的<strong>最后一句</strong>设计成回旋镖：</p>
+  <ul class="plain">
+    <li>答AI问题收尾："——而这正是我们把降级成功率写进验收指标的原因。"</li>
+    <li>答市场问题收尾："——这也是为什么我们坚持先做有历史基线的技改场景：节能量可核验，数字自己会说话。"</li>
+    <li>答财务问题收尾："——第1年亏损120万，第2年盈亏平衡，这条曲线的钱花在哪，写在我们五个里程碑里。"</li>
+    <li>答团队问题收尾："——市场、工艺、算法、自控，这个拼图在环保创业团队里很少凑齐过。"</li>
+    <li>训练方法：把任务一50问的"回答思路"全部改写成"回旋镖版"，让队友（杨勇/江海鑫）随机抽题模拟两轮。</li>
+  </ul>
+
+  <div class="stage-title">5.4 问答的整体纪律</div>
+  <ul class="plain">
+    <li>每个回答控制在45–75秒。答到90秒还没收尾，评委的追问欲会指数上升。</li>
+    <li>一个问题只答一个主论点+一个支撑——评委问答不是路演，信息密度高反而记不住。</li>
+    <li>评委连环追问同一弱点超过两轮，主动收："您这个问题指出的风险是真实的，我们中试后的数据会是最好的回答——欢迎您到时候来检验。"（体面终止，同时把弱点转化为期待。）</li>
+    <li>队友补位规则：<strong>只有被点名才开口</strong>（"江博是算法负责人，请您补充"），否则全场一个声音。</li>
+  </ul>
+</section>
+
+<section id="sec-end">
+  <div class="sec-head">
+    <span class="no">6</span>
+    <h2>结尾设计（让评委记住你）</h2>
+  </div>
+  <p><strong>结构：30秒收尾 = 一个回环 + 一个数字 + 一个邀请。</strong></p>
+  <blockquote>
+    <p>"最后回到开场那个数字：48–65%。今天我们带来的是一个物理层已被小试验证、AI层设计了安全边界和证伪路径的工艺包——<strong>我们邀请被验证，而不请求被相信</strong>。600万，12个月，两个中试、一个付费示范、一份第三方检测报告。回来的时候，48–65%就不再是实验室数字，而是一座真实水厂的运行报表。坤腾数智，降低水处理全生命周期成本。谢谢各位。"</p>
+  </blockquote>
+  <p>设计逻辑：</p>
+  <ol style="margin:8px 0 14px;padding-left:1.5em">
+    <li style="margin:8px 0"><strong>回环</strong>（"回到开场那个数字"）——闭环结构让评委潜意识里给你"叙事完整"的加分；</li>
+    <li style="margin:8px 0"><strong>"邀请被验证，而不请求被相信"</strong>——这是全场的题眼金句，把你PPT里一贯的诚实策略（边界声明、止损阶段门、A/B验证）浓缩成一句可被评委复述的话。<strong>评委在赛后合议时只能记住每队一两句话——这句就是你要种下的那句</strong>；</li>
+    <li style="margin:8px 0"><strong>"回来的时候"</strong>——暗示这会是持续存在的公司而非一次性参赛，对投资型评委是隐形邀约；</li>
+    <li style="margin:8px 0">结尾句语速降到最慢，说完停1秒，再鞠躬/点头。<strong>绝不用"谢谢聆听敬请指正"这类客套收尾</strong>（P20页面上那句可以留着，口头不念）。</li>
+  </ol>
+</section>
+
+<!-- ==================== 附：行动清单 ==================== -->
+<section id="appendix">
+  <div class="sec-head">
+    <span class="no">附</span>
+    <h2>赛前两周行动清单（按优先级）</h2>
+  </div>
+  <table>
+    <thead>
+      <tr><th style="width:6%">#</th><th style="width:42%">行动项</th><th style="width:11%">负责人</th><th style="width:13%">工作量</th><th style="width:28%">对应问题</th></tr>
+    </thead>
+    <tbody>
+      <tr><td data-label="#">1</td><td data-label="行动项">用小试数据做离线投加模型验证曲线</td><td data-label="负责人">江海鑫</td><td data-label="工作量">1–2周</td><td data-label="对应问题">A1/A3/A4，建议#1</td></tr>
+      <tr><td data-label="#">2</td><td data-label="行动项">定稿估值/出让比例/股权结构/全职状态</td><td data-label="负责人">崔进</td><td data-label="工作量">半天</td><td data-label="对应问题">E4/F1/F2，建议#2</td></tr>
+      <tr><td data-label="#">3</td><td data-label="行动项">重排PPT页序（P10前移）+数字卡片化</td><td data-label="负责人">崔进</td><td data-label="工作量">半天</td><td data-label="对应问题">建议#3/#5</td></tr>
+      <tr><td data-label="#">4</td><td data-label="行动项">3–5家真实业主/设计院接触并记录</td><td data-label="负责人">崔进</td><td data-label="工作量">1周（电话）</td><td data-label="对应问题">D7，建议#10</td></tr>
+      <tr><td data-label="#">5</td><td data-label="行动项">技术弹药包：质量平衡误差、对照配置、铝溶出、溴酸盐控制</td><td data-label="负责人">杨勇</td><td data-label="工作量">2天</td><td data-label="对应问题">B2/B4/B7/G5</td></tr>
+      <tr><td data-label="#">6</td><td data-label="行动项">现金流低点月份数字</td><td data-label="负责人">崔进</td><td data-label="工作量">1天</td><td data-label="对应问题">E3</td></tr>
+      <tr><td data-label="#">7</td><td data-label="行动项">逐字稿重写+3次计时排练+模拟问答2轮</td><td data-label="负责人">全员</td><td data-label="工作量">2天</td><td data-label="对应问题">建议#20</td></tr>
+      <tr><td data-label="#">8</td><td data-label="行动项">气泡视频录制/嵌入+现场设备试放</td><td data-label="负责人">曾亮</td><td data-label="工作量">半天</td><td data-label="对应问题">建议#19</td></tr>
+    </tbody>
+  </table>
+  <blockquote>
+    <p>祝比赛顺利。记住：这个项目最值钱的资产不是纳米气泡也不是AI——是<strong>"每个数字都标了边界"的诚实姿态</strong>。评委一天看几十个粉饰过头的项目，你只要把这个姿态守到底，就已经赢了大多数人。</p>
+  </blockquote>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  // 移动端目录开关
+  var toggle=document.getElementById('tocToggle');
+  var toc=document.getElementById('toc');
+  if(toggle&&toc){
+    toggle.addEventListener('click',function(){
+      var open=toc.classList.toggle('open');
+      toggle.setAttribute('aria-expanded',open?'true':'false');
+      toggle.textContent=open?'✕':'☰';
+    });
+    toc.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){
+        toc.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+        toggle.textContent='☰';
+      }
+    });
+  }
+  // 目录高亮当前章节
+  var links=document.querySelectorAll('#tocList a');
+  var map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var targets=Object.keys(map).map(function(id){return document.getElementById(id);}).filter(Boolean);
+  if('IntersectionObserver' in window && targets.length){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          links.forEach(function(a){a.classList.remove('active');});
+          var a=map[en.target.id];
+          if(a)a.classList.add('active');
+        }
+      });
+    },{rootMargin:'-15% 0px -70% 0px'});
+    targets.forEach(function(t){obs.observe(t);});
+  }
+})();
+</script>
+</body>
+</html>
