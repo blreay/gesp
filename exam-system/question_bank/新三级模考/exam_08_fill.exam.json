@@ -1,0 +1,800 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_08_fill",
+    "title": "模拟卷 八：时间复杂度 & 递归专题（填空改造卷）",
+    "subtitle": "客观题全部改造为 50 个填空（每题 1 分），杜绝蒙猜；编程题与错题强化卷八原卷一致",
+    "total_score": 100,
+    "tags": [
+      "GESP三级",
+      "填空改造",
+      "时间复杂度",
+      "递归",
+      "递推",
+      "chrono计时",
+      "汉诺塔"
+    ],
+    "prog_brief": "记忆化斐波那契；汉诺塔移动步数"
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "递归"
+          ],
+          "stem": "下面用递归求斐波那契数列第 n 项的函数，其时间复杂度是 ____（写成 O(...) 形式，指数用 ^ 表示，如 O(3^n)）。\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    return fib(n - 1) + fib(n - 2);\n}\n```",
+          "answer": [
+            "O(2^n)",
+            "O(2ⁿ)"
+          ],
+          "explanation": "fib(n) 每层产生两个递归调用，调用总数接近 2^n，是指数级 O(2^n)。若答 O(n)，是把\"递归深度 n 层\"错当成了\"总调用次数\"。（原卷单选第 1 题，答案 D）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "调用次数"
+          ],
+          "stem": "下面的函数中，当 n > 1 时，每一层 fib(n) 的调用会产生 ____ 个新的 fib 递归调用（填数字）。\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    return fib(n - 1) + fib(n - 2);\n}\n```",
+          "answer": [
+            "2",
+            "两",
+            "两个"
+          ],
+          "explanation": "return fib(n-1) + fib(n-2) 会调用两个更小的子问题，即每层产生 2 个新调用，这正是调用总数呈指数增长的原因。（原卷单选第 1 题，答案 D）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "递推"
+          ],
+          "stem": "下面用递推（循环）方式求斐波那契数列第 n 项，其时间复杂度是 ____（写成 O(...) 形式）。\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    int a = 0, b = 1;\n    for (int i = 2; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}\n```",
+          "answer": "O(n)",
+          "explanation": "循环体共执行 n-1 次，每次做常数个工作（一次加法、两次赋值），操作次数与 n 成正比，故为线性 O(n)。（原卷单选第 2 题，答案 A）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "递推",
+            "重复计算"
+          ],
+          "stem": "与朴素递归相比，递推方式求斐波那契数列速度快，主要原因是每个子问题只计算一次，避免了大量 ____ 计算（填两个字）。",
+          "answer": [
+            "重复",
+            "冗余",
+            "反复"
+          ],
+          "explanation": "朴素递归会把同一个 fib(k) 重复计算指数级多次；递推从小到大逐个推出，每个值只算一次。（原卷单选第 2 题，答案 A）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "递归"
+          ],
+          "stem": "用递归法求 n 的阶乘（f(n) = n * f(n-1)，f(0)=1），其时间复杂度是 ____（写成 O(...) 形式）。",
+          "answer": "O(n)",
+          "explanation": "递归共 n 层，每层只做一次乘法，操作次数与 n 成正比，复杂度 O(n)。注意不是 O(n!)——那是计算结果的大小，不是操作次数。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "运算次数"
+          ],
+          "stem": "用递归求阶乘（f(0)=1，f(n)=n*f(n-1)）时，计算 f(8) 一共需要做 ____ 次乘法（填十进制整数）。",
+          "answer": [
+            "8",
+            "八"
+          ],
+          "explanation": "f(8)=8*f(7)，f(7)=7*f(6)……f(1)=1*f(0)，每层恰好一次乘法，共 8 层，即 8 次乘法。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "递归"
+          ],
+          "stem": "下面递归函数 cellRecur(n) 的时间复杂度是 ____（写成 O(...) 形式，指数用 ^ 表示）。\n```\nint cellRecur(int n) {\n    if (n == 1) return 1;\n    return cellRecur(n - 1) + cellRecur(n - 1) + 1;\n}\n```",
+          "answer": [
+            "O(2^n)",
+            "O(2ⁿ)"
+          ],
+          "explanation": "每层对 cellRecur(n-1) 发起两个相同调用，第 k 层的调用数是 2^(k-1)，总调用数 2^n-1，复杂度 O(2^n)。它比朴素 fib 递归\"更纯粹\"地翻倍。（原卷单选第 4 题，答案 B）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "递归求值"
+          ],
+          "stem": "下面的函数中，cellRecur(5) 的返回值是 ____（填十进制整数）。\n```\nint cellRecur(int n) {\n    if (n == 1) return 1;\n    return cellRecur(n - 1) + cellRecur(n - 1) + 1;\n}\n```",
+          "answer": [
+            "31",
+            "三十一"
+          ],
+          "explanation": "设 c(n)=2*c(n-1)+1、c(1)=1，逐项得 c(2)=3、c(3)=7、c(4)=15、c(5)=31，通项 c(n)=2^n-1。已用 g++ 运行核实。（原卷单选第 4 题，答案 B）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "位运算",
+            "子集枚举"
+          ],
+          "stem": "用位运算枚举一个长度为 n 的数组的所有子集时，子集一共有 ____ 个（写成以 n 为底的指数式，指数用 ^ 表示，如 3^k）。",
+          "answer": [
+            "2^n",
+            "2ⁿ",
+            "1<<n"
+          ],
+          "explanation": "每个元素有\"在子集中\"和\"不在子集中\"两种选择，n 个元素共 2^n 个子集，恰好对应 0 ~ 2^n-1 这 2^n 个整数（即 1<<n 个）的二进制位。（原卷单选第 5 题，答案 B）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "子集枚举"
+          ],
+          "stem": "用位运算枚举长度为 n 的数组的所有子集，若每个子集还需遍历 n 个元素检查是否属于该子集，则整个算法的时间复杂度是 ____（写成 O(...) 形式，指数用 ^、乘号用 * 且不加空格，如 O(n*3^n)）。",
+          "answer": [
+            "O(n*2^n)",
+            "O(n×2^n)",
+            "O(2^n*n)",
+            "O(2^n×n)",
+            "O(n·2^n)",
+            "O(2^n·n)",
+            "O(n*2ⁿ)",
+            "O(n×2ⁿ)"
+          ],
+          "explanation": "外层 2^n 个子集，内层每个子集做 n 次检查，基本操作总数为 n*2^n。这是\"指数级乘多项式\"的典型例子。（原卷单选第 5 题，答案 B）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "递推",
+            "爬楼梯问题"
+          ],
+          "stem": "下面的 climb(n) 函数用迭代方式计算爬楼梯问题（每次爬 1 或 2 级台阶，climb(n) 表示爬到第 n 级的不同走法数），climb(6) 的返回值是 ____（填十进制整数）。\n```\nint climb(int n) {\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}\n```",
+          "answer": [
+            "13",
+            "十三"
+          ],
+          "explanation": "climb(1)=1、climb(2)=2，之后每一项等于前两项之和：3、5、8、13，故 climb(6)=13。已用 g++ 运行核实。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "递推",
+            "爬楼梯问题"
+          ],
+          "stem": "下面的 climb(n) 函数中，climb(10) 的返回值是 ____（填十进制整数）。\n```\nint climb(int n) {\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int c = a + b;\n        a = b; b = c;\n    }\n    return b;\n}\n```",
+          "answer": [
+            "89",
+            "八十九"
+          ],
+          "explanation": "数列 1,2,3,5,8,13,21,34,55,89，第 10 项为 89。已用 g++ 运行核实。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "递推与递归"
+          ],
+          "stem": "递推算法从已知的初始状态出发，逐步推出后续状态，这种推进方向是 ____（填：自底向上 / 自顶向下）。",
+          "answer": [
+            "自底向上",
+            "由底向上",
+            "从下往上",
+            "从底向上"
+          ],
+          "explanation": "递推从最小的子问题（初始状态）开始，循环着一步步推向目标状态，方向是自底向上；递归才是从大问题出发向下分解。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "递推与递归",
+            "递归"
+          ],
+          "stem": "递归是函数在定义中调用 ____，把大问题分解成同结构的小问题来求解（填：自身 / 循环）。",
+          "answer": [
+            "自身",
+            "自己",
+            "本身",
+            "它自己"
+          ],
+          "explanation": "递归自顶向下：函数调用自身处理更小的子问题。注意递归依赖系统函数调用栈保存每层调用信息，\"递归不用调用栈\"的说法是错误的。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "时钟选择"
+          ],
+          "stem": "C++11 的 steady_clock 与 system_clock 中，想要获得当前的墙上时间、并转换成\"年月日时分秒\"日历字符串，应选用 ____ 提供的时间点（填：steady_clock / system_clock）。",
+          "answer": [
+            "system_clock",
+            "std::chrono::system_clock"
+          ],
+          "explanation": "system_clock 与墙上时钟（日历时间）关联，其时间点可转换为日期时间；steady_clock 只保证单调递增，适合测时间间隔，不能直接转成年月日。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "头文件"
+          ],
+          "stem": "C++11 中的 steady_clock、system_clock、high_resolution_clock 等时钟类都定义在 ____ 头文件中（填文件名，不带尖括号和后缀，如填 iostream 表示 <iostream>）。",
+          "answer": [
+            "chrono"
+          ],
+          "explanation": "这些时钟类与 duration、duration_cast 都由 C++11 的 <chrono> 头文件提供。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "time函数",
+            "精度"
+          ],
+          "stem": "C 语言的 time(NULL) 计时精度只能到 ____（填一个中文时间单位）。",
+          "answer": [
+            "秒",
+            "秒级",
+            "1秒"
+          ],
+          "explanation": "time(NULL) 返回整数秒值，无法分辨 1 秒以内的时间差；要更精细的计时须用 C++11 的 chrono。（原卷单选第 9 题，答案 D）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "精度"
+          ],
+          "stem": "与 time(NULL) 相比，C++11 的 system_clock::now() 通常能获得更高的时间精度，比如毫秒、甚至 ____（填一个比毫秒更精细的时间单位）。",
+          "answer": [
+            "微秒",
+            "纳秒"
+          ],
+          "explanation": "system_clock 精度取决于具体实现，通常远高于秒级，常见可达微秒甚至纳秒。（原卷单选第 9 题，答案 D）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "计时"
+          ],
+          "stem": "测量 sort 对 100 万个数排序的耗时：排序前调用一次 now() 记录起点，排序后再调用一次 now() 记录终点，然后用 ____ 把两个时间点之差转换成想要的时间单位（填转换用的函数/模板名）。",
+          "answer": [
+            "duration_cast",
+            "std::chrono::duration_cast"
+          ],
+          "explanation": "两个 time_point 相减得到 duration，再用 duration_cast<milliseconds>(d).count()（或 seconds/microseconds）取出目标单位的数值。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "计时"
+          ],
+          "stem": "用\"记录起点与终点\"的方法测量一段代码的运行耗时，需要调用 now() 共 ____ 次（填数字）。",
+          "answer": [
+            "2",
+            "两"
+          ],
+          "explanation": "被测代码执行前、执行后各调用一次 now()，两次时间点之差才是耗时；只调用一次无法得到时间间隔。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度"
+          ],
+          "stem": "时间复杂度描述的是算法基本操作次数随输入规模 n 增长的渐进趋势，它与具体机器的运行速度 ____（填：有关 / 无关）。",
+          "answer": [
+            "无关",
+            "没有关系",
+            "无关的"
+          ],
+          "explanation": "时间复杂度是算法本身的属性，只统计操作数量的数量级，不依赖机器快慢或编译优化——这正是用它衡量算法优劣的原因。（原卷单选第 11 题，答案 B）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度"
+          ],
+          "stem": "小明说：\"O(n) 的算法对任何输入规模都一定比 O(n²) 的算法运行得快。\"这个说法是 ____（填：正确 / 错误）。",
+          "answer": [
+            "错误",
+            "不正确",
+            "错的"
+          ],
+          "explanation": "大 O 只描述 n 充分大时的渐进趋势。当 n 很小、或 O(n²) 算法的常数因子远小时，O(n²) 算法实际可能更快，\"一定\"过于绝对。（原卷单选第 11 题，答案 B）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "记忆化",
+            "递归优化"
+          ],
+          "stem": "用数组缓存已算出的斐波那契结果，使 fib(1) ~ fib(n) 每个子问题都只计算一次，则需要计算的子问题总数是 ____ 个（用 n 表示）。",
+          "answer": [
+            "n",
+            "n个",
+            "n 个"
+          ],
+          "explanation": "fib(1) 到 fib(n) 共 n 个不同子问题；缓存后每个只算一次，总操作次数与 n 成正比。这项技术称为\"记忆化\"。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "记忆化",
+            "时间复杂度"
+          ],
+          "stem": "给朴素递归斐波那契加上缓存、使每个子问题只计算一次后，其时间复杂度就降到了 ____ 级（填：线性 / 平方）。",
+          "answer": [
+            "线性",
+            "线性的",
+            "线形"
+          ],
+          "explanation": "n 个子问题各算一次即 O(n)，为线性复杂度；相比朴素递归的 O(2^n) 是质的提升。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "二分查找",
+            "时间复杂度"
+          ],
+          "stem": "下面的代码用递归实现二分查找，在长度为 n 的有序数组中查找目标值，其时间复杂度是 ____（写成 O(...) 形式，对数写作 log n）。\n```\nint bsearch(int a[], int lo, int hi, int target) {\n    if (lo > hi) return -1;\n    int mid = (lo + hi) / 2;\n    if (a[mid] == target) return mid;\n    if (a[mid] < target) return bsearch(a, mid+1, hi, target);\n    return bsearch(a, lo, mid-1, target);\n}\n```",
+          "answer": [
+            "O(log n)",
+            "O(logn)",
+            "O(log2 n)",
+            "O(log2n)",
+            "O(log2^n)"
+          ],
+          "explanation": "每轮比较后查找区间缩小一半，最多 log2(n) 轮即可确定结果，每轮做常数次操作，故为 O(log n)。（原卷单选第 13 题，答案 C）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "二分查找"
+          ],
+          "stem": "二分查找每比较一轮，剩余的查找区间就缩小为原来的一半。若初始查找区间长度为 512，则经过 ____ 次折半后，区间长度变为 1（填十进制整数）。",
+          "answer": [
+            "9",
+            "九"
+          ],
+          "explanation": "512 = 2^9，每折半一次长度除以 2，折半 9 次后 512 → 1。这也说明长度为 n 的区间最多折半约 log2(n) 次，故二分查找是 O(log n)。（原卷单选第 13 题，答案 C）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "汉诺塔",
+            "递归"
+          ],
+          "stem": "汉诺塔问题中，把 n 个盘子从一根柱子全部移到另一根柱子，最少需要移动 ____ 次（写成含 n 的表达式，指数用 ^ 表示，如 3^n-1）。",
+          "answer": [
+            "2^n-1",
+            "2^n - 1",
+            "2ⁿ-1",
+            "2ⁿ - 1"
+          ],
+          "explanation": "设 f(n) 为最少移动次数，f(n)=2*f(n-1)+1、f(1)=1，解得 f(n)=2^n-1，对应时间复杂度 O(2^n)。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "汉诺塔"
+          ],
+          "stem": "汉诺塔问题中，12 个盘子最少需要移动 ____ 次（填十进制整数）。",
+          "answer": [
+            "4095",
+            "4,095"
+          ],
+          "explanation": "2^12 - 1 = 4096 - 1 = 4095。已用递归程序核实。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "栈溢出"
+          ],
+          "stem": "递归函数如果没有正确的终止条件（base case），无限递归下去会导致 ____ 溢出（填内存区域的中文名称）。",
+          "answer": [
+            "栈",
+            "栈空间",
+            "调用栈",
+            "函数调用栈",
+            "堆栈"
+          ],
+          "explanation": "每层未完成的调用都要在调用栈上占一块栈帧，无限递归会耗尽栈空间，程序以 stack overflow 崩溃。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "性能"
+          ],
+          "stem": "递归算法的效率 ____ 高于等价的循环实现（填：一定 / 不一定）。",
+          "answer": [
+            "不一定",
+            "未必",
+            "不是"
+          ],
+          "explanation": "函数调用有压栈、出栈等额外开销，递归通常并不比循环快；递归的价值在于把复杂问题（如汉诺塔）表达得简洁清晰。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "递归"
+          ],
+          "stem": "朴素递归斐波那契 fib(n)=fib(n-1)+fib(n-2) 中，函数调用的总次数随 n 呈 ____ 增长（填：线性 / 指数）。",
+          "answer": [
+            "指数",
+            "指数级"
+          ],
+          "explanation": "每层产生 2 个新调用，总调用数接近 2^n。说它\"复杂度是 O(n)\"错在把递归深度（n 层）当成了调用总数。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "递归求值",
+            "斐波那契"
+          ],
+          "stem": "下面的函数中，fib(5) 的返回值是 ____（填十进制整数）。\n```\nint fib(int n) {\n    if (n <= 1) return n;\n    return fib(n-1) + fib(n-2);\n}\n```",
+          "answer": [
+            "5",
+            "五"
+          ],
+          "explanation": "fib(5)=fib(4)+fib(3)=3+2=5；数列前几项为 0,1,1,2,3,5。已用 g++ 运行核实。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "递推",
+            "循环次数"
+          ],
+          "stem": "下面递推求斐波那契的代码中，循环体一共执行 ____ 次（用 n 表示）。\n```\nint fib(int n) {\n    int a=0,b=1;\n    for(int i=0;i<n;i++){int c=a+b;a=b;b=c;}\n    return a;\n}\n```",
+          "answer": [
+            "n",
+            "n次",
+            "n 次"
+          ],
+          "explanation": "for(int i=0;i<n;i++) 恰好执行 n 次，每次常数工作，所以时间复杂度是 O(n)，原判断\"复杂度 O(n)\"正确。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "递推求值",
+            "斐波那契"
+          ],
+          "stem": "下面代码中 fib(8) 的返回值是 ____（填十进制整数）。\n```\nint fib(int n) {\n    int a=0,b=1;\n    for(int i=0;i<n;i++){int c=a+b;a=b;b=c;}\n    return a;\n}\n```",
+          "answer": [
+            "21",
+            "二十一"
+          ],
+          "explanation": "该实现循环 k 次后 a 恰为第 k 个斐波那契数（fib(0)=0, fib(1)=1 约定下 a=fib(k)），8 次后 a=fib(8)=21。已用 g++ 运行核实。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "递推求值"
+          ],
+          "stem": "已知 f(1)=1、f(2)=1，且 n≥3 时 f(n)=f(n-1)+f(n-2)。用递推法从小到大逐步推出，f(9) = ____（填十进制整数）。",
+          "answer": [
+            "34",
+            "三十四"
+          ],
+          "explanation": "依次得 1,1,2,3,5,8,13,21,34，第 9 项为 34。递推正是利用\"当前状态与前几个状态之间的关系\"逐步求解。已用 g++ 核实。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "递推求值"
+          ],
+          "stem": "递推算法中，已知初始值 a1=3，且递推关系为 an = a(n-1) + 5（n≥2），则 a10 = ____（填十进制整数）。",
+          "answer": [
+            "48",
+            "四十八"
+          ],
+          "explanation": "每步增加 5，从 a1 到 a10 共推 9 步：a10 = 3 + 9×5 = 48。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "递归求值",
+            "阶乘"
+          ],
+          "stem": "递归阶乘 f(0)=1、f(n)=n*f(n-1)（n≥1），则 f(6) 的值是 ____（填十进制整数）。",
+          "answer": [
+            "720",
+            "七百二十"
+          ],
+          "explanation": "f(6)=6!=6×5×4×3×2×1=720。已用 g++ 运行核实。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "时间复杂度",
+            "阶乘"
+          ],
+          "stem": "\"用递归法求 n 的阶乘，其时间复杂度是 O(2^n)。\"这个说法是 ____（填：正确 / 错误）。",
+          "answer": [
+            "错误",
+            "不正确",
+            "错的"
+          ],
+          "explanation": "递归阶乘每层只做一次乘法、共 n 层，复杂度是 O(n)；O(2^n) 需要每层产生两个递归调用（如朴素 fib），阶乘并不满足。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "steady_clock"
+          ],
+          "stem": "用 steady_clock 测量代码运行耗时，即使测量过程中用户手动调整了系统时间（墙上时钟），测得的时间间隔也 ____（填：受影响 / 不受影响）。",
+          "answer": [
+            "不受影响",
+            "不会受影响"
+          ],
+          "explanation": "steady_clock 与系统日历时间无关，其时间点只增不减，end-start 得到的始终是真实流逝的时间。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "chrono",
+            "steady_clock"
+          ],
+          "stem": "steady_clock 之所以适合测量代码运行耗时，是因为它是一种 ____ 时钟（填两个字：单调 / 周期），时间点只增不减。",
+          "answer": [
+            "单调"
+          ],
+          "explanation": "\"单调递增\"指后取的时间点不会早于先取的，时间差恒非负且真实反映流逝时间，这正是测量耗时的关键性质。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "time函数",
+            "精度"
+          ],
+          "stem": "想测量一段代码毫秒级的时间间隔，用 C 语言的 time(NULL) 计时是 ____（填：足够 / 不够）。",
+          "answer": [
+            "不够",
+            "不足",
+            "不行",
+            "不合适"
+          ],
+          "explanation": "time(NULL) 只有秒级精度，毫秒级的间隔多半被测成 0 秒；应改用 C++11 的 chrono 计时。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "time函数",
+            "UNIX纪元"
+          ],
+          "stem": "C 语言 time(NULL) 从\"UNIX 纪元\"开始计时，UNIX 纪元是 ____ 年（UTC）1 月 1 日 0 时（填四位数字年份）。",
+          "answer": [
+            "1970",
+            "1970年"
+          ],
+          "explanation": "UNIX 纪元（Epoch）为 1970-01-01 00:00:00 UTC，time(NULL) 返回的秒数正是从这一时刻起算的。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "time_t",
+            "2038年问题"
+          ],
+          "stem": "32 位系统中，time_t 用 32 位 ____ 整数存储从纪元起经过的时间计数，最大约 21.4 亿，超过就会溢出，引发著名的\"2038 年问题\"（填：有符号 / 无符号）。",
+          "answer": [
+            "有符号",
+            "signed"
+          ],
+          "explanation": "32 位有符号整数最大值为 2147483647，对应 UTC 2038-01-19 03:14:07；若无符号则可撑到 2106 年，正是因为\"有符号\"才在 2038 年溢出。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "time_t",
+            "2038年问题"
+          ],
+          "stem": "解决\"2038 年问题\"的常见办法，是把 time_t 从 32 位扩展到 ____ 位（填数字：48 / 64 / 128）。",
+          "answer": [
+            "64",
+            "64位"
+          ],
+          "explanation": "64 位 time_t 可表示的时间范围远超宇宙年龄，从根本上避免溢出；现代系统普遍已切换到 64 位 time_t。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "汉诺塔",
+            "增长趋势"
+          ],
+          "stem": "汉诺塔问题中，n 个盘子的最少移动次数与盘子数 n 之间是 ____ 关系（填：线性 / 指数）。",
+          "answer": [
+            "指数",
+            "指数级"
+          ],
+          "explanation": "最少移动次数为 2^n-1：盘子每多 1 个，移动次数几乎翻倍，是指数增长；\"2n 次（线性）\"的说法错误。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "汉诺塔"
+          ],
+          "stem": "汉诺塔问题中，6 个盘子最少需要移动 ____ 次（填十进制整数）。",
+          "answer": [
+            "63",
+            "六十三"
+          ],
+          "explanation": "2^6 - 1 = 64 - 1 = 63。已用递归程序核实。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "指数级算法",
+            "估算"
+          ],
+          "stem": "假设一台计算机每秒能完成 10⁹（10 亿）次基本操作，那么运算量为 2^30 ≈ 1.07×10⁹ 次的算法在 n=30 时，大约需要 ____ 秒才能跑完（结果四舍五入取整数）。",
+          "answer": [
+            "1",
+            "约1",
+            "1秒"
+          ],
+          "explanation": "1.07×10⁹ ÷ 10⁹ ≈ 1 秒；实际每次操作往往不止 1 纳秒，耗时会更多——指数级算法在 n=30 时已逼近可行边缘，这正是它在规定时限内跑不完的原因。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "指数级算法",
+            "估算"
+          ],
+          "stem": "枚举子集的算法通常只在 n 不超过 20 左右时可行，因为 2^20 ≈ 100 ____（填中文计数单位：万 / 亿），这个量级计算机尚能很快处理完。",
+          "answer": [
+            "万"
+          ],
+          "explanation": "2^20 = 1048576 ≈ 100 万；而 2^30 ≈ 10.7 亿，n 每加 1 运算量就翻倍，很快超出时限。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "递推"
+          ],
+          "stem": "\"任何递归算法都必须改写成循环算法，否则程序无法正确运行。\"这个说法是 ____（填：正确 / 错误）。",
+          "answer": [
+            "错误",
+            "不正确",
+            "错的"
+          ],
+          "explanation": "递归程序依靠自身的调用机制就能正确运行，改写为循环只是可选的实现/优化方式，不是\"必须，否则无法运行\"。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "递推"
+          ],
+          "stem": "递归与递推往往可以相互转化：许多递归算法都可以改写成等价的 ____ 算法（填：递推 / 枚举）。",
+          "answer": [
+            "递推",
+            "迭代"
+          ],
+          "explanation": "例如递归版斐波那契可改写为递推版；两者等价，只是推进方向不同（递归自顶向下分解，递推自底向上推出）。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "递归与迭代版斐波那契对比",
+          "knowledge": [],
+          "stem": "给定一个整数 n（0 ≤ n ≤ 40），请分别用\"记忆化递归\"（用数组缓存已算出的结果，避免重复计算）方式计算斐波那契数列第 n 项（约定 fib(0)=0, fib(1)=1），并输出结果。要求即使 n=40 也要能在 1 秒内跑完（这排除了朴素的指数级递归写法）。",
+          "input_format": "一个整数 n。",
+          "output_format": "输出 fib(n) 的值。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "10",
+              "output": "55"
+            },
+            {
+              "input": "40",
+              "output": "102334155"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"递归与迭代版斐波那契对比\"(mock8 编程题1)考生程序的正确性\n// 注意：本测试对每个样例设置了较短的超时时间，朴素O(2^n)递归在n较大时会超时失败\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n#include <sys/wait.h>\n#include <signal.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\n// 带超时的运行：用 timeout 命令限制运行时间，避免朴素递归卡死测试程序本身\nstatic std::string runProgram(const std::string& exePath, const std::string& input, int timeoutSec) {\n    std::string inFile = \"/tmp/mock8_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock8_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"timeout \" + std::to_string(timeoutSec) + \" \\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { /* 超时或非零退出，输出可能为空 */ }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"0\\n\", \"0\"},\n        {\"1\\n\", \"1\"},\n        {\"10\\n\", \"55\"},\n        {\"20\\n\", \"6765\"},\n        {\"40\\n\", \"102334155\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input, 2);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 递归与迭代版斐波那契对比 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期（超时也算作不符合预期，实际输出会显示为空）：\\n\");\n        printf(\"%-4s | %-8s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-8s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "汉诺塔移动步数与耗时测量",
+          "knowledge": [],
+          "stem": "输入盘子数量 n（1 ≤ n ≤ 20），请用递归方式模拟汉诺塔移动过程，输出总的移动步数（不需要输出每一步的具体移动过程）。",
+          "input_format": "一个整数 n。",
+          "output_format": "输出总移动步数（即 2ⁿ - 1）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3",
+              "output": "7"
+            },
+            {
+              "input": "10",
+              "output": "1023"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"汉诺塔移动步数\"(mock8 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock8_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock8_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"1\\n\", \"1\"},\n        {\"3\\n\", \"7\"},\n        {\"10\\n\", \"1023\"},\n        {\"20\\n\", \"1048575\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 汉诺塔移动步数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-8s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-8s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

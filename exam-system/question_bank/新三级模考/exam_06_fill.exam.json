@@ -1,0 +1,760 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_06_fill",
+    "title": "模拟卷 六：指针 & 变量作用域专题（填空改造卷）",
+    "subtitle": "错题强化卷 六",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "行优先存储"
+          ],
+          "stem": "C++ 二维数组在内存中是按____顺序连续存储的（填：行优先 / 列优先）。",
+          "answer": [
+            "行优先",
+            "行"
+          ],
+          "explanation": "二维数组先存第 0 行全部元素、再存第 1 行……按行优先连续存放，这是对二维数组做指针运算的基础。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "指针运算"
+          ],
+          "stem": "已知 `int arr[3][4]={{1,2,3,4},{5,6,7,8},{9,10,11,12}}; int* p=&arr[0][0];`，则 `*(p+5)` 的值是 ____（填整数）。",
+          "answer": "6",
+          "explanation": "arr[3][4] 按行优先摊平后是 1,2,3,4,5,6,…,12。p 指向首元素，p+5 指向摊平后的第 6 个元素，即 arr[1][1]=6。g++ 实测 *(p+5)=6、arr[1][1]=6。（原卷单选第 1 题，答案 D）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "指针相减"
+          ],
+          "stem": "已知 `int arr[5]={1,2,3,4,5}; int* p1=arr; int* p2=arr+2;`，执行 `cout << p2-p1;` 输出的结果是 ____（填整数）。",
+          "answer": "2",
+          "explanation": "同类型指针相减得到的是相差的元素个数：arr+2 与 arr 相差 2 个元素，输出 2，而不是字节差 8。g++ 实测输出 2。（原卷单选第 2 题，答案 C）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "指针相减"
+          ],
+          "stem": "两个指向同一数组的指针相减，所得结果是它们之间相差的____个数（填：字节 / 元素）。",
+          "answer": [
+            "元素"
+          ],
+          "explanation": "指针加减以\"所指类型的大小\"为单位，相减结果是跨越的元素个数；字节差要再乘以 sizeof(类型)。（原卷单选第 2 题 C 肢）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "指针运算",
+            "数组"
+          ],
+          "stem": "已知 `int arr[4]={0,1,2,3}; int* p=arr;`，执行 `p+=1;` 后 `*p` 的值是 ____（填整数）。",
+          "answer": "1",
+          "explanation": "p 初始指向 arr[0]=0，p+=1 后指向 arr[1]=1，所以 *p=1。g++ 实测输出 1。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "指针运算",
+            "sizeof"
+          ],
+          "stem": "在 int 占 4 字节的系统中，已知 `int arr[4]={0,1,2,3}; int* p=arr;`，执行 `p+=3;` 后，p 的地址值比原来增加 ____ 个字节（填整数）。",
+          "answer": "12",
+          "explanation": "指针加 N 移动 N × sizeof(所指类型) 个字节：int* 加 3，地址后移 3 × sizeof(int) = 3 × 4 = 12 个字节，即偏移 3 个元素，指向 arr[3]。（原卷单选第 3 题 C 肢）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "全局变量"
+          ],
+          "stem": "下面程序的输出是 ____（三个数各用一个空格隔开）。\n```\n#include <iostream>\nusing namespace std;\nint value = 100;\nvoid print1() {\n    int value = 50;\n    cout << value << \" \" << ::value << \" \";\n}\nvoid print2() {\n    cout << value << \" \";\n}\nint main() {\n    print1();\n    print2();\n    return 0;\n}\n```",
+          "answer": "50 100 100",
+          "explanation": "print1 中局部 value(50) 遮蔽全局变量，先输出 50；::value 显式访问全局的 100；print2 无局部变量，直接访问全局 100。g++ 实测输出 \"50 100 100\"。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "作用域解析运算符"
+          ],
+          "stem": "在函数内部，当局部变量与全局变量同名时，要越过局部变量、明确访问那个同名的全局变量，需要在变量名前加 `::`。这个运算符叫____运算符（填中文名称）。",
+          "answer": [
+            "作用域解析",
+            "作用域",
+            "作用域解析运算符",
+            "作用域运算符",
+            "作用域限定"
+          ],
+          "explanation": ":: 叫作用域解析（作用域限定）运算符，`::value` 表示直接访问全局的 value，不受局部同名变量遮蔽的影响。（原卷单选第 4 题）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "局部变量"
+          ],
+          "stem": "下面程序的输出是 ____（按程序实际显示的样子写，不要自行添加空格）。\n```\n#include <iostream>\nusing namespace std;\nint x = 10;\nvoid func() {\n    int x = 20;\n    cout << x;\n}\nint main() {\n    func();\n    cout << x;\n    return 0;\n}\n```",
+          "answer": [
+            "2010",
+            "20 10"
+          ],
+          "explanation": "func 中局部 x(20) 遮蔽全局 x(10)，输出 20；main 输出的是全局 x=10，连起来是 \"2010\"。g++ 实测输出 2010。（原卷单选第 5 题，答案 B）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "全局变量"
+          ],
+          "stem": "已知全局变量 `int x = 10;`，函数 func() 内定义了局部变量 `int x = 20;`。在 func() 内部想输出全局 x 而不是局部 x，应写 cout << ____;",
+          "answer": [
+            "::x"
+          ],
+          "explanation": "::x 越过局部同名变量的遮蔽，直接访问全局 x。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "for循环"
+          ],
+          "stem": "在 `for (int i = 0; i < n; i++)` 循环头中声明的变量 i，其作用域仅限____（填：循环体内 / 整个程序）。",
+          "answer": [
+            "循环体内",
+            "循环体",
+            "循环内部"
+          ],
+          "explanation": "循环头中声明的变量从声明处开始生效，到循环体结束为止；循环外再访问 i 会编译错误。（原卷单选第 6 题 A 肢）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "变量遮蔽"
+          ],
+          "stem": "全局变量与函数内的局部变量同名时，在该函数内全局变量____被局部变量遮蔽（填：会 / 不会）。",
+          "answer": [
+            "会"
+          ],
+          "explanation": "局部优先：同名时函数内先找到局部变量，全局变量被遮蔽，要用 :: 才能访问。原卷 C 肢\"全局变量在任何地方都不能被局部变量同名遮蔽\"正是那个错误说法。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "块作用域"
+          ],
+          "stem": "下面程序的输出是 ____（填整数）。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int sum = 0;\n    for (int i = 1; i <= 5; i += 2) {\n        sum += i;\n        int sum = 0;   // 循环体内重新声明 sum\n    }\n    cout << sum;\n    return 0;\n}\n```",
+          "answer": "9",
+          "explanation": "循环执行 i=1,3,5 三轮，`sum += i` 用的是外层 sum，累加 1+3+5=9；循环体内的 `int sum = 0;` 在块作用域里声明了新变量，每轮结束即销毁，不影响外层。g++ 实测输出 9。（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "块作用域"
+          ],
+          "stem": "下面的代码中，循环体内 `int sum = 0;` 声明的变量与外层的 sum 是____变量（填：同一个 / 不同的）。\n```\nint sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\n    sum += i;\n    int sum = 0;\n}\n```",
+          "answer": [
+            "不同的",
+            "不同"
+          ],
+          "explanation": "在花括号内声明的变量属于块作用域，是与外层 sum 不同的新变量；同名只意味着在这个块内遮蔽外层变量。（原卷单选第 7 题 B 肢）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "野指针"
+          ],
+          "stem": "只声明而未初始化的指针（如 `int* ptr;`）没有指向任何合法内存，这种指针通常称为____指针。",
+          "answer": [
+            "野",
+            "wild"
+          ],
+          "explanation": "未初始化的指针指向不确定的地址，称为野指针；对它解引用可能导致程序崩溃或破坏数据。（原卷单选第 8 题，答案 C）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "野指针",
+            "未定义行为"
+          ],
+          "stem": "对未初始化的指针执行 `*ptr = 10;` 这样的解引用操作，其行为在 C++ 标准中属于____行为（填：已定义 / 未定义）。",
+          "answer": [
+            "未定义"
+          ],
+          "explanation": "解引用野指针是未定义行为（UB）：可能崩溃、可能写出随机值，标准不保证任何确定结果，不能心存侥幸。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "指针大小"
+          ],
+          "stem": "在同一台机器、同一编译环境下，指针变量的大小由系统的____决定（填：所指数据类型 / 位数）。",
+          "answer": [
+            "位数",
+            "系统位数",
+            "字长"
+          ],
+          "explanation": "各种类型指针在同一环境下大小相同，取决于系统位数：32 位系统 4 字节、64 位系统 8 字节；与所指类型无关。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "指针大小",
+            "sizeof"
+          ],
+          "stem": "在 64 位系统上，`sizeof(int*)` 的值是 ____ 字节（填整数）。",
+          "answer": [
+            "8"
+          ],
+          "explanation": "64 位系统上地址占 8 字节，char*/int*/double* 等所有指针的 sizeof 都是 8（本机 g++ 实测均为 8）。（原卷单选第 9 题 B 肢）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "二维数组形参",
+            "数组指针"
+          ],
+          "stem": "函数形参要接收实参 `int a[3][4]`，在 `int arr[3][4]`、`int arr[][4]`、`int (*arr)[4]`、`int** arr` 四种声明中，不能正确接收的是 ____（原样抄写该声明）。",
+          "answer": [
+            "int** arr",
+            "int **arr",
+            "int**arr",
+            "int ** arr"
+          ],
+          "explanation": "二维数组传参时退化为\"指向含 4 个 int 的一整行\"的指针 int(*)[4]；前三种声明与之等价，而 int** 是\"指向 int* 的指针\"，类型不兼容，无法接收。（原卷单选第 10 题，答案 D）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "二维数组形参"
+          ],
+          "stem": "二维数组作函数形参时（如 `int arr[][4]`），可以省略长度的是第____维（填：一 / 二）。",
+          "answer": [
+            "二",
+            "第二",
+            "2"
+          ],
+          "explanation": "行数可省略，列数（第二维）必须给出，否则编译器无法计算 arr[i][j] 的地址偏移。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "函数返回值"
+          ],
+          "stem": "C++ 函数的 return 语句最多只能直接返回 ____ 个值（填整数）。",
+          "answer": [
+            "1",
+            "一"
+          ],
+          "explanation": "return 只能携带一个值；函数直接返回的结果只有一个。（原卷单选第 11 题，答案 B）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "引用传参",
+            "函数"
+          ],
+          "stem": "想让一个函数间接\"返回\"多个结果，可以给函数传递____参数或指针参数，让函数通过它们直接修改实参（填：值 / 引用）。",
+          "answer": [
+            "引用",
+            "引用型"
+          ],
+          "explanation": "引用/指针参数让函数直接操作实参的原始数据，可以间接\"返回\"多个结果；值传递只能改副本。（原卷单选第 11 题 B 肢）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "前向声明",
+            "分离编译"
+          ],
+          "stem": "下面程序的输出是 ____。\n```\n#include <iostream>\nusing namespace std;\nint multiply(int x, int y);\nint main() {\n    int a = 4, b = 5;\n    cout << \"The result is: \" << multiply(a, b);\n    return 0;\n}\nint multiply(int x, int y) { return x * y; }\n```",
+          "answer": [
+            "The result is: 20",
+            "The result is:20"
+          ],
+          "explanation": "前向声明让编译器在 main 之前看到 multiply 的接口，函数体定义放在 main 之后完全不影响编译链接。g++ 实测输出 \"The result is: 20\"。原卷 C 肢\"无法通过编译\"是错误说法。（原卷单选第 12 题，答案 C）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "前向声明"
+          ],
+          "stem": "把函数的定义放在 main 之后时，只要在调用前给出函数的____，程序就能正常编译（填：声明 / 定义）。",
+          "answer": [
+            "声明",
+            "前向声明"
+          ],
+          "explanation": "编译只要求调用处能看到函数的声明（接口）；定义可以放在后面甚至别的源文件，由链接器负责找到它。（原卷单选第 12 题）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "前向声明"
+          ],
+          "stem": "写在函数调用之前、只有函数头而没有函数体的声明，称为____声明。",
+          "answer": [
+            "前向",
+            "前置",
+            "前向声明",
+            "前置声明",
+            "原型"
+          ],
+          "explanation": "这种声明叫前向声明（原型声明），向编译器提供函数名、参数类型和返回类型等接口信息。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "void函数"
+          ],
+          "stem": "返回类型为 void 的函数____有返回值（填：必须 / 不必）。",
+          "answer": [
+            "不必",
+            "不需要",
+            "不用"
+          ],
+          "explanation": "void 函数不返回值，可以不写 return，或只写 `return;` 提前结束。原卷 C 肢\"函数一定要有返回值\"错误。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "默认参数"
+          ],
+          "stem": "下面程序的输出是 ____（两个数用一个空格隔开）。\n```\n#include <iostream>\nusing namespace std;\nint add(int a, int b = 1);\nint add(int a, int b) { return a + b; }\nint main() {\n    cout << add(2) << \" \" << add(2, 3);\n    return 0;\n}\n```",
+          "answer": "3 5",
+          "explanation": "默认参数 b=1 写在声明中；add(2) 时 b 自动取 1，得 2+1=3；add(2,3) 时实参覆盖默认值，得 5。g++ 实测输出 \"3 5\"。（原卷单选第 14 题，答案 A）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "默认参数"
+          ],
+          "stem": "当默认参数已经写在函数声明里时，函数定义中再写一次默认值（如声明 `int add(int a, int b = 1);`，定义又写成 `int add(int a, int b = 1) {...}`）会导致____（填：编译错误 / 没有任何问题）。",
+          "answer": [
+            "编译错误",
+            "编译失败",
+            "报错"
+          ],
+          "explanation": "默认参数只能指定一次。声明与定义分离时默认值只写在声明里；定义中重复给出会报 \"default argument given for parameter\"（g++ 实测编译错误）。（原卷单选第 14 题 B 肢）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "函数重载",
+            "默认参数"
+          ],
+          "stem": "`int calculate(int x, int y = 10);` 和重载函数 `int calculate(int x);` 同时存在时，调用 `calculate(5);` 会导致____（填：正常运行 / 编译错误）。",
+          "answer": [
+            "编译错误",
+            "编译失败",
+            "报错",
+            "错误"
+          ],
+          "explanation": "calculate(5) 对两个候选都能匹配：calculate(int,int) 可用默认值补齐 y，calculate(int) 直接匹配，编译器无法抉择，报 call of overloaded 'calculate(int)' is ambiguous（g++ 实测编译错误）。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "函数重载",
+            "二义性"
+          ],
+          "stem": "两个或更多候选函数都能匹配同一个函数调用、编译器无法确定选用哪一个的现象，称为____。",
+          "answer": [
+            "二义性",
+            "歧义性",
+            "二义",
+            "歧义",
+            "ambiguous",
+            "ambiguity"
+          ],
+          "explanation": "这叫二义性（ambiguity），属于编译错误；带默认参数的函数与重载函数混用时特别容易踩到。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "指针初始化"
+          ],
+          "stem": "小明写了下面的代码，想把 10 存进 ptr 指向的内存，但存在未定义行为。应在 `int* ptr;` 之后、`*ptr = 10;` 之前补上一条语句使代码安全合法，写出这条语句：____\n```\nint a;\nint* ptr;\n// 此处应补一条语句\n*ptr = 10;\n```",
+          "answer": [
+            "ptr = &a",
+            "ptr=&a",
+            "ptr = &a;",
+            "ptr=&a;"
+          ],
+          "explanation": "指针必须先指向合法内存才能解引用：ptr = &a; 让 ptr 指向已定义的变量 a，之后 *ptr = 10; 就是把 10 安全地存进 a。原卷说法\"这样就能正确初始化所指内存\"错误。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "指针初始化",
+            "nullptr"
+          ],
+          "stem": "声明指针时如果暂时没有合适的地址可赋值，应把它初始化为 ____（C++11 表示空指针的关键字）。",
+          "answer": [
+            "nullptr",
+            "NULL"
+          ],
+          "explanation": "初始化为 nullptr（C++11 首选）或 NULL，明确表示\"暂不指向任何对象\"，避免野指针；误用时也更易排查。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "指针大小",
+            "sizeof"
+          ],
+          "stem": "在同一台 64 位机器上，`sizeof(double*)` 与 `sizeof(char*)` 的大小关系是 ____（填：> / < / =）。",
+          "answer": [
+            "=",
+            "相同",
+            "相等",
+            "一样"
+          ],
+          "explanation": "指针大小只取决于系统位数，与所指类型无关：64 位机器上两者都是 8 字节。原卷\"double* 比 char* 占用更多字节\"的说法错误。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "指针大小",
+            "系统位数"
+          ],
+          "stem": "在 32 位系统上，`sizeof(int*)` 的值是 ____ 字节（填整数）。",
+          "answer": [
+            "4"
+          ],
+          "explanation": "32 位系统的地址占 4 字节，任何类型的指针 sizeof 都是 4（64 位系统则是 8）。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "形参",
+            "函数调用"
+          ],
+          "stem": "函数的形参只有在函数被____时才占用内存（填：调用 / 定义）。",
+          "answer": [
+            "调用"
+          ],
+          "explanation": "形参是函数的局部变量，函数未被调用时不占内存；每次调用才在栈帧中分配，返回后释放。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "形参",
+            "栈"
+          ],
+          "stem": "函数每次被调用时，它的形参和局部变量占用的是____上的空间（填：栈 / 堆）。",
+          "answer": [
+            "栈",
+            "栈区",
+            "栈帧",
+            "stack"
+          ],
+          "explanation": "函数调用在栈上开辟栈帧存放形参、局部变量与返回地址，函数返回时自动回收；堆才需要程序员手动管理。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "声明与定义",
+            "链接"
+          ],
+          "stem": "函数已前向声明并在 main 中被调用，但整个程序中都没有给出函数体，则程序在____阶段会报错（填：编译 / 链接）。",
+          "answer": [
+            "链接",
+            "连接"
+          ],
+          "explanation": "声明能骗过编译器，但链接器找不到函数体，报 undefined reference 错误（g++ 实测链接失败）。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "前向声明"
+          ],
+          "stem": "把函数声明写在 main 之前，目的是让____在检查 main 中的函数调用时能看到函数的接口（填：编译器 / 链接器）。",
+          "answer": [
+            "编译器"
+          ],
+          "explanation": "编译阶段编译器依据声明检查调用的实参个数、类型和返回值用法；定义由链接器负责对接。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "函数声明"
+          ],
+          "stem": "函数声明 `int add(int, int);` 只写了参数类型而没有写参数名，这种写法是____的（填：合法 / 非法）。",
+          "answer": [
+            "合法",
+            "正确"
+          ],
+          "explanation": "声明中参数名可以省略，编译器只需要类型信息来检查调用，这是完全合法的声明。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "函数声明",
+            "函数定义"
+          ],
+          "stem": "函数声明中的参数名与函数定义中的参数名可以____（填：不同 / 必须相同）。",
+          "answer": [
+            "不同",
+            "不一样",
+            "不一致"
+          ],
+          "explanation": "声明里的参数名只是说明性的，定义可以用完全不同的名字（g++ 实测正常编译运行），链接只认函数签名。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "引用"
+          ],
+          "stem": "引用一旦绑定了某个变量，之后____重新绑定到另一个变量（填：可以 / 不可以）。",
+          "answer": [
+            "不可以",
+            "不能",
+            "不可"
+          ],
+          "explanation": "引用是变量的别名，初始化时绑定，之后不能再改绑；这是引用与指针的重要区别。原卷说法错误。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "引用",
+            "指针"
+          ],
+          "stem": "在\"能否中途改变所指向的对象\"这一点上，引用与____不同：后者可以随时被赋新值而指向别的变量（填变量类型名）。",
+          "answer": [
+            "指针",
+            "指针变量",
+            "pointer"
+          ],
+          "explanation": "指针变量本身可反复赋值改指向，引用一经绑定终身不变。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "头文件包含"
+          ],
+          "stem": "`#include \"myheader.h\"` 与 `#include <myheader.h>` 两种写法的头文件搜索路径是____的（填：相同 / 不同）。",
+          "answer": [
+            "不同",
+            "不相同",
+            "不一样"
+          ],
+          "explanation": "双引号写法通常先搜源文件所在目录、再搜系统目录；尖括号写法直接搜系统 include 路径。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "头文件包含"
+          ],
+          "stem": "包含自己编写、与源文件放在同一目录下的头文件，通常用____写法（填：双引号 / 尖括号）。",
+          "answer": [
+            "双引号",
+            "双引号形式"
+          ],
+          "explanation": "自制头文件用 #include \"xxx.h\"（双引号），优先在当前源文件目录查找；标准库头文件如 <iostream> 用尖括号。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "编译基础"
+          ],
+          "stem": "把课本上带行号的示例代码连同行号一起敲进源文件，程序____正常编译（填：能 / 不能）。",
+          "answer": [
+            "不能",
+            "无法",
+            "不可以"
+          ],
+          "explanation": "行号既不是代码也不是注释，编译器会把它当成非法内容报语法错误；原卷\"行号会被自动忽略\"的说法错误。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "注释"
+          ],
+          "stem": "想让编译器完全忽略源文件中的某段文字（如说明、备注），应把它写成____。",
+          "answer": [
+            "注释",
+            "注解",
+            "comments"
+          ],
+          "explanation": "只有注释（// 行注释或 /* */ 块注释）会被编译器完全忽略；抄示例代码时必须去掉行号。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "const",
+            "引用传参"
+          ],
+          "stem": "不想让函数内部通过某个引用形参修改实参的数据，应在形参类型前加上关键字 ____（写英文关键字）。",
+          "answer": [
+            "const",
+            "Const",
+            "CONST"
+          ],
+          "explanation": "const 引用形参（const T&）禁止函数内通过该形参修改实参数据，试图修改会编译错误（g++ 实测 assignment of read-only reference）。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "const引用"
+          ],
+          "stem": "形参声明为 `const int& r` 时，其主要目的是防止在函数内部____实参的数据（填一个动词）。",
+          "answer": [
+            "修改",
+            "更改",
+            "改变",
+            "改动"
+          ],
+          "explanation": "const 引用兼顾效率（不拷贝）与安全（只读），是传递大对象又不许改动时的惯用做法。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "参数传递方式",
+            "值传递"
+          ],
+          "stem": "把一个很大的结构体对象作为函数参数时，____传递会在调用时产生一份完整的对象拷贝，开销较大（填：值 / 引用）。",
+          "answer": [
+            "值",
+            "值传递",
+            "按值"
+          ],
+          "explanation": "值传递要拷贝整个对象，大对象开销大且改动副本无效。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "参数传递方式",
+            "引用传递"
+          ],
+          "stem": "传递大型对象时，使用引用或指针传递，实际传给函数的只是对象的____（填：完整副本 / 地址）。",
+          "answer": [
+            "地址",
+            "内存地址",
+            "首地址"
+          ],
+          "explanation": "引用/指针传递只传地址，避免整体拷贝；大型结构体、字符串等常用 const 引用传参，兼顾效率与安全。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "二维数组统计（指针遍历）",
+          "knowledge": [],
+          "stem": "给定一个 r 行 c 列的二维整数数组，请用指针的方式遍历这个数组（要求函数参数声明为指向\"含 c 个 int 的一维数组\"的指针，即 `int (*arr)[c]` 形式），统计并输出数组中所有元素的总和以及最大值。",
+          "input_format": "第一行两个整数 r 和 c（1 ≤ r, c ≤ 50）；接下来 r 行，每行 c 个整数。",
+          "output_format": "输出一行，两个整数：所有元素之和、最大值，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "2 3\n1 2 3\n4 5 6",
+              "output": "21 6"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"二维数组统计(指针遍历)\"(mock6 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock6_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock6_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"2 3\\n1 2 3\\n4 5 6\\n\", \"21 6\"},\n        {\"1 1\\n7\\n\", \"7 7\"},\n        {\"3 3\\n-1 -2 -3\\n0 0 0\\n5 6 7\\n\", \"12 7\"},\n        {\"2 2\\n100 200\\n300 400\\n\", \"1000 400\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 二维数组统计 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-24s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "递归求最大公约数",
+          "knowledge": [],
+          "stem": "请用递归函数实现欧几里得算法，求两个正整数 a 和 b 的最大公约数（GCD）。",
+          "input_format": "一行两个正整数 a 和 b（1 ≤ a, b ≤ 10^9）。",
+          "output_format": "输出 a 和 b 的最大公约数。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "12 18",
+              "output": "6"
+            },
+            {
+              "input": "17 5",
+              "output": "1"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"递归求最大公约数\"(mock6 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock6_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock6_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"12 18\\n\", \"6\"},\n        {\"17 5\\n\", \"1\"},\n        {\"100 75\\n\", \"25\"},\n        {\"7 7\\n\", \"7\"},\n        {\"1000000000 999999999\\n\", \"1\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 递归求最大公约数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-14s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-14s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

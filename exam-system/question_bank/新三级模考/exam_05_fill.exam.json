@@ -1,0 +1,864 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_05_fill",
+    "title": "模拟卷 五：排序算法专题（填空改造卷）",
+    "subtitle": "错题强化卷 五",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "过程追踪"
+          ],
+          "stem": "对数组 `arr[] = {5, 3, 8, 1};` 进行升序冒泡排序（从头到尾比较相邻元素，逆序则交换），第一轮结束后数组内容为 ____（各数字用逗号分隔，如 1,2,3,4）。",
+          "answer": [
+            "3,5,1,8",
+            "3,5,1, 8",
+            "3,5, 1,8",
+            "3,5, 1, 8",
+            "3, 5,1,8",
+            "3, 5,1, 8",
+            "3, 5, 1,8",
+            "3, 5, 1, 8"
+          ],
+          "explanation": "第一轮：5>3 交换得 3,5,8,1；5<8 不动；8>1 交换得 3,5,1,8。每轮把未排序区间的最大值'冒泡'到末尾，第一轮后最大值 8 已就位。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "过程追踪"
+          ],
+          "stem": "对数组 `arr[] = {5, 3, 8, 1};` 进行升序冒泡排序（从头到尾比较相邻元素，逆序则交换），第二轮结束后数组内容为 ____（各数字用逗号分隔）。",
+          "answer": [
+            "3,1,5,8",
+            "3,1,5, 8",
+            "3,1, 5,8",
+            "3,1, 5, 8",
+            "3, 1,5,8",
+            "3, 1,5, 8",
+            "3, 1, 5,8",
+            "3, 1, 5, 8"
+          ],
+          "explanation": "第一轮后为 3,5,1,8；第二轮：3<5 不动，5>1 交换得 3,1,5,8，5<8 不动。第二轮把次大值 5 送到倒数第二位。（原卷单选第 1 题延伸）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "选择排序",
+            "过程追踪"
+          ],
+          "stem": "对数组 `arr[] = {4, 7, 2, 9, 1};` 执行第一趟选择排序（在未排序区间找最小值放到最前面）后，数组内容为 ____（各数字用逗号分隔）。",
+          "answer": [
+            "1,7,2,9,4",
+            "1,7,2,9, 4",
+            "1,7,2, 9,4",
+            "1,7,2, 9, 4",
+            "1,7, 2,9,4",
+            "1,7, 2,9, 4",
+            "1,7, 2, 9,4",
+            "1,7, 2, 9, 4",
+            "1, 7,2,9,4",
+            "1, 7,2,9, 4",
+            "1, 7,2, 9,4",
+            "1, 7,2, 9, 4",
+            "1, 7, 2,9,4",
+            "1, 7, 2,9, 4",
+            "1, 7, 2, 9,4",
+            "1, 7, 2, 9, 4"
+          ],
+          "explanation": "第一趟在整个数组中找到最小值 1（下标 4），与下标 0 处的 4 交换，得 1,7,2,9,4。（原卷单选第 2 题，答案 A）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "选择排序",
+            "过程追踪"
+          ],
+          "stem": "对数组 `arr[] = {4, 7, 2, 9, 1};` 执行升序选择排序，第二趟结束后数组内容为 ____（各数字用逗号分隔）。",
+          "answer": [
+            "1,2,7,9,4",
+            "1,2,7,9, 4",
+            "1,2,7, 9,4",
+            "1,2,7, 9, 4",
+            "1,2, 7,9,4",
+            "1,2, 7,9, 4",
+            "1,2, 7, 9,4",
+            "1,2, 7, 9, 4",
+            "1, 2,7,9,4",
+            "1, 2,7,9, 4",
+            "1, 2,7, 9,4",
+            "1, 2,7, 9, 4",
+            "1, 2, 7,9,4",
+            "1, 2, 7,9, 4",
+            "1, 2, 7, 9,4",
+            "1, 2, 7, 9, 4"
+          ],
+          "explanation": "第一趟后为 1,7,2,9,4；第二趟在未排序区间 {7,2,9,4} 中找最小值 2，与 7 交换，得 1,2,7,9,4。（原卷单选第 2 题延伸）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "代码填空"
+          ],
+          "stem": "下面是升序插入排序的核心代码，while 循环横线处应填入的判断条件是 ____（用 a[j] 与 key 写比较表达式）。\n```\nfor (int i = 1; i < n; i++) {\n    int key = a[i];\n    int j = i - 1;\n    while (j >= 0 && __________) {\n        a[j + 1] = a[j];\n        j--;\n    }\n    a[j + 1] = key;\n}\n```",
+          "answer": [
+            "a[j] > key",
+            "a[j]>key",
+            "key < a[j]",
+            "key<a[j]"
+          ],
+          "explanation": "升序插入排序要把比 key 大的元素后移，所以循环继续的条件是 a[j] > key；写 a[j] < key 会变成降序，a[j+1] > key 比较的是即将被覆盖的位置，都是错的。（原卷单选第 3 题，答案 B）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "元素移动"
+          ],
+          "stem": "升序插入排序处理 a[i] 时（外层循环变量为 i，此时数组前 i 个元素已经有序），若 a[i] 比前面有序区间的所有元素都小，则本轮元素后移的次数是 ____（用含 i 的表达式表示）。",
+          "answer": [
+            "i",
+            "i次",
+            "i 次"
+          ],
+          "explanation": "a[i] 比前 i 个元素都小时，这 i 个元素每个都要后移一位，共后移 i 次，最后 a[i] 放到下标 0——这也是插入排序最坏情况 O(n²) 的来源。（原卷单选第 3 题延伸）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "排序算法识别",
+            "选择排序"
+          ],
+          "stem": "下面代码实现的排序算法是 ____ 排序（填算法名称）。\n```\nfor (int i = 0; i < n - 1; i++) {\n    int minIdx = i;\n    for (int j = i + 1; j < n; j++)\n        if (a[j] < a[minIdx]) minIdx = j;\n    swap(a[i], a[minIdx]);\n}\n```",
+          "answer": [
+            "选择",
+            "选择排序"
+          ],
+          "explanation": "每趟用 minIdx 扫描未排序区间找最小值下标，再与区间头部交换一次——这是选择排序的特征；冒泡排序是相邻元素反复交换，插入排序是后移找位置，快速排序要递归分区。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "选择排序",
+            "交换次数"
+          ],
+          "stem": "选择排序每一趟结束时执行的元素交换次数最多为 ____ 次（填数字）。",
+          "answer": [
+            "1",
+            "一",
+            "1次",
+            "1 次"
+          ],
+          "explanation": "每趟找到未排序区间最小值后只与区间头部交换一次（最小值恰好在头部时为 0 次），整个排序最多 n-1 次交换，远少于冒泡排序。（原卷单选第 4 题延伸）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "greater比较器"
+          ],
+          "stem": "`vector<int> v = {88, 60, 95, 72};` 执行 `sort(v.begin(), v.end(), greater<int>());` 后，v 中元素从前到后依次是 ____（各数字用逗号分隔）。",
+          "answer": [
+            "95,88,72,60",
+            "95,88,72, 60",
+            "95,88, 72,60",
+            "95,88, 72, 60",
+            "95, 88,72,60",
+            "95, 88,72, 60",
+            "95, 88, 72,60",
+            "95, 88, 72, 60"
+          ],
+          "explanation": "greater<int>() 是标准库提供的降序比较器，结果为 95,88,72,60；该调用完全合法，可以正常编译运行。（原卷单选第 5 题，答案 D）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "greater比较器"
+          ],
+          "stem": "对 `vector<int> v = {88, 60, 95, 72};` 执行 `sort(v.begin(), v.end(), greater<int>());`，排序结果按 ____ 排列（填：升序/降序）。",
+          "answer": [
+            "降序",
+            "从大到小",
+            "递减"
+          ],
+          "explanation": "greater 意为'大于'：当 a 大于 b 时 a 排在前面，因此结果从大到小（降序）。（原卷单选第 5 题延伸）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "比较函数",
+            "形参实参"
+          ],
+          "stem": "比较函数 `bool cmp(int a, int b) { return a < b; }` 中，写在参数括号里的 a 和 b 称为 ____（填：形参/实参）。",
+          "answer": [
+            "形参",
+            "形式参数"
+          ],
+          "explanation": "定义函数时写的 a、b 是形参（形式参数）；调用时传进来的具体值是实参。排序时实参由 sort 内部提供。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "比较函数",
+            "排序语义"
+          ],
+          "stem": "用 `sort(v.begin(), v.end(), cmp)` 排序时，若比较函数 `cmp(a, b)` 返回 true，表示 a 应排在 b 的 ____（填：前面/后面）。",
+          "answer": [
+            "前面",
+            "前",
+            "之前"
+          ],
+          "explanation": "比较函数的语义是'a 是否应排在 b 前面'；返回 true 则 a 在前。升序写 a < b，降序写 a > b。（原卷单选第 6 题延伸）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "qsort",
+            "类型转换"
+          ],
+          "stem": "`qsort` 的比较函数参数类型是 ____，因此函数体内必须先做强制类型转换才能取到真正的数值。",
+          "answer": [
+            "const void*",
+            "const void *",
+            "void*",
+            "void *"
+          ],
+          "explanation": "qsort 比较函数的标准形式是 int cmp(const void* a, const void* b)，函数体内要写 *(const int*)a 这样的强制转换才能比较；sort 的比较函数直接用具体类型，更简单安全。（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "qsort",
+            "比较函数返回值"
+          ],
+          "stem": "`qsort` 升序排序时，若比较函数中第一个参数指向的值应排在第二个参数指向的值之后（即前者更大），比较函数应返回一个 ____（填：正数/负数/0）。",
+          "answer": [
+            "正数",
+            "正整数",
+            "大于0的数",
+            "大于 0 的数"
+          ],
+          "explanation": "qsort 比较函数返回 int：前者应排前返回负数、应排后返回正数、相等返回 0——这与 sort 比较函数返回 bool 完全不同。（原卷单选第 7 题延伸）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "partial_sort",
+            "局部有序"
+          ],
+          "stem": "只需要数组中最小的 3 个数时，partial_sort 会把这 3 个数按序放到数组的 ____（填两字位置词）；其余元素的顺序则不做保证。",
+          "answer": [
+            "前部",
+            "前面",
+            "头部",
+            "前端"
+          ],
+          "explanation": "partial_sort(first, middle, last) 保证 [first, middle) 区间有序且放着全局最小的若干个元素，其余只保证不小于它们，不保证有序。（原卷单选第 8 题，答案 A）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "partial_sort",
+            "过程追踪"
+          ],
+          "stem": "对 `vector<int> v = {9, 2, 7, 5, 1};` 执行 `partial_sort(v.begin(), v.begin() + 3, v.end());` 后，v 的前 3 个元素依次是 ____（各数字用逗号分隔）。",
+          "answer": [
+            "1,2,5",
+            "1,2, 5",
+            "1, 2,5",
+            "1, 2, 5"
+          ],
+          "explanation": "不传比较函数时按升序，partial_sort 保证前 3 个位置是全局最小的 3 个数且有序：1,2,5；后面的 9,7 不保证有序（实测验证）。（原卷单选第 8 题延伸）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "lambda表达式",
+            "捕获列表"
+          ],
+          "stem": "lambda 表达式 `[](int a, int b){ return a < b; }` 开头的一对 `[]` 叫作 ____ 列表（填两字名称），方括号里可以写需要使用的外部变量名。",
+          "answer": [
+            "捕获",
+            "捕捉"
+          ],
+          "explanation": "lambda 由 捕获列表[]、参数表、函数体 组成；[] 表示不捕获任何变量，[&]、[=] 分别按引用/按值捕获外部变量。A、C、D 选项的 lambda(a,b)、function(...) 等写法在 C++ 中不存在。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "lambda表达式",
+            "排序语义"
+          ],
+          "stem": "以 lambda 表达式 `[](int a, int b){ return a > b; }` 作为 `sort` 的第三个参数，排序后元素按 ____ 排列（填：升序/降序）。",
+          "answer": [
+            "降序",
+            "从大到小",
+            "递减"
+          ],
+          "explanation": "返回 a > b 表示'a 比 b 大时 a 排前面'，即降序；升序应返回 a < b。（原卷单选第 9 题延伸）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "greater比较器"
+          ],
+          "stem": "`vector<int> v = {30, 75, 12, 90};` 执行 `sort(v.begin(), v.end(), greater<int>());` 后，v 的第一个元素是 ____（填数字）。（数据经改编）",
+          "answer": "90",
+          "explanation": "greater<int>() 降序排列得 90,75,30,12，第一个元素是最大值 90。（原卷单选第 10 题，数据改编）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "less比较器"
+          ],
+          "stem": "把 `sort(v.begin(), v.end(), greater<int>());` 中的第三个参数 greater<int>() 换成 ____<int>() 即可改为升序排序（填类模板名）。",
+          "answer": [
+            "less",
+            "std::less"
+          ],
+          "explanation": "less<T> 对应 operator<（升序），greater<T> 对应 operator>（降序），二者都在 <functional> 头文件中。（原卷单选第 10 题延伸）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "结构体排序",
+            "比较函数"
+          ],
+          "stem": "把比较函数写成 `bool cmp(Student a, Student b) { return a.score == b.score; }` 再传给 sort，____（填：能/不能）实现按 score 从高到低排序。",
+          "answer": [
+            "不能",
+            "无法",
+            "不可以",
+            "实现不了"
+          ],
+          "explanation": "== 只能回答'相等与否'，无法表达'谁应排在前面'（分数不等时恒返回 false，sort 得不到先后关系）；从高到低应写 return a.score > b.score;，且返回类型必须是 bool。（原卷单选第 11 题，A 肢）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "比较函数",
+            "返回类型"
+          ],
+          "stem": "若把 sort 的比较函数误写成 `void cmp(Student a, Student b) { ... }`（返回类型为 void），这份代码将 ____（填：正常编译/编译报错）。",
+          "answer": [
+            "编译报错",
+            "编译错误",
+            "无法编译",
+            "编译不通过",
+            "报错"
+          ],
+          "explanation": "比较函数必须返回 bool 供 sort 判断两元素的先后；void 无法返回比较结果，模板实例化时编译失败。（原卷单选第 11 题，C 肢）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "时间复杂度"
+          ],
+          "stem": "数组本身已经升序有序时，插入排序的最好情况时间复杂度是 ____（用 O(...) 表示）。",
+          "answer": [
+            "O(n)",
+            "O(N)"
+          ],
+          "explanation": "已有序时每个元素只需比较一次、移动零次，共约 n-1 次比较，即 O(n)——这是插入排序的最好情况。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "选择排序",
+            "时间复杂度"
+          ],
+          "stem": "选择排序无论输入数据是否有序，时间复杂度都是 ____（用 O(...) 表示，平方可写成 ² 或 ^2）。",
+          "answer": [
+            "O(n²)",
+            "O(n^2)",
+            "O(n2)",
+            "O(n*n)",
+            "O(N²)",
+            "O(N^2)"
+          ],
+          "explanation": "选择排序每趟都要完整扫描未排序区间找最小值，比较次数固定约 n²/2，与初始顺序无关，没有'最好情况'。（原卷单选第 12 题，C 肢）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "时间复杂度"
+          ],
+          "stem": "C++ 的 `sort` 函数排序 n 个元素的平均时间复杂度是 ____（用 O(...) 表示）。",
+          "answer": [
+            "O(n log n)",
+            "O(nlogn)",
+            "O(nlog n)",
+            "O(n logn)",
+            "O(N log N)",
+            "O(n*log n)"
+          ],
+          "explanation": "sort 底层是内省排序（快排+堆排等结合），平均 O(n log n)，远快于冒泡/插入/选择的 O(n²)——绝不可能是冒泡排序。（原卷单选第 12 题，D 肢）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "时间复杂度",
+            "flag优化"
+          ],
+          "stem": "用带 flag（标记本轮是否发生交换）优化的冒泡排序，对已经升序有序的数组排序，时间复杂度是 ____（用 O(...) 表示）。",
+          "answer": [
+            "O(n)",
+            "O(N)"
+          ],
+          "explanation": "第一轮扫描 n-1 次比较、零交换，flag 未置位即提前结束，总共 O(n)。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "flag优化"
+          ],
+          "stem": "带 flag 优化的冒泡排序中，flag 记录本轮是否发生过元素交换；若某一轮一次交换都没有发生，接下来应当 ____（填四字动作），因为此时数组已经有序。",
+          "answer": [
+            "提前结束",
+            "提前退出",
+            "结束排序",
+            "直接结束",
+            "提前结束排序"
+          ],
+          "explanation": "一轮无交换说明任意相邻元素都有序，即整个数组已有序，继续扫下去也不会有任何变化。（原卷单选第 13 题延伸）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "内排序",
+            "外排序"
+          ],
+          "stem": "待排序的数据总量太大、无法一次全部装入内存时，应使用 ____ 排序（填：内/外）。",
+          "answer": [
+            "外",
+            "外部"
+          ],
+          "explanation": "内存放不下时必须用外排序：借助磁盘分块排序再归并；冒泡、插入、选择都是内排序。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "字符串排序",
+            "lambda表达式"
+          ],
+          "stem": "对 `vector<string> 水果 = {\"banana\", \"apple\", \"peach\"};` 按字符串长度从短到长排序，lambda 比较器应写成 `[](string a, string b){ return a.length() ____ b.length(); }`，横线处应填的比较运算符是 ____。",
+          "answer": "<",
+          "explanation": "'从短到长'即长度小的排前面，比较 a.length() < b.length()；直接 sort 或 greater<string>() 都是按字典序而不是长度。（原卷单选第 15 题，答案 D）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "字符串排序",
+            "字典序"
+          ],
+          "stem": "对 `vector<string> 水果 = {\"banana\", \"apple\", \"peach\"};` 直接执行 `sort(水果.begin(), 水果.end());`，字符串默认按字典序比较，排序后第一个元素是 ____。",
+          "answer": [
+            "apple",
+            "\"apple\""
+          ],
+          "explanation": "字典序下 apple < banana < peach，排序结果为 apple, banana, peach（实测验证）。（原卷单选第 15 题延伸）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "稳定性",
+            "选择排序"
+          ],
+          "stem": "对序列 {3, 3, 1} 升序选择排序：第一趟把最小值 1 与下标 0 处的 3 交换，得到 {1, 3, 3}，此时原来靠前的那个 3 跑到了另一个 3 的后面。可见，即使规定'找最小值时遇到相等元素不交换'，选择排序仍然是 ____ 的排序算法（填：稳定/不稳定）。",
+          "answer": [
+            "不稳定",
+            "不稳定的"
+          ],
+          "explanation": "交换的对象是区间头部元素而非相等元素本身，'遇到相等不交换'救不了这种情况（实测第一趟后原下标 0 的 3 位于原下标 1 的 3 之后），选择排序天生不稳定。（原卷判断第 16 题，答案：错误）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "稳定性"
+          ],
+          "stem": "若排序算法能保证值相等的元素排序后的相对顺序与排序前 ____（填：不变/颠倒），则称该算法是稳定排序算法。",
+          "answer": [
+            "不变",
+            "一致",
+            "保持一致",
+            "相同"
+          ],
+          "explanation": "这是稳定性的定义：相等元素不改变先后关系。冒泡、插入、归并是稳定的；选择排序不稳定。（原卷判断第 16 题延伸）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "时间复杂度"
+          ],
+          "stem": "数组已经升序有序时，插入排序处理每个新元素只需与它前面的元素比较 ____ 次（填数字），即可确定无需后移。",
+          "answer": [
+            "1",
+            "一",
+            "1次",
+            "1 次"
+          ],
+          "explanation": "已有序时 while 条件 a[j] > key 第一次检查即不成立，每个元素恰好比较 1 次（n-1 个元素共 n-1 次），故最好情况是 O(n) 而非 O(n²)（实测验证）。（原卷判断第 17 题，答案：错误）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "元素移动"
+          ],
+          "stem": "数组已经升序有序时，用插入排序对整个数组排序，元素后移的总次数是 ____（填数字）。",
+          "answer": [
+            "0",
+            "零",
+            "0次",
+            "0 次"
+          ],
+          "explanation": "每次比较都立即失败，任何元素都不需要后移，移动次数为 0（实测验证）。（原卷判断第 17 题延伸）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "内排序",
+            "外排序"
+          ],
+          "stem": "待排序数据能全部装入内存中完成的排序称为 ____ 排序（填：内/外），冒泡、插入、选择排序都属于这一类。",
+          "answer": [
+            "内",
+            "内部"
+          ],
+          "explanation": "数据全部在内存中处理的排序叫内排序；装不下时才需要外排序。（原卷判断第 18 题，答案：正确）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "外排序",
+            "归并"
+          ],
+          "stem": "外排序的典型做法：先把大文件切成能装入内存的小块分别排序，再把这些有序块逐步 ____ 成一个完整的有序文件（填两字动词）。",
+          "answer": [
+            "合并",
+            "归并"
+          ],
+          "explanation": "外排序 = 分块内排序 + 多路归并，归并阶段借助磁盘缓冲区完成。（原卷判断第 18 题延伸）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "比较函数",
+            "sort函数"
+          ],
+          "stem": "调用 `sort(v.begin(), v.end(), cmp)` 排序的过程中，比较函数 cmp 会被调用 ____（填：恰好一次/多次）。",
+          "answer": [
+            "多次",
+            "多次调用",
+            "若干次",
+            "许多次",
+            "不止一次"
+          ],
+          "explanation": "排序需要反复比较元素对，cmp 会被调用很多次（约 O(n log n) 次），每次由 sort 从容器里取出两个真实元素传入。（原卷判断第 19 题，答案：正确）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "比较函数",
+            "形参实参"
+          ],
+          "stem": "调用 `sort(v.begin(), v.end(), cmp)` 时，比较函数两个参数每次收到的元素值由 ____ 提供（填：调用者/sort 内部）。",
+          "answer": [
+            "sort内部",
+            "sort 内部",
+            "sort",
+            "sort自身",
+            "sort 本身",
+            "sort函数",
+            "sort函数内部"
+          ],
+          "explanation": "调用者只传区间和函数名，从不手动给 cmp 传值；a、b 收到的实参全部来自 sort 内部在排序过程中取出的容器元素。（原卷判断第 19 题延伸）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "qsort",
+            "C语言"
+          ],
+          "stem": "`qsort` 是 ____ 语言标准库中的通用排序函数（填语言名）。",
+          "answer": [
+            "C",
+            "c",
+            "C语言",
+            "c语言"
+          ],
+          "explanation": "qsort 来自 C 标准库 <stdlib.h>；sort 才是 C++ <algorithm> 中的模板函数，两者并非同一体系。（原卷判断第 20 题，答案：错误）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "qsort",
+            "类型转换"
+          ],
+          "stem": "写 `qsort` 的比较函数时必须先对参数做手动强制类型转换再取值，与 C++ 的 `sort` 相比，这种写法更 ____（填：容易出错/简洁）。",
+          "answer": [
+            "容易出错",
+            "易错",
+            "容易错",
+            "麻烦",
+            "繁琐"
+          ],
+          "explanation": "qsort 要写 *(const int*)a 这类转换，类型写错编译器也不报；sort 比较函数直接用具体类型返回 bool，更安全——两者语法与安全性差别很大，'完全一样'不成立。（原卷判断第 20 题延伸）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "partial_sort",
+            "局部有序"
+          ],
+          "stem": "对含 10 个元素的 `vector<int> v` 执行 `partial_sort(v.begin(), v.begin() + 3, v.end());` 后，第 3 个位置之后的元素 ____（填：也已完全有序/不一定完全有序）。",
+          "answer": [
+            "不一定完全有序",
+            "不一定有序",
+            "不保证有序",
+            "不保证完全有序",
+            "未必有序"
+          ],
+          "explanation": "partial_sort 只保证 [begin, begin+3) 区间有序且是全局最小的 3 个，其余元素只保证都不小于前 3 个，顺序不确定。（原卷判断第 21 题，答案：错误）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "partial_sort",
+            "参数含义"
+          ],
+          "stem": "`partial_sort(v.begin(), v.begin() + 3, v.end());` 的第二个参数 `v.begin() + 3` 指定的是有序前缀的 ____ 位置（填：起始/结束）。",
+          "answer": [
+            "结束",
+            "末尾",
+            "终点"
+          ],
+          "explanation": "三个参数依次为：排序区间起点、有序前缀的结束位置（也是无序区的起点）、整个区间终点；若要求全部元素有序应使用 sort。（原卷判断第 21 题延伸）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "stable_sort",
+            "稳定性"
+          ],
+          "stem": "要求相等元素排序后仍保持输入先后关系时，应使用标准库的 ____ 函数（填函数名）代替 sort。",
+          "answer": [
+            "stable_sort",
+            "std::stable_sort"
+          ],
+          "explanation": "stable_sort 保证稳定性；sort 对相等元素的先后不做承诺。（原卷判断第 22 题，答案：正确）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "稳定性",
+            "应用场景"
+          ],
+          "stem": "'按成绩排名'类题目要求同分学生按输入先后输出，说明所用排序必须具备 ____（填三字性质名）。",
+          "answer": [
+            "稳定性",
+            "稳定"
+          ],
+          "explanation": "同分即'相等元素'，要求保持输入顺序就是要求排序算法稳定，应选 stable_sort 或在比较函数中加入次级关键字。（原卷判断第 22 题延伸）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "greater比较器"
+          ],
+          "stem": "`vector<int> 分数 = {70, 95, 60};` 执行 `sort(分数.begin(), 分数.end(), greater<int>());` 后，分数的最后一个元素是 ____（填数字）。（数据经改编）",
+          "answer": "60",
+          "explanation": "降序排列为 95,70,60，最后一个元素是最小值 60（实测验证）。（原卷判断第 23 题，数据改编）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "greater比较器",
+            "排序语义"
+          ],
+          "stem": "比较器 `greater<int>()` 的含义是：当 a ____ b 时（填：大于/小于），a 排在 b 前面。",
+          "answer": [
+            "大于",
+            "大",
+            ">"
+          ],
+          "explanation": "greater(a,b) 即 a>b；比较函数返回 true 表示 a 排前，所以大数在前、小数在后，实现降序。（原卷判断第 23 题延伸）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "比较次数"
+          ],
+          "stem": "不加任何优化的冒泡排序，对'已经升序有序的数组'与'完全逆序的数组'，相邻元素的比较总次数 ____（填：相同/不同）。",
+          "answer": "相同",
+          "explanation": "无优化时比较次数固定为 n(n-1)/2，与初始顺序无关；但加 flag 优化后有序数组只需 n-1 次比较即可提前结束，所以'无论是否加 flag 比较次数都相同'是错误的。（原卷判断第 24 题，答案：错误）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "比较次数",
+            "过程追踪"
+          ],
+          "stem": "用不带 flag 优化的冒泡排序对已经有序的数组 {1, 2, 3, 4} 升序排序，相邻元素比较的总次数是 ____（填数字）。",
+          "answer": [
+            "6",
+            "6次",
+            "6 次",
+            "六",
+            "六次"
+          ],
+          "explanation": "比较次数 = 3+2+1 = 6 次，数组有序也不会减少（实测验证）；若带 flag 优化则第一轮 3 次比较无交换即停，只要 3 次。（原卷判断第 24 题延伸）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "默认排序"
+          ],
+          "stem": "`sort(v.begin(), v.end())` 不传第三个参数时，默认按 ____ 排列（填：升序/降序）。",
+          "answer": [
+            "升序",
+            "从小到大",
+            "递增"
+          ],
+          "explanation": "默认比较规则是 operator<（即 less 语义），结果为升序；想要降序要传 greater<int>() 或自定义比较器。（原卷判断第 25 题，答案：错误）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "sort函数",
+            "默认排序"
+          ],
+          "stem": "`sort` 默认按升序排序，是因为不传比较函数时内部默认使用运算符 ____ 比较两个元素（填 C++ 运算符）。",
+          "answer": [
+            "<",
+            "operator<"
+          ],
+          "explanation": "默认比较规则是 a < b（less 语义）：a 小于 b 时 a 排前，故为升序；greater<T>（operator>）才对应降序。（原卷判断第 25 题延伸）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "按成绩排名",
+          "knowledge": [],
+          "stem": "给定 n 名学生的姓名和成绩，请按成绩从高到低排序输出姓名；若成绩相同，按输入顺序在前的姓名排在前面（即要求排序稳定）。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 100）；接下来 n 行，每行一个不含空格的姓名字符串和一个整数成绩，用空格分隔。",
+          "output_format": "输出 n 行，每行一个姓名，按题目要求的顺序排列。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "4\nAlice 88\nBob 95\nCathy 88\nDavid 72",
+              "output": "Bob\nAlice\nCathy\nDavid"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"按成绩排名\"(mock5 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock5_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock5_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"4\\nAlice 88\\nBob 95\\nCathy 88\\nDavid 72\\n\", \"Bob\\nAlice\\nCathy\\nDavid\"},\n        {\"1\\nZoe 100\\n\", \"Zoe\"},\n        {\"3\\nA 50\\nB 50\\nC 50\\n\", \"A\\nB\\nC\"},\n        {\"5\\nA 10\\nB 20\\nC 30\\nD 40\\nE 50\\n\", \"E\\nD\\nC\\nB\\nA\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 按成绩排名 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-30s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"-----------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-30s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "手写冒泡排序（升序）",
+          "knowledge": [],
+          "stem": "输入 n 个整数，请手写冒泡排序算法（不允许直接调用 sort/stable_sort/qsort 等库函数）将其按升序排列后输出，以巩固对冒泡排序过程的理解。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 1000）；第二行 n 个整数。",
+          "output_format": "输出一行，排序后的 n 个整数，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "6\n5 3 8 1 9 2",
+              "output": "1 2 3 5 8 9"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"手写冒泡排序\"(mock5 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock5_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock5_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"6\\n5 3 8 1 9 2\\n\", \"1 2 3 5 8 9\"},\n        {\"1\\n42\\n\", \"42\"},\n        {\"5\\n5 4 3 2 1\\n\", \"1 2 3 4 5\"},\n        {\"5\\n1 1 1 1 1\\n\", \"1 1 1 1 1\"},\n        {\"8\\n-3 5 0 -8 2 9 -1 4\\n\", \"-8 -3 -1 0 2 4 5 9\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 手写冒泡排序 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "exam": {
+    "id": "gesp_l3_wrong_02_fill",
+    "title": "模拟卷 二：进制转换 & 位运算 & 编码专题（填空改造卷）",
+    "subtitle": "错题强化卷 二",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "进制转换",
+            "短除法"
+          ],
+          "stem": "用“短除法”（除 2 取余法）把十进制数 27 转换成二进制，结果是 ____（只写 0/1 序列，不加任何前后缀）。",
+          "answer": "11011",
+          "explanation": "27÷2=13 余 1，13÷2=6 余 1，6÷2=3 余 0，3÷2=1 余 1，1÷2=0 余 1；余数从最后一次到第一次逆序读出得 11011。验算：16+8+2+1=27。（原卷单选第 1 题，答案 C）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "短除法",
+            "易错点"
+          ],
+          "stem": "用“短除法”把十进制数转换成二进制时，把每次得到的余数读出的顺序应当是 ____（填：正序 或 逆序）。",
+          "answer": [
+            "逆序",
+            "倒序",
+            "从后往前",
+            "从下往上"
+          ],
+          "explanation": "第一次除得到的余数是二进制的最低位，必须从最后一次余数往前逆序读；若正序读会得到 10111 这类错误结果（原卷 A、B 肢即倒序陷阱）。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "小数进制转换"
+          ],
+          "stem": "把十进制小数 0.625 转换成二进制，结果是 0.____（只填小数点后的数字）。",
+          "answer": "101",
+          "explanation": "乘 2 取整：0.625×2=1.25 取 1，0.25×2=0.5 取 0，0.5×2=1.0 取 1，正序读出得 0.101。（原卷单选第 2 题，答案 D）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "小数进制转换",
+            "易错点"
+          ],
+          "stem": "用“乘 2 取整法”把十进制小数转换成二进制时，第一次乘出的整数部分 1 就是二进制小数点后第 1 位，因此取整结果的读出顺序是 ____（填：正序 或 逆序）。",
+          "answer": [
+            "正序",
+            "顺序",
+            "从前往后",
+            "从上往下"
+          ],
+          "explanation": "小数转换按从上到下正序取整数位，与整数“除 2 取余”的逆序恰好相反，是最易混淆的方法细节。（原卷单选第 2 题）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "进制转换",
+            "程序阅读"
+          ],
+          "stem": "用短除法把十进制数转成八进制存入数组的程序中，循环体内先存余数：`oct_number[i++] = decimal ____ 8;`，横线处应填的运算符是 ____（填 % 或 /）。",
+          "answer": [
+            "%",
+            "取余",
+            "取模"
+          ],
+          "explanation": "除以 8 的余数就是当前最低的八进制位，故用取模运算符 %；i++ 负责存入后移动下标。（原卷单选第 3 题，答案 B）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "进制转换",
+            "程序阅读"
+          ],
+          "stem": "上述十进制转八进制程序的循环体中，存完余数后还要更新 decimal，应填入的完整语句是 ____（写成含 decimal 和 8 的语句，不加空格，分号可省），使循环能逐位处理并最终结束。",
+          "answer": [
+            "decimal/=8",
+            "decimal/=8;",
+            "decimal=decimal/8",
+            "decimal=decimal/8;"
+          ],
+          "explanation": "每处理完一位必须把 decimal 整除 8 移到更高位；若写成 decimal %= 8 或 decimal *= 8（原卷 A、C、D 肢）则结果错误或死循环。（原卷单选第 3 题）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "进制转换"
+          ],
+          "stem": "十进制数 141 用一个 8 位无符号二进制数表示是 ____（写成 8 位，不用空格分隔）。",
+          "answer": "10001101",
+          "explanation": "141 = 128 + 8 + 4 + 1，对应位为 1，即 1000 1101。（原卷单选第 4 题，答案 A）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "无符号数范围"
+          ],
+          "stem": "8 位无符号二进制数能表示的整数范围是 0 ~ ____。",
+          "answer": "255",
+          "explanation": "无符号数没有符号位，8 位全 1 即 1111 1111 = 255，范围 0~2⁸-1。（原卷单选第 4 题）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "补码",
+            "机器数"
+          ],
+          "stem": "已知 8 位二进制数 1000 1101 是某负数的补码，则它表示的真值是 ____。",
+          "answer": "-115",
+          "explanation": "最高位为 1 表示负数；各位取反再加 1：0111 0010 + 1 = 0111 0011 = 115，故真值 -115。误把低 7 位 000 1101 直接当数值会得 -13（原卷 B 肢）。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "补码",
+            "快速求真值"
+          ],
+          "stem": "对负数补码 1000 1101 做“各位取反、末位加 1”的快捷运算，得到的 8 位二进制结果是 ____（写成 8 位，不用空格分隔）。",
+          "answer": "01110011",
+          "explanation": "取反得 0111 0010，加 1 得 0111 0011 = 115，恰好是真值的绝对值——这是由补码反求真值的快捷方法。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "补码表示范围"
+          ],
+          "stem": "8 位补码能表示的最小负数是 ____。",
+          "answer": "-128",
+          "explanation": "n 位补码范围是 -2ⁿ⁻¹ ~ 2ⁿ⁻¹-1，n=8 时为 -128~127。原卷 B 肢“[2ⁿ⁻¹, 2ⁿ⁻¹+1]”是错误说法。（原卷单选第 6 题，答案 B 为错误项）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "补码表示范围"
+          ],
+          "stem": "8 位补码能表示的最大正数是 ____。",
+          "answer": "127",
+          "explanation": "最大正数 0111 1111 = 2⁷-1 = 127；补码把 1000 0000 留给 -128，正负范围不对称。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "位异或",
+            "符号辨析"
+          ],
+          "stem": "数学表达式 2^7 = 128 中 ^ 表示乘方；C++ 语句 `res = res ^ array[i];` 中的 ^ 表示 ____ 运算。",
+          "answer": [
+            "按位异或",
+            "异或",
+            "位异或",
+            "XOR"
+          ],
+          "explanation": "C++ 的 ^ 是按位异或（对应位相同得 0、不同得 1），乘方必须用 pow 函数。（原卷单选第 7 题，答案 D）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "位异或"
+          ],
+          "stem": "C++ 表达式 5 ^ 3 的结果是 ____。",
+          "answer": "6",
+          "explanation": "5=101，3=011，按位异或得 110 = 6（已用 g++ 验证）；不是乘方 125，也不是 5&3=1、5|3=7。（原卷单选第 7 题）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "按权展开"
+          ],
+          "stem": "用“按权展开求和法”计算二进制数 1011 对应的十进制真值，结果是 ____。",
+          "answer": "11",
+          "explanation": "1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8+0+2+1 = 11；权从右往左依次为 2⁰、2¹、2²、2³。（原卷单选第 8 题，答案 A）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "按权展开"
+          ],
+          "stem": "对二进制数 1011 按权展开时，最左边的 1 的权是 2³，化为十进制等于 ____。",
+          "answer": "8",
+          "explanation": "最左位是第 4 位（从右数），权为 2³ = 8；把权顺序颠倒（原卷 B 肢）会得到错误算式。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "按位取反"
+          ],
+          "stem": "按位取反运算满足的公式是：~n = ____（写成含 n 的表达式，不加空格，如 n+1）。",
+          "answer": [
+            "-n-1",
+            "-(n+1)",
+            "-1-n"
+          ],
+          "explanation": "~n 把 n 的每个二进制位取反，数学上等价于 -n-1；如 ~6=-7、~0=-1、~(-1)=0。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "按位取反"
+          ],
+          "stem": "C++ 表达式 ~6 的结果是 ____。",
+          "answer": "-7",
+          "explanation": "由 ~n = -n-1 得 ~6 = -7（已用 g++ 验证）；原卷 A 肢“~6 = -6”混淆了取反与取负。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "位与",
+            "低位清零"
+          ],
+          "stem": "已知 a 为 int 型变量，求“小于等于 a 且是 4 的倍数”的最大整数的表达式是 a & ____（填在 & 后面的运算对象，写成 C++ 形式，不加空格）。",
+          "answer": [
+            "~3",
+            "(~3)",
+            "-4"
+          ],
+          "explanation": "~3 = …11111100，与 a 按位与后把低 2 位清零，即向下取整到 4 的倍数；~3 与 -4 是同一个数。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "位与"
+          ],
+          "stem": "当 int a = 13; 时，表达式 a & (~3) 的值是 ____。",
+          "answer": "12",
+          "explanation": "13 = 1101，低 2 位清零得 1100 = 12（已用 g++ 验证）；对照：(a<<2)>>2 = 13、a^3 = 14、a|3 = 15，均不合要求。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "十六进制",
+            "位压缩"
+          ],
+          "stem": "把两个 4 位数值 0x1 和 0x3 分别作为高 4 位、低 4 位压缩进同一个字节（二进制 0001 0011），这个字节用十六进制表示是 ____H。",
+          "answer": [
+            "13",
+            "0x13"
+          ],
+          "explanation": "高 4 位 0001 = 1，低 4 位 0011 = 3，拼成 0x13（十进制 19）；后缀 B 表二进制、Q 表八进制、D 表十进制（原卷 A、B、C 肢）。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "移位",
+            "位压缩"
+          ],
+          "stem": "C++ 表达式 (0x1 << 4) | 0x3 的值用十进制表示是 ____。",
+          "answer": "19",
+          "explanation": "0x1 左移 4 位成为高 4 位 0x10，再按位或拼入低 4 位 0x3，得 0x13 = 19（已用 g++ 验证）——这是“压缩”的标准位运算写法。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "进制转换"
+          ],
+          "stem": "把十六进制数 0x2F（十进制 47）换算成五进制，结果是 ____。",
+          "answer": [
+            "142",
+            "142(5)"
+          ],
+          "explanation": "47 = 1×25 + 4×5 + 2，即五进制 142（已核算）；跨进制转换常以十进制为中转。（原卷单选第 12 题，答案 C）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "进制转换"
+          ],
+          "stem": "把十进制数 47 转换成八进制，结果是 ____。",
+          "answer": [
+            "57",
+            "57Q",
+            "057"
+          ],
+          "explanation": "47 = 5×8 + 7，即 57Q（已核算）。对照原卷错误肢 145/132/152 均为换算过程出错。（原卷单选第 12 题）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "位异或",
+            "程序阅读"
+          ],
+          "stem": "数组 {1, 2, 4, 8, 16} 的所有元素依次异或（res 从 0 开始，res = res ^ array[i]）后的结果是 ____。",
+          "answer": "31",
+          "explanation": "1^2=3，3^4=7，7^8=15，15^16=31（已用 g++ 验证）；res^=array[i] 与 res=array[i]^res 写法等价（异或满足交换律）。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "位异或",
+            "二进制加法"
+          ],
+          "stem": "数组 {1, 2, 4, 8, 16} 中的每个数都是 2 的不同次幂，二进制位互不重叠，相加时没有进位。因此对该数组“所有元素异或”的结果与“所有元素求和”的结果 ____（填：相同 或 不同）。",
+          "answer": [
+            "相同",
+            "一样",
+            "相等"
+          ],
+          "explanation": "无进位时异或就是加法（已用 g++ 验证两者都是 31）。注意：原卷单选第 13 题让选“使功能出错”的 res = res + array[i]，对这组特殊数据其实输出相同——特殊数据会掩盖逻辑错误，这正是本题的警示价值。（原卷单选第 13 题 B 肢）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "整数字面量",
+            "八进制"
+          ],
+          "stem": "C++ 中以前导 0 开头的整型字面量 01100 按八进制解释，其十进制值是 ____。",
+          "answer": "576",
+          "explanation": "01100₈ = 1×512 + 1×64 = 576（已用 g++ 验证）；前导 0 表示八进制、0b 表示二进制、0x 表示十六进制。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "整数字面量",
+            "位与"
+          ],
+          "stem": "执行下面代码后，c 的值是 ____。\n```\nint a = 0b1010;   // 二进制字面量\nint b = 01100;    // 注意前导 0\nint c = a & b;\n```",
+          "answer": "0",
+          "explanation": "a = 0b1010 = 10 = 二进制 1010；b = 01100 是八进制 = 576 = 二进制 1001000000；两者没有同为 1 的位，按位与结果为 0（已用 g++ 验证）。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "存储单位"
+          ],
+          "stem": "计算机存储单位中，1 Byte = ____ bit。",
+          "answer": [
+            "8",
+            "八"
+          ],
+          "explanation": "位（bit）是最小存储单位，1 字节 = 8 位；换算链为 bit → Byte → KB → MB。（原卷单选第 15 题，答案 A）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "存储单位"
+          ],
+          "stem": "1 KB = ____ Byte。",
+          "answer": "1024",
+          "explanation": "1 KB = 2¹⁰ Byte = 1024 Byte，不是 1000（原卷 C 肢错误）；另外 GBK 编码下一个汉字占 2 Byte（原卷 D 肢错误）。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "二进制转换",
+            "权重累加法"
+          ],
+          "stem": "用“权重累加法”把 8 位二进制数 10101010 转换成十进制：128 + 32 + 8 + 2 = ____。",
+          "answer": "170",
+          "explanation": "为 1 的位对应权重 128、32、8、2，累加得 170；对不超过 8 位的二进制数，权重累加法比翻倍法更便于口算检查。（原卷判断第 16 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "二进制权重"
+          ],
+          "stem": "8 位二进制数从最高位到最低位的权重依次是 128、64、____、16、8、4、2、1。",
+          "answer": "32",
+          "explanation": "每一位的权重是右邻位的 2 倍：2⁷=128、2⁶=64、2⁵=32、2⁴=16……（原卷判断第 16 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "补码表示范围"
+          ],
+          "stem": "n 位补码表示整数的范围是 -2ⁿ⁻¹ ~ 2ⁿ⁻¹-1。当 n = 10 时，能表示的最小整数是 ____。",
+          "answer": "-512",
+          "explanation": "-2⁹ = -512；原卷判断题把范围写成 [-2ⁿ, 2ⁿ-1]，指数位置错误，故为假。（原卷判断第 17 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "原码反码补码",
+            "零的表示"
+          ],
+          "stem": "反码中 0 有 +0（00000000）和 -0（11111111）两种编码；补码中 0 只有 ____ 种编码（填数字）。",
+          "answer": [
+            "1",
+            "一"
+          ],
+          "explanation": "补码中 0 的编码唯一（全 0），比反码省出一个编码。（原卷判断第 18 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "补码",
+            "特殊编码"
+          ],
+          "stem": "8 位补码中，二进制 1000 0000 表示的真值是 ____。",
+          "answer": "-128",
+          "explanation": "该编码在原码/反码里本表示“-0”，补码中把它规定为 -128——正是“没有负 0”省出来的那个数，所以 8 位补码能多表示一个最小负数。（原卷判断第 18 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "机器数",
+            "编码解释规则"
+          ],
+          "stem": "同一个机器数 1000 0001，按“原码”解释真值是 -1；按“补码”解释真值是 ____。",
+          "answer": "-127",
+          "explanation": "补码解释：取反加 1 → 0111 1110 + 1 = 0111 1111 = 127，故为 -127（已用 g++ 验证）。位组合本身不自带正负含义，真值取决于事先约定的解释规则。（原卷判断第 19 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "机器数",
+            "补码"
+          ],
+          "stem": "8 位补码中，全 1 的位组合 1111 1111 表示的真值是 ____。",
+          "answer": "-1",
+          "explanation": "取反加 1：0000 0000 + 1 = 1，故为 -1（已用 g++ 验证）；同一位组合按原码解释则是 -127，再次说明必须按规则解释。（原卷判断第 19 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "浮点数精度"
+          ],
+          "stem": "double a = 0.9, b = 1.0; 则 C++ 表达式 (b - a) == 0.1 的结果通常是 ____（填：true 或 false）。",
+          "answer": [
+            "false",
+            "假"
+          ],
+          "explanation": "0.9 和 0.1 都不能用二进制精确表示，b - a 存在约 -2.78×10⁻¹⁷ 的舍入误差，与字面量 0.1 不严格相等（已用 g++ 验证输出 0）。（原卷判断第 20 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "浮点数精度"
+          ],
+          "stem": "double 类型的 1.0 - 0.9 与 0.1 不严格相等，是由浮点数存储的 ____ 有限导致的（填一个词）。",
+          "answer": [
+            "精度",
+            "存储精度",
+            "精确度"
+          ],
+          "explanation": "浮点数按 IEEE 754 以有限位存储，多数十进制小数在二进制下是无限循环小数，只能近似。（原卷判断第 20 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "浮点数",
+            "存储单位"
+          ],
+          "stem": "C++ 中 double（双精度浮点数）类型在内存中通常占 ____ 个字节。",
+          "answer": [
+            "8",
+            "八"
+          ],
+          "explanation": "double 按 IEEE 754 占 8 字节（64 位），float 占 4 字节；位数越多精度越高，但仍无法精确表示多数十进制小数。（原卷判断第 20 题延伸）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "进制与位数"
+          ],
+          "stem": "对同一个大于 1 的正整数，其二进制表示的位数比十进制表示的位数 ____（填：多 或 少）。",
+          "answer": [
+            "多",
+            "更多"
+          ],
+          "explanation": "基数越小需要的位数越多，如 255 十进制 3 位、二进制 8 位。（原卷判断第 21 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "进制与位数"
+          ],
+          "stem": "数 255 的十进制表示有 3 位，它的二进制表示有 ____ 位。",
+          "answer": "8",
+          "explanation": "255 = 1111 1111，共 8 位。（原卷判断第 21 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "八进制"
+          ],
+          "stem": "八进制数的每一位上可能出现的最大数字是 ____。",
+          "answer": [
+            "7",
+            "七"
+          ],
+          "explanation": "八进制的数码是 0~7，逢 8 进 1；原卷判断题说“最大数字是 8”是错误的。（原卷判断第 22 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "十六进制"
+          ],
+          "stem": "十六进制数的每一位上可能出现的最大数字是 ____（填一个字母）。",
+          "answer": [
+            "F",
+            "f"
+          ],
+          "explanation": "十六进制数码是 0~9、A~F，其中 F 表示 15。（原卷判断第 22 题延伸）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "位异或",
+            "常见误区"
+          ],
+          "stem": "C++ 表达式 2 ^ 7 的结果是 ____。",
+          "answer": "5",
+          "explanation": "^ 在 C++ 中是按位异或：2=0010，7=0111，异或得 0101 = 5（已用 g++ 验证）；若误当“2 的 7 次方”会填 128。（原卷判断第 23 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "常用库函数"
+          ],
+          "stem": "在 C++ 中要计算 2 的 7 次方，应调用 cmath 库中的 ____ 函数（只填函数名，不加括号和参数）。",
+          "answer": "pow",
+          "explanation": "乘方用 pow(2, 7)，^ 运算符不能表示乘方。（原卷判断第 23 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "位异或",
+            "异或交换"
+          ],
+          "stem": "异或交换法 a ^= b; b ^= a; a ^= b; 能不借助临时变量交换两数，其依据之一是对任意整数 x 都有 x ^ x = ____。",
+          "answer": "0",
+          "explanation": "另一依据是 x ^ 0 = x；两次异或同一个数等于没变，因此信息不会丢失。（原卷判断第 24 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "位异或",
+            "异或交换"
+          ],
+          "stem": "int a = 3, b = 5; 依次执行 a ^= b; b ^= a; a ^= b; 三条语句后，a 的值是 ____。",
+          "answer": "5",
+          "explanation": "a = 3^5 = 6，b = 5^6 = 3，a = 6^3 = 5，交换成功（已用 g++ 验证 a=5、b=3）。（原卷判断第 24 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "位与",
+            "异或交换"
+          ],
+          "stem": "int a = 3, b = 5; 依次执行 a &= b; b &= a; a &= b; 三条语句后，a 的值是 ____。",
+          "answer": "1",
+          "explanation": "a = 3&5 = 1，b = 5&1 = 1，a = 1&1 = 1（已用 g++ 验证）；按位与会不断丢失信息，无法完成交换。（原卷判断第 25 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "位与",
+            "异或交换"
+          ],
+          "stem": "int a = 3, b = 5; 依次执行 a &= b; b &= a; a &= b; 三条语句后，b 的值是 ____。",
+          "answer": "1",
+          "explanation": "b 同样变成 1，两数原始信息都被破坏；只有异或满足“可逆合并”（x^y^y=x），与、或都不具备这种性质。（原卷判断第 25 题）"
+        }
+      ]
+    },
+    {
+      "title": "三、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "任意进制转换器",
+          "knowledge": [],
+          "stem": "输入一个十进制非负整数 N（0 ≤ N ≤ 100000）和一个进制 B（2 ≤ B ≤ 16），请用短除法思想把 N 转换成 B 进制并输出。若 B > 10，超过 9 的数位用大写字母 A、B、C… 表示（10 对应 A，11 对应 B，以此类推）。特别地，若 N 为 0，直接输出 0。",
+          "input_format": "一行，两个整数 N 和 B，用空格分隔。",
+          "output_format": "输出一行，N 在 B 进制下的表示（不含前导 0，除非 N 本身为 0）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "27 2",
+              "output": "11011"
+            },
+            {
+              "input": "255 16",
+              "output": "FF"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"任意进制转换器\"(mock2 编程题1)考生程序的正确性\n// 用法： g++ -O2 -o test1 mock2_prob1_base_convert.cpp\n//        ./test1 <考生二进制程序路径>\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock2_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock2_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    system(cmd.c_str());\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"27 2\\n\", \"11011\"},\n        {\"255 16\\n\", \"FF\"},\n        {\"0 5\\n\", \"0\"},\n        {\"100 8\\n\", \"144\"},\n        {\"1 2\\n\", \"1\"},\n        {\"4096 16\\n\", \"1000\"},\n        {\"31 16\\n\", \"1F\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 任意进制转换器 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-14s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-14s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "找出唯一的\"落单数\"",
+          "knowledge": [],
+          "stem": "给定一个正整数数组，其中除了一个数字只出现一次以外，其余每个数字都恰好出现两次。请利用位运算（异或运算 `^` 的自反性：任何数与自身异或为 0）找出这个只出现一次的数字，要求不使用额外的哈希表/map（用于巩固位运算知识点，需体现\"两两异或抵消\"的思路，暴力计数解法测试可能不会全部通过，但只看输入输出不检查实现方式）。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 100000，n 为奇数），第二行 n 个用空格分隔的正整数。",
+          "output_format": "输出一行，只出现一次的那个数字。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5\n4 1 2 1 2",
+              "output": "4"
+            },
+            {
+              "input": "7\n9 3 9 5 5 3 8",
+              "output": "8"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"找出唯一的落单数\"(mock2 编程题2)考生程序的正确性\n// 用法： g++ -O2 -o test2 mock2_prob2_xor_unique.cpp\n//        ./test2 <考生二进制程序路径>\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock2_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock2_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    system(cmd.c_str());\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5\\n4 1 2 1 2\\n\", \"4\"},\n        {\"7\\n9 3 9 5 5 3 8\\n\", \"8\"},\n        {\"1\\n42\\n\", \"42\"},\n        {\"9\\n1 2 3 4 5 4 3 2 1\\n\", \"5\"},\n        {\"3\\n100000 7 7\\n\", \"100000\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 找出唯一的落单数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-20s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-20s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

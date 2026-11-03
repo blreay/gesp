@@ -1,0 +1,823 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_09_fill",
+    "title": "模拟卷 九：异常处理 & 文件流专题（填空改造卷）",
+    "subtitle": "错题强化卷 九",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "runtime_error"
+          ],
+          "stem": "在 `catch (const runtime_error& e)` 块中，调用 e 的成员函数 what() 可以取得异常的____。",
+          "answer": [
+            "描述文本",
+            "错误描述",
+            "错误信息",
+            "描述信息",
+            "文本信息"
+          ],
+          "explanation": "标准异常类的 what() 返回 throw 时传入的描述字符串，本题中即 \"Runtime error occurred.\"。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "catch 匹配"
+          ],
+          "stem": "函数 hmean(a, b) 在 a == -b 时抛出 `runtime_error(\"Runtime error occurred.\")`。main 中 x = 10、y = -10，在 try 块里调用 hmean(x, y)，其后依次有两个 catch 块：\n```\ncatch (const runtime_error& e) { cout << \"Caught: \" << e.what() << endl; }\ncatch (...) { cout << \"Caught an unknown exception.\" << endl; }\n```\n程序的输出是____。",
+          "answer": [
+            "Caught: Runtime error occurred.",
+            "Caught: Runtime error occurred"
+          ],
+          "explanation": "x=10、y=-10 满足 a==-b，抛出 runtime_error，被第一个类型精确匹配的 catch 捕获，输出 \"Caught: \" + e.what()；catch(...) 不会执行。（原卷单选第 1 题，答案 A，已用 g++ 编译运行验证）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "catch 顺序"
+          ],
+          "stem": "一个 try 块后面有多个 catch 块时，类型更具体的 catch（如 `catch (const runtime_error& e)`）应放在 `catch (...)` 的____（填：前面/后面），否则具体的 catch 永远不会执行。",
+          "answer": [
+            "前面",
+            "之前",
+            "靠前",
+            "前"
+          ],
+          "explanation": "catch 块自上而下匹配，命中即止；catch(...) 能匹配任何异常，若放在最前会\"吞掉\"全部异常，后面的具体 catch 形同虚设。（原卷单选第 1 题延伸）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "未捕获异常"
+          ],
+          "stem": "若程序抛出的异常没有任何匹配的 catch 块，程序将直接____（不会自动修复，也不会被忽略后继续运行）。",
+          "answer": [
+            "终止",
+            "崩溃",
+            "终止运行",
+            "异常终止"
+          ],
+          "explanation": "C++ 规定：异常未被任何 catch 捕获时最终调用 std::terminate()，程序直接终止；不存在\"自动修复\"\"忽略继续\"\"跳回 main 重跑\"的行为。（原卷单选第 2 题，答案 B）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "try 块"
+          ],
+          "stem": "try 块内抛出异常后，该 try 块中抛出点之后的剩余语句将____（填：继续执行/停止执行）。",
+          "answer": [
+            "停止执行",
+            "不再执行",
+            "停止",
+            "不会被执行"
+          ],
+          "explanation": "throw 一旦执行，控制流立即离开 try 块去匹配 catch，try 块内后续语句被跳过。（原卷单选第 2 题延伸）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "自定义异常",
+            "throw"
+          ],
+          "stem": "定义好自定义异常类：\n```\nclass MyError {\npublic:\n    string reason;\n    int code;\n    MyError(string r, int c): reason(r), code(c) {}\n};\n```\n要在程序中抛出一个原因为\"超重\"、代码为 5 的异常对象，应写的完整语句是____。",
+          "answer": [
+            "throw MyError(\"超重\", 5);",
+            "throw MyError(\"超重\",5);",
+            "throw MyError(\"超重\", 5)",
+            "throw MyError(\"超重\",5)"
+          ],
+          "explanation": "throw 可以抛出任意类型的对象，不限于 int 或 string；自定义异常类在 throw 处构造，随后传递给匹配的 catch。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "自定义异常",
+            "catch"
+          ],
+          "stem": "捕获自定义异常对象时，写成 `catch (const MyError& e)` 是以____方式接收异常对象，可以避免对象拷贝和派生类切割。",
+          "answer": [
+            "引用",
+            "const 引用",
+            "引用传递",
+            "reference"
+          ],
+          "explanation": "catch 完全可以用引用接收自定义类对象，惯例是 const 引用：既不拷贝，又能正确接住派生类。（原卷单选第 3 题 D 肢）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "头文件"
+          ],
+          "stem": "runtime_error、logic_error、out_of_range 等标准异常类定义在头文件____中。",
+          "answer": [
+            "<stdexcept>",
+            "stdexcept",
+            "#include <stdexcept>"
+          ],
+          "explanation": "<stdexcept> 定义了常用标准异常类；异常基类 exception 则在 <exception> 中。（原卷单选第 3 题延伸）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "栈展开",
+            "异常处理"
+          ],
+          "stem": "异常从抛出点向捕获点传播的过程中，途经的各个函数栈帧里的局部对象被依次析构，这个过程称为____。",
+          "answer": [
+            "栈展开",
+            "stack unwinding",
+            "栈展开（stack unwinding）"
+          ],
+          "explanation": "栈展开发生在异常传播路径上：退出的栈帧中局部对象按构造逆序析构，保证资源被释放；它并非只在正常返回时发生。（原卷单选第 4 题，答案 B）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "RAII",
+            "析构函数"
+          ],
+          "stem": "异常导致函数提前退出时，函数内局部对象的____仍会被正常调用，这是资源得以自动释放（如自动关文件、释放内存）的基础。",
+          "answer": [
+            "析构函数",
+            "析构",
+            "destructor"
+          ],
+          "explanation": "栈展开保证途经栈帧中局部对象的析构函数被调用，RAII 因此能在异常场景下正确释放资源；RAII 绝不是\"在每个 catch 里手动释放\"。（原卷单选第 4 题延伸）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "文件流",
+            "ofstream"
+          ],
+          "stem": "只写了 `std::ofstream out(\"log.txt\");` 这一句，接着执行 `cout << \"Welcome to 2026!\";`，这段内容会输出到____（未做任何重定向操作）。",
+          "answer": [
+            "屏幕",
+            "显示器",
+            "标准输出",
+            "控制台"
+          ],
+          "explanation": "创建 ofstream 对象并不会改变 cout 的指向，cout 仍然输出到标准输出（屏幕）；内容要进文件必须用 out << ...，或借助 freopen / cout.rdbuf 重定向。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "输出重定向",
+            "freopen"
+          ],
+          "stem": "把标准输出改写到文件 log.txt 的 C 风格做法：先调用函数____(\"log.txt\", \"w\", stdout)，之后 printf 与 cout 的内容都会写入该文件。",
+          "answer": [
+            "freopen",
+            "freopen()"
+          ],
+          "explanation": "freopen 把指定标准流重定向到文件；C++ 风格的等价做法是 cout.rdbuf(out.rdbuf()) 把 cout 的缓冲区换成文件流的缓冲区。（原卷单选第 5 题 A/D 肢）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "文件流",
+            "getline"
+          ],
+          "stem": "要把文件流 fin 中的内容逐行读入 string 变量 line，while 循环条件中应使用的函数调用是____。",
+          "answer": [
+            "getline(fin, line)",
+            "getline(fin,line)"
+          ],
+          "explanation": "全局函数 getline(istream&, string&) 读入一整行（不含换行符）；传入文件流即从文件按行读取，getline 并非只能配 cin 使用。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "文件流",
+            "eof"
+          ],
+          "stem": "用 getline 逐行读文件时，读到文件末尾后再也提取不到字符，此时文件流对象在条件表达式（如 while 循环条件）中会转换为____（填：true/false），循环因此结束。",
+          "answer": [
+            "false",
+            "false（假）"
+          ],
+          "explanation": "getline 返回流对象本身，在条件中隐式转换为 bool：置了 failbit/eofbit 时为 false，于是读完全部行后循环自然结束。（原卷单选第 6 题延伸）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "文件流",
+            "头文件"
+          ],
+          "stem": "程序中使用 ifstream、ofstream、fstream 这三种文件流类，必须包含头文件____。",
+          "answer": [
+            "<fstream>",
+            "fstream",
+            "#include <fstream>"
+          ],
+          "explanation": "<fstream> 定义文件输入输出流类，与 <iostream> 的 cin/cout 对应，文件流以文件为操作对象。（原卷单选第 6 题延伸）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            ">> 与 getline",
+            "文件流"
+          ],
+          "stem": "下面程序的输出是____。\n```\nofstream fout(\"test.txt\");\nfout << \"Happy New Year\";\nfout.close();\nifstream fin(\"test.txt\");\nstring s1, s2;\nfin >> s1;\ngetline(fin, s2);\ncout << s1 << \"|\" << s2;\n```",
+          "answer": "Happy| New Year",
+          "explanation": ">> 读出 s1=\"Happy\"，停在空格处且空格留在流中；getline 从空格起读完本行剩余部分，s2=\" New Year\"（开头带空格），故输出 Happy| New Year。（原卷单选第 7 题，答案 D，已用 g++ 编译运行验证）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            ">> 运算符",
+            "文件流"
+          ],
+          "stem": "`>>` 读取字符串时会先跳过前导空白再开始提取，遇到空白停止；这个使它停止的空白字符____（填：被消耗掉/仍留在流中）。",
+          "answer": [
+            "仍留在流中",
+            "留在流中",
+            "不被消耗",
+            "没有被消耗",
+            "留在流里"
+          ],
+          "explanation": "分界空白不会被提取，读位置停在它之前——所以其后的 getline 会先读进这个空白。（原卷单选第 7 题延伸）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "文件流状态位"
+          ],
+          "stem": "文件流四种状态位 goodbit、eofbit、failbit、badbit 中，表示硬件级或不可恢复严重错误的是____。",
+          "answer": [
+            "badbit",
+            "bad"
+          ],
+          "explanation": "badbit 表示严重的（硬件级）流错误；检查状态的合理优先级是 bad > fail > eof：先查最严重的硬件错误，再查格式错误，最后是正常读到文件尾的 eof。（原卷单选第 8 题，答案 C）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "文件流状态位"
+          ],
+          "stem": "用 `fin >> n` 读取整数却在文件中遇到字母后，文件流被置上____状态位（填状态位名称）。",
+          "answer": [
+            "failbit",
+            "fail"
+          ],
+          "explanation": "格式不匹配会置 failbit（变量保持原值），属于可恢复的逻辑错误而非硬件级 badbit；需先 clear() 复位状态才能继续读。（原卷单选第 8 题 C 肢）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "文件流",
+            "clear"
+          ],
+          "stem": "文件流因读取失败进入失败状态后，想继续使用这个流，应先调用它的____() 方法复位错误状态位。",
+          "answer": [
+            "clear"
+          ],
+          "explanation": "clear() 只复位流的错误状态位（默认置回 goodbit），它不清空文件内容、不关闭文件、更不会删除文件。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "文件流",
+            "close"
+          ],
+          "stem": "关闭文件、断开流与文件关联的成员函数是____()，它与复位状态位的 clear() 用途完全不同。",
+          "answer": [
+            "close"
+          ],
+          "explanation": "close() 断开流与文件的关联；流对象析构时也会自动 close。（原卷单选第 9 题干扰肢）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "文件指针",
+            "tellg"
+          ],
+          "stem": "要求文件的总字节数：可先执行 `fin.seekg(0, ios::end);` 把读指针移到文件末尾，再调用 `fin.____();`，其返回值即为文件大小。",
+          "answer": [
+            "tellg",
+            "tellg()",
+            "fin.tellg()",
+            "fin.tellg"
+          ],
+          "explanation": "tellg() 返回读（get）指针当前位置；seekg(0, ios::end) 后位置等于文件总字节数。（原卷单选第 10 题，答案 A）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "文件指针",
+            "seekg"
+          ],
+          "stem": "`seekg(0, ios::end)` 中，第二个参数 ios::end 表示基准位置是文件的____。",
+          "answer": [
+            "末尾",
+            "结尾",
+            "文件末尾",
+            "末端",
+            "最后"
+          ],
+          "explanation": "seekg 的基准位置可为 ios::beg（文件头）、ios::cur（当前位置）、ios::end（文件尾），第一个参数是相对基准的偏移量。（原卷单选第 10 题延伸）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "文件指针",
+            "seekg"
+          ],
+          "stem": "`fin.seekg(0, ios::beg);` 中的 ios::beg 表示把读指针移到文件的____。",
+          "answer": [
+            "开头",
+            "起始位置",
+            "文件头",
+            "开始",
+            "最前面"
+          ],
+          "explanation": "ios::beg 即 beginning，文件起始处；seekg 用于移动读指针，tellg 用于查询读指针位置。（原卷单选第 10 题延伸）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "二进制文件",
+            "string 序列化"
+          ],
+          "stem": "直接用 `write((char*)&rec, sizeof(rec))` 把含 string 成员的结构体按字节写入二进制文件，重新读回后 string 数据会损坏甚至崩溃——因为 string 对象内部真正保存的是指向堆内存的____，写进文件的只是这个指针值本身。",
+          "answer": [
+            "指针",
+            "地址",
+            "数据指针"
+          ],
+          "explanation": "string 的字符内容存放在堆上，对象内只有指针等元数据；按字节写入后，读回的指针指向已失效的内存。int 等 POD 成员可以正常保存，string 成员不行。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "二进制文件",
+            "string 序列化"
+          ],
+          "stem": "把 string 安全地序列化进二进制文件的正确做法：先写入字符串的____（例如一个 int），再写入 str.c_str() 对应的字节内容；读回时先读它，再 resize 后读入字符内容。",
+          "answer": [
+            "长度",
+            "字节长度",
+            "字符个数",
+            "长度值"
+          ],
+          "explanation": "\"长度 + 内容\"两段式才能无损还原字符串；直接 write(&str, sizeof(str))、只 write(str.c_str(), 1) 都是错误做法。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "预处理",
+            "头文件查找"
+          ],
+          "stem": "`#include \"myheader.h\"`（双引号形式）让编译器先在____所在目录查找头文件，找不到再去系统标准路径查找。",
+          "answer": [
+            "当前源文件",
+            "源文件",
+            "当前目录",
+            "源程序文件"
+          ],
+          "explanation": "双引号优先在源文件自身目录查找，便于引用项目自定义头文件，找不到再按系统路径找。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "预处理",
+            "头文件查找"
+          ],
+          "stem": "`#include <iostream>`（尖括号形式）让编译器直接按____查找头文件。",
+          "answer": [
+            "系统标准路径",
+            "系统标准目录",
+            "系统路径",
+            "标准路径"
+          ],
+          "explanation": "尖括号只按系统/标准包含目录查找，适合标准库和系统头文件；两种形式并非没有区别，也与 C/C++ 语言无关。（原卷单选第 13 题 A 肢）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "ofstream",
+            "文件操作"
+          ],
+          "stem": "执行 `ofstream out(\"data.txt\");` 时，若 data.txt 不存在，该文件会被自动____。",
+          "answer": [
+            "创建",
+            "新建",
+            "建立"
+          ],
+          "explanation": "ofstream 打开文件默认相当于 out|trunc：文件不存在则创建，存在则清空原内容；不会报错，也不需要先用 ifstream 打开。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "ofstream",
+            "文件操作"
+          ],
+          "stem": "`ofstream out(\"data.txt\"); out << \"Hello\"; out.close();` 执行后，\"Hello\" 被写入____。",
+          "answer": [
+            "data.txt",
+            "文件 data.txt",
+            "data.txt 文件",
+            "data.txt 中"
+          ],
+          "explanation": "out 是与 data.txt 关联的输出文件流，out << 写入文件而非屏幕；close 后内容落盘。（原卷单选第 14 题延伸）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "文件打开模式",
+            "ios::app"
+          ],
+          "stem": "`ofstream out(\"a.txt\", ios::app);` 以____模式打开文件，新写入的内容加在文件末尾，原有内容保留。",
+          "answer": [
+            "追加",
+            "append",
+            "追加写",
+            "附加"
+          ],
+          "explanation": "app = append，每次写入都定位到文件末尾，原内容不丢失。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "文件打开模式",
+            "ofstream"
+          ],
+          "stem": "ofstream 不加任何模式参数（默认模式）打开文件时，文件原有内容会先被____，然后再开始写入。",
+          "answer": [
+            "清空",
+            "清除",
+            "截断"
+          ],
+          "explanation": "默认模式相当于 ios::out|ios::trunc，文件被截断为 0 长度——这是它与 app 模式的根本区别。（原卷单选第 15 题 B 肢）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "文件打开模式",
+            "ios::binary"
+          ],
+          "stem": "要以二进制方式而不是文本方式打开文件，应指定的打开模式标志是 ios::____。",
+          "answer": [
+            "binary"
+          ],
+          "explanation": "ios::binary 可与 in/out/app 用 | 组合，如 ofstream out(\"a.bin\", ios::binary)；二进制模式不做换行转换，适合读写 POD 数据。（原卷单选第 15 题延伸）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "异常处理",
+            "try"
+          ],
+          "stem": "调用一个可能抛出异常的函数时，C++ 编译器____（填：强制/不强制）要求把调用语句放在 try 块里。",
+          "answer": [
+            "不强制",
+            "不要求",
+            "并不强制",
+            "不会强制"
+          ],
+          "explanation": "C++ 没有受检异常（不像 Java）：不放 try 也能通过编译；但异常真的发生又无人捕获时，程序会调用 std::terminate() 终止。（原卷判断第 1 题，原说法错误）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "异常传播"
+          ],
+          "stem": "函数内部抛出的异常若在该函数内没有被 catch，会沿着调用链向____传播，继续寻找匹配的 catch。",
+          "answer": [
+            "调用者",
+            "上层调用者",
+            "调用它的函数",
+            "上一级",
+            "caller"
+          ],
+          "explanation": "异常逐级向上传播（伴随栈展开）；一直传到 main 顶层仍无人捕获时，调用 std::terminate() 终止程序。（原卷判断第 1 题延伸）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "std::terminate",
+            "未捕获异常"
+          ],
+          "stem": "异常没有被任何 catch 块捕获时，被调用的标准库终止处理函数是____。",
+          "answer": [
+            "std::terminate()",
+            "terminate()",
+            "std::terminate",
+            "terminate"
+          ],
+          "explanation": "未捕获异常最终调用 std::terminate()，程序立即终止；\"打印警告后继续正常执行\"\"自动修复\"都是错误认识。（原卷判断第 2、3 题合并，原两题说法一真一假）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "catch(...)",
+            "异常处理"
+          ],
+          "stem": "`catch (...)` 中的三个点表示该 catch 块能匹配____类型的异常。",
+          "answer": [
+            "所有",
+            "任何",
+            "任意",
+            "一切"
+          ],
+          "explanation": "catch(...) 是兜底捕获，任何异常都能匹配；但它拿不到异常对象的任何信息，通常只宜记录日志后重新抛出。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "catch(...)",
+            "异常处理"
+          ],
+          "stem": "用空的 `catch (...) {}` 把所有异常悄悄\"吞掉\"是____（填：推荐/不推荐）的编程做法，因为它会掩盖错误，使问题难以发现和调试。",
+          "answer": [
+            "不推荐",
+            "不是推荐",
+            "不良"
+          ],
+          "explanation": "原判断声称空 catch(...) 兜底是\"推荐的良好习惯\"，是错误的：它抹掉一切错误信息，违背异常机制的设计初衷。（原卷判断第 4 题，原说法错误）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "ofstream",
+            "文件流"
+          ],
+          "stem": "ifstream、ofstream、fstream 三种文件流类中，专门用于输出（向文件写内容）的是____。",
+          "answer": [
+            "ofstream"
+          ],
+          "explanation": "ofstream 是输出文件流（写），ifstream 是输入文件流（读），fstream 两者皆可。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "ifstream",
+            "文件流"
+          ],
+          "stem": "ifstream 专门用于____文件；对 ifstream 对象执行 `filein << \"hello\";` 无法把内容写入文件。",
+          "answer": [
+            "读取",
+            "读",
+            "读入",
+            "reading"
+          ],
+          "explanation": "ifstream 只支持输入操作，<< 插入运算符对它不可用，这样的代码无法通过编译。（原卷判断第 5 题，原说法错误）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            ">> 运算符",
+            "类型转换"
+          ],
+          "stem": "文本文件 1.txt 第 1 行内容是 \"01234\"（5 个字符，无空格）。执行下面代码后 buff 的值是____。\n```\nifstream filein(\"1.txt\");\nint buff;\nfilein >> buff;\n```",
+          "answer": "1234",
+          "explanation": ">> 把字符序列按十进制整数解析，前导零被丢弃，buff 为整数 1234，而不是字符串 \"01234\"。（原卷判断第 6 题，原说法错误，已用 g++ 编译运行验证）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            ">> 运算符",
+            "string"
+          ],
+          "stem": "想把文件中的 \"01234\" 连同前导零原样读出，应该用 >> 读入____类型的变量，而不是 int。",
+          "answer": [
+            "string",
+            "std::string",
+            "字符串",
+            "char 数组",
+            "字符数组"
+          ],
+          "explanation": "读入 string（或字符数组）会原样保留每个字符（\"01234\"）；int 会按数值解析而丢掉前导零。（原卷判断第 6 题延伸）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "标准输出",
+            "重定向"
+          ],
+          "stem": "在操作系统支持下，程序的标准输出可以从屏幕改到文件，这种机制称为输出____。",
+          "answer": [
+            "重定向",
+            "redirect"
+          ],
+          "explanation": "重定向由操作系统/外壳完成，对程序透明：代码里写 cout <<，内容也不一定显示在屏幕上。（原卷判断第 7 题，原说法正确）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "标准输出",
+            "重定向"
+          ],
+          "stem": "在终端用 `./prog > log.dat` 方式运行程序时，程序的____输出（填：标准/错误）内容会被写入 log.dat。",
+          "answer": [
+            "标准",
+            "standard"
+          ],
+          "explanation": "> 重定向的是标准输出（stdout/cout）；错误输出（cerr/stderr）需要 2> 单独重定向。（原卷判断第 7 题延伸）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "表达式语法",
+            "运算符"
+          ],
+          "stem": "C++ 表达式中改变运算优先级只能使用____进行分组，方括号不能用来分组。",
+          "answer": [
+            "圆括号",
+            "括号",
+            "小括号",
+            "()"
+          ],
+          "explanation": "C++ 只认 ( ) 改变优先级；[ ] 只用于数组下标、初始化列表及运算符重载等场合。（原卷判断第 8 题，原说法正确）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "表达式语法",
+            "编译错误"
+          ],
+          "stem": "表达式 `[(1,2)*2]*3` 在 C++ 中无法通过编译，编译器会报____（填：语法错误/逻辑错误）。",
+          "answer": [
+            "语法错误",
+            "编译错误",
+            "语法",
+            "syntax error"
+          ],
+          "explanation": "方括号这样分组违反语法规则，编译阶段即被查出，属语法错误；逻辑错误则能通过编译但结果不对。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "RAII",
+            "资源管理"
+          ],
+          "stem": "对象构造时获取资源、对象销毁时自动释放资源，这一 C++ 资源管理设计思想的英文缩写是____。",
+          "answer": [
+            "RAII"
+          ],
+          "explanation": "RAII = Resource Acquisition Is Initialization（资源获取即初始化）；它依赖析构函数释放资源，而栈展开保证析构必被调用，因此异常场景下内存/文件/锁等资源也不会泄漏。（原卷判断第 9 题，原说法正确）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "RAII",
+            "资源管理"
+          ],
+          "stem": "RAII 把资源绑定到对象生命周期上：对象构造时获取资源，对象生命周期____时自动释放资源。",
+          "answer": [
+            "结束",
+            "终止",
+            "ends"
+          ],
+          "explanation": "资源寿命跟随对象寿命；无论函数正常返回还是异常栈展开，对象离开作用域即释放资源。（原卷判断第 9 题延伸）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "new",
+            "bad_alloc"
+          ],
+          "stem": "`new` 表达式分配内存失败时，默认会抛出____类型的异常。",
+          "answer": [
+            "bad_alloc",
+            "std::bad_alloc"
+          ],
+          "explanation": "C++ 标准规定 new 分配失败抛出 std::bad_alloc（定义于 <new>），这与 C 的 malloc 失败返回 NULL 不同——原判断说 new 默认返回 nullptr 是错误的。（原卷判断第 10 题，原说法错误）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "new",
+            "nothrow"
+          ],
+          "stem": "若希望 new 分配失败时不抛异常而是返回____，可以写成 `int* p = new (nothrow) int[1000];`。",
+          "answer": [
+            "nullptr",
+            "NULL",
+            "空指针"
+          ],
+          "explanation": "nothrow 版本的 new 失败时返回空指针，适合不想用异常处理分配失败的场景；使用前应判断 p 是否为空。（原卷判断第 10 题延伸）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "自定义异常——安全除法计算器",
+          "knowledge": [],
+          "stem": "设计一个自定义异常类 DivideError（至少包含被除数、除数两个信息），编写一个除法函数：当除数为 0 时抛出该异常；main 函数中用 try-catch 捕获，若捕获到异常，输出 \"Error: divide by zero, a=X\"（X 为被除数）；若没有异常，输出正常的除法结果（整数除法，向下取整，即 C++ 默认截断行为）。",
+          "input_format": "一行两个整数 a 和 b。",
+          "output_format": "若 b 不为 0，输出 a/b（整数除法结果）；若 b 为 0，输出 \"Error: divide by zero, a=\" 后面接 a 的值（无空格）。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "10 2",
+              "output": "5"
+            },
+            {
+              "input": "7 0",
+              "output": "Error: divide by zero, a=7"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"自定义异常——安全除法计算器\"(mock9 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock9_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock9_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"10 2\\n\", \"5\"},\n        {\"7 0\\n\", \"Error: divide by zero, a=7\"},\n        {\"-9 3\\n\", \"-3\"},\n        {\"5 0\\n\", \"Error: divide by zero, a=5\"},\n        {\"0 5\\n\", \"0\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 安全除法计算器 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-10s | %-30s | %-30s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-10s | %-30s | %-30s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "二进制文件存取学生记录",
+          "knowledge": [],
+          "stem": "输入 n 名学生的姓名（不含空格，长度不超过20）和分数，请把这些记录以二进制方式写入一个临时文件（文件名固定为 `students.bin`，写入前如果姓名带 string 需要注意序列化，不能直接对含 string 成员的结构体整体 write），然后立刻从该文件重新读取出来，按\"姓名 分数\"的格式输出（用于验证你的二进制序列化/反序列化是否正确）。",
+          "input_format": "第一行一个整数 n；接下来 n 行，每行一个姓名和一个整数分数。",
+          "output_format": "输出 n 行，每行是从二进制文件里重新读出来的 \"姓名 分数\"，顺序与输入一致。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "2\nAlice 90\nBob 88",
+              "output": "Alice 90\nBob 88"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"二进制文件存取学生记录\"(mock9 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock9_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock9_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"2\\nAlice 90\\nBob 88\\n\", \"Alice 90\\nBob 88\"},\n        {\"1\\nZoe 100\\n\", \"Zoe 100\"},\n        {\"3\\nA 1\\nBB 22\\nCCC 333\\n\", \"A 1\\nBB 22\\nCCC 333\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 二进制文件存取学生记录 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-22s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-22s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

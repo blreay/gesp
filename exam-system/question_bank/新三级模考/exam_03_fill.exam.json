@@ -1,0 +1,713 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_03_fill",
+    "title": "模拟卷 三：循环 & 条件判断专题（填空改造卷）",
+    "subtitle": "错题强化卷 三",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": "找出所有因数；安全的整数反转"
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "质数判断",
+            "取模运算"
+          ],
+          "stem": "下面代码用于判断正整数 N 是否为质数：统计 1~N 中能使横线处条件成立的 i 的个数 cnt，若 cnt 恰为 2 则 N 是质数。横线处应填入 ____。\n```\nint N; cin >> N;\nint cnt = 0;\nfor (int i = 1; i <= N; i++) {\n    if (__________)\n        cnt++;\n}\ncout << (cnt == 2 ? \"是质数\" : \"不是质数\");\n```",
+          "answer": [
+            "N % i == 0",
+            "N%i==0"
+          ],
+          "explanation": "cnt 统计的是能整除 N 的 i 的个数，N % i == 0 表示 i 整除 N。A 肢 N / i == 0 是整除商为 0（仅当 i > N），C 肢 i % N == 0 把被除数除数颠倒，D 肢 N % i 缺少与 0 的比较。质数恰有 1 和本身两个因数，故 cnt == 2。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "质数判断",
+            "因数"
+          ],
+          "stem": "判断正整数 N 是否为质数，需要统计它的正因数个数。注意 N = 1 时，它的正因数个数是 ____，因此 1 不是质数。",
+          "answer": "1",
+          "explanation": "1 只有它本身一个正因数，不满足\"恰好两个正因数\"的质数定义，所以 1 不是质数——这是质数判断题最常见的边界陷阱。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "问题建模",
+            "兄弟数"
+          ],
+          "stem": "若正整数 N 能表示为 X × (X+1) 的形式（X 为正整数），称 N 为\"兄弟数\"。最小的兄弟数是 ____。",
+          "answer": "2",
+          "explanation": "X 为正整数，最小取 X = 1，N = 1 × 2 = 2。（原卷单选第 2 题，答案 C）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "兄弟数",
+            "条件等价性"
+          ],
+          "stem": "若正整数 N 能表示为 X × (X+1)（X 为正整数），称 N 为\"兄弟数\"。枚举正整数 i 判断 N 是否为兄弟数时，下面四个条件中**不能**正确表达该判断的是第 ____ 个（填序号）。\n①`i*(i+1)==N`　②`N%i==0 && N/i==i+1`　③`i*i+i==N`　④`N==i*i-i`",
+          "answer": [
+            "④",
+            "4"
+          ],
+          "explanation": "①③都是 N = i×(i+1) 的直接展开；②在 i 整除 N 时要求商恰为 i+1，与①等价（程序在 1~200 的全部 N 上验证一致）；④等于 i×(i−1)，与\"X×(X+1)\"的定义不符，是错误的写法。原卷问正确写法个数，答案为 3 个。（原卷单选第 2 题，答案 C）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "for循环",
+            "循环追踪"
+          ],
+          "stem": "下面 C++ 代码执行后的输出是 ____。\n```\nint cnt = 0;\nfor (int i = 2; i < 25; i += 3) {\n    cnt += 1;\n}\ncout << cnt;\n```",
+          "answer": "8",
+          "explanation": "i 依次取 2, 5, 8, 11, 14, 17, 20, 23，共执行 8 次循环体；i = 26 时不满足 i < 25，循环结束（g++ 实测输出 8）。（原卷单选第 3 题，答案 B）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "for循环",
+            "循环追踪"
+          ],
+          "stem": "下面的 for 循环中，循环体最后一次执行时，循环变量 i 的值是 ____。\n```\nfor (int i = 2; i < 25; i += 3) {\n    // 循环体\n}\n```",
+          "answer": "23",
+          "explanation": "i 的取值序列为 2, 5, 8, …, 23；再加 3 得 26，检查 i < 25 不成立而退出，故最后一次进入循环体时 i = 23（g++ 实测）。（原卷单选第 3 题，答案 B）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "while循环",
+            "整数除法"
+          ],
+          "stem": "下面 C++ 代码执行后的输出是 ____。\n```\nint N = 20;\nint cnt = 0;\nwhile (N > 0) {\n    cnt++;\n    N /= 2;\n}\ncout << cnt;\n```",
+          "answer": "5",
+          "explanation": "N 依次变为 20 → 10 → 5 → 2 → 1 → 0，循环体共执行 5 次（g++ 实测输出 5）。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "while循环",
+            "整数除法"
+          ],
+          "stem": "在下面的 while 循环中，当 N 的值变为 1 后，再执行一次 N /= 2，N 的值变为 ____，循环随之结束。\n```\nint N = 20;\nwhile (N > 0) {\n    N /= 2;\n}\n```",
+          "answer": "0",
+          "explanation": "整数除法 1 / 2 的结果向零取整为 0，条件 N > 0 不再成立。A 肢 2 是误以为循环次数等于折半到 1 之前的次数、D 肢 20 是把初值当次数，都不对。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "回文数",
+            "数字反转"
+          ],
+          "stem": "下面代码用于判断输入的数是否为\"回文数\"。输入 12321 时，程序的输出是 ____。\n```\nint N, orig; cin >> N; orig = N;\nint rev = 0;\nwhile (N > 0) {\n    rev = rev * 10 + N % 10;\n    N /= 10;\n}\ncout << (rev == orig ? \"是回文数\" : \"不是回文数\");\n```",
+          "answer": [
+            "是回文数"
+          ],
+          "explanation": "rev 逐位累加：1 → 12 → 123 → 1232 → 12321，与 orig 相等，输出\"是回文数\"（g++ 实测）。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "回文数",
+            "循环条件"
+          ],
+          "stem": "在下面的回文数判断代码中，若输入负数（如 -121），程序结束时 rev 的值是 ____。\n```\nint N, orig; cin >> N; orig = N;\nint rev = 0;\nwhile (N > 0) {\n    rev = rev * 10 + N % 10;\n    N /= 10;\n}\ncout << (rev == orig ? \"是回文数\" : \"不是回文数\");\n```",
+          "answer": "0",
+          "explanation": "负数使循环条件 N > 0 一开始就不成立，循环体一次也不执行，rev 保持 0，输出\"不是回文数\"——并不会死循环。原卷答案 C\"输入负数会导致死循环\"不准确（g++ 实测：输入 -121 输出\"不是回文数\"）。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "哨兵循环",
+            "while循环"
+          ],
+          "stem": "班级人数未知，程序连续读入成绩，读到负数（哨兵值）为止。下面的代码中，while (____) 的循环次数由循环体内的 break 控制，横线处应填入一个恒为真的条件 ____。\n```\nint score, sum = 0, count = 0;\nwhile (__________) {\n    cin >> score;\n    if (score < 0) break;\n    sum += score; count++;\n}\ncout << (double)sum / count;\n```",
+          "answer": [
+            "true",
+            "1"
+          ],
+          "explanation": "读入个数事先未知，无法在 while 条件里预知终止时机，只能填恒真条件（true 或 1），配合 if (score < 0) break; 退出——这是标准的\"哨兵值 + 死循环 + break\"模式。B 肢 false 使循环一次都不执行；C、D 肢引用的变量在条件首次求值时尚未读入。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "类型转换",
+            "整数除法"
+          ],
+          "stem": "求平均分语句 cout << (double)sum / count; 中，如果写成 sum / count（sum、count 都是 int），结果做的是 ____ 除法，小数部分会丢失。",
+          "answer": [
+            "整数",
+            "整除"
+          ],
+          "explanation": "int / int 的结果仍是 int（向零取整）；必须先把其中一个操作数强制转换为 double，才会做浮点除法得到带小数的平均分。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "continue与break",
+            "循环追踪"
+          ],
+          "stem": "下面 C++ 代码执行后的输出是 ____。\n```\nint i, Sum = 0;\nfor (i = 1; i < 10; i++) {\n    Sum += i;\n    if (i % 2) continue;\n    if (i % 7) break;\n}\ncout << Sum;\n```",
+          "answer": "3",
+          "explanation": "i = 1：Sum = 1，i % 2 = 1 非零为真 → continue；i = 2：Sum = 3，i % 2 = 0 不 continue，i % 7 = 2 非零为真 → break。输出 3（g++ 实测）。A 肢 45 是忽略两个跳转语句的结果。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "continue与break",
+            "循环追踪"
+          ],
+          "stem": "下面代码中，循环因 break 而结束，此时循环变量 i 的值是 ____。\n```\nint i, Sum = 0;\nfor (i = 1; i < 10; i++) {\n    Sum += i;\n    if (i % 2) continue;\n    if (i % 7) break;\n}\n```",
+          "answer": "2",
+          "explanation": "break 发生在 i = 2 这一轮：2 是偶数（i % 2 为 0，不 continue），且 2 % 7 = 2 非零，触发 break（g++ 实测 break 后 i = 2）。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "continue",
+            "取模运算"
+          ],
+          "stem": "下面代码要输出 1 到 n 之间所有偶数的和：if 条件成立时 continue 跳过本轮累加。横线处应填入 i % 2 ____ 0（填：== / !=）。\n```\nint n, s = 0; cin >> n;\nfor (int i = 1; i <= n; i++) {\n    if (__________)\n        continue;\n    s += i;\n}\ncout << s;\n```",
+          "answer": "!=",
+          "explanation": "只累加偶数，就要在 i 为奇数时跳过本轮：i % 2 != 0 即余数非零。写成 i % 2 == 1 效果相同（见下一题）。（原卷单选第 8 题，答案 D）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "取模运算",
+            "奇偶判断"
+          ],
+          "stem": "对正整数 i 而言，i % 2 的值只有 0 或 ____ 两种，这就是判断条件 i % 2 != 0 与 i % 2 == 1 对正整数等价的原因。",
+          "answer": "1",
+          "explanation": "一个整数除以 2 的余数只能是 0 或 1，所以\"余数不等于 0\"与\"余数等于 1\"是同一个条件，原卷 B、C 两肢都正确，答案选 D。（原卷单选第 8 题，答案 D）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "switch贯穿",
+            "switch语句"
+          ],
+          "stem": "执行下面的 switch 代码，输入 2，输出是 ____（两个单词之间用一个空格分隔，答案不必含首尾空格）。\n```\nint m; cin >> m;\nswitch (m) {\n    case 1: cout << \"Jan \"; break;\n    case 2: cout << \"Feb \";\n    case 3: cout << \"Mar \"; break;\n    default: cout << \"Other\";\n}\n```",
+          "answer": [
+            "Feb Mar"
+          ],
+          "explanation": "case 2 分支末尾没有 break，输出 \"Feb \" 后\"贯穿\"到 case 3 继续输出 \"Mar \"，遇到 break 退出 switch，实际输出 \"Feb Mar \"（g++ 实测；末尾空格被系统的填空归一化去掉）。（原卷单选第 9 题，答案 C）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "switch语句",
+            "break"
+          ],
+          "stem": "switch 语句中，若某个 case 分支末尾缺少 ____，程序会\"贯穿\"到下一个 case 分支继续执行。",
+          "answer": [
+            "break",
+            "break;"
+          ],
+          "explanation": "这是 switch 的 fall-through（贯穿）特性：匹配到某 case 后顺序执行，直到遇到 break 或 switch 结束。写代码时要特别留意每个 case 是否需要 break。（原卷单选第 9 题，答案 C）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "int范围",
+            "数据类型"
+          ],
+          "stem": "int（32 位有符号整数）能表示的最大值是 ____。",
+          "answer": "2147483647",
+          "explanation": "32 位补码的表示范围是 −2147483648 ~ 2147483647（即 −2³¹ ~ 2³¹−1）。（原卷单选第 10 题，答案 D）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "整数溢出",
+            "数字反转"
+          ],
+          "stem": "用 rev = rev * 10 + N % 10 的方法逐位反转正整数，若反转后的结果超出 int 的取值范围，会发生 ____，结果不可预测。",
+          "answer": [
+            "溢出",
+            "整数溢出"
+          ],
+          "explanation": "例如 1534236469 反转后为 9646324351，超过 2147483647，int 存放不下而溢出。原卷 D 肢正确；C 肢\"能反转的最大正整数是 2147483648\"本身已超出 int 范围，说法不成立。（原卷单选第 10 题，答案 D）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "逻辑表达式",
+            "取模运算"
+          ],
+          "stem": "表示\"i 不能被 3 整除\"的条件写成 i % 3 ____ 0（填：== / !=）。",
+          "answer": "!=",
+          "explanation": "i 除以 3 的余数不为 0，就是不能被 3 整除。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "逻辑非",
+            "取模运算"
+          ],
+          "stem": "表达式 !(i % 3) 的值为真（true）时，i % 3 的值等于 ____。",
+          "answer": "0",
+          "explanation": "! 对非零值得假、对 0 值得真，所以 !(i % 3) 等价于 i % 3 == 0，即\"i 能被 3 整除\"——与题目要求恰好相反，这就是原卷 D 肢 !(i % 3) && (i % 5 == 2) 不能实现功能的原因。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "循环应用",
+            "数学问题"
+          ],
+          "stem": "小陈给农作物浇水：第 1 天每天浇 1 次，接下来 2 天每天浇 2 次，再接下来 3 天每天浇 3 次……（第 k 组有连续 k 天，每天浇 k 次）。前 91 天（恰好完成前 13 组）一共浇了 ____ 次水。",
+          "answer": "819",
+          "explanation": "第 k 组共浇 k × k = k² 次；前 13 组合计 1² + 2² + … + 13² = 13 × 14 × 27 / 6 = 819（程序验证）。（原卷单选第 12 题，答案 D）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "循环应用",
+            "数学问题"
+          ],
+          "stem": "小陈给农作物浇水：第 1 天每天浇 1 次，接下来 2 天每天浇 2 次，再接下来 3 天每天浇 3 次……（第 k 组有连续 k 天，每天浇 k 次）。100 天里一共浇了 ____ 次水。",
+          "answer": "945",
+          "explanation": "前 13 组占 1 + 2 + … + 13 = 91 天，共浇 819 次；剩下 9 天属于第 14 组，每天浇 14 次，共 9 × 14 = 126 次；总计 819 + 126 = 945（程序逐天模拟验证）。（原卷单选第 12 题，答案 D）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "数组存放",
+            "自增运算"
+          ],
+          "stem": "下面代码把 1~35 中能被 7 整除的数依次存入数组 arr，横线处应填入 ____（写一条 C++ 语句）。\n```\nint arr[10], count = 0;\nfor (int i = 1; i <= 35; i++) {\n    if (i % 7 == 0) {\n        __________\n    }\n}\n```",
+          "answer": [
+            "arr[count++] = i;",
+            "arr[count++]=i;",
+            "arr[count++] = i",
+            "arr[count++]=i"
+          ],
+          "explanation": "count 身兼两职：先作为写入位置（把 i 存到 arr[count]），再自增 1 指向下一个空位。A 肢 arr[i] = count++ 把值当下标、存的还是 count；C 肢存错值且不移动下标；D 肢根本没存 i。正确执行后 arr = {7, 14, 21, 28, 35}。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "数组存放",
+            "循环计数"
+          ],
+          "stem": "把 1~35 中所有能被 7 整除的数依次存入数组 arr，并用 count 记录存入的个数。循环全部结束后，count 的值是 ____。",
+          "answer": "5",
+          "explanation": "1~35 中 7 的倍数有 7、14、21、28、35，共 5 个（g++ 实测 count = 5，arr = {7, 14, 21, 28, 35}）。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "while循环",
+            "循环条件"
+          ],
+          "stem": "若 N 是 int 类型变量，执行下面代码，输入 0 后，语句 cout << N; 将被执行 ____ 次。\n```\nint N; cin >> N;\nwhile (N) {\n    cout << N;\n}\n```",
+          "answer": "0",
+          "explanation": "while (N) 的含义是\"N 非零时循环\"；输入 0 时条件一开始就为假，循环体一次也不执行。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "while循环",
+            "死循环"
+          ],
+          "stem": "若 N 是 int 类型变量，执行下面代码，输入 5 后，由于循环体内从未修改 N 的值，循环条件恒为 ____（填：真 / 假），程序陷入死循环。\n```\nint N; cin >> N;\nwhile (N) {\n    cout << N;\n}\n```",
+          "answer": [
+            "真",
+            "true",
+            "成立"
+          ],
+          "explanation": "N 保持 5 非零，条件恒真、循环体无限执行。因此 cout << N; 的次数只可能是 0 次（N 初值为 0）或无穷多次（N 初值非零），对应原卷答案 D。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "因数",
+            "取模运算"
+          ],
+          "stem": "下面代码按从小到大输出 n 的所有正因数（例如输入 12，输出 1 2 3 4 6 12）。横线处应填入 ____（写一条 C++ 条件语句）。\n```\nint n; cin >> n;\nfor (int i = 1; i <= n; i++) {\n    __________\n    {\n        cout << i << \" \";\n    }\n}\n```",
+          "answer": [
+            "if (n % i == 0)",
+            "if(n%i==0)"
+          ],
+          "explanation": "i 是 n 的因数当且仅当 n 能被 i 整除，即 n % i == 0。A 肢 n / i == 0 是整除商为 0；C 肢方向反了（输出的是非因数）；D 肢 i % n == 0 把被除数除数颠倒。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "因数"
+          ],
+          "stem": "18 的正因数个数是 ____。",
+          "answer": "6",
+          "explanation": "18 的正因数为 1、2、3、6、9、18，共 6 个。找因数就是逐一检验 i 能否整除 n。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "continue",
+            "循环追踪"
+          ],
+          "stem": "下面代码段执行后的输出是 ____（数字之间用 - 连接，最后一个数字后也带 -，例如 1-2-）。\n```\nfor (int i = 0; i < 10; i++) {\n    if (i % 3) continue;\n    cout << i << \"-\";\n}\n```",
+          "answer": [
+            "0-3-6-9-"
+          ],
+          "explanation": "i % 3 非零时 continue 跳过输出，只有 3 的倍数 0、3、6、9 被输出，结果为 0-3-6-9-（g++ 实测），原判断正确。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "continue",
+            "取模运算"
+          ],
+          "stem": "下面代码中，continue 被执行的条件是 i % 3 不等于 ____。\n```\nfor (int i = 0; i < 10; i++) {\n    if (i % 3) continue;\n    cout << i << \"-\";\n}\n```",
+          "answer": "0",
+          "explanation": "if 的条件是 i % 3 的值本身：非零为真执行 continue，等于 0（i 是 3 的倍数）才落到 cout 行。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "switch语句",
+            "常量"
+          ],
+          "stem": "switch 语句的 case 标签后面只能跟整数（含字符）____，不能跟变量（填：常量 / 变量）。",
+          "answer": [
+            "常量",
+            "常数"
+          ],
+          "explanation": "case 标签必须是编译期就能确定的整型常量表达式；字符常量本质是 ASCII 整数，也允许。变量在运行期才有值，不能作 case 标签。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "switch语句"
+          ],
+          "stem": "\"case 标签不能跟变量\"这一限制在 C++11 之后的标准中 ____（填：依然有效 / 已被取消）。",
+          "answer": [
+            "依然有效",
+            "有效",
+            "保留",
+            "仍然有效",
+            "未取消",
+            "没有取消"
+          ],
+          "explanation": "C++11 及之后的各版本标准都没有取消该限制，原判断\"已被取消\"是错误的。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "变量交换",
+            "算术表达式"
+          ],
+          "stem": "定义 int a = 10, b = 20; 之后执行语句 a = a + b;，此时 a 的值是 ____。",
+          "answer": "30",
+          "explanation": "a = 10 + 20 = 30，a 先变成两数之和。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "变量交换",
+            "算术表达式"
+          ],
+          "stem": "定义 int a = 10, b = 20; 之后依次执行 a = a + b; b = a - b; a = a - b; 三条语句，最终 b 的值是 ____。",
+          "answer": "10",
+          "explanation": "a = 30 → b = 30 − 20 = 10（取回原 a）→ a = 30 − 10 = 20（取回原 b），不用临时变量就完成交换（g++ 实测 a = 20、b = 10），原判断正确。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "内外排序"
+          ],
+          "stem": "如果待排序的数据量太大，一次不能全部装入内存，就必须使用 ____ 排序来处理（填：内 / 外）。",
+          "answer": [
+            "外",
+            "外部"
+          ],
+          "explanation": "借助磁盘等外部存储分批处理的排序叫外部排序（如归并类外排序）；原判断说\"必须使用内排序\"是错误的。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "内外排序"
+          ],
+          "stem": "待排序数据能够全部一次性装入内存中进行的排序，称为 ____ 排序（填：内 / 外）。",
+          "answer": [
+            "内",
+            "内部"
+          ],
+          "explanation": "冒泡、选择、插入、快速排序等常见算法都属于内排序。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "选择排序"
+          ],
+          "stem": "对 int a[] = {2, 0, 2, 4, 3, 1, 6}; 执行第一趟选择排序（从整个数组中找最小值，与 a[0] 交换）后，a[0] 的值是 ____。",
+          "answer": "0",
+          "explanation": "全数组最小值是 0（下标 1），与 a[0] = 2 交换后数组变为 {0, 2, 2, 4, 3, 1, 6}（g++ 实测）。注意：这恰好就是原判断题干所述的数组，该说法实际应判\"正确\"，原卷答案 false 存疑。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "选择排序"
+          ],
+          "stem": "对 int a[] = {2, 0, 2, 4, 3, 1, 6}; 执行第一趟选择排序（找最小值与 a[0] 交换）后，a[1] 的值是 ____。",
+          "answer": "2",
+          "explanation": "交换是双向的：最小值 0 换到下标 0，原来 a[0] 的 2 换到下标 1，数组变为 {0, 2, 2, 4, 3, 1, 6}（g++ 实测）。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "表达式合法性",
+            "括号"
+          ],
+          "stem": "在 C++ 中，像 [(1,2)*2]*3 这样用方括号做表达式分组是 ____ 的（填：合法 / 非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "方括号只能用于数组下标；C++ 的表达式分组不允许使用方括号，该表达式无法通过编译，原判断\"是合法表达式\"错误。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "括号",
+            "表达式"
+          ],
+          "stem": "C++ 表达式中用来改变运算顺序的分组括号只能使用 ____（填：圆括号 / 花括号 / 方括号）。",
+          "answer": [
+            "圆括号",
+            "小括号",
+            "()",
+            "( )"
+          ],
+          "explanation": "花括号用于语句块和初始化列表，方括号用于下标，只有圆括号 ( ) 能改变运算顺序。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "时间复杂度"
+          ],
+          "stem": "用递归法 f(n) = n * f(n-1) 求 n 的阶乘，其时间复杂度是 O(____)（填含 n 的表达式）。",
+          "answer": [
+            "n"
+          ],
+          "explanation": "递归深度为 n 层，每层只做一次乘法，总工作量与 n 成正比，即 O(n)；原判断说 O(n²) 是错误的。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "递归边界"
+          ],
+          "stem": "递归函数 f(n) = n * f(n-1) 求 n 的阶乘时，必须定义递归边界才能终止：最常见的写法是当 n 等于 ____ 时直接返回 1。",
+          "answer": [
+            "1",
+            "0"
+          ],
+          "explanation": "f(1) = 1（有的写法用 f(0) = 1）是递归边界；缺少边界会无限递归直至栈溢出。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "变量遮蔽",
+            "作用域"
+          ],
+          "stem": "下面代码段执行后，外层 sum 的值是 ____。\n```\nint sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\n    sum += i;\n    int sum = 0;\n}\n```",
+          "answer": "9",
+          "explanation": "循环体内新声明的 int sum = 0 是另一个变量，遮蔽（shadow）外层同名变量，语句 sum += i 仍作用于外层 sum：1 + 3 + 5 = 9（g++ 实测），原判断正确。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "变量遮蔽",
+            "作用域"
+          ],
+          "stem": "在循环体内声明与外层同名的局部变量，使外层变量在该作用域内暂时\"不可见\"，这种现象称为变量 ____（填：遮蔽 / 重载）。",
+          "answer": [
+            "遮蔽",
+            "屏蔽",
+            "隐藏"
+          ],
+          "explanation": "变量遮蔽（shadowing）：内层作用域优先使用内层同名变量；它不是函数重载。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "数组下标",
+            "越界访问"
+          ],
+          "stem": "大小为 SIZE 的数组 a，合法的下标范围是 0 到 ____（用含 SIZE 的表达式填写）。",
+          "answer": [
+            "SIZE-1",
+            "SIZE - 1",
+            "size-1",
+            "size - 1"
+          ],
+          "explanation": "C++ 数组下标从 0 开始，最后一个元素的下标是 SIZE − 1。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "数组下标",
+            "越界访问"
+          ],
+          "stem": "用循环遍历大小恰为 SIZE 的数组时，若循环条件写成 i <= SIZE 且用 i 作数组下标，则当 i 等于 SIZE 时会发生 ____ 访问（填：越界 / 合法）。",
+          "answer": [
+            "越界",
+            "下标越界",
+            "越界访问"
+          ],
+          "explanation": "a[SIZE] 已超出合法下标 0 ~ SIZE−1 的范围，原判断正确。正确写法是 i < SIZE。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "越界访问",
+            "运行时错误"
+          ],
+          "stem": "程序运行时发生数组下标越界访问，系统 ____ 会立即检测出来并报错终止程序（填：一定 / 不一定）。",
+          "answer": [
+            "不一定",
+            "不会必然",
+            "不会"
+          ],
+          "explanation": "C++ 不对数组下标做运行时检查；越界访问常常悄无声息地\"看似正常\"运行，或悄悄破坏相邻数据后才在别处出错，原判断\"一定会被立即检测出来\"错误。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "越界访问",
+            "未定义行为"
+          ],
+          "stem": "数组下标越界可能读写到非法内存，这种行为在 C++ 标准中称为 ____ 行为。",
+          "answer": [
+            "未定义",
+            "undefined",
+            "未定义行为",
+            "UB"
+          ],
+          "explanation": "未定义行为（Undefined Behavior，UB）：标准不保证任何结果——程序可能看似正常、可能得到错误数据、也可能崩溃。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "找出所有因数",
+          "knowledge": [],
+          "stem": "输入一个正整数 n（1 ≤ n ≤ 100000），按从小到大的顺序输出 n 的所有正因数（包括 1 和 n 本身）。",
+          "input_format": "一个整数 n。",
+          "output_format": "输出一行，n 的所有因数，用单个空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "12",
+              "output": "1 2 3 4 6 12"
+            },
+            {
+              "input": "1",
+              "output": "1"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"找出所有因数\"(mock3 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock3_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock3_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { /* ignore exit code */ }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"12\\n\", \"1 2 3 4 6 12\"},\n        {\"1\\n\", \"1\"},\n        {\"18\\n\", \"1 2 3 6 9 18\"},\n        {\"17\\n\", \"1 17\"},\n        {\"100\\n\", \"1 2 4 5 10 20 25 50 100\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 找出所有因数 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-8s | %-28s | %-28s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-8s | %-28s | %-28s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "安全的整数反转",
+          "knowledge": [],
+          "stem": "给定一个 32 位有符号整数 N（可能为负数），将它的数字逆序排列输出（符号不参与逆序，仍放在最前面）。如果翻转后的结果超出 32 位有符号整数范围（[-2147483648, 2147483647]），则输出 0（表示溢出，仿照防止越界的处理方式）。",
+          "input_format": "一个整数 N（-2147483648 ≤ N ≤ 2147483647）。",
+          "output_format": "输出反转后的整数；若溢出，输出 0。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "123",
+              "output": "321"
+            },
+            {
+              "input": "1463847412",
+              "output": "2147483641"
+            },
+            {
+              "input": "1534236469",
+              "output": "0"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"安全的整数反转\"(mock3 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock3_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock3_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"123\\n\", \"321\"},\n        {\"1463847412\\n\", \"2147483641\"},\n        {\"1534236469\\n\", \"0\"},\n        {\"-123\\n\", \"-321\"},\n        {\"120\\n\", \"21\"},\n        {\"0\\n\", \"0\"},\n        {\"1000000000\\n\", \"1\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 安全的整数反转 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-14s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-14s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

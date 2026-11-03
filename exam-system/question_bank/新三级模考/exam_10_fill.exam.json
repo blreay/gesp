@@ -1,0 +1,721 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_10_fill",
+    "title": "模拟卷 十：STL（map/unordered_map）& 综合应用专题（填空改造卷）",
+    "subtitle": "客观题全部改造为 50 个填空（每题 1 分），杜绝蒙猜；编程题与错题强化卷十原卷一致",
+    "total_score": 100,
+    "tags": [
+      "填空改造",
+      "GESP三级",
+      "STL",
+      "map",
+      "unordered_map",
+      "存储单位",
+      "逗号表达式"
+    ],
+    "prog_brief": "单词词频统计；查找重复的学号"
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "map模板参数",
+            "string作key"
+          ],
+          "stem": "要用字符串学号（如 \"S001\"）作为 key、int 分数作为 value 保存成绩，应声明 `unordered_map<K, int> scores;`，其中 K 应是 ____ 类型（填类型名）。",
+          "answer": [
+            "string",
+            "std::string"
+          ],
+          "explanation": "key 是学号字符串，所以第一个模板参数必须是 string；若写成 map<int,int>，再用 \"S001\" 作下标会编译错误。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "vector下标",
+            "容器选择"
+          ],
+          "stem": "vector 的下标必须是 ____（填类型名），不能像 map 那样直接用 \"S001\" 这样的字符串作下标查成绩。",
+          "answer": [
+            "整数",
+            "int",
+            "整型",
+            "integer"
+          ],
+          "explanation": "vector 只能用整数下标随机访问，无法建立\"字符串→值\"的映射；这类需求要用 map / unordered_map。（原卷单选第 1 题 D 肢）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "operator[]副作用",
+            "自动插入"
+          ],
+          "stem": "`map<int, string> tel; tel[1001] = \"王大胆\";` 之后执行 `if (tel[9999] == \"\") {...}`，会\"偷偷\"插入一条 key 为 9999 的新记录，它的 value 是 ____。",
+          "answer": [
+            "空字符串",
+            "空串",
+            "\"\""
+          ],
+          "explanation": "[] 的语义是\"不存在就先默认构造再返回引用\"，string 的默认构造值就是空串 \"\"，因此 if 条件为真，且容器被污染。（原卷单选第 2 题，答案 C；已用 g++ 验证）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "operator[]副作用",
+            "size变化"
+          ],
+          "stem": "用 `[]` 访问 map 中一个不存在的 key 之后，map 的 size 会 ____（填：增大 / 减小 / 不变）。",
+          "answer": [
+            "增大",
+            "增加",
+            "变大"
+          ],
+          "explanation": "自动插入新记录后 size 从 1 变为 2，这正是不能拿 [] 做存在性检查的原因。（原卷单选第 2 题，答案 C；已用 g++ 验证）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "find",
+            "存在性检查"
+          ],
+          "stem": "想检查 map 中是否存在某个 key、又不想意外插入新记录，可调用成员函数 ____，把它的返回值与 m.end() 比较（填函数名，不带括号）。",
+          "answer": "find",
+          "explanation": "find 找到时返回指向该键值对的迭代器，找不到返回 m.end()，全程不会插入记录。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "count",
+            "存在性检查"
+          ],
+          "stem": "除了 find，还可以用成员函数 ____（填函数名，不带括号）统计某个 key 在容器中出现的次数，从而判断它是否存在且不会插入记录。",
+          "answer": "count",
+          "explanation": "count 返回 key 的出现次数：map 中 key 唯一，故只会返回 0 或 1。（原卷单选第 3 题 A 肢）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "map复杂度",
+            "O(log n)"
+          ],
+          "stem": "map 内部按 key 自动排序，单次查找的时间复杂度是 O(____)（用含 n 的表达式填写，如 n、n^2）。",
+          "answer": [
+            "log n",
+            "logn",
+            "log2 n",
+            "log2n",
+            "lg n",
+            "lgn"
+          ],
+          "explanation": "map 基于平衡二叉搜索树，树高约 log n，查找沿树下行，故为 O(log n)。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "unordered_map",
+            "哈希表"
+          ],
+          "stem": "unordered_map 内部用 ____ 表组织元素，因此平均查找很快，但不保证 key 的顺序。",
+          "answer": [
+            "哈希",
+            "hash",
+            "散列"
+          ],
+          "explanation": "unordered_map 基于哈希表：对 key 求哈希值定位桶，平均 O(1)，但元素不按 key 排序。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "map遍历顺序",
+            "自动排序"
+          ],
+          "stem": "`map<int, string> m; m[5]=\"e\"; m[1]=\"a\"; m[3]=\"c\";` 之后执行 `for (auto& p : m) cout << p.first << \" \";`，屏幕输出的数字序列是 ____（数字间用一个空格分隔）。",
+          "answer": "1 3 5",
+          "explanation": "map 自动按 key 升序存放，与插入顺序无关，遍历输出 1 3 5。（原卷单选第 5 题，答案 B；已用 g++ 验证）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "map遍历顺序",
+            "自动排序"
+          ],
+          "stem": "map 遍历时，元素按 key ____ 排列（填：升序 / 降序 / 插入顺序）。",
+          "answer": [
+            "升序",
+            "从小到大",
+            "递增"
+          ],
+          "explanation": "map 的内部有序结构保证遍历总是按 key 从小到大。（原卷单选第 5 题，答案 B）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "类型安全",
+            "编译错误"
+          ],
+          "stem": "声明 `map<int, int> m;` 后写 `m[1001] = \"王大胆\";`，由于 value 类型是 int 而 \"王大胆\" 是字符串字面量，会导致 ____ 错误（填：编译 / 运行 / 链接）。",
+          "answer": [
+            "编译",
+            "编译期"
+          ],
+          "explanation": "模板参数已把 value 定为 int，字符串字面量无法隐式转换成 int，编译阶段即报错——这是静态类型检查在容器上的体现。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "map模板参数",
+            "value类型"
+          ],
+          "stem": "声明 `map<int, string> 电话簿;` 中，value 的类型是 ____（填类型名）。",
+          "answer": [
+            "string",
+            "std::string",
+            "字符串"
+          ],
+          "explanation": "map<int, string> 第一个参数是 key 类型 int，第二个是 value 类型 string。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "count返回值"
+          ],
+          "stem": "对 map 而言，`m.count(key)` 在 key 不存在时返回 0，存在时返回 ____（填整数）。",
+          "answer": "1",
+          "explanation": "map / unordered_map 的 key 唯一，count 只可能返回 0（不存在）或 1（存在）。（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "size函数"
+          ],
+          "stem": "想要获得 map 中当前保存的记录条数，应调用成员函数 ____()（填函数名）。",
+          "answer": "size",
+          "explanation": "size() 返回记录条数；count(key) 返回的是某个 key 的出现次数，两者不要混淆。（原卷单选第 7 题 D 肢）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "C语言",
+            "bsearch"
+          ],
+          "stem": "标准 C 语言没有内置 map；要手工实现\"工号查姓名\"，可维护一个按工号排序的结构体数组，再调用标准库函数 ____ 做二分查找（填函数名）。",
+          "answer": "bsearch",
+          "explanation": "C 标准库提供 bsearch 在已排序数组上二分查找；配合结构体数组即可手工模拟\"key→value\"查找。（原卷单选第 8 题，答案 A）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "二分查找前提"
+          ],
+          "stem": "使用二分查找的前提是：数组必须已经按关键字 ____（填：有序 / 无序 / 随机排列）。",
+          "answer": [
+            "有序",
+            "排好序",
+            "排序",
+            "从小到大排好"
+          ],
+          "explanation": "二分查找每次把区间折半，依赖\"已排序\"这一前提，否则结果不正确。（原卷单选第 8 题 A 肢）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "行号陷阱",
+            "编译错误"
+          ],
+          "stem": "把课本上带行号的示例代码连同行号一起敲进编辑器再编译，通常会产生 ____ 错误（填：编译 / 运行 / 链接）。",
+          "answer": [
+            "编译",
+            "编译期"
+          ],
+          "explanation": "行号会被编译器当成代码去解析，产生语法错误。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "行号陷阱"
+          ],
+          "stem": "课本代码左侧的行号只是方便读者定位；对编译器来说，行号会被当成 ____ 的一部分（填：代码 / 注释）。",
+          "answer": [
+            "代码",
+            "程序",
+            "源码"
+          ],
+          "explanation": "编译器只认源文件里的字符；课本行号不是注释也不是预处理内容，敲进去就是非法记号。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "逗号表达式"
+          ],
+          "stem": "C++ 中逗号表达式 `(1, 2)` 的值是 ____（填整数）。",
+          "answer": "2",
+          "explanation": "逗号表达式从左到右求值，整体的值是最后一个子表达式的值，故 (1,2) 为 2。（原卷单选第 10 题，答案 B；已用 g++ 验证）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "逗号表达式",
+            "运算顺序"
+          ],
+          "stem": "C++ 中表达式 `(1,2)*2*3` 的值是 ____（填整数）。",
+          "answer": "12",
+          "explanation": "(1,2) 的值为 2，再连乘：2*2*3 = 12。（原卷单选第 10 题，答案 B；已用 g++ 验证）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "存储单位",
+            "bit与Byte"
+          ],
+          "stem": "1 Byte = ____ bit（填整数）。",
+          "answer": "8",
+          "explanation": "Byte（字节）由 8 个 bit（位）组成，是最小可寻址存储单位。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "存储单位",
+            "KB"
+          ],
+          "stem": "存储单位中 1 KB = ____ Byte（填整数）。",
+          "answer": "1024",
+          "explanation": "存储递进关系 bit→Byte→KB→MB→GB→TB，操作系统口径下相邻单位间是 1024 倍。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "unordered_map应用",
+            "词频统计"
+          ],
+          "stem": "`unordered_map<string, int> freq; string s; while (cin >> s) freq[s]++;` 这段代码的功能是统计输入中每个单词的 ____。",
+          "answer": [
+            "出现次数",
+            "次数",
+            "频率",
+            "词频"
+          ],
+          "explanation": "while(cin>>s) 逐个读单词，freq[s]++ 累加出现次数，是典型的词频统计。（原卷单选第 12 题，答案 C）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "operator[]默认值",
+            "词频统计"
+          ],
+          "stem": "词频统计代码 `freq[s]++` 中，第一次读到单词 s 时 freq 里还没有它，`freq[s]` 会自动创建记录并初始化为 ____，自增后变为 1（填整数）。",
+          "answer": "0",
+          "explanation": "[] 对不存在的 key 自动插入默认构造的 int，即 0，随后 ++ 使其为 1。（原卷单选第 12 题；已用 g++ 验证）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "迭代器",
+            "pair"
+          ],
+          "stem": "map 的迭代器 it 指向一个键值对时，it->____ 表示该键值对的 key。",
+          "answer": "first",
+          "explanation": "map 的元素类型是 pair<const K, V>，it->first 即 key。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "迭代器",
+            "pair"
+          ],
+          "stem": "map 的迭代器 it 指向一个键值对时，it->____ 表示该键值对的 value。",
+          "answer": "second",
+          "explanation": "it->second 即 value。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "GBK编码",
+            "存储计算"
+          ],
+          "stem": "一个汉字在 GBK 编码下占 2 个 Byte，一篇有 500 个汉字的纯中文文档约占用 ____ Byte（填整数）。",
+          "answer": "1000",
+          "explanation": "500 × 2 Byte = 1000 Byte。（原卷单选第 14 题，答案 A）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "存储单位换算"
+          ],
+          "stem": "1000 Byte 约等于 ____ KB（填整数）。",
+          "answer": "1",
+          "explanation": "1000 ÷ 1024 ≈ 0.98，约 1 KB。（原卷单选第 14 题，答案 A）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "字符串字面量拼接"
+          ],
+          "stem": "C++ 中相邻的两个字符串字面量（如 \"Hel\" \"lo\"）会被编译器自动 ____ 成一个字符串（填动词，两个字）。",
+          "answer": [
+            "拼接",
+            "连接",
+            "合并"
+          ],
+          "explanation": "编译期会把相邻字符串字面量拼接为一个，\"Hel\" \"lo\" 等价于 \"Hello\"。（原卷单选第 15 题，答案 D；已用 g++ 验证）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "字符串字面量拼接",
+            "printf"
+          ],
+          "stem": "在 C++ 中执行 `printf(\"\"\"Hello,GESP!\"\"\");`，屏幕输出是 ____（原样写出输出内容，不含引号）。",
+          "answer": "Hello,GESP!",
+          "explanation": "\"\"\"Hello,GESP!\"\"\" 即 \"\" \"Hello,GESP!\" \"\"，拼接后就是 \"Hello,GESP!\"，输出效果与一对双引号完全相同。（原卷单选第 15 题，答案 D；已用 g++ 验证）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "key类型",
+            "string作key"
+          ],
+          "stem": "`map` 和 `unordered_map` 的 key 不只能是 int，用 ____ 类型作 key 也完全合法（填类型名，如学号 \"S001\"）。",
+          "answer": [
+            "string",
+            "std::string",
+            "字符串"
+          ],
+          "explanation": "key 可以是任何支持比较（map）或哈希（unordered_map）的类型，string 最常用。（原卷判断第 1 题，原命题错误）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "map模板参数"
+          ],
+          "stem": "`map<K, V>` 的两个模板参数中，K 表示 ____ 的类型，V 表示 value 的类型（填一个字）。",
+          "answer": [
+            "键",
+            "key",
+            "关键字"
+          ],
+          "explanation": "map<K,V>：K 是键（key）类型，V 是值（value）类型。（原卷判断第 1 题，原命题错误）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "operator[]默认值"
+          ],
+          "stem": "`[]` 访问不存在的 key 时自动插入的新记录，其 value 是该类型的 ____ 构造值（填：默认 / 拷贝 / 随机）。",
+          "answer": [
+            "默认",
+            "default"
+          ],
+          "explanation": "[] 找不到 key 时会以 value 类型的默认构造值插入新记录：int 为 0，string 为空串。（原卷判断第 2 题，原命题正确）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "operator[]默认值",
+            "int初始化"
+          ],
+          "stem": "`map<string, int> m;` 执行 `cout << m[\"abc\"];` 的输出是 ____（填整数）。",
+          "answer": "0",
+          "explanation": "value 类型是 int，默认构造值为 0，故输出 0，且 m.size() 变为 1。（原卷判断第 2 题；已用 g++ 验证）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "容器选择",
+            "unordered_map"
+          ],
+          "stem": "只需要按 key 查找、完全不关心遍历顺序时，map 与 unordered_map 中通常优先选用 ____。",
+          "answer": [
+            "unordered_map",
+            "std::unordered_map"
+          ],
+          "explanation": "只查不排序时用 unordered_map，平均查找效率更高；需要有序遍历才选 map。（原卷判断第 3 题，原命题正确）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "unordered_map复杂度",
+            "O(1)"
+          ],
+          "stem": "unordered_map 的平均查找时间复杂度是 O(____)（填整数或含 n 的表达式）。",
+          "answer": "1",
+          "explanation": "哈希表按桶定位元素，平均查找 O(1)。（原卷判断第 3 题，原命题正确）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "key唯一性",
+            "覆盖赋值"
+          ],
+          "stem": "`map<int, string> m;` 先执行 `m[5] = \"a\";` 再执行 `m[5] = \"b\";`，此时 m.size() 等于 ____（填整数）。",
+          "answer": "1",
+          "explanation": "map 的 key 唯一，第二次赋值是覆盖而不是新增，size 仍为 1。（原卷判断第 4 题，原命题错误；已用 g++ 验证）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "key唯一性",
+            "覆盖赋值"
+          ],
+          "stem": "对同一个 map 先执行 `m[5] = \"a\";` 再执行 `m[5] = \"b\";`，之后 `m[5]` 的值是 ____（只填那个字符）。",
+          "answer": "b",
+          "explanation": "重复 key 的赋值是覆盖，最终 m[5] 为 \"b\"。（原卷判断第 4 题，原命题错误；已用 g++ 验证）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "数组下标运算符"
+          ],
+          "stem": "C++ 中 `[` 和 `]` 是 ____ 运算符的专用符号，不能像数学式里那样当普通括号使用。",
+          "answer": [
+            "数组下标",
+            "下标",
+            "下标访问"
+          ],
+          "explanation": "[ ] 用于 a[i] 形式的下标访问；数学式中的方括号在 C++ 里必须换成圆括号。（原卷判断第 5 题，原命题正确）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "表达式合法性"
+          ],
+          "stem": "因此 `[(1,2)*2]*3` 不是合法的 C++ ____（填：表达式 / 语句 / 函数）。",
+          "answer": [
+            "表达式",
+            "expression"
+          ],
+          "explanation": "[ 只能出现在数组/指针下标等语境里，[(1,2)*2]*3 无法通过编译。（原卷判断第 5 题，原命题正确）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "存储单位",
+            "1000进制"
+          ],
+          "stem": "操作系统通常按 1 KB = 1024 Byte 计算，而硬盘厂商通常按 1 KB = ____ Byte 标称容量（填整数）。",
+          "answer": "1000",
+          "explanation": "厂商用 1000 进制标称，操作系统用 1024 进制显示，两套口径并存。（原卷判断第 6 题，原命题错误）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "存储单位",
+            "1000与1024进制"
+          ],
+          "stem": "因此，\"1 KB 在任何时候都严格等于 1000 Byte，绝无例外\"的说法是 ____ 的（填：正确 / 错误）。",
+          "answer": [
+            "错误",
+            "不正确",
+            "错"
+          ],
+          "explanation": "只有厂商口径下 1 KB 才是 1000 Byte；操作系统口径是 1024 Byte，故\"绝无例外\"的说法错误。（原卷判断第 6 题，原命题错误）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "存储单位换算",
+            "TB"
+          ],
+          "stem": "按厂商 1000 进制标称的 1 TB 硬盘（容量 10^12 Byte），在按 1024 进制显示的电脑属性里约为 ____ GB（填整数）。",
+          "answer": "931",
+          "explanation": "10^12 ÷ 1024^3 ≈ 931.32，属性里显示约 931 GB。（原卷判断第 7 题，原命题正确；已用计算验证）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "存储单位换算",
+            "TB"
+          ],
+          "stem": "操作系统口径下，1 TB = 1024 ____（填单位）。",
+          "answer": "GB",
+          "explanation": "操作系统口径：1 TB = 1024 GB = 1024^4 Byte。（原卷判断第 7 题，原命题正确）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "map底层",
+            "平衡二叉搜索树"
+          ],
+          "stem": "map 底层通常基于 ____ 二叉搜索树实现，这是它能自动按 key 排序、高效查找的原因。",
+          "answer": [
+            "平衡",
+            "balanced"
+          ],
+          "explanation": "平衡二叉搜索树保证树高 O(log n)，map 据此自动排序并高效查找。（原卷判断第 8 题，原命题正确）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "map底层",
+            "红黑树"
+          ],
+          "stem": "map 底层常用的这种平衡二叉搜索树，具体名称叫 ____ 树。",
+          "answer": [
+            "红黑",
+            "红黑树",
+            "Red-Black",
+            "red-black"
+          ],
+          "explanation": "STL 中 map / multimap / set 的经典实现都基于红黑树——一种自平衡二叉搜索树。（原卷判断第 8 题，原命题正确）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "unordered_map遍历顺序"
+          ],
+          "stem": "unordered_map 平均查找很快，但遍历时 key 的顺序是 ____ 的（填：升序 / 插入顺序 / 不确定）。",
+          "answer": [
+            "不确定",
+            "不固定",
+            "无序",
+            "随机"
+          ],
+          "explanation": "\"unordered\" 指不保证遍历顺序；它内部其实是哈希桶组织，并非没有组织。（原卷判断第 9 题，原命题错误）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "线性查找复杂度"
+          ],
+          "stem": "不用任何辅助结构、逐个遍历 n 个元素查找目标，时间复杂度是 O(____)（用含 n 的表达式填写）。",
+          "answer": "n",
+          "explanation": "逐个比较的线性查找复杂度 O(n)，这正是哈希表 / 有序结构要避免的；unordered_map 查找并非 O(n)。（原卷判断第 9 题，原命题错误）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "容器选择",
+            "map有序"
+          ],
+          "stem": "比赛题目要求\"按 key 从小到大输出所有记录\"时，map 与 unordered_map 中应选择 ____。",
+          "answer": [
+            "map",
+            "std::map"
+          ],
+          "explanation": "map 遍历即按 key 升序，天然满足要求；unordered_map 输出顺序不可控。（原卷判断第 10 题，原命题正确）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "map有序性"
+          ],
+          "stem": "map 能满足\"按 key 从小到大输出\"的要求，是因为它底层自动保持 key ____（填：有序 / 无序）。",
+          "answer": [
+            "有序",
+            "从小到大",
+            "排序"
+          ],
+          "explanation": "map 的有序性来自底层平衡二叉搜索树的中序遍历性质。（原卷判断第 10 题，原命题正确）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "单词词频统计",
+          "knowledge": [],
+          "stem": "输入若干个用空格/换行分隔的单词（全部为小写英文字母，直到输入结束 EOF），请统计每个不同单词出现的次数，按单词的字典序从小到大输出\"单词 次数\"。",
+          "input_format": "若干行单词，以文件结束（EOF）为输入终止标志。",
+          "output_format": "按字典序输出每个不同单词及其出现次数，每行一个，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "the quick fox jumps\nthe lazy fox\nthe fox runs",
+              "output": "fox 3\njumps 1\nlazy 1\nquick 1\nruns 1\nthe 3"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"单词词频统计\"(mock10 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock10_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock10_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"the quick fox jumps\\nthe lazy fox\\nthe fox runs\\n\",\n         \"fox 3\\njumps 1\\nlazy 1\\nquick 1\\nruns 1\\nthe 3\"},\n        {\"apple\\n\", \"apple 1\"},\n        {\"a a a b b c\\n\", \"a 3\\nb 2\\nc 1\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 单词词频统计 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-30s | %-24s | %-24s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"-----------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-30s | %-24s | %-24s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "查找重复的学号",
+          "knowledge": [],
+          "stem": "输入 n 个学号（字符串，如 \"S001\"），请找出其中第一个出现\"重复\"的学号（即从左到右扫描，第一个此前已经出现过的学号），并输出它；如果没有重复的学号，输出 \"NONE\"。请使用 map 或 unordered_map 实现高效查找（不要用双重循环暴力比较）。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 100000）；第二行 n 个学号，用空格分隔。",
+          "output_format": "输出第一个重复出现的学号，或 \"NONE\"。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5\nS001 S002 S003 S002 S004",
+              "output": "S002"
+            },
+            {
+              "input": "3\nS001 S002 S003",
+              "output": "NONE"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"查找重复的学号\"(mock10 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock10_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock10_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5\\nS001 S002 S003 S002 S004\\n\", \"S002\"},\n        {\"3\\nS001 S002 S003\\n\", \"NONE\"},\n        {\"1\\nS001\\n\", \"NONE\"},\n        {\"4\\nA A A A\\n\", \"A\"},\n        {\"6\\nX Y Z Y X Z\\n\", \"Y\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 查找重复的学号 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-24s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

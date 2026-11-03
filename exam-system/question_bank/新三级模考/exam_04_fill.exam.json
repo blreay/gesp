@@ -1,0 +1,756 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_04_fill",
+    "title": "模拟卷 四：数组 & 字符串专题（填空改造卷）",
+    "subtitle": "错题强化卷 四",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "地址计算"
+          ],
+          "stem": "二维数组 `int arr[4][8];`（int 占 4 字节），若 arr 的地址是 0x1000，则 arr[1] 的地址是 ____（填十六进制，如 0x1234）。",
+          "answer": [
+            "0x1020",
+            "0X1020"
+          ],
+          "explanation": "arr[1] 是第 2 行的行首地址，与 arr 相隔一整行 8 个 int = 32 字节 = 0x20，0x1000 + 0x20 = 0x1020。行地址按\"每行字节数\"前进，不是按一个元素前进。（原卷单选第 1 题，答案 C）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "地址计算"
+          ],
+          "stem": "二维数组 `int arr[4][8];`（int 占 4 字节），若 arr 的地址是 0x1000，则元素 arr[0][1] 的地址是 ____（填十六进制，如 0x1234）。",
+          "answer": [
+            "0x1004",
+            "0X1004"
+          ],
+          "explanation": "arr[0][1] 是第 1 行第 2 个元素，与首元素只隔 1 个 int = 4 字节，0x1000 + 4 = 0x1004。注意与\"行地址\"区分：arr[1] 要跳过一整行 32 字节。（原卷单选第 1 题 A 肢）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "行优先存储",
+            "地址计算"
+          ],
+          "stem": "二维数组 `int array[2][3] = {{0,1,2},{3,4,5}};`（假定 int 是 32 位），若第一个元素地址为 0x1000，那么 &array[1][1] 的地址是 ____（填十六进制，如 0x1234）。",
+          "answer": [
+            "0x1010",
+            "0X1010"
+          ],
+          "explanation": "二维数组按行优先存储：array[1][1] 前面有第 0 行全部 3 个元素加第 1 行的 1 个元素，线性下标 = 1×3 + 1 = 4，偏移 4×4 = 16 字节 = 0x10，故地址为 0x1000 + 0x10 = 0x1010。（原卷单选第 2 题，答案 D）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "行优先存储",
+            "地址计算"
+          ],
+          "stem": "二维数组 `int array[2][3] = {{0,1,2},{3,4,5}};`（假定 int 是 32 位），若 array[0][0] 的地址为 0x1000，那么 array[1][0] 的地址是 ____（填十六进制，如 0x1234）。",
+          "answer": [
+            "0x100c",
+            "0x100C",
+            "0X100c",
+            "0X100C"
+          ],
+          "explanation": "array[1][0] 是第 2 行行首，跳过一整行 3 个 int = 12 字节 = 0xC，0x1000 + 0xC = 0x100C。（原卷单选第 2 题 C 肢）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "sizeof"
+          ],
+          "stem": "二维数组 `int arr[3][4];`（int 占 4 字节），sizeof(arr[0]) 的值是 ____（填字节数）。",
+          "answer": "16",
+          "explanation": "arr[0] 表示一整行，含 4 个 int，4×4 = 16 字节。（原卷单选第 3 题，答案 D）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "sizeof"
+          ],
+          "stem": "二维数组 `int arr[3][4];`（int 占 4 字节），sizeof(arr) 的值是 ____（填字节数）。",
+          "answer": "48",
+          "explanation": "整个数组共 3 行 × 4 列 × 4 字节 = 48 字节。sizeof(arr[0]) 只算一行（16 字节），sizeof(arr) 算全部。（原卷单选第 3 题 B/C 肢）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "二维数组定义",
+            "初始化"
+          ],
+          "stem": "`int a[][2] = {{1,2},{3,4},{5,6}};` 这样定义的二维数组，其第一维的大小是 ____。",
+          "answer": "3",
+          "explanation": "初始化列表共有 3 组、每组对应一行，编译器据此确定第一维为 3；定义二维数组时第一维可省略，第二维（列数）不能省略。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "二维数组定义"
+          ],
+          "stem": "定义 `int a[3][];` 不能通过编译，是因为没有给出 ____ 的大小。",
+          "answer": [
+            "第二维",
+            "列",
+            "列数",
+            "第二维大小",
+            "第2维"
+          ],
+          "explanation": "第二维（列数）决定每一行的字节长度，编译器计算元素地址时必须知道列数，所以不能省略；第一维（行数）反而可以省略由初始化列表推断。另外 `int a[3.0][4];` 也非法——数组维度必须是整型常量，不能是浮点数。（原卷单选第 4 题 A/B/C 肢）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "sizeof",
+            "字符串结束符"
+          ],
+          "stem": "字符串定义为 `char str[] = \"Hello\";`，则 sizeof(str) 的值是 ____。",
+          "answer": "6",
+          "explanation": "字符数组用字面量 \"Hello\" 初始化时，系统自动在末尾补结束符 '\\0'，共 5 个字符 + 1 个 '\\0' = 6 字节。（原卷单选第 5 题，答案 B）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "strlen"
+          ],
+          "stem": "字符串定义为 `char str[] = \"Hello\";`，则 strlen(str) 的值是 ____。",
+          "answer": "5",
+          "explanation": "strlen 统计字符串的实际长度，遇到 '\\0' 即停止、且不计入 '\\0'，故为 5。对比：sizeof(str) = 6，两者差的正是结尾那个 '\\0'。（原卷单选第 5 题 C 肢）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "内存占用"
+          ],
+          "stem": "字符串定义为 `char str[] = \"GESP\";`，则字符数组 str 在内存中共占 ____ 个字节。",
+          "answer": "5",
+          "explanation": "'G'、'E'、'S'、'P' 四个字符加上系统自动补上的结尾 '\\0'，共占 5 字节。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "字符串结束符"
+          ],
+          "stem": "C 风格字符串（字符数组）用 ____ 作为字符串的结束标志（写出该字符的转义形式，如 \\n）。",
+          "answer": [
+            "\\0",
+            "'\\0'"
+          ],
+          "explanation": "系统会在字符串末尾自动加上 '\\0'（ASCII 码为 0 的字符），strlen 等函数靠它判断字符串结束，这也是字符数组长度 = 字符个数 + 1 的原因。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "string",
+            "赋值"
+          ],
+          "stem": "想用 `=` 直接给整个字符串赋值，应选用 ____ 类型（写出类型名）。",
+          "answer": [
+            "string",
+            "std::string",
+            "string类"
+          ],
+          "explanation": "string 支持 s = t; 直接整体赋值；字符数组不能整体赋值，需要用 strcpy 或逐元素拷贝。（原卷单选第 7 题 A 肢）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "字符串比较"
+          ],
+          "stem": "比较两个字符数组（char[]）的内容是否相等，常用的标准库函数是 ____（填函数名）。",
+          "answer": [
+            "strcmp",
+            "strcmp()"
+          ],
+          "explanation": "两个字符数组直接用 == 比较的是首地址而非内容；比较内容必须用 strcmp，返回 0 表示相等。string 对象则重载了 ==，可直接比较内容——这正是原选项中\"都可以直接用 == 比较内容\"说法错误的原因。（原卷单选第 7 题，答案 D）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "string",
+            "成员函数"
+          ],
+          "stem": "获取 string 对象长度的成员函数是 ____（填函数名，带括号；有两个等价函数，写出任意一个即可）。",
+          "answer": [
+            "length()",
+            "size()"
+          ],
+          "explanation": "length() 与 size() 都返回字符串的字符个数；C 风格字符数组则用 strlen() 求长度。（原卷单选第 7 题 B 肢）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "ASCII编码",
+            "字符串遍历"
+          ],
+          "stem": "已知字符 '0' 的 ASCII 编码为 48。执行下面代码后输出的 x 的值是 ____（填十进制整数）。\n```\nstring s = \"0629\";\nint x = 0;\nfor (int i = 0; i < (int)s.length(); i++)\n    x += s[i];\ncout << x;\n```",
+          "answer": "209",
+          "explanation": "s[i] 取到的是字符，按 ASCII 码值直接累加：'0'+'6'+'2'+'9' = 48+54+50+57 = 209。注意这是编码之和而不是数字之和。（原卷单选第 8 题，答案 C）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "ASCII编码",
+            "字符转数字"
+          ],
+          "stem": "执行下面代码后输出的 x 的值是 ____（填十进制整数）。\n```\nstring s = \"0629\";\nint x = 0;\nfor (int i = 0; i < (int)s.length(); i++)\n    x += s[i] - '0';\ncout << x;\n```",
+          "answer": "17",
+          "explanation": "s[i] - '0' 把数字字符转成对应数值（数字字符编码连续，'0' 为 48），于是 x = 0+6+2+9 = 17。对比不减 '0' 的版本，结果是各字符 ASCII 码之和 209。（原卷单选第 8 题 A 肢）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "count++",
+            "循环"
+          ],
+          "stem": "下面代码想在数组中依次紧凑存入 1~35 之间能被 7 整除的数，横线处应填入的语句是 ____（用 count 和 i 写出赋值语句）。\n```\nint arr[10], count = 0;\nfor (int i = 1; i <= 35; i++) {\n    if (i % 7 == 0) {\n        __________\n    }\n}\n```",
+          "answer": [
+            "arr[count++] = i;",
+            "arr[count++]=i;",
+            "arr[count] = i; count++;",
+            "arr[count]=i;count++;",
+            "arr[count++] = i",
+            "arr[count++]=i"
+          ],
+          "explanation": "count 既是存入位置的下标又是计数器：arr[count++] = i; 先把 i 存入 arr[count]，再让 count 加 1，实现紧凑存放。若写成 arr[i] = count++;（A 肢）则用循环变量当下标，存入位置稀疏且存的值也错了。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "循环",
+            "计数"
+          ],
+          "stem": "用循环把 1~35 之间能被 7 整除的数依次存入数组并计数（每找到一个就 count++），循环结束后 count 的值是 ____。",
+          "answer": "5",
+          "explanation": "1~35 中能被 7 整除的数是 7、14、21、28、35，共 5 个，故 count = 5。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "三目运算符",
+            "累加"
+          ],
+          "stem": "篮球队要招募身高大于 135cm 的队员，给定 10 人的身高数组 arr，下面代码统计能招募到的人数，横线处应填入的语句是 ____（用三目运算符书写）。\n```\nint count = 0;\nfor (int i = 0; i < 10; i++) {\n    __________\n}\ncout << count;\n```",
+          "answer": [
+            "count += arr[i] > 135 ? 1 : 0;",
+            "count += arr[i]>135?1:0;",
+            "count += (arr[i] > 135 ? 1 : 0);",
+            "count += (arr[i]>135?1:0);",
+            "count = count + (arr[i] > 135 ? 1 : 0);"
+          ],
+          "explanation": "三目表达式 arr[i] > 135 ? 1 : 0 在满足条件时取 1、否则取 0，用 += 累加到 count 上即得达标人数。（原卷单选第 10 题，答案 B）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "三目运算符",
+            "赋值与累加"
+          ],
+          "stem": "循环体内写 `count = arr[i] > 135 ? 1 : 0;` 无法正确累计人数，原因是 `=` 赋值每轮都会把之前的统计结果 ____（填一个动词）。",
+          "answer": [
+            "覆盖",
+            "重置",
+            "清空",
+            "抹掉",
+            "替代"
+          ],
+          "explanation": "= 是直接赋值，每轮都把 count 重新设成 0 或 1，前面累计的值全部丢失，最终结果只由最后一个人决定；累计应当用 +=。（原卷单选第 10 题 A 肢）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "条件判断",
+            "程序阅读"
+          ],
+          "stem": "下面代码输入 a1b2c3 后，将输出 ____。\n```\nstring str = \"\"; cin >> str;\nint len = str.length();\nfor (int i = 0; i < len; i++) {\n    if (str[i] >= '0' && str[i] <= '9')\n        cout << str[i];\n    else\n        cout << \"#\";\n}\n```",
+          "answer": "#1#2#3",
+          "explanation": "逐字符判断：数字字符原样输出，其余输出 #。a→#、1→1、b→#、2→2、c→#、3→3，故输出 #1#2#3。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "程序阅读"
+          ],
+          "stem": "把上面代码的逻辑改为：只输出其中的数字字符、完全跳过其它字符（不输出 #），则输入 a1b2c3 后输出 ____。\n```\nstring str = \"\"; cin >> str;\nfor (int i = 0; i < (int)str.length(); i++) {\n    if (str[i] >= '0' && str[i] <= '9')\n        cout << str[i];\n}\n```",
+          "answer": "123",
+          "explanation": "只有 '1'、'2'、'3' 三个数字字符被输出，字母被 if 过滤掉，故输出 123。这正是原卷 B 肢对应的程序行为。（原卷单选第 11 题 B 肢）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "数组越界"
+          ],
+          "stem": "数组 arr 的大小恰好为 SIZE，代码 `for (int i = 0; i <= SIZE; i++) sum += arr[i];` 在最后一轮循环会访问越界元素 ____（写成 arr[k] 的形式）。",
+          "answer": [
+            "arr[SIZE]"
+          ],
+          "explanation": "大小为 SIZE 的数组合法下标是 0 ~ SIZE-1；i == SIZE 时访问 arr[SIZE] 越界，属于未定义行为。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "数组越界",
+            "循环条件"
+          ],
+          "stem": "要修正 `for (int i = 0; i <= SIZE; i++) sum += arr[i];`（数组 arr 大小恰好为 SIZE）的越界问题，循环条件应改成 ____。",
+          "answer": [
+            "i < SIZE",
+            "i<SIZE"
+          ],
+          "explanation": "把 <= 改成 <，i 的取值变为 0 ~ SIZE-1，恰好覆盖全部合法元素。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "数组越界",
+            "边界检查"
+          ],
+          "stem": "程序运行时发生数组下标越界访问，程序依然可能\"正常\"结束，这是因为 C++ 对数组下标 ____ 边界检查。",
+          "answer": [
+            "不进行",
+            "不做",
+            "不会进行",
+            "不作",
+            "没有进行",
+            "不执行"
+          ],
+          "explanation": "C++ 标准不要求对数组下标做边界检查，越界访问是未定义行为：编译一般不报错，运行时可能读到垃圾值、可能崩溃、也可能看似正常，因此危害隐蔽。\"越界一定会产生编译错误\"的说法是错误的。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "数组定义"
+          ],
+          "stem": "`int a[-1];` 不能用来定义数组，原因是数组的元素个数必须是非负的 ____（写出数的一类名称）。",
+          "answer": [
+            "整数",
+            "整型",
+            "整数常量",
+            "整型常量"
+          ],
+          "explanation": "数组维度必须是非负整数常量：-1 一定非法；`int a[0];`（0 个元素）部分编译器作为扩展允许，但不推荐。维度写成小数如 `int a[3.0][4];` 同样非法。（原卷单选第 13 题 A/C 肢）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "地址计算"
+          ],
+          "stem": "二维数组 `int arr[3][16];`（int 占 4 字节），若 arr 的地址是 0x28cbc0，则 arr[1] 的地址是 ____（填十六进制，如 0x123456）。",
+          "answer": [
+            "0x28cc00",
+            "0x28CC00",
+            "0X28cc00",
+            "0X28CC00"
+          ],
+          "explanation": "arr[1] 跳过一整行 16 个 int = 64 字节 = 0x40：0x28cbc0 + 0x40 = 0x28cc00（注意十六进制加法 0xbc0 + 0x40 = 0xc00）。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "字符判断",
+            "条件表达式"
+          ],
+          "stem": "下面代码统计字符串 \"abc123XYZ\" 中数字字符出现的次数，横线处应填入的条件表达式是 ____。\n```\nstring s = \"abc123XYZ\";\nint cnt = 0;\nfor (int i = 0; i < (int)s.length(); i++) {\n    if (__________)\n        cnt++;\n}\ncout << cnt;\n```",
+          "answer": [
+            "s[i] >= '0' && s[i] <= '9'",
+            "s[i]>='0'&&s[i]<='9'"
+          ],
+          "explanation": "判断数字字符用编码区间 '0' ~ '9'；isalpha(s[i]) 判断的是字母（A 肢），isupper(s[i]) 判断大写字母（C 肢），s[i] >= 'a' && s[i] <= 'z' 只判断小写字母（D 肢），都不能正确统计数字。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "计数",
+            "程序阅读"
+          ],
+          "stem": "用循环逐个检查字符串 `s = \"abc123XYZ\";` 的每个字符并统计其中数字字符的个数，循环结束后输出的 cnt 的值是 ____。",
+          "answer": "3",
+          "explanation": "串中的数字字符是 '1'、'2'、'3'，共 3 个，故 cnt = 3。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "数组赋值"
+          ],
+          "stem": "语句 `int a[3] = {1,2,3}, b[3]; b = a;` 是 ____ 的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "数组名本质上是首元素地址，是常量，不能出现在赋值号左边；b = a; 会被编译器拒绝。（原卷判断第 16 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "字符串拷贝"
+          ],
+          "stem": "C++ 中把字符数组的内容整体复制到另一个字符数组，常用的标准库函数是 ____（填函数名）。",
+          "answer": [
+            "strcpy",
+            "strcpy()"
+          ],
+          "explanation": "字符数组不能整体赋值（b = a; 非法），要用 strcpy(目标, 源) 拷贝内容，或用循环逐元素赋值。（原卷判断第 16 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "数组名",
+            "地址"
+          ],
+          "stem": "C++ 中数组名本质上代表数组首元素的 ____（填名词）。",
+          "answer": [
+            "地址",
+            "内存地址"
+          ],
+          "explanation": "数组名是指针常量，保存首元素地址、不能被重新赋值（a = b; 不合法），但数组的每个元素是普通变量，可以分别赋值。（原卷判断第 17 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "逐元素赋值"
+          ],
+          "stem": "要把数组 a 的全部内容复制到等长数组 b 中，正确做法是用循环逐元素赋值：`for (int i = 0; i < n; i++) b[i] = ____;`",
+          "answer": [
+            "a[i]"
+          ],
+          "explanation": "数组名本身不能赋值，但元素可以逐个赋值；b[i] = a[i]; 循环 n 次即完成拷贝。（原卷判断第 17 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "结构体",
+            "string",
+            "文件存储"
+          ],
+          "stem": "定义结构体数组时，如果结构体内含有 ____ 类型的成员，直接把整块结构体用二进制方式 write 到文件会丢失数据（填类型名）。",
+          "answer": [
+            "string",
+            "std::string"
+          ],
+          "explanation": "string 内部依靠指针/动态内存保存字符，二进制方式只写出结构体这块内存的原始字节（含指针值本身），指针指向的真实字符内容不会写入文件，读回后数据丢失。（原卷判断第 18 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "结构体",
+            "string",
+            "指针"
+          ],
+          "stem": "含 string 成员的结构体用二进制方式写入文件会丢失数据，根本原因是写进文件的是 string 内部的 ____，而不是字符本身（填两字名词）。",
+          "answer": [
+            "指针",
+            "地址"
+          ],
+          "explanation": "string 的字符实际存放在堆内存中，结构体里只保存指向它的指针；把指针值写进文件后再读回，该地址已无意义。（原卷判断第 18 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "string",
+            "比较运算"
+          ],
+          "stem": "`string a = \"abc\", b = \"abc\";` 之后，表达式 `a == b` 的结果是 ____（填：true/false）。",
+          "answer": [
+            "true",
+            "1",
+            "正确"
+          ],
+          "explanation": "string 类重载了 ==，比较的是两个字符串的内容而不是地址；内容相同，结果为 true。\"比较地址所以一定是 false\"的说法是错误的。（原卷判断第 19 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "string",
+            "比较运算"
+          ],
+          "stem": "string 类的 == 运算符比较的是两个字符串的 ____ 是否相同（填一个名词）。",
+          "answer": [
+            "内容",
+            "字符内容",
+            "字符"
+          ],
+          "explanation": "这是 string 相对于字符数组的优点之一：常用运算符都被重载成直观语义，== 比内容、= 能赋值、+ 能拼接。（原卷判断第 19 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "比较运算"
+          ],
+          "stem": "`char a[10] = \"abc\", b[10] = \"abc\";` 之后，表达式 `a == b` 的结果是 ____（填：true/false）。",
+          "answer": [
+            "false",
+            "0",
+            "错误"
+          ],
+          "explanation": "字符数组名在表达式中退化为首元素地址，== 比较的是两个地址而非内容；a、b 是两个不同的数组，地址必然不同，结果为 false。要比较内容应使用 strcmp(a, b) == 0。（原卷判断第 20 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "地址"
+          ],
+          "stem": "两个字符数组 a、b 做 `a == b` 运算时，实际比较的是两个数组首元素的 ____（填两字名词）。",
+          "answer": [
+            "地址",
+            "首地址",
+            "内存地址"
+          ],
+          "explanation": "数组名参与比较时代表地址，这正是 char[] 与 string 的关键区别：string 的 == 比内容，char[] 的 == 比地址。（原卷判断第 20 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "选择排序"
+          ],
+          "stem": "对 `int a[] = {2, 0, 2, 4, 3, 1, 6};` 执行第一趟选择排序（在未排序区间找最小值交换到最前面）后，a[0] 的值是 ____。",
+          "answer": "0",
+          "explanation": "整个数组的最小值是 0（下标 1），第一趟把它与 a[0]（值 2）交换，a[0] 变为 0。（原卷判断第 21 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "选择排序",
+            "数组追踪"
+          ],
+          "stem": "对 `int a[] = {2, 0, 2, 4, 3, 1, 6};` 执行完第一趟选择排序（在未排序区间找最小值交换到最前面）后，数组内容从前到后依次是 ____（数字间用逗号分隔，如 1,2,3）。",
+          "answer": [
+            "0,2,2,4,3,1,6",
+            "0, 2, 2, 4, 3, 1, 6"
+          ],
+          "explanation": "第一趟找到最小值 0（下标 1）与 a[0] 交换：2 和 0 互换位置，其余元素不动，结果为 {0, 2, 2, 4, 3, 1, 6}。（原卷判断第 21 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "内存占用"
+          ],
+          "stem": "一个 5×5 的二维数组 `int arr[5][5];`（int 占 4 字节），整个数组一共占用 ____ 字节内存。",
+          "answer": "100",
+          "explanation": "5 行 × 5 列 × 4 字节 = 100 字节。\"只占 sizeof(int)×5 = 20 字节（只算一行）\"的说法是错误的。（原卷判断第 22 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "sizeof"
+          ],
+          "stem": "一个 5×5 的二维数组 `int arr[5][5];`（int 占 4 字节），sizeof(arr[2]) 的值是 ____（填字节数）。",
+          "answer": "20",
+          "explanation": "arr[2] 表示一整行，5 个 int 共 20 字节；而 sizeof(arr) 是整个数组的 100 字节。（原卷判断第 22 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "初始化"
+          ],
+          "stem": "定义 `char str[6] = \"GESP\";` 后，数组中没有被字符串内容使用的字节有 ____ 个。",
+          "answer": "1",
+          "explanation": "\"GESP\" 四个字符加上结尾 '\\0' 共占 5 字节，数组总长 6 字节，剩 1 个字节未被使用。（原卷判断第 23 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "字符数组",
+            "未初始化内存"
+          ],
+          "stem": "定义 `char str[6] = \"GESP\";` 后，数组中剩下那个未被字符串内容使用的字节，其值是 ____（用一个词描述该值的特点）。",
+          "answer": [
+            "不确定",
+            "随机的",
+            "未知",
+            "不确定值",
+            "随机值"
+          ],
+          "explanation": "初始化只覆盖前 5 个字节，第 6 个字节的值不确定（残留的随机值）；但这不影响字符串的正确性，因为 '\\0' 已标出结束位置。（原卷判断第 23 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "函数参数"
+          ],
+          "stem": "把二维数组作为函数参数传递时，实际传递的是数组的 ____，编译器不会为形参分配一份独立的二维数组内存拷贝（填名词）。",
+          "answer": [
+            "首元素地址",
+            "地址",
+            "首地址",
+            "起始地址"
+          ],
+          "explanation": "数组作实参时退化为指针，形参与实参共用同一块内存；int arr[3][4]、int arr[][4]、int (*arr)[4] 三种形参声明等价，都只是接收地址、不产生拷贝。\"会分配一份独立拷贝\"的说法是错误的。（原卷判断第 24 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "函数参数",
+            "传址"
+          ],
+          "stem": "把二维数组作为实参传给函数（形参声明为 `int arr[][4]`）后，在函数内修改 arr[0][0]，____（填：会/不会）影响主调函数中的原数组。",
+          "answer": [
+            "会",
+            "能"
+          ],
+          "explanation": "形参收到的是原数组的地址而不是拷贝，函数内对元素的修改直接作用于原数组——这正是数组传参与普通变量传值的关键区别。（原卷判断第 24 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "数组下标"
+          ],
+          "stem": "`int a[5];` 的最后一个元素的下标是 ____。",
+          "answer": "4",
+          "explanation": "数组下标从 0 开始，5 个元素的下标依次是 0、1、2、3、4。（原卷判断第 25 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "数组下标",
+            "越界"
+          ],
+          "stem": "数组 `int a[n];` 的合法下标范围是从 0 到 ____（用含 n 的表达式填写）。",
+          "answer": [
+            "n-1",
+            "n - 1"
+          ],
+          "explanation": "长度为 n 的数组，最后一个元素下标是 n-1；访问 a[n] 就越界了。（原卷判断第 25 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "招募身高达标队员",
+          "knowledge": [],
+          "stem": "给定 n 名候选人的身高（单位 cm），请把身高大于 135 的候选人的原始编号（从 1 开始）依次存入一个新数组并输出，同时输出满足条件的人数。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 1000）；第二行 n 个整数，表示每个人的身高。",
+          "output_format": "第一行输出满足条件的人数 count；第二行输出这些人的编号（按输入顺序），用空格分隔；如果没有人满足条件，第二行输出空行。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "5\n120 140 135 150 136",
+              "output": "3\n2 4 5"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"招募身高达标队员\"(mock4 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string normalize(const std::string& s) {\n    // 折叠多余空白，方便宽松比较（每行内多空格视为等价）\n    std::istringstream iss(s);\n    std::string line, out;\n    bool firstLine = true;\n    while (std::getline(iss, line)) {\n        std::istringstream lss(line);\n        std::string tok, lineOut;\n        bool first = true;\n        while (lss >> tok) {\n            if (!first) lineOut += \" \";\n            lineOut += tok;\n            first = false;\n        }\n        if (!firstLine) out += \"\\n\";\n        out += lineOut;\n        firstLine = false;\n    }\n    return out;\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock4_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock4_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5\\n120 140 135 150 136\\n\", \"3\\n2 4 5\"},\n        {\"3\\n100 110 120\\n\", \"0\\n\"},\n        {\"4\\n200 200 200 200\\n\", \"4\\n1 2 3 4\"},\n        {\"1\\n136\\n\", \"1\\n1\"},\n        {\"6\\n135 136 137 100 200 90\\n\", \"3\\n2 3 5\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (normalize(actual) == normalize(trim(cases[i].expected))) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 招募身高达标队员 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-32s | %-16s | %-16s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"-----------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-32s | %-16s | %-16s\\n\",\n                   idx + 1, trim(in).c_str(), trim(exp).c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "字符串数字提取",
+          "knowledge": [],
+          "stem": "输入一行字符串（不含空格，长度不超过 200），把其中所有数字字符按原有顺序拼接成一个新字符串输出；如果原字符串中一个数字字符都没有，输出 \"NONE\"。",
+          "input_format": "一行字符串 s。",
+          "output_format": "输出提取出的数字字符组成的字符串，或 \"NONE\"。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "a1b2c3",
+              "output": "123"
+            },
+            {
+              "input": "HelloWorld",
+              "output": "NONE"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"字符串数字提取\"(mock4 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock4_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock4_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"a1b2c3\\n\", \"123\"},\n        {\"HelloWorld\\n\", \"NONE\"},\n        {\"2026GESP\\n\", \"2026\"},\n        {\"1a2b3c4d5e\\n\", \"12345\"},\n        {\"999\\n\", \"999\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 字符串数字提取 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-16s | %-14s | %-14s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-16s | %-14s | %-14s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

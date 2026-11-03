@@ -1,0 +1,733 @@
+{
+  "schema_version": 1,
+  "exam": {
+    "id": "gesp_l3_wrong_07_fill",
+    "title": "模拟卷 七：参数传递 & 结构体专题（填空改造卷）",
+    "subtitle": "错题强化卷 七",
+    "total_score": 100,
+    "tags": [],
+    "prog_brief": ""
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "值传递",
+            "函数参数"
+          ],
+          "stem": "下面程序的输出是 ____。\n```\nvoid swap(int a, int b) { int t = a; a = b; b = t; }\nint main() {\n    int x = 1, y = 2;\n    swap(x, y);\n    cout << x << y;\n    return 0;\n}\n```",
+          "answer": "12",
+          "explanation": "值传递时形参 a、b 只是 x、y 的副本，函数内交换不影响实参，x 仍为 1、y 仍为 2，输出 12。g++ 验证通过。（原卷单选第 1 题，答案 A）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "引用传递",
+            "函数参数"
+          ],
+          "stem": "要让下面的 swap 函数真正交换 x、y 的值，需把形参改为引用。写出改动后的两个形参：`void swap(____) { int t = a; a = b; b = t; }`",
+          "answer": [
+            "int &a, int &b",
+            "int& a, int& b",
+            "int &a,int &b",
+            "int& a,int& b"
+          ],
+          "explanation": "引用形参是实参的别名，函数内交换 a、b 即交换 x、y。g++ 验证：改后输出 21。（原卷单选第 1 题，答案 A）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "值传递",
+            "程序阅读"
+          ],
+          "stem": "执行下面程序后，a 的值是 ____（填数字）。\n```\nvoid increaseA(int x) { x++; }\nint main() {\n    int a = 5;\n    increaseA(a);\n    return 0;\n}\n```",
+          "answer": "5",
+          "explanation": "increaseA 的形参 x 是 a 的副本，x++ 只改副本，a 仍是 5。g++ 验证通过。（原卷单选第 2 题，答案 C）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "指针参数",
+            "解引用"
+          ],
+          "stem": "执行下面程序后，a 的值是 ____（填数字）。\n```\nvoid increaseB(int* p) { (*p)++; }\nint main() {\n    int a = 5;\n    increaseB(&a);\n    return 0;\n}\n```",
+          "answer": "6",
+          "explanation": "increaseB 收到 a 的地址，(*p)++ 直接给 a 加 1，a 变为 6。g++ 验证通过。（原卷单选第 2 题，答案 C）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "引用参数",
+            "函数调用"
+          ],
+          "stem": "已知 `int f(int &x) { x += 3; return x; }` 和 `int a = 3;`，在 f(&a)、f(*a)、f(a)、f(a - 3) 四种调用中，能编译通过且能改变 a 的值的是 ____。",
+          "answer": [
+            "f(a)",
+            "f(a);"
+          ],
+          "explanation": "引用参数调用时直接写变量名。f(&a) 传的是地址，类型不匹配；a 是 int，*a 非法；a - 3 是右值，不能绑定到非 const 引用。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "引用参数"
+          ],
+          "stem": "已知 `int f(int &x) { x += 3; return x; }`，执行 `int a = 3; f(a);` 后，a 的值是 ____（填数字）。",
+          "answer": "6",
+          "explanation": "引用形参 x 是 a 的别名，x += 3 使 a 直接加 3，3 + 3 = 6。g++ 验证通过。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "值传递"
+          ],
+          "stem": "值传递时，子函数中修改形参的值，____影响调用者传入的实参（填：会/不会）。",
+          "answer": "不会",
+          "explanation": "值传递的形参是实参的副本，修改副本不影响本体。（原卷单选第 4 题，答案 A）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "引用传递"
+          ],
+          "stem": "引用传递时，子函数中修改形参的值，____影响调用者传入的实参（填：会/不会）。",
+          "answer": "会",
+          "explanation": "引用传递的形参是实参的别名，改形参就是改实参本身，原选项 C 的说法因此错误。（原卷单选第 4 题，答案 A）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "参数传递方式",
+            "引用传递"
+          ],
+          "stem": "把大型对象作为函数参数时，除了指针传递，还可以用____传递来避免拷贝整个对象（填传递方式名称）。",
+          "answer": [
+            "引用",
+            "引用传递"
+          ],
+          "explanation": "引用传递与指针传递都只传地址/绑定关系，不拷贝对象本体；值传递则完整拷贝一份。（原卷单选第 5 题，答案 D）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "值传递",
+            "函数开销"
+          ],
+          "stem": "值传递时，形参得到的是实参的一份____，因此对大型对象使用值传递开销很大。",
+          "answer": [
+            "拷贝",
+            "副本"
+          ],
+          "explanation": "值传递先复制实参再把副本交给形参，对象越大复制代价越高，这正是 A/B/C 三个'只能'说法都片面的原因。（原卷单选第 5 题，答案 D）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "结构体定义",
+            "列表初始化"
+          ],
+          "stem": "已知 `struct Person { string name; int age; };`（没有任何自定义构造函数），写出定义变量 p 并把它初始化为姓名 \"Yang\"、年龄 10 的列表初始化语句（按 Person p … 形式书写，不带 struct 前缀，末尾不加分号）：____。",
+          "answer": [
+            "Person p = {\"Yang\", 10}",
+            "Person p = {\"Yang\",10}",
+            "Person p={\"Yang\", 10}",
+            "Person p={\"Yang\",10}",
+            "Person p {\"Yang\", 10}",
+            "Person p {\"Yang\",10}",
+            "Person p{\"Yang\", 10}",
+            "Person p{\"Yang\", 10}"
+          ],
+          "explanation": "无构造函数的聚合类型用花括号列表按成员顺序初始化，`Person p = {...}` 与 `Person p{...}` 均合法。g++ 验证通过。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "结构体初始化"
+          ],
+          "stem": "结构体 Person（含 string name 和 int age）没有任何自定义构造函数时，`Person p(\"Yang\", 10);` 这种初始化写法是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "圆括号初始化是构造函数调用语法，无构造函数的聚合类型不能这样写；g++ -std=c++14 报 no matching function for call to 'Person::Person(...)'。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "结构体成员",
+            "指针访问成员"
+          ],
+          "stem": "已知 `struct Person { string name; int age; }; Person p = {\"Yang\", 10}; Person* pp = &p;`，访问 pp 所指对象的 name 成员的表达式是 ____。",
+          "answer": [
+            "pp->name",
+            "(*pp).name"
+          ],
+          "explanation": "通过指针访问成员用 -> 运算符；也可先解引用再打点：(*pp).name。g++ 验证通过。（原卷单选第 6 题，答案 C 延伸）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "动态数组",
+            "new 运算符"
+          ],
+          "stem": "要动态创建包含 20 个 Student 的数组，接收 `new Student[20]` 返回值的变量声明应写作 ____（变量名用 students）。",
+          "answer": [
+            "Student* students",
+            "Student *students"
+          ],
+          "explanation": "new Student[20] 返回指向数组首元素的指针，必须用指针变量接收；原 D 项 `Student students = new Student[20];` 少写 *，无法编译。（原卷单选第 7 题，答案 D）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "动态数组",
+            "delete 运算符"
+          ],
+          "stem": "用 `Student* students = new Student[20];` 动态分配数组后，不再使用时释放该数组的语句是 ____。",
+          "answer": [
+            "delete[] students;",
+            "delete [] students;",
+            "delete[] students",
+            "delete [] students",
+            "delete []students;",
+            "delete []students"
+          ],
+          "explanation": "new[] 分配的数组要用 delete[] 释放；只写 delete 仅释放首元素，属未定义行为。（原卷单选第 7 题，答案 D）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "数组形参",
+            "数组退化"
+          ],
+          "stem": "函数头为 `void printArray(int arr[3][4])` 时，函数体内 `sizeof(arr)` 等于一个____的大小，而不是整个二维数组的总字节数。",
+          "answer": [
+            "指针",
+            "pointer"
+          ],
+          "explanation": "数组形参会退化为指针（这里是指向长度为 4 的一维数组的指针），sizeof 求的是指针自身大小。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "sizeof",
+            "二维数组"
+          ],
+          "stem": "64 位机器上 sizeof(int) 为 4，main 中定义 `int a[3][4];`，则 sizeof(a) 为 ____ 字节。",
+          "answer": "48",
+          "explanation": "在 main 中 a 是真正的数组：3 × 4 × 4 = 48 字节。g++ 验证输出 48。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "数组形参",
+            "sizeof"
+          ],
+          "stem": "64 位机器上（sizeof(int*) = 8），已知函数 `void printArray(int arr[3][4])`，main 中 `int a[3][4];`，调用 printArray(a) 后，函数体内 sizeof(arr) 为 ____ 字节。",
+          "answer": "8",
+          "explanation": "arr 已退化为指针，sizeof(arr) 得到指针大小 8 字节。g++ 验证输出 8（编译器同时给出 sizeof-array-argument 警告）。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "引用参数"
+          ],
+          "stem": "冒泡排序中已定义 `void swap(int &a, int &b) { int t = a; a = b; b = t; }`，主循环中当 `if (a[j] > a[j+1])` 成立时，横线处应填入的语句是 ____。\n```\nif (a[j] > a[j+1]) {\n    ____\n}\n```",
+          "answer": [
+            "swap(a[j], a[j+1]);",
+            "swap(a[j],a[j+1]);",
+            "swap(a[j], a[j+1])",
+            "swap(a[j],a[j+1])"
+          ],
+          "explanation": "swap 是引用参数，直接传数组元素即可原地交换；D 项 swap(j, j+1) 交换的是下标而不是元素，毫无作用。（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "变量交换",
+            "临时变量"
+          ],
+          "stem": "手工交换 a[j] 与 a[j+1] 时用临时变量 t：`int t = a[j]; a[j] = a[j+1]; ____;`，补全第三条语句。",
+          "answer": [
+            "a[j+1] = t;",
+            "a[j+1]=t;",
+            "a[j+1] = t",
+            "a[j+1]=t"
+          ],
+          "explanation": "前两句已把 a[j] 存入 t、用 a[j+1] 覆盖 a[j]，第三句须把 t 存回 a[j+1]；原 B 项第二句写 `a[j+1] = a[j];` 覆盖错了对象。（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "结构体引用参数"
+          ],
+          "stem": "已知 `struct Point { int x, y; }; void move(Point& p) { p.x++; p.y++; }`，执行 `Point pt = {1, 2}; move(pt);` 后，pt.x 的值是 ____。",
+          "answer": "2",
+          "explanation": "引用参数 p 是 pt 的别名，p.x++ 直接修改 pt.x，1 + 1 = 2。g++ 验证通过。（原卷单选第 10 题，答案 A）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "结构体值传递"
+          ],
+          "stem": "已知 `struct Point { int x, y; }; void move(Point p) { p.x++; p.y++; }`（值传递参数），执行 `Point pt = {1, 2}; move(pt);` 后，pt.x 的值是 ____。",
+          "answer": "1",
+          "explanation": "值传递时 move 得到的是 pt 的副本，修改副本不影响 pt，pt.x 仍为 1。g++ 验证通过。（原卷单选第 10 题，答案 A）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "const 指针",
+            "只读访问"
+          ],
+          "stem": "已知函数 `void f(const int* p)`，在 `*p = 10;` 与 `int v = *p;` 两个操作中，f 内部合法的是 ____。",
+          "answer": [
+            "int v = *p;",
+            "int v = *p"
+          ],
+          "explanation": "const int* 限制的是通过 p 写入，读取不受限制；`*p = 10;` 在 g++ 下报 assignment of read-only location。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "const 指针"
+          ],
+          "stem": "`const int* p` 指向 int 变量 a 时，语句 `*p = 10;` 是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "const int* p 中 const 修饰所指的值，通过 p 只读；若想让指针改指别处（p = &b;）反而合法。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "函数重载"
+          ],
+          "stem": "两个函数要构成重载，必须它们的____（类型或个数）不同。",
+          "answer": [
+            "参数列表",
+            "形参列表",
+            "参数"
+          ],
+          "explanation": "重载的判定依据是参数列表不同（类型、个数或顺序），与函数名相同、返回值无关。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "函数重载",
+            "返回值类型"
+          ],
+          "stem": "仅返回值类型不同、参数列表完全相同的两个函数____构成重载（填：能/不能）。",
+          "answer": [
+            "不能",
+            "不可以"
+          ],
+          "explanation": "返回值类型不参与重载决议；`int g(int x);` 与 `double g(int x);` 同时定义会因重复声明/重定义而编译失败。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "函数定义",
+            "返回值"
+          ],
+          "stem": "已知 `float square(float x) { return x * x; }`，执行 `float area = square(2);` 后，area 的值是 ____。",
+          "answer": [
+            "4",
+            "4.0"
+          ],
+          "explanation": "square(2) 返回 2 × 2 = 4。g++ 验证输出 4。（原卷单选第 13 题，答案 D）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "返回值类型"
+          ],
+          "stem": "若把函数头写成 `void square(float x) { return x * x; }`，返回类型是错误的；要使函数体能 `return x * x;`，返回类型应改为 ____。",
+          "answer": "float",
+          "explanation": "void 函数不能返回值；x * x 是 float 类型，返回类型应声明为 float。（原卷单选第 13 题，答案 D）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "const 引用",
+            "参数传递"
+          ],
+          "stem": "传递字符串参数时写成 `____ string& s`（填关键字），既能避免拷贝，又能防止函数内意外修改 s。",
+          "answer": "const",
+          "explanation": "const 引用是传大型对象的标准写法：引用避免拷贝，const 禁止修改。（原卷单选第 14 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "const 形参"
+          ],
+          "stem": "函数头为 `void f(const int n)` 时，函数体内语句 `n = 5;` 是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "const 修饰的值传递形参在函数体内不可再赋值，g++ 报 assignment of read-only parameter 'n'，这正是 const 防止意外修改的作用。（原卷单选第 14 题，答案 B）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "const 指针",
+            "结构体数组"
+          ],
+          "stem": "Student 只含 int id 和 int score。若函数参数声明为 `const Student* students`，则函数体内语句 `students[i].score += 10;` 是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "const Student* 使所指数组元素只读，g++ 报 assignment of member 'Student::score' in read-only object，因此无法达到统一加 10 分的目的。（原卷单选第 15 题，答案 C）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "值传递",
+            "程序阅读"
+          ],
+          "stem": "下面程序的输出是 ____。\n```\nvoid g(int v) { v = 100; }\nint main() {\n    int a = 1;\n    g(a);\n    cout << a;\n    return 0;\n}\n```",
+          "answer": "1",
+          "explanation": "值传递形参 v 是 a 的副本，v = 100 不影响 a。g++ 验证输出 1。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "引用传递",
+            "程序阅读"
+          ],
+          "stem": "下面程序的输出是 ____。\n```\nvoid g(int& v) { v = 100; }\nint main() {\n    int a = 1;\n    g(a);\n    cout << a;\n    return 0;\n}\n```",
+          "answer": "100",
+          "explanation": "引用形参 v 是 a 的别名，v = 100 直接改 a。g++ 验证输出 100。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "形参与内存"
+          ],
+          "stem": "函数没有被调用时，它的形参____占用内存（填：占/不占）。",
+          "answer": "不占",
+          "explanation": "形参是函数的局部变量，只有调用发生时才在栈上分配。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "形参与内存",
+            "函数调用"
+          ],
+          "stem": "函数形参所占的内存在函数调用____时释放（填：开始/结束）。",
+          "answer": "结束",
+          "explanation": "形参生命周期与一次调用相同：调用开始分配、返回时释放。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "引用参数",
+            "函数调用"
+          ],
+          "stem": "函数声明为 `void f(int &x)`，用变量 a 调用它时，调用处____写 & 符号（填：需要/不需要）。",
+          "answer": [
+            "不需要",
+            "不用",
+            "无需"
+          ],
+          "explanation": "声明中的 & 表示 x 是引用；调用处直接写 f(a)，编译器自动把 x 绑定为 a 的别名。只有指针参数才需要传地址。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "指针参数",
+            "函数调用"
+          ],
+          "stem": "已知 `int f(int *x)`（指针参数）和 `int a = 3;`，正确的调用写法是 ____（按 f(…) 形式书写）。",
+          "answer": [
+            "f(&a)",
+            "f(&a);"
+          ],
+          "explanation": "指针参数要接收地址，调用处传 &a，函数内通过 *x 访问 a。g++ 验证通过。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "结构体成员"
+          ],
+          "stem": "已知 `struct Person { string name; int age; }; Person p = {\"Yang\", 10};`，要输出 p 的年龄，应写 `cout << ____;`。",
+          "answer": [
+            "p.age",
+            "p.age;"
+          ],
+          "explanation": "结构体变量用点运算符访问成员。g++ 验证输出 10。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "列表初始化"
+          ],
+          "stem": "`Person p = {\"Yang\", 10};` 这种用花括号按成员顺序逐个初始化的写法称为____初始化。",
+          "answer": [
+            "列表",
+            "花括号",
+            "大括号",
+            "聚合"
+          ],
+          "explanation": "即列表（花括号）初始化，也叫聚合初始化，适用于没有自定义构造函数的聚合类型。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "new 运算符",
+            "指针"
+          ],
+          "stem": "`Student students = new Student[20];` 无法通过编译，原因是 new 运算符返回的是一个____，而 students 没有被定义成这种类型。",
+          "answer": [
+            "指针",
+            "pointer"
+          ],
+          "explanation": "new Student[20] 返回 Student* 类型的指针，必须用指针变量接收：Student* students = new Student[20];。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "new 运算符"
+          ],
+          "stem": "动态创建一个单独的 Student 对象并让指针 s 指向它的语句是 `Student* s = ____;`",
+          "answer": [
+            "new Student",
+            "new Student;"
+          ],
+          "explanation": "创建单个对象用 new Student（不带方括号）；new Student[20] 创建的才是数组。g++ 验证通过。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "指针运算",
+            "运算符优先级"
+          ],
+          "stem": "已知指针 `int* p` 指向 int 型变量，语句 `*p++;` 按优先级等价于 `*(p++)`，它把____加 1（填：p 所指向的值 / p 本身）。",
+          "answer": [
+            "p 本身",
+            "p本身",
+            "指针 p",
+            "指针p",
+            "指针 p 本身"
+          ],
+          "explanation": "后缀 ++ 优先级高于 *，*p++ 使 p 改指下一个位置；要给所指值加 1 应写 (*p)++。g++ 验证通过。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "默认参数",
+            "函数重载"
+          ],
+          "stem": "`int calculate(int x, int y = 10);` 与 `int calculate(int x);` 同时存在时，调用 `calculate(5);` 会让编译器产生____（填：歧义/重定义/越界）错误。",
+          "answer": [
+            "歧义",
+            "二义性"
+          ],
+          "explanation": "calculate(5) 既能匹配 calculate(int)，也能匹配 calculate(int, int)（y 取默认值 10），编译器无法抉择；g++ 报 call of overloaded 'calculate(int)' is ambiguous。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "默认参数"
+          ],
+          "stem": "函数声明 `int f(int a = 1, int b);` 中默认参数的写法是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "默认参数必须从参数列表最右侧连续设置；g++ 报 default argument missing for parameter 2。应写成 int f(int a, int b = 1);。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "数组参数",
+            "数组退化"
+          ],
+          "stem": "已知 `int a[5];` 和 `void g(int arr[]);`，调用 g(a) 时，实际传给形参的是数组的____。",
+          "answer": [
+            "首元素地址",
+            "首地址",
+            "数组首地址",
+            "第一个元素的地址"
+          ],
+          "explanation": "数组名作实参时退化为指向首元素的指针，传的是地址而不是整个数组的拷贝。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "数组参数"
+          ],
+          "stem": "数组作为实参传入函数后，在函数体内修改数组元素，____改变外面的原数组（填：会/不会）。",
+          "answer": "会",
+          "explanation": "形参拿到的是实参数组的首地址，通过地址读写 arr[i] 就是直接操作原数组。g++ 验证通过。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "结构体赋值"
+          ],
+          "stem": "已知 `Student s1, s2;`（同一结构体类型的变量），语句 `s1 = s2;` 是____的（填：合法/非法）。",
+          "answer": [
+            "合法",
+            "正确",
+            "允许"
+          ],
+          "explanation": "结构体变量支持整体赋值，编译器生成逐成员拷贝。g++ 验证通过。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "结构体数组",
+            "数组赋值"
+          ],
+          "stem": "已知 `Student a[20], b[20];` 两个数组，用 `a = b;` 直接整体赋值数组是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "数组名是常量地址，不支持 = 整体赋值，g++ 报 invalid array assignment，需逐元素拷贝。注：原判断题整句表述（结构体变量可 = 赋值、数组不能）实际是正确的，但原卷答案键标为'×'；本改造以真实语言规则为准。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "const 指针"
+          ],
+          "stem": "已定义 `int* const p = &a;`，语句 `p = &b;` 是____的（填：合法/非法）。",
+          "answer": [
+            "非法",
+            "不合法",
+            "错误"
+          ],
+          "explanation": "int* const p 中 const 修饰指针本身，p 恒指向 a 不能改指；g++ 报 assignment of read-only variable 'p'。而 *p = 10; 是合法的。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "const 指针",
+            "初始化"
+          ],
+          "stem": "`int* const p` 是常量指针，声明时必须对它进行____，否则无法通过编译。",
+          "answer": [
+            "初始化",
+            "赋初值"
+          ],
+          "explanation": "const 对象不能事后再赋值，只能在定义时初始化；g++ 对未初始化的 int* const p 报 uninitialized 'const p'。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "学生成绩结构体处理",
+          "knowledge": [],
+          "stem": "定义结构体 Student（包含姓名 name 和成绩 score）。输入 n 名学生信息后，请把每个人的成绩加上 5 分的奖励分（上限 100 分，超过 100 按 100 计），并输出调整后的所有学生信息（要求用引用或指针方式修改，不能重新构造新数组）。",
+          "input_format": "第一行一个整数 n；接下来 n 行，每行一个姓名和一个整数成绩。",
+          "output_format": "输出 n 行，每行为调整后的 \"姓名 成绩\"。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "3\nAlice 90\nBob 98\nCathy 60",
+              "output": "Alice 95\nBob 100\nCathy 65"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"学生成绩结构体处理\"(mock7 编程题1)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock7_p1_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock7_p1_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"3\\nAlice 90\\nBob 98\\nCathy 60\\n\", \"Alice 95\\nBob 100\\nCathy 65\"},\n        {\"1\\nZoe 0\\n\", \"Zoe 5\"},\n        {\"2\\nA 100\\nB 96\\n\", \"A 100\\nB 100\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 学生成绩结构体处理 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-22s | %-24s | %-24s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            std::string exp = cases[idx].expected;\n            for (auto& c : exp) if (c == '\\n') c = '|';\n            std::string act = actualOutputs[idx];\n            for (auto& c : act) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-22s | %-24s | %-24s\\n\",\n                   idx + 1, trim(in).c_str(), exp.c_str(), act.c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "自定义 Swap 与数组去重",
+          "knowledge": [],
+          "stem": "输入 n 个整数（顺序不一定有序），请先用引用参数手写一个 swap 函数，用它实现选择排序把数组按升序排好，再去除相邻的重复元素（去重后保持升序），输出去重后的结果。",
+          "input_format": "第一行一个整数 n（1 ≤ n ≤ 1000）；第二行 n 个整数。",
+          "output_format": "输出一行，升序排列且去重后的整数序列，用空格分隔。",
+          "constraints": "",
+          "samples": [
+            {
+              "input": "7\n3 1 2 3 1 5 2",
+              "output": "1 2 3 5"
+            }
+          ],
+          "answer": {
+            "reference_code": "",
+            "solution": "",
+            "test_program": "// 测试程序：验证\"自定义Swap与数组去重\"(mock7 编程题2)考生程序的正确性\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/mock7_p2_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/mock7_p2_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    if (system(cmd.c_str()) != 0) { }\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"7\\n3 1 2 3 1 5 2\\n\", \"1 2 3 5\"},\n        {\"1\\n9\\n\", \"9\"},\n        {\"5\\n2 2 2 2 2\\n\", \"2\"},\n        {\"6\\n6 5 4 3 2 1\\n\", \"1 2 3 4 5 6\"},\n    };\n\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        std::string actual = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = actual;\n        if (actual == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 自定义Swap与数组去重 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-20s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = '|';\n            printf(\"%-4d | %-20s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}
