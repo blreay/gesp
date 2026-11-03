@@ -28,7 +28,25 @@ const post = (base, url, body) =>
   authFetch(base + url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}) }).then(r => r.json().then(d => ({ status: r.status, body: d })));
 const get = (base, url) => authFetch(base + url).then(r => r.json().then(d => ({ status: r.status, body: d })));
 
-test('api 考试流: start → 存答案 → 交卷门槛（客观题须全答）→ 判卷', async () => {
+// 创建普通用户 kid 并登录，返回带其会话的 POST 助手（用于角色相关断言，如交卷门槛）
+async function kidSession(base) {
+  await post(base, '/api/users', { username: 'kid', password: 'kid12345', role: 'user' });
+  const lr = await fetch(base + '/api/auth/login', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username: 'kid', password: 'kid12345' })
+  });
+  const sc = lr.headers.getSetCookie ? lr.headers.getSetCookie() : [lr.headers.get('set-cookie')];
+  const cookie = String((sc && sc[0]) || '').split(';')[0];
+  return {
+    cookie,
+    post: (url, body) => fetch(base + url, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', Cookie: cookie },
+      body: JSON.stringify(body || {})
+    }).then(r => r.json().then(d => ({ status: r.status, body: d })))
+  };
+}
+
+test('api 考试流: start → 存答案 → 交卷门槛（普通用户客观题须全答）→ 判卷', async () => {
   const { dir, bank, db, server, base } = await setup();
 
   let r = await post(base, '/api/exams/test_paper_01/start');
@@ -44,8 +62,9 @@ test('api 考试流: start → 存答案 → 交卷门槛（客观题须全答�
   r = await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
   assert.strictEqual(r.body.ok, true);
 
-  // 客观题未完成 → 拒绝交卷，返回缺失清单
-  r = await post(base, '/api/attempts/1/grade', { auto: false });
+  // 普通用户：客观题未完成 → 拒绝交卷，返回缺失清单（管理员不受此门槛限制，见下）
+  const kid = await kidSession(base);
+  r = await kid.post('/api/attempts/1/grade', { auto: false });
   assert.strictEqual(r.status, 400);
   assert.ok(r.body.error.includes('未作答'));
   assert.deepStrictEqual(r.body.missing, ['选择题 第 2 题', '判断题 第 1 题']);
@@ -83,8 +102,9 @@ test('api: 时间已到不自动交卷，仍可继续作答并交卷', async () 
   // 超时后仍可存答案
   let r = await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
   assert.strictEqual(r.status, 200);
-  // 客观题未答完 → 交卷仍被拒
-  r = await post(base, '/api/attempts/1/grade', {});
+  // 普通用户：客观题未答完 → 交卷仍被拒（门槛不因超时放开；管理员可随时交卷）
+  const kid = await kidSession(base);
+  r = await kid.post('/api/attempts/1/grade', {});
   assert.strictEqual(r.status, 400);
   await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
   await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
@@ -93,6 +113,33 @@ test('api: 时间已到不自动交卷，仍可继续作答并交卷', async () 
   assert.strictEqual(r.body.scored.total, 50);
   assert.strictEqual(r.body.autoSubmitted, false); // 超时交卷不算自动交卷
   server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
+test('api: 管理员可随时交卷——客观题未答完也能交，未答题按未作答计 0 分', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  try {
+    let r = await post(base, '/api/exams/test_paper_01/start');
+    assert.strictEqual(r.status, 200);
+    const attId = r.body.attemptId;
+    await post(base, `/api/attempts/${attId}/answers`, { questionId: 'q1', answer: 'B' }); // 只答 1 题
+    // 同样的状态普通用户会被 400 拦截（门槛仍在），管理员直接放行
+    const kid = await kidSession(base);
+    r = await kid.post(`/api/attempts/${attId}/grade`, {});
+    assert.strictEqual(r.status, 400);
+    r = await post(base, `/api/attempts/${attId}/grade`, {});
+    assert.strictEqual(r.status, 200, '管理员交卷不受客观题门槛限制');
+    assert.strictEqual(r.body.scored.total, 20);            // 仅 q1 得分
+    assert.deepStrictEqual(r.body.unanswered, ['q2', 'q3']); // 未答题照常列出
+    const byQid = Object.fromEntries(r.body.results.map(x => [x.qid, x]));
+    assert.strictEqual(byQid.q2.skipped, true);
+    assert.strictEqual(byQid.q3.skipped, true);
+    assert.deepStrictEqual(r.body.wrongAdded, [], '未作答题不应计入错题');
+    // 管理员提前交卷同样写入历史快照
+    const html = await (await authFetch(base + '/exam/test_paper_01/history')).text();
+    assert.ok(html.includes('共 1 条记录'), '交卷成功应生成历史记录');
+  } finally {
+    server.close(); db.close(); rmrf(dir); rmrf(bank);
+  }
 });
 
 test('api 考试流: 错题写入与升级；重复 start 返回原 attempt', async () => {
@@ -553,8 +600,9 @@ test('api 填空题流: 存答案 → 预览 → 交卷门槛 → score_fill 落
   assert.strictEqual(r.body.scored.total, 2);
   assert.deepStrictEqual(r.body.unanswered, ['f3']);
 
-  // f3 空串=未答 → 交卷被拒
-  r = await post(base, `/api/attempts/${attId}/grade`, { auto: false });
+  // 普通用户：f3 空串=未答 → 交卷被拒（管理员不受门槛限制，见专门用例）
+  const kid = await kidSession(base);
+  r = await kid.post(`/api/attempts/${attId}/grade`, { auto: false });
   assert.strictEqual(r.status, 400);
   assert.ok(r.body.error.includes('未作答'));
   assert.deepStrictEqual(r.body.missing, ['填空题 第 3 题']);

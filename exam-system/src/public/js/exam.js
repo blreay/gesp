@@ -36,7 +36,8 @@
       const el = document.getElementById('countdown');
       el.textContent = '时间已到';
       el.classList.add('danger');
-      App.toast('⏰ 考试时间已到，不会自动交卷；完成全部客观题后请手动交卷', true);
+      App.toast(IS_ADMIN ? '⏰ 考试时间已到，不会自动交卷；管理员可随时手动交卷'
+        : '⏰ 考试时间已到，不会自动交卷；完成全部客观题后请手动交卷', true);
       renderProgStatus();
       bindActions();
       updateHandinState();
@@ -61,7 +62,7 @@
     document.getElementById('btnBackToAnswer').addEventListener('click', () => hideModal('missingModal'));
   }
 
-  // ---- 交卷门槛：客观题（选择/判断/填空）全部作答后才允许交卷，编程题不计入 ----
+  // ---- 交卷门槛：普通用户须答完全部客观题（选择/判断/填空，编程题不计入）才能交卷；管理员可随时交卷 ----
   function objectiveTotal() {
     let n = 0;
     for (const sec of EXAM.sections) for (const q of sec.questions) if (q.type !== 'programming') n++;
@@ -77,10 +78,12 @@
       pill.textContent = '客观题 ' + (total - missing.length) + ' / ' + total;
       pill.classList.toggle('done', missing.length === 0);
     }
-    btn.disabled = !PAGE.attemptId || missing.length > 0;
+    // 管理员可随时交卷（未答客观题不计分）；普通用户须答完全部客观题
+    btn.disabled = !PAGE.attemptId || (!IS_ADMIN && missing.length > 0);
     btn.title = !PAGE.attemptId ? '请先开始答题'
-      : missing.length ? '还有 ' + missing.length + ' 道客观题未作答，不能交卷'
-      : '交卷（最终判分）';
+      : !missing.length ? '交卷（最终判分）'
+      : IS_ADMIN ? '还有 ' + missing.length + ' 道客观题未作答；管理员可随时交卷（未答不计分）'
+      : '还有 ' + missing.length + ' 道客观题未作答，不能交卷';
   }
 
   async function startExam() {
@@ -237,10 +240,14 @@
   // ---- 交卷（终局）----
   async function handin() {
     if (graded || handing) return;
-    // 客观题未全部作答不允许交卷（按钮已置灰，这里再兜底一次；服务端同样校验）
+    // 普通用户客观题未全部作答不允许交卷（按钮已置灰，这里再兜底一次；服务端同样校验）；
+    // 管理员可随时交卷，未答完时给出明确确认提示
     const missing = collectUnanswered();
-    if (missing.length) { App.toast('还有 ' + missing.length + ' 道客观题未作答，不能交卷', true); return; }
-    if (!confirm('交卷后将最终判分，不能再作答。确定交卷吗？')) return;
+    if (missing.length && !IS_ADMIN) { App.toast('还有 ' + missing.length + ' 道客观题未作答，不能交卷', true); return; }
+    const confirmMsg = missing.length
+      ? '还有 ' + missing.length + ' 道客观题未作答，未答题将不计分。\n交卷后将最终判分，不能再作答。确定交卷吗？'
+      : '交卷后将最终判分，不能再作答。确定交卷吗？';
+    if (!confirm(confirmMsg)) return;
     if (!PAGE.attemptId) { App.toast('请先开始答题', true); return; }
     if (pendingSaves.size) await Promise.allSettled([...pendingSaves]);
     handing = true;

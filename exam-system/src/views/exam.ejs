@@ -95,7 +95,7 @@
     <div class="modal-note">
       · 考试时长 <%= Math.round(page.durationMs / 60000) %> 分钟，点击开始后立即倒计时<br>
       · 中途关闭页面不暂停计时，可重新进入续答<br>
-      · 倒计时结束不会自动交卷；完成全部客观题（编程题除外）后方可交卷
+      · 倒计时结束不会自动交卷；<% if (typeof user !== 'undefined' && user && user.role === 'admin') { %>管理员可随时交卷，未答客观题不计分<% } else { %>完成全部客观题（编程题除外）后方可交卷<% } %>
     </div>
     <div style="margin-top:18px"><button class="btn btn-primary" id="btnStart">开始答题</button></div>
   </div>

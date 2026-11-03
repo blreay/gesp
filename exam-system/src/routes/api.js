@@ -185,9 +185,10 @@ router.post('/attempts/:attemptId/grade', asyncH(async (req, res) => {
   const exam = qb.getExam(att.exam_id);
   if (!exam) return res.status(404).json({ error: '试卷不存在' });
 
-  // 交卷门槛：客观题必须全部作答（编程题除外）；时间到后不自动交卷，补答完仍可交
+  // 交卷门槛：客观题必须全部作答（编程题除外）；时间到后不自动交卷，补答完仍可交。
+  // 例外：管理员可随时交卷，未答客观题按"未作答"计 0 分。
   const missing = unansweredObjective(exam, sessions.answersOf(att.id));
-  if (missing.length) {
+  if (missing.length && !isAdmin(req)) {
     return res.status(400).json({
       error: '还有 ' + missing.length + ' 道客观题未作答，不能交卷',
       missing: missing.map(m => m.label)
