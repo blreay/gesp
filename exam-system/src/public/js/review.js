@@ -75,40 +75,8 @@
       i % 2 === 1 ? '<pre>' + escHtml(part.replace(/^\n/, '')) + '</pre>' : escHtml(part)
     ).join('');
   }
-  // 简单的 markdown 渲染器（先整体转义再注入受控标签，避免 XSS）。
-  // 支持：#~###### 标题、**加粗**、*斜体*、`行内码`、``` 代码块、- / 1. 列表、> 引用、--- 分隔线、[文字](http链接)。
-  function renderMarkdown(src) {
-    const blocks = [];
-    // 先把围栏代码块抽出来用占位符替代，避免被后续行级规则拆散
-    let text = String(src).replace(/```[^\n]*\n?([\s\S]*?)```/g, (m, code) => {
-      blocks.push(code.replace(/\n$/, ''));
-      return '\u0000CB' + (blocks.length - 1) + '\u0000';
-    });
-    text = escHtml(text);
-    const inline = (s) => s
-      .replace(/`([^`\n]+)`/g, '<code>$1</code>')
-      .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>')
-      .replace(/\[([^\]\n]+)\]\(([^)\s]+)\)/g, (m, t, url) =>
-        /^https?:\/\//i.test(url) ? '<a href="' + url + '" target="_blank" rel="noopener">' + t + '</a>' : m);
-    const out = [];
-    let list = null; // 'ul' | 'ol'
-    const closeList = () => { if (list) { out.push('</' + list + '>'); list = null; } };
-    for (const raw of text.split('\n')) {
-      const cb = raw.match(/^\u0000CB(\d+)\u0000\s*$/);
-      if (cb) { closeList(); out.push('<pre><code>' + escHtml(blocks[+cb[1]]) + '</code></pre>'); continue; }
-      let m;
-      if ((m = raw.match(/^(#{1,6})\s+(.+)$/))) { closeList(); out.push('<h' + m[1].length + '>' + inline(m[2]) + '</h' + m[1].length + '>'); continue; }
-      if (/^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/.test(raw)) { closeList(); out.push('<hr>'); continue; }
-      if ((m = raw.match(/^&gt;\s?(.*)$/))) { closeList(); out.push('<blockquote>' + inline(m[1]) + '</blockquote>'); continue; }
-      if ((m = raw.match(/^\s*[-*+]\s+(.+)$/))) { if (list !== 'ul') { closeList(); out.push('<ul>'); list = 'ul'; } out.push('<li>' + inline(m[1]) + '</li>'); continue; }
-      if ((m = raw.match(/^\s*\d+[.)]\s+(.+)$/))) { if (list !== 'ol') { closeList(); out.push('<ol>'); list = 'ol'; } out.push('<li>' + inline(m[1]) + '</li>'); continue; }
-      if (raw.trim() === '') { closeList(); continue; }
-      closeList(); out.push('<p>' + inline(raw) + '</p>');
-    }
-    closeList();
-    return out.join('\n');
-  }
+  // markdown 渲染器已提取到 common.js 的 App.renderMarkdown（考试讲评页悬停弹窗共用同一实现）
+  const renderMarkdown = App.renderMarkdown;
   // 拆分"思考过程"与"最终答案"：模型的推理在开头，正式解析从第一个标题/分隔线开始。
   // 返回 { thinking, answer }；找不到分界则 thinking 为空、answer=全文。
   function splitThinking(text) {
@@ -317,8 +285,11 @@
     body.innerHTML = renderMarkdown(note);   // AI 备注多为 markdown，按 markdown 渲染
     notePreview.appendChild(t);
     notePreview.appendChild(body);
-    const rect = card.getBoundingClientRect();
     notePreview.style.display = 'block';
+    // 宽屏：停靠页面左侧空白区，覆盖内容列左边的全部空白（导航栏以下整个视口高度）
+    if (App.dockLeft(notePreview, document.querySelector('.page-main'))) return;
+    // 窄屏回退：定位在卡片附近
+    const rect = card.getBoundingClientRect();
     const pw = notePreview.offsetWidth, ph = notePreview.offsetHeight;
     let left = Math.min(rect.left, window.innerWidth - pw - 12);
     let top = rect.bottom + 8;
@@ -332,6 +303,9 @@
     if (overPreview(e.clientX, e.clientY)) return;
     const card = e.target.closest('.wrong-card');
     if (!card) return;
+    // 停靠态下指针正明显向左移动（滑向左侧弹窗）：途经其它卡片不切换内容
+    if (notePreview.classList.contains('dock-left') && notePreview.style.display !== 'none' &&
+        (e.movementX || 0) < -3) { cancelHidePreview(); return; }
     cancelHidePreview();
     showNotePreview(card);
   });

@@ -335,6 +335,7 @@
     }
     if (!isPreview) {
       lockAll();
+      bindWrongHover(); // 正式交卷/讲评态：悬停错题在左侧空白区弹出 AI 解析
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -352,6 +353,90 @@
       const inp = q.querySelector('.fill-input');
       if (inp) inp.readOnly = true;
     });
+  }
+
+  // ---- 讲评态悬停错题：左侧空白区弹出 AI 解析/备注（样式与复习页悬浮窗一致）----
+  let notePanel = null, noteHideTimer = null, noteQid = null;
+  let wrongNotes = null, notesFetching = null, hoverBound = false;
+
+  function loadWrongNotes(force) {
+    if (wrongNotes && !force) return Promise.resolve(wrongNotes);
+    if (!notesFetching) {
+      notesFetching = App.getJSON('/api/exams/' + encodeURIComponent(PAGE.examId) + '/wrong-notes')
+        .then(d => { wrongNotes = (d && d.notes) || {}; return wrongNotes; })
+        .catch(() => ({}))
+        .finally(() => { notesFetching = null; });
+    }
+    return notesFetching;
+  }
+  async function noteOf(qid) {
+    let notes = await loadWrongNotes(false);
+    // 缓存里没有：自动 AI 解析可能在交卷后才生成完毕，强刷一次再取
+    if (!notes[qid]) notes = await loadWrongNotes(true);
+    return notes[qid];
+  }
+  function hideNotePanel() { if (notePanel) notePanel.style.display = 'none'; }
+  function ensureNotePanel() {
+    if (notePanel) return notePanel;
+    notePanel = document.createElement('div');
+    notePanel.className = 'note-preview';
+    notePanel.style.display = 'none';
+    document.body.appendChild(notePanel);
+    // 鼠标移到弹窗上时保持显示（可复制/滚动）；移开延时隐藏
+    notePanel.addEventListener('mouseenter', () => clearTimeout(noteHideTimer));
+    notePanel.addEventListener('mouseleave', () => { noteHideTimer = setTimeout(hideNotePanel, 250); });
+    return notePanel;
+  }
+  // 指针是否落在当前已显示弹窗的矩形范围内
+  const overNotePanel = (x, y) => {
+    if (!notePanel || notePanel.style.display === 'none') return false;
+    const r = notePanel.getBoundingClientRect();
+    return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+  };
+  async function showQuestionNote(qid) {
+    noteQid = qid;
+    const n = await noteOf(qid);
+    if (noteQid !== qid) return; // 等待期间已悬停到别的题，放弃本次渲染
+    const panel = ensureNotePanel();
+    panel.innerHTML = '';
+    const t = document.createElement('div');
+    t.className = 'note-preview-title';
+    t.textContent = '\u{1F4DD} AI解析' + (n && n.knowledge ? ' · ' + n.knowledge : '');
+    const body = document.createElement('div');
+    body.className = 'note-preview-body';
+    if (n && n.note && n.note.trim()) body.innerHTML = App.renderMarkdown(n.note);
+    else body.innerHTML = '<p class="np-empty">该题暂无 AI 解析/备注（自动解析可能仍在生成，稍后再悬停查看，或到错题复习页查看）。</p>';
+    panel.appendChild(t);
+    panel.appendChild(body);
+    panel.style.display = 'block';
+    // 宽屏：停靠左侧空白区（考试顶栏之下，正好覆盖卷面左边全部空白）
+    if (App.dockLeft(panel, document.querySelector('.exam-main'), document.querySelector('.exam-topbar'))) return;
+    // 窄屏回退：定位在题目附近
+    const qEl = document.querySelector(`.question[data-qid="${qid}"]`);
+    const rect = (qEl || document.body).getBoundingClientRect();
+    const pw = panel.offsetWidth, ph = panel.offsetHeight;
+    let left = Math.min(rect.left, window.innerWidth - pw - 12);
+    let top = rect.bottom + 8;
+    if (top + ph > window.innerHeight - 8) top = Math.max(8, rect.top - ph - 8);
+    panel.style.left = Math.max(8, left) + 'px';
+    panel.style.top = top + 'px';
+  }
+  function bindWrongHover() {
+    if (hoverBound) return;
+    hoverBound = true;
+    const main = document.querySelector('.exam-main');
+    main.addEventListener('mouseover', (e) => {
+      if (!graded) return;
+      if (overNotePanel(e.clientX, e.clientY)) return;
+      const q = e.target.closest('.question.wrong');
+      if (!q) return;
+      clearTimeout(noteHideTimer);
+      // 停靠态下指针正明显向左移动（滑向左侧弹窗）：途经其它题目不切换内容
+      if (notePanel && notePanel.classList.contains('dock-left') &&
+          notePanel.style.display !== 'none' && (e.movementX || 0) < -3) return;
+      showQuestionNote(q.dataset.qid);
+    });
+    main.addEventListener('mouseleave', () => { noteHideTimer = setTimeout(hideNotePanel, 250); });
   }
 
   // ---- 重新考试 ----

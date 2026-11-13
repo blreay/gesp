@@ -111,6 +111,17 @@ router.get('/exams/:examId/detail', asyncH(async (req, res) => {
   res.json(exam);
 }));
 
+// ---- 本卷错题备注（含 AI 解析）：考试页讲评态悬停错题时展示 ----
+// 可见性与错题复习页一致：所有登录用户可看（备注内容本就对全部用户在复习页展示）。
+router.get('/exams/:examId/wrong-notes', asyncH(async (req, res) => {
+  const rows = db.get().prepare('SELECT question_id, note, note_knowledge FROM wrong_questions WHERE exam_id = ?').all(req.params.examId);
+  const notes = {};
+  for (const r of rows) {
+    if (r.note && String(r.note).trim()) notes[r.question_id] = { note: r.note, knowledge: r.note_knowledge || '' };
+  }
+  res.json({ notes });
+}));
+
 // ---- 考试流 ----
 router.post('/exams/:examId/start', asyncH(async (req, res) => {
   const exam = qb.getExam(req.params.examId);

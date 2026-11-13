@@ -241,6 +241,31 @@ test('api 错题管理: 备注、手动掌握、删除', async () => {
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
 
+test('api wrong-notes: 按卷返回错题备注（考试页讲评态悬停用），普通用户可访问', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  const wb = require('../src/services/wrongbook');
+  wb.recordWrong('test_paper_01', 'q1', Date.now());
+  wb.setNote(wb.getByQuestion('test_paper_01', 'q1').id, '---\n【AI解析】\nq1 的解析', '循环');
+  wb.recordWrong('test_paper_01', 'q2', Date.now()); // 空备注：不应出现在返回里
+
+  let r = await get(base, '/api/exams/test_paper_01/wrong-notes');
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.notes.q1.note, '---\n【AI解析】\nq1 的解析');
+  assert.strictEqual(r.body.notes.q1.knowledge, '循环');
+  assert.ok(!('q2' in r.body.notes));
+  r = await get(base, '/api/exams/no_such_exam/wrong-notes');
+  assert.strictEqual(r.status, 200);
+  assert.deepStrictEqual(r.body.notes, {});
+
+  // 可见性与复习页一致：普通用户也能读取备注
+  const kid = await kidSession(base);
+  const kr = await fetch(base + '/api/exams/test_paper_01/wrong-notes', { headers: { Cookie: kid.cookie } });
+  assert.strictEqual(kr.status, 200);
+  const kj = await kr.json();
+  assert.strictEqual(kj.notes.q1.knowledge, '循环');
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
 test('api 配置: 读取、修改、白名单校验；重扫题库', async () => {
   const { dir, bank, db, server, base } = await setup();
   let r = await get(base, '/api/settings');
