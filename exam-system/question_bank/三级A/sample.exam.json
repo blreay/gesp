@@ -1,0 +1,468 @@
+{
+  "exam": {
+    "id": "gesp_l3a_sample",
+    "title": "CCF GESP C++三级样题（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["原码反码补码", "二进制编码"],
+          "stem": "负数的原码与反码按位取反（符号位除外）互为彼此。已知 -5 的 8 位二进制原码是 10000101，则它的反码是 ____（写成 8 位二进制）。",
+          "answer": "11111010",
+          "explanation": "求反码时符号位保持 1 不变，数值位 0000101 逐位取反为 1111010，拼上符号位即 11111010。（原卷单选第 1 题 A 肢）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["原码反码补码", "二进制编码"],
+          "stem": "已知 -5 的 8 位二进制原码是 10000101，则它的补码是 ____（写成 8 位二进制）。",
+          "answer": "11111011",
+          "explanation": "补码为反码加 1：反码 11111010 加 1 得 11111011；\"补码为原码加 1\"等说法均不成立。（原卷单选第 1 题，答案 A）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["位运算", "移位"],
+          "stem": "一个 int 类型的值乘以 8，等价于把这个值左移 ____ 位（填十进制整数）。",
+          "answer": "3",
+          "explanation": "左移 n 位等价于乘 2 的 n 次方，8 = 2^3，故左移 3 位；右移是除法方向。（原卷单选第 2 题，答案 A）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["位运算", "移位"],
+          "stem": "一个 int 类型的值左移 4 位，等价于把它乘以 ____（填十进制整数）。",
+          "answer": "16",
+          "explanation": "左移 4 位即乘 2^4 = 16；左移 8 位则乘 256，右移是除，均与题意不符。（原卷单选第 2 题 B/C/D 肢）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["位运算符"],
+          "stem": "C++ 中的按位与运算符是 ____（只填运算符本身）。",
+          "answer": "&",
+          "explanation": "+、-、* 是算术运算符，& 才是按位与运算符。（原卷单选第 3 题，答案 D）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["运算符分类"],
+          "stem": "C++ 中 +、-、* 这三个运算符都属于 ____ 运算符（填：位/算术）。",
+          "answer": "算术",
+          "explanation": "它们完成加减乘算术运算而非按位操作；按位运算符指 &、|、^、~、<<、>> 等。（原卷单选第 3 题 A/B/C 肢）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["数组定义"],
+          "stem": "若有 `int arr[] = {1, 2, 3, 4, 5};`，则数组 arr 的元素个数（长度）是 ____。",
+          "answer": "5",
+          "explanation": "定义时省略长度，编译器按初始化列表的元素个数推断，列表有 5 个元素故长度为 5。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "若有 `int arr[] = {1, 2, 3, 4, 5};`，则 `arr[4]` 的值是 ____（填十进制整数）。",
+          "answer": "5",
+          "explanation": "下标从 0 开始计数，arr[4] 是第 5 个元素，即 5。（原卷单选第 4 题）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["数组定义语法"],
+          "stem": "在 C++ 中定义一个长度为 5 的一维整型数组，正确语句是 ____（写出完整语句，含分号）。",
+          "answer": "int array[5];",
+          "explanation": "类型名在前、方括号紧跟标识符并写明长度才是合法语法；缺长度或把方括号放到类型与标识符之间的写法均非法。（原卷单选第 5 题，答案 A）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["数组定义语法"],
+          "stem": "`int array[];` 这样的定义不合法，因为不带初始化列表定义数组时必须写明数组的 ____。",
+          "answer": ["长度", "大小", "元素个数"],
+          "explanation": "没有初始化列表时编译器无法推断长度，必须显式给出；带初始化列表（如 int arr[] = {1, 2};）才可以省略。（原卷单选第 5 题 B 肢）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["枚举算法"],
+          "stem": "枚举算法的做法是把所有 ____ 逐个尝试并用条件检验，从而找出问题的解。",
+          "answer": ["可能的解", "所有可能的解", "候选解"],
+          "explanation": "枚举即逐一列举并检验每个候选，不依赖特殊技巧，正确性靠穷尽保证。（原卷单选第 6 题，答案 B）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["枚举算法", "算法思想"],
+          "stem": "枚举算法不依赖贪心、____ 等优化策略，实现直接但效率通常不高。",
+          "answer": ["动态规划"],
+          "explanation": "贪心与动态规划是减少搜索量的优化思想，枚举不做这类剪枝，只是逐个尝试。（原卷单选第 6 题 C/D 肢）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "十进制数 37 的二进制表示是 ____（写成二进制，如 1101 的形式）。",
+          "answer": "100101",
+          "explanation": "37 = 32 + 4 + 1 = 2^5 + 2^2 + 2^0，对应二进制 100101。（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "十进制数 36 的二进制表示是 ____（写成二进制）。",
+          "answer": "100100",
+          "explanation": "36 = 32 + 4，对应二进制 100100；与 37 的二进制相比只是最低位少一个 1。（原卷单选第 7 题同考点）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["十六进制"],
+          "stem": "十六进制共 16 个数码：0-9 以及字母 ____（写出字母范围，如 A-E 的形式）。",
+          "answer": ["A-F", "A~F", "A到F"],
+          "explanation": "十六进制用 0-9 表示 0-9、A-F 表示 10-15；只用到 A-E 或从 1 开始的说法都错。（原卷单选第 8 题，答案 A）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["十六进制"],
+          "stem": "十六进制数码 F 对应的十进制数是 ____。",
+          "answer": "15",
+          "explanation": "A-F 依次对应 10-15，F 是十六进制中最大的数码，即 15。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["字符串函数"],
+          "stem": "C++ 中获取 C 风格字符串（字符数组）长度的库函数是 ____（填函数名，不带括号）。",
+          "answer": ["strlen", "strlen()"],
+          "explanation": "对字符数组用 strlen(s) 求长度，它统计终止符之前的字符个数，源卷四个选项中以它为正确答案。（原卷单选第 9 题，答案 D）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["字符串函数"],
+          "stem": "若有 `char s[] = \"1234567\";`，则 `strlen(s)` 的返回值是 ____（结尾的终止符不计入长度）。",
+          "answer": "7",
+          "explanation": "字符串内容为 7 个可见字符，strlen 不统计终止符 '\\0'，故返回 7。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["算法描述"],
+          "stem": "描述算法的常用方式有流程图和 ____。",
+          "answer": "伪代码",
+          "explanation": "伪代码是描述算法步骤的常用工具；汇编语言、SQL、CSS 都不是算法描述方式。（原卷单选第 10 题，答案 B）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["算法描述", "计算机常识"],
+          "stem": "汇编语言、伪代码、SQL、CSS 四种描述中，SQL 是 ____ 语言，并不用于描述算法。",
+          "answer": ["数据库", "数据库查询"],
+          "explanation": "SQL 用于数据库查询与管理；CSS 用于网页样式、汇编是编程语言，三者都不用来描述算法。（原卷单选第 10 题 A/C/D 肢）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["位运算判零"],
+          "stem": "如果 a 和 b 均为 int 变量，用按位或判断 \"a 等于 0 且 b 等于 0\" 的表达式是 `((a ____ b) == 0)`（只填运算符）。",
+          "answer": "|",
+          "explanation": "a|b 把两者中出现过的 1 都保留，只有 a、b 全为 0 时 a|b 才为 0；用按位与则 a=1、b=0 时结果也是 0，无法区分。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["位运算判零"],
+          "stem": "当 a=1、b=0 时，表达式 `((a & b) == 0)` 的值为 ____（用 C++ 布尔字面量作答，全小写），可见按位与不能用来判断 \"两数都为 0\"。",
+          "answer": ["true", "1"],
+          "explanation": "1 & 0 = 0 使表达式成立，但 a 并不为 0，故 ((a&b)==0) 不能保证两者全零。（原卷单选第 11 题 B 肢）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["位运算表达式求值"],
+          "stem": "当 a=5 时，表达式 `((a - 1) | 3) + 1` 的值是 ____，它恰好是不小于 5 的最小 4 的倍数。",
+          "answer": "8",
+          "explanation": "(5-1)|3 = 4|3 = 7，7+1 = 8；该式把 a-1 的最低两位置 1 再加 1，即向上取整到 4 的倍数。（原卷单选第 12 题，答案 C）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["位运算表达式求值"],
+          "stem": "当 a=5 时，表达式 `(a << 2)` 的值是 ____；它是 a 的 4 倍，并不是 \"不小于 a 的最小 4 的倍数\"。",
+          "answer": "20",
+          "explanation": "左移 2 位即乘 4，得 20；当 a 本身不是 4 的倍数时它比目标值大，故该写法不能求\"向上取整到 4 的倍数\"。（原卷单选第 12 题 D 肢）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["流程图"],
+          "stem": "某流程图依次执行：输入 a、b、c；min=a；若 b<min 则 min=b；若 c<min 则 min=c；输出 min。该流程图的功能是输出三个数的 ____。",
+          "answer": ["最小值", "最小的数"],
+          "explanation": "逐个比较并保留更小者，三轮之后 min 中留下的是三者中最小的数。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["流程图", "程序模拟"],
+          "stem": "某流程图依次执行：输入 a、b、c；min=a；若 b<min 则 min=b；若 c<min 则 min=c；输出 min。输入 3 2 1（即 a=3、b=2、c=1）时，执行完 \"b<min?\" 的判断与赋值之后（进入 \"c<min?\" 判断之前），min 的值是 ____。",
+          "answer": "2",
+          "explanation": "min 初值为 a=3，b=2<3 成立，执行 min=b 后 min 为 2；此后 c=1<2 还会再更新一次，但本空只问到 b 步之后。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["循环边界"],
+          "stem": "设有 `char str[] = \"1234567\";` 与循环 `for (int i = 0; i <= 6; i += X) cout << str[i];`。要使输出恰好是 \"1357\"（无多余字符），X 应取 ____（填十进制整数）。",
+          "answer": "2",
+          "explanation": "需要依次输出 str[0]、str[2]、str[4]、str[6]，即 '1'、'3'、'5'、'7'，步长为 2；步长 1 会输出全部 7 个字符。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["循环边界", "字符串下标"],
+          "stem": "在 `char str[] = \"1234567\";` 中，最后一个字符 '7' 的下标是 ____（填十进制整数）。",
+          "answer": "6",
+          "explanation": "7 个字符占下标 0..6，下标 7 处存放终止符 '\\0'；循环上界取 6 才不会把终止符或越界内容输出。（原卷单选第 14 题 C/D 肢）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["异或交换"],
+          "stem": "交换 a、b 的三步位运算法为：第一步 a ← a ? b；第二步 b ← a ? b；第三步 a ← a ? b（三处 ? 为同一种位运算），执行完后 a、b 互换。该位运算是按位 ____（填：与/或/异或）。",
+          "answer": "异或",
+          "explanation": "经典异或交换：第一步后 a 保存两者异或值，第二步 b 异或它还原出原 a，第三步再异或还原出原 b；按位与、按位或都会丢失信息，无法完成互换。（原卷单选第 15 题，答案 C）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["异或运算"],
+          "stem": "若 a=11、b=17（int 类型），执行 `a = a ^ b;` 后 a 的值是 ____（填十进制整数）。",
+          "answer": "26",
+          "explanation": "11 = 01011、17 = 10001，按位异或得 11010 = 26（已用 g++ 实测）。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["原码反码补码"],
+          "stem": "负数的原码按位取反（符号位除外）得到它的 ____。",
+          "answer": "反码",
+          "explanation": "这是反码的定义；反码再加 1 才得到补码。（原卷判断第 1 题，答案 √）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["原码反码补码"],
+          "stem": "-1 的 8 位二进制补码是 ____（写成 8 位二进制）。",
+          "answer": "11111111",
+          "explanation": "-1 的原码为 10000001，反码为 11111110，补码为反码加 1 即 11111111（已用 g++ 实测）。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "C++ 中数组第一个元素的下标是 ____（填数字）。",
+          "answer": "0",
+          "explanation": "C++ 数组下标从 0 开始计数，\"从 1 开始\"的说法错误。（原卷判断第 2 题，答案 ×）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "定义 `int arr[5];` 后，最后一个元素的下标是 ____（填数字）。",
+          "answer": "4",
+          "explanation": "长度为 5 的数组下标依次为 0、1、2、3、4，最后一个是 4。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["字符串终止符"],
+          "stem": "C++ 中 C 风格字符串（字符数组）以字符 ____ 作为结束标志（写成转义形式）。",
+          "answer": ["\\0", "'\\0'"],
+          "explanation": "字符数组末尾自动补终止符 '\\0' 表示字符串结束，这是 C 风格字符串的基本约定。（原卷判断第 3 题，答案 √）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["字符串终止符"],
+          "stem": "字符数组 `char s[] = \"abc\";` 在内存中一共占 ____ 个字节（包含结束标志）。",
+          "answer": "4",
+          "explanation": "'a'、'b'、'c' 三个字符加终止符 '\\0' 共 4 字节（已用 sizeof 实测）。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["数组下标类型"],
+          "stem": "C++ 中数组下标必须是 ____ 类型（填：整数/浮点数）。",
+          "answer": ["整数", "int", "整数类型"],
+          "explanation": "下标只能是整型表达式；用浮点数作下标不合法。（原卷判断第 4 题，答案 ×）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["数组下标类型"],
+          "stem": "用 `arr[3.0]` 这样的浮点数作为数组下标，会在 ____ 时报错（填：编译/运行）。",
+          "answer": ["编译", "编译期"],
+          "explanation": "下标类型不合法属于类型错误，编译器在编译阶段就会拒绝，等不到运行。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["枚举算法"],
+          "stem": "枚举算法是一种 ____ 求解方法（填两字术语），逐个尝试所有可能的解。",
+          "answer": ["暴力", "穷举"],
+          "explanation": "枚举不借助技巧、穷尽所有候选并逐一检验，故又称暴力法或穷举法。（原卷判断第 5 题，答案 √）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["枚举算法", "复杂度"],
+          "stem": "解空间很小时枚举简单可靠；解空间过大时枚举的 ____ 开销会过高（填：时间/空间）。",
+          "answer": ["时间", "时间开销", "时间复杂度"],
+          "explanation": "枚举逐个检验候选，候选越多耗时越长；它一般只保留当前候选，不额外占用大量空间。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["位运算与符号位"],
+          "stem": "C++ 的位运算中，数的符号位 ____ 参与运算（填：会/不会）。",
+          "answer": ["会"],
+          "explanation": "位运算按二进制补码逐位进行，符号位同样是被操作的普通一位，并不豁免。（原卷判断第 6 题，答案 ×）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["位运算与符号位"],
+          "stem": "若 `int a = -1;`，则 `~a` 的值是 ____（填十进制整数）。",
+          "answer": "0",
+          "explanation": "-1 的补码所有位（含符号位）全为 1，按位取反后全为 0，即 0（已用 g++ 实测）。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["数组长度固定"],
+          "stem": "C++ 普通数组（如 `int arr[5];`）定义后，其长度 ____ 在运行时根据需要自动调整（填：能/不能）。",
+          "answer": ["不能", "不可以"],
+          "explanation": "普通数组长度固定；需要动态长度应改用 vector 等容器。（原卷判断第 7 题，答案 ×）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["数组长度固定"],
+          "stem": "普通数组的长度在 ____ 时就已经确定，之后不能改变（填：编译/运行）。",
+          "answer": ["编译", "编译期", "定义"],
+          "explanation": "int arr[5]; 中的 5 是编译期信息，栈上内存布局随之固定，运行中无法伸缩。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["十六进制"],
+          "stem": "十六进制数 0xff 的十进制值是 ____。",
+          "answer": "255",
+          "explanation": "0xff = 15×16 + 15 = 255。（原卷判断第 8 题，答案 √）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["十六进制", "关系表达式"],
+          "stem": "C++ 表达式 `(0xff == 255)` 的值为 ____（用 C++ 布尔字面量作答，全小写）。",
+          "answer": ["true", "1"],
+          "explanation": "0xff 的十进制值就是 255，两者相等，关系表达式成立（已用 g++ 实测）。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["位运算判奇偶"],
+          "stem": "若 a 为 int 变量且表达式 `((a & 1) == 0)` 的值为 true，则 a 是 ____（填：偶数/奇数）。",
+          "answer": "偶数",
+          "explanation": "a & 1 取出最低位；最低位为 0 说明能被 2 整除，即偶数。（原卷判断第 9 题，答案 √）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["位运算判奇偶"],
+          "stem": "表达式 `13 & 1` 的值是 ____（填十进制整数），故 13 是奇数。",
+          "answer": "1",
+          "explanation": "13 = 1101b，最低位为 1，与 1 按位与得 1（已用 g++ 实测）。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["移位运算"],
+          "stem": "C++ 表达式 `(7 >> 2)` 的值是 ____（填十进制整数），而不是 1.75。",
+          "answer": "1",
+          "explanation": "整数右移直接丢弃移出的低位：7 = 111b 右移 2 位得 1，不会得到小数（已用 g++ 实测）。（原卷判断第 10 题，答案 ×）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["移位运算", "类型"],
+          "stem": "C++ 中对 int 操作数做移位运算（如 `>>`），结果类型仍是 ____ 类型（填：整数/浮点）。",
+          "answer": ["整数", "int"],
+          "explanation": "移位是整数按位操作，结果仍为整型，不会产生 double。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "逛商场",
+          "knowledge": ["模拟", "顺序贪心"],
+          "source": "CCF GESP C++三级样题.pdf，第 7–8 页",
+          "stem": "小明是个不太有计划的孩子。这不，刚到手的零花钱，就全部拿着逛商场去了。小明的原则很简单，只要见到想买的物品而且能买得起，就一定会买下来之后才会继续往前走。一天下来，小明到底买了多少物品呢？",
+          "input_format": "输入共 3 行：\n第一行是一个整数 N，表示商场中共有 N 种小明想买的物品；\n第二行共有 N 个整数，分别表示小明先后看到想买的物品的价格；\n第三行是一个整数 X，表示开始时小明共有 X 元零花钱。",
+          "output_format": "输出 1 行，包含一个整数，表示小明买到的物品数。",
+          "constraints": "1≤N≤100；物品价格与 X 均为非负整数（PDF 未给更细范围，按 int 处理）；时限 1 秒，内存 256MB。",
+          "samples": [
+            {
+              "input": "6\n7 5 9 10 7 4\n30\n",
+              "output": "4\n"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <bits/stdc++.h>\nusing namespace std;\nint price[100];\nint main() {\n    int n = 0, x = 0, cnt = 0;\n    cin >> n;\n    for (int i = 0; i < n; i++)\n        cin >> price[i];\n    cin >> x;\n    for (int i = 0; i < n; i++) {\n        if (x >= price[i]) { // 买得起就买\n            x -= price[i];\n            cnt++;\n        }\n    }\n    cout << cnt;\n    return 0;\n}\n",
+            "solution": "按看到物品的顺序模拟：依次检查每件物品，若当前剩余零花钱不小于其价格就买下（零花钱减去价格、计数加 1），否则跳过继续往前走；最后输出计数。时间复杂度 O(N)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <iterator>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic int expected(const vector<int>& price, int x) {\n    int cnt = 0;\n    for (size_t i = 0; i < price.size(); ++i)\n        if (x >= price[i]) { x -= price[i]; ++cnt; }\n    return cnt;\n}\n\nstatic bool check(const string& exe, const vector<int>& price, int x, int id) {\n    const string inFile = \"l3as1_input.txt\", outFile = \"l3as1_output.txt\";\n    {\n        ofstream out(inFile);\n        out << price.size() << '\\n';\n        for (size_t i = 0; i < price.size(); ++i) out << price[i] << (i+1 == price.size() ? '\\n' : ' ');\n        out << x << '\\n';\n    }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    string output((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    istringstream parser(output);\n    int actual = -1;\n    string extra;\n    const int want = expected(price, x);\n    bool ok = code == 0 && (parser >> actual) && !(parser >> extra) && actual == want;\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": n=\" << price.size() << \", x=\" << x\n             << \", expected=\" << want << \", actual=\" << output.substr(0, 120)\n             << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    struct Case { vector<int> price; int x; };\n    vector<Case> tests = {\n        {{7, 5, 9, 10, 7, 4}, 30},  // PDF 样例 -> 4\n        {{5}, 5}, {{6}, 5}, {{1, 2, 3}, 0}, {{1, 2, 3, 4}, 10},\n        {{5, 6, 7}, 4}, {{10, 1, 1, 1, 1}, 10}, {{100, 100, 100}, 300}\n    };\n    unsigned seed = 20261114u;\n    for (int trial = 0; trial < 8; ++trial) {\n        int n = trial == 7 ? 100 : 2 + trial * 13;\n        vector<int> price;\n        for (int i = 0; i < n; ++i) {\n            seed = seed * 1664525u + 1013904223u;\n            price.push_back(1 + static_cast<int>(seed % 1000u));\n        }\n        seed = seed * 1664525u + 1013904223u;\n        tests.push_back(Case{price, static_cast<int>(seed % 5000u)});\n    }\n    int pass = 0;\n    for (size_t i = 0; i < tests.size(); ++i)\n        if (check(argv[1], tests[i].price, tests[i].x, static_cast<int>(i+1))) ++pass;\n    cout << \"Results: \" << pass << \"/\" << tests.size() << \" passed\\n\";\n    return pass == static_cast<int>(tests.size()) ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "进制转换",
+          "knowledge": ["进制转换", "模拟"],
+          "source": "CCF GESP C++三级样题.pdf，第 9–10 页",
+          "stem": "小美刚刚学习了十六进制，她觉得很有趣，想到是不是还有更大的进制呢？在十六进制中，用 'A' 表示 10、'F' 表示 15。如果扩展到用 'Z' 表示 35，岂不是可以表示 36 进制数了嘛！\n给定正整数 N 与正整数 R，输出 N 的 R 进制表示：数字 0-9 表示值 0-9，字母 A-Z 表示值 10-35。",
+          "input_format": "输入 2 行，第一行包含一个正整数 N，第二行包含一个正整数 R。",
+          "output_format": "输出 1 行，为 N 的 R 进制表示。",
+          "constraints": "1≤N≤1000000，2≤R≤36；时限 1 秒，内存 256MB。",
+          "samples": [
+            {
+              "input": "123\n25\n",
+              "output": "4N\n"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <bits/stdc++.h>\nusing namespace std;\nchar res[30];\nint len = 0;\nchar trans(int d) {\n    if (d < 10)\n        return (char)(d + '0');\n    return (char)(d + 'A' - 10);\n}\nint main() {\n    int n = 0, r = 0;\n    cin >> n >> r;\n    while (n > 0) {\n        res[len] = trans(n % r);\n        n /= r;\n        len++;\n    }\n    for (int i = len - 1; i >= 0; i--)\n        cout << res[i];\n    cout << endl;\n    return 0;\n}\n",
+            "solution": "除基取余、逆序输出：反复计算 N 模 R 得到当前最低位（0-9 映射为 '0'-'9'，10-35 映射为 'A'-'Z'），再把 N 除以 R，直到 N 为 0；把依次得到的数字逆序输出即为 R 进制表示。时间复杂度 O(log_R N)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <iterator>\n#include <string>\n#include <utility>\n#include <vector>\nusing namespace std;\n\nstatic string expected(long long n, int r) {\n    const char* D = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n    if (n == 0) return \"0\";\n    string s;\n    while (n > 0) { s = string(1, D[n % r]) + s; n /= r; }\n    return s;\n}\n\nstatic string trim(const string& s) {\n    size_t b = s.find_first_not_of(\" \\t\\r\\n\");\n    if (b == string::npos) return \"\";\n    size_t e = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(b, e - b + 1);\n}\n\nstatic bool check(const string& exe, long long n, int r, int id) {\n    const string inFile = \"l3as2_input.txt\", outFile = \"l3as2_output.txt\";\n    { ofstream out(inFile); out << n << '\\n' << r << '\\n'; }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    string output((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    const string want = expected(n, r);\n    bool ok = code == 0 && trim(output) == want;\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": n=\" << n << \", r=\" << r\n             << \", expected=\" << want << \", actual=\" << trim(output).substr(0, 120)\n             << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    vector<pair<long long,int>> tests = {\n        {123, 25},   // PDF 样例 -> 4N\n        {1, 2}, {1000000, 36}, {255, 16}, {10, 2}, {35, 36},\n        {36, 36}, {999999, 2}, {1000000, 2}, {7, 8}\n    };\n    unsigned seed = 20261114u;\n    for (int trial = 0; trial < 8; ++trial) {\n        seed = seed * 1664525u + 1013904223u;\n        long long n = 1 + seed % 1000000u;\n        seed = seed * 1664525u + 1013904223u;\n        int r = 2 + static_cast<int>(seed % 35u);\n        tests.push_back(make_pair(n, r));\n    }\n    int pass = 0;\n    for (size_t i = 0; i < tests.size(); ++i)\n        if (check(argv[1], tests[i].first, tests[i].second, static_cast<int>(i+1))) ++pass;\n    cout << \"Results: \" << pass << \"/\" << tests.size() << \" passed\\n\";\n    return pass == static_cast<int>(tests.size()) ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

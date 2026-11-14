@@ -1,0 +1,468 @@
+{
+  "exam": {
+    "id": "gesp_l3a_2024_03",
+    "title": "2024年3月认证C++三级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["补码", "进制转换"],
+          "stem": "整数 -5 的 16 位补码表示写成十六进制是 ____（写成 4 位大写十六进制，形如 12AB）。",
+          "answer": "FFFB",
+          "explanation": "补码 = 反码 + 1：5 的 16 位二进制为 0000 0000 0000 0101，按位取反得反码 FFFA，再加 1 得 FFFB。（原卷单选第 1 题，答案 D）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["反码", "进制转换"],
+          "stem": "整数 -5 的 16 位反码表示写成十六进制是 ____（写成 4 位大写十六进制）。",
+          "answer": "FFFA",
+          "explanation": "负数反码是原码数值位按位取反：5 的 16 位为 0x0005，按位取反即 0xFFFA；注意它与补码 FFFB 相差 1。（原卷单选第 1 题 C 肢）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["补码", "进制转换"],
+          "stem": "已知 16 位短整数 -2 的补码十六进制是 FFFE，则短整数 -4 的补码十六进制是 ____（写成 4 位大写十六进制）。",
+          "answer": "FFFC",
+          "explanation": "4 的 16 位为 0x0004，取反得 FFFB，加 1 得 FFFC；也可由 -2 的补码 FFFE 再减 2（无符号 65534-2=65532）得到 FFFC。（原卷单选第 2 题，答案 C）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["补码", "无符号数解释"],
+          "stem": "16 位补码 FFFE 若按无符号整数解释，其十进制值是 ____。",
+          "answer": "65534",
+          "explanation": "补码位型按无符号解释：FFFE = 65535 - 1 = 65534；这正是 -2 在无符号视角下的值，也是补码与模 2^16 运算的关系。（原卷单选第 2 题题干信息）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["按位或", "位运算"],
+          "stem": "C++ 表达式 3|16 的十进制值是 ____。",
+          "answer": "19",
+          "explanation": "按位或：3=00011B，16=10000B，两者没有共同为 1 的位，或结果为 10011B=19。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["按位与", "位运算"],
+          "stem": "C++ 表达式 3&16 的十进制值是 ____。",
+          "answer": "0",
+          "explanation": "按位与只保留共同为 1 的位：00011B & 10000B = 00000B = 0；与或运算结果 19 对照，可区分 & 与 | 两个运算符。（原卷单选第 3 题考点对照）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["左移运算", "位运算"],
+          "stem": "定义整数 int x=-5，则表达式 x<<1 的值是 ____。",
+          "answer": "-10",
+          "explanation": "左移 1 位在未溢出时等价于乘 2：-5<<1 = -10，补码位型整体左移、低位补 0。（原卷单选第 4 题考点）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["算术右移", "关系表达式"],
+          "stem": "定义整数 int x=-5，则执行 C++ 代码 cout << (x == (x<<1)>>1) 的输出是 ____（填十进制整数）。",
+          "answer": "1",
+          "explanation": "x<<1 得 -10，算术右移 1 位（>> 对负数补符号位）还原为 -5，与 x 相等，关系表达式为真，输出 1。（原卷单选第 4 题，答案 B）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["ASCII 编码"],
+          "stem": "已知字符 '0' 的 ASCII 编码十进制为 48，则字符 '3' 的 ASCII 编码十进制为 ____。",
+          "answer": "51",
+          "explanation": "数字字符的 ASCII 码连续排列：'3' 比 '0' 大 3，即 48+3=51。（原卷单选第 5 题考点）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["字符与整数相加", "ASCII 编码"],
+          "stem": "已知字符 '0' 的 ASCII 编码十进制为 48，则下面 C++ 程序执行后的输出是 ____。\n```\nint main()\n{\n    string s=\"316\";\n    int n=s.length();\n    int x=0;\n    for(int i = 0; i < n; i++)\n        x += s[i];\n    cout << x  << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "154",
+          "explanation": "x 累加的是 s 每个字符的 ASCII 码：'3'=51、'1'=49、'6'=54，和为 154；字符与 int 相加加的是码值而非数字面值。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["取模", "逻辑与", "程序阅读"],
+          "stem": "下面 C++ 程序执行后，输出的数都能被 ____ 整除（用数字与“或”“且”作答，形如“a 或 b”）。\n```\nint main()\n{\n    int a[20],i;\n    for(i = 0; i < 20; i++)\n        a[i] = i+1;\n\n    for(int i = 0; i < 20; i++)\n        if((a[i]%2)&&(a[i]%3))\n            a[i] = 0;\n\n    for(i = 0; i < 20; i++)\n        if(a[i])\n            cout << a[i] << \" \";\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "2 或 3",
+          "explanation": "条件 (a[i]%2)&&(a[i]%3) 在既不能被 2 整除又不能被 3 整除时成立，把这些数清零；剩下的非零数即能被 2 或 3 整除的数。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["取模", "程序阅读"],
+          "stem": "下面 C++ 程序执行过程中，数组元素被置为 0 的个数一共是 ____。\n```\nint main()\n{\n    int a[20],i;\n    for(i = 0; i < 20; i++)\n        a[i] = i+1;\n\n    for(int i = 0; i < 20; i++)\n        if((a[i]%2)&&(a[i]%3))\n            a[i] = 0;\n\n    for(i = 0; i < 20; i++)\n        if(a[i])\n            cout << a[i] << \" \";\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "7",
+          "explanation": "1..20 中既非 2 的倍数又非 3 的倍数的数：1、5、7、11、13、17、19，共 7 个被清零，其余 13 个被输出。（原卷单选第 6 题考点）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["循环变量初值", "数组下标"],
+          "stem": "下面 C++ 程序执行后输出的第一个数是 ____。\n```\nint main()\n{\n    int a[20],i;\n    for(i = 0; i < 20; i++)\n        a[i] = i+1;\n\n    for( ; i > 0; i--)\n        cout << a[i-1] << \" \";\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "20",
+          "explanation": "第一个循环结束后 i=20 并被保留；第二个循环从 i=20 开始，第一次输出 a[19]=20，即逆序输出。（原卷单选第 7 题，答案 A）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["循环终止条件", "数组下标"],
+          "stem": "下面 C++ 程序执行后输出的最后一个数是 ____。\n```\nint main()\n{\n    int a[20],i;\n    for(i = 0; i < 20; i++)\n        a[i] = i+1;\n\n    for( ; i > 0; i--)\n        cout << a[i-1] << \" \";\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "1",
+          "explanation": "循环最后一次是 i=1 时输出 a[0]=1，随后 i 减为 0 退出，共输出 20 个数，末尾是 1。（原卷单选第 7 题考点）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["大小写转换", "ASCII 码差"],
+          "stem": "在下面代码的横线处填入语句，可以使得输出是 GESP IS INTERESTING。该语句可写成 str[i] += ____（只写加上的表达式，可用 'X'-'X' 形式或整数）。\n```\nint main()\n{\n    string str=\"gEsP is Interesting\";\n    int x = str.length();\n\n    for(int i = 0; i < x; i++)\n        if ((str[i]>='a') && (str[i]<='z'))\n            ____________________;\n    cout << str << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": ["'A'-'a'", "-32", "'A' - 'a'"],
+          "explanation": "小写转大写需减 32，即加上 'A'-'a'（等于 -32）；若写成加 'a'-'A' 则方向相反，会把小写移到更小的码值。（原卷单选第 8 题，答案 C）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["字符范围判断", "条件表达式"],
+          "stem": "若要把字符串 str 中所有大写字母转为小写（其余字符不变），可写语句 if (____) str[i] += 'a'-'A';，括号中的条件应填 ____（用 >=、<= 与 && 的形式书写）。",
+          "answer": ["(str[i]>='A') && (str[i]<='Z')", "(str[i]>='A')&&(str[i]<='Z')"],
+          "explanation": "大写字母的码值范围是 'A' 到 'Z'，判断条件与小写判断 (str[i]>='a') && (str[i]<='z') 对称；加上 'a'-'A'（+32）即完成大写转小写。（原卷单选第 8 题考点）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["字符串遍历", "词统计"],
+          "stem": "下面 C++ 程序统计输出的词数 nwords 是 ____。\n```\nint main()\n{\n    string str=\"gEsP is  Interesting  !\";\n    int x = str.length();\n    int nwords = 0;\n\n    for(int i = 0; i < x; i++)\n        if (str[i]==' '){\n            nwords++;\n            while(str[++i]==' ') ;\n        }\n    cout << nwords << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "3",
+          "explanation": "程序每遇到一段连续空格就加 1 并用 while 跳过整段，故 nwords 等于连续空格段数：串中共 3 段空格，输出 3；结尾的 '!' 不被计入，所以它并不等于真实词数 4。（原卷单选第 9 题，答案 C）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["字符串遍历", "词统计"],
+          "stem": "把下面 C++ 程序中的字符串改为 \"hello world\"（单词间一个空格、首尾无空格），其余代码不变，则输出的 nwords 是 ____。\n```\nint main()\n{\n    string str=\"hello world\";\n    int x = str.length();\n    int nwords = 0;\n\n    for(int i = 0; i < x; i++)\n        if (str[i]==' '){\n            nwords++;\n            while(str[++i]==' ') ;\n        }\n    cout << nwords << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "1",
+          "explanation": "该程序统计的是连续空格段数而不是词数：\"hello world\" 只有 1 段空格，故输出 1（实际词数是 2），可见原程序用空格段数近似词数、且不计末尾无空格跟随的 token。（原卷单选第 9 题考点）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["八进制字面量"],
+          "stem": "C++ 八进制字面量 075 的十进制整数值是 ____。",
+          "answer": "61",
+          "explanation": "八进制 75 = 7×8 + 5 = 61；以 0 开头的整数字面量按八进制解释。（原卷单选第 10 题 B 肢）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["进制度量比较", "字面量"],
+          "stem": "十进制 100、八进制 075、十六进制 70、十六进制 60 这四个 C++ 整数字面量中，码值最大的是 ____（写成 C++ 字面量形式，形如 0xNN）。",
+          "answer": "0x70",
+          "explanation": "统一化成十进制：100、61、112、96，最大的是十六进制 70 即 112，写作 0x70。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["循环阅读", "取模"],
+          "stem": "下面 C++ 程序输出的 cnt 是 ____。\n```\nint main()\n{\n    int a[20],i;\n    int cnt=0;\n    for(i = 0; i < 20; i++)\n        a[i] = i+1;\n\n\n    for( ; i > 1; i--)\n        if((a[i-1]+a[i-2])%3)\n            cnt++;\n    cout << cnt << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "12",
+          "explanation": "循环 i 从 20 递减到 2 共 19 次，判断 (a[i-1]+a[i-2])%3 即 (2i-1)%3 是否非 0；i≡2 (mod 3) 的 7 个值（2,5,8,11,14,17,20）余 0 不计数，其余 19-7=12 次计数。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["循环阅读", "取模"],
+          "stem": "下面 C++ 程序中，第二个 for 循环第一次进入循环体时 i=20，此时表达式 (a[i-1]+a[i-2])%3 的值是 ____。\n```\nint main()\n{\n    int a[20],i;\n    int cnt=0;\n    for(i = 0; i < 20; i++)\n        a[i] = i+1;\n\n\n    for( ; i > 1; i--)\n        if((a[i-1]+a[i-2])%3)\n            cnt++;\n    cout << cnt << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "0",
+          "explanation": "i=20 时 a[19]+a[18]=20+19=39，39%3=0，条件为假，该轮 cnt 不增加。（原卷单选第 11 题考点）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["字符数组初始化", "strlen"],
+          "stem": "定义字符数组 char str[20] = {'G', 'E', 'S', 'P'};，则 str 的字符串长度（即 strlen(str)）为 ____。",
+          "answer": "4",
+          "explanation": "列表初始化只给出前 4 个字符，其余元素自动补 0；strlen 数到第一个 '\\0'（即 str[4]）停止，长度为 4。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["字符数组初始化", "零填充"],
+          "stem": "定义字符数组 char str[20] = {'G', 'E', 'S', 'P'};，则 str[4] 的值是 ____（填十进制整数）。",
+          "answer": "0",
+          "explanation": "部分初始化时未显式赋值的元素一律零填充，str[4]=0，恰好充当字符串结束符。（原卷单选第 12 题考点）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["按位或"],
+          "stem": "定义整型变量 int a=3, b=16，则 a|b 的值是 ____。",
+          "answer": "19",
+          "explanation": "3=00011B、16=10000B，无重叠的 1 位，按位或得 10011B=19。（原卷单选第 13 题考点）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["按位或与加法关系"],
+          "stem": "定义整型变量 int a=3, b=16，则 a|b 的值与 a+b 的值的关系是 ____（填：大于/等于/小于）。",
+          "answer": "等于",
+          "explanation": "a 与 b 二进制没有公共 1 位，按位或与加法都不产生进位、结果同为 19；若两数有公共 1 位，则或结果会小于和。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["操作系统概念", "科技常识"],
+          "stem": "华为手表上运行的鸿蒙（HarmonyOS），从软件类别上属于 ____。",
+          "answer": "操作系统",
+          "explanation": "鸿蒙是面向全场景的操作系统，负责管理硬件与软件资源、为应用提供运行环境，不是小程序、计时器之类的应用。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["科技常识"],
+          "stem": "鸿蒙（HarmonyOS）操作系统由 ____ 公司研发。",
+          "answer": "华为",
+          "explanation": "鸿蒙是华为公司发布的新一代操作系统，题干中华为手表搭载的即为此系统。（原卷单选第 14 题题干信息）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["计算机史", "科技常识"],
+          "stem": "中国计算机学会（CCF）在 2024 年 1 月 27 日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是 ____（填具体技术名称）。",
+          "answer": "汉字激光照排系统",
+          "explanation": "王选主持研制汉字激光照排系统，引发中文印刷排版“告别铅与火”的革命，被誉为“当代毕昇”。（原卷单选第 15 题，答案 C）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["科技常识", "学术机构"],
+          "stem": "“王选奖”的颁布机构是 ____（填学会中文全称或英文缩写）。",
+          "answer": ["中国计算机学会", "CCF"],
+          "explanation": "王选奖由中国计算机学会（CCF）设立并颁布，用于表彰在计算机领域做出杰出贡献的个人。（原卷单选第 15 题题干信息）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["原码反码补码"],
+          "stem": "对于正整数 a，其二进制反码与补码的表示 ____（填：相同/相差 1 位）。",
+          "answer": "相同",
+          "explanation": "正数的原码、反码、补码完全相同；只有负数反码与补码不同，且相差位数不固定为 1，故原判断命题错误。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["反码补码换算"],
+          "stem": "已知 -2 的 8 位反码是 11111101，则 -2 的 8 位补码是 ____（写成 8 位二进制）。",
+          "answer": "11111110",
+          "explanation": "补码 = 反码 + 1：11111101 + 1 = 11111110；本例中反码与补码有 2 位不同，直接反驳“都相差 1 位”的说法。（原卷判断第 1 题考点）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["左移运算"],
+          "stem": "对整型变量 int a = 3，表达式 a<<2 的值是 ____。",
+          "answer": "12",
+          "explanation": "左移 2 位等价于乘 4：3<<2 = 12。（原卷判断第 2 题考点）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["表达式副作用"],
+          "stem": "对整型变量 int a = 3，执行表达式语句 a<<2;（不把结果赋回任何变量）后，变量 a 的值是 ____。",
+          "answer": "3",
+          "explanation": "移位运算符不修改操作数本身，只有复合赋值 <<= 才会写回；故 a 仍为 3，原判断中“把 2 输出到 a 中”的说法错误。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["算法思想", "累加求和"],
+          "stem": "下面 C++ 程序计算 1 到 100 的累加和，其算法思想不是穷举法，而是 ____ 法。\n```\nint main()\n{\n    int i,sum=0;\n    for(int i = 1; i <= 100 ; i++)\n        sum += i;\n    cout << sum  << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": ["累加", "迭代", "迭代累加", "循环累加"],
+          "explanation": "程序用循环变量逐次累加求和，属于迭代（累加）；穷举法是逐一尝试候选解并检验是否满足条件，求和并不需要搜索解。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["累加求和"],
+          "stem": "下面 C++ 程序输出的 sum 是 ____。\n```\nint main()\n{\n    int i,sum=0;\n    for(int i = 1; i <= 100 ; i++)\n        sum += i;\n    cout << sum  << endl;\n\n    cout << endl;\n    return 0;\n}\n```",
+          "answer": "5050",
+          "explanation": "1+2+…+100 = (1+100)×100/2 = 5050。（原卷判断第 3 题考点）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["移位溢出", "int 范围"],
+          "stem": "32 位 int 变量 a，当 a=1073741824（即 2 的 30 次方）时，表达式 (a<<2)>>2 的值是 ____（按 g++ 实际运行结果，填十进制整数）。",
+          "answer": "0",
+          "explanation": "2^30 左移 2 位本应得 2^32，超出 32 位 int 表示范围，高位（含符号位）被移出后位型全 0，再右移 2 位仍为 0，不等于原来的 a，说明该操作并非总能还原。（原卷判断第 4 题考点）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["移位运算"],
+          "stem": "int 变量 a，当 a=1 时，表达式 (a<<2)>>2 的值是 ____。",
+          "answer": "1",
+          "explanation": "不溢出时左移再右移相同位数可还原：1<<2=4，4>>2=1；可见“结果一定是 a”只在不溢出时成立。（原卷判断第 4 题考点）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["八进制字面量"],
+          "stem": "C++ 八进制字面量 010 的十进制整数值是 ____。",
+          "answer": "8",
+          "explanation": "以 0 开头的字面量是八进制：010 = 1×8 = 8，而不是十进制的 10。（原卷判断第 5 题考点）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["八进制字面量", "左移运算"],
+          "stem": "C++ 表达式 010<<1 的十进制整数结果是 ____。",
+          "answer": "16",
+          "explanation": "010 是八进制即十进制 8，左移 1 位乘 2 得 16，并不是 100，故原判断命题错误。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["string::find"],
+          "stem": "字符串 string str=\"gEsP is Interesting\"; 中，str.find(\"s\") 的返回值是 ____（填十进制整数，下标从 0 起）。",
+          "answer": "2",
+          "explanation": "find 返回首次匹配位置：字符 's' 首次出现在下标 2（g=0、E=1、s=2），程序输出 2，原判断正确。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["string::find", "子串匹配"],
+          "stem": "字符串 string str=\"gEsP is Interesting\"; 中，str.find(\"is\") 的返回值是 ____（填十进制整数，下标从 0 起）。",
+          "answer": "5",
+          "explanation": "子串 \"is\" 首次完整匹配在下标 5（空格为 4、i 为 5、s 为 6）；下标 2 处的 's' 前面是 'E'，不构成 \"is\"。（原卷判断第 6 题考点）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["数组特性"],
+          "stem": "在 C++ 语言中，字符数组被定义（如 char str[20];）后，它的大小在程序运行期间 ____（填：可调/固定）。",
+          "answer": ["固定", "固定不变", "不可调整"],
+          "explanation": "数组大小在编译期由类型确定，运行期占用一段定长连续内存，不能扩缩；能动态调整的是 vector 等容器，故原判断命题错误。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["数组存储"],
+          "stem": "字符数组 char str[20] 在内存中占 ____ 个字节。",
+          "answer": "20",
+          "explanation": "char 占 1 字节，20 个元素共 20 字节，与其中实际存放的字符串长度无关。（原卷判断第 7 题考点）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["数组最值"],
+          "stem": "整型数组 int a[7]={2,0,2,4,3,1,6} 的最小值是 ____。",
+          "answer": "0",
+          "explanation": "逐一比较全部元素可知最小值为 0；用一个循环维护当前最小值即可求出，原判断正确。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["数组最值"],
+          "stem": "整型数组 int a[7]={2,0,2,4,3,1,6} 的最大值是 ____。",
+          "answer": "6",
+          "explanation": "最大值为 6；求最大与求最小同样只需一次简单循环，印证原判断“可以用简单循环找到最小整数”正确。（原卷判断第 8 题考点）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["网络设备", "生活常识"],
+          "stem": "家庭网络中，能为电视等设备设置 IP、让多台设备共享上网的 WIFI 盒子，具有 ____ 的功能（填该类网络设备的常用名称）。",
+          "answer": "路由器",
+          "explanation": "路由器的功能是连接不同网络、转发数据并分配地址；WIFI 盒子提供 IP 设置与无线接入，集成了路由器功能，原判断正确。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["IP 地址", "网络常识"],
+          "stem": "在家庭网络中，数字电视、WIFI 盒子等每台设备都靠 ____ 地址被标识并接入网络（填两个大写英文字母）。",
+          "answer": "IP",
+          "explanation": "IP 地址是设备在网络中的唯一标识，电视需要设置 IP 地址才能接入家庭网络收看点播节目。（原卷判断第 9 题题干信息）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["循环等价转换"],
+          "stem": "任何一个 for 循环都可以转化为等价的 ____ 循环（填另一种循环语句的英文关键字）。",
+          "answer": "while",
+          "explanation": "for 的初始化、条件、迭代三步都可放到 while 结构中（循环前初始化、条件作 while 判断、循环体末尾迭代），二者表达能力等价。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["循环等价转换"],
+          "stem": "反过来，任何一个 while 循环也都可以转化为等价的 ____ 循环（填英文关键字）。",
+          "answer": "for",
+          "explanation": "while 的条件可放入 for 的条件位，如 for(; cond; )，省略其余两段即可，两种循环可互相等价转换，原判断正确。（原卷判断第 10 题考点）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "字母求和",
+          "knowledge": ["字符串遍历", "ASCII 码"],
+          "source": "2024年3月认证C++三级.pdf，第 6–7 页",
+          "stem": "小杨同学发明了一种新型密码。对于每一个小写英文字母，该小写字母代表了一个正整数，即该字母在字母顺序中的位置，例如字母 a 代表了正整数 1，字母 b 代表了正整数 2；对于每一个大写英文字母，该大写字母代表了一个负整数，即该字母的 ASCII 码的相反数，例如字母 A 代表了整数 -65。小杨同学利用这种方式对一个整数进行了加密，并得到了一个由大写字母和小写字母组成的字符串，该字符串中每个字母所代表数字的总和即为加密前的整数，例如 aAc 对应的加密前的整数为 1+(-65)+3=-61。\n\n对于给定的字符串，请你计算出它对应的加密前的整数是多少。",
+          "input_format": "第一行一个正整数 n，表示字符串中字母的个数。\n第二行一个由大写字母和小写字母的字符串 T，代表加密后得到的字符串。",
+          "output_format": "输出一行一个整数，代表加密前的整数。",
+          "constraints": "1 ≤ n ≤ 10⁵。\n时间限制 1.0 s；内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "3\naAc",
+              "output": "-61"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <cassert>\n#include <cstdlib>\n#include <cstdio>\n#include <cstring>\nusing namespace std;\nconst int N = 100005;\nchar str[N];\nint main() {\n\n    int n;\n    cin >> n;\n    cin >> str;\n    assert(n == strlen(str));\n\n    int ans = 0;\n    for (int i = 0; i < n; i++) {\n        if (str[i] >= 'a' && str[i] <= 'z')\n            ans += str[i] - 'a' + 1;\n        else if (str[i] >= 'A' && str[i] <= 'Z')\n            ans -= str[i];\n        else\n            assert(false);\n    }\n    cout << ans << endl;\n    return 0;\n}\n",
+            "solution": "扫描字符串一次：小写字母贡献其在字母表中的序号 c-'a'+1，大写字母贡献其 ASCII 码的相反数 -c，累加即为加密前的整数。时间复杂度 O(n)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <iterator>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\n// 独立实现期望值：小写贡献序号，大写贡献 -ASCII\nstatic long long expected(const string& t) {\n    long long ans = 0;\n    for (size_t i = 0; i < t.size(); ++i) {\n        char c = t[i];\n        if (c >= 'a' && c <= 'z') ans += c - 'a' + 1;\n        else if (c >= 'A' && c <= 'Z') ans -= (unsigned char)c;\n    }\n    return ans;\n}\n\nstatic bool check(const string& exe, const string& t, int id) {\n    const string inFile = \"a2403p1_input.txt\", outFile = \"a2403p1_output.txt\";\n    {\n        ofstream out(inFile);\n        out << t.size() << '\\n' << t << '\\n';\n    }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    string output((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    istringstream parser(output);\n    long long actual = 0;\n    string extra;\n    const long long want = expected(t);\n    bool ok = code == 0 && (parser >> actual) && !(parser >> extra) && actual == want;\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": n=\" << t.size() << \", expected=\" << want\n             << \", actual=\" << output.substr(0, 120) << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    if (expected(\"aAc\") != -61) { cout << \"[FAIL] self-check: expected(aAc) != -61\\n\"; return 2; }\n    vector<string> tests = {\n        \"aAc\", \"a\", \"Z\", \"abcdefghijklmnopqrstuvwxyz\", \"ABC\",\n        \"AaBbCcDdEe\", \"zZ\", \"gEsP\", \"QQQQQQQQQQ\", \"mmmmmmmmmm\"\n    };\n    srand(202403u);\n    for (int trial = 0; trial < 5; ++trial) {\n        int n = (trial == 4) ? 100000 : 1 + trial * 251;\n        string s;\n        for (int i = 0; i < n; ++i) {\n            int c = rand() % 52;\n            s += (char)(c < 26 ? 'a' + c : 'A' + (c - 26));\n        }\n        tests.push_back(s);\n    }\n    int pass = 0;\n    const int total = (int)tests.size();\n    for (int i = 0; i < total; ++i) pass += check(argv[1], tests[i], i) ? 1 : 0;\n    cout << \"Results: \" << pass << \"/\" << total << \" passed\" << endl;\n    return pass == total ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "完全平方数",
+          "knowledge": ["枚举", "完全平方判定"],
+          "source": "2024年3月认证C++三级.pdf，第 8 页",
+          "stem": "小杨同学有一个包含 n 个非负整数的序列 A，他想要知道其中有多少对下标组合 <i,j>（1 ≤ i, j ≤ n, i < j），使得 Aᵢ + Aⱼ 是完全平方数。\n\n如果 x 是完全平方数，则存在非负整数 y 使得 y × y = x。",
+          "input_format": "第一行一个非负整数 n，表示非负整数个数。\n第二行包含 n 个非负整数 A₁, A₂, …, Aₙ，表示序列 A 包含的非负整数。",
+          "output_format": "输出一个非负整数，表示和是完全平方数的非负整数对数。",
+          "constraints": "1 ≤ n ≤ 1000，0 ≤ Aᵢ ≤ 10⁵。\n时间限制 1.0 s；内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "5\n1 4 3 3 5",
+              "output": "3"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint main(){\n    int n;\n    cin >> n;\n    for(int i=1;i<=n;i++){\n        cin>>a[i];\n    }\n    int ans=0;\n    for(int i=1;i<=n;i++){\n        for(int j=i+1;j<=n;j++){\n            int m = a[i] + a[j];\n            int t = sqrt(m + 1e-7);\n            if(t * t == m)\n                ans++;\n        }\n    }\n    cout<<ans<<\"\\n\";\n}\n",
+            "solution": "n ≤ 1000，直接双重循环枚举所有 i < j 的下标对，求和 m = a[i]+a[j] 后用整数平方根判定完全平方：t = (int)sqrt(m)，若 t*t == m 则计数。共约 5×10⁵ 对，足够快。时间复杂度 O(n²)。",
+            "test_program": "#include <cmath>\n#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <iterator>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\n// 独立实现期望值：枚举所有下标对，四舍五入平方根判定完全平方\nstatic long long expected(const vector<long long>& a) {\n    long long cnt = 0;\n    for (size_t i = 0; i < a.size(); ++i)\n        for (size_t j = i + 1; j < a.size(); ++j) {\n            long long m = a[i] + a[j];\n            long long r = (long long)(sqrt((double)m) + 0.5);\n            if (r * r == m) ++cnt;\n        }\n    return cnt;\n}\n\nstatic bool check(const string& exe, const vector<long long>& a, int id) {\n    const string inFile = \"a2403p2_input.txt\", outFile = \"a2403p2_output.txt\";\n    {\n        ofstream out(inFile);\n        out << a.size() << '\\n';\n        for (size_t i = 0; i < a.size(); ++i) out << a[i] << (i + 1 == a.size() ? '\\n' : ' ');\n    }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    string output((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    istringstream parser(output);\n    long long actual = -1;\n    string extra;\n    const long long want = expected(a);\n    bool ok = code == 0 && (parser >> actual) && !(parser >> extra) && actual == want;\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": n=\" << a.size() << \", expected=\" << want\n             << \", actual=\" << output.substr(0, 120) << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    vector<long long> sanity = {1, 4, 3, 3, 5};\n    if (expected(sanity) != 3) { cout << \"[FAIL] self-check: expected(sample) != 3\\n\"; return 2; }\n    vector<vector<long long>> tests = {\n        {1, 4, 3, 3, 5}, {0}, {0, 0}, {1, 3}, {0, 1, 3},\n        {1, 1, 1, 1}, {0, 4, 5}, {100000, 100000}, {99809, 100000}, {2, 2, 2}\n    };\n    srand(202403u);\n    for (int trial = 0; trial < 4; ++trial) {\n        int n = (trial == 3) ? 1000 : 2 + trial * 31;\n        vector<long long> a;\n        for (int i = 0; i < n; ++i) a.push_back(rand() % 100001);\n        tests.push_back(a);\n    }\n    int pass = 0;\n    const int total = (int)tests.size();\n    for (int i = 0; i < total; ++i) pass += check(argv[1], tests[i], i) ? 1 : 0;\n    cout << \"Results: \" << pass << \"/\" << total << \" passed\" << endl;\n    return pass == total ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

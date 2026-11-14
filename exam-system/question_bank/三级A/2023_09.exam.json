@@ -1,0 +1,464 @@
+{
+  "exam": {
+    "id": "gesp_l3a_2023_09",
+    "title": "2023年9月认证C++三级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["计算机基础知识", "软件概念"],
+          "stem": "人们所使用的手机上安装的 App 通常指的是一类____，而不是操作系统或通话硬件（填四个汉字）。",
+          "answer": "应用软件",
+          "explanation": "App 是英语 application 的简写，指应用软件；它运行在操作系统之上，本身不是操作系统，也不是通话设备。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["计算机基础知识", "术语"],
+          "stem": "手机应用名称中的“App”是英语单词____的简写（填小写英文单词）。",
+          "answer": "application",
+          "explanation": "App 取 application（应用）一词的前三个字母，代表应用软件的意思。（原卷单选第 1 题解析）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["流程图", "循环结构"],
+          "stem": "阅读流程图：开始后先赋值 a=5、s=1；接着判断 a≥4 是否成立，若成立则执行 s=s×a 与 a=a-1 后返回判断处，若不成立则输出 s 并结束。该流程图输出的 s 为____（填十进制整数）。",
+          "answer": "20",
+          "explanation": "循环体共执行两次：a=5 时 s=1×5=5、a 变为 4；a=4 时 s=5×4=20、a 变为 3；随后 a≥4 不成立，输出 s=20。（原卷单选第 2 题，答案 B）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["流程图", "循环终止条件"],
+          "stem": "阅读流程图：开始后先赋值 a=5、s=1；接着判断 a≥4 是否成立，若成立则执行 s=s×a 与 a=a-1 后返回判断处，若不成立则结束。当判断 a≥4 第一次为“否”时，变量 a 的值为____（填十进制整数）。",
+          "answer": "3",
+          "explanation": "a 每轮减 1：5→4→3；当 a=3 时条件 a≥4 首次不成立而退出循环，故此时 a=3（此前 s 已累乘为 20）。（原卷单选第 2 题，循环终止状态）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["ASCII 编码", "十六进制"],
+          "stem": "已知大写字母 'A' 的 ASCII 编码的十六进制表示为 0x41，则大写字母 'L' 的 ASCII 编码的十六进制表示为____（写两位大写十六进制数字，不带 0x 前缀）。",
+          "answer": "4C",
+          "explanation": "大写字母在 ASCII 表中连续排列，'A' 为 65（0x41），'L' 是其后的第 11 个字母，65+11=76，76 的十六进制为 4C。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["ASCII 编码"],
+          "stem": "已知大写字母 'A' 的 ASCII 编码值为 65，则大写字母 'L' 的 ASCII 编码值为____（填十进制整数）。",
+          "answer": "76",
+          "explanation": "大写字母的 ASCII 码按字母顺序递增，'L' 与 'A' 相差 11 个位置，故为 65+11=76。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["位运算符", "C++语言基础"],
+          "stem": "C++ 中按位取反（补）运算符是____（只填运算符符号本身）。",
+          "answer": "~",
+          "explanation": "~ 是一元按位取反运算符，把操作数的每一个二进制位 0 变 1、1 变 0；注意它与负号 - 和逻辑非 ! 都不同。（原卷单选第 4 题 A 肢）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["C++语言基础", "运算符"],
+          "stem": "在 ~、~~、<、<< 四个符号中，不是 C++ 运算符的是____（只填该符号本身）。",
+          "answer": "~~",
+          "explanation": "~ 是按位取反、< 是小于比较、<< 是左移（也作流插入）运算符，均存在于 C++ 中；~~ 没有任何定义，不是运算符。（原卷单选第 4 题，答案 B）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["数组", "数据类型"],
+          "stem": "如果数组定义为 `long long array[] = {3, 5, 7, 2};`，则数组 array 一共占用____字节内存（填十进制整数）。",
+          "answer": "32",
+          "explanation": "初值列表含 4 个元素，数组长度为 4；long long 类型每个元素占 8 字节，4×8=32 字节。（原卷单选第 5 题，答案 A）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["数据类型", "内存占用"],
+          "stem": "在常见微机平台上，C++ 基本数据类型 long long 的每个元素占用____字节（填十进制整数）。",
+          "answer": "8",
+          "explanation": "long long 至少 64 位，在常见平台上占 8 字节，可用 sizeof(long long) 实测验证。（原卷单选第 5 题解析）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["数组", "下标"],
+          "stem": "一个数组定义为 `double array[3];`，则可合理访问这个数组元素的最大下标为____（填十进制整数）。",
+          "answer": "2",
+          "explanation": "数组下标从 0 开始，长度为 3 的数组合法下标为 0、1、2，最大下标是 2。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["数组", "下标"],
+          "stem": "一个数组定义为 `double array[3];`，则可合理访问这个数组元素的最小下标为____（填十进制整数）。",
+          "answer": "0",
+          "explanation": "C++ 数组下标从 0 开始而不是从 1 开始，故最小合法下标为 0。（原卷单选第 6 题，下标范围）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["数组的定义"],
+          "stem": "C++ 中数组定义语句 `double a[];`（不带初值列表）是____的（填：合法/非法）。",
+          "answer": "非法",
+          "explanation": "不带初值定义数组时必须在 [] 中明确给出数组大小，编译器无法推断长度，故 double a[]; 非法。（原卷单选第 7 题 A 肢）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["数组的定义"],
+          "stem": "C++ 中数组定义语句 `double c[3.0];` 是____的（填：合法/非法）。",
+          "answer": "非法",
+          "explanation": "[] 中的数组长度必须是整数（整型常量表达式），3.0 是浮点数，故该定义非法。（原卷单选第 7 题 C 肢）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["数组的定义", "初值列表"],
+          "stem": "C++ 中数组定义语句 `double b[] = {1, 2.0, '3'};` 是____的（填：合法/非法）。",
+          "answer": "合法",
+          "explanation": "带初值列表时 [] 中长度可省略，由元素个数推断；1、2.0、'3' 都能转换为 double（'3' 按其编码值 51 转换），故定义合法，数组长度为 3。（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["进制知识", "八进制"],
+          "stem": "八进制数的每一位上可能出现的最大数字是____（填十进制整数）。",
+          "answer": "7",
+          "explanation": "八进制逢八进一，每位数字只能取 0~7，不可能出现数字 8；同理二进制每位只能是 0 或 1。（原卷单选第 8 题 D 肢）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["进制知识", "位数比较"],
+          "stem": "对任意正整数，其二进制表示的位数比它的十进制表示的位数____（填：不会更短/不会更长）。",
+          "answer": "不会更短",
+          "explanation": "二进制逢 2 进一、十进制逢 10 进一，表示同一个数二进制所需位数不少于十进制：如 1 两者都是 1 位，而十进制 8 的二进制是 1000 共 4 位，故二进制位数不会更短。（原卷单选第 8 题，答案 C 的 C 肢）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["数组", "越界访问"],
+          "stem": "C++ 程序中发生数组下标越界访问时，____一定会产生编译错误（填：会/不会）。",
+          "answer": "不会",
+          "explanation": "C++ 不检查数组下标是否越界，越界访问在不同编译器下都不一定报错，属于运行期的隐蔽隐患。（原卷单选第 9 题，答案 C 的 C 肢）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["数组", "越界访问"],
+          "stem": "C++ 程序运行时发生数组下标的越界访问，程序____依然正常结束（填：可能/不可能）。",
+          "answer": "可能",
+          "explanation": "越界访问是未定义行为：可能读写到相邻内存导致结果错误或崩溃，也可能碰巧“看起来正常”地结束，因此不能靠运行表象判断有无越界。（原卷单选第 9 题 D 肢）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["表达式", "整数运算"],
+          "stem": "如果 a 是 int 类型的变量，则表达式 `a + 1000 - 1000 == a` 的值一定为____（填 0 或 1）。",
+          "answer": "1",
+          "explanation": "先加后减同一偏移相互抵消，表达式从左到右计算结果恒等于 a，故比较恒成立，值为 1（true）。（原卷单选第 10 题，答案 A 的 A 肢）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["位运算", "奇偶判断"],
+          "stem": "如果 a 是 int 类型的变量，表达式 `(a & 1) == 1` 成立当且仅当 a 是____（填：奇数/偶数）。",
+          "answer": "奇数",
+          "explanation": "a & 1 取出 a 的二进制最低位：奇数最低位为 1、偶数为 0，故 (a & 1) == 1 仅在 a 为奇数时成立，并非恒真。（原卷单选第 10 题 C 肢）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["位运算", "右移"],
+          "stem": "如果 a=4、b=5 均为 int 类型，则表达式 `(a >> 1) == (b >> 1)` 的值为____（填 0 或 1）。",
+          "answer": "1",
+          "explanation": "4>>1=2、5>>1=2，两者相等故表达式值为 1（true），但 a 与 b 并不相等——说明“右移一位后相等”不能用来判断两数相等。（原卷单选第 11 题，答案 B 的 B 肢）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["位运算", "异或"],
+          "stem": "如果 a 和 b 均为 int 类型的变量，表达式 `(a ^ b) == 0` 成立当且仅当 a 与 b____（填：相等/不等）。",
+          "answer": "相等",
+          "explanation": "异或运算在两个位相同时得 0，a ^ b == 0 说明每一位都相同，即 a 与 b 完全相等，故可用它判断相等。（原卷单选第 11 题 D 肢）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["字符", "比较表达式连写"],
+          "stem": "如果 a 为 char 类型的变量且值为 'b'，则 C++ 表达式 `'A' <= a <= 'Z'` 的值为____（填 0 或 1）。",
+          "answer": "1",
+          "explanation": "C++ 中没有数学上的连写比较：先算 'A' <= a 得 1（true），再算 1 <= 'Z' 仍为真，整个表达式值为 1——尽管 'b' 并不是大写字母，可见这种写法不能用于判断大写。（原卷单选第 12 题 B 肢）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["字符", "ASCII 编码"],
+          "stem": "ASCII 表中大写字母的区间是从 'A' 到____（填字符，带单引号）。",
+          "answer": ["'Z'", "Z"],
+          "explanation": "26 个大写字母在 ASCII 表中从 'A' 到 'Z' 连续存放，因此判断 a 是大写字母应写成 ('A' <= a) && (a <= 'Z') 两个条件相与。（原卷单选第 12 题，答案 D）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["位运算", "两数交换"],
+          "stem": "阅读程序：\n```\nint a = 10, b = 20;\na = (a << 8) | b;\nb = a >> 8;\na = a & X;\ncout << a << \" \" << b << endl;\n```\n要使输出是“20 10”，代码中的十六进制常量 X 应为____（写成 C++ 十六进制整数常量的形式）。",
+          "answer": ["0xff", "0xFF", "0XFF", "0Xff", "255"],
+          "explanation": "a=(a<<8)|b 后，a 的高 8 位存原 a（10）、低 8 位存 b（20）；b=a>>8 已取回原 a=10；要让 a 取回原 b=20，需清掉高 8 位，与低 8 位全 1、高 8 位全 0 的 0xff 做与运算即可。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["位运算", "左移与或运算"],
+          "stem": "若 `int a = 10, b = 20;`，则执行语句 `a = (a << 8) | b;` 后 a 的值为____（填十进制整数）。",
+          "answer": "2580",
+          "explanation": "a<<8 即 10×256=2560，其低 8 位全为 0；b=20 小于 256 只占低 8 位，按位或后为 2560+20=2580（已用 g++ 实测）。（原卷单选第 13 题，表达式求值）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["循环语句", "复合赋值运算符"],
+          "stem": "阅读程序：\n```\nint array[5] = {1, 2, 3, 4, 5};\nint res = 0;\nfor (int i = 0; i < 5; i++)\n    res += array[i];\ncout << res << endl;\n```\n程序输出是____（填十进制整数）。",
+          "answer": "15",
+          "explanation": "res 依次累加数组各元素：1+2+3+4+5=15。（原卷单选第 14 题 A 肢）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["循环语句", "复合赋值运算符"],
+          "stem": "阅读程序片段：\n```\nint array[5] = {1, 2, 3, 4, 5};\nint res = ?;\nfor (int i = 0; i < 5; i++)\n    res *= array[i];\ncout << res << endl;\n```\n要使程序输出 120，代码中 res 的初值应为____（填十进制整数）。",
+          "answer": "1",
+          "explanation": "120=1×2×3×4×5，连乘的单位元是 1，故 res 初值须为 1；若初值为 0 则乘积恒为 0——这正是原题中“res=0 配 res*=array[i]”得不到 120 的原因。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["多层循环结构", "数组"],
+          "stem": "阅读程序：\n```\nint array[10];\nfor (int i = 0; i < 10; i++)\n    array[i] = i;\nfor (int p = 2; p < 10; p++)\n    if (array[p] == p)\n        for (int n = p; n < 10; n += p)\n            array[n] = array[n] / p * (p - 1);\nint res = 0;\nfor (int n = 1; n < 10; n++)\n    res += array[n];\ncout << res << endl;\n```\n程序输出的 res 是____（填十进制整数）。",
+          "answer": "28",
+          "explanation": "这是筛法过程：array[n] 最终等于 n 的欧拉函数 φ(n)（对每个质因子 p 乘一次 (p-1)/p），φ(1)..φ(9) 依次为 1,1,2,2,4,2,6,4,6，累加得 28（已用 g++ 实测）。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["多层循环结构", "数组"],
+          "stem": "阅读程序：\n```\nint array[10];\nfor (int i = 0; i < 10; i++)\n    array[i] = i;\nfor (int p = 2; p < 10; p++)\n    if (array[p] == p)\n        for (int n = p; n < 10; n += p)\n            array[n] = array[n] / p * (p - 1);\n```\n程序执行完毕后 array[6] 的值为____（填十进制整数）。",
+          "answer": "2",
+          "explanation": "6=2×3：p=2 时被筛一次得 6/2×1=3，p=3 时再被筛一次得 3/3×2=2，最终 array[6]=2，即 φ(6)=2（1~6 中与 6 互素的数有 1、5 两个）。（原卷单选第 15 题，筛法中间结果）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["进制转换", "二进制"],
+          "stem": "二进制数 101.101 的整数部分转换成十进制是____（填十进制整数）。",
+          "answer": "5",
+          "explanation": "整数部分 101 = 1×4 + 0×2 + 1×1 = 5。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["进制转换", "二进制小数"],
+          "stem": "二进制数 101.101 的小数部分转换成十进制是____（填十进制小数，形如 0.5）。",
+          "answer": "0.625",
+          "explanation": "小数部分 .101 = 1×2^-1 + 0×2^-2 + 1×2^-3 = 0.5 + 0.125 = 0.625，故该数对应十进制 5.625 而不是 5.005，原卷该判断为错。（原卷判断第 1 题，答案 ×）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["运算符优先级"],
+          "stem": "C++ 中运算符有优先级规则，例如算术运算符中____运算符的优先级高于加减运算（填四个汉字）。",
+          "answer": "乘除",
+          "explanation": "乘除优先级高于加减；位运算符之间以及位运算与比较运算之间也各有优先级层次，与直觉不尽相同，混用时需用括号明确次序。（原卷判断第 2 题，答案 √）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["运算符优先级", "位运算符"],
+          "stem": "C++ 中把位运算与比较运算混写时，为避免优先级造成的次序错误，应当合理使用____来明确计算顺序（填两个汉字）。",
+          "answer": "括号",
+          "explanation": "位运算的优先级低于比较运算符，如 (a & 1) == 0 若不写括号会变成 a & (1 == 0)，含义完全不同，故需加括号保证次序。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["字符编码", "ASCII"],
+          "stem": "C++ 字符常量 '3' 的十进制整数值是____（填十进制整数）。",
+          "answer": "51",
+          "explanation": "字符常量存放其 ASCII 码，数字字符 '0'~'9' 的码值依次为 48~57，故 '3' 为 51（已用 g++ 实测），与数值 3 并不相同。（原卷判断第 3 题，答案 ×）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["字符编码", "常量"],
+          "stem": "C++ 字符常量 '3' 的值和 int 类型常量 3 的值是____的（填：相同/不同）。",
+          "answer": "不同",
+          "explanation": "'3' 的值是其 ASCII 码 51，而 3 的值就是 3，两者数值不同，并非“只是占用字节数不同”。（原卷判断第 3 题，答案 ×）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["数组", "越界访问"],
+          "stem": "C++ 中长度为 5 的数组，访问下标为 5 的元素____引起编译错误（填：会/不会）。",
+          "answer": "不会",
+          "explanation": "编译器不检查下标范围，长度 5 的数组合法下标为 0~4，访问下标 5 属越界，但通常仍能编译通过，错误被留到运行期。（原卷判断第 4 题，答案 ×）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["数组", "越界访问"],
+          "stem": "C++ 数组越界访问的错误通常暴露在____阶段（填：编译/运行）。",
+          "answer": "运行",
+          "explanation": "越界访问属未定义行为，编译阶段一般不报错，只有在运行时才可能表现为结果错误、崩溃等，也可能暂时无表象。（原卷判断第 4 题解析）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["位运算", "左移"],
+          "stem": "C++ 中 int 值 1 经过 3 次左移（即 `1 << 3`）后的值是____（填十进制整数）。",
+          "answer": "8",
+          "explanation": "每左移一位相当于乘 2（不溢出时），1<<3 = 1×2×2×2 = 8。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["位运算", "左移"],
+          "stem": "C++ 中任何一个 int 类型的值，经过足够多次左移（<<）操作后，其值总会变为____（填十进制整数）。",
+          "answer": "0",
+          "explanation": "左移丢弃高位、低位补 0，int 只有 32 位，移够 32 次及以上后原有位全部被丢弃，结果必为 0。（原卷判断第 5 题，答案 √）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["数组", "内存布局"],
+          "stem": "在内存中，C++ 数组的各元素按下标____的顺序存放（填：递增/递减/任意）。",
+          "answer": "递增",
+          "explanation": "数组占用一段连续内存，元素按下标 0、1、2……的顺序依次排列，下标顺序即内存顺序，二者是相关的。（原卷判断第 6 题，答案 ×）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["数组", "内存布局"],
+          "stem": "C++ 数组下标的大小决定元素在逻辑上的先后顺序，该顺序与元素在内存中位置的先后顺序是____的（填：相关/无关）。",
+          "answer": "相关",
+          "explanation": "数组元素在内存中按下标递增连续存放，相邻下标的元素地址恰好相差一个元素的字节数，逻辑顺序与内存顺序一致。（原卷判断第 6 题，答案 ×）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["数组的定义", "初值列表"],
+          "stem": "C++ 中用初值列表定义数组，如 `int d[] = {1, 2, 3};` 时，[] 中____指定元素个数（填：必须/不必）。",
+          "answer": "不必",
+          "explanation": "带初值列表时编译器按初值个数推断数组长度，[] 可以留空；只有不带初值定义时才必须给出大小。（原卷判断第 7 题，答案 ×）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["数组的定义", "初值列表"],
+          "stem": "C++ 定义 `int d[] = {1, 2, 3};` 所得到数组的长度（元素个数）是____（填十进制整数）。",
+          "answer": "3",
+          "explanation": "初值列表含 3 个初值，推断出的数组长度即为 3。（原卷判断第 7 题解析）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["枚举算法"],
+          "stem": "枚举法适合用于验证情形个数为____的命题（填：有限/无限）。",
+          "answer": "有限",
+          "explanation": "枚举法逐一检验所有可能情形，只能在情形有限时完成；哥德巴赫猜想涉及大于 2 的无穷多个偶数，枚举无法穷尽，故不能用它证明。（原卷判断第 8 题，答案 ×）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["进制知识", "十六进制"],
+          "stem": "十六进制数 0xff 转换成十进制是____（填十进制整数）。",
+          "answer": "255",
+          "explanation": "0xff = 15×16 + 15 = 255。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["进制知识", "比较运算符"],
+          "stem": "C++ 中十六进制常量 0xff 与它的十进制等价值做相等比较，该比较表达式的值为____（填 0 或 1）。",
+          "answer": "1",
+          "explanation": "0xff 与 255 是同一个数的两种写法，比较成立，表达式值为 1（true）。（原卷判断第 9 题，答案 √）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["位运算", "奇偶判断"],
+          "stem": "如果 a 为 int 类型的变量，且表达式 `(a & 1) == 0` 的值为 true，则 a 是____（填：奇数/偶数）。",
+          "answer": "偶数",
+          "explanation": "a & 1 取最低位：偶数最低位为 0、奇数为 1；(a & 1) == 0 说明最低位是 0，即 a 为偶数。（原卷判断第 10 题，答案 √）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["位运算", "奇偶判断"],
+          "stem": "表达式 `(5 & 1)` 的值为____（填 0 或 1）。",
+          "answer": "1",
+          "explanation": "5 的二进制为 101，最低位是 1，与 1 做按位与得 1；反之偶数与 1 按位与得 0，所以 (a & 1) == 0 可判断 a 为偶数。（原卷判断第 10 题，表达式求值）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "小杨的储蓄",
+          "knowledge": ["一维数组", "循环结构", "模拟"],
+          "source": "2023年9月认证C++三级.pdf，第 11–12 页",
+          "stem": "小杨共有 N 个储蓄罐，编号从 0 到 N-1。从第 1 天开始，小杨每天都会往存钱罐里存钱：具体来说，第 i 天他会挑选一个存钱罐 a_i，并存入 i 元钱。过了 D 天后，他已经忘记每个储蓄罐里都存了多少钱了，你能帮帮他吗？",
+          "input_format": "输入 2 行。第一行两个整数 N, D；第二行 D 个整数，其中第 i 个整数为 a_i（保证 0≤a_i≤N-1）。每行的各个整数之间用单个空格分隔。",
+          "output_format": "输出 N 个用单个空格隔开的整数，其中第 i 个整数表示编号为 i-1 的存钱罐中有多少钱（i = 1,...,N）。",
+          "constraints": "保证 1≤N≤1000，1≤D≤1000。时限 1 秒，内存限制 256MB。",
+          "samples": [
+            { "input": "2 3\n0 1 0\n", "output": "4 2\n" },
+            { "input": "3 5\n0 0 0 2 0\n", "output": "11 0 4\n" }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint jar[1000];\n\nint main() {\n    int n = 0, d = 0;\n    cin >> n >> d;\n    for (int i = 0; i < n; i++)\n        jar[i] = 0;\n    for (int i = 1; i <= d; i++) {\n        int a = 0;\n        cin >> a;\n        jar[a] += i;\n    }\n    cout << jar[0];\n    for (int i = 1; i < n; i++)\n        cout << ' ' << jar[i];\n    cout << endl;\n    return 0;\n}\n",
+            "solution": "直接模拟：开长度 N 的数组 jar 并初始化为 0，按天数 i 从 1 到 D 依次读入当天选择的存钱罐编号 a 并执行 jar[a] += i；最后按编号顺序输出 jar[0..N-1]，用单个空格分隔。时间复杂度 O(N+D)，空间 O(N)。",
+            "test_program": "#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <sstream>\nusing namespace std;\n\n// “小杨的储蓄”判题程序：argv[1] 为考生可执行文件路径。\n// 用例 = PDF 样例 + 边界 + 随机压测；期望值由下方独立模拟算出。\nstatic int totalCases = 0, passedCases = 0;\n\nstatic vector<long long> expectedJar(int n, int d, const vector<int>& a) {\n    vector<long long> jar(n, 0);\n    for (int i = 1; i <= d; i++) jar[a[i - 1]] += i;\n    return jar;\n}\n\nstatic string joinNums(const vector<long long>& v) {\n    ostringstream os;\n    for (size_t i = 0; i < v.size(); i++) { if (i) os << ' '; os << v[i]; }\n    return os.str();\n}\n\nstatic vector<long long> readNums(const string& s) {\n    vector<long long> v;\n    istringstream is(s);\n    long long x;\n    while (is >> x) v.push_back(x);\n    return v;\n}\n\nstatic void runCase(const string& exe, const string& tag, const string& input, const string& expect) {\n    totalCases++;\n    string inF = \"gesp_l3a_2023_09_p1_\" + tag + \".in\";\n    string outF = \"gesp_l3a_2023_09_p1_\" + tag + \".out\";\n    FILE* f = fopen(inF.c_str(), \"w\");\n    if (!f) { printf(\"[FAIL] case %s: cannot write input file\\n\", tag.c_str()); return; }\n    fputs(input.c_str(), f);\n    fclose(f);\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    string out;\n    FILE* g = fopen(outF.c_str(), \"r\");\n    if (g) {\n        char buf[8192];\n        size_t r;\n        while ((r = fread(buf, 1, sizeof(buf), g)) > 0) out.append(buf, r);\n        fclose(g);\n    }\n    vector<long long> got = readNums(out), want = readNums(expect);\n    bool ok = (rc == 0) && (got.size() == want.size());\n    if (ok) { for (size_t i = 0; i < got.size(); i++) if (got[i] != want[i]) { ok = false; break; } }\n    if (ok) passedCases++;\n    else printf(\"[FAIL] case %s: rc=%d expect[%s] got[%s]\\n\", tag.c_str(), rc, expect.c_str(), out.c_str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { printf(\"usage: %s <player-exe>\\n\", argv[0]); return 1; }\n    string exe = argv[1];\n    runCase(exe, \"s1\", \"2 3\\n0 1 0\\n\", \"4 2\");\n    runCase(exe, \"s2\", \"3 5\\n0 0 0 2 0\\n\", \"11 0 4\");\n    runCase(exe, \"b1\", \"1 1\\n0\\n\", \"1\");\n    {\n        int n = 1000, d = 1000;\n        ostringstream is;\n        is << n << \" \" << d << \"\\n\";\n        vector<int> a(d, n - 1);\n        for (int i = 0; i < d; i++) is << a[i] << (i + 1 < d ? ' ' : '\\n');\n        runCase(exe, \"b2\", is.str(), joinNums(expectedJar(n, d, a)));\n    }\n    {\n        int n = 7, d = 1000;\n        ostringstream is;\n        is << n << \" \" << d << \"\\n\";\n        vector<int> a(d);\n        for (int i = 0; i < d; i++) { a[i] = i % n; is << a[i] << (i + 1 < d ? ' ' : '\\n'); }\n        runCase(exe, \"b3\", is.str(), joinNums(expectedJar(n, d, a)));\n    }\n    srand(20230915);\n    for (int t = 0; t < 5; t++) {\n        int n = 1 + rand() % 1000;\n        int d = 1 + rand() % 1000;\n        vector<int> a(d);\n        ostringstream is;\n        is << n << \" \" << d << \"\\n\";\n        for (int i = 0; i < d; i++) { a[i] = rand() % n; is << a[i] << (i + 1 < d ? ' ' : '\\n'); }\n        ostringstream tag;\n        tag << \"r\" << t;\n        runCase(exe, tag.str(), is.str(), joinNums(expectedJar(n, d, a)));\n    }\n    printf(\"Results: %d/%d passed\\n\", passedCases, totalCases);\n    return passedCases == totalCases ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "进制判断",
+          "knowledge": ["字符", "多层循环结构", "进制知识"],
+          "source": "2023年9月认证C++三级.pdf，第 12–14 页",
+          "stem": "N 进制数指的是逢 N 进一的计数制。例如，人们日常生活中大多使用十进制计数，而计算机底层则一般使用二进制。除此之外，八进制和十六进制在一些场合也是常用的计数制（十六进制中，一般使用字母 A 至 F 表示十至十五）。现在有 N 个字符串（均由数字和大写字母组成），请你分别判断它们是否可能是二进制、八进制、十进制、十六进制数。例如，15A6F 就只可能是十六进制，而 1011 则是四种进制皆有可能。",
+          "input_format": "输入的第一行为一个十进制表示的整数 N。接下来 N 行，每行一个字符串，表示需要判断的数。保证所有字符串均由数字和大写字母组成，且不以 0 开头。保证不会出现空行。",
+          "output_format": "输出 N 行，每行 4 个数，用空格隔开，分别表示给定的字符串是否可能表示一个二进制数、八进制数、十进制数、十六进制数。使用 1 表示可能，使用 0 表示不可能。",
+          "constraints": "保证 1≤N≤1000，保证所有字符串长度不超过 10。时限 1 秒，内存限制 256MB。",
+          "samples": [
+            { "input": "2\n15A6F\n1011\n", "output": "0 0 0 1\n1 1 1 1\n" },
+            { "input": "4\n1234567\n12345678\nFF\nGG\n", "output": "0 1 1 1\n0 0 1 1\n0 0 0 1\n0 0 0 0\n" }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n = 0;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        char str[11];\n        cin >> str;\n        char max = '0';\n        for (int j = 0; str[j] != '\\0'; j++)\n            if (str[j] > max)\n                max = str[j];\n        cout << (max <= '1') << \" \" << (max <= '7') << \" \" << (max <= '9') << \" \" << (max <= 'F') << endl;\n    }\n    return 0;\n}\n",
+            "solution": "一个字符串能表示某进制数，当且仅当它的每个字符都不超过该进制的最大数字：二进制 '1'、八进制 '7'、十进制 '9'、十六进制 'F'。因此只需扫出字符串中的最大字符 max，依次输出 (max<='1')、(max<='7')、(max<='9')、(max<='F') 四个比较结果。时间复杂度 O(所有字符串总长度)。",
+            "test_program": "#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <string>\n#include <vector>\n#include <sstream>\nusing namespace std;\n\n// “进制判断”判题程序：argv[1] 为考生可执行文件路径。\n// 用例 = PDF 样例 + 边界 + 随机压测；期望值由下方独立实现算出。\nstatic int totalCases = 0, passedCases = 0;\n\nstatic string expectedLine(const string& s) {\n    char mx = '0';\n    for (size_t i = 0; i < s.size(); i++) if (s[i] > mx) mx = s[i];\n    ostringstream os;\n    os << (mx <= '1') << ' ' << (mx <= '7') << ' ' << (mx <= '9') << ' ' << (mx <= 'F');\n    return os.str();\n}\n\nstatic string expectedAll(const vector<string>& strs) {\n    ostringstream os;\n    for (size_t i = 0; i < strs.size(); i++) { if (i) os << '\\n'; os << expectedLine(strs[i]); }\n    return os.str();\n}\n\nstatic vector<long long> readNums(const string& s) {\n    vector<long long> v;\n    istringstream is(s);\n    long long x;\n    while (is >> x) v.push_back(x);\n    return v;\n}\n\nstatic void runCase(const string& exe, const string& tag, const string& input, const string& expect) {\n    totalCases++;\n    string inF = \"gesp_l3a_2023_09_p2_\" + tag + \".in\";\n    string outF = \"gesp_l3a_2023_09_p2_\" + tag + \".out\";\n    FILE* f = fopen(inF.c_str(), \"w\");\n    if (!f) { printf(\"[FAIL] case %s: cannot write input file\\n\", tag.c_str()); return; }\n    fputs(input.c_str(), f);\n    fclose(f);\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    string out;\n    FILE* g = fopen(outF.c_str(), \"r\");\n    if (g) {\n        char buf[8192];\n        size_t r;\n        while ((r = fread(buf, 1, sizeof(buf), g)) > 0) out.append(buf, r);\n        fclose(g);\n    }\n    vector<long long> got = readNums(out), want = readNums(expect);\n    bool ok = (rc == 0) && (got.size() == want.size());\n    if (ok) { for (size_t i = 0; i < got.size(); i++) if (got[i] != want[i]) { ok = false; break; } }\n    if (ok) passedCases++;\n    else printf(\"[FAIL] case %s: rc=%d expect[%s] got[%s]\\n\", tag.c_str(), rc, expect.c_str(), out.c_str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { printf(\"usage: %s <player-exe>\\n\", argv[0]); return 1; }\n    string exe = argv[1];\n    {\n        vector<string> strs;\n        strs.push_back(\"15A6F\"); strs.push_back(\"1011\");\n        runCase(exe, \"s1\", \"2\\n15A6F\\n1011\\n\", expectedAll(strs));\n    }\n    {\n        vector<string> strs;\n        strs.push_back(\"1234567\"); strs.push_back(\"12345678\"); strs.push_back(\"FF\"); strs.push_back(\"GG\");\n        runCase(exe, \"s2\", \"4\\n1234567\\n12345678\\nFF\\nGG\\n\", expectedAll(strs));\n    }\n    {\n        vector<string> strs;\n        strs.push_back(\"1\");\n        runCase(exe, \"b1\", \"1\\n1\\n\", expectedAll(strs));\n    }\n    {\n        vector<string> strs;\n        strs.push_back(\"A\");\n        runCase(exe, \"b2\", \"1\\nA\\n\", expectedAll(strs));\n    }\n    {\n        vector<string> strs;\n        strs.push_back(\"G\");\n        runCase(exe, \"b3\", \"1\\nG\\n\", expectedAll(strs));\n    }\n    {\n        vector<string> strs;\n        strs.push_back(\"1010101010\"); strs.push_back(\"FFFFFFFFFF\"); strs.push_back(\"9999999999\");\n        runCase(exe, \"b4\", \"3\\n1010101010\\nFFFFFFFFFF\\n9999999999\\n\", expectedAll(strs));\n    }\n    srand(20230916);\n    const string head = \"123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n    const string rest = \"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ\";\n    for (int t = 0; t < 5; t++) {\n        int n = 1 + rand() % 500;\n        vector<string> strs;\n        ostringstream is;\n        is << n << \"\\n\";\n        for (int i = 0; i < n; i++) {\n            int len = 1 + rand() % 10;\n            string s(1, head[rand() % (int)head.size()]);\n            for (int k = 1; k < len; k++) s += rest[rand() % (int)rest.size()];\n            strs.push_back(s);\n            is << s << \"\\n\";\n        }\n        ostringstream tag;\n        tag << \"r\" << t;\n        runCase(exe, tag.str(), is.str(), expectedAll(strs));\n    }\n    printf(\"Results: %d/%d passed\\n\", passedCases, totalCases);\n    return passedCases == totalCases ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,472 @@
+{
+  "exam": {
+    "id": "gesp_l3a_2023_06",
+    "title": "2023年6月认证C++三级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["程序编译"],
+          "stem": "高级语言（如 C++）编写的程序需要经过 ____ 操作，才能生成在计算机上运行的可执行代码。",
+          "answer": "编译",
+          "explanation": "编辑、保存只产生源代码文件，调试用于排查错误；只有编译（及链接）把源代码翻译成机器指令，才得到可执行代码。（原卷单选第 1 题，答案 D）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["程序调试"],
+          "stem": "程序运行结果与预期不符时，排查并修正程序中错误的操作称为 ____。",
+          "answer": "调试",
+          "explanation": "调试是定位并修复程序错误的过程；它不生成可执行代码（那是编译的职责），也不同于编辑、保存源代码。（原卷单选第 1 题 C 肢）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "二进制数 11.01 转换成十进制数是 ____。",
+          "answer": "3.25",
+          "explanation": "整数部分 11 为 3；小数部分 .01 为 0×2⁻¹ + 1×2⁻² = 0.25，合计 3.25。（原卷单选第 2 题，答案 D）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "十进制数 3.125 转换成二进制数是 ____（写成含小数部分的二进制）。",
+          "answer": "11.001",
+          "explanation": "整数部分 3 为 11；小数部分 0.125 = 2⁻³，即 .001，合起来为 11.001。（原卷单选第 2 题 C 肢考点）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["ASCII编码"],
+          "stem": "已知大写字母 'A' 的 ASCII 编码的十六进制表示为 0x41，则字符 'F' 的 ASCII 编码的十六进制表示为 ____（写两位十六进制数，不带 0x 前缀）。",
+          "answer": "46",
+          "explanation": "'F' 比 'A' 大 5，0x41 + 5 = 0x46。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["ASCII编码", "进制转换"],
+          "stem": "已知大写字母 'A' 的 ASCII 编码的十六进制表示为 0x41，则字符 'C' 的 ASCII 编码的十进制值为 ____。",
+          "answer": "67",
+          "explanation": "'C' 比 'A' 大 2，十六进制为 0x43，即十进制 4×16+3 = 67。（原卷单选第 3 题考点延伸）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["运算符"],
+          "stem": "在 `&`、`&&`、`*`、`**` 四个符号中，不是 C++ 运算符的是 ____。",
+          "answer": "**",
+          "explanation": "C++ 没有乘方运算符 `**`（幂运算要用 pow 等函数）；`&` 是按位与、`&&` 是逻辑与、`*` 是乘法（或解引用）。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["逻辑运算符", "位运算符"],
+          "stem": "在 C++ 中，表示逻辑与的运算符是 ____，表示按位与的运算符是 `&`，二者不可混用。",
+          "answer": "&&",
+          "explanation": "`&&` 对布尔值做逻辑与（结果为真/假），`&` 对二进制逐位做与；原题的错误肢正是把两类运算符混在一起考查。（原卷单选第 4 题 A/B 肢）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["字符数组", "字符串结束符"],
+          "stem": "如果字符串定义为 `char str[] = \"Hello\";`，则字符数组 str 的长度（即占用的元素个数，含结束标志）为 ____。",
+          "answer": "6",
+          "explanation": "字符串字面量末尾自动附加结束符 '\\0'，数组实际存 'H','e','l','l','o','\\0' 共 6 个字符。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["字符串结束符"],
+          "stem": "如果字符串定义为 `char str[] = \"Hello\";`，则系统自动在数组末尾附加的字符是 ____（写成字符常量）。",
+          "answer": ["'\\0'", "\\0"],
+          "explanation": "C++ 字符串字面量以 '\\0'（ASCII 码 0）结尾，因此数组长度比可见字符数多 1。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["数组内存占用"],
+          "stem": "一个数组定义为 `double array[3];`，则这个数组占用内存的大小为 ____ 字节。",
+          "answer": "24",
+          "explanation": "double 类型每个元素占 8 字节，3 个元素共 3×8 = 24 字节。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["数据类型内存占用"],
+          "stem": "在 C++ 中，一个 double 类型的变量通常占用 ____ 字节内存。",
+          "answer": "8",
+          "explanation": "double 为双精度浮点型，通常占 8 字节（int 通常占 4 字节）；这是计算 double 数组内存占用的依据。（原卷单选第 6 题考点）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["数组定义", "字符常量"],
+          "stem": "数组定义 `int b['3'];` 符合 C++ 语法。下标中的字符常量 '3' 之所以能当作数组长度，是因为它的值是一个整数，这个整数是 ____（填十进制）。",
+          "answer": "51",
+          "explanation": "字符 '3' 的 ASCII 码为 51，字符常量按整数参与编译，故下标 '3' 等价于 51。（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["数组定义"],
+          "stem": "数组定义 `int c[3.0];` 不符合 C++ 语法，因为数组的长度只能是 ____ 表达式（填：整数/浮点数）。",
+          "answer": ["整数", "整型", "整数常量", "整型常量表达式"],
+          "explanation": "数组长度必须是整型常量表达式，3.0 是浮点数故非法；同理 `int a[];` 缺长度又无初始化、`int[3] d;` 类型与下标位置颠倒，也都不合法。（原卷单选第 7 题 C/A/D 肢）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["八进制转换"],
+          "stem": "从二进制转换为 8 进制时，可以由低到高将每 ____ 位二进制位转换为对应的一位 8 进制位。",
+          "answer": "3",
+          "explanation": "2³ = 8，每 3 位二进制恰好对应一位八进制（0~7）。（原卷单选第 8 题 C 肢）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["十六进制转换"],
+          "stem": "从二进制转换为 16 进制时，可以由低到高将每 ____ 位二进制位转换为对应的一位 16 进制位。",
+          "answer": "4",
+          "explanation": "2⁴ = 16，每 4 位二进制恰好对应一位十六进制（0~F）。（原卷单选第 8 题 D 肢）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["数组初始化"],
+          "stem": "C++ 中定义 `int a[] = {1, 2, 3};` 是合法的：给出初始化列表时 `[]` 内可以省略长度，编译器根据初始化列表推得数组长度为 ____。",
+          "answer": "3",
+          "explanation": "带初始化列表定义数组时（不限于字符数组）可省略长度，由列表中元素个数确定；这正是原卷“除了字符数组，定义数组时 [] 内必须有常数”这一错误叙述的反例。（原卷单选第 9 题，答案 C）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["数组存储"],
+          "stem": "数组的全部元素在内存中是 ____ 存放的（填：连续/分散）。",
+          "answer": "连续",
+          "explanation": "数组元素按下标顺序占用一段连续内存，这是“地址 = 首地址 + 下标×元素大小”随机访问的基础。（原卷单选第 9 题 B 肢）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["按位异或"],
+          "stem": "若 x 为 int 类型的值，则表达式 `(x ^ 7) ^ 7` 的值是 ____（用含 x 的最简形式表示）。",
+          "answer": "x",
+          "explanation": "异或同一数两次相互抵消：(x^7)^7 = x^(7^7) = x^0 = x，故“按位异或 7 再异或 7”一定变回原值。（原卷单选第 10 题，答案 D）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["移位运算"],
+          "stem": "若 x 为 int 类型的值且取值任意，把 x 右移 3 位后再左移 3 位，____ 一定变回原来的值（填：能/不能）。",
+          "answer": "不能",
+          "explanation": "右移会丢弃低 3 位（如 x=1 时 x>>3 为 0，再左移仍是 0），信息丢失不可逆；同理先左移再右移也可能因高位丢失而不还原。（原卷单选第 10 题 A/B 肢）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["按位异或", "相等判断"],
+          "stem": "如果 a 和 b 均为 int 类型的变量，则当 a 与 b 相等时，`a ^ b` 的值是 ____（填十进制）。",
+          "answer": "0",
+          "explanation": "相同位异或为 0，a 与 b 相等时各位完全相同，异或结果为 0；反之由 a^b==0 即可判断 a 等于 b，这正是正确选项的依据。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["除零错误", "表达式判断"],
+          "stem": "表达式 `((a / b) == 1)` 不能正确判断“a 等于 b”：除了整数除法会截断外，还因为当 b 为 ____ 时该表达式会出现除零错误。",
+          "answer": "0",
+          "explanation": "b 为 0 时 a/b 除零，程序行为未定义甚至崩溃；且整数除法截断使 a=5、b=3 等不相等的情况也满足 a/b==1。（原卷单选第 11 题 A 肢）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["按位与", "向下取整"],
+          "stem": "如果 a 为 int 类型的变量，表达式 `(a & (~3))` 的值等于把 a 向下舍入到最近的 ____ 的倍数。",
+          "answer": "4",
+          "explanation": "~3 的二进制除最低两位为 0 外全为 1，与运算清掉最低两位，等价于向下舍入到 4 的倍数，即不超过 a 的最大 4 的倍数。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["按位与"],
+          "stem": "如果 a 为 int 类型的变量且值为 13，则表达式 `(a & (~3))` 的值是 ____（填十进制）。",
+          "answer": "12",
+          "explanation": "13 的二进制为 1101，清掉最低两位得 1100 即 12；12 恰是不超过 13 的最大 4 的倍数。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["异或交换", "程序阅读"],
+          "stem": "下列程序在横线处填入 `b = a ^ b` 后，程序的输出是 ____（两个整数之间用一个空格分隔）。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 12, b = 24;\n    b = a ^ b;\n    a = a ^ b;\n    b = a ^ b;\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```",
+          "answer": "24 12",
+          "explanation": "b=a^b 后 b=12^24=20；接着 a=a^b=12^20=24，b=a^b=24^20=12，输出 24 12，即三次异或完成两数交换。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["异或交换", "程序阅读"],
+          "stem": "下列程序在横线处填入 `a = a ^ b` 后，程序的输出是 ____（两个整数之间用一个空格分隔）。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 12, b = 24;\n    a = a ^ b;\n    a = a ^ b;\n    b = a ^ b;\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```",
+          "answer": "12 20",
+          "explanation": "a=a^b 后 a=12^24=20；接着 a=a^b=20^24=12（还原），b=a^b=12^24=20，输出 12 20，交换失败——首句填错位置后异或交换不成立。（原卷单选第 13 题 A 肢）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["程序阅读", "求最小值"],
+          "stem": "下列程序的输出是 ____。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {3, 7, 5, 2, 4};\n    int min = 8;\n    for (int i = 0; i < 5; i++)\n        if (min > array[i])\n            min = array[i];\n    cout << min << endl;\n    return 0;\n}\n```",
+          "answer": "2",
+          "explanation": "min 初值 8 不小于数组最大元素，条件 min > array[i] 依次把 min 更新为 3、2，最终得到最小值 2；求最小值要求 min 初值“足够大”。（原卷单选第 14 题考点）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["程序阅读", "初值陷阱"],
+          "stem": "下列程序的输出是 ____。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {3, 7, 5, 2, 4};\n    int min = 0;\n    for (int i = 0; i < 5; i++)\n        if (min > array[i])\n            min = array[i];\n    cout << min << endl;\n    return 0;\n}\n```",
+          "answer": "0",
+          "explanation": "min 初值 0 比数组所有元素都小，条件 min > array[i] 始终不成立，min 保持 0；求最小值时 min 初值必须足够大（或取 array[0]）。原卷此题答案表标 A（min > array[i]），但 min 初值为 0 时实测输出 0 而非 2，该题正确选项应为 D“以上均不对”。（原卷单选第 14 题，源卷答案疑似有误）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["按位与", "程序阅读"],
+          "stem": "下列程序的输出是 ____。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {1, 2, 4, 8, 16};\n    int res = 0;\n    for (int i = 0; i < 5; i++)\n        res = res & array[i];\n    cout << res << endl;\n    return 0;\n}\n```",
+          "answer": "0",
+          "explanation": "0 与任何数按位与都是 0，res 全程保持 0，输出不是 31；这正是原卷中使输出“不是 31”的填法。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["按位异或", "程序阅读"],
+          "stem": "下列程序的输出是 ____。\n```\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {1, 2, 4, 8, 16};\n    int res = 0;\n    for (int i = 0; i < 5; i++)\n        res = res ^ array[i];\n    cout << res << endl;\n    return 0;\n}\n```",
+          "answer": "31",
+          "explanation": "1、2、4、8、16 分别只占第 0~4 位，异或无进位叠加，结果为 1+2+4+8+16 = 31（与累加、按位或结果相同）。（原卷单选第 15 题 D 肢）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["算法描述"],
+          "stem": "叙述“算法描述要求比较规范，因此不能用自然语言描述算法”是 ____ 的（填：正确/错误）。",
+          "answer": "错误",
+          "explanation": "算法可以用自然语言、流程图、伪代码等多种形式描述；自然语言完全可以描述算法，只是可能冗长、易有二义性。（原卷判断第 1 题，答案 ×）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["算法描述"],
+          "stem": "算法的常见描述方式有自然语言、____、伪代码等（填一种）。",
+          "answer": ["流程图", "程序流程图"],
+          "explanation": "流程图用图形符号与箭头直观描述算法流程，是最常用的算法描述工具之一。（原卷判断第 1 题考点）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["域名"],
+          "stem": "CCF 编程能力等级认证官方网站的域名是 gesp.ccf.org.cn，其中的顶级域名是 ____。",
+          "answer": "cn",
+          "explanation": "顶级域名位于域名最右端，cn 代表中国；gesp 只是最左端标识具体站点/主机的部分，原卷称“顶级域名是 gesp”是错误的。（原卷判断第 2 题，答案 ×）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["域名结构"],
+          "stem": "域名 gesp.ccf.org.cn 由左至右共包含 ____ 段用点分隔的名字（填数字）。",
+          "answer": "4",
+          "explanation": "gesp、ccf、org、cn 共 4 段：自右向左依次为顶级域名 cn、二级域名 org、三级域名 ccf，最左的 gesp 标识具体站点。（原卷判断第 2 题考点）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["数据编码"],
+          "stem": "带符号整数在计算机中的三种编码形式是原码、反码和 ____。",
+          "answer": "补码",
+          "explanation": "带符号整数常用原码、反码、补码表示，现代计算机内部整数运算采用补码。（原卷判断第 3 题考点）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["数据编码"],
+          "stem": "叙述“数据编码方式只有原码、反码、补码三种”是 ____ 的（填：正确/错误），字符的 ASCII 编码、BCD 码等同样属于数据编码。",
+          "answer": "错误",
+          "explanation": "原码/反码/补码只是带符号整数的编码方式；数据编码还包括字符编码（ASCII）、BCD 码、浮点数表示（IEEE 754）等。（原卷判断第 3 题，答案 ×）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "在 C++ 语言中，长度为 n 的数组，合理的最大下标是 ____（用含 n 的式子表示）。",
+          "answer": ["n-1", "n - 1"],
+          "explanation": "下标从 0 开始，长度为 n 的数组合理下标范围是 0 到 n-1，访问 a[n] 即越界；原卷“包括 0 和 n”的说法错误。（原卷判断第 4 题，答案 ×）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "在 C++ 语言中，数组元素的最小合理下标是 ____。",
+          "answer": "0",
+          "explanation": "C++ 数组下标从 0 起：数组 a 的第一个元素是 a[0] 而不是 a[1]。（原卷判断第 4 题考点）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["字符常量", "ASCII编码"],
+          "stem": "字符常量 '\\0' 的 ASCII 码十进制值是 ____。",
+          "answer": "0",
+          "explanation": "'\\0' 是空字符，码值为 0，用来标志字符串结束；它与字符 '0'（码值 48）完全不同。（原卷判断第 5 题，答案 √）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["字符常量", "ASCII编码"],
+          "stem": "字符常量 '0'（数字零字符）的 ASCII 码十进制值是 ____。",
+          "answer": "48",
+          "explanation": "数字字符 '0'~'9' 的 ASCII 码依次是 48~57；'0' 为 48，与空字符 '\\0'（码值 0）不同，这正是原卷判断题强调的区别。（原卷判断第 5 题，答案 √）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["字符类型本质"],
+          "stem": "在 C++ 语言中，字符（如 '0'）可以作为数组下标使用，因为字符参与编译和运算时按 ____ 类型处理（填：整数/浮点数）。",
+          "answer": ["整数", "整型", "int"],
+          "explanation": "字符型本质是存储 ASCII 码的整数，可参与整数运算、可作下标，如 a['0'] 等价于 a[48]。（原卷判断第 6 题，答案 √）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["字符作下标"],
+          "stem": "已定义 `int a[100];`，用字符常量 '0' 作下标即 `a['0']`，访问的是数组的第 ____ 个元素（从第 1 个开始计数，填十进制数字）。",
+          "answer": "49",
+          "explanation": "'0' 的 ASCII 码是 48，a['0'] 即 a[48]；下标从 0 起计，a[48] 是第 49 个元素。（原卷判断第 6 题考点）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["数组大小"],
+          "stem": "在 C++ 语言中，数组的大小（长度）在 ____ 时就确定了，定义之后不能在程序运行中更改。",
+          "answer": ["定义", "定义时", "声明", "声明时"],
+          "explanation": "数组是静态分配的连续内存，长度一经定义（如 int a[5]; 为 5 个元素）即固定，运行期不能扩容或缩减。（原卷判断第 7 题，答案 √）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["sizeof", "数组大小"],
+          "stem": "对已定义的数组 `int a[5];`，表达式 `sizeof(a) / sizeof(a[0])` 的值是 ____（填十进制）。",
+          "answer": "5",
+          "explanation": "sizeof(a) 是整个数组的字节数（5×4=20），sizeof(a[0]) 是单个元素字节数（4），商即元素个数 5；这是求数组长度的常用技巧，前提是数组大小在定义时已确定。（原卷判断第 7 题考点）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["二进制存储"],
+          "stem": "计算机中存储的数据（整数、浮点数、字符等）都是 ____ 形式。",
+          "answer": "二进制",
+          "explanation": "计算机物理层面只识别高低电平两种状态，因此一切数据在存储中都是二进制。（原卷判断第 8 题前半考点）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["源码写法与运行效率"],
+          "stem": "在 C++ 源程序中把十进制常数 10 改写成数值相同的二进制字面量 0b1010，编译后程序的运行效率 ____（填：提高/不变）。",
+          "answer": ["不变", "相同", "不会提高", "没有变化"],
+          "explanation": "源码中的字面量写法只服务于阅读，编译后都变成同样的二进制机器数据，运行效率完全相同；原卷“改写为二进制数效率更高”的推论不成立。（原卷判断第 8 题，答案 ×）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["十六进制常量"],
+          "stem": "C++ 中十六进制整型常量 0xf 的十进制值是 ____。",
+          "answer": "15",
+          "explanation": "十六进制 f 对应十进制 15。（原卷判断第 9 题考点）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["八进制常量"],
+          "stem": "C++ 中八进制整型常量 015 的十进制值是 ____。",
+          "answer": "13",
+          "explanation": "以 0 开头的常量是八进制：015 = 1×8+5 = 13，与 0xf 的 15 不相等，故表达式 (0xf == 015) 的值为 false，原卷判断为 ×。（原卷判断第 9 题，答案 ×）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["按位或", "取值范围"],
+          "stem": "若 int 类型变量 a 使得表达式 `((a | 3) == 3)` 的值为 true，则 a 可能的最小值是 ____（填十进制）。",
+          "answer": "0",
+          "explanation": "(a|3)==3 要求 a 的二进制 1 位都落在 3 的 1 位（第 0、1 位）内，故 a 只能取 0、1、2、3，最小为 0。（原卷判断第 10 题，答案 √）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["按位或", "取值范围"],
+          "stem": "若 int 类型变量 a 使得表达式 `((a | 3) == 3)` 的值为 true，则 a 可能的最大值是 ____（填十进制）。",
+          "answer": "3",
+          "explanation": "a 的二进制 1 位只能出现在第 0、1 位，可能取值为 0、1、2、3，最大为 3；因此原卷“a 在从 0 到 3 之间（可能为 0、可能为 3）”成立。（原卷判断第 10 题，答案 √）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "春游",
+          "knowledge": ["布尔数组标记", "枚举"],
+          "source": "2023年6月认证C++三级.pdf，第 7–9 页",
+          "stem": "老师带领同学们春游。已知班上有 N 位同学，每位同学有从 0 到 N-1 的唯一编号。到了集合时间，老师确认是否所有同学都到达了集合地点，就让同学们报出自己的编号。到达的同学都会报出自己的编号，不会报出别人的编号，但有的同学很顽皮，会多次报出。你能帮老师找出有哪些同学没有到达吗？",
+          "input_format": "输入包含 2 行。第一行包含两个整数 N 和 M，表示班级有 N 位同学，同学们共有 M 次报出编号。第二行包含 M 个整数，分别为 M 次报出的编号。约定所有编号都在合理范围内。",
+          "output_format": "输出一行。如果所有同学都到达，则输出 N；否则由小到大输出所有未到达的同学编号，空格分隔。",
+          "constraints": "2 ≤ N, M ≤ 1000。\n时间限制 1.0 s；内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "3 3\n0 2 1",
+              "output": "3"
+            },
+            {
+              "input": "3 5\n0 0 0 0 0",
+              "output": "1 2"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\nbool arrive[1000];\nint main() {\n    int n = 0, m = 0;\n    cin >> n >> m;\n    // 初始化 arrive 数组为所有同学均未报到\n    for (int i = 0; i < n; i++)\n        arrive[i] = false;\n    // 依次报到 m 次\n    for (int i = 0; i < m; i++) {\n        int code = 0;\n        cin >> code;\n        arrive[code] = true;\n    }\n    // 依次检查 n 位同学是否到达\n    bool all = true;\n    for (int i = 0; i < n; i++) {\n        if (!arrive[i]) {\n            if (all) {\n                cout << i;\n                all = false;\n            } else {\n                cout << \" \" << i;\n            }\n        }\n    }\n    // 处理全部到达的特殊情况\n    if (all)\n        cout << n;\n    cout << endl;\n    return 0;\n}",
+            "solution": "用布尔数组 arrive 标记每个编号是否被报出：先全部置 false，读入 M 次报出并置 arrive[code]=true；最后按 0..N-1 顺序扫描，未标记的编号天然由小到大，用空格分隔输出；若全部被标记则特判输出 N。时间复杂度 O(N+M)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <iterator>\n#include <sstream>\n#include <string>\n#include <utility>\n#include <vector>\nusing namespace std;\n\nstatic string expected(int n, const vector<int>& codes) {\n    vector<bool> arrive(n, false);\n    for (size_t i = 0; i < codes.size(); ++i) arrive[codes[i]] = true;\n    bool all = true;\n    for (int i = 0; i < n; ++i) if (!arrive[i]) { all = false; break; }\n    ostringstream os;\n    if (all) { os << n; return os.str(); }\n    bool first = true;\n    for (int i = 0; i < n; ++i) if (!arrive[i]) {\n        if (!first) os << ' ';\n        os << i;\n        first = false;\n    }\n    return os.str();\n}\n\nstatic bool check(const string& exe, int n, const vector<int>& codes, int id) {\n    const string inFile = \"l3a06p1_input.txt\", outFile = \"l3a06p1_output.txt\";\n    {\n        ofstream out(inFile);\n        out << n << ' ' << codes.size() << '\\n';\n        for (size_t i = 0; i < codes.size(); ++i)\n            out << codes[i] << (i + 1 == codes.size() ? '\\n' : ' ');\n    }\n    const string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    string actual((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    vector<int> got, want;\n    {\n        istringstream p(actual); int v; while (p >> v) got.push_back(v);\n    }\n    {\n        istringstream p(expected(n, codes)); int v; while (p >> v) want.push_back(v);\n    }\n    bool ok = code == 0 && got == want;\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": n=\" << n << \" m=\" << codes.size()\n             << \", expected=\" << expected(n, codes)\n             << \", actual=\" << actual.substr(0, 120) << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    vector<pair<int, vector<int>>> tests;\n    tests.push_back(make_pair(3, vector<int>{0, 2, 1}));\n    tests.push_back(make_pair(3, vector<int>{0, 0, 0, 0, 0}));\n    tests.push_back(make_pair(2, vector<int>{0, 1}));\n    tests.push_back(make_pair(2, vector<int>{1, 1, 1}));\n    tests.push_back(make_pair(5, vector<int>{4, 3, 2, 1, 0}));\n    tests.push_back(make_pair(1000, vector<int>(1000, 0)));\n    {\n        vector<int> c(1000);\n        for (int i = 0; i < 1000; ++i) c[i] = i;\n        tests.push_back(make_pair(1000, c));\n    }\n    {\n        vector<int> c(2); c[0] = 0; c[1] = 999;\n        tests.push_back(make_pair(1000, c));\n    }\n    unsigned seed = 202306u;\n    for (int trial = 0; trial < 8; ++trial) {\n        seed = seed * 1664525u + 1013904223u;\n        int n = 2 + static_cast<int>(seed % 999u);\n        seed = seed * 1664525u + 1013904223u;\n        int m = 2 + static_cast<int>(seed % 999u);\n        vector<int> c(m);\n        for (int i = 0; i < m; ++i) {\n            seed = seed * 1664525u + 1013904223u;\n            c[i] = static_cast<int>(seed % static_cast<unsigned>(n));\n        }\n        tests.push_back(make_pair(n, c));\n    }\n    int pass = 0;\n    for (size_t i = 0; i < tests.size(); ++i)\n        if (check(argv[1], tests[i].first, tests[i].second, static_cast<int>(i + 1))) ++pass;\n    cout << \"Results: \" << pass << \"/\" << tests.size() << \" passed\\n\";\n    return pass == static_cast<int>(tests.size()) ? 0 : 1;\n}"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "密码合规检测",
+          "knowledge": ["字符串遍历", "分类统计"],
+          "source": "2023年6月认证C++三级.pdf，第 9–12 页",
+          "stem": "网站注册需要有用户名和密码，编写程序以检查用户输入密码的有效性。合规的密码应满足以下要求：\n1、只能由 a-z 之间 26 个小写字母、A-Z 之间 26 个大写字母、0-9 之间 10 个数字以及 !@#$ 四个特殊字符构成。\n2、密码最短长度：6 个字符，密码最大长度：12 个字符。\n3、大写字母、小写字母和数字必须至少有其中两种，以及至少有四个特殊字符中的一个。",
+          "input_format": "输入一行不含空格的字符串。约定长度不超过 100。该字符串被英文逗号分隔为多段，作为多组被检测密码。",
+          "output_format": "输出若干行，每行输出一组合规的密码。输出顺序以输入先后为序，即先输入则先输出。",
+          "constraints": "输入字符串长度不超过 100。\n时间限制 1.0 s；内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "seHJ12!@,sjdkffH$123,sdf!@&12HDHa!,123&^YUhg@!",
+              "output": "seHJ12!@\nsjdkffH$123"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\nchar line[101];\nchar pwd[101];\n// 检查从 str 开始、长度为 l 的密码是否合规\nbool check(char * str, int l) {\n    if (l < 6 || l > 12)\n        return false;\n    bool hasC = false, hasL = false, hasD = false, hasS = false;\n    for (int i = 0; str[i] != '\\0'; i++) {\n        if ('A' <= str[i] && str[i] <= 'Z') {\n            hasC = true;\n        } else if ('a' <= str[i] && str[i] <= 'z') {\n            hasL = true;\n        } else if ('0' <= str[i] && str[i] <= '9') {\n            hasD = true;\n        } else if (str[i] == '!' || str[i] == '@' ||\n                   str[i] == '#' || str[i] == '$') {\n            hasS = true;\n        } else\n            return false;\n    }\n    if (!hasS)\n        return false;\n    if (hasC + hasL + hasD < 2)\n        return false;\n    return true;\n}\nint main() {\n    cin >> line;\n    // 按逗号对输入进行切分，并依次判断\n    int len = 0;\n    for (int i = 0; line[i] != '\\0'; i++) {\n        if (line[i] != ',') {\n            pwd[len] = line[i];\n            len++;\n        } else {\n            pwd[len] = '\\0';\n            if (check(pwd, len))\n                cout << pwd << endl;\n            len = 0;\n        }\n    }\n    if (len > 0) {\n        pwd[len] = '\\0';\n        if (check(pwd, len))\n            cout << pwd << endl;\n    }\n    return 0;\n}",
+            "solution": "对每一段密码逐字符分类：大写/小写/数字/四个特殊字符之一，遇到其它字符立即不合规；再检查长度 6~12、至少含一个特殊字符、大写+小写+数字至少两类。主程序把输入行按英文逗号切分成多段依次检测并按原序输出。时间复杂度 O(总长度)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <iterator>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic bool okPwd(const string& s) {\n    int l = static_cast<int>(s.size());\n    if (l < 6 || l > 12) return false;\n    bool hasC = false, hasL = false, hasD = false, hasS = false;\n    for (size_t i = 0; i < s.size(); ++i) {\n        char ch = s[i];\n        if (ch >= 'A' && ch <= 'Z') hasC = true;\n        else if (ch >= 'a' && ch <= 'z') hasL = true;\n        else if (ch >= '0' && ch <= '9') hasD = true;\n        else if (ch == '!' || ch == '@' || ch == '#' || ch == '$') hasS = true;\n        else return false;\n    }\n    if (!hasS) return false;\n    if (static_cast<int>(hasC) + static_cast<int>(hasL) + static_cast<int>(hasD) < 2) return false;\n    return true;\n}\n\nstatic string expected(const string& line) {\n    string out;\n    size_t start = 0;\n    while (true) {\n        size_t pos = line.find(',', start);\n        string seg = (pos == string::npos) ? line.substr(start) : line.substr(start, pos - start);\n        if (okPwd(seg)) out += seg + \"\\n\";\n        if (pos == string::npos) break;\n        start = pos + 1;\n    }\n    return out;\n}\n\nstatic string show(const string& s) {\n    string result;\n    for (size_t i = 0; i < s.size(); ++i) {\n        if (s[i] == '\\n') result += \"\\\\n\";\n        else result += s[i];\n        if (result.size() > 125) { result += \"...\"; break; }\n    }\n    return result;\n}\n\nstatic bool check(const string& exe, const string& input, int id) {\n    const string inFile = \"l3a06p2_input.txt\", outFile = \"l3a06p2_output.txt\";\n    { ofstream out(inFile, ios::binary); out << input << '\\n'; }\n    const string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile, ios::binary);\n    string actual((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    for (size_t i = 0; i + 1 < actual.size(); ++i)\n        if (actual[i] == '\\r' && actual[i + 1] == '\\n') actual.erase(i, 1);\n    if (!actual.empty() && actual.back() == '\\n') actual.pop_back();\n    string want = expected(input);\n    if (!want.empty() && want.back() == '\\n') want.pop_back();\n    bool ok = code == 0 && actual == want;\n    if (!ok) cout << \"[FAIL] case \" << id << \": input=\" << show(input)\n                  << \" expected=\" << show(want) << \" actual=\" << show(actual)\n                  << \", process status=\" << code << '\\n';\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    vector<string> tests = {\n        \"seHJ12!@,sjdkffH$123,sdf!@&12HDHa!,123&^YUhg@!\",\n        \"aA1!@#\",\n        \"aA1!@\",\n        \"aA1!@#bbbbbb\",\n        \"aA1!@#bbbbbbb\",\n        \"aaaaa!\",\n        \"aaaaA!\",\n        \"aaaaA1\",\n        \"aaaaA1*\",\n        \"AAAA1!@#\",\n        \"aA1!@#,,aA1!@#\",\n        \"aA1!@#,aA1!@#,aA1!@#\",\n        \"zzZZ99$$\",\n        \"zzZZ99$$zzZZ99$\",\n        \"01234!@#ABC\",\n        \"!@#!@#!@#\",\n        \"aA1!@#,\",\n        \"GESP66!@,gesp66!@,Ge66!@\"\n    };\n    unsigned seed = 202306u;\n    const string alphabet = \"aB3!@#^&*zZ9$,\";\n    for (int trial = 0; trial < 10; ++trial) {\n        string s;\n        int len = 20 + trial * 9;\n        for (int i = 0; i < len; ++i) {\n            seed = seed * 1664525u + 1013904223u;\n            s += alphabet[seed % alphabet.size()];\n        }\n        tests.push_back(s);\n    }\n    int pass = 0;\n    for (size_t i = 0; i < tests.size(); ++i)\n        if (check(argv[1], tests[i], static_cast<int>(i + 1))) ++pass;\n    cout << \"Results: \" << pass << \"/\" << tests.size() << \" passed\\n\";\n    return pass == static_cast<int>(tests.size()) ? 0 : 1;\n}"
+          }
+        }
+      ]
+    }
+  ]
+}

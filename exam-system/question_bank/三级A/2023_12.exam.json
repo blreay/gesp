@@ -1,0 +1,464 @@
+{
+  "exam": {
+    "id": "gesp_l3a_2023_12",
+    "title": "2023年12月认证C++三级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["数组定义", "char 类型"],
+          "stem": "下面 C++ 定义中 `char dict_name[]={'chen','wang','zhou'};` 会丢失数据，原因是 char 型数组的每个元素只能存放 ____ 个字符，而 `'chen'` 是多字符字面量。",
+          "answer": ["1", "一"],
+          "explanation": "char 型数组的每个元素只占 1 字节、只能存 1 个字符；`'chen'` 这类多字符字面量是把多个字符的字节拼成一个整数，塞进 char 元素时只保留低位字节，因而丢失数据。A 肢字符数组、B 肢整型数组元素类型匹配，D 肢中 3、2、1 都能被 float 精确表示，均不丢数据。（原卷单选第 1 题，答案 C）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["字符字面量", "数据类型"],
+          "stem": "C++ 中多字符字面量 `'chen'` 的类型是 ____（写类型名）。",
+          "answer": "int",
+          "explanation": "单引号内写多个字符构成多字符字面量，其类型为 int（实测 sizeof('chen') 等于 sizeof(int)），值由各字符字节拼接而成；赋给 char 元素只留低字节，这正是原卷中该定义丢失数据的根因。（原卷单选第 1 题，答案 C）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "二进制数 `1101 1101` 转换为十进制是 ____。",
+          "answer": "221",
+          "explanation": "按权展开：128+64+0+16+8+4+0+1=221，故 (221)10 与该二进制相等。（原卷单选第 2 题 A 肢）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "二进制数 `1101 1101` 转换为十六进制是 ____（写两位十六进制数）。",
+          "answer": ["DD", "dd"],
+          "explanation": "每 4 位一组：1101=D、1101=D，合起来即 0xDD，故 (dd)16 与该二进制相等。（原卷单选第 2 题 C 肢）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["进制转换"],
+          "stem": "十六进制数 `5D` 对应的二进制数是 ____（写成 8 位二进制）。",
+          "answer": "01011101",
+          "explanation": "5=0101、D=1101，拼成 0101 1101，与 1101 1101 不相等，所以 (5d)16 是原卷中\"不能够和二进制 1101 1101 相等\"的选项。（原卷单选第 2 题，答案 D）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["string 下标", "字符串输出"],
+          "stem": "下面 C++ 代码的输出是 ____。\n```\nstring str(\"GESP\");\ncout<<str[1]<<str[2]<<str[3]<<str[4]<<endl;\n```",
+          "answer": "ESP",
+          "explanation": "string 下标从 0 开始，str[1]、str[2]、str[3] 依次是 E、S、P；str[4] 已是字符串结束符，输出它不显示任何内容，因此屏幕上只看到 ESP，得不到 GESP。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["string 初始化"],
+          "stem": "string 的三种初始化写法：圆括号 `string str(\"GESP\");`、等号赋值 `string str=\"GESP\";`、以及用 ____ 的 `string str{\"GESP\"};`（写符号名称）。",
+          "answer": ["花括号", "{}"],
+          "explanation": "C++11 起花括号（列表）初始化对 string 同样适用，三种写法合法且等价，都能得到内容为 GESP 的字符串。（原卷单选第 3 题 A/B/D 肢）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["整数除法", "嵌套循环"],
+          "stem": "下面 C++ 代码的输出是 ____。\n```\nint temp=0;\nfor(int i=1;i<7;i++)\n{\n    for(int j=1;j<5;j++)\n    {\n        if(i/j==2)\n        {\n            temp++;\n        }\n    }\n}\ncout<<temp<<endl;\n```",
+          "answer": "4",
+          "explanation": "i/j 是整数除法（向零截断）。满足 i/j==2 的 (i,j) 组合为 (2,1)、(4,2)、(5,2)、(6,3) 共 4 组，故 temp 自增 4 次，输出 4。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["整数除法"],
+          "stem": "设 i=5（int 型），j 依次取 1、2、3、4 时，能使整数除法表达式 `i/j==2` 成立的 j 值是 ____。",
+          "answer": "2",
+          "explanation": "5/1=5、5/2=2、5/3=1、5/4=1，只有 j=2 时整数除法结果等于 2。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["整数除法"],
+          "stem": "设 i=6（int 型），j 依次取 1、2、3、4 时，能使整数除法表达式 `i/j==2` 成立的 j 值是 ____。",
+          "answer": "3",
+          "explanation": "6/1=6、6/2=3、6/3=2、6/4=1，只有 j=3 时整数除法结果等于 2。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["length()", "循环边界"],
+          "stem": "下面 C++ 代码中循环体一共执行 ____ 次。\n```\nstring str=\"chen\";\nint x=str.length();\nint temp=0;\nfor(int i=0;i<=x;i++)\n{\n    temp++;\n}\n```",
+          "answer": "5",
+          "explanation": "x=4，循环条件 i<=x 把 i=4 也包含在内，i 取 0、1、2、3、4 共 5 个值，循环体执行 5 次——比字符串长度多 1 次，这是本题最容易数错的地方。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["length()"],
+          "stem": "下面 C++ 代码输出的值是 ____。\n```\nstring str=\"chen\";\nint x=str.length();\ncout<<x<<endl;\n```",
+          "answer": "4",
+          "explanation": "length() 返回字符串中字符的个数，\"chen\" 含 c、h、e、n 共 4 个字符，不含结束符。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["字符串结束符"],
+          "stem": "对 `string str=\"chen\";`，下标 4 对应的字符（即 `str[4]` 的值）是 ____（写术语）。",
+          "answer": ["空字符", "字符串结束符"],
+          "explanation": "长度为 4 的字符串有效字符下标为 0~3，下标 4 处存放结束符 '\\0'（空字符），其数值为 0（实测 (int)str[4]==0），输出它时屏幕上看不到任何内容。（原卷单选第 7 题选项分析）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["越界访问"],
+          "stem": "对 `string str=\"chen\";`，访问 `str[5]` 属于 ____ 访问（写术语），其行为未定义，输出的值无法预知。",
+          "answer": "越界",
+          "explanation": "str 的合法下标为 0~4（含结束符位置），下标 5 超出该范围，属于越界访问，读到的是字符串对象之外的内存，结果不可预测，故原卷判为\"输出未知的数\"。（原卷单选第 7 题，答案 A）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["数组初始化"],
+          "stem": "执行 `char ch[10]={'1'};` 后，`ch[0]` 中存放的字符是 ____。",
+          "answer": "1",
+          "explanation": "初始化列表的第一个值赋给 ch[0]，即字符 '1'（注意是字符而非数字 1 的整型值）。（原卷单选第 8 题 B 肢分析）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["数组初始化", "空字符输出"],
+          "stem": "执行 `char ch[10]={'1'};` 后，再执行 `cout<<ch[2]<<endl;`，屏幕上能看到的内容是 ____（写屏幕上可见的内容）。",
+          "answer": "nothing",
+          "explanation": "初始化列表只给了 1 个值，其余元素自动补 0（空字符）；ch[2] 是空字符，用 cout 输出它时屏幕上什么都不显示。（原卷单选第 8 题，答案 D）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["字符统计", "ASCII"],
+          "stem": "字符串 `\"GESP is a good programming test!\"` 中字符 'o'（小写）共出现 ____ 次。",
+          "answer": "3",
+          "explanation": "good 中有 2 个 o，programming 中有 1 个 o，合计 3 次（实测遍历计数为 3）；这正是原卷中\"当输出为 3\"所对应的统计目标。（原卷单选第 9 题题干）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["ASCII 码"],
+          "stem": "小写字符 'o' 的十进制 ASCII 码是 ____。",
+          "answer": "111",
+          "explanation": "'a' 的 ASCII 码为 97，o 是字母表中第 15 个字母，97+14=111（实测 (int)'o'==111）。（原卷单选第 9 题 B/D 肢）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["ASCII 码", "字符运算"],
+          "stem": "C++ 表达式 `'a'+14` 对应的字符是 ____（写字符）。",
+          "answer": "o",
+          "explanation": "'a'=97，97+14=111 即字符 'o'（实测输出为 o），所以条件 str[i]=='a'+14 与 str[i]=='o' 等价。（原卷单选第 9 题 B 肢）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["int 取值范围"],
+          "stem": "32 位计算机中，C++ int 型变量能够表示的最小值是 ____（写十进制整数）。",
+          "answer": "-2147483648",
+          "explanation": "32 位有符号整数采用补码，范围为 -2^31 ~ 2^31-1，即 -2147483648 ~ 2147483647（实测 INT_MIN）。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["int 取值范围"],
+          "stem": "32 位计算机中，C++ int 型变量能够表示的最大值是 ____（写十进制整数）。",
+          "answer": "2147483647",
+          "explanation": "即 2^31-1（实测 INT_MAX），比最小值的绝对值小 1，因为补码中 0 占用了非负侧的一个编码。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["整除判断", "循环计数"],
+          "stem": "下面 C++ 代码的输出是 ____。\n```\nint cnt=0;\nfor(int i=0;i<=20;i++)\n{\n    if(i%3==0&&i%5==0)\n    {\n        cnt++;\n    }\n}\ncout<<cnt;\n```",
+          "answer": "2",
+          "explanation": "同时被 3 和 5 整除即被 15 整除；0~20 中只有 0 和 15 满足（注意 i 从 0 开始，0%3 与 0%5 均为 0），故 cnt=2。（原卷单选第 11 题，答案 A）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["公倍数"],
+          "stem": "0 到 20（含）之间能同时被 3 和 5 整除的整数是 0 和 ____。",
+          "answer": "15",
+          "explanation": "3 与 5 的最小公倍数是 15，0~20 内的 15 的倍数为 0 和 15。（原卷单选第 11 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["整数除法", "类型转换"],
+          "stem": "下面 C++ 代码输出的值是 ____。\n```\nint a=3;\nint b=2;\ncout<<a/b*1.0<<endl;\n```",
+          "answer": "1",
+          "explanation": "a/b 中两个操作数都是 int，先做整数除法得 1，再乘 1.0 得 1.0，输出为 1；若想得到 1.5 应写成 a*1.0/b 或强制类型转换。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["整数除法"],
+          "stem": "表达式 `a/b*1.0`（a、b 均为 int）中，`a/b` 先做 ____ 除法（写除法类型），因此再乘 1.0 也无法恢复小数部分。",
+          "answer": "整数",
+          "explanation": "两个 int 相除执行整数除法，结果向零截断为 int；之后的 *1.0 只把已截断的结果转成浮点数，丢失的小数无法找回。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["字符判断", "ASCII"],
+          "stem": "下面代码中，条件 `strSrc[i]>='0'&&strSrc[i]<='9'` 用于判断当前字符是否为 ____：\n```\nif(strSrc[i]>='0'&&strSrc[i]<='9')\n{\n    tel=tel+strSrc[i];\n}\n```",
+          "answer": ["数字", "数字字符"],
+          "explanation": "数字字符的 ASCII 码连续递增，介于 '0' 与 '9' 之间（含端点）的字符必为数字字符，这是遍历字符串提取数字的常用写法。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["字符串遍历", "分支逻辑"],
+          "stem": "下面 C++ 代码运行后一共输出 ____ 个电话号码。\n```\nstring strSrc=\"红十字: 81084825898火警电话: 119急救电话: 120紧急求助: 110\";\nstring tel=\"\";\nfor(int i=0;i<=strSrc.length();i++)\n{\n    if(strSrc[i]>='0'&&strSrc[i]<='9')\n    {\n        tel=tel+strSrc[i];\n    }\n    else if(tel!=\"\")\n    {\n        cout<<tel<<endl;\n        tel=\"\";\n    }\n}\n```",
+          "answer": "4",
+          "explanation": "串中共有 4 段连续数字：81084825898、119、120、110；每段在遇到后续非数字字符时被输出并清空（实测计数为 4）。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["输出格式", "分支逻辑"],
+          "stem": "下面这段从文本中提取并输出电话号码的 C++ 代码，其输出格式是 ____（写号码与行的关系）。\n```\nelse if(tel!=\"\")\n{\n    cout<<tel<<endl;\n    tel=\"\";\n}\n```",
+          "answer": ["每个号码单独一行", "一行一个", "每个号码一行"],
+          "explanation": "每累积完一个号码就用 cout<<tel<<endl 输出，endl 会换行，因此各号码分行显示、互不粘连，原卷选项 A（换行输出各个号码）正确。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["智能硬件"],
+          "stem": "声控智能驾驶系统中，负责接收乘客语音目的地指令的硬件是 ____（写硬件名称）。",
+          "answer": "麦克风",
+          "explanation": "声控的第一步是采集声音，麦克风把声波转成电信号供系统识别，是语音输入设备。（原卷单选第 14 题 A 肢）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["智能硬件"],
+          "stem": "声控智能驾驶系统中，负责在选定路线后播放语音、告诉乘客驶向哪里的硬件是 ____（写硬件名称）。",
+          "answer": "扬声器",
+          "explanation": "系统把结果\"告诉乘客\"靠语音播报，扬声器是声音输出设备。（原卷单选第 14 题 B 肢）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["智能硬件"],
+          "stem": "声控智能驾驶系统中，负责感知车辆周边道路环境信息、供系统自动选择优化路线的硬件是 ____（写硬件名称）。",
+          "answer": "传感器",
+          "explanation": "自动选路依赖传感器采集环境数据；而油量表只显示剩余油量，与选路无关，是原卷要求选出的\"非必须\"项。（原卷单选第 14 题，答案 C / D 肢）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["计算机体系结构"],
+          "stem": "现代电子计算机基于 ____ 体系结构（写人名）。",
+          "answer": "冯·诺依曼",
+          "explanation": "现代电子计算机普遍采用\"存储程序\"的冯·诺依曼体系结构；艾伦·图灵奠定的是可计算性理论基础，阿塔纳索夫与埃克特-莫克利是早期计算机的研制者，但体系结构以冯·诺依曼命名。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["存储程序原理"],
+          "stem": "现代计算机的存储程序原理是指：程序与 ____ 都以二进制形式存放在存储器中，计算机在程序控制下自动工作。",
+          "answer": "数据",
+          "explanation": "冯·诺依曼体系的核心是程序与数据同等存储、统一编址，计算机逐条取出指令自动执行。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["逻辑运算"],
+          "stem": "C++ 代码 `cout<<(5&&2)<<endl;` 输出的值是 ____。",
+          "answer": "1",
+          "explanation": "5 与 2 均非零（真），逻辑与结果为 true，以整数形式输出即 1（实测）。（原卷判断第 1 题，答案 √）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["cin 输入"],
+          "stem": "执行下面 C++ 代码时，若从键盘输入以空格隔开的三个单词 `chen a dai`，则 `cin>>str` 读入 str 的是其中第 ____ 个单词（写：1/2/3）。\n```\nstring str;\ncin>>str;\ncout<<str;\n```",
+          "answer": ["1", "一", "第1", "第一"],
+          "explanation": "cin>> 读取字符串时以空白符为分隔，遇到第一个空格即停止，因此只读入第一个单词。（原卷判断第 2 题，答案 √）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["cin 输入"],
+          "stem": "C++ 中用 `cin>>str` 读取字符串时，以 ____ 作为分隔符（写术语）。",
+          "answer": ["空白", "空格", "空白字符"],
+          "explanation": ">> 是格式化输入，会跳过前导空白并按空白（空格、制表符、换行）切分单词。（原卷判断第 2 题，答案 √）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["逻辑运算"],
+          "stem": "C++ 代码 `cout<<(5||2);` 输出的值是 ____。",
+          "answer": "1",
+          "explanation": "逻辑或只要有一个操作数非零结果即为 true，输出为 1（实测）。（原卷判断第 3 题，答案 √）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["逻辑值"],
+          "stem": "C++ 逻辑判断中，非零值 5 会被当作 ____（写逻辑值）。",
+          "answer": ["真", "true"],
+          "explanation": "C++ 把非零值视为真、零视为假，所以 5&&2 与 5||2 的结果都是真，输出 1。（原卷判断第 3 题，答案 √）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["string replace"],
+          "stem": "`a.replace(0,1,\"C\");` 中两个参数 0 和 1 的含义是：从下标 0 开始，替换 ____ 个字符。",
+          "answer": "1",
+          "explanation": "replace(pos, len, s) 表示从下标 pos 起、长度为 len 的子串被 s 替换；此处即把 1 个字符换成 \"C\"。（原卷判断第 4 题，答案 √）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["string replace"],
+          "stem": "执行下面 C++ 代码后，a 的值是 ____（写字符串内容）。\n```\nstring a=\"china\";\na.replace(0,1,\"C\");\ncout<<a<<endl;\n```",
+          "answer": "China",
+          "explanation": "把下标 0 处的 1 个字符 'c' 替换为 \"C\"，其余字符不变，得到 China（实测）。（原卷判断第 4 题，答案 √）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["数组下标", "条件输出"],
+          "stem": "下面 C++ 代码输出的数字依次是 ____（多个数字之间用一个半角空格分隔）。\n```\nint list[10]={1,2,3,4,5,6,7,8,9,10};\nfor(int i=0;i<10;i++)\n{\n    if(i%5==0)\n    {\n        cout<<list[i]<<\" \";\n    }\n}\n```",
+          "answer": "1 6",
+          "explanation": "满足 i%5==0 的是下标 i=0 和 i=5，输出的是元素 list[0]=1 与 list[5]=6（实测）；原卷说法\"输出 0 5\"把下标当成了元素值，故判错。（原卷判断第 5 题，答案 ×）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "下面代码中，满足 `if(i%5==0)` 条件的是下标 i，而不是数组的 ____：\n```\nfor(int i=0;i<10;i++)\n{\n    if(i%5==0)\n    {\n        cout<<list[i]<<\" \";\n    }\n}\n```",
+          "answer": ["元素值", "数组元素值", "数组元素", "元素"],
+          "explanation": "条件判断作用于循环下标 i，而打印的内容是元素值 list[i]；两者不可混淆，原卷正是利用这一混淆设置陷阱。（原卷判断第 5 题，答案 ×）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["数组名与地址"],
+          "stem": "对 `int list[10]={1};`，直接把数组名送入 `cout<<list<<endl;`，屏幕上输出的是数组的 ____（写术语），而不是第一个元素的值。",
+          "answer": ["地址", "首地址", "指针"],
+          "explanation": "数组名在表达式中退化为指向首元素的指针，cout 对其按指针输出地址值；想输出元素必须带下标。（原卷判断第 6 题，答案 ×）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["数组下标"],
+          "stem": "对 `int list[10]={1};`，要用 cout 输出第一个元素的值，应写 `cout<<____<<endl;`（写表达式）。",
+          "answer": "list[0]",
+          "explanation": "下标 0 对应第一个元素，list[0] 的值才是 1。（原卷判断第 6 题，答案 ×）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["数组初始化"],
+          "stem": "执行 `int arr[10]={1};` 后，`arr[0]` 的值是 ____。",
+          "answer": "1",
+          "explanation": "初始化列表的第一个值赋给 arr[0]，故为 1（实测）。（原卷判断第 7 题，答案 √）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["数组初始化"],
+          "stem": "执行 `int arr[10]={1};` 后，`arr[1]` 到 `arr[9]` 各元素的值均为 ____。",
+          "answer": "0",
+          "explanation": "初始化列表不足时，剩余元素自动零初始化（实测 arr[5]==0）。（原卷判断第 7 题，答案 √）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["循环步长"],
+          "stem": "下面 C++ 代码输出的数字依次是 ____（多个数字之间用一个半角空格分隔）。\n```\nint list[10]={1,2,3,4,5,6,7,8,9,10};\nfor(int i=0;i<10;i+=2)\n{\n    cout<<list[i]<<\" \";\n}\n```",
+          "answer": "1 3 5 7 9",
+          "explanation": "i 依次取 0、2、4、6、8，输出 list[0]、list[2]、list[4]、list[6]、list[8]，即 1 3 5 7 9，每个数后带一个空格（实测）。（原卷判断第 8 题，答案 √）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["循环步长"],
+          "stem": "下面 C++ 代码中循环体一共执行 ____ 次。\n```\nfor(int i=0;i<10;i+=2)\n{\n    cout<<list[i]<<\" \";\n}\n```",
+          "answer": "5",
+          "explanation": "i 取 0、2、4、6、8 共 5 个值后 i=10 退出循环，循环体执行 5 次（实测）。（原卷判断第 8 题，答案 √）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["开发工具"],
+          "stem": "Dev C++ 是一款用于编辑、编译、调试和运行 C++ 程序的软件，它属于 ____（写软件类别术语），而不是操作系统。",
+          "answer": ["集成开发环境", "IDE", "开发环境"],
+          "explanation": "Dev C++ 是集成开发环境（IDE），运行在操作系统之上；操作系统负责管理硬件与软件资源（如 Windows、Linux），二者类别不同，故原卷说法错误。（原卷判断第 9 题，答案 ×）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["循环转换"],
+          "stem": "把一个循环变量 i 初值为 0、循环条件为 i<n、每轮 i 增加 1 的 for 循环改写成等价的 while 形式：先执行 `i=0;`，再以 `i<n` 为循环条件，并在循环体末尾执行 ____（写使 i 增加 1 的表达式）。",
+          "answer": ["i++", "++i", "i=i+1", "i+=1"],
+          "explanation": "for 的\"初始化、条件、迭代\"三部分分别对应 while 之前的赋值、循环条件和循环体末尾的迭代语句；二者可等价互换，任何 while 循环同样可化为 for。（原卷判断第 10 题，答案 √）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "小猫分鱼",
+          "knowledge": ["逆向推理", "模拟"],
+          "source": "2023年12月认证C++三级.pdf，第 5–6 页",
+          "stem": "海滩上有一堆鱼，N 只小猫来分。第一只小猫把这堆鱼平均分为 N 份，多了 i（i < N）个，这只小猫把多的 i 个扔入海中，拿走了一份。第二只小猫接着把剩下的鱼平均分成 N 份，又多了 i 个，小猫同样把多的 i 个扔入海中，拿走了一份。第三、第四、……、第 N 只小猫仍是把最终剩下的鱼分成 N 份，扔掉多了的 i 个，并拿走一份。\n\n编写程序，输入小猫的数量 N 以及每次扔到海里的鱼的数量 i，输出海滩上最少的鱼数，使得每只小猫都可吃到鱼（即每只小猫拿走的每份至少 1 条鱼）。\n\n例如：两只小猫来分鱼 N=2、每次扔掉 i=1，为了每只小猫都可吃到鱼，可令第二只小猫需要拿走 1 条鱼，则此时待分配的有 3 条鱼，第一只小猫待分配的鱼有 3*2/2+1=7 条。",
+          "input_format": "总共 2 行。第一行一个整数 N，第二行一个整数 i。",
+          "output_format": "一行一个整数，表示满足要求的海滩上最少的鱼数。",
+          "constraints": "0 < N < 10；i < N。时间限制 1.0s，内存限制 128.0MB。",
+          "samples": [
+            { "input": "2\n1\n", "output": "7\n" },
+            { "input": "3\n1\n", "output": "25\n" }
+          ],
+          "answer": {
+            "reference_code": "#include <stdio.h>\n\nint main(int argc, char **argv)\n{\n    long long n, i, j, k, ans;\n    bool flag;\n    scanf(\"%lld%lld\", &n, &i);\n\n    k = 1;\n    while(true)\n    {\n        flag = true;\n        ans = k*n+i;\n        for(j=1; j<n; j++)\n        {\n            if(ans%(n-1) != 0)\n            {\n                flag = false;\n                break;\n            }\n            ans = ans / (n-1) * n + i;\n        }\n        if(flag) break;\n        k++;\n    }\n\n    printf(\"%lld\\n\", ans);\n\n    return 0;\n}\n",
+            "solution": "逆向推理：设最后一只（第 N 只）小猫拿走 k 条鱼（从 k=1 开始枚举），则它分鱼前海滩上有 k*N+i 条；往前推一轮，上一轮分鱼前的鱼数 ans' 满足 (ans'-i) 去掉一份后等于当前 ans，即 ans' = ans/(N-1)*N + i，且要求 ans 能被 (N-1) 整除。依次逆推 N-1 轮，第一个使全部整除检查通过的 k 即给出最小答案。复杂度 O(答案规模 × N)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <utility>\n#include <vector>\nusing namespace std;\n\n// 独立实现一：正向暴力。从 total=1 起逐个模拟 N 只小猫分鱼，第一个全程合法者即最小鱼数。\nstatic long long fwd_expected(long long n, long long i) {\n    for (long long total = 1; ; ++total) {\n        long long cur = total;\n        bool ok = true;\n        for (long long c = 0; c < n; ++c) {\n            if (cur < i) { ok = false; break; }\n            long long rem = cur - i;\n            if (rem % n != 0) { ok = false; break; }\n            long long share = rem / n;\n            if (share < 1) { ok = false; break; }\n            cur = rem - share;\n        }\n        if (ok) return total;\n    }\n}\n\n// 独立实现二：逆向枚举最后一只小猫拿走的份 k，逐轮整除检查。\nstatic long long rev_expected(long long n, long long i) {\n    for (long long k = 1; ; ++k) {\n        long long ans = k * n + i;\n        bool ok = true;\n        for (long long step = 1; step < n; ++step) {\n            if (ans % (n - 1) != 0) { ok = false; break; }\n            ans = ans / (n - 1) * n + i;\n        }\n        if (ok) return ans;\n    }\n}\n\nstatic bool check(const string& exe, long long n, long long i, long long want, int id) {\n    const string inFile = \"l3a12p1_input.txt\", outFile = \"l3a12p1_output.txt\";\n    {\n        ofstream out(inFile);\n        out << n << \"\\n\" << i << \"\\n\";\n    }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    long long actual = -1;\n    string extra;\n    bool ok = code == 0 && (in >> actual) && !(in >> extra) && actual == want;\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": n=\" << n << \" i=\" << i << \", expected=\" << want\n             << \", actual=\" << actual << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    vector<pair<pair<long long, long long>, long long>> tests = {\n        {{2, 1}, 7}, {{3, 1}, 25},          // PDF 样例\n        {{1, 0}, 1}, {{2, 0}, 4},           // 边界：N=1、i=0\n        {{3, 2}, 23}, {{4, 1}, 253}, {{4, 3}, 247},\n        {{5, 2}, 3117}, {{6, 0}, 46656},\n        {{7, 3}, 823525}, {{8, 5}, 16777181},\n        {{9, 1}, 387420481}, {{9, 8}, 387420425}  // 边界：N、i 取上限附近\n    };\n    unsigned seed = 202312u;\n    int id = static_cast<int>(tests.size());\n    for (int trial = 0; trial < 10; ++trial) {\n        seed = seed * 1664525u + 1013904223u;\n        long long n = 1 + seed % 4;         // 小规模：正向暴力独立验证\n        seed = seed * 1664525u + 1013904223u;\n        long long i = seed % n;\n        tests.push_back({{n, i}, fwd_expected(n, i)});\n        ++id;\n    }\n    for (int trial = 0; trial < 6; ++trial) {\n        seed = seed * 1664525u + 1013904223u;\n        long long n = 5 + seed % 5;         // 大规模：逆向实现独立验证\n        seed = seed * 1664525u + 1013904223u;\n        long long i = seed % n;\n        tests.push_back({{n, i}, rev_expected(n, i)});\n        ++id;\n    }\n    int pass = 0;\n    for (size_t t = 0; t < tests.size(); ++t)\n        if (check(argv[1], tests[t].first.first, tests[t].first.second, tests[t].second, static_cast<int>(t + 1))) ++pass;\n    cout << \"Results: \" << pass << \"/\" << tests.size() << \" passed\\n\";\n    return pass == static_cast<int>(tests.size()) ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "单位转换",
+          "knowledge": ["字符串解析", "模拟"],
+          "source": "2023年12月认证C++三级.pdf，第 7–8 页",
+          "stem": "小杨这周的数学作业是做单位转换，喜欢编程的小杨决定编程帮他解决这些问题。\n\n小杨只学了长度单位和重量单位，具体来说：\n\n- 长度单位包括千米（km）、米（m）、毫米（mm），它们之间的关系是：1 km = 1000 m = 1000000 mm。\n- 重量单位包括千克（kg）、克（g）、毫克（mg），它们之间的关系是：1 kg = 1000 g = 1000000 mg。\n\n小杨的作业只涉及将更大的单位转换为更小的单位，也就是说，作业只会包含如下题型：米转换为毫米，千米转换为毫米，千米转换为米，克转换为毫克，千克转换为毫克，千克转换为克。\n\n现在，请你帮忙完成单位转换的程序。",
+          "input_format": "输入的第一行为一个整数 N，表示题目数量。\n\n接下来 N 行，每行一个字符串，表示转换单位的题目，格式为 `x 单位1 = ? 单位2`。其中，x 为一个不超过 1000 的非负整数，单位1 和 单位2 分别为两个单位的英文缩写，保证它们都是长度单位或都是重量单位，且 单位1 比 单位2 更大。",
+          "output_format": "输出 N 行，依次输出所有题目的答案。输出时，只需要将输入中的 ? 代入答案，其余部分一字不差地输出即可。由于题目只涉及将更大的单位转换为更小的单位，并且输入的 x 是整数，因此答案一定也是整数。",
+          "constraints": "1 ≤ N ≤ 1000；0 ≤ x ≤ 1000。时间限制 1.0s，内存限制 128.0MB。",
+          "samples": [
+            { "input": "2\n1 km = ? mm\n1 m = ? mm\n", "output": "1 km = 1000000 mm\n1 m = 1000 mm\n" },
+            { "input": "5\n100 m = ? mm\n1000 km = ? m\n20 kg = ? g\n200 g = ? mg\n0 kg = ? mg\n", "output": "100 m = 100000 mm\n1000 km = 1000000 m\n20 kg = 20000 g\n200 g = 200000 mg\n0 kg = 0 mg\n" }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <algorithm>\nusing namespace std;\nint get_base(char *s) {\n    if (strlen(s) == 1)\n        return 1000;\n    return s[0] == 'k' ? 1000000 : 1;\n}\nint main() {\n    int T;\n    scanf(\"%d\", &T);\n    while(T--) {\n        int x;\n        char s1[5], s2[5];\n        scanf(\"%d\", &x);\n        scanf(\"%s\", s1);\n        scanf(\"%s\", s2), scanf(\"%s\", s2), scanf(\"%s\", s2);\n        printf(\"%d %s = %d %s\\n\", x, s1, x * get_base(s1) / get_base(s2), s2);\n    }\n    return 0;\n}\n",
+            "solution": "给每个单位指定以最小单位表示的基数：mm/mg=1、m/g=1000、km/kg=1000000。答案 = x * base(单位1) / base(单位2)（保证整除）。按原格式逐行读入 x、单位1、跳过 \"=\" 与 \"?\"、读单位2，再按 `x 单位1 = 答案 单位2` 原样输出。复杂度 O(N)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <map>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstruct Item { long long x; string u1; string u2; };\n\n// 独立实现：单位基数表 + 整数倍率换算\nstatic long long base_of(const string& u) {\n    if (u == \"mm\" || u == \"mg\") return 1;\n    if (u == \"m\" || u == \"g\") return 1000;\n    return 1000000;  // km / kg\n}\nstatic long long expected(const Item& it) {\n    return it.x * base_of(it.u1) / base_of(it.u2);\n}\n\nstatic bool check(const string& exe, const vector<Item>& items, int id) {\n    const string inFile = \"l3a12p2_input.txt\", outFile = \"l3a12p2_output.txt\";\n    {\n        ofstream out(inFile);\n        out << items.size() << \"\\n\";\n        for (size_t k = 0; k < items.size(); ++k)\n            out << items[k].x << \" \" << items[k].u1 << \" = ? \" << items[k].u2 << \"\\n\";\n    }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inFile + \" > \" + outFile + \" 2>/dev/null\";\n    int code = system(cmd.c_str());\n    ifstream in(outFile);\n    bool ok = code == 0;\n    for (size_t k = 0; ok && k < items.size(); ++k) {\n        long long ox = -1, oa = -1;\n        string ou1, eq, ou2;\n        if (!(in >> ox >> ou1 >> eq >> oa >> ou2)) { ok = false; break; }\n        if (ox != items[k].x || ou1 != items[k].u1 || eq != \"=\" || ou2 != items[k].u2 || oa != expected(items[k])) ok = false;\n    }\n    string extraToken;\n    if (ok && (in >> extraToken)) ok = false;  // 不允许多余输出\n    if (!ok) {\n        cout << \"[FAIL] case \" << id << \": first line x=\" << items[0].x << \" \" << items[0].u1 << \"->\" << items[0].u2\n             << \", expected0=\" << expected(items[0]) << \", process status=\" << code << '\\n';\n    }\n    return ok;\n}\n\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    vector<vector<Item>> tests = {\n        {{1, \"km\", \"mm\"}, {1, \"m\", \"mm\"}},  // PDF 样例 1\n        {{100, \"m\", \"mm\"}, {1000, \"km\", \"m\"}, {20, \"kg\", \"g\"}, {200, \"g\", \"mg\"}, {0, \"kg\", \"mg\"}},  // PDF 样例 2\n        {{0, \"km\", \"mm\"}, {0, \"m\", \"mm\"}, {0, \"kg\", \"mg\"}},  // 边界：x=0\n        {{1000, \"km\", \"mm\"}, {1000, \"kg\", \"mg\"}},            // 边界：x 上限，答案 1e9\n        {{1000, \"m\", \"mm\"}, {1000, \"km\", \"m\"}, {1000, \"kg\", \"g\"}, {1000, \"g\", \"mg\"}},\n        {{7, \"km\", \"m\"}, {7, \"m\", \"mm\"}, {7, \"km\", \"mm\"}, {7, \"kg\", \"g\"}, {7, \"g\", \"mg\"}, {7, \"kg\", \"mg\"}}  // 全部六种题型\n    };\n    const char* u1s[] = {\"km\", \"m\", \"kg\", \"g\"};\n    const char* u2len[] = {\"mm\", \"m\"};\n    unsigned seed = 202312u;\n    for (int trial = 0; trial < 8; ++trial) {\n        vector<Item> items;\n        int n = 3 + trial * 127 % 40;\n        for (int k = 0; k < n; ++k) {\n            seed = seed * 1664525u + 1013904223u;\n            long long x = seed % 1001u;\n            seed = seed * 1664525u + 1013904223u;\n            int pick = seed % 6u;\n            Item it;\n            it.x = x;\n            switch (pick) {\n                case 0: it.u1 = \"m\";  it.u2 = \"mm\"; break;\n                case 1: it.u1 = \"km\"; it.u2 = \"mm\"; break;\n                case 2: it.u1 = \"km\"; it.u2 = \"m\";  break;\n                case 3: it.u1 = \"g\";  it.u2 = \"mg\"; break;\n                case 4: it.u1 = \"kg\"; it.u2 = \"mg\"; break;\n                default: it.u1 = \"kg\"; it.u2 = \"g\"; break;\n            }\n            items.push_back(it);\n        }\n        tests.push_back(items);\n    }\n    (void)u1s; (void)u2len;\n    int pass = 0;\n    for (size_t t = 0; t < tests.size(); ++t)\n        if (check(argv[1], tests[t], static_cast<int>(t + 1))) ++pass;\n    cout << \"Results: \" << pass << \"/\" << tests.size() << \" passed\\n\";\n    return pass == static_cast<int>(tests.size()) ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

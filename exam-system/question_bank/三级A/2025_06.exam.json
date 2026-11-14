@@ -1,0 +1,464 @@
+{
+  "exam": {
+    "id": "gesp_l3a_2025_06",
+    "title": "2025年6月认证C++三级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["原码", "数的机器表示"],
+          "stem": "8 位二进制原码能表示的最小整数是 ____（填十进制整数）。",
+          "answer": "-127",
+          "explanation": "原码最高位为符号位，其余 7 位为数值位，数值部分最大为 127，故 8 位原码表示范围是 -127～+127，最小整数为 -127。（原卷单选第 1 题，答案 A）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["补码", "数的机器表示"],
+          "stem": "8 位二进制补码能表示的最小整数是 ____（填十进制整数）。",
+          "answer": "-128",
+          "explanation": "补码比原码多表示一个 -128（编码 1000 0000），8 位补码范围是 -128～+127，这是原码与补码表示范围的关键差别。（原卷单选第 1 题 B/C/D 干扰肢对比考点）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["反码", "零的表示"],
+          "stem": "在反码表示中，零有 ____ 种表示形式（填数字）。",
+          "answer": ["2", "两"],
+          "explanation": "反码有 +0（0000 0000）与 -0（1111 1111）两种形式，这也是反码不如补码方便的原因之一。（原卷单选第 2 题，答案 B）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["补码", "零的表示"],
+          "stem": "在补码表示中，零有 ____ 种表示形式（填数字）。",
+          "answer": ["1", "一"],
+          "explanation": "补码中零只有唯一编码 0000 0000（-0 的编码 1000 0000 被用来表示 -128），零的唯一性是补码的优点。（原卷单选第 2 题对比考点）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["补码", "真值转换"],
+          "stem": "补码 1011 1011 对应的真值是 ____（填十进制整数）。",
+          "answer": "-69",
+          "explanation": "符号位为 1 表示负数；数值部分取反加一：1011 1011 取反得 0100 0100，加 1 得 0100 0101 = 69，故真值为 -69。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["补码", "真值转换"],
+          "stem": "十进制整数 -69 的 8 位二进制补码是 ____（写成 8 位二进制，位与位之间不留空格）。",
+          "answer": "10111011",
+          "explanation": "69 的二进制为 0100 0101，按位取反得 1011 1010，末位加 1 得 1011 1011，即 -69 的 8 位补码。（原卷单选第 3 题逆向考点）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["补码", "算术右移"],
+          "stem": "若 X 的 8 位补码为 0000 1010，则 X/2 的补码是 ____（写成 8 位二进制，位与位之间不留空格）。",
+          "answer": "00000101",
+          "explanation": "0000 1010 表示 +10，X/2 = 5，其补码为 0000 0101；正数补码除以 2 等价于右移一位、高位补 0。（原卷单选第 4 题，答案 A）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["补码", "算术右移"],
+          "stem": "若 Y 的 8 位补码为 1000 1010，则将 Y 算术右移 1 位后得到的补码是 ____（写成 8 位二进制，位与位之间不留空格）。",
+          "answer": "11000101",
+          "explanation": "负数补码算术右移时高位补符号位 1：1000 1010 右移一位得 1100 0101（即 -118 右移得 -59），说明算术右移的结果与符号位有关。（原卷单选第 4 题 D 肢：算术右移取决于符号位）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["进制转换", "二进制小数"],
+          "stem": "二进制数 1101.101 对应的十进制数是 ____（保留完整小数）。",
+          "answer": "13.625",
+          "explanation": "整数部分 1101 = 8+4+1 = 13；小数部分 .101 = 1/2 + 0/4 + 1/8 = 0.625，合计 13.625。（原卷单选第 5 题，答案 A）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["进制转换", "二进制小数"],
+          "stem": "十进制数 12.75 对应的二进制数是 ____（用小数点写法，小数部分保留两位）。",
+          "answer": "1100.11",
+          "explanation": "整数部分 12 = 1100；小数部分 0.75 = 1/2 + 1/4，即 .11，合起来为 1100.11。（原卷单选第 5 题逆向考点）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["补码加法", "溢出判断"],
+          "stem": "补码加法运算中，若符号位没有产生进位、但次高位向符号位有进位，则说明本次运算发生了 ____（填：溢出/下溢）。",
+          "answer": ["溢出", "溢出了"],
+          "explanation": "用进位判断溢出的规则是：符号位进位与次高位进位不一致即溢出；此处进入符号位的进位为 1、符号位产生的进位为 0，两者不同，故发生溢出。（原卷单选第 6 题，答案 B）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["补码加法", "溢出判断"],
+          "stem": "补码加法中，判断结果是否溢出的依据是：次高位向符号位的进位与符号位向更高位的进位是否 ____（填：相同/不同）。",
+          "answer": ["不同", "不相同", "不一样"],
+          "explanation": "两个进位异或为 1（即不同）时结果超出补码表示范围，发生溢出；两个进位相同时结果正确。（原卷单选第 6 题考点）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["进制转换", "八进制"],
+          "stem": "八进制数 35.6 对应的十进制数是 ____（保留完整小数）。",
+          "answer": "29.75",
+          "explanation": "整数部分 3×8 + 5 = 29；小数部分 6/8 = 0.75，合计 29.75。（原卷单选第 7 题，答案 A）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["进制转换", "八进制"],
+          "stem": "十进制数 29.75 对应的八进制数是 ____（写成带小数点的八进制形式）。",
+          "answer": "35.6",
+          "explanation": "29 = 3×8 + 5，整数部分为 35；0.75×8 = 6，小数部分为 .6，合起来为 35.6。（原卷单选第 7 题逆向考点）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["位运算", "按位或"],
+          "stem": "二进制数 1010 与 1100 按位或（|）运算的结果是 ____（写成 4 位二进制）。",
+          "answer": "1110",
+          "explanation": "按位或：对应位有 1 得 1，1010 | 1100 = 1110。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["位运算", "按位与"],
+          "stem": "二进制数 1010 与 1100 按位与（&）运算的结果是 ____（写成 4 位二进制）。",
+          "answer": "1000",
+          "explanation": "按位与：对应位全 1 才得 1，1010 & 1100 = 1000。（原卷单选第 8 题 A 肢对比考点）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["位运算", "异或交换"],
+          "stem": "已知 int a = 6, b = 9; 依次执行 a = a ^ b; b = a ^ b; 后，b 的值是 ____（填整数）。",
+          "answer": "6",
+          "explanation": "第一步后 a = 6^9；第二步 b = (6^9)^9 = 6，即 b 先拿到了 a 的原值，这是异或交换法的前两步。（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["位运算", "异或交换"],
+          "stem": "已知 int a = 6, b = 9; 依次执行 a = a ^ b; b = a ^ b; a = a ^ b; 三条语句后，a 的值是 ____（填整数）。",
+          "answer": "9",
+          "explanation": "第三步 a = (6^9)^6 = 9，三步执行完毕 a、b 的值完成交换：a = 9、b = 6，全程无需临时变量。（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["数组定义", "C++语法"],
+          "stem": "C++ 中定义一个长度为 5、名为 array 的整型数组，正确的语句是 ____（写完整定义语句，含分号）。",
+          "answer": ["int array[5];"],
+          "explanation": "C++ 静态数组定义为「类型 数组名[长度];」，即 int array[5];；new 方式则必须用指针接收。（原卷单选第 10 题，答案 D）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["数组定义", "new运算符"],
+          "stem": "C++ 语句 int array = new int[5]; 是 ____（填：合法/非法）。",
+          "answer": ["非法", "不合法", "错误的"],
+          "explanation": "new int[5] 的返回值是指针 int*，不能赋给 int 型变量，该语句无法通过编译；正确写法是 int *array = new int[5];。（原卷单选第 10 题 A 肢）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["整数数位分离", "取模运算"],
+          "stem": "C++ 中 i 是一个三位正整数，取出 i 的十位数字的表达式是 ____（写以 i 为变量的完整表达式，含必要括号）。",
+          "answer": ["(i / 10) % 10", "(i/10)%10", "i / 10 % 10", "i/10%10"],
+          "explanation": "i / 10 去掉个位，再对 10 取模即得原数的十位；例如 i = 357 时 (357/10)%10 = 35%10 = 5。（原卷单选第 11 题，答案 B）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["整数数位分离", "整除运算"],
+          "stem": "C++ 中 i 是一个三位正整数，取出 i 的百位数字的表达式是 ____（写以 i 为变量的完整表达式）。",
+          "answer": ["i / 100", "i/100", "(i / 10) / 10", "(i/10)/10"],
+          "explanation": "整数除法 i / 100 直接舍去后两位，对三位数即得百位；先除以 10 再除以 10 等价。（原卷单选第 11 题 A 肢对照考点）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["程序阅读", "循环模拟"],
+          "stem": "小球从 10 米高度自由落下，每次落地后反弹回原高度的一半。下面程序累计小球前 5 次下落的总路程：\n```\nheight = 10; distance = 0;\nfor (i = 1; i <= 5; i++) {\n    distance += height;\n    height /= 2;\n}\n```\n循环第 3 次迭代时累加进 distance 的下落高度是 ____ 米（填小数）。",
+          "answer": "2.5",
+          "explanation": "每次迭代先累加当前高度再把高度减半，各次累加值依次为 10、5、2.5、1.25、0.625，第 3 次迭代累加的是 2.5。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["程序阅读", "循环模拟"],
+          "stem": "小球从 10 米高度自由落下，每次落地后反弹回原高度的一半。下面程序累计小球前 5 次下落的总路程：\n```\nheight = 10; distance = 0;\nfor (i = 1; i <= 5; i++) {\n    distance += height;\n    height /= 2;\n}\n```\n循环结束后 distance 的值是 ____ 米（填小数）。",
+          "answer": "19.375",
+          "explanation": "distance = 10 + 5 + 2.5 + 1.25 + 0.625 = 19.375；循环体内先累加下落高度、再折半，故折半后的高度在下一次迭代中被累加。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["字符串编码", "UTF-8"],
+          "stem": "在 UTF-8 编码下，C++ 字符串 s = \"GESP考试\"; 占用的字节数是 ____（填数字）。",
+          "answer": "10",
+          "explanation": "4 个英文字母各占 1 字节，2 个汉字在 UTF-8 下各占 3 字节，共 4 + 6 = 10 字节；字节数随编码而变。（原卷单选第 13 题，答案 D）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["字符串编码", "GBK"],
+          "stem": "在 GBK 编码下（每个汉字占 2 字节），C++ 字符串 s = \"GESP考试\"; 占用的字节数是 ____（填数字）。",
+          "answer": "8",
+          "explanation": "4 个英文字母占 4 字节，2 个汉字在 GBK 下各占 2 字节，共 4 + 4 = 8 字节；与 UTF-8 下的 10 字节对比，说明字符串占用字节数取决于所用编码。（原卷单选第 13 题，答案 D：取决于计算机使用的编码）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["string", "rfind"],
+          "stem": "C++ 语句 string s = \"Gesp Test\"; 执行 s.rfind(\"e\") 的返回值是 ____（填数字，下标从 0 开始）。",
+          "answer": "6",
+          "explanation": "下标依次为 G(0) e(1) s(2) p(3) 空格(4) T(5) e(6) s(7) t(8)；rfind 从后往前找第一个 \"e\"，位于下标 6。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["string", "find"],
+          "stem": "C++ 语句 string s = \"Gesp Test\"; 执行 s.find(\"e\") 的返回值是 ____（填数字，下标从 0 开始）。",
+          "answer": "1",
+          "explanation": "find 从前往后找第一个 \"e\"，位于下标 1；与 rfind 的方向相反，两者常被对比考查。（原卷单选第 14 题对比考点）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["字符串", "字符计数"],
+          "stem": "字符串 \"Gesp考试\" 的字符个数是 ____（填数字，与编码无关）。",
+          "answer": "6",
+          "explanation": "G、e、s、p、考、试共 6 个字符；字符个数与编码方式无关，而字节数才与编码有关。（原卷单选第 15 题，答案 C）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["字符串编码", "UTF-8"],
+          "stem": "在 UTF-8 编码下，字符串 \"Gesp考试\" 占用的字节数是 ____（填数字）。",
+          "answer": "10",
+          "explanation": "4 个英文字母占 4 字节，2 个汉字各占 3 字节，共 10 字节；若按 GBK 则只占 8 字节，字节数取决于编码。（原卷单选第 15 题 A/B 干扰肢对比考点）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["string", "比较运算符"],
+          "stem": "C++ 中 string 的 == 运算符比较的是两个字符串的 ____（填：内容/内存地址）。",
+          "answer": "内容",
+          "explanation": "std::string 重载了 ==，按字符内容逐位比较，而不是比较对象的内存地址。（原卷判断第 1 题，×）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["string", "比较运算符"],
+          "stem": "判断「C++ 中 string 的 == 运算符比较的是字符串的内存地址」是 ____（填：正确/错误）。",
+          "answer": ["错误", "不正确", "错"],
+          "explanation": "string 的 == 比较的是字符内容，该判断把 string 与 C 风格字符数组指针的比较方式混淆了，故错误。（原卷判断第 1 题，×）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["string", "substr"],
+          "stem": "C++ 字符串 s = \"abcdef\"; 则 s.substr(1, 3) 的返回值是 ____（写字符串内容，不加引号）。",
+          "answer": "bcd",
+          "explanation": "substr(起始下标, 长度) 从下标 1 开始取 3 个字符，即 b、c、d，结果为 \"bcd\"。（原卷判断第 2 题，√）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["string", "substr"],
+          "stem": "C++ 字符串 s = \"abcdef\"; 则 s.substr(3) 的返回值是 ____（写字符串内容，不加引号）。",
+          "answer": "def",
+          "explanation": "substr 省略第二个参数时，从起始下标一直取到字符串末尾，即下标 3 起的 \"def\"。（原卷判断第 2 题 substr 参数含义考点）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["位运算", "类型限制"],
+          "stem": "C++ 中若 x 是浮点型变量，则语句 x >> 1 是 ____（填：合法/非法）。",
+          "answer": ["非法", "不合法", "错误的"],
+          "explanation": "移位运算符 >> 只能作用于整数类型，浮点型参与移位无法通过编译，因此「x >> 1 等价于 x / 2」对浮点数不成立。（原卷判断第 3 题，×）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["位运算", "右移"],
+          "stem": "C++ 中若 x 是非负整型变量，与 x / 2（整除）等价的移位表达式是 ____（写完整表达式）。",
+          "answer": ["x >> 1", "x>>1"],
+          "explanation": "非负整数右移 1 位相当于整除 2，丢弃最低位；这是移位运算最常见的用途之一。（原卷判断第 3 题正面考点）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["string", "比较运算符"],
+          "stem": "C++ 表达式 string(\"hello\") == \"hello\" 的比较结果是 ____（填：真/假）。",
+          "answer": ["真", "true", "成立"],
+          "explanation": "string 的 == 按内容比较，string(\"hello\") 与 C 风格串 \"hello\" 内容相同，结果为 true。（原卷判断第 4 题，√）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["string", "比较运算符"],
+          "stem": "C++ 表达式 string(\"hello\") == string(\"Hello\") 的比较结果是 ____（填：真/假）。",
+          "answer": ["假", "false", "不成立"],
+          "explanation": "字符串按内容比较时区分大小写，'h' 与 'H' 的编码不同，故结果为 false。（原卷判断第 4 题对比考点）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["set容器", "自动有序"],
+          "stem": "C++ 容器 set 中的元素会自动按 ____ 顺序存放（填：升序/降序/插入）。",
+          "answer": ["升序", "从小到大"],
+          "explanation": "set 基于有序结构（通常为红黑树）实现，插入时自动排序且去重，默认按 less 即升序存放。（原卷判断第 5 题考点）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["set容器", "迭代器"],
+          "stem": "sort 不能直接对 set 的元素排序，原因是 sort 要求随机访问迭代器，而 set 提供的迭代器只支持 ____ 访问（填：双向/随机）。",
+          "answer": "双向",
+          "explanation": "set 的迭代器是双向迭代器，不支持随机访问（不能按下标跳转），而 std::sort 的模板约束要求随机访问迭代器，故不能直接对 set 调用 sort。（原卷判断第 5 题，×）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["位运算", "奇偶判断"],
+          "stem": "C++ 中判断整数 x 是否为偶数的表达式为 (x & 1) == ____（填数字）。",
+          "answer": "0",
+          "explanation": "偶数的二进制最低位为 0，故 x & 1 得 0 时 x 为偶数。（原卷判断第 6 题，√）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["位运算", "奇偶判断"],
+          "stem": "C++ 中判断整数 x 是否为奇数的表达式为 (x & 1) == ____（填数字）。",
+          "answer": "1",
+          "explanation": "奇数的二进制最低位为 1，故 x & 1 得 1 时 x 为奇数。（原卷判断第 6 题对比考点）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["string", "substr"],
+          "stem": "C++ 字符串 s = \"ab\"; 则 s.substr(2, 10) 返回的字符串长度是 ____（填数字）。",
+          "answer": "0",
+          "explanation": "起始下标 2 恰好等于字符串长度，substr 返回空串而不抛异常；长度参数 10 超出剩余字符数时被自动截断为 0。（原卷判断第 7 题，×）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["string", "substr"],
+          "stem": "C++ 字符串 s = \"ab\"; 执行 s.substr(3, 1) 会抛出 ____ 异常（写异常类名）。",
+          "answer": ["out_of_range", "std::out_of_range"],
+          "explanation": "substr 的起始下标大于字符串长度（3 > 2）时抛出 std::out_of_range；只有起始下标等于长度时才返回空串，这是 substr 越界行为的分界。（原卷判断第 7 题边界考点）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["cmath", "pow"],
+          "stem": "C++ 标准库函数 pow(2, 3) 的返回值类型是 ____（写类型名）。",
+          "answer": "double",
+          "explanation": "pow 的返回类型为 double，浮点运算可能存在微小误差，因此其结果不一定恰好等于整数 8。（原卷判断第 8 题考点）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["cmath", "浮点误差"],
+          "stem": "判断「C++ 中 pow(2, 3) 的计算结果不一定精确等于整数 8」是 ____（填：正确/错误）。",
+          "answer": ["正确", "对"],
+          "explanation": "pow 返回 double，浮点表示与运算可能带来误差，与整数直接用 == 比较并不可靠，需要容差比较或取整处理。（原卷判断第 8 题，√）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["枚举", "底层类型"],
+          "stem": "C++ 中枚举（enum）的底层类型只能是 ____ 类型（填：整数/浮点）。",
+          "answer": ["整数", "整型"],
+          "explanation": "枚举的底层类型必须是整型（如 int、char、short 等），枚举值本质是整数常量。（原卷判断第 9 题，×）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["枚举", "底层类型"],
+          "stem": "判断「C++ 中可以将枚举的底层类型声明为 double」是 ____（填：正确/错误）。",
+          "answer": ["错误", "不正确", "错"],
+          "explanation": "enum : double 是非法声明，枚举底层类型只允许整型，浮点类型不能作枚举底层。（原卷判断第 9 题，×）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["类型转换", "函数返回值"],
+          "stem": "已知函数声明为 double f();，若函数体中的返回语句为 return 3;，则调用 f() 的返回值是 ____（填数字）。",
+          "answer": ["3.0", "3"],
+          "explanation": "返回 int 值时按函数声明的返回类型隐式转换为 double，3 被转换为 3.0 后返回。（原卷判断第 10 题，√）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["类型转换", "隐式转换"],
+          "stem": "C++ 中声明为 double f(); 的函数返回 int 值时，int 到 double 的类型转换 ____（填：自动/需要显式转换）。",
+          "answer": ["自动", "自动进行", "自动发生", "隐式", "隐式转换"],
+          "explanation": "C++ 的隐式类型转换在返回语句处自动完成，int 提升为 double 不需要写强制转换。（原卷判断第 10 题，√）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "奇偶校验",
+          "knowledge": ["位运算", "二进制", "循环累加"],
+          "source": "2025年6月认证C++三级.pdf，第 4–6 页",
+          "stem": "数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。\n\n给定 n 个非负整数 c1, c2, …, cn 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。你能求出这些整数的校验码吗？",
+          "input_format": "第一行，一个正整数 n，表示所传输的数据量。\n第二行，n 个非负整数 c1, c2, …, cn，表示所传输的数据。",
+          "output_format": "输出一行，两个整数，以一个空格分隔：\n第一个整数表示 c1, c2, …, cn 在二进制下 1 的总数量；\n第二个整数表示校验码（0 或 1）。",
+          "constraints": "对于所有测试点，保证 1 ≤ n ≤ 100，0 ≤ ci ≤ 255。时限 1.0s，内存限制 512MB。",
+          "samples": [
+            { "input": "4\n71 69 83 80", "output": "13 1" },
+            { "input": "6\n1 2 4 8 16 32", "output": "6 0" }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\nusing namespace std;\n\nint n, v;\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) {\n        int c;\n        scanf(\"%d\", &c);\n        while (c) {\n            v += c & 1;\n            c >>= 1;\n        }\n    }\n    printf(\"%d %d\\n\", v, v & 1);\n    return 0;\n}\n",
+            "solution": "逐个读入整数，用 c & 1 取出最低位、c >>= 1 右移，统计每个数二进制中 1 的个数并累加到 v；校验码即 v 的奇偶性 v & 1。时间复杂度 O(n log ci)。",
+            "test_program": "#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\nusing namespace std;\n\nstatic long long popsum(const vector<int>& v) {\n    long long t = 0;\n    for (size_t i = 0; i < v.size(); i++) {\n        int c = v[i];\n        while (c) { t += c & 1; c >>= 1; }\n    }\n    return t;\n}\n\nstatic string run_case(const char* exe, const string& input, int idx) {\n    char inf[128], outf[128];\n    snprintf(inf, sizeof inf, \"l3a2506p1_in%d.txt\", idx);\n    snprintf(outf, sizeof outf, \"l3a2506p1_out%d.txt\", idx);\n    FILE* f = fopen(inf, \"w\");\n    if (!f) return \"\";\n    fputs(input.c_str(), f);\n    fclose(f);\n    char cmd[512];\n    snprintf(cmd, sizeof cmd, \"\\\"%s\\\" < %s > %s 2>/dev/null\", exe, inf, outf);\n    system(cmd);\n    string out;\n    FILE* o = fopen(outf, \"r\");\n    if (o) {\n        char buf[4096];\n        size_t r;\n        while ((r = fread(buf, 1, sizeof buf, o)) > 0) out.append(buf, r);\n        fclose(o);\n    }\n    remove(inf);\n    remove(outf);\n    return out;\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { fprintf(stderr, \"usage: %s <candidate-exe>\\n\", argv[0]); return 2; }\n    const char* exe = argv[1];\n    vector<vector<int> > cases;\n    {\n        int a1[] = {71, 69, 83, 80};\n        cases.push_back(vector<int>(a1, a1 + 4));\n        int a2[] = {1, 2, 4, 8, 16, 32};\n        cases.push_back(vector<int>(a2, a2 + 6));\n        int a3[] = {0};\n        cases.push_back(vector<int>(a3, a3 + 1));\n        int a4[] = {255};\n        cases.push_back(vector<int>(a4, a4 + 1));\n        int a5[] = {255, 1};\n        cases.push_back(vector<int>(a5, a5 + 2));\n    }\n    cases.push_back(vector<int>(100, 255));\n    cases.push_back(vector<int>(100, 1));\n    unsigned seed = 20250601u;\n    for (int t = 0; t < 5; t++) {\n        seed = seed * 1103515245u + 12345u;\n        int n = 1 + (int)((seed >> 16) % 100);\n        vector<int> v;\n        for (int j = 0; j < n; j++) {\n            seed = seed * 1103515245u + 12345u;\n            v.push_back((int)((seed >> 16) % 256));\n        }\n        cases.push_back(v);\n    }\n    int pass = 0;\n    int total = (int)cases.size();\n    for (int i = 0; i < total; i++) {\n        ostringstream in;\n        in << cases[i].size() << \"\\n\";\n        for (size_t j = 0; j < cases[i].size(); j++) in << (j ? \" \" : \"\") << cases[i][j];\n        in << \"\\n\";\n        long long t = popsum(cases[i]);\n        char expbuf[64];\n        snprintf(expbuf, sizeof expbuf, \"%lld %lld\", t, t & 1);\n        string out = run_case(exe, in.str(), i);\n        long long ga = -1, gb = -1;\n        istringstream os(out);\n        os >> ga >> gb;\n        if (ga == t && gb == (t & 1)) pass++;\n        else printf(\"[FAIL] case %d: expected \\\"%s\\\", got \\\"%s\\\"\\n\", i + 1, expbuf, out.c_str());\n    }\n    printf(\"Results: %d/%d passed\\n\", pass, total);\n    return pass == total ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "分糖果",
+          "knowledge": ["贪心", "模拟", "long long"],
+          "source": "2025年6月认证C++三级.pdf，第 6–7 页",
+          "stem": "有 n 位小朋友排成一队等待老师分糖果。第 i 位小朋友想要至少 ai 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。\n\n老师想知道至少需要准备多少糖果才能让所有小朋友都开心。你能帮帮老师吗？",
+          "input_format": "第一行，一个正整数 n，表示小朋友的人数。\n第二行，n 个正整数 a1, a2, …, an，依次表示每位小朋友至少需要的糖果数量。",
+          "output_format": "输出一行，一个整数，表示最少需要准备的糖果数量。",
+          "constraints": "对于所有测试点，保证 1 ≤ n ≤ 1000，1 ≤ ai ≤ 10^9。时限 1.0s，内存限制 512MB。",
+          "samples": [
+            { "input": "4\n1 4 3 3", "output": "16" },
+            { "input": "15\n314 15926 53589793 238462643 383279502 8 8 4 1 9 7 1 6 9 3", "output": "4508143253" }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 1005;\n\nint n, a[N];\nlong long ans;\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; i++) {\n        scanf(\"%d\", &a[i]);\n        a[i] = max(a[i - 1] + 1, a[i]);\n        ans += a[i];\n    }\n    printf(\"%lld\\n\", ans);\n    return 0;\n}\n",
+            "solution": "从前往后贪心：第 i 位小朋友实际分得 max(前一位实际数量 + 1, ai)，既满足严格递增又尽量少给；累加即得答案。注意总和可达 10^12 量级，需用 long long。时间复杂度 O(n)。",
+            "test_program": "#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\nusing namespace std;\n\nstatic long long expected(const vector<long long>& v) {\n    long long prev = 0, sum = 0;\n    for (size_t i = 0; i < v.size(); i++) {\n        long long got = prev + 1 > v[i] ? prev + 1 : v[i];\n        sum += got;\n        prev = got;\n    }\n    return sum;\n}\n\nstatic string run_case(const char* exe, const string& input, int idx) {\n    char inf[128], outf[128];\n    snprintf(inf, sizeof inf, \"l3a2506p2_in%d.txt\", idx);\n    snprintf(outf, sizeof outf, \"l3a2506p2_out%d.txt\", idx);\n    FILE* f = fopen(inf, \"w\");\n    if (!f) return \"\";\n    fputs(input.c_str(), f);\n    fclose(f);\n    char cmd[512];\n    snprintf(cmd, sizeof cmd, \"\\\"%s\\\" < %s > %s 2>/dev/null\", exe, inf, outf);\n    system(cmd);\n    string out;\n    FILE* o = fopen(outf, \"r\");\n    if (o) {\n        char buf[4096];\n        size_t r;\n        while ((r = fread(buf, 1, sizeof buf, o)) > 0) out.append(buf, r);\n        fclose(o);\n    }\n    remove(inf);\n    remove(outf);\n    return out;\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { fprintf(stderr, \"usage: %s <candidate-exe>\\n\", argv[0]); return 2; }\n    const char* exe = argv[1];\n    vector<vector<long long> > cases;\n    {\n        long long a1[] = {1, 4, 3, 3};\n        cases.push_back(vector<long long>(a1, a1 + 4));\n        long long a2[] = {314, 15926, 53589793, 238462643, 383279502, 8, 8, 4, 1, 9, 7, 1, 6, 9, 3};\n        cases.push_back(vector<long long>(a2, a2 + 15));\n        long long a3[] = {1};\n        cases.push_back(vector<long long>(a3, a3 + 1));\n        long long a4[] = {1000000000};\n        cases.push_back(vector<long long>(a4, a4 + 1));\n    }\n    cases.push_back(vector<long long>(1000, 1));\n    cases.push_back(vector<long long>(1000, 1000000000));\n    {\n        vector<long long> inc, dec;\n        for (int i = 1; i <= 1000; i++) { inc.push_back(i); dec.push_back(1001 - i); }\n        cases.push_back(inc);\n        cases.push_back(dec);\n    }\n    unsigned seed = 987654321u;\n    for (int t = 0; t < 4; t++) {\n        seed = seed * 1103515245u + 12345u;\n        int n = 1 + (int)((seed >> 16) % 1000);\n        vector<long long> v;\n        for (int j = 0; j < n; j++) {\n            seed = seed * 1103515245u + 12345u;\n            v.push_back((long long)((seed >> 8) % 1000000000u) + 1);\n        }\n        cases.push_back(v);\n    }\n    int pass = 0;\n    int total = (int)cases.size();\n    for (int i = 0; i < total; i++) {\n        ostringstream in;\n        in << cases[i].size() << \"\\n\";\n        for (size_t j = 0; j < cases[i].size(); j++) in << (j ? \" \" : \"\") << cases[i][j];\n        in << \"\\n\";\n        long long expv = expected(cases[i]);\n        char expbuf[64];\n        snprintf(expbuf, sizeof expbuf, \"%lld\", expv);\n        string out = run_case(exe, in.str(), i);\n        long long got = -1;\n        istringstream os(out);\n        os >> got;\n        if (got == expv) pass++;\n        else printf(\"[FAIL] case %d: expected \\\"%s\\\", got \\\"%s\\\"\\n\", i + 1, expbuf, out.c_str());\n    }\n    printf(\"Results: %d/%d passed\\n\", pass, total);\n    return pass == total ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

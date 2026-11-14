@@ -1,0 +1,468 @@
+{
+  "exam": {
+    "id": "gesp_l3a_2024_12",
+    "title": "2024年12月认证C++三级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": ["原码", "二进制编码"],
+          "stem": "原码 10000011 表示的十进制数是 ____（填带符号十进制整数）。",
+          "answer": "-3",
+          "explanation": "原码最高位是符号位，1 表示负数；其余位 0000011 是数值 3，故为 -3。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": ["补码", "二进制编码"],
+          "stem": "补码 10000011 表示的十进制数是 ____（填带符号十进制整数）。",
+          "answer": "-125",
+          "explanation": "补码 10000011 为负数，数值位取反加一：1111100+1=1111101=125，故为 -125。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": ["反码", "机器数"],
+          "stem": "正数的反码是 ____（填：其本身 / 符号位取反 / 数值位取反）。",
+          "answer": ["其本身", "它本身", "其原码本身"],
+          "explanation": "正数的原码、反码、补码三者相同，反码就是其本身；只有负数才需要按位取反等变换。（原卷单选第 2 题 B 肢）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": ["补码", "反码"],
+          "stem": "负数的补码等于其反码加 ____（填十进制数字）。",
+          "answer": "1",
+          "explanation": "负数补码的定义是反码末位加 1；因此负数的反码与补码一定不相同。（原卷单选第 2 题 C 肢）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": ["进制转换", "十六进制"],
+          "stem": "十六进制数 B2025 转换成二进制是 ____（写成连续二进制，不含空格）。",
+          "answer": "10110010000000100101",
+          "explanation": "每位十六进制展开为 4 位二进制：B=1011、2=0010、0=0000、2=0010、5=0101，依次拼接即得。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": ["进制转换", "八进制"],
+          "stem": "十六进制数 B2025 转换成八进制数是 ____（写成连续数字）。",
+          "answer": "2620045",
+          "explanation": "先展开为二进制 10110010000000100101，再从右往左每 3 位一组：10|110|010|000|000|100|101 → 2 6 2 0 0 4 5。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": ["进制转换", "除2取余"],
+          "stem": "十进制整数 625 转换成二进制是 ____（写成连续二进制）。",
+          "answer": "1001110001",
+          "explanation": "625=512+64+32+16+1，即 2^9+2^6+2^5+2^4+2^0，对应二进制 1001110001。（原卷单选第 4 题，答案 A）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": ["进制转换", "小数乘2"],
+          "stem": "十进制小数 0.625 转换成二进制是 ____（写成 0.xxx 形式）。",
+          "answer": ["0.101", ".101"],
+          "explanation": "乘 2 取整：0.625×2=1.25 取 1，0.25×2=0.5 取 0，0.5×2=1.0 取 1，得 0.101；干扰肢把小数部分错写成 1101。（原卷单选第 4 题，答案 A）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": ["位运算", "按位与"],
+          "stem": "按位与表达式 5&3 的结果是 ____（填十进制数）。",
+          "answer": "1",
+          "explanation": "5=101、3=011，按位与得 001=1，所以源卷中 5&3==0001 这一等式成立（0001 即十进制 1）。（原卷单选第 5 题，答案 D）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": ["位运算", "按位或"],
+          "stem": "按位或表达式 5|3 的结果是 ____（填十进制数）。",
+          "answer": "7",
+          "explanation": "101|011=111=7，而不是 8，所以源卷 B 肢等式不成立；按位或只对位做或运算，不是算术加法。（原卷单选第 5 题 B 肢）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": ["补码", "算术右移"],
+          "stem": "补码 11111101 表示的十进制数是 ____（填带符号十进制整数）。",
+          "answer": "-3",
+          "explanation": "负数补码 11111101 取反加一得数值 0000011=3，故表示 -3。（原卷单选第 6 题，答案 B）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": ["算术右移", "补码"],
+          "stem": "将补码 11111101 算术右移一位（即 11111101 >> 1），结果表示的十进制数是 ____（填带符号十进制整数）。",
+          "answer": "-2",
+          "explanation": "算术右移高位补符号位 1，得 11111110，即 -2；相当于对 -3 向下取整除以 2。（原卷单选第 6 题，答案 B）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": ["string", "replace"],
+          "stem": "已有字符串：\n```\nstring s=\"1234@@chenadai\";\nstring str=\"12345\";\n```\n执行 s.replace(1,5,str); 之后，字符串 s 的长度是 ____。",
+          "answer": "14",
+          "explanation": "replace(1,5,str) 从下标 1 起删除 5 个字符再插入 5 个字符的 str，原长 14 删 5 插 5 后仍是 14。（原卷单选第 7 题）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": ["string", "replace"],
+          "stem": "已有字符串：\n```\nstring s=\"1234@@chenadai\";\nstring str=\"12345\";\ns.replace(1,5,str);\ncout<<s<<endl;\n```\n程序输出是 ____。",
+          "answer": "112345chenadai",
+          "explanation": "从下标 1 删除 5 个字符（2、3、4、@、@）后剩 \"1\"+\"chenadai\"，再在下标 1 插入 \"12345\"，得 112345chenadai。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": ["进制转换", "按位或"],
+          "stem": "十进制数 10 的二进制表示是 ____（写成连续二进制）。",
+          "answer": "1010",
+          "explanation": "10=8+2，即 2^3+2^1，二进制为 1010。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": ["按位或", "位运算"],
+          "stem": "对任意最高位为 1 的整数 a，执行 a|10 运算后，a 的二进制表示从右往左第 ____ 位一定为 1（填：一 / 二 / 三 / 四）。",
+          "answer": ["二", "2", "第二", "第2位"],
+          "explanation": "10 的二进制 1010 中为 1 的最低位是从右往左第 2 位（权值 2），按位或会把该位置 1，其余位不变。（原卷单选第 8 题，答案 A）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": ["string", "结束符"],
+          "stem": "string ch=\"hello\"; 中，字符 ch[5] 是 ____（填转义字符或名称）。",
+          "answer": ["\\0", "'\\0'", "结束符", "空字符", "字符串结束符"],
+          "explanation": "字符串对象 ch 长度为 5，下标 5 处恰为结尾的空字符 '\\0'，其整数值为 0。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": ["string", "条件分支"],
+          "stem": "string ch=\"hello\"; 的程序依次判断 if(ch[5]==NULL)、else if(ch[5]=='\\0')，都不成立才输出 hello。程序实际进入的分支输出的字符串是 ____。",
+          "answer": "right",
+          "explanation": "ch[5] 是 '\\0' 即整数值 0，NULL 也是 0，第一个条件 ch[5]==NULL 成立，输出 right，不会再判断第二个分支。（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": ["strlen", "字符数组"],
+          "stem": "char ch[] = \"hello world\"; 中，strlen(ch) 的值是 ____。",
+          "answer": "11",
+          "explanation": "strlen 统计到结束符之前的字符个数，\"hello world\" 含空格共 11 个字符。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": ["sizeof", "字符数组"],
+          "stem": "char ch[] = \"hello world\"; 且一个字符占 1 字节内存，则数组 ch 占用的内存空间是 ____ 字节。",
+          "answer": "12",
+          "explanation": "字符数组用字符串初始化时要多存一个结束符 '\\0'，11 个字符加 1 个结束符共 12 字节。（原卷单选第 10 题，答案 D）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": ["tolower", "ASCII编码"],
+          "stem": "C++ 标准库函数 tolower(65) 的返回值对应的字符是 ____（填单个字符）。",
+          "answer": "a",
+          "explanation": "65 是字符 'A' 的 ASCII 码，tolower 把大写字母转为对应小写，即 'a'。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": ["tolower", "输出类型"],
+          "stem": "下列程序输出的是 ____（填十进制整数）。\n```\nint a=65;\ncout<<tolower(a)<<endl;\n```",
+          "answer": "97",
+          "explanation": "tolower 返回 int 型，'a' 的 ASCII 码为 97；cout 按整数输出 97，而不是字符 a。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": ["循环", "数位统计"],
+          "stem": "下面程序统计从 n 到 m（含两端）的所有整数中数字 d 一共出现多少次：\n```\nint n,m,res=0,d;\ncin >> n >> m >> d;\nfor(int i = n; i <= m; i++){\n    int temp = i;\n    while(temp){\n        if(temp % 10 == d) res++;\n        temp /= 10;\n    }\n}\ncout << res << endl;\n```\n输入 n=1, m=20, d=1 时，输出是 ____。",
+          "answer": "12",
+          "explanation": "1 出现的位置：1、10 各 1 次，11 两次，12~19 各 1 次（8 次），合计 1+1+2+8=12。（原卷单选第 12 题，答案 C）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": ["变量初始化", "程序查错"],
+          "stem": "源卷数位统计程序的四个选项中，A、B 两个选项只写了 int n,m,res,d; 而没有给计数变量 ____（填变量名）赋初值，因而不能保证统计正确。",
+          "answer": "res",
+          "explanation": "res 未初始化时初值不确定，累加结果不可靠；选项 A 还让循环从 n+1 开始漏掉 n；只有 res=0 且循环从 n 开始的选项正确。（原卷单选第 12 题 A/B 肢）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": ["枚举", "方程变形"],
+          "stem": "百禽问题：兔子 5 元一只、鸡 3 元一只、小鸭 1 元三只。设兔子 i 只、鸡 j 只、鸭 k 只，则个数方程 i+j+k=100，钱数方程 5i+3j+k/3=100。把钱数方程两边同乘 3 去掉分数后为 15i+9j+k=____。",
+          "answer": "300",
+          "explanation": "5i+3j+k/3=100 两边乘 3：15i+9j+k=300，这样全部为整数运算，避免 k/3 的整除截断问题。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": ["枚举", "不定方程"],
+          "stem": "同时满足 i+j+k=100 与 15i+9j+k=300（i、j、k 为非负整数）时，若 i=4，则 j=____。",
+          "answer": "18",
+          "explanation": "两式相减得 14i+8j=200，即 7i+4j=100；i=4 时 4j=72，j=18（此时 k=78，验算钱数 5×4+3×18+78/3=100）。（原卷单选第 13 题，答案 D）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": ["素数判定", "试除法"],
+          "stem": "试除法判断素数：对 i 依次用 j 去除，若都除不尽则 i 是素数。按\"将所有从 2 到它本身减 1 的数都除一遍\"的描述，试除数 j 的范围上界是 ____（用含 i 的表达式表示）。",
+          "answer": ["i-1", "i - 1"],
+          "explanation": "描述即 j 从 2 取到 i-1（循环条件 j < i）；j 取到 i 本身时 i%i==0 恒成立，会把所有数都判成非素数。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": ["素数判定", "程序阅读"],
+          "stem": "输入 N=10，用试除法程序（先输出 2，再对 i 从 3 到 N 用 j=2 到 i-1 试除，除不尽则输出 i）依次输出的素数中，最大的一个是 ____。",
+          "answer": "7",
+          "explanation": "不超过 10 的素数为 2、3、5、7，程序依次输出这四个，最大为 7；注意 flag 每轮结束必须清零，否则后续素数不再输出。（原卷单选第 14 题，答案 C）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": ["二进制应用", "贪心"],
+          "stem": "工人每工作一天得一个金环，工作共 15 天；现有一条 15 个环相连的金项链。要求每天工作结束时恰好付清累计应付的环数（允许用已付的段找零），最少需要把项链剪裁成 ____ 段。",
+          "answer": "4",
+          "explanation": "每段环数当作砝码，配合找零可覆盖 1~15 全部环数；二进制方案 1、2、4、8 四段即可，三段环数之和最多 1+2+4=7 < 15，不够。（原卷单选第 15 题，答案 A）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": ["二进制应用", "贪心"],
+          "stem": "用一条 15 个环的项链分段后配合找零付清每天 1 至 15 个环，某种最少段数的剪法共 4 段，这 4 段的环数从小到大依次是 ____（数字间用逗号分隔）。",
+          "answer": ["1, 2, 4, 8", "1,2,4,8", "1 2 4 8"],
+          "explanation": "二进制权值 1、2、4、8 之和为 15，且通过给、找、不给三种状态可以组合出 1~15 的任意环数。（原卷单选第 15 题，答案 A）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": ["补码", "机器数"],
+          "stem": "为让减法等运算可以直接用加法电路完成，负数被存储成一种可以直接当成正数来相加的形式，这种存储形式叫做 ____。",
+          "answer": ["补码", "补码形式"],
+          "explanation": "补码的意义正是把\"减一个正数\"统一为\"加一个正数\"，简化运算电路；原码、反码都不具备该性质。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": ["补码", "加法电路"],
+          "stem": "采用补码存储后，减去一个正数的运算可以转化为 ____ 运算（填：加法 / 乘法）。",
+          "answer": "加法",
+          "explanation": "减去正数 x 等于加上 x 的补码（即 -x 的补码表示），加减法统一为加法电路。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": ["原码", "加法错误"],
+          "stem": "把 2 的 8 位原码 00000010 与 -1 的 8 位原码 10000001 直接按二进制相加：00000010 + 10000001 = ____（写成 8 位二进制）。",
+          "answer": "10000011",
+          "explanation": "00000010+10000001 逐位相加得 10000011；原码直接相加并不能得到正确结果。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": ["原码", "加法错误"],
+          "stem": "把原码 10000011 解释成十进制数是 ____（填带符号十进制整数）。",
+          "answer": "-3",
+          "explanation": "符号位 1、数值位 0000011=3，即 -3；所以原码直接做 2+(-1) 会错误地得到 -3，源卷判断第 2 题的说法成立。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": ["反码", "循环进位"],
+          "stem": "用反码做加减法（符号位进位回卷到末位）时，加法与减法的结果是 ____ 的（填：正确 / 错误）。",
+          "answer": "正确",
+          "explanation": "反码运算配合 end-around carry（进位回加）可以得到正确的加减结果，它剩下的缺陷是 0 的表示不唯一。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": ["反码", "负零"],
+          "stem": "反码表示法解决不了的问题是 0 有两种表示：+0 为 00000000，而 -0 为 ____（写成 8 位二进制）。",
+          "answer": "10000000",
+          "explanation": "反码中 -0 是符号位 1、数值位全 1 取反后的 10000000，与 +0 并存，即源卷所说的 -0 问题。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": ["进制转换", "除2取余"],
+          "stem": "十进制转二进制的除 2 取余法中，各次余数应按除法步骤的 ____ 顺序排列才构成正确的二进制（填：正 / 逆）。",
+          "answer": ["逆", "逆序", "从后往前", "从下往上"],
+          "explanation": "先除得的余数是低位，应逆着除法顺序（从最后一次除法的余数往前）书写；源卷判断第 4 题错就错在说成\"从前往后\"。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": ["进制转换", "除2取余"],
+          "stem": "十进制数 63 的二进制值是 ____（写成连续二进制）。",
+          "answer": "111111",
+          "explanation": "63=2^6-1，六次除 2 的余数全为 1，逆序读仍是 111111；源卷式子本身没错，错的只是读取顺序的说法。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": ["整型字面量", "八进制"],
+          "stem": "C++ 中以 0 开头的整数字面量 00001111 会被编译器按 ____ 进制数解释（填：二 / 八 / 十六）。",
+          "answer": "八",
+          "explanation": "前导 0 是八进制字面量标志（二进制需 0b 前缀），00001111 即八进制 1111 = 十进制 585。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": ["按位与", "字面量陷阱"],
+          "stem": "下列程序输出的是 ____（填单个字符）。\n```\nchar x=65;\nx=x&00001111;\ncout<<x<<endl;\n```",
+          "answer": "A",
+          "explanation": "00001111 按八进制等于十进制 585（二进制 1001001001），65（二进制 1000001）与之按位与仍为 65，输出字符 'A'。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": ["string", "find"],
+          "stem": "string str=\"chenAdai\"; 中，str.find('d') 的返回值是 ____（填十进制整数；找不到时按 int 解释 string::npos 为 -1）。",
+          "answer": "5",
+          "explanation": "下标从 0 计：c0 h1 e2 n3 A4 d5，小写 'd' 首次出现在下标 5。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": ["string", "自减运算符"],
+          "stem": "string str=\"chenAdai\"; 且 int pos = str.find('d');，执行语句 --pos&11; 之后，pos 的值是 ____。",
+          "answer": "4",
+          "explanation": "--pos 先把 pos 从 5 减到 4；随后与 11 的按位与只是临时表达式的值，没有赋回 pos，故 pos 仍为 4。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": ["string", "下标访问"],
+          "stem": "string ch=\"chen\"; 中，ch[4] 访问到的字符是 ____（填转义字符或名称）。",
+          "answer": ["\\0", "'\\0'", "结束符", "空字符", "字符串结束符"],
+          "explanation": "长度为 4 的字符串，下标 4 恰是结尾空字符 '\\0'，访问它是合法的。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": ["string", "下标访问"],
+          "stem": "string ch=\"chen\"; 时，语句 cout<<ch[4]<<endl; ____ 正确执行（填：能 / 不能）。",
+          "answer": "能",
+          "explanation": "ch[4] 是合法的结束符访问，程序正常执行，输出一个空字符（屏幕上看是一空行）；源卷说\"不能正确执行\"是错的。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": ["ASCII编码", "字符运算"],
+          "stem": "char a='A'; 执行 a=a+32; 后，a 对应的字符是 ____（填单个字符）。",
+          "answer": "a",
+          "explanation": "'A' 的 ASCII 码 65 加 32 得 97，即小写 'a'；大小写字母 ASCII 码相差 32。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": ["ASCII编码", "强制类型转换"],
+          "stem": "char a='A'; a=a+32; 之后，cout<<(int)a<<endl; 的输出是 ____（填十进制整数）。",
+          "answer": "97",
+          "explanation": "(int)a 把字符按整数输出，'a' 的 ASCII 码为 97。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": ["素数概念"],
+          "stem": "自然界中最小的素数是 ____。",
+          "answer": "2",
+          "explanation": "素数是大于 1 且只能被 1 和自身整除的自然数，最小的是 2，也是唯一的偶素数。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": ["素数概念"],
+          "stem": "数字 1 ____ 素数（填：是 / 不是）。",
+          "answer": ["不是", "不是素数", "否"],
+          "explanation": "素数定义要求大于 1，1 只有一个正因子，既不是素数也不是合数。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": ["进制转换", "十六进制"],
+          "stem": "十六进制数 CCF 转换成十进制是 ____。",
+          "answer": "3279",
+          "explanation": "C=12：12×256+12×16+15=3072+192+15=3279。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": ["进制转换", "七进制"],
+          "stem": "七进制数 12363 转换成十进制是 ____。",
+          "answer": "3279",
+          "explanation": "1×7^4+2×7^3+3×7^2+6×7+3=2401+686+147+42+3=3279，与十六进制 CCF 相等，故源卷等式成立。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "数字替换",
+          "knowledge": ["数组遍历", "最值"],
+          "source": "2024年12月认证C++三级.pdf，第 8-9 页",
+          "stem": "小杨有一个包含 n 个数字的序列 A，即 A = {a1, a2, ..., an}。他想将其中大于 k 的数字都替换为序列的最大值，将其中小于 k 的数字都替换为序列的最小值（等于 k 的数字保持不变）。请你帮他计算出替换后的序列。",
+          "input_format": "第一行包含两个正整数 n, k，含义如题面所示。\n第二行包含 n 个数字，代表序列 A。",
+          "output_format": "输出 n 个整数，代表替换后的结果。",
+          "constraints": "对于全部数据，保证有 1 ≤ n ≤ 10^5，|k|、|a_i| ≤ 10^5。时间限制 1.0 s，内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "5 0\n-2 -1 0 1 2",
+              "output": "-2 -2 0 2 2"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint a[100010];\nint main() {\n    int n, k;\n    cin >> n >> k;\n    for (int i = 1; i <=n; i++) {\n        cin >> a[i];\n    }\n    int max_value = a[1],min_value=a[1];\n    for (int i = 1; i <=n; i++) {\n        max_value=max(max_value,a[i]);\n        min_value=min(min_value,a[i]);\n    }\n    for (int i = 1; i <=n; i++) {\n        if (a[i] > k) {\n            a[i] = max_value;\n        } else if (a[i] < k) {\n            a[i] = min_value;\n        }\n        if (i != n) {\n            cout << a[i] << \" \";\n        } else {\n            cout << a[i] << endl;\n        }\n    }\n    return 0;\n}\n",
+            "solution": "第一遍遍历求出序列最大值 max_value 与最小值 min_value；第二遍遍历逐元素替换：大于 k 的换成最大值，小于 k 的换成最小值，等于 k 的不变；最后按序输出。时间复杂度 O(n)。",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <sstream>\n#include <string>\n#include <vector>\n#include <cstdlib>\n#include <cstdio>\nusing namespace std;\n\nstatic vector<long long> expected_out(const vector<long long>& a, long long k) {\n    long long mx = a[0], mn = a[0];\n    for (size_t i = 0; i < a.size(); i++) { mx = max(mx, a[i]); mn = min(mn, a[i]); }\n    vector<long long> r = a;\n    for (size_t i = 0; i < r.size(); i++) {\n        if (r[i] > k) r[i] = mx;\n        else if (r[i] < k) r[i] = mn;\n    }\n    return r;\n}\n\nstatic bool run_case(const string& exe, int cid, const string& input,\n                     const vector<long long>& want, int& passed, int total) {\n    string inf = \"a12in_\" + to_string(cid) + \".txt\";\n    string outf = \"a12out_\" + to_string(cid) + \".txt\";\n    { ofstream ofs(inf); ofs << input; }\n    string cmd = \"\\\"\" + exe + \"\\\" < \" + inf + \" > \" + outf + \" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    if (rc != 0) { printf(\"[FAIL] case %d: program exit code %d\\n\", cid, rc); return false; }\n    ifstream ifs(outf);\n    vector<long long> got; long long v;\n    while (ifs >> v) got.push_back(v);\n    if (got != want) {\n        printf(\"[FAIL] case %d: wrong output\\n\", cid);\n        printf(\"  want: \"); for (size_t i = 0; i < want.size(); i++) printf(\"%lld \", want[i]); printf(\"\\n\");\n        printf(\"  got : \"); for (size_t i = 0; i < got.size(); i++) printf(\"%lld \", got[i]); printf(\"\\n\");\n        return false;\n    }\n    passed++;\n    return true;\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { fprintf(stderr, \"usage: %s <candidate-exe>\\n\", argv[0]); return 2; }\n    string exe = argv[1];\n    int passed = 0, total = 0;\n    auto check = [&](const string& input, long long k, const vector<long long>& a) {\n        total++;\n        int cid = total;\n        run_case(exe, cid, input, expected_out(a, k), passed, total);\n    };\n    // case 1: PDF 样例\n    check(\"5 0\\n-2 -1 0 1 2\\n\", 0, {-2, -1, 0, 1, 2});\n    // case 2: n=1 边界\n    check(\"1 5\\n5\\n\", 5, {5});\n    // case 3: 全部等于 k\n    check(\"4 3\\n3 3 3 3\\n\", 3, {3, 3, 3, 3});\n    // case 4: 有大于有小于\n    check(\"3 4\\n5 1 9\\n\", 4, {5, 1, 9});\n    // case 5: 全为负数且 k 为负\n    check(\"4 -3\\n-100000 -3 -2 -1\\n\", -3, {-100000, -3, -2, -1});\n    // case 6: 绝对值边界\n    check(\"3 0\\n-100000 0 100000\\n\", 0, {-100000, 0, 100000});\n    // case 7~10: 随机\n    srand(20241201);\n    for (int t = 0; t < 4; t++) {\n        int n = 1 + rand() % 500;\n        long long k = rand() % 200001 - 100000;\n        vector<long long> a(n);\n        ostringstream os;\n        os << n << \" \" << k << \"\\n\";\n        for (int i = 0; i < n; i++) { a[i] = rand() % 200001 - 100000; os << a[i] << (i + 1 < n ? ' ' : '\\n'); }\n        check(os.str(), k, a);\n    }\n    // case 11: 规模压测 n=100000\n    {\n        int n = 100000;\n        long long k = 12345;\n        vector<long long> a(n);\n        ostringstream os;\n        os << n << \" \" << k << \"\\n\";\n        for (int i = 0; i < n; i++) { a[i] = rand() % 200001 - 100000; os << a[i] << (i + 1 < n ? ' ' : '\\n'); }\n        check(os.str(), k, a);\n    }\n    printf(\"Results: %d/%d passed\\n\", passed, total);\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "打印数字",
+          "knowledge": ["字符串处理", "分支模拟"],
+          "source": "2024年12月认证C++三级.pdf，第 9-11 页",
+          "stem": "小杨为数字 0, 1, 2 和 3 设计了一款表示形式，每个数字占用了 5×5 的网格（'*' 表示笔画，'.' 表示空白）。数字 0, 1, 2 和 3 的表示形式如下：\n```\n0:     1:     2:     3:\n.....  ****.  .....  .....\n.***.  ****.  ****.  ****.\n****.  ****.  .....  .....\n.***.  ****.  .****  ****.\n.....  ****.  .....  .....\n```\n小杨想请你将给定的数字 n 转换为对应的表示形式：把 n 的每一位数字的 5×5 网格从左到右拼接，共输出 5 行，每行是全体数字在该行网格块的依次拼接（块与块之间无分隔，直接相连）。",
+          "input_format": "第一行包含一个正整数代表 n。",
+          "output_format": "输出对应的表示形式（共 5 行）。",
+          "constraints": "对于全部数据，保证有 0 ≤ n ≤ 10^6，且 n 仅由数字 0, 1, 2, 3 组成。时间限制 1.0 s，内存限制 512.0 MB。",
+          "samples": [
+            {
+              "input": "12230",
+              "output": "****.....................\n****.****.****.****..***.\n****................****.\n****..****.********..***.\n****....................."
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    string n;\n    cin >> n;\n    for (int row = 0; row < 5; row++) {\n        string line = \"\";\n        for (char digit : n) {\n            if (digit == '0') {\n                if (row == 0 || row == 4) {\n                    line += \".....\";\n                } else if (row == 2) {\n                    line += \"****.\";\n                } else {\n                    line += \".***.\";\n                }\n            } else if (digit == '1') {\n                line += \"****.\";\n            } else if (digit == '2') {\n                if (row == 0) {\n                    line += \".....\";\n                } else if (row == 1) {\n                    line += \"****.\";\n                } else if (row == 2) {\n                    line += \".....\";\n                } else if (row == 3) {\n                    line += \".****\";\n                } else {\n                    line += \".....\";\n                }\n            } else if (digit == '3') {\n                if (row == 0) {\n                    line += \".....\";\n                } else if (row == 1) {\n                    line += \"****.\";\n                } else if (row == 2) {\n                    line += \".....\";\n                } else if (row == 3) {\n                    line += \"****.\";\n                } else {\n                    line += \".....\";\n                }\n            }\n        }\n        cout << line << endl;\n    }\n    return 0;\n}\n",
+            "solution": "把每个数字字符映射到 5 行的固定 5 字符网格块（0 的第 0/4 行为 .....、第 2 行为 ****.、其余 .***.；1 全为 ****.；2 为 ...../****./...../.****/.....；3 为 ...../****./...../****./.....），按行把各位的块拼接后输出。时间复杂度 O(len(n))。",
+            "test_program": "#include <iostream>\n#include <fstream>\n#include <string>\n#include <vector>\n#include <cstdlib>\n#include <cstdio>\nusing namespace std;\n\nstatic string block(char d, int row) {\n    if (d == '0') {\n        if (row == 0 || row == 4) return \".....\";\n        if (row == 2) return \"****.\";\n        return \".***.\";\n    }\n    if (d == '1') return \"****.\";\n    if (d == '2') {\n        if (row == 0) return \".....\";\n        if (row == 1) return \"****.\";\n        if (row == 2) return \".....\";\n        if (row == 3) return \".****\";\n        return \".....\";\n    }\n    // d == '3'\n    if (row == 0) return \".....\";\n    if (row == 1) return \"****.\";\n    if (row == 2) return \".....\";\n    if (row == 3) return \"****.\";\n    return \".....\";\n}\n\nstatic vector<string> expected_out(const string& n) {\n    vector<string> lines;\n    for (int row = 0; row < 5; row++) {\n        string line;\n        for (char d : n) line += block(d, row);\n        lines.push_back(line);\n    }\n    return lines;\n}\n\nstatic string trim_right(const string& s) {\n    size_t e = s.size();\n    while (e > 0 && (s[e - 1] == ' ' || s[e - 1] == '\\t' || s[e - 1] == '\\r')) e--;\n    return s.substr(0, e);\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { fprintf(stderr, \"usage: %s <candidate-exe>\\n\", argv[0]); return 2; }\n    string exe = argv[1];\n    int passed = 0, total = 0;\n    auto check = [&](const string& n) {\n        total++;\n        int cid = total;\n        string inf = \"a12p2in_\" + to_string(cid) + \".txt\";\n        string outf = \"a12p2out_\" + to_string(cid) + \".txt\";\n        { ofstream ofs(inf); ofs << n << \"\\n\"; }\n        string cmd = \"\\\"\" + exe + \"\\\" < \" + inf + \" > \" + outf + \" 2>/dev/null\";\n        int rc = system(cmd.c_str());\n        if (rc != 0) { printf(\"[FAIL] case %d: program exit code %d\\n\", cid, rc); return; }\n        vector<string> want = expected_out(n);\n        ifstream ifs(outf);\n        vector<string> got; string line;\n        while (getline(ifs, line)) got.push_back(trim_right(line));\n        while (!got.empty() && got.back().empty()) got.pop_back();\n        if (got != want) {\n            printf(\"[FAIL] case %d (n=%s): wrong output\\n\", cid, n.size() <= 24 ? n.c_str() : \"<long>\");\n            for (size_t i = 0; i < want.size(); i++)\n                printf(\"  want[%d]: %s\\n\", (int)i, i < got.size() ? (got[i] == want[i] ? \"(same)\" : want[i].c_str()) : \"<missing>\");\n            for (size_t i = 0; i < got.size(); i++) printf(\"  got [%d]: %s\\n\", (int)i, got[i].c_str());\n            return;\n        }\n        passed++;\n    };\n    check(\"12230\");   // PDF 样例\n    check(\"0\");\n    check(\"1\");\n    check(\"2\");\n    check(\"3\");\n    check(\"3210\");\n    check(\"0123\");\n    check(\"3333333333\");\n    srand(20241202);\n    for (int t = 0; t < 4; t++) {\n        int len = 1 + rand() % 60;\n        string n;\n        for (int i = 0; i < len; i++) n += (char)('0' + rand() % 4);\n        check(n);\n    }\n    {   // 规模压测：100000 位\n        string n(100000, '0');\n        for (size_t i = 0; i < n.size(); i++) n[i] = (char)('0' + rand() % 4);\n        check(n);\n    }\n    printf(\"Results: %d/%d passed\\n\", passed, total);\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}
