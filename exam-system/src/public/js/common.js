@@ -47,8 +47,60 @@ window.App = (function () {
     return data;
   }
   function escHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  // —— 轻量 LaTeX 数学转换 ——
+  // AI 解析常带 $...$ 数学公式，而页面不引入 KaTeX/MathJax；把常见 TeX 语法转成可读的
+  // Unicode 符号 + <sup>/<sub>，避免把 $、\times、\ge 这类原始记号直接甩给学生。
+  const MATH_MAP = [
+    ['times', '×'], ['cdot', '·'], ['div', '÷'], ['pm', '±'], ['mp', '∓'], ['ast', '∗'],
+    ['leq', '≤'], ['le', '≤'], ['geq', '≥'], ['ge', '≥'], ['neq', '≠'], ['ne', '≠'],
+    ['equiv', '≡'], ['approx', '≈'], ['simeq', '≃'], ['sim', '∼'], ['propto', '∝'],
+    ['infty', '∞'], ['partial', '∂'], ['nabla', '∇'], ['emptyset', '∅'], ['varnothing', '∅'],
+    ['subseteq', '⊆'], ['subset', '⊂'], ['supseteq', '⊇'], ['supset', '⊃'],
+    ['cup', '∪'], ['cap', '∩'], ['setminus', '∖'],
+    ['notin', '∉'], ['in', '∈'], ['ni', '∋'], ['forall', '∀'], ['exists', '∃'],
+    ['neg', '¬'], ['land', '∧'], ['lor', '∨'], ['oplus', '⊕'], ['ominus', '⊖'], ['otimes', '⊗'], ['odot', '⊙'],
+    ['sum', '∑'], ['prod', '∏'], ['iint', '∬'], ['oint', '∮'], ['int', '∫'],
+    ['rightarrow', '→'], ['to', '→'], ['leftarrow', '←'], ['Rightarrow', '⇒'], ['Leftarrow', '⇐'],
+    ['leftrightarrow', '↔'], ['Leftrightarrow', '⇔'], ['mapsto', '↦'], ['uparrow', '↑'], ['downarrow', '↓'],
+    ['alpha', 'α'], ['beta', 'β'], ['gamma', 'γ'], ['delta', 'δ'], ['varepsilon', 'ε'], ['epsilon', 'ε'],
+    ['zeta', 'ζ'], ['eta', 'η'], ['vartheta', 'ϑ'], ['theta', 'θ'], ['iota', 'ι'], ['kappa', 'κ'],
+    ['lambda', 'λ'], ['mu', 'μ'], ['nu', 'ν'], ['xi', 'ξ'], ['pi', 'π'], ['rho', 'ρ'],
+    ['sigma', 'σ'], ['tau', 'τ'], ['upsilon', 'υ'], ['varphi', 'φ'], ['phi', 'φ'], ['chi', 'χ'],
+    ['psi', 'ψ'], ['omega', 'ω'],
+    ['Gamma', 'Γ'], ['Delta', 'Δ'], ['Theta', 'Θ'], ['Lambda', 'Λ'], ['Xi', 'Ξ'], ['Pi', 'Π'],
+    ['Sigma', 'Σ'], ['Upsilon', 'Υ'], ['Phi', 'Φ'], ['Psi', 'Ψ'], ['Omega', 'Ω'],
+    ['lt', '&lt;'], ['gt', '&gt;'], ['langle', '⟨'], ['rangle', '⟩'],
+    ['lceil', '⌈'], ['rceil', '⌉'], ['lfloor', '⌊'], ['rfloor', '⌋'],
+    ['ldots', '…'], ['cdots', '⋯'], ['vdots', '⋮'], ['ddots', '⋱'], ['dots', '…'],
+    ['angle', '∠'], ['perp', '⊥'], ['parallel', '∥'], ['triangle', '△'],
+  ];
+  function renderMath(tex) {
+    let s = escHtml(String(tex).trim());
+    // 文本/罗马体包裹：取内容
+    s = s.replace(/\\(?:text|textrm|textbf|mathrm|mathbf|mathit|mathbb|operatorname)\s*\{([^{}]*)\}/g, '$1');
+    // 分式与根式
+    for (let i = 0; i < 2; i++) s = s.replace(/\\[dt]?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, '($1)/($2)');
+    s = s.replace(/\\sqrt\s*\{([^{}]*)\}/g, '√($1)').replace(/\\sqrt\s*/g, '√');
+    // 角度：^\circ → °，其余 \circ → ∘
+    // 命令名边界 = 后面不再跟字母（TeX 语义：\times2 里的 2 不属于命令名，不能用 \b）
+    s = s.replace(/\^\s*\{?\s*\\circ\s*\}?/g, '°').replace(/\\circ(?![a-zA-Z])/g, '∘');
+    for (const [name, sym] of MATH_MAP) s = s.replace(new RegExp('\\\\' + name + '(?![a-zA-Z])', 'g'), sym);
+    // 函数名与排版指令
+    s = s.replace(/\\(log|ln|lg|sin|cos|tan|cot|arcsin|arccos|arctan|exp|max|min|lim|sup|inf|det|gcd|mod|arg)(?![a-zA-Z])/g, '$1');
+    s = s.replace(/\\(?:left|right|big|Big|bigg|Bigg|displaystyle|textstyle|limits|nolimits|mathstrut)(?![a-zA-Z])/g, '');
+    s = s.replace(/\\(?:quad|qquad)(?![a-zA-Z])/g, '  ');
+    // 上下标：先花括号组，再单字符
+    s = s.replace(/\^\{([^{}]*)\}/g, '<sup>$1</sup>').replace(/_\{([^{}]*)\}/g, '<sub>$1</sub>');
+    s = s.replace(/\^(\S)/g, '<sup>$1</sup>').replace(/_(\S)/g, '<sub>$1</sub>');
+    // 间距指令与不可断空格
+    s = s.replace(/\\[,;:!]/g, '').replace(/\\ /g, ' ').replace(/~/g, ' ');
+    // 兜底：未知命令去掉反斜杠保留命令名；成对/剩余花括号删掉；孤立反斜杠删掉
+    s = s.replace(/\\([a-zA-Z]+)\b/g, '$1').replace(/[{}]/g, '').replace(/\\/g, '');
+    return s;
+  }
   // 简单的 markdown 渲染器（先整体转义再注入受控标签，避免 XSS）。复习页与考试讲评页共用。
-  // 支持：#~###### 标题、**加粗**、*斜体*、`行内码`、``` 代码块、- / 1. 列表、> 引用、--- 分隔线、[文字](http链接)。
+  // 支持：#~###### 标题、**加粗**、*斜体*、`行内码`、``` 代码块、- / 1. 列表、> 引用、--- 分隔线、
+  // [文字](http链接)，以及 $...$ / $$...$$ / \(...\) / \[...\] 数学式的轻量转换（见 renderMath）。
   function renderMarkdown(src) {
     const blocks = [];
     // 先把围栏代码块抽出来用占位符替代，避免被后续行级规则拆散
@@ -56,8 +108,23 @@ window.App = (function () {
       blocks.push(code.replace(/\n$/, ''));
       return '\u0000CB' + (blocks.length - 1) + '\u0000';
     });
+    // 数学式同样先抽出（在转义之前，renderMath 内部自行转义）
+    const maths = [];
+    const pushMath = (tex, block) => {
+      maths.push({ block: block, html: renderMath(tex) });
+      return '\u0000M' + (maths.length - 1) + '\u0000';
+    };
+    text = text.replace(/\\\[([\s\S]+?)\\\]/g, (m, t) => pushMath(t, true));
+    text = text.replace(/\\\(([\s\S]+?)\\\)/g, (m, t) => pushMath(t, false));
+    text = text.replace(/\$\$([\s\S]+?)\$\$/g, (m, t) => pushMath(t, true));
+    text = text.replace(/\$([^$\n]+)\$/g, (m, t) => {
+      // 首尾须为非空白——避免把 "$5 和 $10" 这类行文（金额后跟空格）当公式
+      if (t !== t.trim()) return m;
+      return pushMath(t, false);
+    });
     text = escHtml(text);
     const inline = (s) => s
+      .replace(/\u0000M(\d+)\u0000/g, (m, i) => '<span class="md-math">' + maths[+i].html + '</span>')
       .replace(/`([^`\n]+)`/g, '<code>$1</code>')
       .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
       .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>')
@@ -69,6 +136,14 @@ window.App = (function () {
     for (const raw of text.split('\n')) {
       const cb = raw.match(/^\u0000CB(\d+)\u0000\s*$/);
       if (cb) { closeList(); out.push('<pre><code>' + escHtml(blocks[+cb[1]]) + '</code></pre>'); continue; }
+      const mw = raw.match(/^\u0000M(\d+)\u0000\s*$/);
+      if (mw) {
+        closeList();
+        const e = maths[+mw[1]];
+        out.push(e.block ? '<div class="md-math-block">' + e.html + '</div>'
+          : '<p><span class="md-math">' + e.html + '</span></p>');
+        continue;
+      }
       let m;
       if ((m = raw.match(/^(#{1,6})\s+(.+)$/))) { closeList(); out.push('<h' + m[1].length + '>' + inline(m[2]) + '</h' + m[1].length + '>'); continue; }
       if (/^\s*(?:-{3,}|\*{3,}|_{3,})\s*$/.test(raw)) { closeList(); out.push('<hr>'); continue; }

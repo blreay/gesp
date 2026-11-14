@@ -7,6 +7,10 @@ const wrongbook = require('./wrongbook');
 // 内置默认系统提示词（配置为空时回退）
 const DEFAULT_AI_PROMPT = '这是考试错误的一个C++考试题，请详细解析相关的知识点，并给出防止再次出错的改进办法。尽量精简回答，把结果控制到2000字以内（代码除外）';
 
+// 展示页的 markdown 渲染器不排 LaTeX（仅有轻量兜底转换），追加在系统提示词之后，
+// 让 AI 直接用纯文本写数学式；无论 ai_system_prompt 是否被管理员改写都生效。
+const FORMAT_RULE = '\n\n【格式要求】回答将展示在不支持 LaTeX 的页面上：不要使用 $...$、$$、\\(...\\)、\\times、\\frac{}{} 等任何 TeX/LaTeX 数学语法；数学式一律用纯文本 Unicode 书写，例如：乘号 ×、除号 ÷、大于等于 ≥、小于等于 ≤、不等于 ≠、正负 ±、幂写成 2^3、分数写成 (a+1)/(b-2)、下标写成 a_i。';
+
 function tfText(v) { return v === true || v === 'true' ? '正确' : '错误'; }
 function fillText(a) { return Array.isArray(a) ? a.join(' 或 ') : String(a); }
 
@@ -57,7 +61,7 @@ function buildMessage(wrongId) {
     if (q.explanation) errBlock += '\n解析：' + q.explanation;
   }
 
-  const message = getSystemPrompt() + '\n\n【题目】\n' + qBlock + '\n\n【出错信息】\n' + errBlock;
+  const message = getSystemPrompt() + FORMAT_RULE + '\n\n【题目】\n' + qBlock + '\n\n【出错信息】\n' + errBlock;
   return { message };
 }
 

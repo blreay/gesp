@@ -357,6 +357,12 @@ body { background: var(--neutral-25); }
 .note-preview-body a, .note-ref-body a { color: #2471a3; text-decoration: none; }
 .note-preview-body a:hover, .note-ref-body a:hover { text-decoration: underline; }
 .note-preview-body strong, .note-ref-body strong { font-weight: 700; }
+/* 数学片段（common.js renderMath 输出，全局作用域：备注窗/悬停窗等所有 markdown 渲染点共用） */
+.md-math { font-family: 'Cambria Math', Georgia, 'Times New Roman', serif; }
+.md-math sup, .md-math sub { font-size: .75em; }
+.md-math-block {
+  display: block; text-align: center; margin: 8px 0; overflow-x: auto;
+  font-family: 'Cambria Math', Georgia, 'Times New Roman', serif; }
 
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
