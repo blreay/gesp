@@ -19,6 +19,8 @@
     restoreSaved();
     // 所有模式（含 graded 讲评态）都可能点【重新考试】，必须在模式分支 return 之前绑定
     document.getElementById('btnRetake').addEventListener('click', doRetake);
+    // 顶栏【← 返回】是纯链接（href="/"），不用 history.back()：
+    // 考试页 ↔ 历史记录页/判题页之间会互相弹跳成死循环。id="btnBack" 保留以兼容旧缓存 JS。
     if (PAGE.mode === 'graded') {
       graded = true;
       lockAll();
