@@ -4,3 +4,4 @@ node_modules/
 .superpowers/
 src/public/vendor/
 .gstack/
+nohup.out

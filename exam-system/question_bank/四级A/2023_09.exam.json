@@ -1,0 +1,611 @@
+{
+  "exam": {
+    "id": "gesp_l4a_2023_09",
+    "title": "2023年9月认证C++四级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "手机里安装的 App 通常指的是应用软件，App 是英语单词 ____ 的简写。",
+          "answer": "application",
+          "explanation": "App 是 application 的缩写，指应用软件。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "手机上安装的 App 通常属于 ____（填：操作系统/应用软件/通话设备）。",
+          "answer": "应用软件",
+          "explanation": "App 是安装在操作系统之上的应用软件，不是操作系统本身，也不是硬件设备。（原卷单选第 1 题，答案 B）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "流程图",
+            "循环"
+          ],
+          "stem": "原卷流程图用 C++ 等价描述为：\n```cpp\nint m = 1, n = 1;\nwhile (n <= 5) {\n    if (m * n > 20)\n        m = m - 2;\n    else\n        m = 2 * m + 1;\n    n = n + 1;\n}\ncout << m << endl;\n```\n运行上述程序，输出的 m 的值是 ____。",
+          "answer": "9",
+          "explanation": "逐轮模拟：n=1,m=1→m=3；n=2,m=3→m=7；n=3,m=7,7×3>20→m=5；n=4,m=5,5×4=20不大于20→m=11；n=5,m=11,11×5>20→m=9；n=6 退出循环，输出 9。（原卷单选第 2 题，答案 A）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "流程图",
+            "循环"
+          ],
+          "stem": "原卷流程图用 C++ 等价描述为：\n```cpp\nint m = 1, n = 1;\nwhile (n <= 5) {\n    if (m * n > 20)\n        m = m - 2;\n    else\n        m = 2 * m + 1;\n    n = n + 1;\n}\ncout << m << endl;\n```\n上述程序循环结束后，n 的值是 ____。",
+          "answer": "6",
+          "explanation": "循环体内 n 每轮加 1：n 依次取 1,2,3,4,5 执行循环体，加到 6 后条件 n<=5 不满足退出，故 n 最终为 6。（原卷单选第 2 题）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "时间复杂度"
+          ],
+          "stem": "对包含 n 个元素的数组进行冒泡排序，平均时间复杂度一般为 ____（写成 O(...) 形式，如 O(n)）。",
+          "answer": [
+            "O(n^2)",
+            "O(n²)"
+          ],
+          "explanation": "冒泡排序需要两层嵌套循环，平均比较次数随 n 平方增长。（原卷单选第 3 题，答案 C）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序",
+            "时间复杂度"
+          ],
+          "stem": "设 n = 100，冒泡排序平均时间复杂度表达式中的 n^2 的值是 ____。",
+          "answer": "10000",
+          "explanation": "按平均时间复杂度 O(n^2) 的阶的表达式计算：100^2=10000。（原卷单选第 3 题）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "C++ 中 ____（填：能/不能）定义指向 void 类型的指针。",
+          "answer": "能",
+          "explanation": "原卷错误肢称指向 void 的指针没有意义、不能定义；实际上 void* 指针常用于表示任意类型的地址。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "结构体",
+            "指针"
+          ],
+          "stem": "自定义结构体类型 ____（填：能/不能）包含指针类型的成员。",
+          "answer": "能",
+          "explanation": "原卷正确肢：结构体内完全可以有指针成员，如 char* name;。（原卷单选第 4 题 C 肢）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "数组"
+          ],
+          "stem": "C++ 中 ____（填：能/不能）定义四维数组。",
+          "answer": "能",
+          "explanation": "语言语法允许定义任意多维数组，四维数组定义完全合法。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "数组"
+          ],
+          "stem": "“世界是三维的，所以定义四维数组没有意义”这一说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "原卷错误肢：世界的数据可以用多维描述（如时间×空间、批量三维数据），四维数组有意义。（原卷单选第 5 题，答案 D）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "函数"
+          ],
+          "stem": "C++ 中调用函数时，调用者必须提供足够数量的 ____。",
+          "answer": "实参",
+          "explanation": "原卷正确肢：调用函数必须提供足够的实际参数，缺少实参将不能正确运行。（原卷单选第 6 题，答案 B）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "函数"
+          ],
+          "stem": "调用函数时如果提供的实参数量不足，程序将 ____（填：能正常运行/不能正确运行）。",
+          "answer": "不能正确运行",
+          "explanation": "实参不足时参数绑定不完整，程序行为不正确（编译期或运行期出错）。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "函数"
+          ],
+          "stem": "C++ 中，两个函数的声明 ____（填：能/不能）完全相同。",
+          "answer": "不能",
+          "explanation": "原卷错误肢 A：函数声明（含参数类型列表）相同会造成重定义冲突。（原卷单选第 7 题，答案 A）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "函数"
+          ],
+          "stem": "C++ 中，两个函数 ____（填：能/不能）拥有同名的局部变量。",
+          "answer": "能",
+          "explanation": "原卷正确肢 B：不同函数的局部变量作用域相互独立，可以重名。（原卷单选第 7 题 B 肢）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "数组"
+          ],
+          "stem": "一个二维数组定义为 char array[3][10];，则这个数组共有 ____ 个元素。",
+          "answer": "30",
+          "explanation": "3 行 10 列，共 3×10=30 个 char 元素。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "数组"
+          ],
+          "stem": "一个二维数组定义为 int array[3][10];，则这个数组共占用 ____ 字节的内存。",
+          "answer": "120",
+          "explanation": "30 个 int 元素，每个 4 字节，共 120 字节；char 版本则只需 30 字节。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "int 变量 n 和一个指针 int *p = &n; 定义后，指针变量 p 中保存的值是变量 n 的 ____。",
+          "answer": "地址",
+          "explanation": "原卷正确肢 B：指针变量的值就是它指向变量的内存地址。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "int 变量 n 和一个指针 int *p = &n; 定义后，表达式 *p 的值等于变量 n 的 ____。",
+          "answer": "值",
+          "explanation": "解引用 *p 得到的是指针所指位置存储的数据，即 n 的值。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "内存布局"
+          ],
+          "stem": "一个三维数组定义为 long long array[6][6][6];，则 array[1][2][3] 和 array[3][2][1] 在内存中的位置相差 ____ 个元素。",
+          "answer": "70",
+          "explanation": "行优先线性位置：[1][2][3] 为 1×36+2×6+3=51，[3][2][1] 为 3×36+2×6+1=121，相差 70 个元素。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "内存布局"
+          ],
+          "stem": "一个三维数组定义为 long long array[6][6][6];，则 array[1][2][3] 和 array[3][2][1] 在内存中的位置相差 ____ 字节。",
+          "answer": "560",
+          "explanation": "两个位置相差 70 个 long long 元素，每个 8 字节，共 70×8=560 字节。（原卷单选第 10 题，答案 C）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "位运算"
+          ],
+          "stem": "int 类型变量 a 的值为 6，执行 a = ~a; 之后，a 的值是 ____。",
+          "answer": "-7",
+          "explanation": "6 的二进制按位取反（含符号位）得 11111001，即补码 -7。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "位运算"
+          ],
+          "stem": "整数 6 按位取反的结果，写成 8 位二进制（补码形式）是 ____。",
+          "answer": "11111001",
+          "explanation": "6 是 00000110，每一位取反得 11111001，按补码解释为 -7。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "数组"
+          ],
+          "stem": "```c\nint a[5] = {1, 2, 3, 4, 5};\nint *p = &a[2];\n*p = a[1];\n```\n执行上述代码后，a[2] 的值是 ____。",
+          "answer": "2",
+          "explanation": "p 指向 a[2]，把 a[1] 的值 2 赋给 *p 即 a[2]=2。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "数组"
+          ],
+          "stem": "```c\nint a[5] = {1, 2, 3, 4, 5};\nint *p = &a[2];\n*p = a[1];\n```\n执行上述代码后，数组 a 中 5 个元素依次为 ____（用逗号分隔 5 个数字，不含空格）。",
+          "answer": "1,2,2,4,5",
+          "explanation": "只有 a[2] 被改为 a[1] 的值 2，其余不变，最终为 1,2,2,4,5。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "异常"
+          ],
+          "stem": "一个 try 子句 ____（填：能/不能）有多个 catch 子句与之对应。",
+          "answer": "能",
+          "explanation": "原卷正确肢 A：一个 try 后可依次跟多个 catch，按异常类型匹配。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "异常"
+          ],
+          "stem": "某个 catch 子句处理完异常后，会 ____（填：重新执行/不会重新执行）与之对应的 try 子句。",
+          "answer": "不会重新执行",
+          "explanation": "原卷错误肢 D：catch 处理完异常后继续执行 try-catch 之后的代码，不会重跑 try。（原卷单选第 13 题 D 肢）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "越界"
+          ],
+          "stem": "```cpp\nint fib[10];\nfib[0] = 0;\nfib[1] = 1;\nfor (int i = 2; i < 10; i++)\n    fib[i] = fib[i - 1] + fib[i - 2];\n```\n上述代码执行后，fib[9] 的值是 ____。",
+          "answer": "34",
+          "explanation": "数组按斐波那契递推填充：0,1,1,2,3,5,8,13,21,34，fib[9]=34。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "越界"
+          ],
+          "stem": "```cpp\nint fib[10];\nfib[0] = 0;\nfib[1] = 1;\nfor (int i = 2; i < 10; i++)\n    fib[i] = fib[i - 1] + fib[i - 2];\ncout << fib[10] << endl;\n```\n上述程序输出 fib[10]，其输出结果是 ____（填：确定的值/无法确定）。",
+          "answer": "无法确定",
+          "explanation": "fib 只有下标 0~9，访问 fib[10] 越界，属于未定义行为，结果无法确定。（原卷单选第 14 题，答案 D）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序"
+          ],
+          "stem": "```cpp\nvoid BubbleSort(int array[], int n) {\n    for (int i = n; i >= 2; i--)\n        for (__________) // 在此处填入代码\n            if (array[j] > array[j + 1]) {\n                int t = array[j];\n                array[j] = array[j + 1];\n                array[j + 1] = t;\n            }\n}\n```\n在横线处填入内层循环的完整表头（含初始化、条件、增量），使数组由小到大排序：____。",
+          "answer": [
+            "int j = 0; j < i - 1; j++",
+            "int j=0;j<i-1;j++",
+            "int j = 0; j < i-1; j++"
+          ],
+          "explanation": "外层 i 从 n 递减到 2，内层比较 array[j] 与 array[j+1]，j 的最大取值须使 j+1 ≤ i-1，即 j < i-1。（原卷单选第 15 题，答案 C）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "冒泡排序"
+          ],
+          "stem": "```cpp\nvoid BubbleSort(int array[], int n) {\n    for (int i = n; i >= 2; i--)\n        for (int j = 0; j < i - 1; j++)\n            if (array[j] > array[j + 1]) {\n                int t = array[j];\n                array[j] = array[j + 1];\n                array[j + 1] = t;\n            }\n}\n```\n上述冒泡排序代码中，内层循环变量 j 的最大取值是 i - ____（填一个整数）。",
+          "answer": "2",
+          "explanation": "内层条件 j < i-1，故 j 最大取 i-2，此时 j+1 = i-1 仍在未排序范围内。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "指针变量本身就是一个变量，它 ____（填：占用/不占用）内存。",
+          "answer": "占用",
+          "explanation": "原卷判断题错误处：指针变量要保存地址，自身必然占用内存。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "在 C++ 中，指针变量在逻辑上指向另一个变量在内存中的 ____。",
+          "answer": "位置",
+          "explanation": "指针保存的是所指变量的内存位置（地址）。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "时间复杂度"
+          ],
+          "stem": "对 N 个元素的数组执行插入排序算法，通常的时间复杂度是 ____（写成 O(...) 形式，如 O(n)）。",
+          "answer": [
+            "O(n^2)",
+            "O(n²)"
+          ],
+          "explanation": "原卷判断题正确：插入排序通常时间复杂度为 O(N^2)。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "插入排序",
+            "时间复杂度"
+          ],
+          "stem": "插入排序通常的时间复杂度 ____（填：高于/低于）时间复杂度为 O(n) 的算法。",
+          "answer": "O(n^2)",
+          "explanation": "插入排序通常时间复杂度为 O(N^2)，高于线性阶 O(n) 的算法。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "变量"
+          ],
+          "stem": "C++ 中，每个变量都有其 ____（填：作用域/所有者/归属部门）。",
+          "answer": "作用域",
+          "explanation": "原卷判断题正确：每个变量的有效范围（作用域）在定义时即确定。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "变量",
+            "作用域"
+          ],
+          "stem": "在函数体中定义的局部变量，其作用域是 ____（填：整个程序/函数体内部）。",
+          "answer": "函数体内部",
+          "explanation": "局部变量只能在定义它的函数体内部访问，出了作用域即不可见。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "通过引用传递参数时，实际参数 ____（填：会/不会）被复制。",
+          "answer": "不会",
+          "explanation": "原卷判断题前半句正确：引用传递不复制实参，函数内通过别名直接操作原变量。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "通过引用传递参数时，函数内的参数也是一个新变量，因此 ____（填：会/不会）额外占用内存。",
+          "answer": "会",
+          "explanation": "原卷判断题错误处：引用参数在函数内仍会建立参数变量（别名），占用内存。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "结构体"
+          ],
+          "stem": "在 C++ 中，可以通过定义一个 ____ 来定义一个新的数据类型。",
+          "answer": "结构体",
+          "explanation": "原卷判断题正确：struct 定义出新的用户自定义类型。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "结构体"
+          ],
+          "stem": "通过 struct 定义的数据类型属于 ____（填：内置类型/用户自定义类型）。",
+          "answer": "用户自定义类型",
+          "explanation": "struct 由程序员定义，属于用户自定义类型，与 int 等内置类型相对。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "结构体"
+          ],
+          "stem": "C++ 中，可以定义结构体类型的数组变量，定义结构体时也可以包含 ____ 成员。",
+          "answer": "数组",
+          "explanation": "原卷判断题正确：结构体成员可以是数组，结构体本身也可以组成数组。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "结构体",
+            "数组"
+          ],
+          "stem": "结构体类型的数组变量，本质上是一个元素为结构体类型的 ____（填：一维数组/二维数组）。",
+          "answer": "一维数组",
+          "explanation": "struct Student s[10]; 这样的定义是一维数组，元素类型为结构体。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "字符数组"
+          ],
+          "stem": "如果希望记录 10 个最长为 99 字节的字符串，可以将字符串数组定义为 char s[10][____]。",
+          "answer": "100",
+          "explanation": "原卷判断题正确：第二维 100 可容纳 99 个字符加结尾 '\\0'。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "字符数组"
+          ],
+          "stem": "定义 char s[10][100]; 后，每一行最多可以存放 ____ 个字符加字符串结尾符。",
+          "answer": "99",
+          "explanation": "100 字节的一行需留 1 字节给 '\\0'，最多存 99 个可见字符。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "异常"
+          ],
+          "stem": "一个可能抛出异常的函数，在不在 try 子句中的位置被调用，程序 ____（填：会/不会）因此引起编译错误。",
+          "answer": "不会",
+          "explanation": "原卷判断题错误处：是否在 try 中调用不影响编译，编译不会报错。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "异常"
+          ],
+          "stem": "函数在不位于 try 子句中的位置被调用时抛出了异常，该异常会由 ____ 上匹配的 catch 块处理，否则程序异常终止（填：调用链/调用点）。",
+          "answer": "调用链",
+          "explanation": "异常沿调用链逐层向外查找匹配的 catch；只要链上有处理者即可，不必在直接调用点。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "运算符"
+          ],
+          "stem": "== 和 := 这两个符号中，不是 C++ 运算符的是 ____（只填符号本身）。",
+          "answer": ":=",
+          "explanation": "原卷判断题错误处：== 是相等运算符，而 := 在 C++ 中不是运算符。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "运算符"
+          ],
+          "stem": "C++ 中表示“等于”比较的运算符是 ____（只填运算符本身）。",
+          "answer": "==",
+          "explanation": "原卷解析：== 是 C++ 的相等比较运算符。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "文件操作"
+          ],
+          "stem": "通过使用文件重定向操作，可以将程序中输出到 cout 的内容输出到 ____（填：文件/屏幕/打印机）。",
+          "answer": "文件",
+          "explanation": "原卷判断题正确：重定向可把 cout 的输出写进文件。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "文件操作"
+          ],
+          "stem": "把程序通过 cout 输出的内容重定向记录到文件，是常用的记录程序运行 ____ 的方法之一。",
+          "answer": "日志",
+          "explanation": "原卷判断题正确：重定向输出到文件是记录运行日志的常用手段。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "进制转换",
+          "knowledge": [
+            "进制转换",
+            "字符串处理"
+          ],
+          "source": "2023年9月认证C++四级.pdf，第 10–12 页",
+          "stem": "N 进制数指的是逢 N 进一的计数制。例如，人们日常生活中大多使用十进制计数，而计算机底层则一般使用二进制。除此之外，八进制和十六进制在一些场合也是常用的计数制（十六进制中，一般使用字母 A 至 F 表示十至十五；本题中，十一进制到十五进制也是类似的）。\n\n在本题中，我们将给出 N 个不同进制的数。你需要分别把它们转换成十进制数。\n\n提示：对于任意一个 L 位 K 进制数，假设其最右边的数位为第 0 位，最左边的数位为第 L-1 位，我们只需要将其第 i 位的数码乘以权值 K^i，再将每位的结果相加，即可得到原 K 进制数对应的十进制数。例如：八进制数 1362 对应的十进制数为 1×8^3+3×8^2+6×8^1+2×8^0=754；十六进制数 3F0 对应的十进制数为 3×16^2+15×16^1+0×16^0=1008。",
+          "input_format": "输入的第一行为一个十进制表示的整数 N。接下来 N 行，每行一个整数 K，随后是一个空格，紧接着是一个 K 进制数，表示需要转换的数。保证所有 K 进制数均由数字和大写字母组成，且不以 0 开头，保证 K 进制数合法。",
+          "output_format": "输出 N 行，每行一个十进制数，表示对应 K 进制数的十进制数值。",
+          "constraints": "N ≤ 1000；2 ≤ K ≤ 16；所有 K 进制数的位数不超过 9。\n时间限制 1.0 s；内存限制 128.0 MB。（源卷未标注时限/内存，沿用 GESP 惯例口径）",
+          "samples": [
+            {
+              "input": "2\n8 1362\n16 3F0",
+              "output": "754\n1008"
+            },
+            {
+              "input": "2\n2 11011\n10 123456789",
+              "output": "27\n123456789"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\n#include <cstring>\nusing namespace std;\n\nint trans_digit(int k, char c) {\n    if (c <= '9')\n        return (c - '0');\n    return (c - 'A' + 10);\n}\nlong long trans(int k, char str[]) {\n    int l = strlen(str);\n    long long res = 0, pw = 1;\n    for (int i = l - 1; i >= 0; i--) {\n        res += pw * trans_digit(k, str[i]);\n        pw *= k;\n    }\n    return res;\n}\nint main() {\n    int n = 0;\n    cin >> n;\n    for (int t = 0; t < n; t++) {\n        int k = 0;\n        char str[10];\n        cin >> k >> str;\n        cout << trans(k, str) << endl;\n    }\n    return 0;\n}\n",
+            "solution": "逐行读入进制 K 与 K 进制数字符串；从右到左扫描，res += 当前位数码 × 当前权值，权值每向左一位乘 K；数码 0-9 直接减 '0'，A-F 减 'A' 加 10。用 long long 存储（16 进制 9 位最大约 6.9×10^10）。时间复杂度 O(N×位数)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic long long toDecimal(int k, const string& s) {\n    long long res = 0;\n    for (size_t i = 0; i < s.size(); ++i) {\n        int d = s[i] <= '9' ? s[i] - '0' : s[i] - 'A' + 10;\n        res = res * k + d;\n    }\n    return res;\n}\nstatic string expected(const vector<pair<int, string>>& rows) {\n    ostringstream os;\n    for (size_t i = 0; i < rows.size(); ++i) {\n        os << toDecimal(rows[i].first, rows[i].second);\n        if (i + 1 < rows.size()) os << '\\n';\n    }\n    return os.str();\n}\nstatic bool check(const string& exe, const vector<pair<int, string>>& rows, int id) {\n    const string inF = \"l4a09p1_in.txt\", outF = \"l4a09p1_out.txt\";\n    {\n        ofstream o(inF);\n        o << rows.size() << '\\n';\n        for (size_t i = 0; i < rows.size(); ++i) o << rows[i].first << ' ' << rows[i].second << '\\n';\n    }\n    int code = system((\"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream in(outF);\n    string actual((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    vector<long long> got, want;\n    {\n        istringstream p(actual);\n        long long v;\n        while (p >> v) got.push_back(v);\n    }\n    {\n        istringstream p(expected(rows));\n        long long v;\n        while (p >> v) want.push_back(v);\n    }\n    if (code != 0 || got != want) {\n        cout << \"[FAIL] case \" << id << \": expected=\" << expected(rows).substr(0, 200)\n             << \", actual=\" << actual.substr(0, 200) << \", status=\" << code << '\\n';\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    vector<vector<pair<int, string>>> tests;\n    tests.push_back({make_pair(8, string(\"1362\")), make_pair(16, string(\"3F0\"))});          // 样例1\n    tests.push_back({make_pair(2, string(\"11011\")), make_pair(10, string(\"123456789\"))});   // 样例2\n    tests.push_back({make_pair(16, string(\"FFFFFFFFF\"))});   // 9 位满值 16 进制\n    tests.push_back({make_pair(2, string(\"111111111\"))});    // 9 位满值 2 进制 = 511\n    tests.push_back({make_pair(11, string(\"ABCDEF\"))});      // 11 进制含字母\n    tests.push_back({make_pair(3, string(\"100000000\"))});    // 3^8 = 6561\n    tests.push_back({make_pair(16, string(\"1\"))});           // 单个数码\n    srand(20230901);\n    vector<pair<int, string>> rnd;\n    for (int t = 0; t < 1000; ++t) {\n        int k = 2 + rand() % 15;\n        int digits = 1 + rand() % 9;\n        string s;\n        for (int d = 0; d < digits; ++d) {\n            int v = rand() % k;\n            if (d == 0) v = 1 + rand() % (k - 1);  // 不以 0 开头\n            s += (v < 10 ? char('0' + v) : char('A' + v - 10));\n        }\n        rnd.push_back(make_pair(k, s));\n    }\n    tests.push_back(rnd);\n    int passed = 0;\n    for (size_t i = 0; i < tests.size(); ++i)\n        if (check(exe, tests[i], (int)i + 1)) ++passed;\n    cout << \"Results: \" << passed << \"/\" << tests.size() << \" passed\" << '\\n';\n    return passed == (int)tests.size() ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "变长编码",
+          "knowledge": [
+            "位运算",
+            "模拟"
+          ],
+          "source": "2023年9月认证C++四级.pdf，第 12–14 页",
+          "stem": "小明刚刚学习了三种整数编码方式：原码、反码、补码，并了解到计算机存储整数通常使用补码。但他总觉得生活中很少用到 2^31-1 这么大的数，生活中常用的 0~100 这种数也同样需要用 4 个字节的补码表示，太浪费了些。热爱学习的小明通过搜索，发现了一种正整数的变长编码方式。这种编码方式的规则如下：\n1. 对于给定的正整数，首先将其表达为二进制形式。例如，(0){10}=(0){2}，(926){10}=(1110011110){2}。\n2. 将二进制数从低位到高位切分成每组 7 bit，不足 7 bit 的在高位用 0 填补。例如，(0){2} 变为 0000000 的一组，(1110011110){2} 变为 0011110 和 0000111 的两组。\n3. 由代表低位的组开始，为其加入最高位。如果这组是最后一组，则在最高位填上 0，否则在最高位填上 1。于是，0 的变长编码为 00000000 一个字节，926 的变长编码为 10011110 和 00000111 两个字节。\n\n这种编码方式可以用更少的字节表达比较小的数，也可以用很多的字节表达非常大的数。你能通过编写程序，找到一个正整数的变长编码吗？",
+          "input_format": "输入第一行，包含一个正整数 N，约定 0 ≤ N ≤ 10^18。",
+          "output_format": "输出一行，输出 N 对应的变长编码的每个字节，每个字节均以 2 位十六进制表示（其中 A-F 使用大写字母表示），两个字节间以空格分隔。",
+          "constraints": "0 ≤ N ≤ 10^18。\n时间限制 1.0 s；内存限制 128.0 MB。（源卷未标注时限/内存，沿用 GESP 惯例口径）",
+          "samples": [
+            {
+              "input": "0",
+              "output": "00"
+            },
+            {
+              "input": "926",
+              "output": "9E 07"
+            },
+            {
+              "input": "987654321012345678",
+              "output": "CE 96 C8 A6 F4 CB B6 DA 0D"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\n\nvoid output_digit(int d) {\n    if (d >= 10)\n        cout << (char)('A' + d - 10);\n    else\n        cout << (char)('0' + d);\n}\nvoid output_code(int s) {\n    output_digit(s >> 4);\n    output_digit(s & 0x0f);\n}\nint main() {\n    long long n = 0;\n    cin >> n;\n    int split[10] = {0};\n    int l = 0;\n    while (n > 0) {\n        split[l] = (int)(n & 0x7f);\n        n >>= 7;\n        l++;\n    }\n    for (int i = 0; i < l - 1; i++)\n        split[i] |= 0x80;\n    output_code(split[0]);\n    for (int i = 1; i < l; i++) {\n        cout << \" \";\n        output_code(split[i]);\n    }\n    cout << endl;\n    return 0;\n}\n",
+            "solution": "循环取 n 的低 7 位存入 split[]（从低位组开始），n 右移 7 位；除最后一组外每组或上 0x80（最高位置 1）；最后按组顺序输出 2 位大写十六进制，组间空格。N=0 时 split[0] 需为 0，输出单字节 00。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic string hx2(int v) {\n    static const char* D = \"0123456789ABCDEF\";\n    return string(1, D[v >> 4]) + D[v & 15];\n}\nstatic string expected(long long n) {\n    vector<int> groups;\n    if (n == 0) groups.push_back(0);\n    while (n > 0) {\n        groups.push_back((int)(n & 0x7f));\n        n >>= 7;\n    }\n    for (size_t i = 0; i + 1 < groups.size(); ++i) groups[i] |= 0x80;\n    ostringstream os;\n    for (size_t i = 0; i < groups.size(); ++i) {\n        if (i) os << ' ';\n        os << hx2(groups[i]);\n    }\n    return os.str();\n}\nstatic bool check(const string& exe, long long n, int id) {\n    const string inF = \"l4a09p2_in.txt\", outF = \"l4a09p2_out.txt\";\n    {\n        ofstream o(inF);\n        o << n << '\\n';\n    }\n    int code = system((\"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream in(outF);\n    string actual((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    while (!actual.empty() && (actual.back() == '\\n' || actual.back() == '\\r' || actual.back() == ' '))\n        actual.pop_back();\n    string want = expected(n);\n    if (code != 0 || actual != want) {\n        cout << \"[FAIL] case \" << id << \": n=\" << n << \", expected=\" << want\n             << \", actual=\" << actual.substr(0, 120) << \", status=\" << code << '\\n';\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    vector<long long> tests = {\n        0,                                        // 样例1\n        926,                                      // 样例2\n        987654321012345678LL,                     // 样例3\n        1, 127, 128, 126,                         // 单组/跨组边界\n        16383, 16384,                             // 2 组满值/跨 3 组\n        1000000000000000000LL                     // 上界 10^18\n    };\n    srand(20230902);\n    for (int t = 0; t < 20; ++t) {\n        long long v = 0;\n        int bits = 1 + rand() % 60;\n        for (int b = 0; b < bits; ++b)\n            if (rand() % 2) v = (v << 1) | 1;\n        else v <<= 1;\n        if (v > 1000000000000000000LL) v = 1000000000000000000LL;\n        tests.push_back(v);\n    }\n    int passed = 0;\n    for (size_t i = 0; i < tests.size(); ++i)\n        if (check(exe, tests[i], (int)i + 1)) ++passed;\n    cout << \"Results: \" << passed << \"/\" << tests.size() << \" passed\" << '\\n';\n    return passed == (int)tests.size() ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

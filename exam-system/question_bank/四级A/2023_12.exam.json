@@ -1,0 +1,623 @@
+{
+  "exam": {
+    "id": "gesp_l4a_2023_12",
+    "title": "2023年12月认证C++四级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "值传递"
+          ],
+          "stem": "函数参数采用值传递方式传递给子函数时，若子函数将参数值改变，主函数当中对应的变量值 ____（填：不变/改变）。",
+          "answer": "不变",
+          "explanation": "原卷正确肢 A：值传递只复制一份，子函数内的修改不影响主函数的变量。（原卷单选第 1 题，答案 A）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "指针传递"
+          ],
+          "stem": "主函数将参数的地址传递给子函数，若子函数将所指位置的值改变，主函数当中对应的变量值 ____（填：不变/改变）。",
+          "answer": "改变",
+          "explanation": "原卷错误肢 C 称按地址传递后主函数值不改变；实际通过地址修改的就是主函数变量的值。（原卷单选第 1 题 C 肢）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "字符串"
+          ],
+          "stem": "```cpp\nint arr[10]={1};\nstring strArr=\"chen a dai\";\ncout<<strArr[arr[1]]<<endl;\n```\n执行上述代码后，输出的是 ____。",
+          "answer": "c",
+          "explanation": "arr 只有 arr[0] 被初始化为 1，arr[1] 为 0；strArr[0] 是 'c'，故输出 c。（原卷单选第 2 题，答案 B）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "初始化"
+          ],
+          "stem": "```cpp\nint arr[10]={1};\nstring strArr=\"chen a dai\";\ncout<<strArr[arr[1]]<<endl;\n```\n上述代码中，arr[1] 的值是 ____。",
+          "answer": "0",
+          "explanation": "int arr[10]={1}; 只初始化第一个元素为 1，其余 9 个元素自动补 0。（原卷单选第 2 题）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "函数"
+          ],
+          "stem": "```cpp\nint fun1(int *n)\n{\n    return *n**n;\n}\nint main()\n{\n    int arr[10]={2};\n    arr[1]=fun1(arr);\n    cout<<arr[1]<<endl;\n}\n```\n执行上述代码后，输出的是 ____。",
+          "answer": "4",
+          "explanation": "fun1(arr) 中 *arr 即 arr[0]=2，返回 2×2=4，赋给 arr[1] 后输出 4。（原卷单选第 3 题，答案 D）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "函数"
+          ],
+          "stem": "```cpp\nint fun1(int *n)\n{\n    return *n**n;\n}\nint main()\n{\n    int arr[10]={2};\n    arr[1]=fun1(arr);\n    cout<<arr[1]<<endl;\n}\n```\n上述代码执行后，arr[0] 的值仍是 ____。",
+          "answer": "2",
+          "explanation": "fun1 通过指针读取 arr[0] 但没有修改它，arr[0] 保持初值 2。（原卷单选第 3 题）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "循环"
+          ],
+          "stem": "```cpp\nint arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};\nfor(int i=0;i<3;i++)\n{\n    for(int j=2;j>=0;j--)\n    {\n        cout<<arr[i][j]<<\" \";\n    }\n    cout<<endl;\n}\n```\n执行上述代码后，第一行输出的三个数是 ____（按输出顺序填，空格分隔）。",
+          "answer": "3 2 1",
+          "explanation": "内层循环 j 从 2 递减到 0，每行倒序输出：第一行 3 2 1。（原卷单选第 4 题，答案 C）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "循环"
+          ],
+          "stem": "```cpp\nint arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};\nfor(int i=0;i<3;i++)\n{\n    for(int j=2;j>=0;j--)\n    {\n        cout<<arr[i][j]<<\" \";\n    }\n    cout<<endl;\n}\n```\n执行上述代码后，第三行输出的三个数是 ____（按输出顺序填，空格分隔）。",
+          "answer": "9 8 7",
+          "explanation": "第三行对应 arr[2][*]={7,8,9}，倒序输出 9 8 7。（原卷单选第 4 题）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "数组"
+          ],
+          "stem": "```cpp\nint arr[3]={1,2,3};\nint *p=NULL;\np=arr;\np++;\ncout<<*p<<endl;\n```\n执行上述代码后，输出的是 ____。",
+          "answer": "2",
+          "explanation": "p 指向数组首元素后自增一次，指向 arr[1]，解引用得 2。（原卷单选第 5 题，答案 C）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "数组"
+          ],
+          "stem": "```cpp\nint arr[3]={1,2,3};\nint *p=NULL;\np=arr;\np++;\ncout<<*p<<endl;\n```\n上述代码执行 p++ 后，指针 p 指向 arr[____]。",
+          "answer": "1",
+          "explanation": "指针自增一次后指向下一个元素，即下标 1 的位置。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "指针运算"
+          ],
+          "stem": "int 变量 x 的地址是 0x6ffe14，执行 int *p=&x; p++; 之后，p 的值是 ____。",
+          "answer": "0x6ffe18",
+          "explanation": "p++ 使指针前进一个 int（4 字节）：0x6ffe14+4=0x6ffe18。（原卷单选第 6 题，答案 C）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "指针运算",
+            "内存"
+          ],
+          "stem": "上述指针自增后地址增加 4，原因是每个 int 变量占 ____ 字节。",
+          "answer": "4",
+          "explanation": "指针自增的步长是指向类型的大小，int 占 4 字节。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "函数"
+          ],
+          "stem": "```cpp\nint point(int *p)\n{\n    return *p**p;\n}\nint main()\n{\n    int a=20;\n    int *p=&a;\n    *p=point(p);\n    cout<<*p<<endl;\n}\n```\n执行上述代码后，输出的是 ____。",
+          "answer": "400",
+          "explanation": "point(p) 中 *p=20，返回 20×20=400，赋给 a 后输出 400。（原卷单选第 7 题，答案 A）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "函数"
+          ],
+          "stem": "```cpp\nint point(int *p)\n{\n    return *p**p;\n}\nint main()\n{\n    int a=20;\n    int *p=&a;\n    *p=point(p);\n    cout<<*p<<endl;\n}\n```\n上述代码调用 *p=point(p); 之前，*p 的值是 ____。",
+          "answer": "20",
+          "explanation": "调用前 p 指向 a，a 的初值为 20。（原卷单选第 7 题）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "逻辑运算",
+            "位运算"
+          ],
+          "stem": "下列四个表达式：3与false的逻辑与、5与2的逻辑与、101与000的逻辑与、4与true的按位与，其中结果为 true 的是 ____（写成 a&&b 或 a&b 形式）。",
+          "answer": [
+            "5&&2",
+            "5 & 2"
+          ],
+          "explanation": "5&&2 两个操作数均非零，逻辑与为 true；3&&false 为 false；101&&000 即 101&&0 为 false；4&true 是按位与 4&1=0。（原卷单选第 8 题，答案 B）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "逻辑运算",
+            "位运算"
+          ],
+          "stem": "表达式 4&true 的结果是 ____（填一个数字）。",
+          "answer": "0",
+          "explanation": "4 的二进制 100 与 true（即 1）按位与得 0，注意 & 是按位与而非逻辑与。（原卷单选第 8 题 D 肢）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "数组"
+          ],
+          "stem": "```cpp\nstring str=\"HELLO CHEN A DAI\";\nint strlen=str.length();\nchar alpha[26]={65};\nint cnt[26]={0};\nfor(int i=1;i<26;i++)\n{\n    __________;\n}\n```\n横线处应填入使 alpha 依次存放 26 个大写字母 ASCII 码的代码：____。",
+          "answer": [
+            "alpha[i]=alpha[i-1]+1;",
+            "alpha[i] = alpha[i-1] + 1;"
+          ],
+          "explanation": "alpha[0]=65 即 'A'，循环从 i=1 开始，每项比前一项大 1 才能依次得到 26 个大写字母。（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "数组"
+          ],
+          "stem": "```cpp\nchar alpha[26]={65};\nfor(int i=1;i<26;i++)\n{\n    alpha[i]=alpha[i-1]+1;\n}\n```\n上述代码执行后，alpha[5] 的值是 ____（填十进制数字）。",
+          "answer": "70",
+          "explanation": "alpha[0]=65（'A'），依次加 1：alpha[5]=65+5=70，即字符 'F'。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "文件操作",
+            "循环"
+          ],
+          "stem": "```cpp\nofstream fout;\nfout.open(\"1.txt\");\nfor(int i=1;i<=10;i++)\n{\n    if(i%5==0)\n    {\n        int x=6;\n        fout<<x;\n    }\n    else\n    {\n        char ch='A';\n        fout<<ch;\n    }\n}\n```\n执行上述代码后，生成的文件 1.txt 的字节数为 ____。",
+          "answer": "10",
+          "explanation": "循环 10 次每次只写 1 个字节（i 为 5 的倍数写 1 个数字字符，否则写 1 个 'A'），共 10 字节。（原卷单选第 10 题，答案 A）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "文件操作",
+            "循环"
+          ],
+          "stem": "```cpp\nofstream fout;\nfout.open(\"1.txt\");\nfor(int i=1;i<=10;i++)\n{\n    if(i%5==0)\n    {\n        int x=6;\n        fout<<x;\n    }\n    else\n    {\n        char ch='A';\n        fout<<ch;\n    }\n}\n```\n上述代码执行后，文件中字符 A 出现的次数是 ____。",
+          "answer": "8",
+          "explanation": "i=1,2,3,4,6,7,8,9 共 8 次进入 else 分支写 'A'；i=5,10 写数字 6。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "循环"
+          ],
+          "stem": "```cpp\nstring str=\"\";\ncin>>str;\nint strlen=str.length();\nfor(int i=0;i<strlen;i++)\n{\n    if(str[i]<='9'&&str[i]>='0')\n    {\n        cout<<str[i];\n    }\n    else\n    {\n        cout<<\"#\";\n    }\n}\n```\n输入 1,2,3,4 时，执行上述代码后输出的是 ____。",
+          "answer": "1#2#3#4",
+          "explanation": "逐字符处理：数字字符原样输出，逗号输出 #，故为 1#2#3#4，末尾无 #。（原卷单选第 11 题，答案 D）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "字符串",
+            "循环"
+          ],
+          "stem": "```cpp\nstring str=\"\";\ncin>>str;\nint strlen=str.length();\nfor(int i=0;i<strlen;i++)\n{\n    if(str[i]<='9'&&str[i]>='0')\n    {\n        cout<<str[i];\n    }\n    else\n    {\n        cout<<\"#\";\n    }\n}\n```\n输入 5,6,7 时，执行上述代码后输出的是 ____。",
+          "answer": "5#6#7",
+          "explanation": "与上一情境同理：数字原样、逗号变 #，输出 5#6#7。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "循环",
+            "取余"
+          ],
+          "stem": "```cpp\nint n;\ncin>>n;\nfor(int i=1;i<=n;i++)\n{\n    ______\n    {\n        cout<<i<<\" \";\n    }\n}\n```\n横线处应填入使程序输出 n 的所有因数的代码：____。",
+          "answer": [
+            "if(n%i==0)",
+            "if (n%i==0)"
+          ],
+          "explanation": "i 是 n 的因数当且仅当 n%i==0。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "循环",
+            "取余"
+          ],
+          "stem": "```cpp\nint n;\ncin>>n;\nfor(int i=1;i<=n;i++)\n{\n    if(n%i==0)\n    {\n        cout<<i<<\" \";\n    }\n}\n```\n输入 18 时，执行上述代码后输出的是 ____（按输出顺序填，空格分隔）。",
+          "answer": "1 2 3 6 9 18",
+          "explanation": "18 的因数为 1、2、3、6、9、18，按 i 递增顺序输出。（原卷单选第 12 题）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "声控智能驾驶系统中，麦克风、扬声器、油量表、传感器这四项里，完成选路不是必须的是 ____。",
+          "answer": "油量表",
+          "explanation": "选路需要拾取语音（麦克风）、播报（扬声器）与感知环境（传感器），油量表与选路无关。（原卷单选第 13 题，答案 C）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "声控智能驾驶系统通过 ____ 拾取乘客的语音，通过 ____ 向乘客播报路线（按顺序填两个设备名称，空格分隔）。",
+          "answer": "麦克风 扬声器",
+          "explanation": "麦克风负责语音输入，扬声器负责语音输出。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "现代电子计算机所基于的体系结构是 ____ 体系结构（填人名）。",
+          "answer": "冯·诺依曼",
+          "explanation": "原卷正确肢 B：现代计算机基于冯·诺依曼体系结构。（原卷单选第 14 题，答案 B）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "现代计算机所基于的体系结构的核心思想是 ____（填：存储程序/人工布线/机械计算）。",
+          "answer": "存储程序",
+          "explanation": "冯·诺依曼体系结构的核心是程序存储：指令与数据一起存于存储器中。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "循环",
+            "取余"
+          ],
+          "stem": "原卷中“循环变量 i 从 2 开始”的那段求相邻因数对的代码，找不全因数对的原因是漏掉了因数对 ____（按 (a,b) 形式填）。",
+          "answer": "(1,2)",
+          "explanation": "i 从 2 开始时判断的是 (2,3)、(3,4) 等，i=1 对应的 (1,2) 永远不会被检查。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "循环",
+            "取余"
+          ],
+          "stem": "N=12 时，相邻且都能整除 12 的因数对共有 ____ 组。",
+          "answer": "3",
+          "explanation": "12 的相邻因数对为 (1,2)、(2,3)、(3,4)，共 3 组。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "排序"
+          ],
+          "stem": "C++ 内置函数 sort() ____（填：支持/不支持）对数组的局部排序。",
+          "answer": "支持",
+          "explanation": "原卷判断题正确：sort(a, a+5) 这样的部分区间排序是合法的。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "排序"
+          ],
+          "stem": "```cpp\nint a={10,9,8,7,6,5,4,3,2,1};\nsort(a, a+5);\n```\n调用 sort(a,a+5) 后，数组的前 5 个元素依次为 ____（按顺序填，空格分隔）。",
+          "answer": "6 7 8 9 10",
+          "explanation": "局部排序只改变前 5 个元素，升序后为 6 7 8 9 10，后面的元素不变。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "递归",
+            "时间复杂度"
+          ],
+          "stem": "用递归法求 n 的阶乘，时间复杂度是 ____（写成 O(x) 形式，如 O(x^2)）。",
+          "answer": "O(n)",
+          "explanation": "原卷判断题正确：递归求阶乘递归 n 层，每层 O(1)，时间复杂度 O(n)。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "递归"
+          ],
+          "stem": "用递归法求 10 的阶乘，阶乘函数的嵌套调用最大层数是 ____。",
+          "answer": "10",
+          "explanation": "fact(10)→fact(9)→…→fact(1)，共 10 层嵌套调用。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "表达式"
+          ],
+          "stem": "[(1,2)*2]*3 在 C++ 中是 ____（填：合法/非法）的表达式。",
+          "answer": "非法",
+          "explanation": "原卷判断题正确：(1,2) 是逗号表达式，其结果 2 与 2 相乘没问题，但最外层 [2*2]*3 对整数使用下标运算符 [] 是非法的。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "表达式",
+            "逗号运算符"
+          ],
+          "stem": "在 C++ 中，逗号表达式 (1,2) 的值是 ____。",
+          "answer": "2",
+          "explanation": "逗号表达式取最后一个表达式的值，(1,2) 的值为 2。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "文件操作"
+          ],
+          "stem": "```cpp\nifstream filein;\nofstream fileout;\nfilein.open(\"1.txt\");\nfileout<<\"hello\";\n```\n执行上述代码后，hello 没有被写入 1.txt 文件，原因是 ____ 没有打开（填变量名）。",
+          "answer": "fileout",
+          "explanation": "原卷判断题错误处：代码只打开了输入流 filein，输出流 fileout 未 open 就写入。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "文件操作"
+          ],
+          "stem": "要用 ofstream 对象向文件写数据，需要先调用其 ____ 成员函数（填函数名）与文件建立连接。",
+          "answer": "open",
+          "explanation": "文件流使用前必须 open 指定文件名，否则读写无效。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "文件操作"
+          ],
+          "stem": "文本文件 1.txt 第 1 行由 5 个字符组成：首位是字符 0，其后依次是 1 至 4 四个数字，其间没有空格。执行如下代码后，输出是 ____。\n```cpp\nifstream filein;\nint buff;\nfilein.open(\"1.txt\");\nfilein>>buff;\ncout<<buff<<endl;\n```",
+          "answer": "1234",
+          "explanation": ">> 按 int 读取，前导 0 被忽略，读到整数 1234 后停止，输出的不是 5 个字符而是 4 位数字。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "文件操作",
+            "类型"
+          ],
+          "stem": "上述代码没有把整行当字符串读入，是因为提取运算符 >> 读取的目标变量 buff 是 ____ 类型（填：int/string/char）。",
+          "answer": "int",
+          "explanation": "buff 声明为 int，>> 按整数格式读取；若要读整行字符串应使用 string 变量。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "逻辑运算"
+          ],
+          "stem": "执行 C++ 代码 cout<<(5||2); 后，输出是 ____。",
+          "answer": "1",
+          "explanation": "5||2 逻辑或为真，cout 输出 1。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "逻辑运算"
+          ],
+          "stem": "C++ 中，任意两个非零整数做逻辑或运算，结果都是 ____（填：true/false）。",
+          "answer": "true",
+          "explanation": "非零即真，真||真 为真。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "字符串"
+          ],
+          "stem": "```cpp\nstring a=\"chen\";\nstring b=\"a\";\nstring c=\"dai\";\nstring name=a+b+c;\ncout<<name<<endl;\n```\n执行上述代码后，输出是 ____。",
+          "answer": "chenadai",
+          "explanation": "字符串 + 按从左到右拼接：chen+a+dai=chenadai。原卷判断题称输出 chenadai 并判错，经 g++ 实测输出确为 chenadai，源卷答案表疑似印错，本空以实测为准。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "字符串"
+          ],
+          "stem": "```cpp\nstring a=\"chen\";\nstring b=\"a\";\nstring c=\"dai\";\nstring name=a+b+c;\ncout<<name<<endl;\n```\n上述代码中，字符串 name 包含的字符个数是 ____。",
+          "answer": "8",
+          "explanation": "name 由 4+1+3 共 8 个字符拼接而成。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "排序"
+          ],
+          "stem": "sort() 可以对数组进行 ____ 排序、____ 排序和局部排序（按顺序填两个排序方向，空格分隔）。",
+          "answer": "从大到小 从小到大",
+          "explanation": "原卷判断题正确：sort 支持降序、升序与部分区间排序。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "排序"
+          ],
+          "stem": "sort() 除了能用于整数数组，还能用于 ____ 数组和字符数组的排序（填一个类型）。",
+          "answer": "浮点数",
+          "explanation": "原卷判断题列举了整数、浮点数、字符数组三类可排序对象。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "Dev C++ 是一个集成开发环境，它本身 ____（填：是操作系统/是运行在操作系统之上的软件）。",
+          "answer": "是运行在操作系统之上的软件",
+          "explanation": "原卷判断题错误处：Dev C++ 是应用软件/开发工具，不是操作系统。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "计算机基础"
+          ],
+          "stem": "操作系统属于 ____ 软件（填：系统/应用）。",
+          "answer": "系统",
+          "explanation": "操作系统管理硬件与资源，是系统软件；Dev C++ 等是运行其上的应用软件。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "循环"
+          ],
+          "stem": "任何一个 while 循环都 ____（填：能/不能）转化为等价的 for 循环。",
+          "answer": "能",
+          "explanation": "原卷判断题正确：while(cond){...} 可写成 for(;;cond){...} 等形式等价实现。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "循环"
+          ],
+          "stem": "for 循环的三个控制部分（初始化；条件；增量）中，与 while 循环的条件判断位置对应的是第 ____ 部分（填：一/二/三）。",
+          "answer": "二",
+          "explanation": "for 的第二部分每次循环前求值，等价于 while 的条件判断。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "小杨的字典",
+          "knowledge": [
+            "字符串处理",
+            "map 查找"
+          ],
+          "source": "2023年12月认证C++四级.pdf，第 6–8 页",
+          "stem": "在遥远的星球，有两个国家 A 国和 B 国，他们使用着不同的语言：A 语言和 B 语言。小杨是 B 国的翻译官，他的工作是将 A 语言的文章翻译成 B 语言的文章。\n\n为了顺利完成工作，小杨制作了一本字典，里面记录了 N 个 A 语言单词对应的 B 语言单词，巧合的是，这些单词都由地球上的 26 个小写英文字母组成。\n\n小杨希望你写一个程序，帮助他根据这本字典翻译一段 A 语言文章。这篇文章由标点符号 !()-[]{}\\;'\"，./?>< 和一些 A 语言单词构成，每个单词之间必定由至少一个标点符号分隔，你的程序需要把这段话中的所有 A 语言单词替换成它的 B 语言翻译。特别地，如果遇到不在字典中的单词，请使用大写 UNK 来替换它。\n\n例如，小杨的字典中包含 2 个 A 语言单词 abc 和 d，它们的 B 语言翻译分别为 a 和 def，那么我们可以把 A 语言文章 abc.d.d.abc.abcd. 翻译成 B 语言文章 a.def.def.a.UNK.，其中，单词 abcd 不在词典内，因此我们需要使用 UNK 来替换它。",
+          "input_format": "第一行一个整数 N，表示字典中的条目数，保证 N ≤ 100。接下来 N 行，每行两个用单个空格隔开的字符串 A、B，分别表示字典中的一个 A 语言单词以及它对应的 B 语言翻译，保证所有 A 不重复，保证 A 和 B 的长度不超过 10。最后一行一个字符串 S，表示需要翻译的 A 语言文章，保证字符串 S 的长度不超过 1000，保证字符串 S 只包含小写字母以及标点符号 !()-[]{}\\;'\"，./?><。",
+          "output_format": "输出一行，表示翻译后的结果。",
+          "constraints": "N ≤ 100；A、B 长度不超过 10；S 长度不超过 1000，仅含小写字母与给定标点。\n时间限制 1.0 s；内存限制 128.0 MB。",
+          "samples": [
+            {
+              "input": "2\nabc a\nd def\nabc.d.d.abc.abcd.",
+              "output": "a.def.def.a.UNK."
+            },
+            {
+              "input": "3\nabc a\nd def\nabcd xxxx\nabc,(d)d!-abc?abcd",
+              "output": "a,(def)def!-a?xxxx"
+            },
+            {
+              "input": "1\nabcdefghij  klmnopqrst\n!()-[]{}\\;'\",./?><abcdefghijklmnopqrstuvwxyz",
+              "output": "!()-[]{}\\;'\",./?><UNK"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include <algorithm>\n#include <string>\n#include <map>\n#include <iostream>\nusing namespace std;\nmap<string, string> dict;\nint main() {\n    int N;\n    cin >> N;\n    while(N --) {\n        string word1, word2;\n        cin >> word1 >> word2;\n        dict[word1] = word2;\n    }\n    string content, word = \"\";\n    cin >> content, content += \"\\n\";\n    int m = content.length();\n    for(int i = 0; i < m; i ++){\n        if (content[i] >= 'a' && content[i] <= 'z')\n            word += content[i];\n        else {\n            if (word != \"\") {\n                if (dict.count(word))\n                    cout << dict[word];\n                else cout << \"UNK\";\n                word = \"\";\n            }\n            cout << content[i];\n        }\n    }\n    return 0;\n}\n",
+            "solution": "用 map<string,string> 存字典；读入文章后在末尾补一个换行，逐字符扫描：小写字母累积成单词，遇到非字母字符时若累积了单词就查表（命中输出译文，否则输出 UNK），然后原样输出该字符。时间复杂度 O(|S|×单词长度)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <map>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic string translate(const map<string, string>& dict, const string& content) {\n    ostringstream os;\n    string word;\n    string s = content;\n    s += '\\n';  // 与参考程序一致：结尾补一个非字母触发收尾\n    for (size_t i = 0; i < s.size(); ++i) {\n        if (s[i] >= 'a' && s[i] <= 'z') {\n            word += s[i];\n        } else {\n            if (!word.empty()) {\n                map<string, string>::const_iterator it = dict.find(word);\n                if (it != dict.end()) os << it->second;\n                else os << \"UNK\";\n                word.clear();\n            }\n            os << s[i];\n        }\n    }\n    string r = os.str();\n    if (!r.empty() && r.back() == '\\n') r.pop_back();\n    return r;\n}\nstatic bool check(const string& exe, const vector<pair<string, string>>& dictRows, const string& content, int id) {\n    const string inF = \"l4a12p1_in.txt\", outF = \"l4a12p1_out.txt\";\n    {\n        ofstream o(inF);\n        o << dictRows.size() << '\\n';\n        for (size_t i = 0; i < dictRows.size(); ++i) o << dictRows[i].first << ' ' << dictRows[i].second << '\\n';\n        o << content << '\\n';\n    }\n    int code = system((\"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream in(outF);\n    string actual((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    if (!actual.empty() && (actual.back() == '\\n' || actual.back() == '\\r')) actual.pop_back();\n    map<string, string> dict;\n    for (size_t i = 0; i < dictRows.size(); ++i) dict[dictRows[i].first] = dictRows[i].second;\n    string want = translate(dict, content);\n    if (code != 0 || actual != want) {\n        cout << \"[FAIL] case \" << id << \": expected=\" << want\n             << \", actual=\" << actual.substr(0, 200) << \", status=\" << code << '\\n';\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    int passed = 0, total = 0;\n    ++total;\n    if (check(exe, {{string(\"abc\"), string(\"a\")}, {string(\"d\"), string(\"def\")}}, \"abc.d.d.abc.abcd.\", 1)) ++passed;  // 样例1\n    ++total;\n    if (check(exe, {{string(\"abc\"), string(\"a\")}, {string(\"d\"), string(\"def\")}, {string(\"abcd\"), string(\"xxxx\")}}, \"abc,(d)d!-abc?abcd\", 2)) ++passed;  // 样例2\n    ++total;\n    if (check(exe, {{string(\"abcdefghij\"), string(\"klmnopqrst\")}}, \"!()-[]{}\\\\;\\'\\\"\\,./?><abcdefghijklmnopqrstuvwxyz\", 3)) ++passed;  // 样例3\n    // 边界：单词在结尾（依赖补换行收尾）、全 UNK、长文随机\n    srand(20231201);\n    for (int t = 0; t < 5; ++t) {\n        int n = 1 + rand() % 100;\n        vector<pair<string, string>> rows;\n        for (int i = 0; i < n; ++i) {\n            string a, b;\n            int la = 1 + rand() % 10, lb = 1 + rand() % 10;\n            for (int k = 0; k < la; ++k) a += char('a' + rand() % 26);\n            for (int k = 0; k < lb; ++k) b += char('a' + rand() % 26);\n            rows.push_back(make_pair(a, b));\n        }\n        string content;\n        int len = 100 + rand() % 900;\n        for (int k = 0; k < len; ++k) {\n            if (rand() % 10 < 6) content += char('a' + rand() % 26);\n            else content += \"()[],.-!?'\\\"/\\\\<>;: \"[(rand() % 16)];\n        }\n        if (rand() % 2) content += string(\"abc\");  // 有时以未闭合单词结尾\n        ++total;\n        if (check(exe, rows, content, 4 + t)) ++passed;\n    }\n    cout << \"Results: \" << passed << \"/\" << total << \" passed\" << '\\n';\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "田忌赛马",
+          "knowledge": [
+            "贪心",
+            "排序"
+          ],
+          "source": "2023年12月认证C++四级.pdf，第 8–10 页",
+          "stem": "你要和田忌赛马。你们各自有 N 匹马，并且要进行 N 轮比赛，每轮比赛，你们都要各派出一匹马决出胜负。\n\n你的马匹的速度分别为 u1, u2, …, uN，田忌的马匹的速度分别为 v1, v2, …, vN。田忌会按顺序派出他的马匹，请问你要如何排兵布阵，才能赢得最多轮次的比赛？巧合的是，你和田忌的所有马匹的速度两两不同，因此不可能出现平局。",
+          "input_format": "第一行一个整数 N，保证 1 ≤ N ≤ 5×10^4。接下来一行 N 个用空格隔开的整数，依次为 u1, u2, …, uN，表示你的马匹们的速度，保证 1 ≤ u_i ≤ 2N。再下一行 N 个用空格隔开的整数，依次为 v1, v2, …, vN，表示田忌的马匹们的速度，保证 1 ≤ v_i ≤ 2N。你和田忌的所有马匹速度两两不同。",
+          "output_format": "输出一行，表示你最多能获胜几轮。",
+          "constraints": "1 ≤ N ≤ 5×10^4；1 ≤ u_i, v_i ≤ 2N；2N 匹马速度两两不同。\n时间限制 1.0 s；内存限制 128.0 MB。",
+          "samples": [
+            {
+              "input": "3\n1 3 5\n2 4 6",
+              "output": "2"
+            },
+            {
+              "input": "5\n10 3 5 8 7\n4 6 1 2 9",
+              "output": "5"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int N = 100005;\n\nint a[N], t;\nint b[N], h;\nint n;\n\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= n; ++i) {\n        scanf(\"%d\", &a[i]);\n    }\n    for (int i = 1; i <= n; ++i) {\n        scanf(\"%d\", &b[i]);\n    }\n    h = 1;\n    t = 0;\n    sort(a + 1, a + n + 1);\n    sort(b + 1, b + n + 1);\n    int ans = 0;\n    for (int i = 1; i <= n; ++i)\n        if (a[i] > b[h])\n            ++ans, ++h;\n    printf(\"%d\\n\", ans);\n\n    return 0;\n}\n",
+            "solution": "最多胜场等于“我的马严格快于田忌某匹马”的最大匹配数：把双方速度各自升序排序，用双指针——按升序遍历我的马，只要它能赢田忌当前最慢的剩余马就计一场并消耗那匹马，否则这匹马赢不了任何剩余马、直接弃用。贪心正确性：最慢的田忌马应分配能赢它的最慢的我方马。时间复杂度 O(N log N)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstatic int expectedWins(const vector<int>& mine, const vector<int>& his) {\n    vector<int> a = mine, b = his;\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int wins = 0, i = 0;\n    for (size_t j = 0; j < b.size(); ++j) {\n        while (i < (int)a.size() && a[i] <= b[j]) ++i;\n        if (i < (int)a.size()) { ++wins; ++i; }\n    }\n    return wins;\n}\nstatic bool check(const string& exe, const vector<int>& mine, const vector<int>& his, int id) {\n    const string inF = \"l4a12p2_in.txt\", outF = \"l4a12p2_out.txt\";\n    {\n        ofstream o(inF);\n        int n = (int)mine.size();\n        o << n << '\\n';\n        for (int i = 0; i < n; ++i) o << mine[i] << (i + 1 == n ? '\\n' : ' ');\n        for (int i = 0; i < n; ++i) o << his[i] << (i + 1 == n ? '\\n' : ' ');\n    }\n    int code = system((\"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream in(outF);\n    int got = -1;\n    in >> got;\n    int want = expectedWins(mine, his);\n    if (code != 0 || got != want) {\n        cout << \"[FAIL] case \" << id << \": expected=\" << want << \", actual=\" << got\n             << \", status=\" << code << '\\n';\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    int passed = 0, total = 0;\n    ++total; if (check(exe, {1, 3, 5}, {2, 4, 6}, 1)) ++passed;   // 样例1\n    ++total; if (check(exe, {10, 3, 5, 8, 7}, {4, 6, 1, 2, 9}, 2)) ++passed;  // 样例2\n    // 边界：全赢、全输、单场\n    ++total; if (check(exe, {5, 4, 3, 2, 1}, {1, 2, 3, 4, 5}, 3)) ++passed;\n    ++total; if (check(exe, {1, 2, 3, 4, 5}, {6, 7, 8, 9, 10}, 4)) ++passed;\n    ++total; if (check(exe, {1}, {2}, 5)) ++passed;\n    ++total; if (check(exe, {2}, {1}, 6)) ++passed;\n    // 随机压测：2N 个速度两两不同，取前 N 为我方\n    srand(20231202);\n    for (int t = 0; t < 8; ++t) {\n        int n = (t < 5) ? (1 + rand() % 1000) : 50000;\n        vector<int> pool(2 * n);\n        for (int i = 0; i < 2 * n; ++i) pool[i] = i + 1;\n        if (n == 50000) {\n            for (int i = 2 * n - 1; i > 0; --i) {\n                int j = rand() % (i + 1);\n                int tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;\n            }\n        } else {\n            random_shuffle(pool.begin(), pool.end());\n        }\n        vector<int> mine(pool.begin(), pool.begin() + n);\n        vector<int> his(pool.begin() + n, pool.end());\n        ++total; if (check(exe, mine, his, 7 + t)) ++passed;\n    }\n    cout << \"Results: \" << passed << \"/\" << total << \" passed\" << '\\n';\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

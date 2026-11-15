@@ -1,0 +1,601 @@
+{
+  "exam": {
+    "id": "gesp_l4a_sample",
+    "title": "CCF GESP C++四级样题（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "在 C++ 中，指针变量的大小（单位：字节）是 ____（填：A / B / C / D）。\nA. 2\nB. 4\nC. 8\nD. 与编译器有关",
+          "answer": "D",
+          "explanation": "指针大小取决于平台/编译器的指针位数（32 位 4 字节、64 位 8 字节）。（原卷单选第 1 题，答案 D）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "上述问题中指针大小与编译器有关，是因为它由运行平台的 ____（填：地址总线宽度/被指向数据类型）决定。",
+          "answer": "地址总线宽度",
+          "explanation": "指针存储的是地址，大小等于地址位数。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "声明"
+          ],
+          "stem": "以下哪个选项能正确定义一个二维数组 ____（填：A / B / C / D）。\nA. int a[][];\nB. char b[][4];\nC. double c[3][];\nD. bool d[3][4];",
+          "answer": "D",
+          "explanation": "只有 D 行列数齐全；A、C 缺列数，B 无初始化无法推行数。（原卷单选第 2 题，答案 D）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "声明"
+          ],
+          "stem": "声明二维数组时，____（填：行/列）数必须给出；行数可由初始化列表推出。",
+          "answer": "列",
+          "explanation": "编译期需要列数才能计算元素地址。（原卷单选第 2 题）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "在 C++ 中，以下哪种方式不能用于向函数传递参数 ____（填：A / B / C / D）。\nA. 值传递\nB. 引用传递\nC. 指针传递\nD. 模板传递",
+          "answer": "D",
+          "explanation": "参数传递方式为值、引用、指针；模板是泛型机制，不是传参方式。（原卷单选第 3 题，答案 D）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "模板"
+          ],
+          "stem": "上述选项 D 不能用，是因为模板是一种 ____（填：泛型编程/参数传递）机制。",
+          "answer": "泛型编程",
+          "explanation": "模板让同一代码作用于多种类型。（原卷单选第 3 题）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "形参实参"
+          ],
+          "stem": "以下关于 C++ 函数的形参和实参的叙述，正确的是 ____（填：A / B / C / D）。\nA. 形参是实参的别名\nB. 实参是形参的别名\nC. 形参和实参是完全相同的\nD. 形参用于函数声明，实参用于函数调用",
+          "answer": "D",
+          "explanation": "形参在声明/定义中，实参在调用处。（原卷单选第 4 题，答案 D）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "形参实参"
+          ],
+          "stem": "上述选项 D 中，函数声明/定义中声明的变量称为 ____（填：形参/实参）。",
+          "answer": "形参",
+          "explanation": "调用时传入的才是实参。（原卷单选第 4 题）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "排序算法的稳定性是指 ____（填：A / B / C / D）。\nA. 相同元素在排序后的相对顺序保持不变\nB. 排序算法的性能稳定\nC. 排序算法对任意输入都有较好的效果\nD. 排序算法容易实现",
+          "answer": "A",
+          "explanation": "稳定性定义即相等元素相对顺序不变。（原卷单选第 5 题，答案 A）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "按上述选项 A 的定义，稳定排序后，两个相等元素的相对顺序与排序前 ____（填：保持不变/可能交换）。",
+          "answer": "保持不变",
+          "explanation": "这是稳定排序的判定标准。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "二维数组"
+          ],
+          "stem": "```cpp\nint a[2][2] = {{0, 1}, {2, 3}};\n```\n如果有上述二维数组定义，则 a[0][3] 的值是 ____（填：A / B / C / D）。\nA. 编译出错\nB. 1\nC. 3\nD. 0",
+          "answer": "A",
+          "explanation": "第二维下标范围是 0~1，a[0][3] 越界，编译报错。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "二维数组"
+          ],
+          "stem": "上述代码编译出错，是因为 a 的第二维下标取值范围是 0 到 ____，3 越界。",
+          "answer": "1",
+          "explanation": "a[2][2] 第二维大小为 2。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "二维数组"
+          ],
+          "stem": "以下哪个选项能正确访问二维数组 array 的元素 ____（填：A / B / C / D）。\nA. array[1, 2]\nB. array(1)(2)\nC. array[1][2]\nD. array{1}{2}",
+          "answer": "C",
+          "explanation": "只有两组方括号是元素访问语法。（原卷单选第 7 题，答案 C）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "逗号运算符"
+          ],
+          "stem": "上述选项 A 中 array[1, 2] 实际是 array[(1, 2)]，逗号运算式的结果取 ____（填：前者/后者）的值。",
+          "answer": "后者",
+          "explanation": "逗号运算符先计算左侧再取右侧值，故等价于 array[2]。（原卷单选第 7 题）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "声明"
+          ],
+          "stem": "以下哪个选项是 C++ 中正确的指针变量声明 ____（填：A / B / C / D）。\nA. int *p;\nB. int p*;\nC. *int p;\nD. int* p*;",
+          "answer": "A",
+          "explanation": "只有 A 语法正确；D 声明的是二级指针且 p* 位置不对（int* p* 实际把 * 与 p 连写也合法但含义不同）。（原卷单选第 8 题，答案 A）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "声明"
+          ],
+          "stem": "上述选项 D 中 int* p* 声明的 p 是 ____（填：二级指针/一级指针）变量。",
+          "answer": "二级指针",
+          "explanation": "两个 * 表示指向指针的指针。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "引用"
+          ],
+          "stem": "在 C++ 中，以下哪个关键字或符号用于声明引用 ____（填：A / B / C / D）。\nA. pointer\nB. &\nC. *\nD. reference",
+          "answer": "B",
+          "explanation": "引用用 & 声明，如 int& r = x;。（原卷单选第 9 题，答案 B）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "上述选项 C 中 * 符号用于声明 ____（填：指针/引用）变量。",
+          "answer": "指针",
+          "explanation": "* 是声明指针的符号。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "以下哪个递推关系式表示斐波那契数列 ____（填：A / B / C / D）。\nA. F(n) = F(n-1) + F(n-2) + F(n-3)\nB. F(n) = F(n-1) + F(n-2)\nC. F(n) = F(n-1) * F(n-2)\nD. F(n) = F(n-1) / F(n-2)",
+          "answer": "B",
+          "explanation": "斐波那契递推：每项等于前两项之和。（原卷单选第 10 题，答案 B）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "用上述选项 B 的递推关系式计算斐波那契数列，需要给定 ____（填：两个初始值/一个终止值）。",
+          "answer": "两个初始值",
+          "explanation": "递推需要 F(0)、F(1) 两个初值。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "函数参数"
+          ],
+          "stem": "以下哪个函数声明在调用时可以传递二维数组的名字作为参数？____（填：A / B / C / D）\nA. void BubbleSort(int a[3][4]);\nB. void BubbleSort(int a[][]);\nC. void BubbleSort(int * a[]);\nD. void BubbleSort(int ** a);",
+          "answer": "A",
+          "explanation": "二维数组作参数必须写明列数；A 的 int a[3][4] 等价于 int (*a)[4]。（原卷单选第 11 题，答案 A）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "函数参数"
+          ],
+          "stem": "上述选项 B 错误，二维数组参数声明中 ____（填：行/列）数不能省略。",
+          "answer": "列",
+          "explanation": "缺列数编译器无法计算偏移。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "在 C++ 中，以下哪个关键字用来捕获异常 ____（填：A / B / C / D）。\nA. throw\nB. catch\nC. try\nD. finally",
+          "answer": "B",
+          "explanation": "catch 捕获异常；throw 抛出、try 包裹；C++ 没有 finally。（原卷单选第 12 题，答案 B）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "上述选项 A 中 throw 语句用于 ____（填：抛出/捕获）异常。",
+          "answer": "抛出",
+          "explanation": "throw 表达式的值成为异常对象。（原卷单选第 12 题）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "引用传递"
+          ],
+          "stem": "```cpp\nvoid xchg(________________) { // 在此处填入代码\n    int t = x;\n    x = y;\n    y = t;\n}\nint main() {\n    int a = 10, b = 20;\n    xchg(a, b);\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```\n在横线处填写 ____（填：A / B / C / D），可以使得输出是“20 10”。\nA. int x, int y\nB. int & x, int & y\nC. int a, int b\nD. int & a, int & b",
+          "answer": "B",
+          "explanation": "必须用与函数体内变量名一致的引用形参 int & x, int & y；值传递改不了实参，D 的名字对不上。（原卷单选第 13 题，答案 B）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "引用传递"
+          ],
+          "stem": "上述问题正确选项必须使用引用传递，是因为值传递时 xchg 内的 x、y 只是 a、b 的 ____（填：副本/别名）。",
+          "answer": "副本",
+          "explanation": "改副本不影响实参。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "数组"
+          ],
+          "stem": "```cpp\nint main() {\n    int a[5];\n    a[0] = 1;\n    for (int i = 1; i < 5; i++)\n       a[i] = a[i - 1] * 2;\n    int sum = 0;\n    for (int i = 0; i < 5; ________) // 在此处填入代码\n       sum += a[i];\n    cout << sum << endl;\n    return 0;\n}\n```\n在横线处填写 ____（填：A / B / C / D），可以使得输出是“21”。\nA. i++\nB. i += 2\nC. i += 3\nD. i |= 2",
+          "answer": "B",
+          "explanation": "a = {1,2,4,8,16}；i+=2 取 a[0]+a[2]+a[4] = 1+4+16 = 21。（原卷单选第 14 题，答案 B）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "数组"
+          ],
+          "stem": "上述代码第一个 for 循环后数组 a 的内容是 1, 2, 4, 8, 16，按正确填法参与求和的元素下标依次是 ____（3 个下标，按顺序填，空格分隔）。",
+          "answer": "0 2 4",
+          "explanation": "i 从 0 每次加 2。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "冒泡排序"
+          ],
+          "stem": "```cpp\nvoid BubbleSort(int array[], int n) {\n    for (int i = n; i > 1; i--)\n       for (____________________) // 在此处填入代码\n          if (array[j] > array[j + 1]) {\n                 int t = array[j];\n                 array[j] = array[j + 1];\n                 array[j + 1] = t;\n          }\n}\n```\n在横线处填写 ____（填：A / B / C / D），完成对有 n 个 int 类型元素的数组 array 由小到大排序。\nA. int j = i - 2; j >= 0; j--\nB. int j = i - 1; j >= 0; j--\nC. int j = 0; j < i - 1; j++\nD. int j = 0; j < i; j++",
+          "answer": "B",
+          "explanation": "从 i-1 向左冒泡到 0，保证比较 array[j] 与 array[j+1] 不越界且覆盖全部未排序区间。（原卷单选第 15 题，答案 B）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "冒泡排序"
+          ],
+          "stem": "上述代码外层 i 从 n 递减到 2，内层从下标 i-1 向左比较，每轮把未排序部分的 ____（填：最小/最大）元素移到最前。",
+          "answer": "最小",
+          "explanation": "向左冒泡把最小值“冒”到前面。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "C++ 语言中的指针变量可以指向任何类型的数据，这个说法是 ____（填：正确/错误）的。",
+          "answer": "正确",
+          "explanation": "指针可指向任意类型，只需类型匹配（或用 void*）。（原卷判断第 1 题，答案 T）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "指针"
+          ],
+          "stem": "指针变量在解引用之前必须先初始化或赋值，使其指向一块合法的 ____（填：内存地址/字符串）。",
+          "answer": "内存地址",
+          "explanation": "野指针解引用是未定义行为。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "在 C++ 语言中，函数的参数默认以地址传递方式进行传递，这个说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "C++ 函数参数默认是值传递。（原卷判断第 2 题，答案 F）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "C++ 函数参数的实际默认传递方式是 ____（填：值传递/引用传递）。",
+          "answer": "值传递",
+          "explanation": "需要传址时要显式用引用或指针。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "全局变量"
+          ],
+          "stem": "C++ 语言中的全局变量在整个程序的生命周期内都是有效的，这个说法是 ____（填：正确/错误）的。",
+          "answer": "正确",
+          "explanation": "全局变量从程序开始到结束一直存在。（原卷判断第 3 题，答案 T）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "全局变量"
+          ],
+          "stem": "全局变量的作用域从定义处开始，到其所在文件的 ____ 结束（填：末尾/函数结束）。",
+          "answer": "末尾",
+          "explanation": "除非被局部同名变量遮蔽。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "递推算法通常有初始值，这个说法是 ____（填：正确/错误）的。",
+          "answer": "正确",
+          "explanation": "递推必须由初始值出发。（原卷判断第 4 题，答案 T）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "没有初始值，递推公式就无法 ____（填：开始/终止）后续各项的推导。",
+          "answer": "开始",
+          "explanation": "初始值是递推的起点。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "冒泡排序是一种稳定的排序算法，这个说法是 ____（填：正确/错误）的。",
+          "answer": "正确",
+          "explanation": "冒泡只在严格大于时交换，相等元素相对顺序不变。（原卷判断第 5 题，答案 T）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "上述冒泡排序稳定的原因是它只在元素 ____（填：严格大于/大于等于）时才交换。",
+          "answer": "严格大于",
+          "explanation": "大于等于会交换相等元素，破坏稳定性。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "C++ 语言中，如果异常发生，但没有处理异常的代码，则程序会由于一直等待处理而死机，这个说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "未捕获的异常会调用 std::terminate 终止程序，而不是等待。（原卷判断第 6 题，答案 F）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "上述说法错误：没有 catch 处理时，程序会调用 ____ 终止。",
+          "answer": "std::terminate",
+          "explanation": "异常处理链走到末尾仍未匹配。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "局部变量"
+          ],
+          "stem": "C++ 语言中的局部变量在函数调用结束后会被销毁，这个说法是 ____（填：正确/错误）的。",
+          "answer": "正确",
+          "explanation": "局部（自动）变量随作用域结束而销毁。（原卷判断第 7 题，答案 T）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "变量作用域",
+            "局部变量"
+          ],
+          "stem": "上述局部变量默认存储在 ____（填：栈/堆）上。",
+          "answer": "栈",
+          "explanation": "自动存储期的变量在栈上。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "运算符"
+          ],
+          "stem": "& 和 && 都是 C++ 语言的运算符，* 和 ** 也都是，这个说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "&& 是逻辑与、* 是解引用/乘法，但 ** 不是运算符。（原卷判断第 8 题，答案 F）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "运算符"
+          ],
+          "stem": "上述说法中不是运算符的是 ____（填：**/&&）。",
+          "answer": "**",
+          "explanation": "声明中的两个 * 是语法符号，不是运算符。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "如果希望设计一个函数 xchg，实现交换两个 int 变量的值，则它的声明可以写为 void xchg(int a, int b); ，这个说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "值传递无法交换实参。（原卷判断第 9 题，答案 F）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "上述声明不能完成交换，是因为 a、b 以 ____（填：值/引用）方式传递，函数内的修改不影响实参。",
+          "answer": "值",
+          "explanation": "应写 void xchg(int& a, int& b); 或指针。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "字符"
+          ],
+          "stem": "已知数组 a 定义为 int a[100]; ，则赋值语句 a['0'] = 3; 会导致编译错误，这个说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "'0' 按 ASCII 值 48 作为下标，在 0~99 范围内，合法。（原卷判断第 10 题，答案 F）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "数组",
+            "字符"
+          ],
+          "stem": "上述语句不会编译错误，是因为字符 '0' 会以其 ASCII 值 ____ 转换为整数下标，落在数组有效范围内。",
+          "answer": "48",
+          "explanation": "'0' 的 ASCII 码是 48。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "绝对素数",
+          "knowledge": [
+            "素数",
+            "模拟"
+          ],
+          "source": "CCF GESP C++四级样题.pdf，第 7 页",
+          "stem": "如果一个两位数是素数，且它的数字位置经过对换后仍为素数，则称为绝对素数，例如 13。给定两个正整数 A、B，请求出大于等于 A、小于等于 B 的所有绝对素数。",
+          "input_format": "输入 1 行，包含两个正整数 A 和 B。保证 10 < A < B < 100。",
+          "output_format": "若干行，每行一个绝对素数，从小到大输出。",
+          "constraints": "10 < A < B < 100。（源卷未标注时限/内存，沿用 GESP 惯例口径）",
+          "samples": [
+            {
+              "input": "11 20",
+              "output": "11\n13\n17"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include <iostream>\nusing namespace std;\nbool is_prime(int num) {\n    if (num < 2)\n        return false;\n    for (int i = 2; i * i <= num; i++) {\n        if (num % i == 0)\n            return false;\n    }\n    return true;\n}\nint main() {\n    int a = 0, b = 0;\n    cin >> a >> b;\n    for (int num = a; num <= b; num++) {\n        if (is_prime(num)) {\n            int reversed_num = (num % 10) * 10 + num / 10;\n            if (is_prime(reversed_num))\n                cout << num << endl;\n        }\n    }\n    return 0;\n}\n",
+            "solution": "枚举 [A, B] 中每个两位数 num：先判断 num 是否为素数，再把十位与个位对换得到 reversed_num，判断 reversed_num 是否也为素数；两者都是素数则输出 num。素数判定试除到 sqrt(num) 即可。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic bool prime(int x) {\n    if (x < 2) return false;\n    for (int d = 2; d * d <= x; d++)\n        if (x % d == 0) return false;\n    return true;\n}\nstatic string expected(const string& in) {\n    istringstream iss(in);\n    int a, b;\n    iss >> a >> b;\n    string out;\n    for (int x = a; x <= b; x++) {\n        int r = (x % 10) * 10 + x / 10;\n        if (prime(x) && prime(r)) out += to_string(x) + \"\\n\";\n    }\n    return out;\n}\nstatic bool normEq(const string& a, const string& b) {\n    istringstream isa(a), isb(b);\n    vector<string> la, lb;\n    string line;\n    while (getline(isa, line)) { while (!line.empty() && (line.back()==' '||line.back()=='\\r')) line.pop_back(); la.push_back(line); }\n    while (getline(isb, line)) { while (!line.empty() && (line.back()==' '||line.back()=='\\r')) line.pop_back(); lb.push_back(line); }\n    while (!la.empty() && la.back().empty()) la.pop_back();\n    while (!lb.empty() && lb.back().empty()) lb.pop_back();\n    return la == lb;\n}\nstatic bool check(const string& exe, const string& in, int id) {\n    const string inF = \"l4asmp1_in.txt\", outF = \"l4asmp1_out.txt\";\n    {\n        ofstream o(inF);\n        o << in;\n    }\n    int code = system((exe + \" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream fis(outF);\n    string got((istreambuf_iterator<char>(fis)), istreambuf_iterator<char>());\n    if (code != 0 || !normEq(got, expected(in))) {\n        cout << \"[FAIL] case \" << id << \": status=\" << code\n             << \", actual=\" << got.substr(0, 120) << \", expected=\" << expected(in).substr(0, 120) << \"\\n\";\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    int passed = 0, total = 0;\n    vector<string> fixedCases = {\n        \"11 20\",\n        \"10 99\",\n        \"12 19\",\n        \"21 29\",\n        \"10 11\",\n        \"10 98\",\n    };\n    for (size_t i = 0; i < fixedCases.size(); i++) {\n        ++total;\n        if (check(exe, fixedCases[i], 1 + i)) ++passed;\n    }\n    srand(20250630);\n    for (int t = 0; t < 10; t++) {\n        int a = 11 + rand() % 80, b = a + rand() % (99 - a);\n        ++total;\n        if (check(exe, to_string(a) + \" \" + to_string(b), 7 + t)) ++passed;\n    }\n    cout << \"Results: \" << passed << \"/\" << total << \" passed\" << \"\\n\";\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "填幻方",
+          "knowledge": [
+            "模拟",
+            "二维数组"
+          ],
+          "source": "CCF GESP C++四级样题.pdf，第 8–10 页",
+          "stem": "在一个 N×N 的正方形网格中，每个格子分别填上从 1 到 N×N 的正整数，使得正方形中任一行、任一列及对角线的几个数之和都相等，则这种正方形图案就称为“幻方”（输出样例中展示了一个 3×3 的幻方）。我国古代称为“河图”、“洛书”，又叫“纵横图”。\n\n幻方看似神奇，但当 N 为奇数时有很方便的填法：\n\n1）一开始正方形中没有填任何数字。首先，在第一行的正中央填上 1。\n2）从上次填数字的位置向上移动一格，如果已经在第一行，则移到同一列的最后一行；再向右移动一格，如果已经在最右一列，则移动至同一行的第一列。如果移动后的位置没有填数字，则把上次填写的数字的下一个数字填到这个位置。\n3）如果第 2 步填写失败，则从上次填数字的位置向下移动一格，如果已经在最下一行，则移到同一列的第一行。这个位置一定是空的（这可太神奇了！），把上次填写的数字的下一个数字填到这个位置。\n4）重复 2、3 步骤，直到所有格子都被填满，幻方就完成了！\n\n快来编写一个程序，按上述规则，制作一个 N×N 的幻方吧。",
+          "input_format": "输入为一个正奇数 N，保证 3 ≤ N ≤ 21。",
+          "output_format": "输出 N 行，每行 N 个空格分隔的正整数，内容为 N×N 的幻方。",
+          "constraints": "N 为奇数，3 ≤ N ≤ 21。（源卷未标注时限/内存，沿用 GESP 惯例口径）",
+          "samples": [
+            {
+              "input": "3",
+              "output": "8 1 6\n3 5 7\n4 9 2"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include<bits/stdc++.h>\nusing namespace std;\nint cube[21][21];\nint main() {\n    int n = 0;\n    cin >> n;\n    for (int i = 0; i < n; i++)\n        for (int j = 0; j < n; j++)\n            cube[i][j] = 0; // 清空正方形图表\n    int x = 0, y = n / 2;\n    cube[x][y] = 1; // 第 1 步，第一行正中填写 1\n    for (int d = 2; d <= n * n; d++) {\n        int nx = (x + n - 1) % n;\n        int ny = (y + 1) % n; // 第 2 步，向右上移动一格\n        if (cube[nx][ny] != 0) {\n            nx = (x + 1) % n; // 第 3 步，如果第 2 步失败，向下移动一格\n            ny = y;\n        }\n        cube[nx][ny] = d; // 填写下一个数字\n        x = nx;\n        y = ny;\n    }\n    for (int i = 0; i < n; i++) { // 输出幻方\n        cout << cube[i][0];\n        for (int j = 1; j < n; j++)\n            cout << \" \" << cube[i][j];\n        cout << endl;\n    }\n    return 0;\n}\n",
+            "solution": "按题面规则模拟：1 填在第一行正中；之后每个数先尝试“上移一行（越界回绕）再右移一列（越界回绕）”，若目标格已被占用则改为“从上一位置下移一行（越界回绕）”，填入当前数，重复直到填完 N×N 个数，最后逐行输出。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\n// 独立实现：按题面规则直接构造奇数阶幻方。\nstatic string expected(const string& in) {\n    istringstream iss(in);\n    int n;\n    iss >> n;\n    vector<vector<int> > g(n, vector<int>(n, 0));\n    int x = 0, y = n / 2;\n    g[x][y] = 1;\n    for (int d = 2; d <= n * n; d++) {\n        int nx = (x - 1 + n) % n;\n        int ny = (y + 1) % n;\n        if (g[nx][ny] != 0) {\n            nx = (x + 1) % n;\n            ny = y;\n        }\n        g[nx][ny] = d;\n        x = nx;\n        y = ny;\n    }\n    string out;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++)\n            out += to_string(g[i][j]) + (j + 1 == n ? \"\\n\" : \" \");\n    }\n    return out;\n}\nstatic bool normEq(const string& a, const string& b) {\n    istringstream isa(a), isb(b);\n    vector<string> la, lb;\n    string line;\n    while (getline(isa, line)) {\n        while (!line.empty() && (line.back()==' '||line.back()=='\\r')) line.pop_back();\n        while (!line.empty() && line.front()==' ') line.erase(line.begin());\n        la.push_back(line);\n    }\n    while (getline(isb, line)) {\n        while (!line.empty() && (line.back()==' '||line.back()=='\\r')) line.pop_back();\n        while (!line.empty() && line.front()==' ') line.erase(line.begin());\n        lb.push_back(line);\n    }\n    while (!la.empty() && la.back().empty()) la.pop_back();\n    while (!lb.empty() && lb.back().empty()) lb.pop_back();\n    if (la.size() != lb.size()) return false;\n    for (size_t i = 0; i < la.size(); i++) {\n        istringstream A(la[i]), B(lb[i]);\n        vector<int> va, vb;\n        int v;\n        while (A >> v) va.push_back(v);\n        while (B >> v) vb.push_back(v);\n        if (va != vb) return false;\n    }\n    return true;\n}\nstatic bool check(const string& exe, const string& in, int id) {\n    const string inF = \"l4asmp2_in.txt\", outF = \"l4asmp2_out.txt\";\n    {\n        ofstream o(inF);\n        o << in;\n    }\n    int code = system((exe + \" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream fis(outF);\n    string got((istreambuf_iterator<char>(fis)), istreambuf_iterator<char>());\n    if (code != 0 || !normEq(got, expected(in))) {\n        cout << \"[FAIL] case \" << id << \": status=\" << code << \", actual head=\" << got.substr(0, 120) << \"\\n\";\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    int passed = 0, total = 0;\n    vector<int> fixedN = {3, 5, 7, 9, 11, 13, 15, 17, 19, 21};\n    for (size_t i = 0; i < fixedN.size(); i++) {\n        ++total;\n        if (check(exe, to_string(fixedN[i]), 1 + i)) ++passed;\n    }\n    cout << \"Results: \" << passed << \"/\" << total << \" passed\" << \"\\n\";\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}

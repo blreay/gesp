@@ -1,0 +1,614 @@
+{
+  "exam": {
+    "id": "gesp_l4a_2024_09",
+    "title": "2024年9月认证C++四级（填空改造卷）",
+    "total_score": 100,
+    "tags": []
+  },
+  "sections": [
+    {
+      "title": "一、填空题（每题 1 分，共 50 分）",
+      "question_type": "fill",
+      "score_per_question": 1,
+      "questions": [
+        {
+          "id": "f1",
+          "type": "fill",
+          "knowledge": [
+            "函数",
+            "定义"
+          ],
+          "stem": "在 C++ 中，下面四个选项中正确定义了一个返回整数值并接受两个整数参数的函数的是 ____（填：A / B / C / D）。\nA. int add(int a, int b) { return a + b; }\nB. void add(int a, int b) { return a + b; }\nC. int add(a, b) { return a + b; }\nD. void add(int a, int b) { return a - b; }",
+          "answer": "A",
+          "explanation": "A 返回类型 int、形参类型齐全、return 值类型匹配；B 在 void 函数中返回表达式、C 形参缺类型、D 返回类型不符。（原卷单选第 1 题，答案 A）"
+        },
+        {
+          "id": "f2",
+          "type": "fill",
+          "knowledge": [
+            "函数",
+            "定义"
+          ],
+          "stem": "上述选项 B 中，void 类型的函数在函数体内返回 a + b，这在 C++ 中是 ____（填：合法/非法）的。",
+          "answer": "非法",
+          "explanation": "void 函数只能 return; 不能带返回值表达式。（原卷单选第 1 题）"
+        },
+        {
+          "id": "f3",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "在 C++ 中，形参在函数 ____ 时指定。",
+          "answer": "定义",
+          "explanation": "形参在函数定义（声明）时给出。（原卷单选第 2 题，答案 B）"
+        },
+        {
+          "id": "f4",
+          "type": "fill",
+          "knowledge": [
+            "函数参数"
+          ],
+          "stem": "在 C++ 中，实参在函数 ____ 时传递给形参。",
+          "answer": "调用",
+          "explanation": "调用函数时实参才把值传给形参。（原卷单选第 2 题）"
+        },
+        {
+          "id": "f5",
+          "type": "fill",
+          "knowledge": [
+            "作用域",
+            "全局变量"
+          ],
+          "stem": "```cpp\n#include <iostream>\nusing namespace std;\nint var = 100;\nvoid function() {\n    int var = 200;\n    cout << var << \" \";\n    cout << ::var << \" \";\n}\nint main() {\n    cout << var << \" \";\n    function();\n    var += 100;\n    cout << var << \" \";\n    return 0;\n}\n```\n运行上述代码，屏幕上将输出 ____（4 个数字，按输出顺序填，空格分隔）。",
+          "answer": "100 200 100 200",
+          "explanation": "main 先输出全局 var=100；function 内局部 var=200 遮蔽全局，输出 200，::var 仍是 100；main 中 var+=100 后输出 200。（原卷单选第 3 题，答案 A）"
+        },
+        {
+          "id": "f6",
+          "type": "fill",
+          "knowledge": [
+            "作用域",
+            "全局变量"
+          ],
+          "stem": "上述代码中，::var 里的 :: 是 ____ 运算符，用于显式访问全局作用域中的 var。",
+          "answer": "作用域解析",
+          "explanation": ":: 是作用域解析运算符。（原卷单选第 3 题）"
+        },
+        {
+          "id": "f7",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "数组"
+          ],
+          "stem": "```cpp\nint arr[3] = {24, 9, 7};\nint* p = arr;\np++;\ncout << *p << endl;\n```\n运行上述代码，屏幕上输出的是 ____。",
+          "answer": "9",
+          "explanation": "p 指向 arr[0]，p++ 后指向 arr[1]，*p=9。（原卷单选第 4 题，答案 B）"
+        },
+        {
+          "id": "f8",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "数组"
+          ],
+          "stem": "上述代码中 p++ 使 p 指向第 2 个元素，是因为 p 的类型是指向 ____ 的指针（填类型名）。",
+          "answer": "int",
+          "explanation": "p 是 int*，自增步长为 sizeof(int)。（原卷单选第 4 题）"
+        },
+        {
+          "id": "f9",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "赋值"
+          ],
+          "stem": "```cpp\nint x = 20;\nint y = 24;\nint* p = &x;\nint* q = &y;\np = q;\n```\n执行上述代码片段后，*p 的值是 ____。",
+          "answer": "24",
+          "explanation": "p=q 后 p 指向 y，*p 即 y 的值 24；x 的值不变。（原卷单选第 5 题）"
+        },
+        {
+          "id": "f10",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "赋值"
+          ],
+          "stem": "执行 p=q 后，p 指向 ____ 的地址（填：x / y）。",
+          "answer": "y",
+          "explanation": "指针赋值改变的是指向：p 从指向 x 变为指向 y，x、y 的值都不变。（原卷单选第 5 题，答案 D）"
+        },
+        {
+          "id": "f11",
+          "type": "fill",
+          "knowledge": [
+            "结构体"
+          ],
+          "stem": "在 C++ 中，正确定义一个名为 student、包含 name 字符数组和 age 整数的结构体的是 ____（填：A / B / C / D）。\nA. struct student { char name[20]; int age; };\nB. student struct { char name[20]; int age; };\nC. student struct { string name; int age; };\nD. struct student { char[20] name; int age; };",
+          "answer": "A",
+          "explanation": "结构体定义以 struct 开头、后跟类型名，成员需声明类型与名。（原卷单选第 6 题，答案 A）"
+        },
+        {
+          "id": "f12",
+          "type": "fill",
+          "knowledge": [
+            "结构体"
+          ],
+          "stem": "上述选项 A 中，字符数组成员的名字是 ____。",
+          "answer": "name",
+          "explanation": "char name[20] 中 name 是数组名。（原卷单选第 6 题）"
+        },
+        {
+          "id": "f13",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "声明"
+          ],
+          "stem": "正确声明一个 3 行 4 列的二维数组，应写成 int arr[____];",
+          "answer": "3][4",
+          "explanation": "二维数组声明为 int arr[行数][列数]，即 int arr[3][4];（原卷单选第 7 题，答案 B）"
+        },
+        {
+          "id": "f14",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "声明"
+          ],
+          "stem": "在 int arr[3][4] 中，第一个中括号 3 指定的是 ____（填：行数/列数）。",
+          "answer": "行数",
+          "explanation": "第一个下标是行数，第二个是列数。（原卷单选第 7 题）"
+        },
+        {
+          "id": "f15",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "内存"
+          ],
+          "stem": "一个二维数组定义为 int arr[3][4]; （假设一个 int 变量占 4 个字节），则 arr[0] 占用 ____ 个字节的内存。",
+          "answer": "16",
+          "explanation": "arr[0] 是一行 4 个 int，4×4=16 字节。（原卷单选第 8 题，答案 D）"
+        },
+        {
+          "id": "f16",
+          "type": "fill",
+          "knowledge": [
+            "二维数组",
+            "内存"
+          ],
+          "stem": "上述 arr[0] 是一个含 ____ 个元素的一维数组。",
+          "answer": "4",
+          "explanation": "二维数组每行是一维数组，列数为 4。（原卷单选第 8 题）"
+        },
+        {
+          "id": "f17",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "```cpp\nint factorial(int n) {\n    int result = 1;\n    for (int i = 2; i <= n; i++) {\n        ________________________________       // 在此处填入代码\n    }\n    return result;\n}\n```\n上述代码采用递推算法实现整数 n 的阶乘，横线上应填写 result ____ i;",
+          "answer": "*=",
+          "explanation": "阶乘是连乘：result *= i;（原卷单选第 9 题，答案 A）"
+        },
+        {
+          "id": "f18",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "执行上述函数后，factorial(5) 的返回值是 ____。",
+          "answer": "120",
+          "explanation": "5! = 120。（原卷单选第 9 题）"
+        },
+        {
+          "id": "f19",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "在排序算法中，稳定性指的是排序后相同元素的相对顺序 ____（填：保持不变/发生改变）。",
+          "answer": "保持不变",
+          "explanation": "稳定性定义：相等元素排序前后相对顺序不变。（原卷单选第 10 题，答案 B）"
+        },
+        {
+          "id": "f20",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "冒泡排序只交换相邻的逆序对，因此它是 ____（填：稳定/不稳定）的排序算法。",
+          "answer": "稳定",
+          "explanation": "相等元素不会发生交换，相对顺序不变。（原卷单选第 10 题）"
+        },
+        {
+          "id": "f21",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "冒泡排序"
+          ],
+          "stem": "```cpp\n//交换数组arr的第i个元素和第j个元素\nvoid swap(vector<int> &arr, int i, int j) {\n    int tmp = arr[i];\n    arr[i] = arr[j];\n    arr[j] = tmp;\n}\nint bubble_sort(vector<int> &arr) {\n    for (int i = arr.size() - 1; i > 0; i--) {\n        bool flag = false; // 标志位\n        ________________________________ {    // 在此处填入代码\n            if (arr[j] > arr[j + 1]) {\n                swap(arr, i, j);\n                flag = true;\n            }\n        }\n        if (!flag)\n            break; // 此轮“冒泡”未交换任何元素\n    }\n}\n```\n上述代码实现了冒泡排序函数，横线上应填写 for (int j = 0; j < ____; j++)",
+          "answer": "i",
+          "explanation": "内层只需扫到 i-1（下标 j < i），与外层 i 配合。（原卷单选第 11 题，答案 C）"
+        },
+        {
+          "id": "f22",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "冒泡排序"
+          ],
+          "stem": "上述代码中 flag 变量的作用是 ____（填：记录本轮是否发生交换/统计元素个数）。",
+          "answer": "记录本轮是否发生交换",
+          "explanation": "本轮无交换说明已有序，提前 break。（原卷单选第 11 题）"
+        },
+        {
+          "id": "f23",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "复杂度"
+          ],
+          "stem": "上一题算法最坏情况的时间复杂度为 O(____)。",
+          "answer": "n²",
+          "explanation": "冒泡排序最坏 O(n²)。（原卷单选第 12 题，答案 A）"
+        },
+        {
+          "id": "f24",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "复杂度"
+          ],
+          "stem": "若数据已经升序，上一题算法只需进行 ____ 轮（填：一/多）即可因未发生交换而提前结束。",
+          "answer": "一",
+          "explanation": "标志位优化：已有序时第一轮无交换即 break。（原卷单选第 12 题）"
+        },
+        {
+          "id": "f25",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "插入排序"
+          ],
+          "stem": "```cpp\nvoid insertion_sort(vector<int> &nums) {\n    for (int i = 1; i < nums.size(); i++) {\n        int base = nums[i], j = i - 1;\n        ________________________________ {    // 在此处填入代码\n            nums[j + 1] = nums[j];\n            j--;\n        }\n        nums[j + 1] = base;\n    }\n}\n```\n上述代码实现了插入排序函数（升序），横线上的条件应填写 while (j >= ____ && nums[j] > base)",
+          "answer": "0",
+          "explanation": "向前找插入位置直到下界 j>=0 且 nums[j]>base。（原卷单选第 13 题，答案 A）"
+        },
+        {
+          "id": "f26",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "插入排序"
+          ],
+          "stem": "上述代码中，内层 while 循环的作用是 ____（填：把大于 base 的元素右移一位/把小于 base 的元素左移一位）。",
+          "answer": "把大于 base 的元素右移一位",
+          "explanation": "nums[j+1]=nums[j] 逐位右移，腾出插入位置。（原卷单选第 13 题）"
+        },
+        {
+          "id": "f27",
+          "type": "fill",
+          "knowledge": [
+            "文件操作",
+            "重定向"
+          ],
+          "stem": "```cpp\n#include <iostream>\n#include <fstream>\n#include <string>\nusing namespace std;\nint main() {\n    ofstream log_file(\"log.txt\");\n    streambuf* original_cout = cout.rdbuf();\n    cout.rdbuf(log_file.rdbuf());\n    ______                          // 在此处填入代码\n    cout.rdbuf(original_cout);  // 恢复原始的标准输出缓冲区\n    return 0;\n}\n```\n小杨用文件重定向实现在 log.txt 文件中输出日志，横线处应填写的语句是 ____ << \"This output will go to the log file.\" << endl;",
+          "answer": "cout",
+          "explanation": "此时 cout 的缓冲区已换到文件，向 cout 写即写入文件；log_file 本身不需要再写。（原卷单选第 14 题，答案 A）"
+        },
+        {
+          "id": "f28",
+          "type": "fill",
+          "knowledge": [
+            "文件操作",
+            "重定向"
+          ],
+          "stem": "上述代码中，执行 cout.rdbuf(log_file.rdbuf()) 之后，通过 cout 写出的内容会输出到 ____（填：屏幕 / 文件 log.txt）。",
+          "answer": "文件 log.txt",
+          "explanation": "rdbuf 替换 cout 的缓冲区后，cout 的内容全部进入文件。（原卷单选第 14 题）"
+        },
+        {
+          "id": "f29",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "```cpp\n#include <iostream>\nusing namespace std;\nint divide(int a, int b) {\n    if (b == 0) {\n        throw runtime_error(\"division by zero error \");\n    }\n    return a / b;\n}\nint main() {\n    int x = 10;\n    int y = 0;\n    try {\n        int result = divide(x, y);\n        cout << \"result: \" << result << endl;\n    } catch (const runtime_error& e) {\n        cout << \"caught an exception: \" << e.what() << endl;\n    }\n    return 0;\n}\n```\n运行上述代码，屏幕上将输出 ____（填写完整输出的一行）。",
+          "answer": "caught an exception: division by zero error",
+          "explanation": "y=0 触发异常，try 中 result: 一行不会执行；catch 输出前缀加 what() 的内容。（原卷单选第 15 题，答案 C）"
+        },
+        {
+          "id": "f30",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "上述代码中 result: 一行没有输出，是因为 divide(x, y) ____（填：抛出异常/返回 0）。",
+          "answer": "抛出异常",
+          "explanation": "异常使 try 块剩余语句被跳过，直接进入 catch。（原卷单选第 15 题）"
+        },
+        {
+          "id": "f31",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "初始化"
+          ],
+          "stem": "代码 int a = 10; int* p = &a; 中，p 被初始化为 a 的 ____（填：地址/值）。",
+          "answer": "地址",
+          "explanation": "定义指针同时用 &a 初始化，合法且正确，原卷判断正确。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f32",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "初始化"
+          ],
+          "stem": "执行上述代码后，*p 的值是 ____。",
+          "answer": "10",
+          "explanation": "p 指向 a，解引用得 a 的值 10。（原卷判断第 1 题）"
+        },
+        {
+          "id": "f33",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "引用传递"
+          ],
+          "stem": "在 C++ 中，引用传递允许函数修改传递给它的参数的 ____（填：值/声明）。",
+          "answer": "值",
+          "explanation": "形参是实参的别名，函数内修改影响实参，原卷判断正确。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f34",
+          "type": "fill",
+          "knowledge": [
+            "函数参数",
+            "值传递"
+          ],
+          "stem": "按值传递时，形参是实参的一份 ____（填：副本/别名），修改形参不影响实参。",
+          "answer": "副本",
+          "explanation": "值传递复制数据，与引用传别名相对。（原卷判断第 2 题）"
+        },
+        {
+          "id": "f35",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "内存"
+          ],
+          "stem": "说法“指针的大小与其所指向的变量的数据类型的大小相同”是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "指针大小与所指类型无关（64 位下都是 8 字节），原卷判断错误。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f36",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "内存"
+          ],
+          "stem": "在 64 位环境下，任何类型的指针占 ____ 字节。",
+          "answer": "8",
+          "explanation": "指针存放的是地址，64 位地址占 8 字节。（原卷判断第 3 题）"
+        },
+        {
+          "id": "f37",
+          "type": "fill",
+          "knowledge": [
+            "二维数组"
+          ],
+          "stem": "二维数组中，____ 的大小必须在定义时确定（填：行/列）。",
+          "answer": "列",
+          "explanation": "编译期需要列数才能计算元素地址，原卷把行列说反了。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f38",
+          "type": "fill",
+          "knowledge": [
+            "二维数组"
+          ],
+          "stem": "二维数组中，____ 的大小可以动态确定（填：行/列）。",
+          "answer": "行",
+          "explanation": "如 int (*p)[4] = new int[100][4]; 行数可动态分配。（原卷判断第 4 题）"
+        },
+        {
+          "id": "f39",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "递推算法通过逐步求解当前状态和前一个或几个状态之间的关系来解决问题，方向是 ____（填：正向/逆向）。",
+          "answer": "正向",
+          "explanation": "递推从初始状态正向推进，原卷判断正确。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f40",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "递推"
+          ],
+          "stem": "递推与递归的区别在于，递推通常用 ____（填：循环/函数自调用）实现，不需要压栈。",
+          "answer": "循环",
+          "explanation": "递推是自底向上的迭代，递归是自顶向下的函数自调用。（原卷判断第 5 题）"
+        },
+        {
+          "id": "f41",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "选择排序是 ____（填：稳定/不稳定）的排序算法。",
+          "answer": "不稳定",
+          "explanation": "选择排序可能交换远处的相等元素，破坏相对顺序，原卷判断错误。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f42",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "稳定性"
+          ],
+          "stem": "选择排序不稳定，是因为排序过程中两个相等元素可能改变 ____（填：相对顺序/数值）。",
+          "answer": "相对顺序",
+          "explanation": "稳定性只关心相等元素的相对顺序。（原卷判断第 6 题）"
+        },
+        {
+          "id": "f43",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "复杂度"
+          ],
+          "stem": "在最坏情况下，插入排序的时间复杂度 ____ 冒泡排序（填：高于/与…相同/低于），都是 O(n²)。",
+          "answer": "与…相同",
+          "explanation": "两者最坏都是 O(n²)，原卷判断错误。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f44",
+          "type": "fill",
+          "knowledge": [
+            "排序",
+            "复杂度"
+          ],
+          "stem": "因此“插入排序的时间复杂度总是比冒泡排序低”的说法是 ____（填：正确/错误）的。",
+          "answer": "错误",
+          "explanation": "平均与最坏同为 O(n²)，常数级差异不算复杂度级别差异。（原卷判断第 7 题）"
+        },
+        {
+          "id": "f45",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会调用 ____ 函数并结束（填函数名）。",
+          "answer": "terminate",
+          "explanation": "未捕获异常调用 std::terminate 终止程序，原卷判断错误。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f46",
+          "type": "fill",
+          "knowledge": [
+            "异常处理"
+          ],
+          "stem": "只有存在类型匹配的 ____（填：catch/try）块，异常才能被安全处理。",
+          "answer": "catch",
+          "explanation": "catch 负责捕获并处理异常。（原卷判断第 8 题）"
+        },
+        {
+          "id": "f47",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "复杂度"
+          ],
+          "stem": "```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    int f0 = 0; // F(0)\n    int f1 = 1; // F(1)\n    int current;\n    for (int i = 2; i <= n; i++) {\n        current = f0+ f1; // F(n) = F(n-1) + F(n-2)\n        f0 = f1;\n        f1 = current;\n    }\n    return current;\n}\n```\n上述代码用循环递推求斐波那契数列的第 n 项，时间复杂度为 O(____)。",
+          "answer": "n",
+          "explanation": "只有一层循环，时间复杂度 O(n)，并非指数级，原卷判断错误。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f48",
+          "type": "fill",
+          "knowledge": [
+            "算法",
+            "复杂度"
+          ],
+          "stem": "不用循环、直接递归求斐波那契数列（无记忆化）的时间复杂度是 ____ 级（填：线性/指数）。",
+          "answer": "指数",
+          "explanation": "朴素递归产生大量重复子问题，复杂度约 O(2^n)。（原卷判断第 9 题）"
+        },
+        {
+          "id": "f49",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "函数"
+          ],
+          "stem": "```cpp\nint point(int* p){\n    return *p * 2;\n}\nint main() {\n    int a = 10;\n    int* p = &a;\n    *p = point(p);\n    cout << *p << endl;\n}\n```\n执行上述 C++ 代码后，输出的是 ____。",
+          "answer": "20",
+          "explanation": "point(p) 返回 10×2=20，*p=20 即 a=20，输出 20，原卷判断正确。（原卷判断第 10 题）"
+        },
+        {
+          "id": "f50",
+          "type": "fill",
+          "knowledge": [
+            "指针",
+            "函数"
+          ],
+          "stem": "上述代码执行 *p = point(p) 之前，a 的值是 ____。",
+          "answer": "10",
+          "explanation": "a 的初值为 10。（原卷判断第 10 题）"
+        }
+      ]
+    },
+    {
+      "title": "二、编程题（每题 25 分，共 50 分）",
+      "question_type": "programming",
+      "score_per_question": 25,
+      "questions": [
+        {
+          "id": "prog1",
+          "type": "programming",
+          "title": "黑白方块",
+          "knowledge": [
+            "枚举",
+            "模式匹配"
+          ],
+          "source": "2024年9月认证C++四级.pdf，第 7–8 页",
+          "stem": "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。\n\n小杨想知道网格图中是否存在一个满足如下条件的子矩形：\n\n子矩形由 4 行 4 列组成；\n子矩形的第 1 行和第 4 行只包含白色格子；\n对于子矩形的第 2 行和第 3 行，只有第 1 个和第 4 个格子是白色的，其余格子都是黑色的；\n\n请你编写程序帮助小杨判断。满足条件的子矩形形如：\n```text\n0000\n0110\n0110\n0000\n```",
+          "input_format": "第一行包含一个正整数 t，代表测试用例组数。接下来是 t 组测试用例。对于每组测试用例，一共 n+1 行。第一行包含两个正整数 n、m，含义如题面所示。之后 n 行，每行一个长度为 m 的 01 串，代表网格图第 i 行格子的颜色，如果为 0，则对应格子为白色，否则为黑色。",
+          "output_format": "对于每组测试用例，如果存在，输出 Yes，否则输出 No。",
+          "constraints": "1 ≤ t ≤ 10；1 ≤ n, m ≤ 100。\n时间限制 1.0 s；内存限制 512.0 MB。（源卷已标注）",
+          "samples": [
+            {
+              "input": "3\n1 4\n0110\n5 5\n00000\n01100\n01100\n00001\n01100\n5 5\n00000\n01100\n01110\n00001\n01100",
+              "output": "No\nYes\nNo"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include<bits/stdc++.h>\nusing namespace std;\nconst int N = 110;\nint w[N][N];\nint n,m;\nint match[4][4];\nbool check(int xa,int ya){\n    for(int i=0;i<4;i++){\n        for(int j=0;j<4;j++){\n            if(w[xa+i][ya+j]!=match[i][j]){\n                return false;\n            }\n        }\n    }\n    return true;\n}\n\nint main(){\n    int t;\n    cin>>t;\n    for(int i=1;i<3;i++)match[1][i]=match[2][i]=1;\n    while(t--){\n        cin>>n>>m;\n         for(int i=1;i<=n;i++){\n            string s;\n            cin>>s;\n            for(int j=1;j<=m;j++){\n                w[i][j]=s[j-1]-'0';\n            }\n         }\n         int fl = 0;\n         for(int i=1;i<=n-3;i++){\n             for(int j=1;j<=m-3;j++){\n                 if(check(i,j)){\n                     fl=1;\n                 }\n             }\n         }\n         if(fl)cout<<\"Yes\\n\";\n         else cout<<\"No\\n\";\n    }\n}\n",
+            "solution": "目标是一个固定的 4×4 图案（外框白、中间两行仅两端白）。枚举每个可能的左上角 (i,j)，逐格与图案比较，全部一致即存在。O(t·n·m·16)。",
+            "test_program": "#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic bool existsPattern(const vector<string>& g) {\n    const vector<string> pat = {\"0000\", \"0110\", \"0110\", \"0000\"};\n    int n = g.size(), m = g[0].size();\n    for (int i = 0; i + 4 <= n; ++i)\n        for (int j = 0; j + 4 <= m; ++j) {\n            bool ok = true;\n            for (int r = 0; r < 4 && ok; ++r)\n                for (int c = 0; c < 4; ++c)\n                    if (g[i + r][j + c] != pat[r][c]) { ok = false; break; }\n            if (ok) return true;\n        }\n    return false;\n}\nstatic bool check(const string& exe, const vector<vector<string>>& cases, int id) {\n    const string inF = \"l4a09p1_in.txt\", outF = \"l4a09p1_out.txt\";\n    {\n        ofstream o(inF);\n        o << cases.size() << '\\n';\n        for (size_t t = 0; t < cases.size(); ++t) {\n            const vector<string>& g = cases[t];\n            o << g.size() << ' ' << g[0].size() << '\\n';\n            for (size_t i = 0; i < g.size(); ++i) o << g[i] << '\\n';\n        }\n    }\n    int code = system((\"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    vector<string> got, want;\n    {\n        ifstream in(outF);\n        string line;\n        while (getline(in, line)) {\n            if (!line.empty() && line.back() == '\\r') line.pop_back();\n            got.push_back(line);\n        }\n    }\n    for (size_t t = 0; t < cases.size(); ++t)\n        want.push_back(existsPattern(cases[t]) ? \"Yes\" : \"No\");\n    if (code != 0 || got != want) {\n        cout << \"[FAIL] case \" << id << \": expected \";\n        for (size_t i = 0; i < want.size(); ++i) cout << want[i] << ' ';\n        cout << \", actual: \";\n        for (size_t i = 0; i < got.size(); ++i) cout << got[i] << ' ';\n        cout << \", status=\" << code << '\\n';\n        return false;\n    }\n    return true;\n}\nstatic vector<string> randGrid(int n, int m, unsigned seed) {\n    srand(seed);\n    vector<string> g;\n    for (int i = 0; i < n; ++i) {\n        string s;\n        for (int j = 0; j < m; ++j) s += (rand() % 2) ? '1' : '0';\n        g.push_back(s);\n    }\n    return g;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    int passed = 0, total = 0;\n    vector<vector<string>> c1 = {\n        vector<string>{\"0110\"},\n        vector<string>{\"00000\", \"01100\", \"01100\", \"00001\", \"01100\"},\n        vector<string>{\"00000\", \"01100\", \"01110\", \"00001\", \"01100\"}\n    };\n    ++total; if (check(exe, c1, 1)) ++passed;  // 样例1\n    vector<vector<string>> c2;\n    c2.push_back(vector<string>{\"0000\", \"0110\", \"0110\", \"0000\"});          // 恰好命中\n    c2.push_back(vector<string>{\"0000\", \"0110\", \"0110\", \"0001\"});          // 差一格\n    c2.push_back(vector<string>{\"1111\", \"1111\", \"1111\", \"1111\"});          // 全黑\n    c2.push_back(vector<string>{\"0000\", \"0110\", \"0110\", \"0000\", \"01100\", \"01100\", \"00001\"});  // 5x5 偏移处命中\n    c2.push_back(vector<string>{\"0\", \"0\", \"0\", \"0\"});                      // 4x1 放不下\n    c2.push_back(vector<string>{\"00000\"});                                 // 1x5 放不下\n    ++total; if (check(exe, c2, 2)) ++passed;  // 边界\n    vector<vector<string>> c3;\n    c3.push_back(randGrid(100, 100, 20240901));\n    c3.push_back(randGrid(3, 100, 20240902));\n    c3.push_back(randGrid(100, 3, 20240903));\n    c3.push_back(randGrid(7, 7, 20240904));\n    ++total; if (check(exe, c3, 3)) ++passed;  // 较大与随机\n    cout << \"Results: \" << passed << \"/\" << total << \" passed\" << '\\n';\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        },
+        {
+          "id": "prog2",
+          "type": "programming",
+          "title": "区间排序",
+          "knowledge": [
+            "模拟",
+            "排序"
+          ],
+          "source": "2024年9月认证C++四级.pdf，第 9–10 页",
+          "stem": "小杨有一个包含 n 个正整数的序列 a。\n\n小杨计划对序列进行多次升序排序，每次升序排序小杨会选择一个区间 [l, r]（l ≤ r）并对区间内所有数字，即 a_l, a_{l+1}, …, a_r 进行升序排序。每次升序排序会在上一次升序排序的结果上进行。\n\n小杨想请你计算出多次升序排序后的序列。",
+          "input_format": "第一行包含一个正整数 n，含义如题面所示。第二行包含 n 个正整数 a1, a2, …, an，代表序列。第三行包含一个正整数 q，代表排序次数。之后 q 行，每行包含两个正整数 l_i, r_i，代表将区间 [l_i, r_i] 内所有数字进行升序排序。",
+          "output_format": "输出一行包含 n 个正整数，代表多次升序排序后的序列。",
+          "constraints": "1 ≤ n ≤ 100；1 ≤ a_i ≤ 100；1 ≤ q ≤ 100；1 ≤ l_i ≤ r_i ≤ n。\n时间限制 1.0 s；内存限制 512.0 MB。（源卷已标注）",
+          "samples": [
+            {
+              "input": "5\n3 4 5 2 1\n3\n4 5\n3 4\n1 3",
+              "output": "1 3 4 5 2"
+            }
+          ],
+          "answer": {
+            "reference_code": "#include<bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint n;\nvoid bubbleSort(int l,int r){\n    bool flag = true;\n    while (flag) {\n        flag = false;\n        for (int i = l; i <r; ++i) {\n            if (a[i] > a[i + 1]) {\n                flag = true;\n                swap(a[i],a[i+1]);\n            }\n        }\n    }\n}\nint main(){\n    cin>>n;\n    for(int i=1;i<=n;i++){\n        cin>>a[i];\n    }\n    int q;\n    cin>>q;\n    while(q--){\n        int l,r;\n        cin>>l>>r;\n        bubbleSort(l,r);\n    }\n    for(int i=1;i<=n;i++){\n        cout<<a[i];\n        if(i!=n)cout<<\" \";\n        else cout<<\"\\n\";\n    }\n\n}\n",
+            "solution": "n、q ≤ 100，直接模拟：对每个 [l,r] 把 a[l..r] 原地升序排序（参考程序用带提前终止的冒泡，也可直接用 sort），全部操作完成后输出序列。时间复杂度 O(q·n²)。",
+            "test_program": "#include <algorithm>\n#include <cstdlib>\n#include <fstream>\n#include <iostream>\n#include <sstream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nstatic string expected(const vector<int>& a, const vector<pair<int, int>>& ops) {\n    vector<int> v(a.begin(), a.end());\n    for (size_t t = 0; t < ops.size(); ++t) {\n        int l = ops[t].first - 1, r = ops[t].second - 1;\n        sort(v.begin() + l, v.begin() + r + 1);\n    }\n    ostringstream os;\n    for (int i = 0; i < v.size(); ++i) os << v[i] << (i + 1 == v.size() ? '\\n' : ' ');\n    return os.str();\n}\nstatic bool normEq(const string& a, const string& b) {\n    vector<int> va, vb;\n    istringstream isa(a), isb(b);\n    int x;\n    while (isa >> x) va.push_back(x);\n    while (isb >> x) vb.push_back(x);\n    return va == vb;\n}\nstatic bool check(const string& exe, const vector<int>& a, const vector<pair<int, int>>& ops, int id) {\n    const string inF = \"l4a09p2_in.txt\", outF = \"l4a09p2_out.txt\";\n    {\n        ofstream o(inF);\n        o << a.size() << '\\n';\n        for (size_t i = 0; i < a.size(); ++i) o << a[i] << (i + 1 == a.size() ? '\\n' : ' ');\n        o << ops.size() << '\\n';\n        for (size_t t = 0; t < ops.size(); ++t) o << ops[t].first << ' ' << ops[t].second << '\\n';\n    }\n    int code = system((\"\\\"\" + exe + \"\\\" < \" + inF + \" > \" + outF + \" 2>/dev/null\").c_str());\n    ifstream in(outF);\n    string got((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());\n    string want = expected(a, ops);\n    if (code != 0 || !normEq(got, want)) {\n        cout << \"[FAIL] case \" << id << \": expected=\" << want\n             << \", actual=\" << got.substr(0, 200) << \", status=\" << code << '\\n';\n        return false;\n    }\n    return true;\n}\nint main(int argc, char* argv[]) {\n    if (argc < 2) return 2;\n    const string exe = argv[1];\n    int passed = 0, total = 0;\n    ++total; if (check(exe, {3, 4, 5, 2, 1}, {{4, 5}, {3, 4}, {1, 3}}, 1)) ++passed;  // 样例1\n    ++total; if (check(exe, {5, 1, 4}, {{1, 1}}, 2)) ++passed;      // l==r 无效操作\n    ++total; if (check(exe, {9, 7, 5, 3, 1}, {{1, 5}}, 3)) ++passed;  // 全区间\n    ++total; if (check(exe, {2, 2, 1, 1, 2}, {{1, 3}, {2, 4}}, 4)) ++passed;  // 重复值\n    srand(20240905);\n    for (int t = 0; t < 6; ++t) {\n        int n = 1 + rand() % 100;\n        vector<int> a(n);\n        for (int i = 0; i < n; ++i) a[i] = 1 + rand() % 100;\n        int q = 1 + rand() % 100;\n        vector<pair<int, int>> ops(q);\n        for (int i = 0; i < q; ++i) {\n            int l = 1 + rand() % n, r = 1 + rand() % n;\n            if (l > r) swap(l, r);\n            ops[i] = make_pair(l, r);\n        }\n        ++total; if (check(exe, a, ops, 5 + t)) ++passed;\n    }\n    cout << \"Results: \" << passed << \"/\" << total << \" passed\" << '\\n';\n    return passed == total ? 0 : 1;\n}\n"
+          }
+        }
+      ]
+    }
+  ]
+}
