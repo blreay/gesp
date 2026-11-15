@@ -1,0 +1,366 @@
+{
+ "schema_version": 1,
+ "exam": {
+  "id": "hd_oi_2023",
+  "title": "2023年海淀区信息学竞赛真题合集（小学组）",
+  "subtitle": "初赛单选 9 题（27 分）+ 复赛编程 7 题（700 分）",
+  "category": "OA1",
+  "duration_minutes": 180,
+  "total_score": 727,
+  "tags": [
+   "海淀区真题",
+   "2023",
+   "小学组",
+   "C++"
+  ]
+ },
+ "sections": [
+  {
+   "title": "一、单项选择题（2023 初赛·小学组，共 9 题，每题 3 分，共 27 分）",
+   "question_type": "choice",
+   "score_per_question": 3,
+   "questions": [
+    {
+     "id": "c1",
+     "type": "choice",
+     "knowledge": [
+      "数论",
+      "最大公约数"
+     ],
+     "stem": "正整数 319 和 377 的最大公约数是（　　）。",
+     "options": {
+      "A": "27",
+      "B": "33",
+      "C": "29",
+      "D": "31"
+     },
+     "answer": "C",
+     "explanation": "319 = 11×29，377 = 13×29，最大公约数为 29。选 C。"
+    },
+    {
+     "id": "c2",
+     "type": "choice",
+     "knowledge": [
+      "进制转换"
+     ],
+     "stem": "与十进制数 1770 对应的八进制数是（　　）。",
+     "options": {
+      "A": "3350",
+      "B": "3351",
+      "C": "3352",
+      "D": "3540"
+     },
+     "answer": "C",
+     "explanation": "1770 = 3×512 + 3×64 + 5×8 + 2 = (3352)₈。选 C。"
+    },
+    {
+     "id": "c3",
+     "type": "choice",
+     "knowledge": [
+      "进制转换"
+     ],
+     "stem": "十六进制数 2070 和八进制数 34 求和的结果是（　　）。",
+     "options": {
+      "A": "用十进制数表示的结果为 8332",
+      "B": "用十六进制数表示的结果为 208A",
+      "C": "用二进制数表示的结果为 100000000110",
+      "D": "用八进制数表示的结果为 20212"
+     },
+     "answer": "A",
+     "explanation": "(2070)₁₆ = 8304，(34)₈ = 28，和为 8332（十进制）。选 A。"
+    },
+    {
+     "id": "c4",
+     "type": "choice",
+     "knowledge": [
+      "位运算"
+     ],
+     "stem": "按位或（|）：对应位有一个为 1 结果即为 1；异或（^）：对应位不同结果为 1。表达式 (23|2)^5 的值是（　　）。",
+     "options": {
+      "A": "18",
+      "B": "1",
+      "C": "23",
+      "D": "32"
+     },
+     "answer": "A",
+     "explanation": "23|2 = 23（23 = 10111₂ 已包含 2 = 00010₂ 的位），23^5 = 10111₂ ⊕ 00101₂ = 10010₂ = 18。选 A。"
+    },
+    {
+     "id": "c5",
+     "type": "choice",
+     "knowledge": [
+      "逻辑运算"
+     ],
+     "stem": "在 C++ 语言中，三种逻辑运算符运算（注意这里不是按位运算）规则如下：\n\n| 运算符 | 示例 | 运算规则 |\n| --- | --- | --- |\n| 逻辑与（&&） | a&&b | 如果 a 和 b 都为真，结果为真，否则为假 |\n| 逻辑或（||） | a||b | 如果 a 和 b 有一个为真，结果为真，二者都假，结果为假 |\n| 逻辑非（!） | !a | 如果 a 为假，!a 为真，如果 a 为真，!a 为假 |\n\n判断 a 等于 0 或 b 等于 0 或 c 等于 0 的正确的条件表达式是（　　）。",
+     "options": {
+      "A": "!( (a!=0) || (b!=0) )",
+      "B": "!( (a!=0) && (b!=0) && (c!=0) )",
+      "C": "!(a==0 && b==0) || (c!=0)",
+      "D": "(a=0) && (b=0) && (c=0)"
+     },
+     "answer": "B",
+     "explanation": "\"a、b、c 中至少一个为 0\" 等价于 \"并非三者都不为 0\"，即 !((a!=0) && (b!=0) && (c!=0))。选 B。"
+    },
+    {
+     "id": "c6",
+     "type": "choice",
+     "knowledge": [
+      "字符串"
+     ],
+     "stem": "若字符串 s 在字符串 T 中出现，则 s 称作 T 的子串。设字符串 T = \"Olympic\"，T 的非空子串的数目是（　　）。",
+     "options": {
+      "A": "28",
+      "B": "29",
+      "C": "16",
+      "D": "17"
+     },
+     "answer": "A",
+     "explanation": "T 长 7 且 7 个字符互不相同，非空子串数 = 7×8/2 = 28。选 A。"
+    },
+    {
+     "id": "c7",
+     "type": "choice",
+     "knowledge": [
+      "贪心",
+      "排列"
+     ],
+     "stem": "将数组 {8, 23, 4, 16, 77, -5, 53, 100} 中的元素按从大到小的顺序排列，每次可以交换任意两个元素，最少需要交换（　　）次。",
+     "options": {
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7"
+     },
+     "answer": "B",
+     "explanation": "目标序列 100,77,53,23,16,8,4,-5，对当前排列做环分解，最少交换次数 = 8 − 环数 = 5。选 B。"
+    },
+    {
+     "id": "c8",
+     "type": "choice",
+     "knowledge": [
+      "组合计数"
+     ],
+     "stem": "书架上有 21 本书，编号从 1 到 21，从其中选 4 本，要求每两本的编号都不相邻，这样的选法一共有（　　）种。",
+     "options": {
+      "A": "1530",
+      "B": "3020",
+      "C": "3060",
+      "D": "4096"
+     },
+     "answer": "C",
+     "explanation": "线性不相邻选取：C(21−4+1, 4) = C(18,4) = 3060。选 C。"
+    },
+    {
+     "id": "c9",
+     "type": "choice",
+     "knowledge": [
+      "队列",
+      "组合计数"
+     ],
+     "stem": "队列快照问题：队列快照是指在某一时刻队列中的元素组成的有序序列。例如，当元素 1, 2, 3 入队，元素 1 出队后，此刻的队列快照是 2, 3。当元素 2, 3 也出队后，队列快照是 \"\"，即为空。现有 3 个正整数元素依次入队、出队。已知它们的和为 8，则共有（　　）种可能的不同的队列快照（不同队列的相同快照只计一次）。例如，\"5,1\"、\"4,2,2\"、\"\" 都是可能的队列快照；而 \"7\" 是不可能的队列快照，因为剩下的 2 个正整数的和不可能是 1。",
+     "options": {
+      "A": "36",
+      "B": "42",
+      "C": "49",
+      "D": "58"
+     },
+     "answer": "A",
+     "explanation": "枚举 3 个正整数之和为 8 的所有 (x,y,z) 有序组合及其入队/出队过程中可能出现的全部队列快照并去重统计，官方答案 A（36）。"
+    }
+   ]
+  },
+  {
+   "title": "二、编程题（2023 复赛·小学组，每题 100 分，共 700 分）",
+   "question_type": "programming",
+   "score_per_question": 100,
+   "questions": [
+    {
+     "id": "p1",
+     "type": "programming",
+     "title": "分披萨",
+     "knowledge": [],
+     "stem": "陶陶的生日，她要把一份圆形披萨分给 n 个好朋友，她想把这份披萨切成 n+1 份使得每个人都能得到一份（她自己也要分得一份）。这 n+1 份披萨要求大小和形状都要完全一样。那么陶陶最少要切多少刀？切披萨时，只能切直线，不能把披萨叠放起来切。",
+     "input_format": "第一行仅有一个非负整数 n，表示要把披萨至少切成 n+1 份。",
+     "output_format": "仅有一个整数，表示最少要切披萨的次数。",
+     "constraints": "对于 100% 的数据：0 ≤ n ≤ 10^18。",
+     "samples": [
+      {
+       "input": "3\n",
+       "output": "2"
+      },
+      {
+       "input": "4\n",
+       "output": "5"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "设 m = n+1：m 为偶数时可用 m/2 条直径切出 m 份；m 为奇数时需要 m 刀（每刀一条半径）。n=0 时为 0。",
+      "test_program": "// 测试程序：验证\"分披萨\"(海淀真题 b4190 )考生程序的正确性\n// 用法： g++ -O2 -o judge_b4190 judge_b4190.cpp && ./judge_b4190 <考生二进制程序路径>\n// 原理：把每组样例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（trim 后精确匹配）。\n#include <cstdio>\n#include <cstdlib>\n#include <iostream>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4190_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4190_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss;\n    ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) {\n        std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\";\n        return 1;\n    }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"3\\n\", \"2\\n\"},\n        {\"4\\n\", \"5\\n\"}\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        actualOutputs[i] = runProgram(exePath, cases[i].input);\n        if (actualOutputs[i] == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 分披萨 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4190）"
+    },
+    {
+     "id": "p2",
+     "type": "programming",
+     "title": "回文时间",
+     "knowledge": [],
+     "stem": "陶陶习惯用 24 小时制表达时间。若一个合法的 24 小时制时间字符串 ab:cd 满足 a=d 且 b=c，则称该时间为回文时间（如 14:41）。已知现在的时间是 h 时 m 分（输入为 HH:MM 格式），求出在此之后（不包含此时刻）的第一个回文时间。",
+     "input_format": "仅有一行，给出一个表示时间的合法字符串，格式为 HH:MM。",
+     "output_format": "按题目要求输出一个回文时间（HH:MM 格式）。",
+     "constraints": "输入保证为合法的 24 小时制时间。",
+     "samples": [
+      {
+       "input": "12:21\n",
+       "output": "13:31"
+      },
+      {
+       "input": "23:59\n",
+       "output": "00:00"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "从当前时刻的下一秒开始枚举，直到找到满足 ab:cd 且 a=d, b=c 的时刻（23:59 之后回到 00:00）。",
+      "test_program": "// 测试程序：验证\"回文时间\"(海淀真题 b4191 )考生程序的正确性\n// 用法： g++ -O2 -o judge_b4191 judge_b4191.cpp && ./judge_b4191 <考生二进制程序路径>\n// 原理：把每组样例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（trim 后精确匹配）。\n#include <cstdio>\n#include <cstdlib>\n#include <iostream>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4191_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4191_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss;\n    ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) {\n        std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\";\n        return 1;\n    }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"12:21\\n\", \"13:31\\n\"},\n        {\"23:59\\n\", \"00:00\\n\"}\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        actualOutputs[i] = runProgram(exePath, cases[i].input);\n        if (actualOutputs[i] == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 回文时间 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4191）"
+    },
+    {
+     "id": "p3",
+     "type": "programming",
+     "title": "分数线",
+     "knowledge": [],
+     "stem": "一次比赛中，所有选手都获得了一个分数 s。已知有 c1 个同学得 1 分，c2 个同学得 2 分，……，cm 个同学得 m 分。请你划定一个分数线 k，使得不低于分数线 k 的人数 n1 和低于分数线 k 的人数 n2 均在范围 [x, y] 之内，即 x ≤ n1 ≤ y 且 x ≤ n2 ≤ y。s 和 k 一定是整数。",
+     "input_format": "第一行仅有一个正整数 m；第二行包含 m 个整数 c1, c2, …, cm，两两之间以空格分隔，数据保证至少有一个 ci 大于 0；第三行包含两个用空格分隔的整数 x 和 y。",
+     "output_format": "如果不存在满足条件的分数线，输出 0。否则输出一个符合题目要求的分数线；如果有多个答案，输出符合条件的答案中最小的那一个。",
+     "constraints": "对于 100% 的数据：2 ≤ m ≤ 10^5，0 ≤ ci ≤ 10^5，1 ≤ x ≤ y ≤ 10^9。",
+     "samples": [
+      {
+       "input": "5\n3 4 3 2 1\n6 8\n",
+       "output": "3"
+      },
+      {
+       "input": "5\n0 3 3 4 2\n3 10\n",
+       "output": "3"
+      },
+      {
+       "input": "2\n2 5\n3 6\n",
+       "output": "0"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "枚举 k = 1..m，用后缀和统计 ≥k 的人数，检查是否落在 [x,y] 内，输出最小的可行 k。",
+      "test_program": "// 测试程序：验证\"分数线\"(海淀真题 b4192 )考生程序的正确性\n// 用法： g++ -O2 -o judge_b4192 judge_b4192.cpp && ./judge_b4192 <考生二进制程序路径>\n// 原理：把每组样例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（trim 后精确匹配）。\n#include <cstdio>\n#include <cstdlib>\n#include <iostream>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4192_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4192_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss;\n    ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) {\n        std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\";\n        return 1;\n    }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5\\n3 4 3 2 1\\n6 8\\n\", \"3\\n\"},\n        {\"5\\n0 3 3 4 2\\n3 10\\n\", \"3\\n\"},\n        {\"2\\n2 5\\n3 6\\n\", \"0\\n\"}\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        actualOutputs[i] = runProgram(exePath, cases[i].input);\n        if (actualOutputs[i] == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 分数线 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4192）"
+    },
+    {
+     "id": "p4",
+     "type": "programming",
+     "title": "排座位",
+     "knowledge": [],
+     "stem": "信息学省队选手由 a 名男生和 b 名女生组成，他们准备乘火车去外地参加比赛。火车由若干节车厢组成，第一节车厢有 n 个连续的座位，每个座位要么空着，要么已经有乘客。为了让男女选手之间增加交流，你需要按以下要求排座位：相邻的同学不能同时是男生或者是女生。请从 a+b 名学生中选出最多的学生安排在第一节车厢的空座位上以满足题目要求。",
+     "input_format": "第一行包括三个整数 n, a 和 b，分别表示第一节车厢座位数量，男生数量和女生数量。第二行包含长度为 n 的字符串，由字符 · 和 * 组成，其中 · 代表座位是空的，* 代表有乘客的座位。",
+     "output_format": "输出一行一个整数，表示第一节车厢最多可以安排的学生。",
+     "constraints": "对于 100% 的数据：1 ≤ n ≤ 2×10^5，0 ≤ a, b ≤ 2×10^5，a+b > 0。",
+     "samples": [
+      {
+       "input": "5 1 1\n*...*\n",
+       "output": "2"
+      },
+      {
+       "input": "6 2 3\n*...*.\n",
+       "output": "4"
+      },
+      {
+       "input": "3 2 3\n***\n",
+       "output": "0"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "对空位段做 DP：状态为上一座位性别，统计男/女占用数不超过 a/b 时的最大安置人数。",
+      "test_program": "// 测试程序：验证\"排座位\"(海淀真题 b4193 )考生程序的正确性\n// 用法： g++ -O2 -o judge_b4193 judge_b4193.cpp && ./judge_b4193 <考生二进制程序路径>\n// 原理：把每组样例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（trim 后精确匹配）。\n#include <cstdio>\n#include <cstdlib>\n#include <iostream>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4193_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4193_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss;\n    ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) {\n        std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\";\n        return 1;\n    }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"5 1 1\\n*...*\\n\", \"2\\n\"},\n        {\"6 2 3\\n*...*.\\n\", \"4\\n\"},\n        {\"3 2 3\\n***\\n\", \"0\\n\"}\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        actualOutputs[i] = runProgram(exePath, cases[i].input);\n        if (actualOutputs[i] == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 排座位 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4193）"
+    },
+    {
+     "id": "p5",
+     "type": "programming",
+     "title": "生日",
+     "knowledge": [],
+     "stem": "陶陶过生日，有 n 个小伙伴站成环形为他庆祝，并将他们标号为 1..n，他们对应的身高为 a1..an。求如何排序，能让任意相邻的两个小伙伴之间身高差的绝对值最大值最小。",
+     "input_format": "第一行仅有一个整数 n，表示参加生日聚会的小伙伴人数。第二行有 n 个整数 a1, a2, …, an，ai 表示第 i 位小伙伴的身高。",
+     "output_format": "输出 n 个整数，表示排序后的小伙伴的身高。如果有多种方案，输出一种即可。（注意：环形首尾相邻也算相邻）",
+     "constraints": "对于 100% 的数据：2 ≤ n ≤ 5×10^6，1 ≤ ai ≤ 10^9。",
+     "samples": [
+      {
+       "input": "5\n2 1 1 3 2\n",
+       "output": "1 2 3 2 1"
+      },
+      {
+       "input": "3\n30 10 20\n",
+       "output": "10 20 30"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "排序后按\"中间元素插入两端\"的锯齿方式构造环，可使最大相邻差达到最优。",
+      "test_program": "// 测试程序：验证\"生日\"(海淀真题 b4194)考生程序的正确性\n// 用法： g++ -O2 -o judge_b4194 judge_b4194.cpp && ./judge_b4194 <考生二进制程序路径>\n// 本题有多种合法排列：校验 (1) 输出是输入的一个重排；(2) 环形相邻身高差最大值等于该样例的最优值。\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <map>\n#include <sstream>\n#include <fstream>\n#include <algorithm>\n#include <cstdlib>\n#include <iostream>\n#include <unistd.h>\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4194_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4194_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss;\n    ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return ss.str();\n}\n\nstruct Case { std::string input; long long n; long long optimal; };\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n    // optimal：样例输入对应的\"最小化的最大环形相邻身高差\"，由暴力/参考解法预先算出\n    std::vector<Case> cases = {\n        {\"5\\n2 1 1 3 2\\n\", 5, 1},\n        {\"3\\n30 10 20\\n\", 3, 20},\n    };\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> detail(total);\n    for (int t = 0; t < total; t++) {\n        std::stringstream ins(cases[t].input);\n        long long n = cases[t].n;\n        std::vector<long long> expect(n);\n        { long long dummy; ins >> dummy; }  // 跳过输入的第一行 n\n        for (long long i = 0; i < n; i++) ins >> expect[i];\n        std::string out = runProgram(exePath, cases[t].input);\n        std::stringstream oss(out);\n        std::vector<long long> got(n);\n        bool ok = true;\n        for (long long i = 0; i < n; i++) {\n            if (!(oss >> got[i])) { ok = false; break; }\n        }\n        if (ok && oss.peek() != EOF) {\n            // 允许末尾多余空白，但不应有多余数字\n            int ch;\n            while ((ch = oss.peek()) != EOF) { if (ch != ' ' && ch != '\\t' && ch != '\\n' && ch != '\\r') { ok = false; break; } oss.get(); }\n        }\n        if (ok) {\n            std::vector<long long> a = expect, b = got;\n            std::sort(a.begin(), a.end()); std::sort(b.begin(), b.end());\n            if (a != b) ok = false;\n        }\n        if (ok) {\n            long long mx = 0;\n            for (long long i = 0; i < n; i++)\n                mx = std::max(mx, std::llabs(got[i] - got[(i+1)%n]));\n            if (mx != cases[t].optimal) { ok = false; detail[t] = \"最大环形相邻差 \" + std::to_string(mx) + \" != 最优 \" + std::to_string(cases[t].optimal); }\n        } else {\n            detail[t] = \"输出不是输入的重排或格式错误\";\n        }\n        if (ok) passed++; else failedIdx.push_back(t);\n    }\n    printf(\"=== 生日 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        for (int idx : failedIdx) printf(\"第 %d 组：%s\\n\", idx + 1, detail[idx].c_str());\n    } else printf(\"全部样例通过！\\n\");\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4194）"
+    },
+    {
+     "id": "p6",
+     "type": "programming",
+     "title": "纸牌游戏",
+     "knowledge": [],
+     "stem": "有一种纸牌游戏，规则如下：初始时玩家分数都是 0，游戏一共进行 n 个回合，每个回合中玩家要么得分要么扣分。游戏结束时如果只有一名得分最高的玩家，那么他就是获胜者；如果有两名或两名以上的玩家最高分数相同，则其中先获得最高分的玩家为游戏的获胜者。数据保证在比赛结束时至少有一个玩家的分数为正。",
+     "input_format": "第一行仅有一个整数 n，表示游戏进行的回合数；接下来的 n 行，按照游戏的先后顺序给出每一回合玩家的用户名和得失分数的信息（负数表示扣分），玩家的用户名均为长度不超过 32 的小写字母组成的字符串，分数的绝对值不大于 1000。",
+     "output_format": "仅有一行，包含一个字符串，表示获胜者的名称。",
+     "constraints": "对于 100% 的数据：1 ≤ n ≤ 10^5。",
+     "samples": [
+      {
+       "input": "3\nbob 3\nalice 5\nmike 2\n",
+       "output": "alice"
+      },
+      {
+       "input": "3\ndavid 3\ndavid 2\nmike 5\n",
+       "output": "david"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "累计每个玩家分数，维护\"当前最高分及其最早达到时刻\"，结束时取分数最高且最早达到该最高分的玩家。",
+      "test_program": "// 测试程序：验证\"纸牌游戏\"(海淀真题 b4195 )考生程序的正确性\n// 用法： g++ -O2 -o judge_b4195 judge_b4195.cpp && ./judge_b4195 <考生二进制程序路径>\n// 原理：把每组样例输入写入临时文件，重定向给考生程序运行，捕获其标准输出并与期望结果比较（trim 后精确匹配）。\n#include <cstdio>\n#include <cstdlib>\n#include <iostream>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <unistd.h>\n\nstruct Case { std::string input; std::string expected; };\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\n\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4195_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4195_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss;\n    ss << fout.rdbuf();\n    std::remove(inFile.c_str());\n    std::remove(outFile.c_str());\n    return trim(ss.str());\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) {\n        std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\";\n        return 1;\n    }\n    std::string exePath = argv[1];\n\n    std::vector<Case> cases = {\n        {\"3\\nbob 3\\nalice 5\\nmike 2\\n\", \"alice\\n\"},\n        {\"3\\ndavid 3\\ndavid 2\\nmike 5\\n\", \"david\\n\"}\n    };\n\n    int total = (int)cases.size();\n    int passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n\n    for (int i = 0; i < total; i++) {\n        actualOutputs[i] = runProgram(exePath, cases[i].input);\n        if (actualOutputs[i] == trim(cases[i].expected)) passed++;\n        else failedIdx.push_back(i);\n    }\n\n    printf(\"=== 纸牌游戏 测试结果：%d / %d 通过 ===\\n\", passed, total);\n\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        printf(\"%-4s | %-24s | %-20s | %-20s\\n\", \"#\", \"输入\", \"期望输出\", \"实际输出\");\n        printf(\"---------------------------------------------------------------------------\\n\");\n        for (int idx : failedIdx) {\n            std::string in = cases[idx].input;\n            for (auto& c : in) if (c == '\\n') c = ' ';\n            printf(\"%-4d | %-24s | %-20s | %-20s\\n\",\n                   idx + 1, trim(in).c_str(), trim(cases[idx].expected).c_str(), actualOutputs[idx].c_str());\n        }\n    } else {\n        printf(\"全部样例通过！\\n\");\n    }\n\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4195）"
+    },
+    {
+     "id": "p7",
+     "type": "programming",
+     "title": "赛车游戏",
+     "knowledge": [],
+     "stem": "陶陶和天天喜欢玩赛车游戏，在游戏中有一条直赛道长度为 l，陶陶的赛车在起点为 0 的位置，准备向终点行驶，天天的赛车在终点为 l 的位置，准备向起点行驶。赛车的初始速度都为 1，在赛道上有 n 个加速带，第 i 个加速带的位置为 ai，当小车经过一个加速带时，它的速度就增加 1。请你帮忙计算出两车相遇时间。",
+     "input_format": "第一行仅有一个整数 T 表示测试数据的组数，每组测试数据的第一行包含两个整数 n 和 l，第二行包含 n 个整数 a1, a2, …, an。",
+     "output_format": "共有 T 行，每行仅有一个数，依次对应每组测试数据的答案，表示两车相遇的时间。允许绝对误差、相对误差不超过 10^-6。",
+     "constraints": "对于 100% 的数据：1 ≤ T ≤ 10^4，1 ≤ n ≤ 10^5，1 ≤ l ≤ 10^9，1 ≤ a1 < a2 < … < an < l。保证所有测试用例中 n 的总和不超过 10^5。",
+     "samples": [
+      {
+       "input": "5\n2 10\n1 9\n1 10\n1\n5 7\n1 2 3 4 6\n2 1000000000\n413470354 982876160\n9 478\n1 10 25 33 239 445 453 468 477\n",
+       "output": "3.000000000000000\n3.666666666666667\n2.047619047619048\n329737645.7500000\n53.70000000000000"
+      }
+     ],
+     "answer": {
+      "reference_code": "",
+      "solution": "两车相向而行，相对速度随各自经过的加速带变化，对相遇过程分段累加或用二分/模拟求解。",
+      "test_program": "// 测试程序：验证\"赛车游戏\"(海淀真题 b4196)考生程序的正确性\n// 浮点答案：按绝对误差/相对误差 <= 1e-6 判定。\n#include <cstdio>\n#include <cstdlib>\n#include <string>\n#include <vector>\n#include <sstream>\n#include <fstream>\n#include <iostream>\n#include <unistd.h>\n\nstatic std::string trim(const std::string& s) {\n    size_t a = s.find_first_not_of(\" \\t\\r\\n\");\n    if (a == std::string::npos) return \"\";\n    size_t b = s.find_last_not_of(\" \\t\\r\\n\");\n    return s.substr(a, b - a + 1);\n}\nstatic std::string runProgram(const std::string& exePath, const std::string& input) {\n    std::string inFile = \"/tmp/oa1_b4196_in_\" + std::to_string(getpid()) + \".txt\";\n    std::string outFile = \"/tmp/oa1_b4196_out_\" + std::to_string(getpid()) + \".txt\";\n    { std::ofstream fin(inFile); fin << input; }\n    std::string cmd = \"\\\"\" + exePath + \"\\\" < \\\"\" + inFile + \"\\\" > \\\"\" + outFile + \"\\\" 2>/dev/null\";\n    int rc = system(cmd.c_str());\n    (void)rc;\n    std::ifstream fout(outFile);\n    std::stringstream ss; ss << fout.rdbuf();\n    std::remove(inFile.c_str()); std::remove(outFile.c_str());\n    return ss.str();\n}\n\nstruct Case { std::string input; std::vector<double> expected; };\n\nstatic bool closeD(double a, double b) {\n    double d = a > b ? a - b : b - a;\n    double scale = b > 1 ? b : 1;\n    return d <= 1e-6 * scale;\n}\n\nint main(int argc, char** argv) {\n    if (argc < 2) { std::cerr << \"用法: \" << argv[0] << \" <考生二进制程序路径>\\n\"; return 1; }\n    std::string exePath = argv[1];\n    std::vector<Case> cases = {\n        {\"5\\n2 10\\n1 9\\n1 10\\n1\\n5 7\\n1 2 3 4 6\\n2 1000000000\\n413470354 982876160\\n9 478\\n1 10 25 33 239 445 453 468 477\\n\",\n         {3.0, 3.666666666666667, 2.047619047619048, 329737645.75, 53.7}},\n    };\n    int total = (int)cases.size(), passed = 0;\n    std::vector<int> failedIdx;\n    std::vector<std::string> actualOutputs(total);\n    for (int i = 0; i < total; i++) {\n        std::string out = runProgram(exePath, cases[i].input);\n        actualOutputs[i] = trim(out);\n        std::stringstream ss(out);\n        std::vector<double> got;\n        double v;\n        while (ss >> v) got.push_back(v);\n        bool ok = got.size() == cases[i].expected.size();\n        for (size_t j = 0; ok && j < got.size(); j++) if (!closeD(got[j], cases[i].expected[j])) ok = false;\n        if (ok) passed++; else failedIdx.push_back(i);\n    }\n    printf(\"=== 赛车游戏 测试结果：%d / %d 通过 ===\\n\", passed, total);\n    if (!failedIdx.empty()) {\n        printf(\"\\n以下样例不符合预期：\\n\");\n        for (int idx : failedIdx) printf(\"第 %d 组实际输出：%s\\n\", idx + 1, actualOutputs[idx].c_str());\n    } else printf(\"全部样例通过！\\n\");\n    return failedIdx.empty() ? 0 : 1;\n}\n"
+     },
+     "source": "2023 海淀复赛小学组（洛谷 B4196）"
+    }
+   ]
+  }
+ ]
+}
