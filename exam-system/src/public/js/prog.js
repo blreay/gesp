@@ -76,8 +76,11 @@
       el.textContent = App.fmtCountdown(remain);
       el.classList.toggle('danger', remain <= 5 * 60000);
       if (remain <= 0) {
+        // 时间到不自动交卷：仍可继续提交编程代码（服务端 /api/judge 不设时限），
+        // 判题结果照常计入本 attempt，完成后回考试页交卷。与 exam.js 超时口径一致。
         el.textContent = '时间已到';
-        document.getElementById('btnSubmit').disabled = true;
+        el.classList.add('danger');
+        App.toast('⏰ 时间已到，不会自动交卷；仍可继续提交编程代码，完成后返回考试页交卷', true);
         clearInterval(timer);
       }
     };

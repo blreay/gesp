@@ -115,6 +115,29 @@ test('api: 时间已到不自动交卷，仍可继续作答并交卷', async () 
   server.close(); db.close(); rmrf(dir); rmrf(bank);
 });
 
+test('api: 超时后编程题仍可提交判题并计入成绩', async () => {
+  const { dir, bank, db, server, base } = await setup();
+  await post(base, '/api/exams/test_paper_01/start');
+  // 把开始时间拨回 2 小时前（夹具卷时长 60 分钟）→ 已超时
+  db.get().prepare('UPDATE exam_attempts SET started_at = ? WHERE id = 1').run(Date.now() - 2 * 3600 * 1000);
+  // 超时后 /api/judge 照常判题并记录到本 attempt（前端 prog.js 超时不禁用提交按钮即依赖此契约）
+  const code = fs.readFileSync(path.join(__dirname, 'fixtures', 'cpp', 'ac.cpp'), 'utf8');
+  let r = await post(base, '/api/judge', { examId: 'test_paper_01', questionId: 'prog1', attemptId: 1, code });
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.status, 'ALL_PASS');
+  const sub = db.get().prepare('SELECT * FROM prog_submissions WHERE attempt_id = 1').get();
+  assert.ok(sub && sub.all_passed === 1, '提交应记录到超时的 attempt');
+  // 判题同时回写编程题作答；补完客观题后交卷，编程分计入总分
+  await post(base, '/api/attempts/1/answers', { questionId: 'q1', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q2', answer: 'B' });
+  await post(base, '/api/attempts/1/answers', { questionId: 'q3', answer: 'true' });
+  r = await post(base, '/api/attempts/1/grade', {});
+  assert.strictEqual(r.status, 200);
+  assert.strictEqual(r.body.scored.prog, 50);
+  assert.strictEqual(r.body.scored.total, 100);
+  server.close(); db.close(); rmrf(dir); rmrf(bank);
+});
+
 test('api: 管理员可随时交卷——客观题未答完也能交，未答题按未作答计 0 分', async () => {
   const { dir, bank, db, server, base } = await setup();
   try {
